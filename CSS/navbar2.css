@@ -28,47 +28,59 @@ body, ul {
 .logo img {
     width: 150px;
 }
-.search-bar{
-    display: flex;
-    align-items: center;
-}
-.search-bar input {
-    padding: 5px;
-    border-color: #e9e7e7;
-    border-radius: 5px 0 0 5px;
-    border-style: solid;
-    border-width: 1px;
-    height: 35px;
-    width: 300px;
-}
-.search-bar button{
-    background-image: url(../Assests/icons/search-alt-2-regular-24.png);
-    width: 35px;
-    height: 35px;
-    border-radius: 0 5px 5px 0;
-    background-color: black;
-    background-repeat: no-repeat;
-    background-size: 25px;
-    background-position: center;
-}
+
 .menu{
     display: flex;
     gap: 20px;
+    align-items: center;
+    
+}
+
+.notification{
+    background-image: url('../Assests/icons/bell-regular-72.png');
+    background-repeat: no-repeat;
+    background-color: #ffffff;
+    background-size: 25px;
+    width: 30px;
+    height: 30px;
+    border: none;
+}
+.massages{
+    background-image: url('../Assests/icons/envelope-regular-72.png');
+    background-repeat: no-repeat;
+    background-color: #ffffff;
+    background-size: 25px;
+    width: 30px;
+    height: 30px;
+    border: none;
 }
 
 
-
-.become-seller {
+.orders, .getsupport,.packages,.earnings {
     cursor: pointer;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
-    padding: 0 30px;
+    /* padding: 0 30px; */
     margin: 0;
+    color: rgb(119, 118, 118);
+}
+.switch {
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    padding: 0 20px;
+    margin: 0;
+    color: rgb(8, 60, 203);
+}
+.profileimg{
+    width: 50px;
+    height: 50px;
+    clip-path: circle(at center);
 }
 
 .user-actions {
     display: flex;
-    gap: 15px;
+    gap: 40px;
     align-items: center;
 }
 
