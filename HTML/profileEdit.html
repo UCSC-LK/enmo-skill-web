@@ -11,32 +11,44 @@
     <div class="pEdit-main">
         <div class="pEdit-layout">
             
-        <div class="right">   
-            <p class="title">Edit Profilr Details</p>
-            
-            <form class ="form-layout" method="post">
+            <div class="right">   
+                <p class="title">Edit Profilr Details</p>
                 
-                <label class="input-lable" for="description">Description</label>
-                <input type="text" class="inputs" name="description" id="description" required>
+                <form class ="form-layout" method="post">
+                    
+                    <label class="input-lable" for="name">Name</label>
+                    <input  class="inputs" name="name" id="name" required>
+                    <br>
 
-                <label class="input-lable" for="languages">Languages</label>
-                <input type="email" class="inputs" name="languages" id="languages" required>
+                    <label class="input-lable" for="address">Address</label>
+                    <textarea  class="inputs" name="address" id="address" required></textarea>
+                    <br>
 
-                <label class="input-lable" for="skils">Skils</label>
-                <input type="email" class="inputs" name="skils" id="skils" required>
+                    <label class="input-lable" for="description">Description</label>
+                    <textarea  class="inputs" name="description" id="description" required></textarea>
+                    <br>
 
-                <label class="input-lable" for="education">Education</label>
-                <input type="email" class="inputs" name="education" id="education" required>
- 
-                <br><br>
-                <input type="submit" value="Save">
-                
-            </form>
-           
+                    <label class="input-lable" for="languages">Languages</label>
+                    <textarea  class="inputs" name="languages" id="languages" required></textarea>
+                    <br>
+
+                    <label class="input-lable" for="skils">Skils</label>
+                    <textarea  class="inputs" name="skils" id="skils" required></textarea>
+                    <br>
+
+                    <label class="input-lable" for="education">Education</label>
+                    <textarea  class="inputs" name="education" id="education" required></textarea>
+    
+                    <br><br>
+                    <div>
+                        <input class="button"  type="submit" value="SAVE">
+                        <input class="button" style="background-color:#444;" type="submit" value="CANCEL">
+                    </div>
+                    
+                    
+                </form>
+            </div>    
         </div>    
-
     </div>
-
-
 </body>
 </html>
