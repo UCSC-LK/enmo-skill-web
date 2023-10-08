@@ -13,7 +13,7 @@
     background-position: center;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center;   
 }
 
 .profile-box{
@@ -21,6 +21,8 @@
     text-align: center;
     padding: 40px 90px;
     position: relative;
+    border: 1px solid;
+    border-color: #000000; 
     /*background-color:#fffff;*/
 }
 .profile-pic{
@@ -49,6 +51,8 @@
     height:35px;
     border-radius: 45px;
     background-color: #000000;
-    -webkit-text-fill-color: #FFFFFF;
+    -webkit-text-fill-color:#ffffff;
     text-align: center;
+    
 }
+
