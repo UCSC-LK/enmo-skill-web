@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/buyer_req_list.css">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <title>Buyer Requests</title>
+</head>
+
+<body>
+    <iframe src="../Components/navbar_seller.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;position: fixed;top: 0;z-index: 2;left: 0;"></iframe> 
+    <div class="major">
+        <div class="main-container">
+            <div class="header">
+                <h2>Buyer Requests</h2>
+                <div class="count">
+                    <div class="ct-bottom"><box-icon name='offer' type='solid' rotate='90' color='#a3a3a3' size = '20px' ></box-icon>
+                        <p><span>10</span>Offers left Today</p>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="table">
+                <div class="upper">
+                    <p>Buyer Requests</p>
+                </div>
+                <div class="row-main">
+                    <p class="date-main">DATE</p>
+                    <p class="user-main">BUYER</p>
+                    <p class="dis">REQUEST</p>
+                    <p class="duration-main">DURATION</p>
+                    <p class="budget-main">BUDGET</p>
+                </div>
+                <div class="row">
+                    <p class="date">2001/09/09</p>
+                    <p class="user">isuru liyanage</p>
+                    <p class="dis">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit repellat culpa ducimus ex excepturi eligendi impedit voluptatibus? Deleniti in maiores possimus iusto hic qui commodi architecto molestias tempora, perferendis nam!</p>
+                    <p class="duration"> 7days</p>
+                    <p class="budget">5$</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    
+    <ul id="list-container">
+        <!-- Hidden template for list item -->
+        <li class="hidden">
+            <span class="item-name">name</span>
+            <span class="item-id">id</span>
+        </li>
+    </ul>
+
+    <script src="../Javascripts/buyer_req_list.js"></script>
+</body>
+
+</html>
