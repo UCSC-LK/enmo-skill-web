@@ -71,7 +71,15 @@ border-bottom: solid;
 border-color: #ebebeb;
 border-width: 1 px;
 }
-
+.row-hidden{
+    display: none;
+    gap: 20px;
+    padding: 0 20px;
+    justify-content: space-around;
+    border-bottom: solid;
+    border-color: #ebebeb;
+    border-width: 1 px;
+    }
 .row .dis{
  width: 060%;
 }

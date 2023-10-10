@@ -17,12 +17,12 @@
                 <h2>Buyer Requests</h2>
                 <div class="count">
                     <div class="ct-bottom"><box-icon name='offer' type='solid' rotate='90' color='#a3a3a3' size = '20px' ></box-icon>
-                        <p><span>10</span>Offers left Today</p>
+                        <p><span id="count">10</span>  Offers left Today</p>
                     </div>
                     
                 </div>
             </div>
-            <div class="table">
+            <div class="table" id="table">
                 <div class="upper">
                     <p>Buyer Requests</p>
                 </div>
@@ -33,12 +33,12 @@
                     <p class="duration-main">DURATION</p>
                     <p class="budget-main">BUDGET</p>
                 </div>
-                <div class="row">
-                    <p class="date">2001/09/09</p>
-                    <p class="user">isuru liyanage</p>
-                    <p class="dis">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit repellat culpa ducimus ex excepturi eligendi impedit voluptatibus? Deleniti in maiores possimus iusto hic qui commodi architecto molestias tempora, perferendis nam!</p>
-                    <p class="duration"> 7days</p>
-                    <p class="budget">5$</p>
+                <div class="row-hidden">
+                    <p class="date"></p>
+                    <p class="user"></p>
+                    <p class="dis"></p>
+                    <p class="duration"></p>
+                    <p class="budget"></p>
                 </div>
             </div>
 
@@ -46,13 +46,6 @@
 
     </div>
     
-    <ul id="list-container">
-        <!-- Hidden template for list item -->
-        <li class="hidden">
-            <span class="item-name">name</span>
-            <span class="item-id">id</span>
-        </li>
-    </ul>
 
     <script src="../Javascripts/buyer_req_list.js"></script>
 </body>
