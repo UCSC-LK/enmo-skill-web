@@ -165,8 +165,12 @@ const responseData = [
 
 
 const listContainer = document.getElementById("table");
+const count = document.getElementById("count");
+
 const listItemTemplate = document.querySelector(".row-hidden");
 
+
+count.innerText=responseData.length;
 
 responseData.forEach(item => {
     
