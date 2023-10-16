@@ -5,18 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/my_request.css">
+    <link rel="stylesheet" href="../CSS/buyer_request.css">
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     
     <title>My Requests</title>
 </head>
 
 <body>
+    <!-- <iframe class= "popup"src="../Components/add_buyer_request.html" frameborder="0" scrolling="no" style="width: 100%; height: 100%; position: fixed;z-index: 101; top: 0; left: 0; display: none;"></iframe> -->
     <iframe src="../Components/navbar_customer.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;position: fixed;top: 0;z-index: 2;left: 0;"></iframe> 
     <div class="major">
         <div class="main-container">
             <div class="header">
+                <div class="firstele">
                 <h2>My Requests</h2>
+                <button class="create" role="button"><span class="text">Create Request</span><span
+                    style="width: max-content;"                    
+                >Click to Start</span></button></div>
                 <div class="count">
+                    
+   
                     <div class="ct-bottom"><box-icon name='offer' type='solid' rotate='90' color='#a3a3a3' size = '20px' ></box-icon>
                         <p><span id="count">10</span>  Active Requests</p>
                     </div>
@@ -47,7 +55,49 @@
                 </div>
             </div>
 
-        </div><script src="../Javascripts/my_requests.js"></script>
+        </div>
+        
+        <div class="overlay">
+            <div class="body">
+                <div class="main">
+                    
+                    <div class="container">
+                        <form  id="Form">
+                        <p class="close">X</p>
+                        <p class="title">Give your project brief a title</p>
+                        <p class="subtline">Keep it short and simple</p>
+                        <input type="text" class="title-input" placeholder="Example: Create a Flyer for My Company"required>
+                        
+                        <p class="title">What are you looking to get done?</p>
+                        <p class="subtline">Provide us with your concept, and we'll ensure it's understood by the right talent</p>
+                        <textarea class="description-input" placeholder="Describe your project here..."required></textarea>
+                        
+                        <button class="attach-button">Attach Files</button>
+                        
+                        <p class="title">How long is the expected duration of your project?</p>
+                        <input type="number" class="duration-input" placeholder="Enter project duration (in Days)"required>
+                        <p class="title">What is your estimated budget for this project?</p>
+                        
+                        <input type="number" class="budget-input" placeholder="Enter the amount you can spend" required>
+                        <!-- <select class="category-dropdown">
+                            <option value="category1">Flyer Design</option>
+                            <option value="category2">Banner Design</option>
+                            <option value="category3">Poster Design</option>
+                            <option value="category3">Other</option>
+                        </select> -->
+        
+                        <button type="submit" class="submit-button">Create Request</button>
+                    </form>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <script src="../Javascripts/my_requests.js"></script>
+            
 
     </div>
     

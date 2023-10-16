@@ -21,7 +21,7 @@ const listItemTemplate = document.querySelector(".row-hidden");
 
 var requestOptions = {
   method: 'GET',
-  Credential:'include'
+  Credential:'include',
 };
 
 fetch("http://localhost:15000/enmo_skill_backend_war/request?Role=Designer", requestOptions)
