@@ -83,31 +83,6 @@ function dataWrite(valtitle,valDis,valduration,valBudget){
     .catch(error => console.log('error', error));
 
 }
-// createbtn.addEventListener("click",()=> {
-//   iframe.style.display="block"
-//   var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-//   var bodyElement = iframeDocument.querySelector('body');
-//   var closeElement = iframeDocument.querySelector('.close');
-//   var SubmitElement = iframeDocument.querySelector('.submit-button');
-  
-
-// if (bodyElement) {
-//     bodyElement.style.display = 'block'; // Apply your desired styles here
-//   }
-//   closeElement.addEventListener("click",()=>{
-//     bodyElement.style.display = 'none';
-//     iframe.style.display="none"
-//   })
-//   SubmitElement.addEventListener("click",()=>{
-//     // bodyElement.style.display = 'none';
-//     // iframe.style.display="none"
-//   })
-  
-// })
-
-
-
-//window.location.href = "add_buyer_request.html"
 
 
 var requestOptions = {
@@ -163,5 +138,17 @@ function editRequest(requestID){
 
 }
 function deleteRequest(requestID){
-    console.log(requestID)
+  if(confirm('Are you sure you want Delete this request?')){
+
+    var requestOptions = {
+      method: 'DELETE',
+      redirect: 'follow'
+    };
+    
+    fetch("http://localhost:15000/enmo_skill_backend_war/request?requestID="+requestID, requestOptions)
+      .then(response => response.text())
+      .then(result => {alert(result)
+        location.reload();})
+      .catch(error => console.log('error', error));
+  }
 }
