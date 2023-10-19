@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/profile.css">
+     <link rel="stylesheet" href="../CSS/profileEdit.css">
     <title>Profile</title>
 </head>
 <body>
@@ -44,11 +45,67 @@
                 <h3>Education</h3>
                 <p class="education">Undergraduate student at UCSC</p>
             </div>   
-            <div class="button" >
-                <button type="button" class="btn_text">Edit</button>
-            </div>
+            <div id="editBTN"><button class="button div-cursor" >Edit Profile</button></div>
             
         </div>
         
     </div>
+    <div class="pop-up-container"></div>
+        <div class="pop-up">
+            <div class="pEdit-main">
+                <div class="pEdit-layout">
+                    
+                    <div class="right">   
+                        <p class="title">Edit Profilr Details</p>
+                        
+                        <form class ="form-layout" method="post">
+                            
+                            <label class="input-lable" for="name">Name</label>
+                            <input  class="inputs" name="name" id="name" required>
+                            <br>
+        
+                            <label class="input-lable" for="address">Address</label>
+                            <textarea  class="inputs" name="address" id="address" required></textarea>
+                            <br>
+        
+                            <label class="input-lable" for="description">Description</label>
+                            <textarea  class="inputs" name="description" id="description" required></textarea>
+                            <br>
+        
+                            <label class="input-lable" for="languages">Languages</label>
+                            <textarea  class="inputs" name="languages" id="languages" required></textarea>
+                            <br>
+        
+                            <label class="input-lable" for="skils">Skils</label>
+                            <textarea  class="inputs" name="skils" id="skils" required></textarea>
+                            <br>
+        
+                            <label class="input-lable" for="education">Education</label>
+                            <textarea  class="inputs" name="education" id="education" required></textarea>
+            
+                            <br><br>
+                            <div>
+                                <input class="button div-cursor"  type="submit" value="SAVE">
+                                <input class="button div-cursor" style="background-color:#444;" type="submit" value="CANCEL">
+                            </div>
+                                                       
+                        </form>
+                    </div>    
+                </div>    
+            </div>
+        </div>
 </body>
+
+<script>
+    let popup_con=document.querySelector(".pop-up-container");
+    let popup_details=document.querySelector(".pop-up");
+    console.log(popup_con)
+    document.getElementById("editBTN").onclick=(event)=>{
+        popup_con.style.display="flex";
+        popup_details.style.display="inline";
+    }
+    popup_con.onclick=(event)=>{
+        popup_con.style.display="none";
+        popup_details.style.display="none";
+    }
+</script>
