@@ -30,7 +30,7 @@
             </div>
 
             <div class="ticket-box-2">
-                <div style="justify-content: left"><p style="padding: 1px">Late payment</p></div>
+                <div class="div-cursor" style="justify-content: left" id="first"><p style="padding: 1px">Late payment</p></div>
                 <div><p>10/02/2023</p></div>
                 <div><p>10.15</p></div>
                 <div class="ticket-status"><div class="status-solved">Solved</div></div>
@@ -52,4 +52,25 @@
             </div>
         </div>
     </div>
+    <div class="pop-up-container"></div>
+        <div class="pop-up">
+
+        </div>
+
 </body>
+
+<script>
+    let popup_con=document.querySelector(".pop-up-container");
+    let popup_details=document.querySelector(".pop-up");
+    console.log(popup_con)
+    document.getElementById("first").onclick=(event)=>{
+        popup_con.style.display="flex";
+        popup_details.style.display="flex";
+        console.log("dede");
+
+    }
+    popup_con.onclick=(event)=>{
+        popup_con.style.display="none";
+        popup_details.style.display="none";
+    }
+</script>
