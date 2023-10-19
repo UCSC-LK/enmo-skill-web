@@ -12,7 +12,8 @@
 //   setCookie('username', 'john_doe', 30); // Save a username cookie with a 30-day expiration
   
 
-
+let flagCreate=false;
+let flagUpdate=false;
 const listContainer = document.getElementById("table");
 const count = document.getElementById("count");
 
@@ -30,18 +31,31 @@ const Budget = document.querySelector('.budget-input');
 const duration = document.querySelector('.duration-input');
 const form = document.getElementById('Form');
 const form2 = document.getElementById('Form');
+const submitbtn = document.querySelector('.submit-button');
 
-createbtn.addEventListener("click",()=>{
+
+
+createbtn.addEventListener("click",(event)=>{
+  flagCreate =true;
+  submitbtn.innerText = "Create Request";
+  title1.value=""
+  Dis.value=""
+  Budget.value=""
+  duration.value=""
+
   popup.style.display="block"
 
   closebtn.addEventListener("click",()=>{
     popup.style.display="none"
+    return;
   })
   
   
   //create request start here
   
   function handleSubmit(event) {
+    if(!flagCreate){return}
+    flagCreate=false;
     event.preventDefault();
     const valtitle = title1.value;
     const valDis = Dis.value;
@@ -59,7 +73,7 @@ createbtn.addEventListener("click",()=>{
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     
-    var raw = JSON.stringify({
+    var raw2 = JSON.stringify({
       "title":valtitle,
       "duration": valduration,
       "budget": valBudget,
@@ -69,17 +83,18 @@ createbtn.addEventListener("click",()=>{
     });
     
     var requestOptions = {
-      method: 'PUT',
+      method: 'POST',
       headers: myHeaders,
-      body: raw
+      body: raw2
     };
     
     fetch("http://localhost:15000/enmo_skill_backend_war/request", requestOptions)
       .then(response => response.text())
-      .then(result => {alert(result)
+      .then(result => {alert(result);
         location.reload();})
-      .catch(error => console.log('error', error));
-  
+      .catch(error => {console.log('error', error);
+                      });
+    
   }
 
 
@@ -154,6 +169,7 @@ fetch("http://localhost:15000/enmo_skill_backend_war/request?Role=Client&UserId=
   const Discriptionview = document.querySelector('.description');
   const Budgetview = document.querySelector('.budget-text');
   const durationview = document.querySelector('.description-text');
+
   
 function viewrequest(item){
   popupview.style.display="flex";
@@ -198,8 +214,13 @@ window.onclick = function(event) {
   }
 }
 
+
+//this is updating request
+
 function editRequest(item){
+  flagUpdate=true
   popup.style.display="block"
+  submitbtn.innerText = "Update Request";
   closebtn.addEventListener("click",()=>{
     popup.style.display="none"
   })
@@ -209,21 +230,23 @@ Dis.value=item.discription;
 Budget.value=item.budget;
 duration.value=item.duration;
   
-  function handleSubmit(event) {
+  function handleupdateSubmit(event) {
+    if(!flagUpdate)return;
+    flagUpdate=false;
     event.preventDefault();
-    const valtitle = title1.value;
-    const valDis = Dis.value;
-    const valBudget = Budget.value;
-    const valurl = null;
-    const valduration = duration.value;
-    dataWrite(valtitle,valDis,valduration,valBudget)
+    const valuetitle = title1.value;
+    const valueDis = Dis.value;
+    const valueBudget = Budget.value;
+    const valueurl = null;
+    const valueduration = duration.value;
+    dataupdate(valuetitle,valueDis,valueduration,valueBudget)
   
     
     popup.style.display = "none";
   }
-  form2.addEventListener('submit', handleSubmit);
+  form2.addEventListener('submit', handleupdateSubmit);
   
-  function dataWrite(valtitle,valDis,valduration,valBudget){
+  function dataupdate(valtitle,valDis,valduration,valBudget){
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     
@@ -231,13 +254,13 @@ duration.value=item.duration;
       "title":valtitle,
       "duration": valduration,
       "budget": valBudget,
-      "userID": 2,//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< hardcoded here
+      "requestID": item.requestID,//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< hardcoded here
       "discription": valDis,
       "sample_work_url": "https://abc.xyz"
     });
     
     var requestOptions = {
-      method: 'POST',
+      method: 'PUT',
       headers: myHeaders,
       body: raw
     };
