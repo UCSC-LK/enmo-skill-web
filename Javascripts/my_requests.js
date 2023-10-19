@@ -29,61 +29,69 @@ const Dis = document.querySelector('.description-input');
 const Budget = document.querySelector('.budget-input');
 const duration = document.querySelector('.duration-input');
 const form = document.getElementById('Form');
-
+const form2 = document.getElementById('Form');
 
 createbtn.addEventListener("click",()=>{
   popup.style.display="block"
-})
-closebtn.addEventListener("click",()=>{
-  popup.style.display="none"
-})
-window.onclick = function(event) {
-  if (event.target == overlay) {
+
+  closebtn.addEventListener("click",()=>{
+    popup.style.display="none"
+  })
+  
+  
+  //create request start here
+  
+  function handleSubmit(event) {
+    event.preventDefault();
+    const valtitle = title1.value;
+    const valDis = Dis.value;
+    const valBudget = Budget.value;
+    const valurl = null;
+    const valduration = duration.value;
+    dataWrite(valtitle,valDis,valduration,valBudget)
+  
+    
     popup.style.display = "none";
   }
-}
-
-
-function handleSubmit(event) {
-  event.preventDefault();
-  const valtitle = title1.value;
-  const valDis = Dis.value;
-  const valBudget = Budget.value;
-  const valurl = null;
-  const valduration = duration.value;
-  dataWrite(valtitle,valDis,valduration,valBudget)
-
+  form.addEventListener('submit', handleSubmit);
   
-  popup.style.display = "none";
-}
-form.addEventListener('submit', handleSubmit);
-
-function dataWrite(valtitle,valDis,valduration,valBudget){
-  var myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
+  function dataWrite(valtitle,valDis,valduration,valBudget){
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    
+    var raw = JSON.stringify({
+      "title":valtitle,
+      "duration": valduration,
+      "budget": valBudget,
+      "userID": 2,//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< hardcoded here
+      "discription": valDis,
+      "sample_work_url": "https://abc.xyz"
+    });
+    
+    var requestOptions = {
+      method: 'PUT',
+      headers: myHeaders,
+      body: raw
+    };
+    
+    fetch("http://localhost:15000/enmo_skill_backend_war/request", requestOptions)
+      .then(response => response.text())
+      .then(result => {alert(result)
+        location.reload();})
+      .catch(error => console.log('error', error));
   
-  var raw = JSON.stringify({
-    "duration": valduration,
-    "budget": valBudget,
-    "userID": 2,//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< hardcoded here
-    "discription": valDis,
-    "sample_work_url": "https://abc.xyz"
-  });
-  
-  var requestOptions = {
-    method: 'POST',
-    headers: myHeaders,
-    body: raw
-  };
-  
-  fetch("http://localhost:15000/enmo_skill_backend_war/request", requestOptions)
-    .then(response => response.text())
-    .then(result => {alert(result)
-      location.reload();})
-    .catch(error => console.log('error', error));
+  }
 
-}
 
+})
+
+
+
+
+
+
+
+//creating list start here
 
 var requestOptions = {
   method: 'GET',
@@ -98,15 +106,22 @@ fetch("http://localhost:15000/enmo_skill_backend_war/request?Role=Client&UserId=
     result.data.forEach(item => {
     
         const newItem = listItemTemplate.cloneNode(true);
-        
-        newItem.querySelector(".edit").addEventListener("click", function() {
+        newItem.addEventListener("click",(event )=>{
+          event.stopPropagation();
+          viewrequest(item) 
+         
+        })
+        newItem.querySelector(".edit").addEventListener("click", function(event ) {
+          event.stopPropagation();
           editRequest(item)
           
         });
-        newItem.querySelector(".delete").addEventListener("click", function() {
-            deleteRequest(item.requestID)
+        newItem.querySelector(".delete").addEventListener("click", function(event ) {
+          event.stopPropagation();
+          deleteRequest(item.requestID)
             
-          });
+        });
+        
 
 
 
@@ -131,12 +146,32 @@ fetch("http://localhost:15000/enmo_skill_backend_war/request?Role=Client&UserId=
 
   })
   .catch(error => console.log('error', error));
-    
+  const popupview = document.querySelector('.overlay-view');
+  const titleview = document.querySelector('.tl');
+  const closetn = document.querySelector('.close-top');
+  const username = document.querySelector('.name-user');
+  const userurl = document.querySelector('.image-profile');
+  const Discriptionview = document.querySelector('.description');
+  const Budgetview = document.querySelector('.budget-text');
+  const durationview = document.querySelector('.description-text');
+  
+function viewrequest(item){
+  popupview.style.display="flex";
+  closetn.addEventListener("click", ()=> {
+  popupview.style.display="none"
+  })
+  titleview.innerHTML=item.title
+  username.innerHTML=item.username;
+  // userurl
+  Discriptionview.innerHTML=item.discription
+  Budgetview.innerHTML=item.budget;
+  durationview.innerHTML=item.duration;
 
-function editRequest(requestID){
-    console.log(item)
 
 }
+
+//delete request start here
+
 function deleteRequest(requestID){
   if(confirm('Are you sure you want Delete this request?')){
 
@@ -151,4 +186,70 @@ function deleteRequest(requestID){
         location.reload();})
       .catch(error => console.log('error', error));
   }
+}
+
+window.onclick = function(event) {
+
+  if (event.target == overlay) {
+    popup.style.display = "none";
+  }
+  if(event.target==popupview){
+    popupview.style.display="none"
+  }
+}
+
+function editRequest(item){
+  popup.style.display="block"
+  closebtn.addEventListener("click",()=>{
+    popup.style.display="none"
+  })
+  
+title1.value=item.title;
+Dis.value=item.discription;
+Budget.value=item.budget;
+duration.value=item.duration;
+  
+  function handleSubmit(event) {
+    event.preventDefault();
+    const valtitle = title1.value;
+    const valDis = Dis.value;
+    const valBudget = Budget.value;
+    const valurl = null;
+    const valduration = duration.value;
+    dataWrite(valtitle,valDis,valduration,valBudget)
+  
+    
+    popup.style.display = "none";
+  }
+  form2.addEventListener('submit', handleSubmit);
+  
+  function dataWrite(valtitle,valDis,valduration,valBudget){
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    
+    var raw = JSON.stringify({
+      "title":valtitle,
+      "duration": valduration,
+      "budget": valBudget,
+      "userID": 2,//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< hardcoded here
+      "discription": valDis,
+      "sample_work_url": "https://abc.xyz"
+    });
+    
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw
+    };
+    
+    fetch("http://localhost:15000/enmo_skill_backend_war/request", requestOptions)
+      .then(response => response.text())
+      .then(result => {alert(result)
+        location.reload();})
+      .catch(error => console.log('error', error));
+  
+  }
+
+
+
 }

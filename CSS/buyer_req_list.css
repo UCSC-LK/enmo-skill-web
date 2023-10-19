@@ -64,7 +64,7 @@ body{
 }
 .row{
 display: flex;
-gap: 20px;
+/* gap: 20px; */
 padding: 0 20px;
 justify-content: space-around;
 border-bottom: solid;
@@ -82,14 +82,18 @@ border-width: 1 px;
     }
 .row .dis{
  width: 060%;
+ max-width: 60%;
+ min-width: 60%;
 }
 .date, .user,.duration,.budget{
     width: 10%;
+    max-width: 10%;
+    min-width: 10%;
 }
 
 .row-main{
     display: flex;
-    gap: 20px;
+    /* gap: 20px; */
     padding: 0 20px;
     justify-content: space-around;
     border-bottom: solid;
@@ -98,13 +102,17 @@ border-width: 1 px;
     }
     
     .row-main .dis{
-     width: 060%;   
+     width: 060%;
+     max-width: 60%;
+     min-width: 60%;   
      font-weight: bold;
      color:#a3a3a3  ;
      font-size: small;
     }
     .date-main,.user-main,.duration-main,.budget-main{
         width: 10%;
+        max-width: 10%;
+        min-width: 10%;
         font-weight: bold;
         color:#a3a3a3;
         font-size: small;

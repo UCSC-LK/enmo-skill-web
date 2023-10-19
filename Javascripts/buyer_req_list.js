@@ -41,7 +41,9 @@ fetch("http://localhost:15000/enmo_skill_backend_war/request?Role=Designer", req
         newItem.querySelector(".dis").textContent = item.discription;
         newItem.querySelector(".duration").textContent = item.duration +" Days";
         newItem.querySelector(".budget").textContent = "Rs. "+item.budget;
-        
+        newItem.addEventListener("click",()=>{
+          viewrequest(item);
+        })
         
         newItem.classList.remove("row-hidden");
         newItem.classList.add("row"); 
@@ -52,7 +54,29 @@ fetch("http://localhost:15000/enmo_skill_backend_war/request?Role=Designer", req
   })
   .catch(error => console.log('error', error));
     
+  const popupview = document.querySelector('.overlay-view');
+  const titleview = document.querySelector('.tl');
+  const closetn = document.querySelector('.close-top');
+  const username = document.querySelector('.name-user');
+  const userurl = document.querySelector('.image-profile');
+  const Discriptionview = document.querySelector('.description');
+  const Budgetview = document.querySelector('.budget-text');
+  const durationview = document.querySelector('.description-text');
+  
+function viewrequest(item){
+  popupview.style.display="flex";
+  closetn.addEventListener("click", ()=> {
+  popupview.style.display="none"
+  })
+  titleview.innerHTML=item.title
+  username.innerHTML=item.username;
+  // userurl
+  Discriptionview.innerHTML=item.discription
+  Budgetview.innerHTML=item.budget;
+  durationview.innerHTML=item.duration;
 
+
+}
 
 
 
