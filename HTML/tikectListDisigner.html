@@ -12,11 +12,11 @@
         <h1 align="left">Tickets</h1>
         <div class="ticet-heder-box">
             <div class="class2">
-                <p style="color:black">ALL</a></p>
-                <p>ONGOIN</p>
-                <p>SOLVED</p>
-                <p>REJECTERD</p>
-                <button class="button" >CREATE A Ticket</button>
+                <p class="div-cursor" style="color:black">ALL</a></p>
+                <p class="div-cursor">ONGOING</p>
+                <p class="div-cursor">SOLVED</p>
+                <p class="div-cursor">REJECTED</p>
+                <button class="button div-cursor" >CREATE A TICKET</button>
             </div>
         </div>
 
@@ -54,7 +54,27 @@
     </div>
     <div class="pop-up-container"></div>
         <div class="pop-up">
+            <div><h3>Subject</h></div>
+            <div><p>Late pyament</p></div>
+            <br> 
 
+            <div><h3>Description</h></div>   
+            <div>
+                <p>
+                    I hope this message finds you well. 
+                    We would like to bring to your attention the outstanding payment for the project with reference
+                     number [Project Number or Description], which is currently overdue. As per our agreement, the
+                      payment was due on [Due Date].
+                </p>
+            </div>
+            <br>
+        
+            <div><h3>Date</h3></div>
+            <div><p>10/02/2023</p></div>
+            <br>
+
+            <div><h3>Status</h3></div>
+            <div><p>Solved</p></div>
         </div>
 
 </body>
@@ -65,7 +85,7 @@
     console.log(popup_con)
     document.getElementById("first").onclick=(event)=>{
         popup_con.style.display="flex";
-        popup_details.style.display="flex";
+        popup_details.style.display="inline";
         console.log("dede");
 
     }
