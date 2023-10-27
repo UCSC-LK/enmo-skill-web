@@ -147,6 +147,10 @@ function functionCall() {
               // Call a function to populate the form with data from the selected row
               populateForm(element);
             });
+
+            btn3.addEventListener("click",()=>{
+              deletePackage(element)
+            })
             
     
             span.appendChild(btn1);
@@ -179,5 +183,39 @@ function populateForm(selectedData) {
 
   window.location = url;
 
-  // ?name=Jonathan&age=18
+
+}
+
+function deletePackage(selectedData) {
+  const packageId = selectedData.packageId;
+  const title = selectedData.title;
+
+  // Show a confirmation dialog to confirm deletion
+  const flag = confirm(`Do you want to delete package with title: ${title}`);
+
+  if (flag) {
+    const deleteUrl = `http://localhost:15000/enmo_skill_backend_war/package?packageId=${packageId}`;
+
+    fetch(deleteUrl, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json', // You can adjust the content type if needed
+      },
+      body: JSON.stringify(selectedData),
+    })
+      .then((response) => {
+        if (response.ok) {
+          // Successful deletion, you can handle this as needed
+          console.log(`Package with packageId ${packageId} deleted successfully.`);
+          window.location = "http://127.0.0.1:5500/HTML/view_active_packages.html"
+        } else {
+          // Handle errors
+          alert("Failed to delete package");
+          console.error(`Failed to delete package with packageId ${packageId}.`);
+        }
+      })
+      .catch((error) => {
+        console.error('Error deleting package:', error);
+      });
+  }
 }

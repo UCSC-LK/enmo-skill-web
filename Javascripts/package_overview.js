@@ -24,7 +24,7 @@ form.addEventListener("submit", async (e) => {
         clicks: 0,
         orders: 0,
         cancellations: "0%",
-        status: "active"
+        status: "pending"
     };
 
     console.log(packageData);
