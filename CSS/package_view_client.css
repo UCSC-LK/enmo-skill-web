@@ -1,0 +1,128 @@
+/* Use consistent capitalization for class names */
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    padding: 30px;
+    padding-top: 10px; /* Corrected capitalization */
+    overflow: auto;
+}
+
+.block {
+    margin: auto;
+    padding: 30px;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.5); /* Corrected spelling */
+    border: none; /* Corrected spelling */
+    overflow: hidden; /* Replaced overflow-x and overflow-y */
+}
+
+.package-cover {
+    width: 800px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: flex-start; 
+}
+
+.designer-profile-picture {
+    width: 50px;
+    height: 50px;
+    clip-path: circle(at center);
+    margin-right: 20px;
+}
+
+.designer-img {
+    width: 90px;
+    height: 90px;
+    clip-path: circle(at center);
+    margin-right: 20px;
+    display: flex;
+    justify-content: flex-start; 
+    
+}
+
+.designer-username {
+    font-weight: bold;
+    margin: 0;
+    padding-top: 15px;
+}
+
+.heading { /* Corrected class name capitalization */
+    margin-bottom: 50px;
+}
+
+.aligned-set{
+    /* display: flex; */
+    justify-content: flex-start; 
+    flex-direction: column;
+}
+
+.image-holder {
+    width: 100%; /* Ensure it takes the full width of its container */
+    margin-top: 30px;
+    border: 1px solid black;
+}
+
+.cover-image {
+    max-width: 100%; /* Use max-width for responsive images */
+    height: auto;
+}
+
+.subheading { /* Corrected class name capitalization */
+    font-weight: bold;
+}
+
+.package-details {
+    margin-bottom: 40px;
+}
+
+.button-save {
+    background-color: #12289B; /* Button background color (blue) */
+    color: #fff; /* Text color for the button */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.right{
+    float: left;
+    width: 85%;
+    height: 90px;
+    margin-bottom: 40px;
+}
+
+.left{
+    width: 15%;
+    float: left;
+    margin-bottom: 40px;
+}
+
+.designer-details{
+    width: 100%;
+    
+}
+
+.pricing-details{
+    
+}
+
+table {
+    border-collapse: collapse; /* Remove default cell spacing */
+    width: 100%;
+    margin: 20px 0;
+}
+
+th, td {
+    border: 1px solid #ccc; /* Add a simple border */
+    padding: 8px 12px; /* Add padding for spacing */
+    text-align: left; /* Align text to the left */
+}
+
+th {
+    background-color: #f2f2f2; /* Add a light background color to header cells */
+    font-weight: bold; /* Make header text bold */
+}
+
