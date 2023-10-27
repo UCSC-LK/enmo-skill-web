@@ -40,3 +40,5 @@ function functionCall() {
     xhttp.send();
   }
 
+  // no data fecth to table
+
