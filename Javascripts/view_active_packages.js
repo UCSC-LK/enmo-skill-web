@@ -102,12 +102,12 @@ function functionCall() {
             const table = document.getElementById('package_table');
             const tr = document.createElement('tr');
     
-            const th_src = document.createElement('th');
-            const img = document.createElement('img');
-            img.src = element.coverUrl;
-            img.setAttribute('width', '30px');
-            th_src.appendChild(img);
-            tr.appendChild(th_src);
+            // const th_src = document.createElement('th');
+            // const img = document.createElement('img');
+            // img.src = element.coverUrl;
+            // img.setAttribute('width', '30px');
+            // th_src.appendChild(img);
+            // tr.appendChild(th_src);
     
             const th_title = document.createElement('th');
             th_title.innerHTML = element.title;

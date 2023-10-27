@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/package_overview.css">
+
     <title>Package Overview</title>
 </head>
 <body>
@@ -12,8 +13,8 @@
         <div class="container">
             <div class="block">
                 <h1 class="headding">Overview</h1>
-                <div class="form">
-                    <form method="post">
+                <div class="form" >
+                    <form id="package_form">
 
                         <label for="title" class="label-title">Package title</label>
                         <input type="text" name="title" id="title">
@@ -34,15 +35,12 @@
                         <textarea name="description" id="description" cols="62" rows="5" ></textarea>
                         <br>
     
-                        <label for="img">Cover image</label>
-                        <input type="file" id="img" name="img" accept="image/*">
-
-
-                        
+                        <!-- <label for="img">Cover image</label>
+                        <input type="file" id="img" name="img" accept="image/*"> -->
 
                         <br><br>
     
-                        <button class="button-save">Next</button>
+                        <button type="submit" class="button-save" id="button-next">Next</button>
                     </form>
                 </div>
                 
@@ -52,5 +50,7 @@
 
         </div>
     </div> 
+    <script src="../Javascripts/package_overview.js"></script>
 </body>
+
 </html>
