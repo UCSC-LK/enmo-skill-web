@@ -1,0 +1,73 @@
+/* Additional CSS for Footer Section */
+footer {
+    margin-top: 20px;
+    background-color: rgb(255, 255, 255); /* You can change the background color as per your design */
+    color: black; /* Text color for the footer */
+    padding: 20px; 
+    width: 100%;/* Adjust padding as needed */
+   
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer-spacelance,
+.footer-Clients,
+.forfreelancers,
+.call {
+    margin-left: 40px;
+    width: 25%; /* Adjust the width as needed */
+}
+.contact {
+    display: flex;
+    justify-content: space-around; /* Adjust as needed */
+    align-items: center; /* Center items vertically */
+}
+
+.contact a {
+    margin-right: 50px; /* Adjust the right margin to increase space between images */
+}
+
+/* Styling for the "Follow Us" and "For Freelancers" sections */
+.footer-Clients h2,
+.forfreelancers h2 {
+    border-bottom: 1px black; /* Add a border below the heading */
+    padding-bottom: 10px; /* Adjust spacing as needed */
+}
+
+/* Styling for the lists in the "Follow Us" and "For Freelancers" sections */
+.footer-Clients ul,
+.forfreelancers ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-Clients ul li,
+.forfreelancers ul li {
+    margin-bottom: 5px; /* Adjust spacing between list items */
+}
+
+.footer-Clients a,
+.forfreelancers a {
+    text-decoration: none;
+    color:black; /* Link color */
+}
+
+/* Styling for the contact information section */
+.call ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.call ul li {
+    margin-bottom: 5px; /* Adjust spacing between list items */
+}
+
+/* Styling for the images in the "call" section */
+.call ul li img {
+    width: 20px; /* Adjust the width of the images */
+    margin-right: 5px; /* Adjust spacing between the image and text */
+}
+

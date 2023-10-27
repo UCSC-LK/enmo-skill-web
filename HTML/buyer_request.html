@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/buyer_request.css">
+    <title>Buyer Requests</title>
+</head>
+<body>
+    <iframe src="../Components/navbar_customer.html" width="100%" height="auto" frameborder="0" scrolling="no"></iframe>
+    <h1>Buyer Requests</h1>
+    <div class="first">
+        <span class="second"> Give your project brief a title </span>
+        <div class="third"> Keep it short and simple-this will help us match you to the right category.</div>
+        <input class="input" placeholder="Example: Create logo design for my company  "/>
+        <span class="second"> What are you looking to get done? </span>
+        <div class="third"> This will help get your to the right talent. Specifics help here.</div>
+        <input class="input2" placeholder="I need... "/>
+        <div class="third"> Ho to write a great description</div>
+        <input class="atachfile" type="submit" value="Attach Files"/><br/>
+        <span class="second"> Which category best fits your project? </span>
+
+        <div>
+        <label for="categorySelect">Choose a category:</label>
+        <select id="categorySelect" name="category">
+            <option value="" disabled selected>Select a category</option>
+            <option value="design">Design</option>
+            <option value="development">Development</option>
+            <option value="writing">Writing</option>
+            <!-- Add more category options as needed -->
+        </select>
+        </div>
+    </div>
+
+</body>
+</html>

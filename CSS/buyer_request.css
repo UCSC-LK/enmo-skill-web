@@ -1,0 +1,42 @@
+.first{
+font-family: Arial, sans-serif;
+    /* display: flex; */
+
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+    margin: 0;
+    /* width: 100%; */
+    margin-left: 25%;
+    margin-right: 25%;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.second{
+    font-weight: bold;
+}
+.third{
+    margin-top: 2%;
+}
+
+.input{
+    width: 100%;
+    margin-top: 1%;
+    margin-bottom: 5%;
+}
+
+.input2{
+    width: 100%;
+    margin-top: 1%;
+    height: 100px;
+    text-align: start;
+    line-height: 100px;
+}
+
+.atachfile{
+    width: max-content;
+    height: 25px;
+    margin-top: 1%;
+    margin-bottom: 5%;
+}
