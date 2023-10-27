@@ -30,3 +30,11 @@ function loadActivePackages(){
     window.parent.location = "http://127.0.0.1:5500/HTML/view_active_packages.html";
 }
 
+const update_package = document.getElementById("update-package");
+
+// update_package.addEventListener("click", updatePackage);
+
+// function updatePackage(){
+
+// }
+
