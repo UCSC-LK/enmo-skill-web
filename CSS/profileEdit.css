@@ -44,10 +44,27 @@ body{
     display: block;
     padding: 8px 0;
     width: 500px;
+    height: 100px;
+    resize: none;
     border: 1px solid #eee;
     border-radius: 10px;
     color: #444;
-    font-size: 12px;
+    font-size: 15px;
+    z-index: 1;
+    position: relative; /* Ensure relative positioning for proper z-index */
+}
+
+.inputs-1 {
+    background: none;
+    outline: none;
+    border: none;
+    display: block;
+    padding: 8px 0;
+    width: 500px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    color: #444;
+    font-size: 15px;
     z-index: 1;
     position: relative; /* Ensure relative positioning for proper z-index */
 }

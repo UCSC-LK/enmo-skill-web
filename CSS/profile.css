@@ -17,11 +17,12 @@ body{
     background-position: center;
     display: flex;
     align-items: center;
-    justify-content: center;   
+    justify-content: center; 
+    padding: 100px;  
 }
 
 .profile-box{
-    width:70%;
+    width:50%;
     text-align: center;
     padding: 40px 90px;
     position: relative;
@@ -53,7 +54,7 @@ body{
 .button{
     width:155px;
     height:35px;
-    border-radius: 45px;
+    border-radius: 10px;
     background-color: #000000;
     -webkit-text-fill-color: #FFFFFF;
     text-align: center;
@@ -74,9 +75,9 @@ body{
 .pop-up{
     background-color: rgb(255, 255, 255);
     border-color: 2px solid black;
-    border-radius: 45px;
+    border-radius: 10px;
     width: 700px;
-    height: auto;
+    height: 650px;
     z-index: 10002;
     display: none;
     position: fixed;
