@@ -1,6 +1,6 @@
-
 const form = document.getElementById("package_form");
 
+// handle both insertions and updates
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -34,6 +34,7 @@ form.addEventListener("submit", async (e) => {
         ? `http://localhost:15000/enmo_skill_backend_war/package?packageId=${packageId}`
         : "http://localhost:15000/enmo_skill_backend_war/package";
 
+    // fecth data
     try {
         const response = await fetch(requestUrl, {
             method: operationType === "update" ? "PUT" : "POST",
