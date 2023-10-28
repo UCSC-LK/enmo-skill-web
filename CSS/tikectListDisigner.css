@@ -44,21 +44,125 @@
     flex-wrap: wrap;
     /*background-color:black;*/
 }
-.ticket-box-2 {
+
+.ticket-box-1 {
     display: grid;
     width: 100%;
     height: 30px; 
-    grid-template-columns: 40% 20% 15% 5% 15%;
-    border: 2px solid gray;
-    border-top: none;
+    grid-template-columns: 40% 15% 15% 15% 10%;
+    border-bottom: 2px solid gray;
     padding: 10px;
     gap: 10px;
     align-content: center;
 }
-.icon{
-    width:15px;
-    height:15px;
+
+.ticket-box-2 {
+    display: grid;
+    width: 100%;
+    height: 50px; 
+    grid-template-columns: 40% 15% 15% 15% 10%;
+    border-bottom: 2px solid gray;
+    padding: 10px;
+    gap: 10px;
+    align-content: center;
 }
+.panel{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 30%;
+    /* height: 70px; */
+    justify-content: center;
+}
+
+.edit{
+   
+    background-color: #ffffff;
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 2px;
+    box-sizing: border-box;
+    border-color: #838383;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    /* font-weight: 700; */
+    line-height: 1.5;
+    margin: 0;
+    max-width: none;
+    min-height: 20px;
+    min-width: 5px;
+    outline: none;
+    overflow: hidden;
+    padding: 0px 2px 0px;;
+    /* position: relative; */
+    text-align: center;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 100%; 
+    margin: 3px; 
+    transition: .4s; 
+    
+}
+
+.edit:hover
+{
+    box-shadow: 0px 0px 10px  #0e3a1a73;
+    
+/* opacity: .75; */
+/* background-color: #abb1ac49; */
+/* color: #fff; */
+
+}
+
+
+.delete{
+    background-color: #838383;
+    border-radius: 4px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    /* font-weight: 700; */
+    line-height: 1.5;
+    margin: 0;
+    max-width: none;
+    min-height: 20px;
+    min-width: 5px;
+    outline: none;
+    overflow: hidden;
+    padding:1px 5px 1px;
+    /* position: relative; */
+    text-align: center;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 100%;  
+    margin: 3px;
+    transition: .4s; 
+}
+
+.delete:hover
+{
+opacity: .75;
+background-color: #ff0b0b;
+color: #fff;
+
+}
+
+
+
 
 
 .ticket-status{
