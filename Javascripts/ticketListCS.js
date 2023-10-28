@@ -19,7 +19,7 @@
 
         res.forEach(item => {
         const newItem = listItemTemplate.cloneNode(true);
-        //newItem.style.display = "block";
+        //newItem.style.display ="block";
         
       //   newItem.querySelector(".user").addEventListener("click", function() {
       //     console.log("Clicked username: " + item.username);

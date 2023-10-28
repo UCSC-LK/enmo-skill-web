@@ -21,29 +21,37 @@
             </div>
         </div>
 
-        <div class="ticket-box" style="border:none">
+        <div class="ticket-box" id="ticket-box" style="border:none">
             <div class="ticket-box-1" style=" border-top:2px solid gray">
                 <div style="justify-content: left"><p style="padding: 1px 10px">Subject</p></div>
                 <div><p>Date</p></div>
                 <div><p>Time</p></div>
-                <div style="justify-self: center"><p>Status</p></div>
+                <div ><p>Status</p></div>
                 <div></div>
             </div>
 
-            <div class="ticket-box-2">
-                <div class="div-cursor" style="justify-content: left" id="first"><p style="padding: 1px" class="subject"></p></div>
-                <div><p class="date"></p></div>
-                <div><p class="time"></p></div>
-                <div class="ticket-status"><p class="status"></p></div>
-                <div class="panel">
-                    <button class="edit"><box-icon name='edit' class="editicon" color='#838383' type='solid' size="15px" margin="0" padding="0" ></box-icon>   </button>
-                    <button class="delete"><box-icon type='solid' name='trash' color='white' size="15px"></box-icon></button>
+            <div style="display: none;">
+                <div class="ticket-box-2">
+                    <div class="div-cursor" style="justify-content: left" id="first"><p style="padding: 1px" class="subject"></p></div>
+                    <div><p class="date"></p></div>
+                    <div><p class="time"></p></div>
+                    <div class="ticket-status"><p class="status"></p></div>
+                    
+                    <div style="align-items: center;">
+                        <div class="panel">
+                            <button class="edit"><box-icon name='edit' class="editicon" color='#838383' type='solid' size="15px" margin="0" padding="0" ></box-icon>   </button>
+                            <button class="delete"><box-icon type='solid' name='trash' color='white' size="15px"></box-icon></button>
+                        </div>
+                    </div>         
+                                   
                 </div>
-                
-                
+
             </div>
+
+            
             
         </div>
+        <span id="id"></span>
     </div>
     <!-- <div class="pop-up-container"></div>
         <div class="pop-up">

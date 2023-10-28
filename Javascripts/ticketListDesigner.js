@@ -38,7 +38,7 @@
         //newItem.querySelector(".icon").textContent = item.icon;
         
     
-        console.log("sssssss")
+        //console.log("sssssss")
         // newItem.classList.remove("ticket-box-2");
         // newItem.classList.add("row"); 
        
@@ -57,8 +57,8 @@ const res=[
        
         subject:"Late payment",            
         date:"22/10/2020",
-        status:"Asigned",
         time:"10.22",
+        status:"Asigned",
         description:"  I hope this message finds you well. We would like to bring to your attention the outstandng payment for the project with referenc number [Project Number or Description], which is currently overdue. As per our agreement, the number [Project Number or Description], which is currently overdue. As per our agreement, the  payment was due on [Due Date]."
       
     },
@@ -68,8 +68,8 @@ const res=[
        
         subject:"Late payment",            
         date:"22/10/2020",
-        status:"Asigned",
         time:"10.22",
+        status:"Asigned",
         description:"  I hope this message finds you well. We would like to bring to your attention the outstandng payment for the project with referenc number [Project Number or Description], which is currently overdue. As per our agreement, the number [Project Number or Description], which is currently overdue. As per our agreement, the  payment was due on [Due Date]."
       
     },
@@ -79,8 +79,8 @@ const res=[
        
         subject:"Late payment",            
         date:"22/10/2020",
-        status:"Asigned",
         time:"10.22",
+        status:"Asigned",
         description:"  I hope this message finds you well. We would like to bring to your attention the outstandng payment for the project with referenc number [Project Number or Description], which is currently overdue. As per our agreement, the number [Project Number or Description], which is currently overdue. As per our agreement, the  payment was due on [Due Date]."
       
     },
@@ -90,8 +90,8 @@ const res=[
        
         subject:"Late payment",            
         date:"22/10/2020",
-        status:"Asigned",
         time:"10.22",
+        status:"Asigned",
         description:"  I hope this message finds you well. We would like to bring to your attention the outstandng payment for the project with referenc number [Project Number or Description], which is currently overdue. As per our agreement, the number [Project Number or Description], which is currently overdue. As per our agreement, the  payment was due on [Due Date]."
       
     }
