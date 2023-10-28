@@ -18,44 +18,35 @@
             </div>
         </div>
 
-        <div class="ticket-box" style="border:none">
-            <div class="ticket-box-2" style=" border-top:2px solid gray">
-                <div style="justify-content: left"><p style="padding: 1px 10px">Name</p></div>
-                <div></div>
+        <div class="ticket-box" id="ticket-box" style="border:none">
+            <div class="ticket-box-1" style=" border-top:2px solid gray">
+                <!-- <div style="justify-content: left"><p style="padding: 1px 10px">Name</p></div> -->
+                <!-- <div></div> -->
+                <div><p>Name</p></div>
                 <div><p>Role</p></div>
                 <div><p>Subject</p></div>
                 <div><p>Status</p></div>
                 <div><p>Agent</p></div>
                 <div><p>Date</p></div>
-                <div><p>Waitiing Time</p></div>
                 <div></div>
             </div>
 
-            <div class="ticket-box-2">
-                <img src="../Assests/login_img1.jpg" class="img-profile"/>
-                <div class="div-cursor" id="first"><p>Ron</p></div>
-                <div><p>Designer</p></div>
-                <div><p>Late payment</p></div>
-                <div><p>Asigned</p></div>
-                <div><p>Tom</p></div>
-                <div><p>10/02/2023</p></div>
-                <div><p>10.08</p></div>
-                <div style="justify-self: end"><p><img src="../Assests/icons/support.png" class="icon div-cursor"></p></div>
+            <div class="ticket-box-2" >
+                <!-- <div><p class="img-profile image"></p></div> -->
+                
+                <div><p class="name"></p></div>
+                <div><p class="role"></p></div>
+                <div><p class="subject"></p></div>
+                <div><p class="status"></p></div>
+                <div><p class="agent"></p></div>
+                <div><p class="date"></p></div>
+                <!-- <div style="justify-self: end"><p class="icon div-cursor"></p></div> -->
             </div>
-            <div class="ticket-box-2">
-                <div class="div-cursor" style="justify-content: left"><p style="padding: 1px"></p></div>
-                <div class="div-cursor" id="first"><p>Ron</p></div>
-                <div><p>Designer</p></div>
-                <div><p>Late payment</p></div>
-                <div><p>Asigned</p></div>
-                <div><p>Tom</p></div>
-                <div><p>10/02/2023</p></div>
-                <div><p>10.08</p></div>
-                <div style="justify-self: end"><p><img src="../Assests/icons/support.png" class="icon div-cursor"></p></div>
-            </div>
+           
         </div>
+        <span id="id"></span>
     </div>
-    <div class="pop-up-container"></div>
+    <!-- <div class="pop-up-container"></div>
         <div class="pop-up">
             <div><h3>Name</h></div>
             <div><p>Rone</p></div>
@@ -88,20 +79,8 @@
 
             <div><h3>Asigned Agent</h></div>
             <div><p>Tom</p></div>
-        </div>
+        </div> -->
 
 </body>
 
-<script>
-    let popup_con=document.querySelector(".pop-up-container");
-    let popup_details=document.querySelector(".pop-up");
-    // console.log(popup_con)
-    document.getElementById("first").onclick=(event)=>{
-        popup_con.style.display="flex";
-        popup_details.style.display="inline";
-    }
-    popup_con.onclick=(event)=>{
-        popup_con.style.display="none";
-        popup_details.style.display="none";
-    }
-</script>
+<script src="../Javascripts/ticketListCS.js"></script>

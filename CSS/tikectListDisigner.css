@@ -66,8 +66,9 @@
 }
 
 .status-solved{
-    background-color: rgb(19, 186, 19);
-    border-radius: 45px;
+    -webkit-text-fill-color: white;
+    background-color: rgb(3, 85, 3);
+    border-radius: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
     margin-left: 0;
@@ -77,8 +78,9 @@
     padding: 5px;
 }
 .status-ongion{
-    background-color: rgb(199, 238, 27);
-    border-radius: 45px;
+    -webkit-text-fill-color: white;
+    background-color: rgb(97, 119, 2);
+    border-radius: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
     margin-left: 0;
@@ -88,8 +90,9 @@
     padding: 5px;
 }
 .status-rejected{
-    background-color: rgb(177, 24, 13);
-    border-radius: 45px;
+    -webkit-text-fill-color: white;
+    background-color: rgb(112, 9, 2);
+    border-radius: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
     margin-left: 0;
@@ -114,7 +117,7 @@
 .pop-up{
     background-color: rgb(255, 255, 255);
     border-color: 2px solid black;
-    border-radius: 45px;
+    border-radius: 10px;
     width: 500px;
     height: auto;
     z-index: 10002;
