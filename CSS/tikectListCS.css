@@ -54,7 +54,7 @@ body{
     display: grid;
     width: 100%;
     height: 30px; 
-    grid-template-columns:  10% 10% 42% 10% 10% 10% 8% ;
+    grid-template-columns:  10% 10% 40% 10% 10% 10% 2% 8% ;
     border: 2px solid gray;
     border-top: none;
     border-left: none;
@@ -68,7 +68,7 @@ body{
     display: grid;
     width: 100%;
     height: 30px; 
-    grid-template-columns: 10% 10% 42% 10% 10% 10% 8% ;
+    grid-template-columns: 10% 10% 40% 10% 10% 10% 2% 8% ;
     border: 2px solid gray;
     border-top: none;
     border-left: none;
