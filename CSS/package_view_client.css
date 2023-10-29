@@ -3,6 +3,11 @@ body {
     font-family: Arial, sans-serif;
 }
 
+/* added this  */
+main{
+    width: 100%;
+}
+
 .container {
     padding: 30px;
     padding-top: 10px; /* Corrected capitalization */
