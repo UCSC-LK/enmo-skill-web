@@ -1,0 +1,92 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #fdfdfd;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins',sans-serif;
+}
+
+.container{
+    width: 100%;
+    height:auto;
+    background-size: cover;
+    background-color: #ffffff;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    padding: 100px;  
+}
+
+.profile-box{
+    width:50%;
+    text-align: center;
+    padding: 40px 90px;
+    position: relative;
+    border: 1px solid;
+    border-color: #000000; 
+    /*background-color:#fffff;*/
+}
+.profile-pic{
+    width:200px;
+    height:200px;
+    border-radius: 50%;
+}
+
+.icon{
+    width:15px;
+    height:15px;
+}
+.class1{
+    display: flex; 
+    justify-content: space-between;
+    padding: 40px 20px;
+}
+
+.content-profile{
+    text-align: left;
+    padding:20px;
+}
+
+.button{
+    width:155px;
+    height:35px;
+    border-radius: 10px;
+    background-color: #000000;
+    -webkit-text-fill-color: #FFFFFF;
+    text-align: center;
+}
+
+.pop-up-container{
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0,0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.pop-up{
+    background-color: rgb(255, 255, 255);
+    border-color: 2px solid black;
+    border-radius: 10px;
+    width: 700px;
+    height: 650px;
+    z-index: 10002;
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 15px
+}
+
+.div-cursor{
+    cursor: pointer;
+}

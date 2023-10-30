@@ -1,0 +1,101 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #fdfdfd;
+}
+/* .pEdit-main{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:none;
+}
+.pEdit-layout{
+    width: 40%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(255, 255, 255);
+    /* border-radius: 10px; 
+    border: 1px solid;
+    border-color:#000000;
+} */
+.title{
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    padding-left: 30px;
+    padding-bottom: 0;
+    padding-top: 35px;
+    margin-bottom: 0;
+    color: rgb(61, 60, 60);
+}
+.form-layout{ 
+    /* background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;   */
+    padding: 40px 20px 20px 27px;
+}
+.inputs {
+    background: none;
+    outline: none;
+    border: none;
+    display: block;
+    padding: 8px 0;
+    width: 500px;
+    height: 100px;
+    resize: none;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    color: #444;
+    font-size: 15px;
+    z-index: 1;
+    position: relative; /* Ensure relative positioning for proper z-index */
+}
+
+.inputs-1 {
+    background: none;
+    outline: none;
+    border: none;
+    display: block;
+    padding: 8px 0;
+    width: 500px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    color: #444;
+    font-size: 15px;
+    z-index: 1;
+    position: relative; /* Ensure relative positioning for proper z-index */
+}
+.right{
+    max-width: 408px;
+    width: 450px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.input-lable {
+    
+    font-size: 12px; /* Adjust this size as needed */
+    font-weight: 400;
+    font-family:Arial, Helvetica, sans-serif;
+    color: #444;
+    /* text-transform: uppercase; */
+    /*transform: translateY(0);
+    transition:all 0.7s;
+    cursor: text;
+    z-index: 1;*/
+  
+}
+/* .button{
+    width:40%;
+    height:35px;
+    border-radius: 5px;
+    background-color: #000000;
+    -webkit-text-fill-color:#ffffff;
+    text-align: center;
+    
+} */
+/* .div-cursor{
+    cursor: pointer;
+} */
