@@ -24,6 +24,7 @@
         <div class="ticket-box" id="ticket-box" style="border:none">
             <div class="ticket-box-1" style=" border-top:2px solid gray">
                 <div style="justify-content: left"><p style="padding: 1px 10px">Subject</p></div>
+                <div></div>
                 <div><p>Date</p></div>
                 <div><p>Time</p></div>
                 <div ><p>Status</p></div>
@@ -31,8 +32,9 @@
             </div>
 
             <div style="display: none;">
-                <div class="ticket-box-2">
-                    <div class="div-cursor" style="justify-content: left" id="first"><p style="padding: 1px" class="subject"></p></div>
+                <div class="ticket-box-2" id="">
+                    <div class="div-cursor" style="justify-content: left"><p style="padding: 1px" class="subject"></p></div>
+                    <div style="display: none"><p class="description"></p></div>
                     <div><p class="date"></p></div>
                     <div><p class="time"></p></div>
                     <div class="ticket-status"><p class="status"></p></div>
@@ -51,32 +53,27 @@
             
             
         </div>
-        <span id="id"></span>
+        <span id="id" style="display: none;"></span>
     </div>
-    <!-- <div class="pop-up-container"></div>
+    <div class="pop-up-container"></div>
         <div class="pop-up">
             <div><h3>Subject</h></div>
-            <div><p>Late pyament</p></div>
+            <div><p class="subject"></p></div>
             <br> 
 
             <div><h3>Description</h></div>   
             <div>
-                <p>
-                    I hope this message finds you well. 
-                    We would like to bring to your attention the outstanding payment for the project with reference
-                     number [Project Number or Description], which is currently overdue. As per our agreement, the
-                      payment was due on [Due Date].
-                </p>
+                <p class="description"></p>
             </div>
             <br>
         
             <div><h3>Date</h3></div>
-            <div><p>10/02/2023</p></div>
+            <div><p class="date"></p></div>
             <br>
 
             <div><h3>Status</h3></div>
-            <div><p>Solved</p></div>
-        </div> -->
+            <div><p class="status"></p></div>
+        </div>
 
 </body>
 

@@ -28,7 +28,9 @@
         //newItem.querySelector(".image").textContent = item.image;
         //newItem.querySelector(".id").textContent = item.id;
         //newItem.querySelector(".id").textContent = item.id;
+        newItem.id = item.id;
         newItem.querySelector(".subject").textContent = item.subject;
+        newItem.querySelector(".description").textContent = item.description;
         newItem.querySelector(".date").textContent = item.date;
         newItem.querySelector(".time").textContent = item.time;
         newItem.querySelector(".status").textContent = item.status;
@@ -44,7 +46,7 @@
        
         listTictect.appendChild(newItem);
 
-        //viewrequest(item);
+        viewrequest(item);
 
     });
 
@@ -98,4 +100,21 @@ const res=[
 ];
   
 ss(res);
+function viewrequest(item){
+    let popup_con=document.querySelector(".pop-up-container");
+    let popup_details=document.querySelector(".pop-up");
+    document.getElementById(item.id).addEventListener("click",(event)=>{
+        popup_con.style.display="flex";
+        popup_details.style.display="inline";
+        popup_details.querySelector(".subject").textContent = item.subject;
+        popup_details.querySelector(".description").textContent = item.description;
+        popup_details.querySelector(".date").textContent = item.date;
+        popup_details.querySelector(".time").textContent = item.time;
+        popup_details.querySelector(".status").textContent = item.status;
+    })
+    popup_con.onclick=(event)=>{
+        popup_con.style.display="none";
+        popup_details.style.display="none";
+    }
+}
 

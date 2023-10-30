@@ -27,7 +27,7 @@
 
         //newItem.querySelector(".image").textContent = item.image;
         //newItem.querySelector(".id").textContent = item.id;
-        //newItem.querySelector(".id").textContent = item.id;
+        newItem.id = item.id;
         newItem.querySelector(".name").textContent = item.name;
         newItem.querySelector(".role").textContent = item.role;
         newItem.querySelector(".subject").textContent = item.subject;
@@ -35,16 +35,11 @@
         newItem.querySelector(".agent").textContent = item.agent;
         newItem.querySelector(".date").textContent = item.date;
         newItem.querySelector(".description").textContent = item.description;
-        //newItem.querySelector(".icon").textContent = item.icon;
         
-    
-        //console.log("sssssss")
-        // newItem.classList.remove("ticket-box-2");
-        // newItem.classList.add("row"); 
        
         listTictect.appendChild(newItem);
 
-        //viewrequest(item);
+        viewrequest(item);
 
     });
 
@@ -64,7 +59,7 @@ const res=[
       
     },
     {
-        id:1,
+        id:2,
         //image:"../Assests/login_img1.jpg",
         name:"Rone",
         role:"designer",
@@ -77,7 +72,7 @@ const res=[
     },
 
     {
-        id:1,
+        id:3,
         //image:"../Assests/login_img1.jpg",
         name:"Rone",
         role:"designer",
@@ -90,8 +85,8 @@ const res=[
     },
 
     {
-        id:1,
-        //image:"../Assests/login_img1.jpg",
+        id:4,
+       
         name:"Rone",
         role:"designer",
         subject:"Late payment",            
@@ -105,30 +100,24 @@ const res=[
   
 ss(res);
 
-//   function viewrequest(item){
-//     popupview.style.display="flex";
-//     closetn.addEventListener("click", ()=> {
-//     popupview.style.display="none"
-//     })
-//     name.innerHTML=item.name
-//     role.innerHTML=item.role;
-//     // userurl
-//     subject.innerHTML=item.subject
-//     agent.innerHTML=item.agent;
-//     date.innerHTML=item.date;
-//   }
 
 
-// viewrequest(item){
-//     let popup_con=document.querySelector(".pop-up-container");
-//     let popup_details=document.querySelector(".pop-up");
-//     // console.log(popup_con)
-//     document.getElementById(item.id).onclick=(event)=>{
-//         popup_con.style.display="flex";
-//         popup_details.style.display="inline";
-//     }
-//     popup_con.onclick=(event)=>{
-//     popup_con.style.display="none";
-//     popup_details.style.display="none";
-//     }
-// }    
+function viewrequest(item){
+    let popup_con=document.querySelector(".pop-up-container");
+    let popup_details=document.querySelector(".pop-up");
+    document.getElementById(item.id).addEventListener("click",(event)=>{
+        popup_con.style.display="flex";
+        popup_details.style.display="inline";
+        popup_details.querySelector(".name").textContent = item.name;
+        popup_details.querySelector(".role").textContent = item.role;
+        popup_details.querySelector(".subject").textContent = item.subject;
+        popup_details.querySelector(".status").textContent = item.status;
+        popup_details.querySelector(".agent").textContent = item.agent;
+        popup_details.querySelector(".date").textContent = item.date;
+        popup_details.querySelector(".description").textContent = item.description;
+    })
+    popup_con.onclick=(event)=>{
+        popup_con.style.display="none";
+        popup_details.style.display="none";
+    }
+}    

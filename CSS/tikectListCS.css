@@ -89,12 +89,14 @@ body{
     justify-content: center;
     align-items: center;
 }
+
 .pop-up{
     background-color: rgb(255, 255, 255);
     border-color: 2px solid black;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     width: 500px;
-    height: auto;
+    height: 500px;
+    overflow: scroll;
     z-index: 10002;
     display: none;
     position: fixed;
