@@ -2,12 +2,14 @@ html, body {
     height: auto;
     margin: 0;
     padding: 0;
+    overflow: none;
 }
 
 
 .login-main{
     width: 100%;
-    height: auto;
+    height: 100vh;
+    overflow: none;
     display: flex;
     justify-content: center;
     align-items: center;

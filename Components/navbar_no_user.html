@@ -7,7 +7,7 @@
 <div class="navbar-content  ">
     <div class="navbar">
         <!-- Logo -->
-        <div class="logo">
+        <div class="logo" onclick="home()">
             <img src="../Assests/logo enmo.png" alt="Logo">
         </div>
         <!-- Search bar -->
@@ -21,10 +21,25 @@
         </div>
         <!-- Login and Sign buttons -->
         <div class="user-actions">
-            <span class="become-seller">Become a Seller</span>
-            <button class="login">Login</button>
-            <button class="sign-up">Sign Up</button>
+            <span class="become-seller" onclick="signup()">Become a Seller</span>
+            <button class="login" onclick="login()">Login</button>
+            <button class="sign-up" onclick="signup()">Sign Up</button>
         </div>
+        <script>
+            function home() {
+                // Replace the URL in the following line with the URL of the page you want to navigate to.
+                window.parent.location = '../';
+            }
+            function login() {
+                // Replace the URL in the following line with the URL of the page you want to navigate to.
+                window.parent.location='../HTML/login.html';
+            }
+            function signup() {
+                // Replace the URL in the following line with the URL of the page you want to navigate to.
+                window.parent.location = '../HTML/signup.html';
+            }
+            
+        </script>
     </div>
 </div>
 </body>
