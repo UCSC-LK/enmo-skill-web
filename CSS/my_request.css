@@ -140,7 +140,7 @@ body{
 }
 
 .delete{
-    background-color: #838383;
+    background-color: #ff0b0b;
     border-radius: 4px;
     border-style: none;
     box-sizing: border-box;
@@ -173,7 +173,7 @@ body{
 .delete:hover
 {
 opacity: .75;
-background-color: #ff0b0b;
+background-color: #838383;
 color: #fff;
 
 }

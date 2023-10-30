@@ -1,0 +1,23 @@
+.main{
+margin-top: 80px;
+width: 100%;
+height: 100%;
+}
+.header{
+    width: auto;
+    margin: 0 30px;
+    height: 150px;
+    display: flex;
+    align-items: end;
+    
+    border-bottom: 2px solid #838383;
+    justify-content: flex-start;
+    padding:0px 0px 0px 0px;
+
+}
+.container{
+
+}
+.side{
+
+}
