@@ -22,10 +22,10 @@
             <div class="right">
                 <p class="title">Sign in to your account</p>
                 <p class="nav-signup">Don't have an account? <span class="joinhere"> Join here</span></h5>
-                <form class ="form-layout" method="post">
+                <form id="loginForm">
                     
                     <label class="input-lable" for="loginemail">Email Adderss</label>
-                    <input type="email" class="inputs" name="loginemail" id="loginemail" required>
+                    <input type="text" class="inputs" name="loginemail" id="loginemail" required>
 
                     <br>
                     <label class="input-lable" for="password">Password:</label>
@@ -35,12 +35,15 @@
                     <input type="submit" value="Login">
                     
                 </form>
+                <div id="messageDiv" style="color: red;">  </div>
                 <p class="btm_text">By joining, you agree to the <span>Enmo Skill</span> Terms of Service and to occasionally receive emails from us. Please read our <span >Privacy Policy</span> to learn how we use your personal data.</p>
             </div>
         </div>
 
-    </div>
+    </div>l
 
+<!-- Include the external JavaScript file -->
+<script src="../Javascripts/login.js"></script>
 
 </body>
 </html>

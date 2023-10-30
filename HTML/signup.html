@@ -22,14 +22,14 @@
             <div class="right">
                 <p class="title">Create a new account</p>
                 <p class="nav-signup">    Already have an account? <span class="joinhere">Sign in</span></h5>
-                <form class ="form-layout" method="post">
+                <form id ="form-layout" method="post">
                     
                     <label class="input-lable" for="loginemail">Email Adderss:</label>
-                    <input type="email" class="inputs" name="loginemail" id="loginemail" required>
+                    <input type="email" class="inputs" name="email" id="email" required>
 
                     <br>
                     <label class="input-lable" for="loginemail">Username:</label>
-                    <input type="email" class="inputs" name="loginemail" id="loginemail" required>
+                    <input type="text" class="inputs" name="username" id="username" required>
 
                     <br>
                     <label class="input-lable" for="password">Password:</label>
@@ -39,12 +39,14 @@
                     <input type="submit" value="Signup">
                     
                 </form>
+                <div id="messageDiv" style="color: red;">  </div>
                 <p class="btm_text">By joining, you agree to the <span>Enmo Skill</span> Terms of Service and to occasionally receive emails from us. Please read our <span >Privacy Policy</span> to learn how we use your personal data.</p>
             </div>
         </div>
 
     </div>
-
+<!-- Include the external JavaScript file -->
+<script src="../Javascripts/signup.js"></script>
 
 </body>
 </html>

@@ -1,0 +1,88 @@
+/* Reset some default styles */
+body, ul {
+    margin: 0;
+    padding: 0;
+}
+
+/* Style the navigation bar */
+.navbar {
+    width: 90%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-content {
+    /* max-width: 1200px; */
+    width: 100%;
+    height: 80px;
+    box-shadow: 0 0px 10px rgba(142, 142, 142, 0.468);
+    margin: 0 ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:  20px;
+}
+
+.logo img {
+    width: 150px;
+}
+h1{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #081e9a;
+}
+.menu{
+    display: flex;
+    gap: 20px;
+}
+
+
+
+.become-seller {
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    padding: 0 30px;
+    margin: 0;
+    color: #777676;
+}
+
+.user-actions {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+/* Style the buttons */
+.login {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    width: 170px;
+    height: 30px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 40px;
+    background-color: #110549;
+    color: #ffffff;
+    cursor: pointer;
+}
+.sign-up {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    width: 150px;
+    height: 30px;
+    padding: 5px 10px;
+    border-color: #000000;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 40px;
+    background-color: #110549;
+    color:  #ffffff;
+    cursor: pointer;
+}
+
+/* Add additional styles as needed */
+
