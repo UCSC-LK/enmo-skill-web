@@ -1,0 +1,91 @@
+body {
+    font-family: Arial, sans-serif;
+    /* display: flex; */
+    margin-left: 20%;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+    margin: 0;
+    width: 100%;
+}
+
+.main {
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid #ccc;
+    border-radius: 5px; */
+
+}
+
+.main2 {
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    margin-left: 10%;
+    margin-right: 10%;
+    /* border: 1px solid #ccc;
+    border-radius: 5px; */
+
+}
+.container {
+    /* width: 100%; */
+    padding: 170px;
+    padding-top: 10PX;
+
+}
+
+
+
+/* Remove default table borders and expand it across the page */
+table.border {
+    width: 100%;
+    /* Make the table expand across the page */
+    border-collapse: collapse;
+    /* Remove default table cell spacing */
+    /* margin-top: 10px; */
+    height: 300px;
+    /* width: 1200px; */
+    flex-direction: row;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+
+}
+
+
+table.border th.col {
+    text-align: left;
+    font-weight: bold;
+
+}
+
+table.border th.status-cell {
+    background-color: green;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        width: 10px;
+
+}
+
+table.border th.t-top {
+ font-weight: bold;
+
+} 
+table.border th,
+table.border td {
+    border-bottom: 1px solid #000;
+    /* Add a bottom border to table header and data cells */
+    padding: 20px;
+    /* Add padding for better spacing */
+    text-align: center;
+    /* Align text to the left within cells */
+}
+
+table.border th {
+    font-weight: normal;
+    /* Make the header cells bold */
+}
+

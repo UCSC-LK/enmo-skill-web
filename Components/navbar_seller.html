@@ -1,0 +1,71 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/navbar2.css">
+</head>
+<body>
+<div class="navbar-content  ">
+    <div class="navbar">
+        
+        <div class="logo" onclick="home()" >
+            <img src="../Assests/logo enmo.png" alt="Logo">
+        </div>
+        
+        
+        
+        
+        <div class="user-actions">
+            <span class="orders" onclick="order()" >Orders</span>
+            <span class="getsupport" onclick="support()" >Get Support</span>
+            <span class="packages" onclick="pakages()" >My Packages</span>
+            <span class="earnings" onclick="earninigs()" >Earnings</span>
+            
+            
+            
+
+        </div>
+        <div class="menu">
+            <button class="massages" onclick="massages()" ></button>
+            <button class="notification" onclick="notification()" ></button>
+            <image class= "profileimg" onclick="profile()"  src = "../Assests/login_img1.jpg"/>
+        </div>
+
+    </div>
+    <script>
+        function home() {
+            // Replace the URL in the following line with the URL of the page you want to navigate to.
+            window.parent.location = '../';
+        }
+        function massages() {
+            // Replace the URL in the following line with the URL of the page you want to navigate to.
+            window.parent.location='../HTML/messages.html';
+        }
+        function notification() {
+            // Replace the URL in the following line with the URL of the page you want to navigate to.
+            window.parent.location = '../HTML/notification.html';
+        }
+        function order() {
+            // Replace the URL in the following line with the URL of the page you want to navigate to.
+            window.parent.location='../HTML/orderlist_designer.html';
+        }
+        function support() {
+            // Replace the URL in the following line with the URL of the page you want to navigate to.
+            window.parent.location = '../HTML/tikectListDisigner.html';
+        }
+        function pakages() {
+            // Replace the URL in the following line with the URL of the page you want to navigate to.
+            window.parent.location='../HTML/view_active_packages.html';
+        }
+        function earninigs() {
+            // Replace the URL in the following line with the URL of the page you want to navigate to.
+            // window.parent.location = '../HTML/signup.html';
+            alert("UI is Under Construction")
+        }
+        function profile() {
+            // Replace the URL in the following line with the URL of the page you want to navigate to.
+            window.parent.location='../HTML/profile.html';
+        }
+        
+    </script>
+</div>
+</body>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/buyer_req_list.css">
+    <link rel="stylesheet" href="../CSS/buyer_request.css">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <title>Buyer Requests</title>
+</head>
+
+<body>
+    
+    <iframe src="../Components/navbar_seller.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;position: fixed;top: 0;z-index: 2;left: 0;"></iframe> 
+    
+    <div class="major">
+        <div class="main-container">
+            <div class="header">
+                <h2>Buyer Requests</h2>
+                <div class="count">
+                    <div class="ct-bottom"><box-icon name='offer' type='solid' rotate='90' color='#a3a3a3' size = '20px' ></box-icon>
+                        <p><span id="count">10</span>  Offers left Today</p>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="table" id="table">
+                <div class="upper">
+                    <p>Buyer Requests</p>
+                </div>
+                <div class="row-main">
+                    <p class="date-main">DATE</p>
+                    <p class="user-main">BUYER</p>
+                    <p class="dis">REQUEST</p>
+                    <p class="duration-main">DURATION</p>
+                    <p class="budget-main">BUDGET</p>
+                </div>
+                <div class="row-hidden">
+                    <p class="date"></p>
+                    <p class="user"></p>
+                    <p class="dis"></p>
+                    <p class="duration"></p>
+                    <p class="budget"></p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    
+    <div class="overlay-view" >
+                
+        <div class="main-view">
+            
+            <div class="header-view">
+                <img class="image-profile" src="https://i.ibb.co/Ry2J1Lg/pexels-photo-220453.webp" alt="profileimg">
+                <p class="usename-top"><span class="name-user">Isuru Liyanage</span> - Buyer Request</p>
+                <p class="close-top">X</p>
+            </div>
+
+           <div class="contain-bottom">
+            <p class="tl">I want to Create a flyer </p>
+            <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto molestias labore voluptates. Mollitia, odit unde ex deserunt ipsa nostrum excepturi minus suscipit deleniti vel modi, tempore error nesciunt. Non, magnam.</p>
+            <div class="bottom-end">
+                <p class="duration-textview">Deliver within <span class="description-text">13</span> Days</p>
+                <p class="budget-textview">Rs. <span class="budget-text">1000</span>.00</p>    
+            </div>
+            <button class="proposal" role="button"><span class="text">Submit a proposal</span></button>
+            </div> 
+        
+        </div>
+        
+    </div>
+
+    <script src="../Javascripts/buyer_req_list.js"></script>
+</body>
+
+</html>

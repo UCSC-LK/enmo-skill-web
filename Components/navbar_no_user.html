@@ -1,0 +1,45 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/navbar.css">
+</head>
+<body>
+<div class="navbar-content  ">
+    <div class="navbar">
+        <!-- Logo -->
+        <div class="logo" onclick="home()">
+            <img src="../Assests/logo enmo.png" alt="Logo">
+        </div>
+        <!-- Search bar -->
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+            <button></button>
+
+        </div>
+        <div class="menu">
+            
+        </div>
+        <!-- Login and Sign buttons -->
+        <div class="user-actions">
+            <span class="become-seller" onclick="signup()">Become a Seller</span>
+            <button class="login" onclick="login()">Login</button>
+            <button class="sign-up" onclick="signup()">Sign Up</button>
+        </div>
+        <script>
+            function home() {
+                // Replace the URL in the following line with the URL of the page you want to navigate to.
+                window.parent.location = '../';
+            }
+            function login() {
+                // Replace the URL in the following line with the URL of the page you want to navigate to.
+                window.parent.location='../HTML/login.html';
+            }
+            function signup() {
+                // Replace the URL in the following line with the URL of the page you want to navigate to.
+                window.parent.location = '../HTML/signup.html';
+            }
+            
+        </script>
+    </div>
+</div>
+</body>

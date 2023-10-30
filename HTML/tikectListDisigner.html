@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/tikectListDisigner.css">
+    <title>Ticket List</title>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+</head>
+<body>
+    <iframe src="../Components/navbar_seller.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;"></iframe>
+    <div class="container">
+        <h1 align="left">Tickets</h1>
+        <div class="ticet-heder-box">
+            <div class="class2">
+                <div><p class="div-cursor" style="color:black">ALL</a></p></div>
+                <div><p class="div-cursor">ONGOING</p></div>
+                <div><p class="div-cursor">SOLVED</p></div>
+                <div><p class="div-cursor">REJECTED</p></div>
+                <div style="text-align: right;"><button class="button div-cursor">CREATE A TICKET</button></div>
+            </div>
+        </div>
+
+        <div class="ticket-box" id="ticket-box" style="border:none">
+            <div class="ticket-box-1" style=" border-top:2px solid gray">
+                <div style="justify-content: left"><p style="padding: 1px 10px">Subject</p></div>
+                <div></div>
+                <div><p>Date</p></div>
+                <div><p>Time</p></div>
+                <div ><p>Status</p></div>
+                <div></div>
+            </div>
+
+            <div style="display: none;">
+                <div class="ticket-box-2" id="">
+                    <div class="div-cursor" style="justify-content: left"><p style="padding: 1px" class="subject"></p></div>
+                    <div style="display: none"><p class="description"></p></div>
+                    <div><p class="date"></p></div>
+                    <div><p class="time"></p></div>
+                    <div class="ticket-status"><p class="status"></p></div>
+                    
+                    <div style="align-items: center;">
+                        <div class="panel">
+                            <button class="edit"><box-icon name='edit' class="editicon" color='#838383' type='solid' size="15px" margin="0" padding="0" ></box-icon>   </button>
+                            <button class="delete"><box-icon type='solid' name='trash' color='white' size="15px"></box-icon></button>
+                        </div>
+                    </div>         
+                                   
+                </div>
+
+            </div>
+
+            
+            
+        </div>
+        <span id="id" style="display: none;"></span>
+    </div>
+    <div class="pop-up-container"></div>
+        <div class="pop-up">
+            <div><h3>Subject</h></div>
+            <div><p class="subject"></p></div>
+            <br> 
+
+            <div><h3>Description</h></div>   
+            <div>
+                <p class="description"></p>
+            </div>
+            <br>
+        
+            <div><h3>Date</h3></div>
+            <div><p class="date"></p></div>
+            <br>
+
+            <div><h3>Status</h3></div>
+            <div><p class="status"></p></div>
+        </div>
+
+</body>
+
+<script src="../Javascripts/ticketListDesigner.js">
+
+    // let popup_con=document.querySelector(".pop-up-container");
+    // let popup_details=document.querySelector(".pop-up");
+    // // console.log(popup_con)
+    // document.getElementById("first").onclick=(event)=>{
+    //     popup_con.style.display="flex";
+    //     popup_details.style.display="inline";
+    // }
+    // popup_con.onclick=(event)=>{
+    //     popup_con.style.display="none";
+    //     popup_details.style.display="none";
+    // }
+</script>

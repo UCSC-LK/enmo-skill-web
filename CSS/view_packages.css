@@ -1,0 +1,93 @@
+body {
+    font-family: Arial, sans-serif;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+    margin: 0;
+}
+
+.main{
+    /* display: flex; */
+    /* max-width: 480px; */
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid #ccc;
+    border-radius: 5px; */
+}
+
+.container {
+    /* width: 100%; */
+    padding: 170px;
+    padding-top: 10PX;
+    
+}
+
+
+
+/* Remove default table borders and expand it across the page */
+table.border {
+    width: 100%; /* Make the table expand across the page */
+    border-collapse: collapse; /* Remove default table cell spacing */
+}
+
+
+table.border th.col{
+    text-align: left;
+    
+}
+
+table.border th, table.border td {
+    border-bottom: 1px solid #000; /* Add a bottom border to table header and data cells */
+    padding: 8px; /* Add padding for better spacing */
+    text-align: center; /* Align text to the left within cells */
+}
+
+table.border th {
+    font-weight: normal; /* Make the header cells bold */
+}
+
+.pause-icon{
+    background-image: url('../Assests/icons/icon_pause.png');
+    background-repeat: no-repeat;
+    background-color: #ffffff;
+    background-size: 20px;
+    width: 30px;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+    align-items: center;
+}
+
+.edit-icon{
+    background-image: url('../Assests/icons/icon_edit.png');
+    background-repeat: no-repeat;
+    background-color: #ffffff;
+    background-size: 20px;
+    width: 30px;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-icon{
+    background-image: url('../Assests/icons/icon_delete.png');
+    background-repeat: no-repeat;
+    background-color: #ffffff;
+    background-size: 20px;
+    width: 30px;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+}
+
+.upload-icon{
+    background-image: url('../Assests/icons/icon_upload.png');
+    background-repeat: no-repeat;
+    background-color: #ffffff;
+    background-size: 20px;
+    width: 30px;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+}
