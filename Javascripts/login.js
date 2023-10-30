@@ -16,6 +16,7 @@ document
     console.log(userData)
     // Convert the JavaScript object to JSON
     const jsonData = JSON.stringify(userData);
+    console.log(jsonData);
 
     // Send a POST request with JSON data to your backend
     fetch("http://localhost:15000/enmo_skill_backend_war_exploded/login", {
@@ -23,7 +24,7 @@ document
       headers: {
         "Content-Type": "application/json",
       },
-      // credentials: "include", //?
+      credentials: "include", //?
       body: jsonData,
     })
       .then((response) => {
@@ -31,12 +32,11 @@ document
           // Successful login (status code 200), parse the JSON response and display the success message
           response.json().then((data) => {
             console.log("Message content:", data.message);
+            console.log("User_Level_ID:", data.userLevelID);
+            console.log("User_ID:", data.userID);
             messageDiv.innerHTML = "Login successful ";
-            // window.location.href = "HTML/signup.html";
           });
-          // Successful login (status code 200), redirect to UserRegister.js
-          // window.location.href =
-          //   "file:///E:/GITHUB%20REPO/Group_Project_2nd_Year/enmo-skill-web/enmo-skill-web/HTML/signup.html";
+
         } else if (response.status === 401) {
           // Unauthorized login (status code 401), display an error message
           response.json().then((data) => {
@@ -48,6 +48,7 @@ document
           // Handle other status codes or errors
           console.error("Error:", response.status);
         }
+
       })
       .catch((error) => {
         console.error("Error:", error);
