@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/package_overview.css">
+
+    <title>Package Overview</title>
+</head>
+<body>
+    <div class="main">
+        <iframe src="../Components/navbar_seller.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;"></iframe>
+        <div class="container">
+            <div class="block">
+                <h1 class="headding">Overview</h1>
+                <div class="form" >
+                    <form id="package_form">
+
+                        <label for="title" class="label-title">Package title</label>
+                        <input type="text" name="title" id="title">
+                        <br>
+    
+                        <label for="category">Category</label>
+                        <select name="category" width="100%" id="category" >
+                            <option value="none" disabled selected>Select a category</option>
+                            <option value="logo_desgning">Logo designing</option>
+                            <option value="Illustraton">Illustraton</option>
+                            <option value="flyer_desgning">Flyer designing</option>
+                            <option value="banner_desgning">Banner designing</option>
+                        </select>
+
+                        <br>
+    
+                        <label for="description">Description</label>
+                        <textarea name="description" id="description" cols="62" rows="5" ></textarea>
+                        <br>
+    
+                        <!-- <label for="img">Cover image</label>
+                        <input type="file" id="img" name="img" accept="image/*"> -->
+
+                        <br><br>
+    
+                        <button type="submit" class="button-save" id="button-next">Next</button>
+                    </form>
+                </div>
+                
+            </div>
+
+            
+
+        </div>
+    </div> 
+    <script src="../Javascripts/package_overview.js"></script>
+</body>
+
+</html>

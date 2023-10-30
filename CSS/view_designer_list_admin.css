@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+    margin: 0;
+}
+
+.block{
+    /* display: flex; */
+    /* max-width: 480px; */
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid #ccc;
+    border-radius: 5px; */
+}
+
+.container {
+    /* width: 100%; */
+    padding: 100px;
+    padding-top: 10PX;
+    
+}
+
+/* Remove default table borders and expand it across the page */
+table.border {
+    width: 100%; /* Make the table expand across the page */
+    border-collapse: collapse; /* Remove default table cell spacing */
+}
+
+
+
+table.border th, table.border td {
+    border: 1px solid #ccc; /* Add a bottom border to table header and data cells */
+    padding: 5px; /* Add padding for better spacing */
+    text-align: center; /* Align text to the left within cells */
+}
+
+.headding{
+    margin-bottom: 40px;
+}
+
+
+table.border th{
+    background-color: #f2f2f2;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    
+}
