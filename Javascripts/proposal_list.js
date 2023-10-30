@@ -70,7 +70,7 @@ fetch(
 
       newItem.querySelector(".date").textContent = item.description;
       newItem.querySelector(".user").textContent = item.duration + " Days";
-      newItem.querySelector(".dis").textContent = "Rs. " + item.budget;
+      newItem.querySelector(".dis").textContent = "Rs. " + item.budget + ".00";
       newItem.querySelector(".duration").textContent = item.requestID ;
     //   newItem.querySelector(".budget").textContent = "Rs. " + item.budget;
       newItem.addEventListener("click", () => {
@@ -151,7 +151,7 @@ function editRequest(item) {
   });
 
   title1.value = item.description;
-  Dis.value = item.date;
+  // Dis.value = item.date;
   Budget.value = item.budget;
   duration.value = item.duration;
 
@@ -160,17 +160,17 @@ function editRequest(item) {
     flagUpdate = false;
     event.preventDefault();
     const valuetitle = title1.value;
-    const valueDis = Dis.value;
+    // const valueDis = Dis.value;
     const valueBudget = Budget.value;
     // const valueurl = null;
     const valueduration = duration.value;
-    dataupdate(valuetitle, valueDis, valueduration, valueBudget);
+    dataupdate(valuetitle, valueduration, valueBudget);
 
     popup.style.display = "none";
   }
   form2.addEventListener("submit", handleupdateSubmit);
 
-  function dataupdate(valtitle, valDis, valduration, valBudget) {
+  function dataupdate(valtitle, valduration, valBudget) {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
@@ -179,8 +179,7 @@ function editRequest(item) {
       duration: valduration,
       budget: valBudget,
     //   requestID: item.requestID, //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< hardcoded here
-      date: valDis,
-    //   sample_work_url: "https://abc.xyz",
+      // date: valDis,
     });
 
     var requestOptions = {
