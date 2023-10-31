@@ -6,7 +6,7 @@ document
       var formData = {
         duration: document.getElementById("time").value,
         budget: document.getElementById("amount").value,
-        userID: "28",                         //hardcode
+        userID: "33",                         //hardcode
         // date: document.getElementById("date").value,
         description: document.getElementById("discription").value,
       };
@@ -19,7 +19,7 @@ document
 
     // Make a fetch request
     fetch(
-      "http://localhost:15000/enmo_skill_backend_war/proposal?RequestId=8",   //hardcode
+      "http://localhost:15000/enmo_skill_backend_war/proposal?RequestId=33",   //hardcode
       {
         method: "POST",
         headers: {
