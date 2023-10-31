@@ -23,6 +23,7 @@
         </div>
         <!-- Login and Sign buttons -->
         <div class="user-actions">
+            <span class="orders" onclick="myrequests()">My requests</span>
             <span class="orders" onclick="order()">Orders</span>
             <span class="getsupport" onclick="support()">Get Support</span>
             <span class="switch" onclick="switchuser()">Switch to Selling</span>
@@ -45,6 +46,10 @@
             function order() {
                 // Replace the URL in the following line with the URL of the page you want to navigate to.
                 window.parent.location='../HTML/orderlist_client.html';
+            }
+            function myrequests() {
+                // Replace the URL in the following line with the URL of the page you want to navigate to.
+                window.parent.location='../HTML/my_requests.html';
             }
             function support() {
                 // Replace the URL in the following line with the URL of the page you want to navigate to.

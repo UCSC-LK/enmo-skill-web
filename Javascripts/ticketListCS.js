@@ -1,4 +1,6 @@
-
+function createticket(){
+    alert("UI is under construction")
+}
 
 // var requestOptions = {
 //   method: 'GET',

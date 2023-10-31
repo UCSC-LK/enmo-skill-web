@@ -8,8 +8,8 @@
     <title>Package Overview</title>
 </head>
 <body>
-    <div class="main">
-        <iframe src="../Components/navbar_customer.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;"></iframe>
+    <div class="main" style="margin-top: 80px;">
+        <iframe src="../Components/navbar_customer.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;position: fixed;top: 0;z-index: 2;left: 0;"></iframe>
         <div class="container">
             <div class="block">
                 <h1 class="headding">I will do your logo design</h1>
@@ -82,7 +82,7 @@
                    
                     <div class="right">
                         <p id="designer-username2" class="designer-username">Jane P.</p>
-                        <button class="button-save">View Profile</button>
+                        <button class="button-save" onclick="profile()">View Profile</button>
                     </div>   
                 </div>
 
@@ -165,9 +165,9 @@
                         </tr>
                         <tr>
                             <td></td>
-                            <td><button class="button-save">Select</button></td>
-                            <td><button class="button-save">Select</button></td>
-                            <td><button class="button-save">Select</button></td>
+                            <td><button class="button-save" onclick="payment()">Select</button></td>
+                            <td><button class="button-save" onclick="payment()">Select</button></td>
+                            <td><button class="button-save" onclick="payment()">Select</button></td>
                         </tr>
 
                     </table>
@@ -190,7 +190,7 @@
                       </div>
                       <p class="date">3 months ago</p>
                     </div>
-                    <button class="button-save">See more reviews</button>
+                    <button class="button-save" onclick="reviews()">See more reviews</button>
                   </div>
                  
                 
@@ -201,4 +201,18 @@
         </div>
     </div> 
 </body>
+
+<script>
+    function profile(){
+        window.location.href = "../HTML/profile.html"
+    }
+
+    function payment(){
+        window.location.href = "../HTML/payment.html"
+    }
+
+    function reviews(){
+        alert("UI is under construction")
+    }
+</script>
 </html>
