@@ -134,6 +134,12 @@ body{
     padding: 15px
 }
 
+.pheder{
+    display: grid;
+    grid-template-columns: 30% 60%;
+    gap: 10px;
+}
+
 .img-profile{
     width: 20px;
     clip-path: circle(at center);
