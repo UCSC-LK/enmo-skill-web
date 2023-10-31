@@ -8,7 +8,8 @@
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 </head>
 <body>
-    <iframe src="../Components/navbar_seller.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;"></iframe>
+    <div style="margin-top: 80px;">
+        <iframe src="../Components/navbar_seller.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;position: fixed;top: 0;z-index: 2;left: 0;"></iframe>
     <div class="container">
         <div class="main-container">
             
@@ -23,7 +24,7 @@
                     <div><p class="div-cursor">ONGOING</p></div>
                     <div><p class="div-cursor">SOLVED</p></div>
                     <div><p class="div-cursor">REJECTED</p></div>
-                    <div style="text-align: right;"><button class="button div-cursor">CREATE A TICKET</button></div>
+                    <div style="text-align: right;"><button class="button div-cursor" onclick="createticket()">CREATE A TICKET</button></div>
                 </div>
             </div>
             <div class="table" >
@@ -87,6 +88,8 @@
             <div><h3>Status</h3></div>
             <div><p class="status"></p></div>
         </div>
+    </div>
+    
 
 </body>
 
