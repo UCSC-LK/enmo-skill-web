@@ -99,6 +99,7 @@ body{
     border-bottom: solid;
     border-color: #ebebeb;
     border-width: 2px;
+    -webkit-text-fill-color: #A3A3A3;
     
     
 }
