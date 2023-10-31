@@ -7,49 +7,67 @@
     <title>Ticket List</title>
 </head>
 <body>
-    <iframe src="../Components/navbar_seller.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;"></iframe>
+
+    <iframe src="../Components/navbar_cs.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;"></iframe>
+
     <div class="container">
-        <h1 align="left">Tickets</h1>
-        <div class="ticet-heder-box">
-            <div class="class2">
-                <div><p class="div-cursor" style="color:black">ALL</a></p></div>
-                <div><p class="div-cursor">ME</p></div>
-                <div style="text-align: right"><button class="button div-cursor">CREATE A TICKET</button></div>
+        <div class="main-container">
+            <div class="header">
+                <h1>Tickets</h1>
             </div>
-        </div>
-
-        <div class="ticket-box" id="ticket-box" style="border:none">
-            <div class="ticket-box-1" style=" border-top:2px solid gray">
-                <!-- <div style="justify-content: left"><p style="padding: 1px 10px">Name</p></div> -->
-                <!-- <div></div> -->
-                <div><p>Name</p></div>
-                <div><p>Role</p></div>
-                <div><p>Subject</p></div>
-                <div><p>Status</p></div>
-                <div><p>Agent</p></div>
-                <div><p>Date</p></div>
-                <div></div>
-            </div>
-
-            <div style="display: none;">
-                <div class="ticket-box-2" id="">
-                    <!-- <div><p class="img-profile image"></p></div> -->
-                    
-                    <div class="div-cursor"><p class="name"></p></div>
-                    <div><p class="role"></p></div>
-                    <div><p class="subject"></p></div>
-                    <div><p class="status"></p></div>
-                    <div><p class="agent"></p></div>
-                    <div><p class="date"></p></div>
-                    <div style="display: none;"><p class="description"></p></div>
-                    <!-- <div style="justify-self: end"><p class="icon div-cursor"></p></div> -->
+            
+            <div class="ticet-heder-box">
+                <div class="class2">
+                    <div><p class="div-cursor" style="color:black">ALL</a></p></div>
+                    <div><p class="div-cursor">ME</p></div>
+                    <div style="text-align: right"><button class="button div-cursor">CREATE A TICKET</button></div>
                 </div>
             </div>
-
+    
             
-           
+            
+            <div class="table">
+                <div class="upper">
+                    <p>Tickets</p>
+                </div>  
+        
+                <div class="ticket-box" id="ticket-box" style="border:none">
+                    <div class="ticket-box-1" style=" border-top:2px solid gray">
+                        <!-- <div style="justify-content: left"><p style="padding: 1px 10px">Name</p></div> -->
+                        <!-- <div></div> -->
+                        <div><p>Name</p></div>
+                        <div><p>Role</p></div>
+                        <div><p>Subject</p></div>
+                        <div><p>Status</p></div>
+                        <div><p>Agent</p></div>
+                        <div><p>Date</p></div>
+                        <div></div>
+                    </div>
+        
+                    <div style="display: none;">
+                        <div class="ticket-box-2" id="">
+                            <!-- <div><p class="img-profile image"></p></div> -->
+                            
+                            <div class="div-cursor"><p class="name"></p></div>
+                            <div><p class="role"></p></div>
+                            <div><p class="subject"></p></div>
+                            <div><p class="status"></p></div>
+                            <div><p class="agent"></p></div>
+                            <div><p class="date"></p></div>
+                            <div style="display: none;"><p class="description"></p></div>
+                            <!-- <div style="justify-self: end"><p class="icon div-cursor"></p></div> -->
+                        </div>
+                    </div>
+        
+                    
+                   
+                </div>
+                <span id="id" style="display: none;"></span>
+            </div>
+
         </div>
-        <span id="id" style="display: none;"></span>
+        
+       
     </div>
     <div class="pop-up-container"></div>
     

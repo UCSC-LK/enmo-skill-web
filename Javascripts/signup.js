@@ -16,7 +16,7 @@ document
     const jsonData = JSON.stringify(formData);
 
     // Make a fetch request
-    fetch("http://localhost:15000/enmo_skill_backend_war_exploded/user", {
+    fetch("http://localhost:15000/enmo_skill_backend_war/user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -25,6 +25,7 @@ document
     })
       .then((response) => {
         if (response.ok) {
+          window.location.href = "../HTML/login.html"
           messageDiv.innerHTML = "Registration successful ";
         } else if (response.status === 401) {
           // Unauthorized login (status code 401), display an error message

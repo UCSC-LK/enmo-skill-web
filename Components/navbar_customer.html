@@ -7,7 +7,7 @@
 <div class="navbar-content  ">
     <div class="navbar">
         <!-- Logo -->
-        <div class="logo">
+        <div class="logo" onclick="home()">
             <img src="../Assests/logo enmo.png" alt="Logo">
         </div>
         <!-- Search bar -->
@@ -17,18 +17,53 @@
 
         </div>
         <div class="menu">
-            <button class="massages"></button>
+            <button class="massages"onclick="massages()"></button>
             
-            <button class="notification"></button>
+            <button class="notification" onclick="notification()"></button>
         </div>
         <!-- Login and Sign buttons -->
         <div class="user-actions">
-            <span class="orders">Orders</span>
-            <span class="getsupport">Get Support</span>
-            <span class="switch">Switch to Selling</span>
-            <image class= "profileimg" src = "../Assests/login_img1.jpg"/>
+            <span class="orders" onclick="order()">Orders</span>
+            <span class="getsupport" onclick="support()">Get Support</span>
+            <span class="switch" onclick="switchuser()">Switch to Selling</span>
+            <image class= "profileimg" src = "../Assests/login_img1.jpg" onclick="profile()"/>
 
         </div>
+        <script>
+            function home() {
+                // Replace the URL in the following line with the URL of the page you want to navigate to.
+                window.parent.location = '../';
+            }
+            function massages() {
+                // Replace the URL in the following line with the URL of the page you want to navigate to.
+                window.parent.location='../HTML/messages.html';
+            }
+            function notification() {
+                // Replace the URL in the following line with the URL of the page you want to navigate to.
+                window.parent.location = '../HTML/notification.html';
+            }
+            function order() {
+                // Replace the URL in the following line with the URL of the page you want to navigate to.
+                window.parent.location='../HTML/orderlist_client.html';
+            }
+            function support() {
+                // Replace the URL in the following line with the URL of the page you want to navigate to.
+                // window.parent.location = '../HTML/tikectListDisigner.html';
+                alert("UI is Under Construction")
+            }
+
+            function switchuser() {
+                // Replace the URL in the following line with the URL of the page you want to navigate to.
+                // window.parent.location = '../HTML/tikectListDisigner.html';
+                alert("UI is Under Construction")
+            }
+            
+            function profile() {
+                // Replace the URL in the following line with the URL of the page you want to navigate to.
+                alert("UI is Under Construction")
+            }
+            
+        </script>
     </div>
 </div>
 </body>

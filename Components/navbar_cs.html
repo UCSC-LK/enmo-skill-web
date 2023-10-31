@@ -8,18 +8,18 @@
     <div class="navbar">
         <!-- Logo -->
         <div class="logo" >
-            <img src="../Assests/logo enmo.png" alt="Logo" onclick="admin()">
+            <img src="../Assests/logo enmo.png" alt="Logo" onclick="home()">
         </div>
         <!-- Search bar -->
-        <h1>ADMIN</h1>
+        <!-- <h1>Contact support agent</h1> -->
         <div class="menu">
             
         </div>
         <!-- Login and Sign buttons -->
         <div class="user-actions">
-            <span class="become-seller" onclick="admin()">Admin Services</span>
-            <button class="login" onclick="support()">Suppurt request</button>
-            <button class="sign-up" onclick="refund">Process Refund</button>
+            <!-- <span class="become-seller" onclick="admin()">Admin Services</span> -->
+            <button class="login" onclick="assign_tickets()">Assign tickets</button>
+            <button class="sign-up" onclick="refund()">Refund requests</button>
         </div>
     </div>
     <script>
@@ -31,9 +31,11 @@
             // Replace the URL in the following line with the URL of the page you want to navigate to.
             window.parent.location='../HTML/view_client_list_admin.html';
         }
-        function support() {
+        function assign_tickets() {
             // Replace the URL in the following line with the URL of the page you want to navigate to.
-            window.parent.location = '../HTML/ticketListCS.html';
+            // window.parent.location = '../HTML/ticketListCS.html';
+            alert("UI is Under Construction")
+
         }
         function refund() {
             // Replace the URL in the following line with the URL of the page you want to navigate to.
