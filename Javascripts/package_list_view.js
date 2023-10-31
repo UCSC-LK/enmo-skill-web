@@ -14,3 +14,7 @@ buttons.forEach(button => {
     button.classList.add("active");
   });
 });
+
+function package(){
+  window.location.href = "../HTML/package_view_client.html"
+}

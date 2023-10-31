@@ -18,7 +18,7 @@
                 <div class="body-box">
                     <p>Your invoice will be issued according to the details listed here.</p><br> 
 
-                    <div id="button-1"><button class="button-1 div-cursor" >Add details</button></div>
+                    <div id="button-1"><button class="button-1 div-cursor" onclick="billinginformation()">Add details</button></div>
 
                 </div>
             </div>
@@ -75,9 +75,19 @@
             <br> 
                
             <div>
-                <div id="button"><button class="button div-cursor" >Confirm & Pay</button></div>            
+                <div id="button"><button class="button div-cursor" onclick="paymentsuccess()">Confirm & Pay</button></div>            
             </div>
 
         </div>
     </div>
 </body>
+
+<script>
+    function paymentsuccess(){
+        window.location.href = "../HTML/successpayment.html"
+    }
+
+    function billinginformation(){
+        window.location.href = "../HTML/billinginformation.html"
+    }
+</script>

@@ -144,3 +144,7 @@ function viewrequest(item){
     }
 }
 
+function createticket(){
+  window.location.href = "../HTML/createTicket.html"
+}
+
