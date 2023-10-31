@@ -19,7 +19,7 @@ document
     console.log(jsonData);
 
     // Send a POST request with JSON data to your backend
-    fetch("http://localhost:15000/enmo_skill_backend_war_exploded/login", {
+    fetch("http://localhost:15000/enmo_skill_backend_war/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -34,6 +34,16 @@ document
             console.log("Message content:", data.message);
             console.log("User_Level_ID:", data.userLevelID);
             console.log("User_ID:", data.userID);
+
+            if(data.userLevelID==1){
+              window.location.href = "../HTML/package_list_view.html"
+            }else if(data.userLevelID==2){
+              window.location.href = "../HTML/orderlist_designer.html"
+            }else if(data.userLevelID==3){
+              window.location.href = "../HTML/view_client_list_admin.html"
+            }else if(data.userLevelID==4){
+              window.location.href = "../HTML/ticketListCS.html"
+            }
             messageDiv.innerHTML = "Login successful ";
           });
 

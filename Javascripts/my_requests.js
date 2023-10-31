@@ -77,7 +77,7 @@ createbtn.addEventListener("click",(event)=>{
       "title":valtitle,
       "duration": valduration,
       "budget": valBudget,
-      "userID": 2,//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< hardcoded here
+      "userID": 28,//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< hardcoded here
       "discription": valDis,
       "sample_work_url": "https://abc.xyz"
     });
@@ -113,7 +113,7 @@ var requestOptions = {
   Credential:'include'
 };
 
-fetch("http://localhost:15000/enmo_skill_backend_war/request?Role=Client&UserId=002", requestOptions)
+fetch("http://localhost:15000/enmo_skill_backend_war/request?Role=Client&UserId=28", requestOptions)
   .then(response => response.json())
   .then(result => {
     console.log(result)
