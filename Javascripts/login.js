@@ -7,6 +7,10 @@ document
     const password = document.getElementById("password").value;
     const messageDiv = document.getElementById("messageDiv");
 
+    if(password.length < 8){
+      alert("Password length must be greater than 8")
+    }else{
+
     // Create a JavaScript object representing the user data
     const userData = {
       email: email,
@@ -51,6 +55,7 @@ document
           // Unauthorized login (status code 401), display an error message
           response.json().then((data) => {
             console.log("Error message content:", data.message);
+            alert("Login unsuccessful")
             messageDiv.innerHTML = "Login unsuccessful ";
           });
           console.log("Login unsuccessful");
@@ -63,5 +68,6 @@ document
       .catch((error) => {
         console.error("Error:", error);
         messageDiv.innerHTML = error;
-      });
+      });}
   });
+
