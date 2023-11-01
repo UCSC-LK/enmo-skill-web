@@ -1,6 +1,7 @@
 /* Use consistent capitalization for class names */
 body {
-    font-family: Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #fdfdfd;
 }
 
 .main{
@@ -49,7 +50,7 @@ body {
 
 .left-pannel{
     width: 40%;
-    border: 1px solid #ccc;
+    border: 1px solid #ebebeb;
     border-radius: 7px;
     padding: 20px;
     display: grid; 
@@ -117,7 +118,7 @@ body {
   }
 
 .package-box{
-    border: 1px solid #ccc;
+    border: 1px solid #ebebeb;
     padding: 10px;
     /* text-align: center; */
     padding-top: 20px;

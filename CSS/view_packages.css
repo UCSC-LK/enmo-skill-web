@@ -1,5 +1,6 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #fdfdfd;
     /* display: flex; */
     justify-content: center;
     align-items: center;
@@ -29,6 +30,7 @@ body {
 table.border {
     width: 100%; /* Make the table expand across the page */
     border-collapse: collapse; /* Remove default table cell spacing */
+    background-color: white;
 }
 
 
@@ -37,10 +39,19 @@ table.border th.col{
     
 }
 
+
+
 table.border th, table.border td {
-    border-bottom: 1px solid #000; /* Add a bottom border to table header and data cells */
-    padding: 8px; /* Add padding for better spacing */
+    /* border-bottom: 1px solid #000; 
+    padding: 8px; */
+    border-bottom: solid;
+    border-color: #ebebeb;
+    border-width: 2px;
     text-align: center; /* Align text to the left within cells */
+    padding: 10px;
+    /* width: 060%;
+    max-width: 60%;
+    min-width: 60%; */
 }
 
 table.border th {
@@ -91,3 +102,80 @@ table.border th {
     border: none;
     cursor: pointer;
 }
+
+.heading{
+    /* border-bottom: solid;
+    border-color:#ebebeb;
+    border-width: 2px; */
+    margin-top: 80px;
+}
+
+.table{
+    padding: 10PX;
+    background-color: white;
+    margin-top: 10px;
+    border: solid;
+    border-width: 1px;
+    border-color: #ebebeb;
+    width: 100%;
+}
+
+.table tr{
+    border-bottom: solid;
+    border-color: #ebebeb;
+    border-width: 2px;
+}
+
+.upper{
+    border-bottom: solid;
+    border-color: #ebebeb;
+    border-width: 2px;
+}
+
+.upper p{
+    font-weight: bold;
+    color:rgb(60, 60, 60);
+}
+
+.row-main{
+    display: flex;
+    /* gap: 20px; */
+    padding: 0 20px;
+    justify-content: space-around;
+    border-bottom: solid;
+    border-color: #ebebeb;
+    border-width: 2px;
+    }
+
+    .package-main,.clicks-main,.orders-main,.cancellations-main, .button-main{
+        width: 10%;
+        max-width: 10%;
+        min-width: 10%;
+        font-weight: bold;
+        color:#a3a3a3;
+        font-size: small;
+
+
+    }
+
+    .row-hidden .dis{
+        width: 060%;
+        max-width: 60%;
+        min-width: 60%;
+    }
+
+    .tile{
+        font-size: large;
+        font-weight: bold;
+    }
+
+    .blackbtn{
+        background: #18181a;
+        color: white;
+        border-radius: 20px;
+    }
+
+
+    table-div{
+        margin: 3px  #18181a;
+    }

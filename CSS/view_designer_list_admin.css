@@ -32,7 +32,7 @@ table.border {
 
 
 table.border th, table.border td {
-    border: 1px solid #ccc; /* Add a bottom border to table header and data cells */
+    border: 1px solid #ebebeb; /* Add a bottom border to table header and data cells */
     padding: 5px; /* Add padding for better spacing */
     text-align: center; /* Align text to the left within cells */
 }
