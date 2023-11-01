@@ -42,7 +42,7 @@ var requestOptions = {
 };
 
 fetch(
-  "http://localhost:15000/enmo_skill_backend_war/proposal?Role=Client&UserId=33",          //hardcode
+  "http://localhost:15000/enmo_skill_backend_war/proposal?Role=Client&UserId=28",          //hardcode
   requestOptions
 )
   .then((response) => response.json())
