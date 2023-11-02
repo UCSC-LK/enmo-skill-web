@@ -254,7 +254,7 @@ duration.value=item.duration;
       "title":valtitle,
       "duration": valduration,
       "budget": valBudget,
-      "requestID": item.requestID,//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< hardcoded here
+      "requestID": item.requestID,
       "discription": valDis,
       "sample_work_url": "https://abc.xyz"
     });

@@ -8,7 +8,7 @@ var requestOptions = {
   
     const listTictect = document.getElementById("ticket-box");
     const listItemTemplate = document.querySelector(".ticket-box-2");
-  fetch("http://localhost:15000/enmo_skill_backend_war_exploded/support?UserId=13&Role=Designer", requestOptions)
+  fetch("http://localhost:15000/enmo_skill_backend_war/support?UserId=1&Role=Designer", requestOptions)
     .then(response => response.json())
     .then(result => {
       console.log(result)
@@ -22,11 +22,26 @@ var requestOptions = {
         })
 
         newItem.querySelector(".date").textContent = item.date;
-        //newItem.querySelector(".time").textContent = item.time;
+
+        
+        if(item.status==1){
+          item.status="Active"
+        }else{
+          item.status="Closed"
+          newItem.querySelector(".panel").style.display="none";
+        }
         newItem.querySelector(".status").textContent = item.status;
+        
         newItem.querySelector(".description").textContent = item.description;
         newItem.querySelector(".edit").addEventListener("click",()=>{
-            
+          const url = "../HTML/createTicket.html" +
+          '?subject='+encodeURIComponent(item.subject)+
+          '&description=' + encodeURIComponent(item.description) +
+          '&ref_no=' + encodeURIComponent(item.ref_no) ;
+          window.location = url;
+        })
+        newItem.querySelector(".delete").addEventListener("click",()=>{
+          deleteRequest(item.ref_no)
         })
         listTictect.appendChild(newItem);
       })
@@ -124,6 +139,21 @@ var requestOptions = {
 //     }
 // ];
   
+function deleteRequest(requestID){
+  if(confirm('Are you sure you want Delete this request?')){
+
+    var requestOptions = {
+      method: 'DELETE',
+      redirect: 'follow'
+    };
+    
+    fetch("http://localhost:15000/enmo_skill_backend_war/support?TicketID="+requestID, requestOptions)
+      .then(response => response.text())
+      .then(result => {alert(result)
+        location.reload();})
+      .catch(error => console.log('error', error));
+  }
+}
 
 function viewrequest(item){
     let popup_con=document.querySelector(".pop-up-container");

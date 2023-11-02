@@ -62,6 +62,10 @@ fetch("http://localhost:15000/enmo_skill_backend_war/request?Role=Designer", req
   const Discriptionview = document.querySelector('.description');
   const Budgetview = document.querySelector('.budget-text');
   const durationview = document.querySelector('.description-text');
+  const btn = document.querySelector('.proposal');
+  btn.addEventListener("click",()=>{
+    window.location.href = "../HTML/proposal_add.html"
+  })
   
 function viewrequest(item){
   popupview.style.display="flex";

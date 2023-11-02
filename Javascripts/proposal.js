@@ -19,7 +19,7 @@ document
 
     // Make a fetch request
     fetch(
-      "http://localhost:15000/enmo_skill_backend_war/proposal?RequestId=8",   //hardcode
+      "http://localhost:15000/enmo_skill_backend_war/proposal?RequestId=114",   //hardcode
       {
         method: "POST",
         headers: {
@@ -30,6 +30,7 @@ document
     )
       .then((response) => {
         if (response.ok) {
+          window.location = "../HTML/proposal_list.html"
           messageDiv.innerHTML = "Proposal submition successful ";
 
           setTimeout(function () {
@@ -48,6 +49,8 @@ document
         console.error("An error occurred:", error);
       });
   });
+
+  
 
 
 
