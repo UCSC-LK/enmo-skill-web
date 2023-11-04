@@ -23,7 +23,7 @@ document
     console.log(jsonData);
 
     // Send a POST request with JSON data to your backend
-    fetch("http://localhost:15000/enmo_skill_backend_war/login", {
+    fetch(BASE_URL+"/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

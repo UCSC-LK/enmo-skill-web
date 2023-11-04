@@ -10,7 +10,13 @@
   
 //   // Usage
 //   setCookie('username', 'john_doe', 30); // Save a username cookie with a 30-day expiration
-  
+
+
+
+console.log(BASE_URL);
+
+
+
 
 let flagCreate=false;
 let flagUpdate=false;
@@ -88,7 +94,7 @@ createbtn.addEventListener("click",(event)=>{
       body: raw2
     };
     
-    fetch("http://localhost:15000/enmo_skill_backend_war/request", requestOptions)
+    fetch(BASE_URL+"/request", requestOptions)
       .then(response => response.text())
       .then(result => {alert(result);
         location.reload();})
@@ -113,7 +119,7 @@ var requestOptions = {
   Credential:'include'
 };
 
-fetch("http://localhost:15000/enmo_skill_backend_war/request?Role=Client&UserId=28", requestOptions)
+fetch(BASE_URL+"/request?Role=Client&UserId=28", requestOptions)
   .then(response => response.json())
   .then(result => {
     console.log(result)
@@ -196,7 +202,7 @@ function deleteRequest(requestID){
       redirect: 'follow'
     };
     
-    fetch("http://localhost:15000/enmo_skill_backend_war/request?requestID="+requestID, requestOptions)
+    fetch(BASE_URL+"/request?requestID="+requestID, requestOptions)
       .then(response => response.text())
       .then(result => {alert(result)
         location.reload();})
@@ -265,7 +271,7 @@ duration.value=item.duration;
       body: raw
     };
     
-    fetch("http://localhost:15000/enmo_skill_backend_war/request", requestOptions)
+    fetch(BASE_URL+"/request", requestOptions)
       .then(response => response.text())
       .then(result => {alert(result)
         location.reload();})
