@@ -9,7 +9,8 @@
 </head>
 <body>
     <div class="main" style="margin-top: 80px;">
-        <iframe src="../Components/navbar_seller.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;position: fixed;top: 0;z-index: 2;left: 0;"></iframe>
+    <iframe src="../Components/navbar_seller.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;position: fixed;top: 0;z-index: 2;left: 0;"></iframe>
+
         <div class="container">
             <div class="block">
                 <h1 class="headding">Overview</h1>
@@ -17,11 +18,11 @@
                     <form id="package_form">
 
                         <label for="title" class="label-title">Package title</label>
-                        <input type="text" name="title" id="title">
+                        <input type="text" name="title" id="title" required>
                         <br>
     
                         <label for="category">Category</label>
-                        <select name="category" width="100%" id="category" >
+                        <select name="category" width="100%" id="category" required>
                             <option value="none" disabled selected>Select a category</option>
                             <option value="logo_desgning">Logo designing</option>
                             <option value="Illustraton">Illustraton</option>
@@ -32,11 +33,11 @@
                         <br>
     
                         <label for="description">Description</label>
-                        <textarea name="description" id="description" cols="62" rows="5" ></textarea>
+                        <textarea name="description" id="description" cols="62" rows="5" required></textarea>
                         <br>
     
-                        <!-- <label for="img">Cover image</label>
-                        <input type="file" id="img" name="img" accept="image/*"> -->
+                        <label for="img">Cover image</label>
+                        <input type="file" id="img" name="img" accept="image/*">
 
                         <br><br>
     

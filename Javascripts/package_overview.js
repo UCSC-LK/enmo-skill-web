@@ -47,19 +47,14 @@ form.addEventListener("submit", async (e) => {
         if (response.ok) {
             console.log(`Package data ${operationType}d successfully.`);
         } else {
+            alert("Error occured")
             console.error(`Failed to ${operationType} package data.`);
         }
     } catch (error) {
         console.error("An error occurred:", error);
     }
 
-    // Redirect to the appropriate page based on the operation type
-    if (operationType === "update") {
-        window.location = "http://127.0.0.1:5500/HTML/view_active_packages.html";
-    } else {
-        // Redirect to a different page or handle insert completion as needed
-        window.location = "http://127.0.0.1:5500/HTML/view_active_packages.html";
-    }
+    window.location.href = "../HTML/packages.html"
 });
 
 // Additional code for loading data for update
