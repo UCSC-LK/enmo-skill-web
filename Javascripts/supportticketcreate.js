@@ -26,7 +26,7 @@ function ticketsubmission(){
         body: raw2
         };
         
-        fetch("http://localhost:15000/enmo_skill_backend_war/support", requestOptions)
+        fetch(BASE_URL+"/support", requestOptions)
         .then(response => response.text())
         .then(result => {alert(result);
             window.location="../HTML/tikectListDisigner.html"})
@@ -50,7 +50,7 @@ function ticketsubmission(){
           body: raw
         };
         
-        fetch("http://localhost:15000/enmo_skill_backend_war/support", requestOptions)
+        fetch(BASE_URL+"/support", requestOptions)
           .then(response => response.text())
           .then(result => {alert(result)
             window.location="../HTML/tikectListDisigner.html"})

@@ -19,7 +19,7 @@ document
 
     // Make a fetch request
     fetch(
-      "http://localhost:15000/enmo_skill_backend_war/proposal?RequestId=114",   //hardcode
+      BASE_URL+"/proposal?RequestId=114",   //hardcode
       {
         method: "POST",
         headers: {

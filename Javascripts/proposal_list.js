@@ -42,7 +42,7 @@ var requestOptions = {
 };
 
 fetch(
-  "http://localhost:15000/enmo_skill_backend_war/proposal?Role=Client&UserId=28",          //hardcode
+  BASE_URL+"/proposal?Role=Client&UserId=28",          //hardcode
   requestOptions
 )
   .then((response) => response.json())
@@ -118,7 +118,7 @@ function deleteRequest(proposalID) {
     };
 
     fetch(
-      "http://localhost:15000/enmo_skill_backend_war/proposal?ProposalId=" +
+      BASE_URL+"/proposal?ProposalId=" +
         proposalID,
       requestOptions
     )
@@ -189,7 +189,7 @@ function editRequest(item) {
     };
 
     fetch(
-      "http://localhost:15000/enmo_skill_backend_war/proposal?ProposalId=" +
+      BASE_URL+"/proposal?ProposalId=" +
         item.proposalID,
       requestOptions
     )
