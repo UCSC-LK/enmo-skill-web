@@ -1,3 +1,12 @@
+function setCookie(name, value, daysToExpire) {
+    const date = new Date();
+    date.setTime(date.getTime() + (daysToExpire * 24 * 60 * 60 * 1000));
+    const expires = `expires=${date.toUTCString()}`;
+    document.cookie = `${name}=${value}; ${expires}; path=/`;
+  }
+  
+ 
+
 document
   .getElementById("loginForm")
   .addEventListener("submit", function (event) {
@@ -38,6 +47,8 @@ document
             console.log("Message content:", data.message);
             console.log("User_Level_ID:", data.userLevelID);
             console.log("User_ID:", data.userID);
+            setCookie('User_ID', data.userID, 30); 
+            setCookie('User_Level_ID', data.userLevelID, 30); 
 
             if(data.userLevelID==1){
               window.location.href = "../HTML/package_list_view.html"
@@ -48,7 +59,6 @@ document
             }else if(data.userLevelID==4){
               window.location.href = "../HTML/ticketListCS.html"
             }
-            messageDiv.innerHTML = "Login successful ";
           });
 
         } else if (response.status === 401) {
