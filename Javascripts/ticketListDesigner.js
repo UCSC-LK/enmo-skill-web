@@ -8,7 +8,7 @@ var requestOptions = {
   
     const listTictect = document.getElementById("ticket-box");
     const listItemTemplate = document.querySelector(".ticket-box-2");
-  fetch("http://localhost:15000/enmo_skill_backend_war/support?UserId=1&Role=Designer", requestOptions)
+  fetch(BASE_URL+"/support?UserId=1&Role=Designer", requestOptions)
     .then(response => response.json())
     .then(result => {
       console.log(result)
@@ -147,7 +147,7 @@ function deleteRequest(requestID){
       redirect: 'follow'
     };
     
-    fetch("http://localhost:15000/enmo_skill_backend_war/support?TicketID="+requestID, requestOptions)
+    fetch(BASE_URL+"/support?TicketID="+requestID, requestOptions)
       .then(response => response.text())
       .then(result => {alert(result)
         location.reload();})

@@ -32,7 +32,7 @@ form.addEventListener("submit", async (e) => {
     // Determine the URL for the request based on the operation type
     const requestUrl = operationType === "update"
         ? `http://localhost:15000/enmo_skill_backend_war/package?packageId=${packageId}`
-        : "http://localhost:15000/enmo_skill_backend_war/package";
+        : BASE_URL+"/package";
 
     // fecth data
     try {

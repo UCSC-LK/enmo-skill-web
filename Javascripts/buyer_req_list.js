@@ -24,7 +24,7 @@ var requestOptions = {
   Credential:'include',
 };
 
-fetch("http://localhost:15000/enmo_skill_backend_war/request?Role=Designer", requestOptions)
+fetch(BASE_URL+"/request?Role=Designer", requestOptions)
   .then(response => response.json())
   .then(result => {
     count.innerText=result.length;
