@@ -8,14 +8,15 @@
     <title>Home Page</title>
 </head>
 <body>
-    <!-- Include the navigation bar using an iframe -->
+    <!-- Include the navigation bar using an iframe 
     <iframe src="../Components/navbar_no_user.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;position: fixed;top: 0;z-index: 2;left: 0;"></iframe>
     <iframe src="../Components/navbar_customer.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;position: fixed;top: 0;z-index: 2;left: 0;"></iframe>
     <iframe src="../Components/navbar_seller.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;position: fixed;top: 0;z-index: 2;left: 0;"></iframe>
     <iframe src="../Components/navbar_admin.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;position: fixed;top: 0;z-index: 2;left: 0;"></iframe>
     <iframe src="../Components/navbar_cs.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;position: fixed;top: 0;z-index: 2;left: 0;"></iframe>
 
-    <!-- Please note that if your next element must have magin top 80px  
+  
+        Please note that if your next element must have magin top 80px  
             example -- <div style="margin-top=80px"></div>  -->
 
 
@@ -48,7 +49,31 @@
             -->
              
               
-
+            <input type="file" id="fileInput">
+            <button onclick="uploadFile()">Upload File</button>
+            <p id="fileUrl"></p>
+        
+            <script>
+                function uploadFile() {
+                    var fileInput = document.getElementById('fileInput');
+                    var file = fileInput.files[0];
+        
+                    var formData = new FormData();
+                    formData.append('file', file);
+        
+                    fetch('http://localhost:15000/enmo_skill_backend_war/file', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('fileUrl').innerText = 'File URL: ' + data;
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                }
+            </script>
 
 
 
@@ -65,3 +90,4 @@
     
 </body>
 </html>
+
