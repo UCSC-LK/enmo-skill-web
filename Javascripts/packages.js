@@ -41,7 +41,7 @@ function laodActivePkg() {
             const p_img = document.createElement('p')
             const img = document.createElement('img')
             p_img.setAttribute("class", "pkg-img")
-            img.setAttribute("src", element.cover_url)
+            img.setAttribute("src", element.coverUrl)
             p_img.appendChild(img)
             row.appendChild(p_img)
     
@@ -153,7 +153,7 @@ function laodPausedPkg() {
               const p_img = document.createElement('p')
               const img = document.createElement('img')
               p_img.setAttribute("class", "pkg-img")
-              img.setAttribute("src", "/img/package_cover3.jpg")
+              img.setAttribute("src", element.coverUrl)
               p_img.appendChild(img)
               row.appendChild(p_img)
       
@@ -257,7 +257,7 @@ function laodPendingPkg() {
             const p_img = document.createElement('p')
             const img = document.createElement('img')
             p_img.setAttribute("class", "pkg-img")
-            img.setAttribute("src", "/img/package_cover3.jpg")
+            img.setAttribute("src", element.coverUrl)
             p_img.appendChild(img)
             row.appendChild(p_img)
     
@@ -363,7 +363,7 @@ function deletePackage(selectedData) {
         if (response.ok) {
           // Successful deletion, you can handle this as needed
           console.log(`Package with packageId ${packageId} deleted successfully.`);
-          window.location = "http://127.0.0.1:5500/HTML/view_paused_packages.html"
+          // window.location = "../HTML/packages.html"
         } else {
           // Handle errors
           alert("Failed to delete package");

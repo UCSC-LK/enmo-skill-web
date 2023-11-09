@@ -24,7 +24,7 @@ form.addEventListener("submit", async (e) => {
         clicks: 0,
         orders: 0,
         cancellations: "0%",
-        status: "pending"
+        status: "active"
     };
 
     console.log(packageData);
@@ -32,7 +32,7 @@ form.addEventListener("submit", async (e) => {
     // Determine the URL for the request based on the operation type
     const requestUrl = operationType === "update"
         ? `http://localhost:15000/enmo_skill_backend_war/package?packageId=${packageId}`
-        : BASE_URL+"/package";
+        : "http://localhost:15000/enmo_skill_backend_war/package";
 
     // fecth data
     try {
@@ -46,6 +46,7 @@ form.addEventListener("submit", async (e) => {
 
         if (response.ok) {
             console.log(`Package data ${operationType}d successfully.`);
+            window.location.href = `../HTML/package_pricing.html?catogery=${category}`
         } else {
             alert("Error occured")
             console.error(`Failed to ${operationType} package data.`);
@@ -54,7 +55,7 @@ form.addEventListener("submit", async (e) => {
         console.error("An error occurred:", error);
     }
 
-    window.location.href = "../HTML/packages.html"
+    
 });
 
 // Additional code for loading data for update
