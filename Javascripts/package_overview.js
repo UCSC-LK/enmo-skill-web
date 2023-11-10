@@ -88,7 +88,7 @@ form.addEventListener("submit", async (e) => {
 
         if (response.ok) {
             console.log(`Package data ${operationType}d successfully.`);
-            // window.location.href = `../HTML/package_pricing.html?catogery=${category}`
+            window.location.href = `../HTML/package_pricing.html?catogery=${category}`
         } else {
             alert("Error occured")
             console.error(`Failed to ${operationType} package data.`);
