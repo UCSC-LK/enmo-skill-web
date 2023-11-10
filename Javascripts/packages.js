@@ -1,3 +1,20 @@
+function getCookie(cookieName) {
+  var name = cookieName + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var cookieArray = decodedCookie.split(';');
+
+  for(var i = 0; i < cookieArray.length; i++) {
+      var cookie = cookieArray[i].trim();
+      if (cookie.indexOf(name) == 0) {
+          return cookie.substring(name.length, cookie.length);
+      }
+  }
+  return null;
+}
+console.log("iD: " + getCookie("User_ID"));
+
+const UserId = getCookie("User_ID");
+
 document.addEventListener("DOMContentLoaded", laodActivePkg);
 
 const act = document.getElementById("active")
@@ -10,7 +27,7 @@ paus.addEventListener("click", laodPausedPkg)
 
 function laodActivePkg() {
   // Replace 'YOUR_API_URL' with the actual URL where your JSON data is hosted.
-  const apiUrl = 'http://localhost:15000/enmo_skill_backend_war/package';
+  // const apiUrl = 'http://localhost:15000/enmo_skill_backend_war/package'; not needed
 
     act.setAttribute("class", "active")
     pend.removeAttribute("class", "active")
@@ -18,7 +35,8 @@ function laodActivePkg() {
 
     document.getElementById("title").innerHTML = "Active Packages"
 
-  fetch(apiUrl)
+    // console.log(BASE_URL+"/package");
+  fetch(BASE_URL+"/package?UserId="+UserId)
     .then((response) => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -113,7 +131,7 @@ function laodActivePkg() {
 
 function laodPausedPkg() {
     // Replace 'YOUR_API_URL' with the actual URL where your JSON data is hosted.
-    const apiUrl = 'http://localhost:15000/enmo_skill_backend_war/package';
+    // const apiUrl = 'http://localhost:15000/enmo_skill_backend_war/package';
 
     paus.setAttribute("class", "active")
     pend.removeAttribute("class", "active")
@@ -121,7 +139,7 @@ function laodPausedPkg() {
 
     document.getElementById("title").innerHTML = "Paused Packages"
   
-    fetch(apiUrl)
+    fetch(BASE_URL+"/package?UserId="+UserId)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -233,7 +251,7 @@ function laodPendingPkg() {
 
     document.getElementById("title").innerHTML = "Pending Packages"
 
-  fetch(apiUrl)
+  fetch(BASE_URL+"/package?UserId="+UserId)
     .then((response) => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -352,7 +370,7 @@ function deletePackage(selectedData) {
   if (flag) {
     const deleteUrl = `http://localhost:15000/enmo_skill_backend_war/package?packageId=${packageId}`;
 
-    fetch(deleteUrl, {
+    fetch(BASE_URL+"/package?packageId="+packageId+"&UserId="+UserId, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json', // You can adjust the content type if needed
@@ -386,7 +404,7 @@ function changeStatus(newStatus, selectedData){
 
   const updateUrl = `http://localhost:15000/enmo_skill_backend_war/package?packageId=${packageId}`;
 
-  fetch(updateUrl, {
+  fetch(BASE_URL+"/package?packageId="+packageId+"&UserId="+UserId, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json', // You can adjust the content type if needed
@@ -406,7 +424,7 @@ function changeStatus(newStatus, selectedData){
         
         // Handle errors
         // alert("Failed to delete package");
-        console.error(`Failed to change the status of package with packageId ${packageId}.`);
+        console.error(`status changed with packageId ${packageId}.`);
       }
     })
     .catch((error) => {
