@@ -416,7 +416,8 @@ function changeStatus(newStatus, selectedData){
         // Successful deletion, you can handle this as needed
 
         if (newStatus == "paused") {
-          laodPausedPkg()
+          // laodPausedPkg()
+          laodActivePkg()
         } else {
           laodActivePkg()
         }
