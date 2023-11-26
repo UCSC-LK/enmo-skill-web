@@ -32,12 +32,32 @@
                 </div>
                 <br>                             
             </form>
-            <div class ="form-layout">
-                <div >
+            <div class ="botom-row">
+                
+                <div class="btn1">
+                    <div>
+                        <div class="back" onclick="back()">
+                            <div  class="icon"><img src="../Assests/icons/back.png"></div>
+                            <div><b>Back</b></div>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="btn2" >
                     <input class="button div-cursor"  type="submit" value="Send Request">
                 </div>
             </div>
         </div>
+        
+        <div class="img">
+            <img src="../Assests/icons/CSA1.png">
+        </div>
     </div>
 
 </body>
+<script>
+     function back(){
+        window.history.back();
+    }
+</script>

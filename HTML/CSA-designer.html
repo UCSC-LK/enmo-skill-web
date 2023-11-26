@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/CSA-main.css">
+    <title>Get contact support</title>
+</head>
+
+<body>
+    <iframe src="../Components/navbar_seller.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;position: fixed;top: 0;z-index: 2;left: 0;"></iframe>
+    
+    <div class="container">
+        <div class="contain-box">
+            <div>
+                <h1>Designer on Enmo Skill</h1>
+            </div>
+            <div class="table">
+                <div class="row" onclick="unableWithdrow()"><p class="text">Uneble to withdrow funds</p></div>
+                <div class="row" onclick="geFunds()"><p class="text">Did not get funds</p></div>
+                <div class="row" onclick="IssueOrder()"><p class="text">Issue with an order</p></div>
+                <div class="row" onclick="other()"><p class="text">Other</p></div>
+            </div>
+            <div>
+                
+            </div>
+            <div class="back" onclick="back()">
+                <div  class="icon"><img src="../Assests/icons/back.png"></div>
+                <div>Back</div>
+            </div>
+
+
+        </div>
+        <div class="imag">
+            <img src="../Assests/icons/CSA2.png">
+        </div>
+
+    </div>
+
+</body>
+
+<script>
+    function back(){
+        window.history.back();
+    }
+    function unableWithdrow(){
+        window.location.href='./CSA-unableWithdrow.html';
+    }
+    function geFunds(){
+        window.location.href='./createTicket.html';
+    }
+    function IssueOrder(){
+        window.location.href='./CSA-IssueOrder.html';
+    }
+    function other(){
+        window.location.href='./createTicket.html';
+    }
+</script>

@@ -29,6 +29,13 @@ body{
 }
 
 .form-layout{
+
+    padding: 40px 20px 20px 27px;
+}
+
+.botom-row{
+    display: grid;
+    grid-template-columns: 50% 50%;
     padding: 40px 20px 20px 27px;
 }
 
@@ -75,6 +82,28 @@ body{
      
 }
 
+.back{
+    display: grid;
+    grid-template-columns: 20% 80%;
+    gap: 10px;
+    /* padding-top: 30px; */
+    width: 70px;
+    -webkit-text-fill-color: #7A7D85;
+    cursor: pointer;
+    align-content: center;
+}
+
+.btn1{
+    display: flex;
+    justify-items: center;
+
+}
+.btn2{
+    display: flex;
+    justify-items: center;
+    justify-content: right;
+}
+
 
 .button{
     width:155px;
@@ -83,6 +112,10 @@ body{
     background-color: #000000;
     -webkit-text-fill-color: #FFFFFF;
     text-align: center;
+}
+
+.img{
+    padding-top: 170px;
 }
 
 .div-cursor{
