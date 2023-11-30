@@ -1,0 +1,144 @@
+.main{
+height: 100vh;
+width: 100%;
+overflow: hidden;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.box{
+    width: 600px;
+    height: 400px;
+    background-color: #fff;
+    box-shadow: 5px 5px 10px #9b9b9b92;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+}
+.logo{
+width: 150px;
+
+}
+.imgcnt{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 20px;
+    border-radius: 30px;
+    position: relative;
+top: -40px;
+background-color: #ffffff;
+box-shadow: 0 0 10px #9b9b9b92;
+}
+.header{
+    margin-top: 0;
+    padding: 0;
+    color: #494949;
+}
+.p1{
+    text-align: center;
+    color: #616161;
+    line-height: 23px;
+    margin: 10px;
+}
+
+.email{
+font-weight: bold;
+}
+.b{
+font-weight: bold;
+}
+.contact{
+color:darkblue;
+text-decoration: underline;
+cursor: pointer;
+}
+
+.resend{
+  align-items: center;
+  appearance: button;
+  background-color: #000000;
+  border-radius: 8px;
+  border-style: none;
+  box-shadow: rgba(255, 255, 255, 0.26) 0 1px 2px inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  font-family: "RM Neue",sans-serif;
+  font-size: 15px;
+  line-height: 1.15;
+  margin: 020px 18px;
+  padding: 10px 21px;
+  text-align: center;
+  text-transform: none;
+  transition: color .13s ease-in-out,background-color .20s ease-in-out,opacity .13s ease-in-out,box-shadow .13s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+
+.resend:hover {
+  background-color: #646464;
+}
+.progress{
+    background-color: #bdbdbd;
+    width: 0px;
+    height: 7px;
+    position: relative;
+    top: -32px;
+    left: 233px;
+    align-self: start;
+
+}
+.loading{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    background-color: #252525c5;
+    z-index: 2;
+    align-items: center;
+    justify-content: center;
+    
+}
+.spin {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 6px solid rgba(241, 241, 241, 0.464);
+    border-radius: 50%;
+    border-top-color: #ffffff;
+    animation: myAnim 2s ease 0s .5 normal forwards;
+    animation: spin 1s ease-in-out infinite;
+    -webkit-animation: spin 1s ease-in-out infinite;
+  }
+  @keyframes spin {
+    to {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+  @-webkit-keyframes spin {
+    to {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+    @keyframes myAnim {
+        0% {
+            opacity: 0;
+           
+        }
+    
+        100% {
+            opacity: 1;
+            
+        }
+    }
+
