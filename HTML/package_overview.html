@@ -23,11 +23,11 @@
     
                         <label for="category">Category</label>
                         <select name="category" width="100%" id="category" required>
-                            <option value="none" disabled selected>Select a category</option>
-                            <option value="logo_desgning">Logo designing</option>
-                            <option value="illustraton">Illustraton</option>
-                            <option value="flyer_desgning">Flyer designing</option>
-                            <option value="banner_desgning">Banner designing</option>
+                            <option value="0"selected>Select a category</option>
+                            <option value="1">Logo designing</option>
+                            <option value="2">Illustraton</option>
+                            <option value="3">Flyer designing</option>
+                            <option value="4">Banner designing</option>
                         </select>
 
                         <br>
@@ -47,7 +47,15 @@
                 
             </div>
 
-            
+            <div id="overlay2" class="overlay">
+                <div id="popup-container-unsuccess" class="popup-container">
+                    <div class="icon">
+                        <img class="unsuccess-img" src="../Assests/icons/unsuccess.png" width="25%" alt="">
+                    </div>
+                    <h1 id="status-unsuccess" >Error Ocuured !</h1>
+                    <button id="btn-unsuccess" class="btn-unsuccess">OK</button>
+                </div>
+            </div>
 
         </div>
     </div> 

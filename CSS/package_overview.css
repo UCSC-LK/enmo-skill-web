@@ -111,3 +111,126 @@ input[type="file"]{
     width: 20%;
     font-weight: bold;
 }
+
+
+.overlay {
+    font-family: Arial, sans-serif;
+    background-color:#000000c3;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+    height: 100vh;
+    width: 100%;
+    position:fixed;
+    margin: auto;
+    top: 0;
+    left: 0;
+    z-index: 101;
+    overflow: hidden;
+    -webkit-animation-name: fadeIn; 
+    -webkit-animation-duration: 0.4s;
+    animation-name: fadeIn;
+    animation-duration: 0.3s;
+    /* padding: 70px 450px; */
+  }
+
+  .overlay .popup-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    background-color: #ffffff;
+    width: 25%;
+    height: max-content;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #cccccc82;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    animation-name: sideIn; /* changes unlike others*/
+    animation-duration: .5s;
+    flex-direction: column;
+    margin: auto;
+    padding-top: 35px;
+    padding-bottom: 35px;
+}
+
+  .popup-container .btn-success {
+    background-color: #fff;
+    color: #003976; /* Text color for the button */
+    border: 2px solid #003976;
+    padding: 10px 20px;
+    border-radius: 7px;
+    cursor: pointer;
+    float: right;
+    /* margin-right: 29px; */
+    width: 20%;
+    font-weight: bold;
+  }
+  .popup-container .btn-unsuccess {
+    background-color: #fff;
+    color: #e75f65; /* Text color for the button */
+    border: 2px solid #e75f65;
+    padding: 10px 20px;
+    border-radius: 7px;
+    cursor: pointer;
+    float: right;
+    /* margin-right: 29px; */
+    width: 20%;
+    font-weight: bold;
+  }
+
+  @-webkit-keyframes slideIn {
+
+    from {top: 0; opacity: 0} 
+    to {top: 0; opacity: 1}
+  }
+  
+  @keyframes slideIn {
+    from {top: +300px; opacity: 0}
+    to {top: 37px; opacity: 1}
+  }
+  
+  @-webkit-keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+  }
+  
+  @keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+  }
+  
+  
+  @keyframes topIn {
+    0% {
+    transform: scale(0.5);
+        opacity: 0;
+  }
+  
+  100% {
+    transform: scale(1);
+        opacity: 1;
+  }
+  }
+
+
+
+
+
+
+  .icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* .status-msg-success{
+    color:#003976 ;
+  }
+
+  .status-msg-unsuccess{
+    color: #e75f65;
+  } */
