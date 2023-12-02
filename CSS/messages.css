@@ -38,6 +38,16 @@ color: #000000;
     /* border-bottom: #61606085 solid 1px; */
   
 }
+.card:hover{
+    width: 330px;
+    display: flex;
+    height: 80px;
+    gap: 20px;
+    background: rgb(242, 242, 242);
+    transition: .6s; 
+    /* border-bottom: #61606085 solid 1px; */
+  
+}
 .card-hide{
     width: 330px;
     display: none;
@@ -95,7 +105,7 @@ overflow: hidden;
 
 }
 .back{
-    width: 070px;
+    width: 20px;
     justify-content: center;
     display: flex;
     padding-right: 30px;
@@ -143,6 +153,22 @@ overflow: hidden;
 .send{
     background-color: #000000;
     border: none;
+    border-radius: 50px;
+    width: 50px;
+    clip-path: circle();
+    height: 50px;
+    padding: 0;
+    margin: 0 60px 0 0;
+    display: flex;
+    /* align-content: center; */
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+}
+.send:hover{
+    background-color: #2f2f2f;
+    border: solid 3px #2f2f2f ;
     border-radius: 50px;
     width: 50px;
     clip-path: circle();

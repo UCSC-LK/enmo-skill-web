@@ -81,7 +81,7 @@ createbtn.addEventListener("click",(event)=>{
       "title":valtitle,
       "duration": valduration,
       "budget": valBudget,
-      "userID": getCookie("USer_Id"),//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< hardcoded here
+      "userID": getCookie("USer_Id"),
       "discription": valDis,
       "sample_work_url": "https://abc.xyz"
     });

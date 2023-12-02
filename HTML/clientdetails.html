@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/clientdetails.css">
+    <link rel="stylesheet" href="../CSS/main.css">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    
+    <title> Additional Details Page</title>
+</head>
+<body>
+   
+    <div class="box-error">
+        <div class="closebtn">x</div>
+        <box-icon type='solid'class="erroricon" color="#fdfdfd" name='error-alt' animation='tada' size="50px"style="display:none;"></box-icon>
+        <box-icon name='check-circle'class="successicon" color="#fdfdfd"  animation='tada' size="50px" style="display:none;"></box-icon>
+        <div class="massage">
+            <p class="title-error">Error</p>
+            <p class="title-sucess">Success</p>
+            <p class="masssage">qa</p>
+        </div>
+    </div>
+   
+
+    <div class="signup-main">
+        <div class="signup-layout">
+            <div  id="left">
+               
+                
+            </div>
+            <div class="right">
+                <p class="addit">Additional Details</p>
+               
+                
+              <form class="form-layout">
+                <label class="input-lable" for="loginemail">Name :</label>
+                <input type="text" class="inputs" name="email" id="email" required>
+
+                
+                <label class="input-lable" for="loginemail">Contact No:</label>
+                <input type="text" class="inputs" name="username" id="username" required>
+
+                
+                <label class="input-lable" for="password">NIC/Passport</label>
+                <input type="text"  class="inputs" id="password" name="password" required>
+
+                <label class="input-lable" for="countries">Select a country:</label>
+                <select id="countries" class="inputs">
+                  <option value="" selected disabled>Select a country</option>
+                </select>
+                <label class="input-lable" for="textdis">Describe Your Self:</label>
+                <textarea class="inputs2" id="textdis" placeholder="Describe About You (Briefly)..."required></textarea>
+                
+                
+                <input type="submit" value="Submit" onclick="validateEmail()">
+            </form>
+
+            </div>
+        </div>
+
+    </div>
+<!-- Include the external JavaScript file -->
+<script src="../Javascripts/baseurl.js"></script>
+<script src="../Javascripts/clientDetails.js"></script>
+<script src="../Javascripts/Toastmassage.js"></script>
+<!-- <script type="text/javascript">
+    function validateEmail() {
+      var email = document.getElementById("email").value;
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (emailRegex.test(email)) {
+        
+      } else {
+        alert("Invalid email address. Please enter a valid email address.");
+      }
+    }
+  </script> -->
+
+</body>
+</html>
