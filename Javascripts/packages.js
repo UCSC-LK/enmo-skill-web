@@ -254,7 +254,7 @@ function laodPendingPkg() {
   fetch(BASE_URL+"/package?UserId="+UserId)
     .then((response) => {
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error('Cannot get data');
       }
       return response.json();
     })
@@ -381,7 +381,7 @@ function deletePackage(selectedData) {
         if (response.ok) {
           // Successful deletion, you can handle this as needed
           console.log(`Package with packageId ${packageId} deleted successfully.`);
-          // window.location = "../HTML/packages.html"
+          location.replace(location.href);
         } else {
           // Handle errors
           alert("Failed to delete package");

@@ -1,24 +1,159 @@
 document.addEventListener("DOMContentLoaded", setDeliverables);
 
+
 // extract type of the package
 const url = new URL(window.location.href);
 const category = url.searchParams.get('category');
-const packageId = url.searchParams.get('packageId')
-const pricePackageId = url.searchParams.get('pricePackageId')
+const packageId = url.searchParams.get('packageId');
+const updateFlag = url.searchParams.get('update'); // this is not sent as the parameters
 console.log(category);
 
 // setting flag variables
 var btn_bronze = false;
-var btn_sliver = false;
+var btn_silver = false;
 var btn_platinum = false;
 
-function setDeliverables() {
-    // extract type of the package
-    // const url = new URL(window.location.href);
-    // const category = url.searchParams.get('category');
-    // const packageId = url.searchParams.get('packageId')
-    // console.log(category);
+var errFlag = 0
 
+var pricePackageId_bronze = 0;
+var pricePackageId_silver = 0;
+var pricePackageId_platinum = 0;
+
+function loadData(){
+
+    fetch(BASE_URL+`/packagepricing?packageId=${packageId}`)
+    .then((response)=>{
+        if(!response.ok){
+            throw new Error('Cannot get data');
+        }
+        return response.json();
+    })
+    .then((pricePackageList) => {
+
+        pricePackageList.forEach(pricingData => {
+            console.log(pricingData);
+
+            var del = pricingData.deliverables
+
+            var deliverablesChk = document.querySelectorAll('input[type="checkbox"]');
+            var no_chk = deliverablesChk.length/3
+            // console.log(no_chk);
+            
+            if (category == "1" || category == "2") {
+                 //set bronze data
+                if (pricingData.type == "bronze") {
+
+                    pricePackageId_bronze = pricingData.pricePackageId;
+                    
+                    document.getElementById("price_b").value = pricingData.price;
+                    document.getElementById("concepts_b").value = pricingData.noOfConcepts;
+                    document.getElementById("rev_b").value = pricingData.noOfRevisions;
+                    document.getElementById("duration_b").value = pricingData.deliveryDuration;
+                    
+                    var deliverables = pricingData.deliverables;
+                    
+                    var chk = document.getElementsByClassName("chk_bronze");
+
+                    console.log(chk.length);
+                    
+                    for (var key in deliverables) {
+                        if (deliverables.hasOwnProperty(key)) {
+                            var value = deliverables[key];
+                            for (let i = 0; i < chk.length; i++) {
+                                // console.log(chk[i].getAttribute("value"));
+                                var ele = chk[i].getAttribute("value")
+
+                                if (key == ele && value == 1) {
+                                    // Check the checkbox if the value is 1
+                                    chk[i].checked = true;
+                                }
+                                
+                            }
+
+
+                        }
+                    }
+                } else if (pricingData.type == "silver") {
+
+                    pricePackageId_silver = pricingData.pricePackageId;
+
+                    document.getElementById("price_s").value = pricingData.price;
+                    document.getElementById("concepts_s").value = pricingData.noOfConcepts;
+                    document.getElementById("rev_s").value = pricingData.noOfRevisions;
+                    document.getElementById("duration_s").value = pricingData.deliveryDuration;
+                    
+                    var deliverables = pricingData.deliverables;
+                    
+                    var chk = document.getElementsByClassName("chk_silver");
+
+                    console.log(chk.length);
+                    
+                    for (var key in deliverables) {
+                        if (deliverables.hasOwnProperty(key)) {
+                            var value = deliverables[key];
+                            console.log(key + " "+ value);
+                            for (let i = 0; i < chk.length; i++) {
+                                // console.log(chk[i].getAttribute("value"));
+                                var ele = chk[i].getAttribute("value")
+
+                                if (key == ele && value == 1) {
+                                    // Check the checkbox if the value is 1
+                                    chk[i].checked = true;
+                                }
+                                
+                            }
+
+
+                        }
+                    }
+                } else if (pricingData.type == "platinum") {
+
+                    pricePackageId_platinum = pricingData.pricePackageId;
+
+                    document.getElementById("price_p").value = pricingData.price;
+                    document.getElementById("concepts_p").value = pricingData.noOfConcepts;
+                    document.getElementById("rev_p").value = pricingData.noOfRevisions;
+                    document.getElementById("duration_p").value = pricingData.deliveryDuration;
+                    
+                    var deliverables = pricingData.deliverables;
+                    
+                    var chk = document.getElementsByClassName("chk_platinum");
+
+                    console.log(chk.length);
+                    
+                    for (var key in deliverables) {
+                        if (deliverables.hasOwnProperty(key)) {
+                            var value = deliverables[key];
+                            for (let i = 0; i < chk.length; i++) {
+                                // console.log(chk[i].getAttribute("value"));
+                                var ele = chk[i].getAttribute("value")
+
+                                if (key == ele && value == 1) {
+                                    // Check the checkbox if the value is 1
+                                    chk[i].checked = true;
+                                }
+                                
+                            }
+
+
+                        }
+                    }
+                } else {
+                    alert("Invalid type !")
+                }
+            } else if (category == "3" || category == "4") {
+                
+            } else{
+                alert("invalid category !")
+            }
+
+           
+        });
+    })
+}
+
+function setDeliverables() {
+    
     var deli_div = document.getElementsByClassName("chkbx");
     var lb = document.getElementsByClassName("chg");
 
@@ -38,7 +173,7 @@ function setDeliverables() {
                 var valueschk = ["logoTransparency", "vectorFile", "printableFile", "mockup", "sourceFile", "socialMediaKit"];
                 for (let i = 0; i < 3; i++) {
                     lb[i].innerHTML = "No of concepts";
-                    createCheckboxes(deli_div[i], checkboxValues, valueschk);
+                    createCheckboxes(deli_div[i], checkboxValues, valueschk, i);
                     
                 }
 
@@ -49,7 +184,7 @@ function setDeliverables() {
                 var valueschk = ["sourceFile", "highResolution", "background/scene", "color", "fullBody", "commercialUse"];
                 for (let i = 0; i < 3; i++) {
                     lb[i].innerHTML = "No of figures"
-                    createCheckboxes(deli_div[i], checkboxValues, valueschk);
+                    createCheckboxes(deli_div[i], checkboxValues, valueschk, i);
                     
                 }
 
@@ -60,7 +195,7 @@ function setDeliverables() {
                 var valueschk = ["printReady", "sourceFile", "doubleSided", "customGraphics", "photoEditing", "socialMediaDesign", "commercialUse"];
                 for (let i = 0; i < 3; i++) {
                     lb.remove
-                    createCheckboxes(deli_div[i], checkboxValues, valueschk);    
+                    createCheckboxes(deli_div[i], checkboxValues, valueschk, i);    
                 }
 
                 document.getElementById("concepts_b").remove()
@@ -83,6 +218,11 @@ function setDeliverables() {
 
         }
     }
+
+    if (updateFlag) {
+        console.log("in the update");
+        loadData();
+    }
 }
 
 // function setupCheckBoxes(ele, values, label_val){
@@ -95,7 +235,7 @@ function setDeliverables() {
 
 // }
 
-function createCheckboxes(container, values, vl) {
+function createCheckboxes(container, values, vl, type) {
     // Create and append checkboxes in a loop
     for (var i = 0; i < values.length; i++) {
         var chk = document.createElement("input");
@@ -105,6 +245,14 @@ function createCheckboxes(container, values, vl) {
         // Create a label for the checkbox
         var label = document.createElement("label");
         label.innerHTML = values[i];
+
+        if (type == 0) {
+            chk.className = "chk_bronze"
+        } else if (type == 1) {
+            chk.className = "chk_silver"
+        } else{
+            chk.className = "chk_platinum"
+        }
 
         // create break tag
         var br = document.createElement("br")
@@ -127,30 +275,63 @@ document.getElementById("submit-bronze").addEventListener("click", async functio
     var concepts_b = document.getElementById("concepts_b").value;
     var rev_b = document.getElementById("rev_b").value;
     var duration_b = document.getElementById("duration_b").value;
-    var deliverables_chk = document.querySelectorAll('input[type="checkbox"]:checked');
-    var deliverables = document.querySelectorAll('input[type="checkbox"]');
+    // var deliverables_chk = document.querySelectorAll('input[type="checkbox"]:checked');
+    var deliverables = document.getElementsByClassName("chk_bronze")
+    // var deliverables = document.querySelectorAll('input[type="checkbox"]');
 
-    var deliverablesObject = {};
+    // var deliverablesObject = {};
 
-    deliverables.forEach(function(checkbox) {
-        var checkboxValue = checkbox.value;
+    // // deliverables.forEach(function(checkbox) {
+    // //     var checkboxValue = checkbox.value;
 
-        // Check if the value doesn't exist in the deliverablesObject
-        if (!(checkboxValue in deliverablesObject)) {
-            deliverablesObject[checkboxValue] = 0;
-        }
-    });
+    // //     // Check if the value doesn't exist in the deliverablesObject
+    // //     if (!(checkboxValue in deliverablesObject)) {
+    // //         deliverablesObject[checkboxValue] = 0;
+    // //     }
+    // // });
+
+    // deliverables.forEach(function(checkbox) {
+    //     var checkboxValue = checkbox.value;
+    //     deliverablesObject[checkboxValue] = 0;
+
+    //     if (checkbox.checked == true) {
+    //         deliverablesObject[checkboxValue] = 1;
+    //     }
+        
+
+     // Convert deliverables to an array
+     var deliverablesArray = Array.from(deliverables);
+
+     var deliverablesObject = {};
+ 
+     // Iterate through the checkboxes
+     deliverablesArray.forEach(function(checkbox) {
+         var checkboxValue = checkbox.value;
+ 
+         // Check if the value doesn't exist in the deliverablesObject
+        deliverablesObject[checkboxValue] = 0;
+ 
+         // Check if the checkbox is checked and update the deliverablesObject
+         if (checkbox.checked) {
+             deliverablesObject[checkboxValue] = 1;
+         }
+     });
+ 
+     // Print the deliverablesObject to the console
+     console.log(deliverablesObject);
+    // });
 
     // Update values to 1 for checked checkboxes
-    deliverables_chk.forEach(function(checkbox) {
-        var checkboxValue = checkbox.value;
+    // deliverables_chk.forEach(function(checkbox) {
+    //     var checkboxValue = checkbox.value;
 
-        // Check if the value exists in the deliverablesObject
-        if (checkboxValue in deliverablesObject) {
-            deliverablesObject[checkboxValue] = 1;
-        }
-    });
+    //     // Check if the value exists in the deliverablesObject
+    //     if (checkboxValue in deliverablesObject) {
+    //         deliverablesObject[checkboxValue] = 1;
+    //     }
+    // });
 
+    console.log("bronze deliverables object");
 
     console.log(deliverablesObject);
 
@@ -169,7 +350,7 @@ document.getElementById("submit-bronze").addEventListener("click", async functio
             }
             break;
     
-        case "1":
+        case "2":
             pricingData = {
                 type: "bronze",
                 deliveryDuration: duration_b,
@@ -181,7 +362,7 @@ document.getElementById("submit-bronze").addEventListener("click", async functio
             }
             break;
     
-        case "1":
+        case "3":
             pricingData = {
                 type: "bronze",
                 deliveryDuration: duration_b,
@@ -215,10 +396,10 @@ document.getElementById("submit-bronze").addEventListener("click", async functio
     // }
 
     console.log(pricingData);
-    const operationType = pricePackageId ? "update" : "insert";
+    const operationType = pricePackageId_bronze ? "update" : "insert";
 
     var requestUrl = operationType === "update"
-    ? `${BASE_URL}/packagepricing?packageId=${packageId}&category=${category}&pricePackageId=${pricePackageId}`
+    ? `${BASE_URL}/packagepricing?packageId=${packageId}&category=${category}&pricePackageId=${pricePackageId_bronze}`
     : `${BASE_URL}/packagepricing?packageId=${packageId}&category=${category}`;
 
 
@@ -234,12 +415,20 @@ document.getElementById("submit-bronze").addEventListener("click", async functio
         if (response.ok) {
             console.log(`Prcing data ${operationType}d successfully.`);
             // showPopupSuccess();
-            checkFlagsSuccess();
+            if (operationType === "insert") {
+                var rsp = response.json();
+                rsp.then((data) => {
+                    pricePackageId_bronze = data.pricePackageId
+                })
+            }
+            
+            // checkFlagsSuccess();
             // window.location = `../HTML/packages.html`
         } else {
             //// unscussess popup
-            // showPopupUnsuccess();
-            checkFlagsUnsuccess();
+            showPopupUnsuccess();
+            // checkFlagsUnsuccess();
+            errFlag = 1
             console.error(`Failed to ${operationType} package data.`);
 
         }
@@ -254,36 +443,33 @@ document.getElementById("submit-bronze").addEventListener("click", async functio
 document.getElementById("submit-silver").addEventListener("click", async function(event){
     event.preventDefault();
 
-    btn_sliver = true;
+    btn_silver = true;
 
     var price_s = document.getElementById("price_s").value;
     var concepts_s = document.getElementById("concepts_s").value;
     var rev_s = document.getElementById("rev_s").value;
     var duration_s = document.getElementById("duration_s").value;
-    var deliverables_chk = document.querySelectorAll('input[type="checkbox"]:checked');
-    var deliverables = document.querySelectorAll('input[type="checkbox"]');
+    
+    var deliverables = document.getElementsByClassName("chk_silver");
+
+    console.log(deliverables);
+
+    var deliverablesArray = Array.from(deliverables);
 
     var deliverablesObject = {};
 
-    deliverables.forEach(function(checkbox) {
+    // Iterate through the checkboxes
+    deliverablesArray.forEach(function(checkbox) {
         var checkboxValue = checkbox.value;
 
         // Check if the value doesn't exist in the deliverablesObject
-        if (!(checkboxValue in deliverablesObject)) {
-            deliverablesObject[checkboxValue] = 0;
-        }
-    });
+        deliverablesObject[checkboxValue] = 0;
 
-    // Update values to 1 for checked checkboxes
-    deliverables_chk.forEach(function(checkbox) {
-        var checkboxValue = checkbox.value;
-
-        // Check if the value exists in the deliverablesObject
-        if (checkboxValue in deliverablesObject) {
+        // Check if the checkbox is checked and update the deliverablesObject
+        if (checkbox.checked) {
             deliverablesObject[checkboxValue] = 1;
         }
     });
-
 
     console.log(deliverablesObject);
 
@@ -348,10 +534,10 @@ document.getElementById("submit-silver").addEventListener("click", async functio
     // }
 
     console.log(pricingData);
-    const operationType = pricePackageId ? "update" : "insert";
+    const operationType = pricePackageId_silver ? "update" : "insert";
 
     var requestUrl = operationType === "update"
-    ? `${BASE_URL}/packagepricing?packageId=${packageId}&category=${category}&pricePackageId=${pricePackageId}`
+    ? `${BASE_URL}/packagepricing?packageId=${packageId}&category=${category}&pricePackageId=${pricePackageId_silver}`
     : `${BASE_URL}/packagepricing?packageId=${packageId}&category=${category}`;
 
 
@@ -367,12 +553,19 @@ document.getElementById("submit-silver").addEventListener("click", async functio
         if (response.ok) {
             console.log(`Prcing data ${operationType}d successfully.`);
             // showPopupSuccess();
-            checkFlagsSuccess();
+            if (operationType === "insert") {
+                var rsp = response.json();
+                rsp.then((data) => {
+                    pricePackageId_silver = data.pricePackageId
+                })
+            }
+            // checkFlagsSuccess();
             // window.location = `../HTML/packages.html`
         } else {
             //// unscussess popup
-            // showPopupUnsuccess();
-            checkFlagsUnsuccess();
+            showPopupUnsuccess();
+            // checkFlagsUnsuccess();
+            errFlag = 1
             console.error(`Failed to ${operationType} package data.`);
 
         }
@@ -392,30 +585,50 @@ document.getElementById("submit-platinum").addEventListener("click", async funct
     var concepts_p = document.getElementById("concepts_p").value;
     var rev_p = document.getElementById("rev_p").value;
     var duration_p = document.getElementById("duration_p").value;
-    var deliverables_chk = document.querySelectorAll('input[type="checkbox"]:checked');
-    var deliverables = document.querySelectorAll('input[type="checkbox"]');
+    var deliverables = document.getElementsByClassName("chk_platinum");
+    // var deliverables_chk = document.querySelectorAll('input[type="checkbox"]:checked');
+    // var deliverables = document.querySelectorAll('input[type="checkbox"]');
+
+    // var deliverablesObject = {};
+
+    // deliverables.forEach(function(checkbox) {
+    //     var checkboxValue = checkbox.value;
+
+    //     // Check if the value doesn't exist in the deliverablesObject
+    //     if (!(checkboxValue in deliverablesObject)) {
+    //         deliverablesObject[checkboxValue] = 0;
+    //     }
+    // });
+
+    // // Update values to 1 for checked checkboxes
+    // deliverables_chk.forEach(function(checkbox) {
+    //     var checkboxValue = checkbox.value;
+
+    //     // Check if the value exists in the deliverablesObject
+    //     if (checkboxValue in deliverablesObject) {
+    //         deliverablesObject[checkboxValue] = 1;
+    //     }
+    // });
+
+
+    var deliverablesArray = Array.from(deliverables);
 
     var deliverablesObject = {};
 
-    deliverables.forEach(function(checkbox) {
+    // Iterate through the checkboxes
+    deliverablesArray.forEach(function(checkbox) {
         var checkboxValue = checkbox.value;
 
         // Check if the value doesn't exist in the deliverablesObject
-        if (!(checkboxValue in deliverablesObject)) {
-            deliverablesObject[checkboxValue] = 0;
-        }
-    });
+        
+         deliverablesObject[checkboxValue] = 0;
+        
 
-    // Update values to 1 for checked checkboxes
-    deliverables_chk.forEach(function(checkbox) {
-        var checkboxValue = checkbox.value;
-
-        // Check if the value exists in the deliverablesObject
-        if (checkboxValue in deliverablesObject) {
+        // Check if the checkbox is checked and update the deliverablesObject
+        if (checkbox.checked) {
             deliverablesObject[checkboxValue] = 1;
         }
     });
-
 
     console.log(deliverablesObject);
 
@@ -480,10 +693,10 @@ document.getElementById("submit-platinum").addEventListener("click", async funct
     // }
 
     console.log(pricingData);
-    const operationType = pricePackageId ? "update" : "insert";
+    const operationType = pricePackageId_platinum ? "update" : "insert";
 
     var requestUrl = operationType === "update"
-    ? `${BASE_URL}/packagepricing?packageId=${packageId}&category=${category}&pricePackageId=${pricePackageId}`
+    ? `${BASE_URL}/packagepricing?packageId=${packageId}&category=${category}&pricePackageId=${pricePackageId_platinum}`
     : `${BASE_URL}/packagepricing?packageId=${packageId}&category=${category}`;
 
 
@@ -499,11 +712,21 @@ document.getElementById("submit-platinum").addEventListener("click", async funct
         if (response.ok) {
             console.log(`Prcing data ${operationType}d successfully.`);
             // showPopupSuccess();
-            checkFlagsSuccess();
+            if (operationType === "insert") {
+                var rsp = response.json();
+                rsp.then((data) => {
+                    pricePackageId_platinum = data.pricePackageId
+                })
+            }
+            // checkFlagsSuccess();
+            var sbtn = document.getElementById("submit-platinum");
+            sbtn.innerHTML = "Saved";
+            sbtn.style.backgroundColor = "#444";
         } else {
             //// unscussess popup
-            // showPopupUnsuccess();
-            checkFlagsUnsuccess();
+            showPopupUnsuccess();
+            // checkFlagsUnsuccess();
+            errFlag = 1;
             console.error(`Failed to ${operationType} package data.`);
 
         }
@@ -535,6 +758,23 @@ document.getElementById("btn-unsuccess").addEventListener("click", function(){
     overlay.style.display = 'none';
 })
 
+document.getElementById("btn-warning").addEventListener("click", function(){
+
+    var popupContainer = document.getElementById('popup-container-unsuccess');
+    var overlay = document.getElementById('overlay3');
+
+    popupContainer.style.display = 'none';
+    overlay.style.display = 'none';
+})
+
+function showPopupWarning() {
+    var popupContainer = document.getElementById('popup-container-success');
+    var overlay = document.getElementById('overlay3');
+    
+    overlay.style.display = 'block';
+
+}
+
 function showPopupSuccess() {
     var popupContainer = document.getElementById('popup-container-success');
     var overlay = document.getElementById('overlay1');
@@ -559,16 +799,43 @@ function showPopupUnsuccess() {
 //   }
 
 function checkFlagsSuccess(){
-    if (btn_bronze && btn_sliver && btn_platinum) {
-        console.log("inside of something");
+    if (btn_bronze && btn_silver && btn_platinum) {
         showPopupSuccess();
+    }
+    else{
+        if (updateFlag) {
+            showPopupSuccess();
+            
+        } else{
+        showPopupWarning()
 
+        }
     }
 }
 
 function checkFlagsUnsuccess(){
-    if (btn_bronze && btn_sliver && btn_platinum) {
+    if (btn_bronze && btn_silver && btn_platinum) {
         showPopupUnsuccess()
     }
+    else{
+        if (updateFlag) {
+            showPopupUnsuccess();
+            
+        } else{
+        showPopupWarning()
+
+        }
+    }
 }
+
+document.getElementById("finish").addEventListener("click", function(){
+
+    if (errFlag) {
+        checkFlagsUnsuccess()
+    } else {
+        checkFlagsSuccess()
+    }
+})
+
+
 

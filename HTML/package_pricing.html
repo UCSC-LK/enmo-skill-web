@@ -156,11 +156,11 @@
                             <label class="duration-label">Delivery duration</label>
                             <select name="duration_p" id="duration_p">
                                 <option value="none" disabled selected>Select</option>
-                                <option value="1 day">1 day</option>
-                                <option value="2 days">2 days</option>
-                                <option value="3 days">3 days</option>
-                                <option value="5 days">5 days</option>
-                                <option value="10-20 days">10-20 days</option>
+                                <option value="1">1 day</option>
+                                <option value="2">2 days</option>
+                                <option value="3">3 days</option>
+                                <option value="5">5 days</option>
+                                <option value="10">10-20 days</option>
                             </select>
 
                             <br>
@@ -170,10 +170,10 @@
                         </div>
                         
     
-                        <!-- <button id="submit" class="button-save">Save</button> -->
+                       
                     </form>
 
-                    
+                    <button id="finish" class="button-save-alt">Finish</button>
                 </div>
                 
             </div>
@@ -197,6 +197,19 @@
                     <button id="btn-unsuccess" class="btn-unsuccess">OK</button>
                 </div>
             </div>
+
+            <div id="overlay3" class="overlay">
+                <div id="popup-container-unsuccess" class="popup-container">
+                    <div class="icon">
+                        <img class="unsuccess-img" src="../Assests/icons/unsuccess.png" width="25%" alt="">
+                    </div>
+                    <h1 id="status-unsuccess" >Process Incomplete</h1>
+                    <p>Finish process before go back</p>
+                    <button id="btn-warning" class="btn-unsuccess">OK</button>
+                </div>
+            </div>
+
+            
 
                     
 

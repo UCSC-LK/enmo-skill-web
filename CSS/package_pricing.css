@@ -116,6 +116,24 @@ textarea{
     font-weight: bold;
 }
 
+.button-save:hover {
+    background-color: #18181a;; /* Button background color (blue) */
+    
+}
+
+.button-save-alt {
+    background-color: #18181a;; /* Button background color (blue) */
+    color: #fff; /* Text color for the button */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 7px;
+    cursor: pointer;
+    /* float: right; */
+    margin-right: 29px;
+    width: 30%;
+    font-weight: bold;
+}
+
 .rev{
     margin-right: 15px;
 }
