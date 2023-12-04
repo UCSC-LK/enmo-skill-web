@@ -21,14 +21,14 @@ body{
     padding-left: 10px;
     position: relative;
     padding-top: 100px;
-    
+    margin-left: 100px;
 }
 .table{
 
 }
 .row{
    align-items: center;
-   padding: 20px;
+   padding: 5px 20px;
    border:1px solid #ebebeb;
    /* border-top: none; */
    transition: background-color 0.3s ease;
