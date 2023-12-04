@@ -29,41 +29,53 @@
                
                 
             </div>
-            <div class="right">
+            <div class="right" >
                 <p class="addit">Additional Details</p>
                
                 
-              <form class="form-layout">
-                <label class="input-lable" for="loginemail">Name :</label>
+              <form class="form-layout" id="myForm">
+                <label class="input-lable" for="loginemail">Name</label>
                 <input type="text" class="inputs" name="email" id="email" required>
 
                 
-                <label class="input-lable" for="loginemail">Contact No:</label>
+                <label class="input-lable" for="loginemail">Contact No</label>
                 <input type="text" class="inputs" name="username" id="username" required>
 
                 
                 <label class="input-lable" for="password">NIC/Passport</label>
                 <input type="text"  class="inputs" id="password" name="password" required>
+                <label class="input-lable" for="textdis">Describe Your Self</label>
+                <textarea class="inputs2" id="textdis" placeholder="Describe About You (Briefly)..." required></textarea>
 
-                <label class="input-lable" for="countries">Select a country:</label>
-                <select id="countries" class="inputs">
+                <label class="input-lable" for="file">Profile Image</label>
+                <input type="file" style="background-color: rgb(249, 249, 249); " class="inputs" name="file" id="image" required>
+
+                
+
+                <label class="input-lable" for="countries">Select a country</label>
+                <select id="countries" class="inputs3">
                   <option value="" selected disabled>Select a country</option>
                 </select>
-                <label class="input-lable" for="textdis">Describe Your Self:</label>
-                <textarea class="inputs2" id="textdis" placeholder="Describe About You (Briefly)..."required></textarea>
+                
+               
                 
                 
-                <input type="submit" value="Submit" onclick="validateEmail()">
+                <input type="submit" value="Submit" id="submit">
             </form>
 
             </div>
         </div>
+        
 
     </div>
+
+    
 <!-- Include the external JavaScript file -->
 <script src="../Javascripts/baseurl.js"></script>
-<script src="../Javascripts/clientDetails.js"></script>
 <script src="../Javascripts/Toastmassage.js"></script>
+
+<script src="../Javascripts/clientDetails.js"></script>
+
 <!-- <script type="text/javascript">
     function validateEmail() {
       var email = document.getElementById("email").value;

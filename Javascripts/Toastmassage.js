@@ -9,7 +9,7 @@ const clbtn = document.querySelector(".closebtn")
 
 
 
-  function showMessage(type,massage)
+  function showMessage(type,massage,time)
   {
     if(type=="ok"){
         successicon.style.display="flex"
@@ -34,7 +34,7 @@ const clbtn = document.querySelector(".closebtn")
         erroricon.style.display="none"
         titleerror.style.display="none"
         masssages.textContent=""
-      }, 5000);
+      }, time);
     
   }
   clbtn.addEventListener("click",()=>{
@@ -46,4 +46,3 @@ const clbtn = document.querySelector(".closebtn")
         masssages.textContent=""
   })
 
-  showMessage('error',"lorem ipsum sbdhajbdasjdbsdhajsbdjhbasbhd sdhbjdsbhfds fdsbfsd sdfbsfd ")

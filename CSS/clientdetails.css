@@ -15,8 +15,8 @@ html, body {
     background-color: rgba(0, 0, 0, 0.53);
 }
 .signup-layout{
-    width: 900px;
-    height: 600px;
+    width: 950px;
+    height: 680px;
     display: flex;
     flex-direction: row;
     background-color: rgb(255, 255, 255);
@@ -145,7 +145,7 @@ li:before { content: '\1F5F8'; margin-left: -20px; margin-right: 10px; }
     border: none;
     display: block;
     padding: 8px 10px;
-    width: 355px;
+    width: 365px;
     border: 1px solid #eee;
     border-radius: 5px;
     color: #444;
@@ -156,21 +156,38 @@ li:before { content: '\1F5F8'; margin-left: -20px; margin-right: 10px; }
     position: relative; /* Ensure relative positioning for proper z-index */
     margin: 3px 0 10px 0px;
 }
+.inputs3 {
+    background: none;
+    outline: none;
+    border: none;
+    display: block;
+    padding: 12px 15px;
+    width: 385px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    color: #444;
+    font-size: 15px;
+    z-index: 1;
+    position: relative; /* Ensure relative positioning for proper z-index */
+    margin: 3px 0 10px 0px;
+}
 
 .inputs:focus {
     border-color: #007BFF;
 }
-input[type=submit]{
+input[type=submit],.upload{
     background-color: rgb(0, 0, 0);
     width:355px;
     border-radius: 5px;
     height:30px;
     border: none;
+    margin-left: 15px;
+    margin-top: 10px;
     font-weight: bold;
     color: white;
 
 }
-input[type=submit]:hover{
+input[type=submit]:hover,.upload:hover{
     background-color: rgb(65, 65, 65);
     width:355px;
     border-radius: 5px;
