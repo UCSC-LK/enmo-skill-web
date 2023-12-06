@@ -16,7 +16,7 @@ document
     const jsonData = JSON.stringify(formData);
 
     // Make a fetch request
-    fetch("http://localhost:15000/enmo_skill_backend_war/user", {
+    fetch(BASE_URL+"/user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

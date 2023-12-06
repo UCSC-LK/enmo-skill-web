@@ -1,16 +1,20 @@
-// Assume this is the response from your backend API
 
-// Function to set a cookie
-// function setCookie(name, value, daysToExpire) {
-//     const date = new Date();
-//     date.setTime(date.getTime() + (daysToExpire * 24 * 60 * 60 * 1000));
-//     const expires = `expires=${date.toUTCString()}`;
-//     document.cookie = `${name}=${value}; ${expires}; path=/`;
-//   }
-  
-//   // Usage
-//   setCookie('username', 'john_doe', 30); // Save a username cookie with a 30-day expiration
-  
+
+function getCookie(cookieName) {
+  var name = cookieName + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var cookieArray = decodedCookie.split(';');
+
+  for(var i = 0; i < cookieArray.length; i++) {
+      var cookie = cookieArray[i].trim();
+      if (cookie.indexOf(name) == 0) {
+          return cookie.substring(name.length, cookie.length);
+      }
+  }
+  return null;
+}
+console.log("iD: " + getCookie("User_ID"));
+
 
 let flagCreate=false;
 let flagUpdate=false;
@@ -88,7 +92,7 @@ createbtn.addEventListener("click",(event)=>{
       body: raw2
     };
     
-    fetch("http://localhost:15000/enmo_skill_backend_war/request", requestOptions)
+    fetch(BASE_URL+"/request", requestOptions)
       .then(response => response.text())
       .then(result => {alert(result);
         location.reload();})
@@ -113,7 +117,7 @@ var requestOptions = {
   Credential:'include'
 };
 
-fetch("http://localhost:15000/enmo_skill_backend_war/request?Role=Client&UserId=28", requestOptions)
+fetch(BASE_URL+"/request?Role=Client&UserId=28", requestOptions)
   .then(response => response.json())
   .then(result => {
     console.log(result)
@@ -196,7 +200,7 @@ function deleteRequest(requestID){
       redirect: 'follow'
     };
     
-    fetch("http://localhost:15000/enmo_skill_backend_war/request?requestID="+requestID, requestOptions)
+    fetch(BASE_URL+"/request?requestID="+requestID, requestOptions)
       .then(response => response.text())
       .then(result => {alert(result)
         location.reload();})
@@ -254,7 +258,7 @@ duration.value=item.duration;
       "title":valtitle,
       "duration": valduration,
       "budget": valBudget,
-      "requestID": item.requestID,//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< hardcoded here
+      "requestID": item.requestID,
       "discription": valDis,
       "sample_work_url": "https://abc.xyz"
     });
@@ -265,7 +269,7 @@ duration.value=item.duration;
       body: raw
     };
     
-    fetch("http://localhost:15000/enmo_skill_backend_war/request", requestOptions)
+    fetch(BASE_URL+"/request", requestOptions)
       .then(response => response.text())
       .then(result => {alert(result)
         location.reload();})

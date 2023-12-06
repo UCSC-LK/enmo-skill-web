@@ -8,8 +8,8 @@
     <title>Package Overview</title>
 </head>
 <body>
-    <div class="main">
-        <iframe src="../Components/navbar_no_user.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;"></iframe>
+    <div class="main" style="margin-top: 80px;">
+        <iframe src="../Components/navbar_customer.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;position: fixed;top: 0;z-index: 2;left: 0;"></iframe>
         <div class="container">
             <div class="block">
                 <h1 class="headding">Top packages</h1>
@@ -43,7 +43,7 @@
                 </div>
 
                 <div class="content">
-                    <div class="package-box">
+                    <div class="package-box" onclick="package()">
                         <div class="image-holder">
                             <img src="../Assests/package_cover4.jpg" width="100%" height="100%">
                         </div>
@@ -192,6 +192,7 @@
             </div>
         </div>
     </div> 
+    <script src="../Javascripts/baseurl.js"></script>
     <script src="../Javascripts/package_list_view.js"></script>
 </body>
 </html>

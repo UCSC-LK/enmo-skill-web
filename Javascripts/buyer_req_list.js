@@ -1,16 +1,3 @@
-// Assume this is the response from your backend API
-
-// Function to set a cookie
-// function setCookie(name, value, daysToExpire) {
-//     const date = new Date();
-//     date.setTime(date.getTime() + (daysToExpire * 24 * 60 * 60 * 1000));
-//     const expires = `expires=${date.toUTCString()}`;
-//     document.cookie = `${name}=${value}; ${expires}; path=/`;
-//   }
-  
-//   // Usage
-//   setCookie('username', 'john_doe', 30); // Save a username cookie with a 30-day expiration
-  
 
 
 const listContainer = document.getElementById("table");
@@ -24,7 +11,7 @@ var requestOptions = {
   Credential:'include',
 };
 
-fetch("http://localhost:15000/enmo_skill_backend_war/request?Role=Designer", requestOptions)
+fetch(BASE_URL+"/request?Role=Designer", requestOptions)
   .then(response => response.json())
   .then(result => {
     count.innerText=result.length;
@@ -62,6 +49,10 @@ fetch("http://localhost:15000/enmo_skill_backend_war/request?Role=Designer", req
   const Discriptionview = document.querySelector('.description');
   const Budgetview = document.querySelector('.budget-text');
   const durationview = document.querySelector('.description-text');
+  const btn = document.querySelector('.proposal');
+  btn.addEventListener("click",()=>{
+    window.location.href = "../HTML/proposal_add.html"
+  })
   
 function viewrequest(item){
   popupview.style.display="flex";

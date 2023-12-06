@@ -8,9 +8,11 @@
 </head>
 <body>
 
+
     <iframe src="../Components/navbar_cs.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;position: fixed;top: 0;z-index: 2;left: 0;"></iframe>
 
     <div class="container" style="margin-top: 80px;">
+
         <div class="main-container">
             <div class="header">
                 <h1>Tickets</h1>
@@ -20,7 +22,7 @@
                 <div class="class2">
                     <div><p class="div-cursor" style="color:black">ALL</a></p></div>
                     <div><p class="div-cursor">ME</p></div>
-                    <div style="text-align: right"><button class="button div-cursor">CREATE A TICKET</button></div>
+                    <div style="text-align: right"><button class="button div-cursor" onclick="createticket()">CREATE A TICKET</button></div>
                 </div>
             </div>
     
@@ -108,7 +110,11 @@
             </div>
 
         </div>
+    </div>
+    
 
 </body>
-
-<script src="../Javascripts/ticketListCS.js"></script>
+<script src="../Javascripts/baseurl.js"></script>
+<script src="../Javascripts/ticketListCS.js">
+    
+</script>

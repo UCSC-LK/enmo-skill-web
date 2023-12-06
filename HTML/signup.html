@@ -36,7 +36,7 @@
                     <input type="password"  class="inputs" id="password" name="password" required>
                     
                     <br><br>
-                    <input type="submit" value="Signup">
+                    <input type="submit" value="Signup" onclick="validateEmail()">
                     
                 </form>
                 <div id="messageDiv" style="color: red;">  </div>
@@ -46,7 +46,19 @@
 
     </div>
 <!-- Include the external JavaScript file -->
+<script src="../Javascripts/baseurl.js"></script>
 <script src="../Javascripts/signup.js"></script>
+<!-- <script type="text/javascript">
+    function validateEmail() {
+      var email = document.getElementById("email").value;
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (emailRegex.test(email)) {
+        
+      } else {
+        alert("Invalid email address. Please enter a valid email address.");
+      }
+    }
+  </script> -->
 
 </body>
 </html>
