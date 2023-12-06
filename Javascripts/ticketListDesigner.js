@@ -1,143 +1,119 @@
+const all = document.querySelector(".all")
+const ongoing = document.querySelector(".ongoing")
+const solved = document.querySelector(".solved")
+const rejected = document.querySelector(".rejected")
 
+
+const perent = document.querySelector(".parent")
+const child = document.querySelector(".ticket-box-2")
+
+tableLoad("all")
+all.style.color="#000000"
+
+all.addEventListener("click",()=>{
+  
+  tableLoad("all")
+  all.style.color="#000000"
+})
+
+ongoing.addEventListener("click",()=>{
+  tableLoad("ongoing")
+  ongoing.style.color="#000000"
+})
+
+solved.addEventListener("click",()=>{
+  tableLoad("solved")
+  solved.style.color="#000000"
+})
+
+rejected.addEventListener("click",()=>{
+  tableLoad("rejected")
+  rejected.style.color="#000000"
+})
 
 
 var requestOptions = {
     method: 'GET',
     Credential:'include'
   };
-  
-    const listTictect = document.getElementById("ticket-box");
-    const listItemTemplate = document.querySelector(".ticket-box-2");
-  fetch(BASE_URL+"/support?UserId=1&Role=Designer", requestOptions)
+
+
+  function tableLoad(view){
+    perent.innerHTML=""
+    all.style.color="#9D9D9D"
+    ongoing.style.color="#9D9D9D"
+    solved.style.color="#9D9D9D"
+    rejected.style.color="#9D9D9D"
+
+
+    fetch(BASE_URL+"/support?UserId=1&Role=Designer", requestOptions)
     .then(response => response.json())
     .then(result => {
       console.log(result)
       result.forEach(item => {
-        const newItem = listItemTemplate.cloneNode(true);
-        newItem.id = item.id;
-        newItem.querySelector(".subject").textContent = item.subject;
-        newItem.querySelector(".subject").addEventListener("click",()=>{
-            console.log("popup")
-            viewrequest(item)
-        })
-
-        newItem.querySelector(".date").textContent = item.date;
-
-        
-        if(item.status==1){
-          item.status="Active"
-        }else{
-          item.status="Closed"
-          newItem.querySelector(".panel").style.display="none";
+        const newItem = child.cloneNode(true)
+        newItem.querySelector(".subject").textContent=item.subject
+        let status;
+        switch(item.status){
+          case 0:
+            status="Closed"
+            newItem.querySelector(".panel").style.display="none"
+            break
+          
+          case 1:
+            status="Ongoing"
+            break
+          
+          default:
+             status="default"
+             break  
         }
-        newItem.querySelector(".status").textContent = item.status;
+        newItem.querySelector(".status").textContent=status
+        newItem.querySelector(".date").textContent=item.date
+
         
-        newItem.querySelector(".description").textContent = item.description;
-        newItem.querySelector(".edit").addEventListener("click",()=>{
-          const url = "../HTML/createTicket.html" +
-          '?subject='+encodeURIComponent(item.subject)+
-          '&description=' + encodeURIComponent(item.description) +
-          '&ref_no=' + encodeURIComponent(item.ref_no) ;
-          window.location = url;
-        })
-        newItem.querySelector(".delete").addEventListener("click",()=>{
+        newItem.querySelector(".delete").addEventListener("click",()=>{ 
           deleteRequest(item.ref_no)
-        })
-        listTictect.appendChild(newItem);
-      })
+         })   
+         
+         newItem.addEventListener("click",()=>{
+         viewrequest(item)
+         })
+
+         switch(view){
+          case "ongoing":
+            if(item.status==1 || item.status==2){
+              perent.appendChild(newItem)
+            }
+            break
+
+          case "solved":
+            if(item.status==0){
+              perent.appendChild(newItem)
+            }
+            break
+
+          case "rejected":
+            if(item.status==3){
+              perent.appendChild(newItem)
+            }
+            break
+          
+          default:
+            perent.appendChild(newItem)
+          
+         }
+
+        
+  
+      });
+      
     })
-    .catch(error => console.log('error', error));
+    .catch(error => console.log('error', error))
 
+  }
+  
 
-
-//     function ss(res) {
-
-//         const listTictect = document.getElementById("ticket-box");
-//         const listItemTemplate = document.querySelector(".ticket-box-2");
-//         // const count = document.getElementById("id");
-        
-//         // count.innerText=res.length;
-
-//         res.forEach(item => {
-//         const newItem = listItemTemplate.cloneNode(true);
-//         //newItem.style.display = "block";
-        
-//       //   newItem.querySelector(".user").addEventListener("click", function() {
-//       //     console.log("Clicked username: " + item.username);
-//       // });
-
-//         //newItem.querySelector(".image").textContent = item.image;
-//         //newItem.querySelector(".id").textContent = item.id;
-//         //newItem.querySelector(".id").textContent = item.id;
-//         newItem.id = item.id;
-//         newItem.querySelector(".subject").textContent = item.subject;
-//         newItem.querySelector(".date").textContent = item.date;
-//         //newItem.querySelector(".time").textContent = item.time;
-//         newItem.querySelector(".status").textContent = item.status;
-//         newItem.querySelector(".description").textContent = item.description;
-        
-//         //newItem.querySelector(".description").textContent = item.description;
-//         //newItem.querySelector(".icon").textContent = item.icon;
-        
-    
-//         //console.log("sssssss")
-//         // newItem.classList.remove("ticket-box-2");
-//         // newItem.classList.add("row"); 
-       
-//         listTictect.appendChild(newItem);
-
-//         viewrequest(item);
-
-//     });
-
-//   }
-
-// const res=[
-//     {
-//         id:1,
-//         //image:"../Assests/login_img1.jpg",
-       
-//         subject:"Late pfayment",            
-//         date:"22/10/2020",
-        
-//         status:"Asigned",
-//         description:"  I hope this message finds you well. We would like to bring to your attention the outstandng payment for the project with referenc number [Project Number or Description], which is currently overdue. As per our agreement, the number [Project Number or Description], which is currently overdue. As per our agreement, the  payment was due on [Due Date]."
-      
-//     },
-//     {
-//         id:1,
-//         //image:"../Assests/login_img1.jpg",
-       
-//         subject:"Late paymdent",            
-//         date:"22/10/2020",
-//         time:"10.22",
-//         status:"Asiggned",
-//         description:"  I hope this message finds you well. We would like to bring to your attention the outstandng payment for the project with referenc number [Project Number or Description], which is currently overdue. As per our agreement, the number [Project Number or Description], which is currently overdue. As per our agreement, the  payment was due on [Due Date]."
-      
-//     },
-//     {
-//         id:1,
-//         //image:"../Assests/login_img1.jpg",
-       
-//         subject:"Late llllyment",            
-//         date:"22/10/2020",
-        
-//         status:"Asigdned",
-//         description:"  I hope this message finds you well. We would like to bring to your attention the outstandng payment for the project with referenc number [Project Number or Description], which is currently overdue. As per our agreement, the number [Project Number or Description], which is currently overdue. As per our agreement, the  payment was due on [Due Date]."
-      
-//     },
-//     {
-//         id:1,
-//         //image:"../Assests/login_img1.jpg",
-       
-//         subject:"jjj",
-//         date:"22/10/2020",
-        
-//         status:"Asigned",
-//         description:"  I hope this message finds you well. We would like to bring to your attention the outstandng payment for the project with referenc number [Project Number or Description], which is currently overdue. As per our agreement, the number [Project Number or Description], which is currently overdue. As per our agreement, the  payment was due on [Due Date]."
-      
-//     }
-// ];
   
 function deleteRequest(requestID){
   if(confirm('Are you sure you want Delete this request?')){
@@ -175,6 +151,6 @@ function viewrequest(item){
 }
 
 function createticket(){
-  window.location.href = "../HTML/createTicket.html"
+  window.location.href = "../HTML/CSA-main.html"
 }
 

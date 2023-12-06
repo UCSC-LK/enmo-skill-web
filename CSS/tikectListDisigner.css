@@ -247,4 +247,10 @@ color: #fff;
 
 .div-cursor{
     cursor: pointer;
+    height: 100%;
+    transition: 0.4s;
+}
+.div-cursor:hover{
+    cursor: pointer;
+    background-color: #f7f7f7;
 }
