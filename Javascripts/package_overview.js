@@ -117,9 +117,25 @@ function loadData(){
     const category_value = url.searchParams.get('category');
     const description_value = url.searchParams.get('description');
 
-    document.getElementById("title").value = title_value;
-    document.getElementById("category").value = category_value;
-    document.getElementById("description").value = description_value;
+    fetch(BASE_URL+`/package?packageId=${packageId}&UserId=${0}`)
+    .then((response)=>{
+        if (!response.ok) {
+            throw new Error('Error occured');
+        } else {
+            return response.json();
+        }
+    })
+    .then((data)=>{
+        console.log(data);
+
+        document.getElementById("title").value = data.title;
+        document.getElementById("category").value = data.category;
+        document.getElementById("description").value = data.description;
+       
+        
+    })
+
+   
 }
 
 function showPopupUnsuccess() {

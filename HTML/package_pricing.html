@@ -19,7 +19,7 @@
                             <h2 class="heading">Bronze</h2>
 
                             <label>Price (Rs.)</label>
-                            <input type="text" name="price_b" id="price_b" class="price">
+                            <input type="text" name="price_b" id="price_b" class="price" min="1" max="10000000" required>
                             
                             <div class="deliverables">
                                 <label>Deiverables</label>
@@ -35,11 +35,11 @@
                             </div>
 
                             <label class="chg"></label>
-                            <input type="text" name="concepts_b" id="concepts_b" class="concepts">
+                            <input type="text" name="concepts_b" id="concepts_b" class="concepts" required min="1" max="25">
                             <br>
 
                             <label class="rev">No of revisons</label>
-                            <select name="rev_b" id="rev_b">
+                            <select name="rev_b" id="rev_b" required>
                                 <option value="none" disabled selected>Select</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -52,11 +52,11 @@
                             <br>
 
                             <label class="duration-label">Delivery duration</label>
-                            <select name="duration_b" id="duration_b">
+                            <select name="duration_b" id="duration_b" required>
                                 <option value="none" disabled selected>Select</option>
                                 <option value="1">1 day</option>
                                 <option value="2">2 days</option>
-                                <option value="5">3 days</option>
+                                <option value="3">3 days</option>
                                 <option value="5">5 days</option>
                                 <option value="10">10-20 days</option>
                             </select>
@@ -71,7 +71,7 @@
                             <h2 class="heading">Silver</h2>
 
                             <label>Price (Rs.)</label>
-                            <input type="text" name="price_s" id="price_s" class="price">
+                            <input type="text" name="price_s" id="price_s" class="price" required>
                             <br>
                             <div class="deliverables">
                                 <label>Deiverables</label>
@@ -86,10 +86,10 @@
                             </div>
                             </div>
                             <label class="chg"></label>
-                            <input type="text" name="concepts_s" id="concepts_s" class="concepts">
+                            <input type="text" name="concepts_s" id="concepts_s" class="concepts" required min="1" max="25">
                             <br>
                             <label class="rev">No of revisons</label>
-                            <select name="rev_s" id="rev_s">
+                            <select name="rev_s" id="rev_s" required>
                                 <option value="none" disabled selected>Select</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -102,11 +102,11 @@
                             <br>
                             
                             <label class="duration-label">Delivery duration</label>
-                            <select name="duration_s" id="duration_s">
+                            <select name="duration_s" id="duration_s" required>
                                 <option value="none" disabled selected>Select</option>
                                 <option value="1">1 day</option>
                                 <option value="2">2 days</option>
-                                <option value="5">3 days</option>
+                                <option value="3">3 days</option>
                                 <option value="5">5 days</option>
                                 <option value="10">10-20 days</option>
                             </select>
@@ -120,7 +120,7 @@
                             <h2 class="heading">Platinum</h2>
 
                             <label>Price (Rs.)</label>
-                            <input type="text" name="price_p" id="price_p" class="price">
+                            <input type="text" name="price_p" id="price_p" class="price" required min="1" max="10000000">
 
                             <br>
                             <div class="deliverables">
@@ -137,11 +137,11 @@
                             </div>
 
                             <label class="chg"></label>
-                            <input type="text" name="concepts_p" id="concepts_p" class="concepts">
+                            <input type="text" name="concepts_p" id="concepts_p" class="concepts" required min="1" max="25">
                             <br>
                             
                             <label class="rev">No of revisons</label>
-                            <select name="rev_p" id="rev_p">
+                            <select name="rev_p" id="rev_p" required>
                                 <option value="none" disabled selected>Select</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -154,7 +154,7 @@
                             <br>
                             
                             <label class="duration-label">Delivery duration</label>
-                            <select name="duration_p" id="duration_p">
+                            <select name="duration_p" id="duration_p" required>
                                 <option value="none" disabled selected>Select</option>
                                 <option value="1">1 day</option>
                                 <option value="2">2 days</option>

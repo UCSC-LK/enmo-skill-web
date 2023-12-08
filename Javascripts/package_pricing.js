@@ -142,7 +142,107 @@ function loadData(){
                     alert("Invalid type !")
                 }
             } else if (category == "3" || category == "4") {
-                
+                 //set bronze data
+                 if (pricingData.type == "bronze") {
+
+                    pricePackageId_bronze = pricingData.pricePackageId;
+                    
+                    document.getElementById("price_b").value = pricingData.price;
+                    // document.getElementById("concepts_b").value = pricingData.noOfConcepts;
+                    document.getElementById("rev_b").value = pricingData.noOfRevisions;
+                    document.getElementById("duration_b").value = pricingData.deliveryDuration;
+                    
+                    var deliverables = pricingData.deliverables;
+                    
+                    var chk = document.getElementsByClassName("chk_bronze");
+
+                    console.log(chk.length);
+                    
+                    for (var key in deliverables) {
+                        if (deliverables.hasOwnProperty(key)) {
+                            var value = deliverables[key];
+                            for (let i = 0; i < chk.length; i++) {
+                                // console.log(chk[i].getAttribute("value"));
+                                var ele = chk[i].getAttribute("value")
+
+                                if (key == ele && value == 1) {
+                                    // Check the checkbox if the value is 1
+                                    chk[i].checked = true;
+                                }
+                                
+                            }
+
+
+                        }
+                    }
+                } else if (pricingData.type == "silver") {
+
+                    pricePackageId_silver = pricingData.pricePackageId;
+
+                    document.getElementById("price_s").value = pricingData.price;
+                    // document.getElementById("concepts_s").value = pricingData.noOfConcepts;
+                    document.getElementById("rev_s").value = pricingData.noOfRevisions;
+                    document.getElementById("duration_s").value = pricingData.deliveryDuration;
+                    
+                    var deliverables = pricingData.deliverables;
+                    
+                    var chk = document.getElementsByClassName("chk_silver");
+
+                    console.log(chk.length);
+                    
+                    for (var key in deliverables) {
+                        if (deliverables.hasOwnProperty(key)) {
+                            var value = deliverables[key];
+                            console.log(key + " "+ value);
+                            for (let i = 0; i < chk.length; i++) {
+                                // console.log(chk[i].getAttribute("value"));
+                                var ele = chk[i].getAttribute("value")
+
+                                if (key == ele && value == 1) {
+                                    // Check the checkbox if the value is 1
+                                    chk[i].checked = true;
+                                }
+                                
+                            }
+
+
+                        }
+                    }
+                } else if (pricingData.type == "platinum") {
+
+                    pricePackageId_platinum = pricingData.pricePackageId;
+
+                    document.getElementById("price_p").value = pricingData.price;
+                    // document.getElementById("concepts_p").value = pricingData.noOfConcepts;
+                    document.getElementById("rev_p").value = pricingData.noOfRevisions;
+                    document.getElementById("duration_p").value = pricingData.deliveryDuration;
+                    
+                    var deliverables = pricingData.deliverables;
+                    
+                    var chk = document.getElementsByClassName("chk_platinum");
+
+                    console.log(chk.length);
+                    
+                    for (var key in deliverables) {
+                        if (deliverables.hasOwnProperty(key)) {
+                            var value = deliverables[key];
+                            for (let i = 0; i < chk.length; i++) {
+                                // console.log(chk[i].getAttribute("value"));
+                                var ele = chk[i].getAttribute("value")
+
+                                if (key == ele && value == 1) {
+                                    // Check the checkbox if the value is 1
+                                    chk[i].checked = true;
+                                }
+                                
+                            }
+
+
+                        }
+                    }
+                } else {
+                    alert("Invalid type !")
+                }
             } else{
                 alert("invalid category !")
             }
@@ -181,7 +281,7 @@ function setDeliverables() {
                 break;
             case "2":
                 var checkboxValues = ["Source file", "High resolution", "Background/scene", "Color", "Full body", "Commercial use"];
-                var valueschk = ["sourceFile", "highResolution", "background/scene", "color", "fullBody", "commercialUse"];
+                var valueschk = ["sourceFile", "highResolution", "background_scene", "color", "fullBody", "commercialUse"];
                 for (let i = 0; i < 3; i++) {
                     lb[i].innerHTML = "No of figures"
                     createCheckboxes(deli_div[i], checkboxValues, valueschk, i);
@@ -198,22 +298,27 @@ function setDeliverables() {
                     createCheckboxes(deli_div[i], checkboxValues, valueschk, i);    
                 }
 
-                document.getElementById("concepts_b").remove()
-                document.getElementById("concepts_s").remove()
-                document.getElementById("concepts_p").remove()
+                document.getElementById("concepts_b").style.display = "none";
+                document.getElementById("concepts_s").style.display = "none";
+                document.getElementById("concepts_p").style.display = "none";
 
                 break;
-            default:
+            case "4":
                 var checkboxValues = ["Custom graphics", "Source file", "Print-ready"];
                 var valueschk = ["customGraphics", "sourceFile", "printReady"];
                 for (let i = 0; i < 3; i++) {
                     lb.remove
-                    createCheckboxes(deli_div[i], checkboxValues, valueschk);    
+                    createCheckboxes(deli_div[i], checkboxValues, valueschk, i);    
                 }
 
-                document.getElementById("concepts_b").remove()
-                document.getElementById("concepts_s").remove()
-                document.getElementById("concepts_p").remove()
+                document.getElementById("concepts_b").style.display = "none";
+                document.getElementById("concepts_s").style.display = "none";
+                document.getElementById("concepts_p").style.display = "none";
+
+                break;
+            default:
+                alert("Something went wrong!");
+                window.location = "../HTML/packages.html";
 
 
         }
@@ -331,10 +436,6 @@ document.getElementById("submit-bronze").addEventListener("click", async functio
     //     }
     // });
 
-    console.log("bronze deliverables object");
-
-    console.log(deliverablesObject);
-
     var pricingData = {}
 
     switch (category) {
@@ -423,7 +524,9 @@ document.getElementById("submit-bronze").addEventListener("click", async functio
             }
             
             // checkFlagsSuccess();
-            // window.location = `../HTML/packages.html`
+            var sbtn = document.getElementById("submit-bronze");
+            sbtn.innerHTML = "Saved";
+            sbtn.style.backgroundColor = "#444";
         } else {
             //// unscussess popup
             showPopupUnsuccess();
@@ -452,7 +555,7 @@ document.getElementById("submit-silver").addEventListener("click", async functio
     
     var deliverables = document.getElementsByClassName("chk_silver");
 
-    console.log(deliverables);
+    // console.log(deliverables);
 
     var deliverablesArray = Array.from(deliverables);
 
@@ -560,7 +663,9 @@ document.getElementById("submit-silver").addEventListener("click", async functio
                 })
             }
             // checkFlagsSuccess();
-            // window.location = `../HTML/packages.html`
+            var sbtn = document.getElementById("submit-silver");
+            sbtn.innerHTML = "Saved";
+            sbtn.style.backgroundColor = "#444";
         } else {
             //// unscussess popup
             showPopupUnsuccess();

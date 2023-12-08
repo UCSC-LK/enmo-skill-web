@@ -36,7 +36,7 @@ function laodActivePkg() {
     document.getElementById("title").innerHTML = "Active Packages"
 
     // console.log(BASE_URL+"/package");
-  fetch(BASE_URL+"/package?UserId="+UserId)
+  fetch(BASE_URL+"/package?UserId="+UserId+"&packageId="+0)
     .then((response) => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -139,7 +139,7 @@ function laodPausedPkg() {
 
     document.getElementById("title").innerHTML = "Paused Packages"
   
-    fetch(BASE_URL+"/package?UserId="+UserId)
+    fetch(BASE_URL+"/package?UserId="+UserId+"&packageId="+0)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -350,10 +350,10 @@ function populateForm(selectedData) {
   const updae_form_url = "../HTML/package_overview.html"
 
   const url = updae_form_url +
-                '?packageId='+encodeURIComponent(selectedData.packageId)+
-                '&title=' + encodeURIComponent(selectedData.title) +
-                '&category=' + encodeURIComponent(selectedData.category) +
-                '&description=' + encodeURIComponent(selectedData.description);
+                '?packageId='+encodeURIComponent(selectedData.packageId)
+                // '&title=' + encodeURIComponent(selectedData.title) +
+                // '&category=' + encodeURIComponent(selectedData.category) +
+                // '&description=' + encodeURIComponent(selectedData.description);
 
   window.location = url;
 
