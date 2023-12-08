@@ -94,7 +94,28 @@ populateCountries();
     const isValidContactNumber = /^\d{10}$/.test(contactNumber);
     if(!isValidContactNumber){
     showMessage("error","Not Valid Phone Number",2000)
-  }else  uploadFile();
+  }else {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    
+    var raw = JSON.stringify({
+      "id": getCookie("User_ID")
+    });
+    
+    var requestOptions = {
+      method: 'OPTIONS',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+    
+    fetch("http://localhost:15000/enmo_skill_backend_war/user", requestOptions)
+      .then(response => {if(response.status==202){
+        uploadFile();
+      }else if(response.status==405){
+        response.text().then(result=>showMessage("error",result,3000))
+      }})
+     .catch(error => console.log('error', error));} 
 
 
  }  
@@ -128,7 +149,7 @@ populateCountries();
     myHeaders.append("Content-Type", "application/json");
     
     var raw = JSON.stringify({
-      "id": "35",
+      "id": getCookie("User_ID"),
       "name": nameuser.value,
       "contact_no": cno.value,
       "description": description.value,
@@ -146,7 +167,7 @@ populateCountries();
     
     fetch("http://localhost:15000/enmo_skill_backend_war/user", requestOptions)
       .then(response => response.text())
-      .then(result =>{ console.log(result);showMessage("error",result,4000)})
+      .then(result =>{ console.log(result);showMessage("ok",result,4000)})
       .catch(error => {console.log('error', error)
       showMessage("error",error,4000)});
   }
