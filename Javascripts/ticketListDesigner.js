@@ -63,10 +63,16 @@ var requestOptions = {
           case 1:
             status="Ongoing"
             break
-          
-          default:
-             status="default"
-             break  
+
+          case 2:
+            status="Ongoing"
+            break
+
+          case 3:
+            status="Rejected"
+            newItem.querySelector(".panel").style.display="none"
+            break
+ 
         }
         newItem.querySelector(".status").textContent=status
         newItem.querySelector(".date").textContent=item.date
@@ -75,10 +81,26 @@ var requestOptions = {
         newItem.querySelector(".delete").addEventListener("click",()=>{ 
           deleteRequest(item.ref_no)
          })   
-         
-         newItem.addEventListener("click",()=>{
-         viewrequest(item)
-         })
+
+        var itemDivs=[newItem.querySelector(".ticket-subject"),newItem.querySelector(".ticket-status"),newItem.querySelector(".ticket-date")];
+        itemDivs.forEach(function(itemDiv) {
+          itemDiv.addEventListener("click",()=>{ viewrequest(item,status)})
+          itemDiv.addEventListener("mouseover",()=>{ hoverChnageAddClass(); })
+          itemDiv.addEventListener("mouseout",()=>{hoverChnageRemoveClass();})
+        });
+
+         function hoverChnageAddClass(){
+          itemDivs.forEach(function(itemDiv) {
+            itemDiv.classList.add("hoverChange");
+          });
+         }
+         function hoverChnageRemoveClass(){
+          itemDivs.forEach(function(itemDiv) {
+            itemDiv.classList.remove("hoverChange");
+          });
+          
+         }
+        
 
          switch(view){
           case "ongoing":
@@ -131,9 +153,10 @@ function deleteRequest(requestID){
   }
 }
 
-function viewrequest(item){
+function viewrequest(item,status){
     let popup_con=document.querySelector(".pop-up-container");
     let popup_details=document.querySelector(".pop-up");
+    let close=document.querySelector(".close")
 
     
         popup_con.style.display="flex";
@@ -142,9 +165,10 @@ function viewrequest(item){
         popup_details.querySelector(".description").textContent = item.description;
         popup_details.querySelector(".date").textContent = item.date;
         //popup_details.querySelector(".time").textContent = item.time;
-        popup_details.querySelector(".status").textContent = item.status;
+
+        popup_details.querySelector(".status").textContent =  status;
     
-    popup_con.onclick=(event)=>{
+    close.onclick=(event)=>{
         popup_con.style.display="none";
         popup_details.style.display="none";
     }
