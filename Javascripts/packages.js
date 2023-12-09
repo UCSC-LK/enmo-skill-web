@@ -251,7 +251,7 @@ function laodPendingPkg() {
 
     document.getElementById("title").innerHTML = "Pending Packages"
 
-  fetch(BASE_URL+"/package?UserId="+UserId)
+    fetch(BASE_URL+"/package?UserId="+UserId+"&packageId="+0)
     .then((response) => {
       if (!response.ok) {
         throw new Error('Cannot get data');
