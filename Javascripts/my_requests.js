@@ -113,12 +113,12 @@ createbtn.addEventListener("click",(event)=>{
 //creating list start here
 
 var requestOptions = {
-  method: 'GET',
-  Credential:'include'
+  method: "GET",
+  credentials:"include",
 };
 
-fetch(BASE_URL+"/request?Role=Client&UserId=28", requestOptions)
-  .then(response => response.json())
+fetch(BASE_URL + "/request?Role=Client&UserId=28", requestOptions)
+  .then(response => { return response.json() })
   .then(result => {
     console.log(result)
     count.innerText=result.count;
