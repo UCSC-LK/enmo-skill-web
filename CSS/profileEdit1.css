@@ -1,0 +1,102 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #fdfdfd;
+}
+
+h1{
+    color:#3C3C3C
+}
+
+h3{
+    color:#444;;
+}
+
+ .container{
+    width: 100%;
+    height:auto;
+    background-size: cover;
+    background-color: #ffffff;
+    /* background-position: center;
+    display: flex;
+    align-items:center; */
+    justify-content: left; 
+    padding: 100px;  
+} 
+
+.heder{
+    width: 100%;    
+}
+
+.paragraph{ 
+    color:#868686 ;
+    font-size: 13px;
+}
+
+.inputs-1 {
+    background: none;
+    outline: none;
+    border: none;
+    display: block;
+    padding: 8px 10px;
+    width: 100%;
+    border: 1px solid #868686;
+    border-radius: 5px;
+    color: #444;
+    font-size: 15px;
+    z-index: 1;
+    position: relative; /* Ensure relative positioning for proper z-index */
+}
+
+.inputs {
+    background: none;
+    outline: none;
+    border: none;
+    display: block;
+    padding: 8px 10px;
+    width: 100%;
+    height: 100px;
+    resize: none;
+    border: 1px solid  #868686;
+    border-radius: 5px;
+    color: #444;
+    font-size: 15px;
+    z-index: 1;
+    position: relative; /* Ensure relative positioning for proper z-index */
+}
+
+.language{
+    padding: 5px;
+}
+
+
+.btn{
+    color: #444;
+    background-color: #c7c7c7;
+    font-size: 14px;
+    width: 120px;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+}
+ .btn:hover{
+    cursor: pointer;
+    color:#FFF;
+    background-color: #868686;
+    
+}
+
+.saveBTN{
+    font-size: 15px;
+    width: 150px;
+    padding:5px;
+    border-radius: 5px;
+    background-color: #000;
+    color: #FFF;
+}
+
+.saveBTN:hover{
+    color: #000;
+    background-color: #FFF;
+    transition: 0.4s;
+    cursor: pointer;
+}
