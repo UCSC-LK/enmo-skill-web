@@ -44,12 +44,13 @@ var requestOptions = {
     method: 'GET',
     redirect: 'follow'
 };
+
   
 fetch("http://localhost:15000/enmo_skill_backend_war/skill", requestOptions)
     .then(response => response.json())
     .then(result => {
 
-        result.push({"skills": "Select a skill","skill_id": 0})
+        result.push({"skills": "Select a skill","skill_id": "0"})
 
         result.sort(function(a, b) {
             return (a.skill_id - b.skill_id);
@@ -65,6 +66,7 @@ fetch("http://localhost:15000/enmo_skill_backend_war/skill", requestOptions)
             option.value = skill.skill_id;
             option.textContent = skill.skills;
             skillDropdown.appendChild(option);
+            console.log(option)
 
         });
     })
@@ -83,7 +85,7 @@ document.querySelector(".setSkills").addEventListener("click",()=>{
         select.addEventListener("change", () => {
 
             const selectedValue = select.value;
- 
+           
             selectedSkill.push(selectedValue)
 
             // Reset display for all options in all dropdowns
@@ -98,6 +100,12 @@ document.querySelector(".setSkills").addEventListener("click",()=>{
                     optionToHide.style.display = "none";
                 }
             });
+
+            const optionToHide = select.querySelector(`[value="0"]`);
+            if (optionToHide) {
+                optionToHide.style.display = "none";
+            }
+
         });
     });
 
@@ -139,7 +147,7 @@ function addLanguage(){
         select.addEventListener("change", () => {
 
             const selectedValue = select.value;
- 
+
             selectedLanguages.push(selectedValue)
 
             // Reset display for all options in all dropdowns
@@ -153,8 +161,16 @@ function addLanguage(){
                 if (optionToHide) {
                     optionToHide.style.display = "none";
                 }
+
             });
+
+            const optionToHide = select.querySelector(`[value=""]`);
+            if (optionToHide) {
+                optionToHide.style.display = "none";
+            }
+            
         });
+        
     });
 
     if(cloneCount == maxClones){
@@ -186,5 +202,41 @@ function addLanguage(){
 
 console.log(selectedLanguages)
 
+//send post request-------------------------------------------------------------
 
+document.querySelector(".saveBTN").addEventListener("click",()=>{
+    
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const fname = document.getElementById("firstName").value
+    const lname = document.getElementById("lastName").value
+    const display_name = document.getElementById("displayName").value
+    const description = document.getElementById("description").value
+
+    var raw = JSON.stringify({
+        "userId": "51",
+        "role": "Designer",
+        "fname": fname,
+        "lname": lname,
+        "display_name": display_name,
+        "description":description,
+        "skills": selectedSkill,
+        "language": selectedLanguages
+    });
+
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+    fetch("http://localhost:15000/enmo_skill_backend_war/profile", requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
+
+
+})
 
