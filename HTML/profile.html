@@ -12,7 +12,7 @@
     <div class="container">
         <div class="profile-box">
             <img src="../Assests/login_img1.jpg" class="profile-pic">
-            <h2>Inupama Arawinda</h2>
+            <h2 class="display-name"></h2>
             <p><br><img src="../Assests/icons/location.png" class="icon"><samp class="address">Udugampola, Gampaha</samp></p>
             
 
@@ -23,34 +23,28 @@
             </div>
             <div class="content-profile">
                 <h3>Description</h3>
-                <p class="description">
-                    Are you looking for High Quality Minimal Logo for your business? 
-                    With vast experience in creating professional & creative designs 
-                    for brands that effectively convey your company's services to the 
-                    targeted audience.
-                </p>
+                <br>
+                <p class="description"></p>
             </div>
             <hr>
             <div class="content-profile">
                 <h3>Languages</h3>
-                <p class="languages">English - Fluent<br>Sinhala - Fluent</p>
+                <br>
+                <ul class="languages"></ul>
             </div>
             <hr>
             <div class="content-profile">
                 <h3>Skills</h3>
-                <p class="skils">Logo Design<br>Flyer Design</p>
+                <ul class="skills"></ul>
             </div>
             <hr>
-            <div class="content-profile">
-                <h3>Education</h3>
-                <p class="education">Undergraduate student at UCSC</p>
-            </div>   
-            <div id="editBTN"><button class="button div-cursor" >Edit Profile</button></div>
+   
+            <div id="editBTN"><button class="button" >Edit Profile</button></div>
             
         </div>
         
     </div>
-    <div class="pop-up-container"></div>
+    <!-- <div class="pop-up-container"></div>
         <div class="pop-up">
             <div class="pEdit-main">
                 <div class="pEdit-layout">
@@ -93,19 +87,7 @@
                     </div>    
                 </div>    
             </div>
-        </div>
+        </div> -->
 </body>
 
-<script>
-    let popup_con=document.querySelector(".pop-up-container");
-    let popup_details=document.querySelector(".pop-up");
-    console.log(popup_con)
-    document.getElementById("editBTN").onclick=(event)=>{
-        popup_con.style.display="flex";
-        popup_details.style.display="inline";
-    }
-    popup_con.onclick=(event)=>{
-        popup_con.style.display="none";
-        popup_details.style.display="none";
-    }
-</script>
+<script src="../Javascripts/profile.js"></script>
