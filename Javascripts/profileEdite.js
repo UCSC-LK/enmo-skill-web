@@ -1,3 +1,16 @@
+//Get parameter value---------------------------------------------------------
+var paramValue = null
+
+function getQueryParam(name) {
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    return urlSearchParams.get(name);
+}
+
+var paramValue = getQueryParam("paramName");
+
+console.log(paramValue);
+
+
 //uplod img----------------------------------------------------------------------
 const selectImage = document.querySelector('.select-image');
 const inputFile = document.querySelector('#file');
@@ -28,6 +41,13 @@ inputFile.addEventListener('change', function () {
         alert("Image size more than 2MB");
     }
 });
+
+//add image uplord button to edite page-------------------------------------------
+
+if(paramValue == "edite"){
+    document.querySelector(".img-btn").style.display = 'block';
+}
+
 
 
 //drop down skills------------------------------------------------------------------
@@ -202,41 +222,89 @@ function addLanguage(){
 
 console.log(selectedLanguages)
 
+if(paramValue == "edite"){
+
+//send put request-------------------------------------------------------------
+
+    document.querySelector(".saveBTN").addEventListener("click", () => {
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+    
+        const fname = document.getElementById("firstName").value
+        const lname = document.getElementById("lastName").value
+        const display_name = document.getElementById("displayName").value
+        const description = document.getElementById("description").value
+    
+        var raw = JSON.stringify({
+            "userId": 51,
+            "role": "Designer",
+            "fname": fname,
+            "lname": lname,
+            "display_name": display_name,
+            "description":description,
+            "skills": selectedSkill,
+            "language": selectedLanguages
+        });
+    
+        var requestOptions = {
+            method: 'PUT', 
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+    
+        fetch("http://localhost:15000/enmo_skill_backend_war/profile", requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                alert(result);
+                window.location = "../HTML/profile.html";
+            })
+            .catch(error => console.log('error', error));
+    
+    })
+}else{
+    
 //send post request-------------------------------------------------------------
 
-document.querySelector(".saveBTN").addEventListener("click",()=>{
+    document.querySelector(".saveBTN").addEventListener("click",()=>{
+        
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const fname = document.getElementById("firstName").value
+        const lname = document.getElementById("lastName").value
+        const display_name = document.getElementById("displayName").value
+        const description = document.getElementById("description").value
+
+        var raw = JSON.stringify({
+            "userId": 51,
+            "role": "Designer",
+            "fname": fname,
+            "lname": lname,
+            "display_name": display_name,
+            "description":description,
+            "skills": selectedSkill,
+            "language": selectedLanguages
+        });
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch("http://localhost:15000/enmo_skill_backend_war/profile", requestOptions)
+            .then(response => response.text())
+            .then(result =>  {alert(result)
+                window.location="../HTML/profile.html"})
+            .catch(error => console.log('error', error));
     
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+    })
 
-    const fname = document.getElementById("firstName").value
-    const lname = document.getElementById("lastName").value
-    const display_name = document.getElementById("displayName").value
-    const description = document.getElementById("description").value
-
-    var raw = JSON.stringify({
-        "userId": "36",
-        "role": "Designer",
-        "fname": fname,
-        "lname": lname,
-        "display_name": display_name,
-        "description":description,
-        "skills": selectedSkill,
-        "language": selectedLanguages
-    });
-
-    var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-    };
-
-    fetch("http://localhost:15000/enmo_skill_backend_war/profile", requestOptions)
-        .then(response => response.text())
-        .then(result => console.log(result))
-        .catch(error => console.log('error', error));
+}
 
 
-})
+
 

@@ -52,7 +52,8 @@ body{
 }
 
 .description{
-    text-align:justify
+    text-align:justify;
+    
 }
 
 .button{

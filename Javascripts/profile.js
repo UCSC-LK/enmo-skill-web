@@ -37,4 +37,9 @@ var requestOptions = {
     }
 
 
+function editProfile(){
+  var parameterValue = "edite";
+  var newURL = "../HTML/profileEdit.html?paramName=" + encodeURIComponent(parameterValue);
 
+  window.location = newURL;
+}
