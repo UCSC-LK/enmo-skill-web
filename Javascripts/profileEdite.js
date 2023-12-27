@@ -1,3 +1,5 @@
+var userId = 51
+
 //Get parameter value---------------------------------------------------------
 var paramValue = null
 
@@ -224,6 +226,36 @@ console.log(selectedLanguages)
 
 if(paramValue == "edite"){
 
+//display current details-------------------------------------------------
+
+    fetch("http://localhost:15000/enmo_skill_backend_war/profile?role=Designer&userId="+userId, requestOptions)
+    .then(response => response.json())
+    .then(userData => {
+        console.log(userData)
+        // Set initial values for input fields
+        document.getElementById("firstName").value = userData.fname;
+        document.getElementById("lastName").value = userData.lname;
+        document.getElementById("displayName").value = userData.display_name;
+        document.getElementById("description").value = userData.description;
+
+        // // Set initial values for skills dropdowns
+        // userData.skills.forEach((skill, index) => {
+        //     if (index < maxSkillClones) {
+        //         const skillDropdown = document.querySelectorAll(".skill")[index];
+        //         skillDropdown.value = skill.skill_id;
+        //     }
+        // });
+
+        // // Set initial values for language dropdowns
+        // userData.language.forEach((language, index) => {
+        //     if (index < maxClones) {
+        //         const languageDropdown = document.querySelectorAll(".language")[index];
+        //         languageDropdown.value = language;
+        //     }
+        // });
+
+    })
+    .catch(error => console.log('error', error));
 //send put request-------------------------------------------------------------
 
     document.querySelector(".saveBTN").addEventListener("click", () => {
@@ -237,7 +269,7 @@ if(paramValue == "edite"){
         const description = document.getElementById("description").value
     
         var raw = JSON.stringify({
-            "userId": 51,
+            "userId": userId,
             "role": "Designer",
             "fname": fname,
             "lname": lname,
@@ -278,7 +310,7 @@ if(paramValue == "edite"){
         const description = document.getElementById("description").value
 
         var raw = JSON.stringify({
-            "userId": 51,
+            "userId": userId,
             "role": "Designer",
             "fname": fname,
             "lname": lname,

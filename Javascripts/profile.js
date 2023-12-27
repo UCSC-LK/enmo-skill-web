@@ -1,9 +1,11 @@
+var userId = 51
+
 var requestOptions = {
     method: 'GET',
     redirect: 'follow'
   };
   
-  fetch("http://localhost:15000/enmo_skill_backend_war/profile?role=Designer&userId=51", requestOptions)
+  fetch("http://localhost:15000/enmo_skill_backend_war/profile?role=Designer&userId="+userId, requestOptions)
     .then(response => response.json())
     .then(result => {
         console.log(result)
