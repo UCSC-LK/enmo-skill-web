@@ -38,41 +38,45 @@ const submitbtn = document.querySelector(".submit-button");
 
 var requestOptions = {
   method: "GET",
-  Credential: "include",
+  credentials: "include", 
 };
 
 fetch(
-  BASE_URL+"/proposal?Role=Client&UserId=28",          //hardcode
+  BASE_URL + "/proposal?", //hardcode
   requestOptions
 )
-  .then((response) => response.json())
+  .then((response) => {
+    console.log("RES " + response);
+    return response.json()
+  })
   .then((result) => {
+    console.log("result " + result);
     count.innerText = result.length;
     result.forEach((item) => {
       const newItem = listItemTemplate.cloneNode(true);
 
       //   newItem.querySelector(".user").addEventListener("click", function() {
       //     console.log("Clicked username: " + item.username);
-        // });
-        
-        newItem
-          .querySelector(".edit")
-          .addEventListener("click", function (event) {
-            event.stopPropagation();
-            editRequest(item);
-          });
-        newItem
-          .querySelector(".delete")
-          .addEventListener("click", function (event) {
-            event.stopPropagation();
-            deleteRequest(item.proposalID);
-          });
+      // });
+
+      newItem
+        .querySelector(".edit")
+        .addEventListener("click", function (event) {
+          event.stopPropagation();
+          editRequest(item);
+        });
+      newItem
+        .querySelector(".delete")
+        .addEventListener("click", function (event) {
+          event.stopPropagation();
+          deleteRequest(item.proposalID);
+        });
 
       newItem.querySelector(".date").textContent = item.description;
       newItem.querySelector(".user").textContent = item.duration + " Days";
       newItem.querySelector(".dis").textContent = "Rs. " + item.budget + ".00";
-      newItem.querySelector(".duration").textContent = item.requestID ;
-    //   newItem.querySelector(".budget").textContent = "Rs. " + item.budget;
+      newItem.querySelector(".duration").textContent = item.requestID;
+      //   newItem.querySelector(".budget").textContent = "Rs. " + item.budget;
       newItem.addEventListener("click", () => {
         viewrequest(item);
       });
@@ -83,7 +87,10 @@ fetch(
       listContainer.appendChild(newItem);
     });
   })
-  .catch((error) => console.log("error", error));
+  .catch((error) => {
+    console.log("error", error);
+    window.location.href = "../HTML/login.html";
+  });
 
 const popupview = document.querySelector(".overlay-view");
 const titleview = document.querySelector(".tl");
@@ -115,6 +122,7 @@ function deleteRequest(proposalID) {
     var requestOptions = {
       method: "DELETE",
       redirect: "follow",
+      credentials: "include",
     };
 
     fetch(
@@ -186,6 +194,7 @@ function editRequest(item) {
       method: "PUT",
       headers: myHeaders,
       body: raw,
+      credentials: "include",
     };
 
     fetch(

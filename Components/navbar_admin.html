@@ -17,7 +17,8 @@
         </div>
         <!-- Login and Sign buttons -->
         <div class="user-actions">
-            <span class="become-seller" onclick="admin()">Admin Services</span>
+            <span class="become-seller" onclick="list_designer()">Designer list</span>
+            <span class="become-seller" onclick="admin()">Client list</span>
             <button class="login" onclick="support()">Suppurt request</button>
             <button class="sign-up" onclick="refund()">Process Refund</button>
         </div>
@@ -31,14 +32,18 @@
             // Replace the URL in the following line with the URL of the page you want to navigate to.
             window.parent.location='../HTML/view_client_list_admin.html';
         }
+        function list_designer() {
+            // Replace the URL in the following line with the URL of the page you want to navigate to.
+            window.parent.location='../HTML/view_designer_list_admin.html';
+        }
         function support() {
             // Replace the URL in the following line with the URL of the page you want to navigate to.
-            alert("UI is Under Construction")
+            window.parent.location = '../HTML/policy_violations.html';
         }
         function refund() {
             // Replace the URL in the following line with the URL of the page you want to navigate to.
             // window.parent.location='../HTML/orderlist_designer.html';
-            alert("UI is Under Construction")
+            window.parent.location = '../HTML/refund_requests.html';
         }
         
         function pakages() {
