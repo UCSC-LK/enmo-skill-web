@@ -7,9 +7,12 @@
     <title>Ticket List</title>
 </head>
 <body>
-    <div style="margin-top: 80px;">
-        <iframe src="../Components/navbar_cs.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;position: fixed;top: 0;z-index: 2;left: 0;"></iframe>
-    <div class="container">
+
+
+    <iframe src="../Components/navbar_cs.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;position: fixed;top: 0;z-index: 2;left: 0;"></iframe>
+
+    <div class="container" style="margin-top: 80px;">
+
         <div class="main-container">
             <div class="header">
                 <h1>Tickets</h1>
@@ -31,7 +34,7 @@
                 </div>  
         
                 <div class="ticket-box" id="ticket-box" style="border:none">
-                    <div class="ticket-box-1" style=" border-top:2px solid gray">
+                    <div class="ticket-box-1" >
                         <!-- <div style="justify-content: left"><p style="padding: 1px 10px">Name</p></div> -->
                         <!-- <div></div> -->
                         <div><p>Name</p></div>
@@ -46,7 +49,6 @@
                     <div style="display: none;">
                         <div class="ticket-box-2" id="">
                             <!-- <div><p class="img-profile image"></p></div> -->
-                            
                             <div class="div-cursor"><p class="name"></p></div>
                             <div><p class="role"></p></div>
                             <div><p class="subject"></p></div>
@@ -71,14 +73,18 @@
     <div class="pop-up-container"></div>
     
         <div class="pop-up">
-            <div><h3>Name</h></div>
-            <div ><p class="name"></p></div>
+            
+            <div class="pheder">
+                <div><h3>Name :</h></div>
+                <div ><p class="name"></p></div>
+            </div>
 
-            <div><h3>Role</h></div>
-            <div><p class="role"></p></div>
-
-
-            <div><h3>Subject</h></div>
+            <div class="pheder">
+                <div><h3>Role :</h></div>
+                <div><p class="role"></p></div>
+            </div>
+            
+            <div><h3>Subject </h></div>
             <div><p class="subject"></p></div>
             <br> 
 
@@ -87,22 +93,26 @@
                 <p class="description"></p>
             </div>
             <br>
-        
-            <div><h3>Date</h3></div>
+    
             <div><p class="date"></p></div>
-            <br>
+            
 
-            <div><h3>Status</h3></div>
-            <div><p class="status"></p></div>
+            <div class="pheder">
+                <div><h3>Status :</h3></div>
+                <div><p class="status"></p></div>
+            </div>
 
-            <div><h3>Asigned Agent</h></div>
-            <div><p class="agent"></p></div>
+            <div>
+                
+            <div class="pheder">
+                <div><h3>Asigned Agent :</h></div>
+                <div><p class="agent"></p></div>
+            </div>
+
         </div>
     </div>
     
 
 </body>
 <script src="../Javascripts/baseurl.js"></script>
-<script src="../Javascripts/ticketListCS.js">
-    
-</script>
+<script src="../Javascripts/ticketListCS.js"></script>
