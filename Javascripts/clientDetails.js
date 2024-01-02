@@ -11,7 +11,7 @@ function getCookie(cookieName) {
   }
   return null;
 }
-console.log("iD: " + getCookie("User_ID"));
+
 
 
 // Function to fetch country data from REST Countries API
@@ -109,7 +109,7 @@ populateCountries();
       redirect: 'follow'
     };
     
-    fetch("http://localhost:15000/enmo_skill_backend_war/user", requestOptions)
+    fetch(BASE_URL+"/user", requestOptions)
       .then(response => {if(response.status==202){
         uploadFile();
       }else if(response.status==405){
@@ -126,7 +126,7 @@ populateCountries();
   var formData = new FormData();
   formData.append('file', file);
 
-  fetch(BASE_URL+'file', {
+  fetch(BASE_URL+'/file', {
       method: 'POST',
       body: formData
   })
@@ -143,13 +143,15 @@ populateCountries();
   });
 }
 
+const url = new URL(window.location.href);
+const uid = url.searchParams.get('id');
  
   function Writetodatabase(){
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     
     var raw = JSON.stringify({
-      "id": getCookie("User_ID"),
+      "id": uid,
       "name": nameuser.value,
       "contact_no": cno.value,
       "description": description.value,
@@ -165,9 +167,9 @@ populateCountries();
       redirect: 'follow'
     };
     
-    fetch("http://localhost:15000/enmo_skill_backend_war/user", requestOptions)
+    fetch(BASE_URL+"/user", requestOptions)
       .then(response => response.text())
-      .then(result =>{ console.log(result);showMessage("ok",result,4000)})
+      .then(result =>{ console.log(result);showMessage("ok",result,4000).then(window.location.href = "../HTML/login.html")})
       .catch(error => {console.log('error', error)
       showMessage("error",error,4000)});
   }
