@@ -36,9 +36,33 @@ const form = document.getElementById("Form");
 const form2 = document.getElementById("Form");
 const submitbtn = document.querySelector(".submit-button");
 
+function getCookie(name, cookieString) {
+  const cookies = (cookieString || document.cookie).split(";");
+  for (const cookie of cookies) {
+    const [cookieName, cookieValue] = cookie.trim().split("=");
+    if (cookieName === name) {
+      return cookieValue;
+    }
+  }
+  return null;
+}
+
+const jwtToken = getCookie("JWTToken");
+
+console.log( "aaaaa" , jwtToken)
+
+if (!jwtToken) {
+  console.log("JWT token not found in the cookie. Redirecting to login page.");
+  window.location.href = "../HTML/login.html";
+}
+
 var requestOptions = {
   method: "GET",
-  credentials: "include", 
+  credentials: "include",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${jwtToken}`, // Add JWT token to the headers
+  },
 };
 
 fetch(
@@ -78,6 +102,7 @@ fetch(
       newItem.querySelector(".duration").textContent = item.requestID;
       //   newItem.querySelector(".budget").textContent = "Rs. " + item.budget;
       newItem.addEventListener("click", () => {
+        
         viewrequest(item);
       });
 
@@ -106,6 +131,9 @@ const durationview = document.querySelector(".description-text");
 function viewrequest(item) {
   popupview.style.display = "flex";
   closetn.addEventListener("click", () => {
+
+console.log("Script is running");
+
     popupview.style.display = "none";
   });
   titleview.innerHTML = item.title;
@@ -123,6 +151,10 @@ function deleteRequest(proposalID) {
       method: "DELETE",
       redirect: "follow",
       credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${jwtToken}`, // Add JWT token to the headers
+      },
     };
 
     fetch(
@@ -195,6 +227,10 @@ function editRequest(item) {
       headers: myHeaders,
       body: raw,
       credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${jwtToken}`, // Add JWT token to the headers
+      },
     };
 
     fetch(
