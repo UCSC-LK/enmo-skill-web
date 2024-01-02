@@ -1,0 +1,11 @@
+.empty-div {
+    display: flex;
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ffffff;
+    color: #a3a3a3;
+    align-items: center;
+    justify-content: center; /* Add this line */
+    border: 3px dashed #ebebeb;
+    text-align: center;
+}

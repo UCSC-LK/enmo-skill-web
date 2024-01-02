@@ -8,23 +8,25 @@
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 </head>
 <body>
+
     <div style="margin-top: 80px;">
         <iframe src="../Components/navbar_seller.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;position: fixed;top: 0;z-index: 2;left: 0;"></iframe>
+
     <div class="container">
         <div class="main-container">
             
             <div class="header">
-                <h1>Tickets</h1>
+                <h2>Tickets</h2>
             </div>
             
 
             <div class="ticet-heder-box">
                 <div class="class2">
-                    <div><p class="div-cursor" style="color:black">ALL</a></p></div>
-                    <div><p class="div-cursor">ONGOING</p></div>
-                    <div><p class="div-cursor">SOLVED</p></div>
-                    <div><p class="div-cursor">REJECTED</p></div>
-                    <div style="text-align: right;"><button class="button div-cursor" onclick="createticket()">CREATE A TICKET</button></div>
+                    <div class="div-cursor-1"><p class="all">ALL</a></p></div>
+                    <div class="div-cursor-1"><p class="ongoing">ONGOING</p></div>
+                    <div class="div-cursor-1"><p class="solved">SOLVED</p></div>
+                    <div class="div-cursor-1"><p class="rejected">REJECTED</p></div>
+                    <div style="text-align: right;"><button class="button" onclick="createticket()">CREATE A TICKET</button></div>
                 </div>
             </div>
             <div class="table" >
@@ -34,20 +36,21 @@
     
                 <div class="ticket-box" id="ticket-box" style="border:none">
                     <div class="ticket-box-1" style=" border-top: solid  #ebebeb;">
-                        <div style="justify-content: left"><p style="padding: 1px 10px">Subject</p></div>
-                        <div><p>Date</p></div>
-                        <div ><p>Status</p></div>
+                        <div><p>SUBJECT</p></div>
+                        <div><p>DATE</p></div>
+                        <div ><p>STATUS</p></div>
                         <div></div>
                         <div></div>
                     </div>
     
                     <div style="display: none;">
                         <div class="ticket-box-2" id="" >
-                            <div class="div-cursor" style="justify-content: left" ><p style="padding: 1px" class="subject"></p></div>
+
+                            <div class="ticket-subject div-cursor aa"><p class="subject"></p></div>
                             
-                            <div><p class="date"></p></div>
+                            <div class="ticket-date aa"><p class="date"></p></div>
                             
-                            <div class="ticket-status"><p class="status"></p></div>
+                            <div class="ticket-status aa"><p class="status"></p></div>
                             
                             <div style="align-items: center;">
                                 <div class="panel">
@@ -58,8 +61,10 @@
                             <div style="display: none"><p class="description"></p></div>       
                                         
                         </div>
-    
+
                     </div>
+
+                    <div class="parent" style="width: 100%; padding-right: 20px;"></div>
                                                             
                 </div>
                 <span id="id" style="display: none;"></span>
@@ -71,22 +76,22 @@
     </div>
     <div class="pop-up-container"></div>
         <div class="pop-up">
-            <div><h3>Subject</h></div>
-            <div><p class="subject"></p></div>
-            <br> 
 
-            <div><h3>Description</h></div>   
-            <div>
-                <p class="description"></p>
+            <div class="pop-status">
+                <p class="status"></p>
+                <p class="close"><b>X</b></p>
             </div>
-            <br>
-        
-            <div><h3>Date</h3></div>
-            <div><p class="date"></p></div>
-            <br>
+            
+            <div class="pop-body">
+                <div><p class="subject"></p></div>
+                <hr> 
+  
+                <div><p class="description"></p></div>
+                <br>
 
-            <div><h3>Status</h3></div>
-            <div><p class="status"></p></div>
+                <div><p class="date"></p></div>
+            </div>
+            
         </div>
     </div>
     
