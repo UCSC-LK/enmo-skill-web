@@ -3,7 +3,7 @@ if (!isAuthenticated()) {
    console.log("User not authenticated. Redirecting to login page.");
    window.location.href = "../HTML/login.html";
 }
- 
+
 console.log("proposal.js loaded");
 
 document
@@ -12,6 +12,16 @@ document
     event.preventDefault();
     // Create an object with the form data
 
+    // Get the JWT token from the cookie
+    const jwtToken = getCookie("JWTToken");
+
+    if (!jwtToken) {
+      console.log(
+        "JWT token not found in the cookie. Redirecting to login page."
+      );
+      window.location.href = "../HTML/login.html";
+      return;
+    }
 
     var formData = {
       duration: document.getElementById("time").value,
@@ -35,6 +45,7 @@ document
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${jwtToken}`, // Add JWT token to the headers
         },
         body: jsonData,
       }

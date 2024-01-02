@@ -1,24 +1,3 @@
-function setCookie(name, value, daysToExpire) {
-    const date = new Date();
-    date.setTime(date.getTime() + (daysToExpire * 24 * 60 * 60 * 1000));
-    const expires = `expires=${date.toUTCString()}`;
-    document.cookie = `${name}=${value}; ${expires}; path=/`;
-  }
-
-  
-// Function to read a cookie by name
-function getCookie(name, cookieString) {
-  const cookies = (cookieString || document.cookie).split(";");
-  for (const cookie of cookies) {
-    const [cookieName, cookieValue] = cookie.trim().split("=");
-    if (cookieName === name) {
-      return cookieValue;
-    }
-  }
-  return null;
-}
-  
- 
 
 document
   .getElementById("loginForm")
@@ -55,15 +34,11 @@ document
         .then((response) => {
           if (response.ok) {
 
-            const jwtToken = document.cookie.replace(
-              /(?:(?:^|.;\s)JWTToken\s*=\s*([^;]*).*$)|^.*$/,
-              "$1"
-            );
-
-            console.log("AA - " + jwtToken);
-
+            const jwtToken = response.headers.get("Authorization");
 
             if (jwtToken) {
+
+              setCookie("JWTToken", jwtToken.replace("Bearer ", ""), 30);
 
               const decodedToken = parseJwt(jwtToken);
               const userLevelId = decodedToken.userLevelID;
@@ -71,6 +46,7 @@ document
 
 
               // Set UserLevelId to localStorage
+              // localStorage.setItem("Token", jwtToken);
               localStorage.setItem("userLevelId", userLevelId);
               localStorage.setItem("userID", userID);
 
