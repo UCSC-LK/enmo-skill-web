@@ -45,3 +45,9 @@ document
         console.error("An error occurred:", error);
       });
   });
+
+
+  function Logi(){
+    window.location.href = "../HTML/login.html"
+  }
+  

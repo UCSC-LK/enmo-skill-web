@@ -6,72 +6,54 @@
     height: 100vh;
     overflow: hidden;
 }
+.box{
+display: flex;
+flex-direction: column;
+align-items: center;
 
-.spin-container {
-    width: max-content;
-    height: 250px;
-    text-align: center;
+}
+.row{
+display: flex;
+flex-direction: row;
+align-items: center;
+gap: 10px;
+}
+
+.box1 .row p {
+  font-size: 23px;
+  font-weight: 520;
+}
+.box1 {
+  display:none ;
+  flex-direction: column;
+}
+.box1 .p {
+  color: #838383;
+  position: relative;
+  left: 81px;
+  padding: 0;
+  margin: 0;
+}
+@keyframes spinner {
+  0% {
+    transform: translate3d(-50%, -50%, 0) rotate(0deg);
   }
-  .spin {
-    border: 3px solid #0D4B9F;
-    width: 200px;
-    height: 200px;
-    margin: 0 auto;
-    border-radius: 50%;
-    border-left-color: transparent;
-    border-right-color: transparent;
-    animation: rotate 2s cubic-bezier(0.26, 1.36, 0.74, -0.29) infinite;
+  100% {
+    transform: translate3d(-50%, -50%, 0) rotate(360deg);
   }
-  #loader2 {
-    border: 3px solid #84ace3;
-    width: 220px;
-    height: 220px;
-    position: relative;
-    top: -216px;
-    border-left-color: transparent;
-    border-right-color: transparent;
-    animation: rotate2 2s cubic-bezier(0.26, 1.36, 0.74, -0.29) infinite;
-  }
-  #loader3 {
-    border: 3px solid #005CDC;
-    width: 240px;
-    height: 240px;
-    position: relative;
-    top: -452px;
-    border-left-color: transparent;
-    border-right-color: transparent;
-    animation: rotate 2s cubic-bezier(0.26, 1.36, 0.74, -0.29) infinite;
-  }
-  #loader4 {
-    border: 3px solid #94B6E5;
-    width: 260px;
-    height: 260px;
-    position: relative;
-    top: -708px;
-    border-left-color: transparent;
-    border-right-color: transparent;
-    animation: rotate2 2s cubic-bezier(0.26, 1.36, 0.74, -0.29) infinite;
-  }
-  @keyframes rotate {
-    0% {
-      transform: rotateZ(-360deg)
-    }
-    100% {
-      transform: rotateZ(0deg)
-    }
-  }
-  @keyframes rotate2 {
-    0% {
-      transform: rotateZ(360deg)
-    }
-    100% {
-      transform: rotateZ(0deg)
-    }
-  }
-  #text {
-    color: #001f4d;
-    font-size: 20px !important;
-    font-weight: bold;
-    position: relative;
-    top: -857px;
-  }
+}
+.spin::before {
+  animation: 1.5s linear infinite spinner;
+  animation-play-state: inherit;
+  border: solid 5px #cfd0d1;
+  border-bottom-color: #1c87c9;
+  border-radius: 50%;
+  content: "";
+  height: 45px;
+  width: 45px;
+  position: fixed;
+  top: 42%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  will-change: transform;
+}
