@@ -14,16 +14,16 @@ method: 'OPTIONS',
 headers: myHeaders
 };
 
-fetch(BASE_URL+"validate?option=send&email="+email, requestOptions)
+fetch(BASE_URL+"/validate?option=send&email="+email, requestOptions)
 .then(response => response.text())
 .then(result => {console.log(result)
     document.querySelector(".loading").style.display="none";
     if (result.status === 200) {
         timer()
-        alert(result)
+        showMessage("ok",result,3000)
         sendFlag =true
       } else {
-        alert(result)
+        showMessage("ok",result,3000)
         sendFlag =true
       }
 
