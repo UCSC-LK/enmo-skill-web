@@ -3,195 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../CSS/package_list_view.css">
-    
-    <title>Package Overview</title>
+    <link rel="stylesheet" href="../CSS/package_list_view.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title id="title">Top Graphic design packages - Enmo Skill</title>
 </head>
 <body>
-    <div class="main" style="margin-top: 80px;">
-        <iframe src="../Components/navbar_customer.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;position: fixed;top: 0;z-index: 2;left: 0;"></iframe>
-        <div class="container">
+    <div class="main">
+      <iframe src="../Components/navbar_customer.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;position: fixed;top: 0;z-index: 2;left: 0;"></iframe>
+        <div class="container" >
             <div class="block">
+
                 <h1 class="headding">Top packages</h1>
                 <div class="button-set">
-                    <button class="title" id="btn_logo">Logo designing</button>
-                    <button class="title" id="btn_illustration">Illustration</button>
-                    <button class="title" id="btn_flyer">Flyer designing</button>
-                    <button class="title" id="btn_banner">Banner designing</button>
+                    <button class="title" id="btn_logo" value="1">Logo designing</button>
+                    <button class="title" id="btn_illustration" value="2">Illustration</button>
+                    <button class="title" id="btn_flyer" value="3">Flyer designing</button>
+                    <button class="title" id="btn_banner" value="4">Banner designing</button>
                 </div>
 
                 <div class="left-pannel">
                     <div class="budget">
                         <h3>Budget</h3>
-                        <label for="">min</label>
-                        <input type="text" name="min_budget" id="min_budget" style="margin-right: 10px;">
-                        <label for="">max</label>
-                        <input type="text" name="max_budget" id="max_budget">
-                        <div class="button-container">
-                            <button class="apply">Apply</button>
-                            <button class="clear">Clear</button>
+                        <div class="cnt">
+                            <label for="">min</label>
+                            <input type="text" name="min_budget" id="min_budget">
+                            <label for="">max</label>
+                            <input type="text" name="max_budget" id="max_budget">
+                            <button class="apply" id="set">Apply</button>
+                            <button class="clear" id="unset" type="reset">Clear</button>
                         </div>
+                        
                     </div>
 
                     <div class="delivery-time">
                         <h3>Delivery time</h3>
-                        <input type="radio" name="delivery-time" value="24h">24hr <br>
-                        <input type="radio" name="delivery-time" value="24h">Up to 3 days <br>
-                        <input type="radio" name="delivery-time" value="24h">Up to 7 days <br>
-                        <input type="radio" name="delivery-time" value="24h">Anytime <br>
+                        <input type="radio" name="delivery-time" value="24h">24hr
+                        <input type="radio" name="delivery-time" value="24h">Up to 3 days
+                        <input type="radio" name="delivery-time" value="24h">Up to 7 days
+                        <input type="radio" name="delivery-time" value="24h">Anytime
                     </div>
                 </div>
 
-                <div class="content">
-                    <div class="package-box" onclick="package()">
-                        <div class="image-holder">
-                            <img src="../Assests/package_cover4.jpg" width="100%" height="100%">
+                <div class="row" id="row">
+                    <!-- <div class="column">
+                        <div class="content">
+                            <img src="../Assests/package_cover4.jpg" alt="Mountains" style="width:100%">
+                            <div class="profile-tile">
+                                <img src="../Assests/login_img1.jpg" alt="" class="profile-img">
+                                <p class="designer-name">Joe A.</p>
+                            </div>
+                            <p>I will design your dream logo</p>
+                            <div class="review-tile">
+                                <span class="fa fa-star"></span>
+                                <p class="no-reviews">5</p>
+                                <p class="no-orders">(20)</p>
+                            </div>
+                            <p class="price">From Rs.1000</p>
                         </div>
-
-                        <div class="profile-tile">
-                            <img src="../Assests/login_img3.jpg" alt="" class="profile-img">
-                        <p class="username">Joe A.</p>
-                        </div>
-
-                        <p class="pkg-title">I will create you a logo</p>
-                        
-                        <div class="review-tile">
-                            <img src="../Assests/icons/icon_star.png" alt="" width="15px" height="15px" class="star">
-                            <p class="no-reviews">5</p>
-                            <p class="no-orders">(20 orders)</p>
-                        </div>
-                        
-                    </div>
-                    <div class="package-box">
-                        <div class="image-holder">
-                            <img src="../Assests/package_cover4.jpg" width="100%" height="100%">
-                        </div>
-
-                        <div class="profile-tile">
-                            <img src="../Assests/login_img3.jpg" alt="" class="profile-img">
-                        <p class="username">Joe A.</p>
-                        </div>
-
-                        <p class="pkg-title">I will create you a logo</p>
-                        
-                        <div class="review-tile">
-                            <img src="../Assests/icons/icon_star.png" alt="" width="15px" height="15px" class="star">
-                            <p class="no-reviews">5</p>
-                            <p class="no-orders">(20 orders)</p>
-                        </div>
-                        
-                    </div>
-                    <div class="package-box">
-                        <div class="image-holder">
-                            <img src="../Assests/package_cover4.jpg" width="100%" height="100%">
-                        </div>
-
-                        <div class="profile-tile">
-                            <img src="../Assests/login_img3.jpg" alt="" class="profile-img">
-                        <p class="username">Joe A.</p>
-                        </div>
-
-                        <p class="pkg-title">I will create you a logo</p>
-                        
-                        <div class="review-tile">
-                            <img src="../Assests/icons/icon_star.png" alt="" width="15px" height="15px" class="star">
-                            <p class="no-reviews">5</p>
-                            <p class="no-orders">(20 orders)</p>
-                        </div>
-                        
-                    </div>
-                    <div class="package-box">
-                        <div class="image-holder">
-                            <img src="../Assests/package_cover4.jpg" width="100%" height="100%">
-                        </div>
-
-                        <div class="profile-tile">
-                            <img src="../Assests/login_img3.jpg" alt="" class="profile-img">
-                        <p class="username">Joe A.</p>
-                        </div>
-
-                        <p class="pkg-title">I will create you a logo</p>
-                        
-                        <div class="review-tile">
-                            <img src="../Assests/icons/icon_star.png" alt="" width="15px" height="15px" class="star">
-                            <p class="no-reviews">5</p>
-                            <p class="no-orders">(20 orders)</p>
-                        </div>
-                        
-                    </div>
-                    <div class="package-box">
-                        <div class="image-holder">
-                            <img src="../Assests/package_cover4.jpg" width="100%" height="100%">
-                        </div>
-
-                        <div class="profile-tile">
-                            <img src="../Assests/login_img3.jpg" alt="" class="profile-img">
-                        <p class="username">Joe A.</p>
-                        </div>
-
-                        <p class="pkg-title">I will create you a logo</p>
-                        
-                        <div class="review-tile">
-                            <img src="../Assests/icons/icon_star.png" alt="" width="15px" height="15px" class="star">
-                            <p class="no-reviews">5</p>
-                            <p class="no-orders">(20 orders)</p>
-                        </div>
-                        
-                    </div>
-                    <div class="package-box">
-                        <div class="image-holder">
-                            <img src="../Assests/package_cover4.jpg" width="100%" height="100%">
-                        </div>
-
-                        <div class="profile-tile">
-                            <img src="../Assests/login_img3.jpg" alt="" class="profile-img">
-                        <p class="username">Joe A.</p>
-                        </div>
-
-                        <p class="pkg-title">I will create you a logo</p>
-                        
-                        <div class="review-tile">
-                            <img src="../Assests/icons/icon_star.png" alt="" width="15px" height="15px" class="star">
-                            <p class="no-reviews">5</p>
-                            <p class="no-orders">(20 orders)</p>
-                        </div>
-                        
-                    </div>
-
-                    <!-- <div class="package-box">
-                        <h3>div content</h3>
-                    </div>
-                    <div class="package-box">
-                        <h3>div content</h3>
-                    </div>
-                    <div class="package-box">
-                        <h3>div content</h3>
-                    </div>
-                    <div class="package-box">
-                        <h3>div content</h3>
-                    </div>
-                    <div class="package-box">
-                        <h3>div content</h3>
-                    </div>
-                    <div class="package-box">
-                        <h3>div content</h3>
-                    </div>
-                    <div class="package-box">
-                        <h3>div content</h3>
                     </div> -->
-                    
-                    
-                    
+                  
+                    <!-- <div class="column">
+                        <div class="content">
+                            <img src="../Assests/package_cover4.jpg" alt="Mountains" style="width:100%">
+                            <div class="profile-tile">
+                                <img src="../Assests/login_img1.jpg" alt="" class="profile-img">
+                                <p class="designer-name">Joe A.</p>
+                            </div>
+                            <p>I will design your dream logo</p>
+                            <div class="review-tile">
+                                <span class="fa fa-star"></span>
+                                <p class="no-reviews">5</p>
+                                <p class="no-orders">(20)</p>
+                            </div>
+                            <p class="price">From Rs.1000</p>
+                        </div>
+                    </div> -->
+                  
+                    <!-- <div class="column">
+                        <div class="content">
+                            <img src="../Assests/package_cover4.jpg" alt="Mountains" style="width:100%">
+                            <div class="profile-tile">
+                                <img src="../Assests/login_img1.jpg" alt="" class="profile-img">
+                                <p class="designer-name">Joe A.</p>
+                            </div>
+                            <p>I will design your dream logo</p>
+                            <div class="review-tile">
+                                <span class="fa fa-star"></span>
+                                <p class="no-reviews">5</p>
+                                <p class="no-orders">(20)</p>
+                            </div>
+                            <p class="price">From Rs.1000</p>
+                        </div>
+                    </div> -->
+                  
+                    <!-- <div class="column">
+                        <div class="content">
+                            <img src="../Assests/package_cover4.jpg" alt="Mountains" style="width:100%">
+                            <div class="profile-tile">
+                                <img src="../Assests/login_img1.jpg" alt="" class="profile-img">
+                                <p class="designer-name">Joe A.</p>
+                            </div>
+                            <p>I will design your dream logo</p>
+                            <div class="review-tile">
+                                <span class="fa fa-star"></span>
+                                <p class="no-reviews">5</p>
+                                <p class="no-orders">(20)</p>
+                            </div>
+                            <p class="price">From Rs.1000</p>
+                        </div>
+                    </div> -->
+                  
+                    <!-- <div class="column">
+                        <div class="content">
+                            <img src="../Assests/package_cover4.jpg" alt="Mountains" style="width:100%">
+                            <div class="profile-tile">
+                                <img src="../Assests/login_img1.jpg" alt="" class="profile-img">
+                                <p class="designer-name">Joe A.</p>
+                            </div>
+                            <p>I will design your dream logo</p>
+                            <div class="review-tile">
+                                <span class="fa fa-star"></span>
+                                <p class="no-reviews">5</p>
+                                <p class="no-orders">(20)</p>
+                            </div>
+                            <p class="price">From Rs.1000</p>
+                        </div>
+                    </div> -->
+                  
+                    <!-- <div class="column">
+                        <div class="content">
+                            <img src="../Assests/package_cover4.jpg" alt="Mountains" style="width:100%">
+                            <div class="profile-tile">
+                                <img src="../Assests/login_img1.jpg" alt="" class="profile-img">
+                                <p class="designer-name">Joe A.</p>
+                            </div>
+                            <p>I will design your dream logo</p>
+                            <div class="review-tile">
+                                <span class="fa fa-star"></span>
+                                <p class="no-reviews">5</p>
+                                <p class="no-orders">(20)</p>
+                            </div>
+                            <p class="price">From Rs.1000</p>
+                        </div>
+                    </div> -->
+                  
+                    <!-- <div class="column">
+                        <div class="content">
+                            <img src="../Assests/package_cover4.jpg" alt="Mountains" style="width:100%">
+                            <div class="profile-tile">
+                                <img src="../Assests/login_img1.jpg" alt="" class="profile-img">
+                                <p class="designer-name">Joe A.</p>
+                            </div>
+                            <p>I will design your dream logo</p>
+                            <div class="review-tile">
+                                <span class="fa fa-star"></span>
+                                <p class="no-reviews">5</p>
+                                <p class="no-orders">(20)</p>
+                            </div>
+                            <p class="price">From Rs.1000</p>
+                        </div>
+                    </div> -->
+                  
+                    <!-- <div class="column">
+                        <div class="content">
+                            <img src="../Assests/package_cover4.jpg" alt="Mountains" style="width:100%">
+                            <div class="profile-tile">
+                                <img src="../Assests/login_img1.jpg" alt="" class="profile-img">
+                                <p class="designer-name">Joe A.</p>
+                            </div>
+                            <p>I will design your dream logo</p>
+                            <div class="review-tile">
+                                <span class="fa fa-star"></span>
+                                <p class="no-reviews">5</p>
+                                <p class="no-orders">(20)</p>
+                            </div>
+                            <p class="price">From Rs.1000</p>
+                        </div>
+                    </div> -->
+                  
+                    <!-- <div class="column">
+                        <div class="content">
+                            <img src="../Assests/package_cover4.jpg" alt="Mountains" style="width:100%">
+                            <div class="profile-tile">
+                                <img src="../Assests/login_img1.jpg" alt="" class="profile-img">
+                                <p class="designer-name">Joe A.</p>
+                            </div>
+                            <p>I will design your dream logo</p>
+                            <div class="review-tile">
+                                <span class="fa fa-star"></span>
+                                <p class="no-reviews">5</p>
+                                <p class="no-orders">(20)</p>
+                            </div>
+                            <p class="price">From Rs.1000</p>
+                        </div>
+                    </div> -->
+                  
+                    <!-- <div class="column">
+                        <div class="content">
+                            <img src="../Assests/package_cover4.jpg" alt="Mountains" style="width:100%">
+                            <div class="profile-tile">
+                                <img src="../Assests/login_img1.jpg" alt="" class="profile-img">
+                                <p class="designer-name">Joe A.</p>
+                            </div>
+                            <p>I will design your dream logo</p>
+                            <div class="review-tile">
+                                <span class="fa fa-star"></span>
+                                <p class="no-reviews">5</p>
+                                <p class="no-orders">(20)</p>
+                            </div>
+                            <p class="price">From Rs.1000</p>
+                        </div>
+                    </div> -->
+                  
                 </div>
-                <!-- <div class="box">
-                    
-    
-                    
-                </div> -->
-                
             </div>
         </div>
-    </div> 
+    </div>
     <script src="../Javascripts/baseurl.js"></script>
     <script src="../Javascripts/login.js"></script>
     <script src="../Javascripts/package_list_view.js"></script>
