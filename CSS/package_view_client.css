@@ -13,6 +13,7 @@ main{
     padding: 30px;
     padding-top: 10px; /* Corrected capitalization */
     overflow: auto;
+    line-height: 1.5em;
 }
 
 .block {
@@ -25,10 +26,11 @@ main{
 }
 
 .package-cover {
-    width: 800px;
+    /* width: 800px; */
     margin-bottom: 10px;
     display: flex;
     justify-content: flex-start; 
+    width: 70%;
 }
 
 .designer-profile-picture {
@@ -39,24 +41,37 @@ main{
 }
 
 .designer-img {
-    width: 90px;
-    height: 90px;
+    width: 100px;
+    height: 100px;
     clip-path: circle(at center);
     margin-right: 20px;
     display: flex;
     justify-content: flex-start; 
+    transition: transform .3s;
     
+}
+
+.designer-img:hover{
+    transform: scale(1.2);
 }
 
 .designer-username {
     font-weight: bold;
     margin: 0;
     padding-top: 15px;
+    font-size: 18px;
+    text-align:left
 }
 
-.heading { /* Corrected class name capitalization */
-    margin-bottom: 50px;
-}
+.headding-title{
+    /* border-bottom: solid; */
+    /* border-color: #ebebeb; */
+    /* border-width: 2px; */
+    display: flex;
+    justify-content: space-between;
+    font-weight: bolder;
+    width: 70%;
+  }
 
 .aligned-set{
     /* display: flex; */
@@ -68,21 +83,31 @@ main{
     width: 70%; /* Ensure it takes the full width of its container */
     margin-top: 20px;
     /* border: 1px solid black; */
-    margin-bottom: 50px;
+    margin-bottom: 40px;
+    transition: transform .3s;
+    
+}
+
+.image-holder:hover{
+    transform: scale(1.05);
 }
 
 .cover-image {
     max-width: 100%; /* Use max-width for responsive images */
     height: auto;
+    width: 100%;
 }
 
 .subheading { /* Corrected class name capitalization */
-    font-weight: bold;
+    font-weight: lighter;
+    /* width: 70%; */
+    text-align: left;
+
 }
 
 .package-details {
     margin-bottom: 40px;
-    width: 65%;
+    width: 70%;
 }
 
 .button-save {
@@ -95,6 +120,17 @@ main{
     margin-top: 10px;
 }
 
+.button-save-square {
+    background-color: #18181a; /* Button background color (blue) */
+    color: #fff; /* Text color for the button */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 7px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+
 .right{
     float: left;
     width: 90%;
@@ -104,17 +140,20 @@ main{
 
 .left{
     width: 10%;
-    float: left;
+    /* float: left; */
     margin-bottom: 40px;
 }
 
-/* .designer-details{
-    width: 100%;
-    
-} */
+.designer-details{
+    max-width: 100%;
+    /* text-align: center; */
+    margin-bottom: 40px;
+    width: 70%;
+}
 
 .pricing-details{
     margin-bottom: 40px;
+    /* width: 40%; */
 }
 
 /* table {
@@ -124,7 +163,8 @@ main{
 } */
 
 table {
-    width: 65%;
+    width: 70%;
+    max-width: 100%;
     border-collapse: collapse;
   }
 
@@ -134,14 +174,22 @@ th, td {
     text-align: center;
 }
 
-th {
-    /* background-color: #f2f2f2;  */
-    font-weight: bold; /* Make header text bold */
+/* .header {
+  background-color: #62646a;
+  color: #fff;
+} */
+
+tr:nth-child(even) {
+  background-color: #fafafa;
 }
-td{
-    background-color: white;
-    /* padding: 40px 20px;  */
-    /* font-size: 1.2em;  */
+
+tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+td, th {
+  padding: 10px;
+  
 }
 
 h3{
@@ -166,9 +214,9 @@ h3{
     text-align: center;
   }
   
-  tr.header {
+  /* tr.header {
     background-color: lightgrey;
-  }
+  } */
   
   /* Optional: Style the checkmark icons */
   .deliverables img {
@@ -197,11 +245,12 @@ h3{
 }
 
 .no-reviews {
-    margin-left: 15px;
+    display: inline;
 }
 
 .no-orders{
-    margin-left: 15px;
+    /* margin-left: 15px; */
+    color: #74767e;
 }
 
 .client-img {
@@ -215,7 +264,9 @@ h3{
 }
 
 .reviews {
-    width: 65%;
+    max-width: 70%;
+    /* display: flex; */
+    flex-direction: column;
   }
   
 .review-frame{
@@ -239,7 +290,7 @@ h3{
 
 .country{
     display: inline;
-    margin-left:15px ;
+    /* margin-left:15px ; */
 }
   
   .client-info {
@@ -257,4 +308,154 @@ h3{
     opacity: 0.7; /* Reduce opacity for the date to make it less prominent */
   }
   
+  .inside-block {
+    display: flex;
+    flex-direction: row; /* Make children elements align horizontally */
+    justify-content: center; /* Center the children horizontally */
+    align-items: center; /* Center the children vertically */
+    
+}
 
+.align-div {
+    display: flex;
+    flex-direction: column; /* Make children elements align horizontally */
+    justify-content: center; /* Center the children horizontally */
+    align-items: center; /* Center the children vertically */
+    
+  
+
+    
+}
+
+.row{
+    /* margin-bottom: 10px; */
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 5%;
+}
+
+.short-data{
+    width: inherit;
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+}
+
+.sds{
+    margin-right: 65px;
+}
+
+.designer-details-content{
+    padding: 20px;
+    border: 1px solid #ebebeb;
+    border-radius: 7px;
+
+}
+
+.button-save:hover{
+    background-color: #62646a;
+
+}
+
+.button-save-square:hover{
+    background-color: #62646a;
+
+}
+
+
+.reviewer-row{
+    display: flex;
+    justify-content: flex-start; 
+    flex-direction: row;
+ 
+}
+
+.recent-label{
+    float: right;
+    margin-bottom: 0;
+}
+
+.fa{
+   padding-top: 18px;
+   margin-left: 5px;
+
+}
+
+.review-count{
+    margin-left: 5px;
+    color: #74767e;
+
+}
+
+.sep{
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-top: 15px;
+    color: #74767e;
+    opacity: 0.3;
+}
+.sep-r{
+    margin-left: 15px;
+    margin-right: 15px;
+    padding-top: 15px;
+    color: #74767e;
+    opacity: 0.3;
+}
+
+.cover{
+    width: 60%;
+}
+
+.container-inside{
+
+    display: flex;
+    flex-direction: row;
+    .block{
+        width: 60%;
+    }
+
+    .sticky{
+        display: flex;
+        position: -webkit-sticky;
+        width: 40%;
+        padding: 25px;
+        height: 100vh;
+        
+    }
+}
+
+.border{
+    border-bottom: solid;
+    border-color: #ebebeb;
+    border-width: 2px;
+}
+
+.review-row{
+    display: flex;
+    flex-direction: row;
+}
+
+.data-row{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: 20px;
+}
+
+.cnt{
+    margin-top: 0;
+}
+
+.ttl{
+    margin-bottom: 5px;
+}
+
+.des{
+    padding: 20px;
+    margin-top: 0;
+}

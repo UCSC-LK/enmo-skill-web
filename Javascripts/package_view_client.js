@@ -21,26 +21,15 @@
 //   });
 
 
-document.addEventListener( "DOMContentLoaded", functionCall())
+const url = new URL(window.location.href);
+const packageId = url.searchParams.get('packageId');
+console.log(packageId);
 
-function functionCall() {
-    // const xhttp = new XMLHttpRequest();
-    // xhttp.onload = function() {
-        
-        
-        
-    //   }
-    // xhttp.open("GET", "../HTML/package_view_client.html", true);
-    // xhttp.send();
+document.addEventListener( "DOMContentLoaded", loadData() );
 
-    document.getElementById("designer-picture").src = "/Assests/login_img1.jpg";
-        document.getElementById("designer-img").src = "/Assests/login_img1.jpg";
-        document.getElementById("cover-image").src = "/Assests/package_cover4.jpg";
-        document.getElementById("description").innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Section 1.10.32 of de Finibus Bonorum et Malorum, written by Cicero in 45 BC"
-        document.getElementById("catogery").innerHTML = "catogery name"
-        document.getElementById("designer-username1").innerHTML = "designer username"
-        document.getElementById("designer-username2").innerHTML = "designer username"
-  }
+function loadData() {
+    
+}
 
-  // no data fecth to table
+
 

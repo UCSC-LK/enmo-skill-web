@@ -1,6 +1,14 @@
 // Get references to the buttons and the h1 element
 const buttons = document.querySelectorAll(".title");
 const h1Element = document.querySelector(".headding");
+const budgetDropdown = document.getElementById('budget-dropdown');
+const delTimeDropdown = document.getElementById('del-time-dropdown');
+const langDropdown = document.getElementById('language-dropdown');
+const budgetButton = document.getElementById('filter_budget');
+const delTimeButton = document.getElementById('filter_del_time');
+const langButton = document.getElementById('filter_lanaguages');
+
+
 
 // Add a click event listener to each button
 buttons.forEach(button => {
@@ -114,8 +122,84 @@ function loadAllPackages(category){
       // Append the column to the body (or any other parent element you want)
       row.appendChild(columnDiv)
 
+      columnDiv.addEventListener("click", function(e) {
+        console.log(package.packageId);
+
+        var pkg_view = "../HTML/package_view_client_new.html"
+
+        var url = pkg_view +
+                '?packageId='+encodeURIComponent(package.packageId)
+                
+            // Open a new browser tab/window with the specified URL
+            var newWindow = window.open(url, '_blank');
+
+      });
 
     })
   })
 }
+
+// Add a click event listener to the Budget button
+budgetButton.addEventListener('click', function(event) {
+    // Toggle the visibility of the budget dropdown
+    budgetDropdown.style.display = (budgetDropdown.style.display === 'none' || budgetDropdown.style.display === '') ? 'block' : 'none';
+    
+    // Stop the event propagation to prevent it from reaching the body click event listener
+    event.stopPropagation();
+});
+
+// Add a click event listener to the document body
+document.body.addEventListener('click', function() {
+    // Hide the budget dropdown when a click occurs outside of it
+    budgetDropdown.style.display = 'none';
+});
+
+// Add a click event listener to the budget dropdown to prevent its closure when clicked inside
+budgetDropdown.addEventListener('click', function(event) {
+    // Stop the event propagation to prevent it from reaching the document body click event listener
+    event.stopPropagation();
+});
+
+// Add a click event listener to the Budget button
+delTimeButton.addEventListener('click', function(event) {
+    // Toggle the visibility of the budget dropdown
+    delTimeDropdown.style.display = (delTimeDropdown.style.display === 'none' || delTimeDropdown.style.display === '') ? 'block' : 'none';
+    
+    // Stop the event propagation to prevent it from reaching the body click event listener
+    event.stopPropagation();
+});
+
+// Add a click event listener to the document body
+document.body.addEventListener('click', function() {
+    // Hide the budget dropdown when a click occurs outside of it
+    delTimeDropdown.style.display = 'none';
+});
+
+// Add a click event listener to the budget dropdown to prevent its closure when clicked inside
+delTimeDropdown.addEventListener('click', function(event) {
+    // Stop the event propagation to prevent it from reaching the document body click event listener
+    event.stopPropagation();
+});
+
+// Add a click event listener to the Budget button
+langButton.addEventListener('click', function(event) {
+    // Toggle the visibility of the budget dropdown
+    langDropdown.style.display = (langDropdown.style.display === 'none' || langDropdown.style.display === '') ? 'block' : 'none';
+    
+    // Stop the event propagation to prevent it from reaching the body click event listener
+    event.stopPropagation();
+});
+
+// Add a click event listener to the document body
+document.body.addEventListener('click', function() {
+    // Hide the budget dropdown when a click occurs outside of it
+    langDropdown.style.display = 'none';
+});
+
+// Add a click event listener to the budget dropdown to prevent its closure when clicked inside
+langDropdown.addEventListener('click', function(event) {
+    // Stop the event propagation to prevent it from reaching the document body click event listener
+    event.stopPropagation();
+});
+
 
