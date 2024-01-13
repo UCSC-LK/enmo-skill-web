@@ -21,19 +21,36 @@ body{
     padding: 100px;  
 }
 
+
 .profile-box{
     width:50%;
     text-align: center;
     padding: 40px 90px;
+    padding-top: 110px;
     position: relative;
-    border: 1px solid;
-    border-color: #000000; 
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* border: 1px solid; */
+    /* border-color: #000000;  */
     /*background-color:#fffff;*/
+    margin-top: 100px;
 }
+
+.profile-img{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    
+}
+
 .profile-pic{
     width:200px;
     height:200px;
     border-radius: 50%;
+    /* border: 20px solid white; */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .icon{
@@ -53,6 +70,10 @@ body{
 
 .description{
     text-align:justify;
+    
+}
+
+.details{
     
 }
 
