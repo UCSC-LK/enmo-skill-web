@@ -27,10 +27,10 @@ html, body {
 .left{
     width: 50%;
     /* margin-right: 10px; */
-    background-image: url('../Assests/login_img3.jpg');
+    background-image: url('../Assests/bg2.jpg');
     background-size:cover;
     background-position: center;
-    background-color: rgba(1, 11, 33, 0.683);
+    background-color: rgba(49, 49, 49, 0.193);
     background-blend-mode:overlay;
     border-radius: 10px 0 0 10px;
 }
@@ -88,7 +88,7 @@ li:before { content: '\1F5F8'; margin-left: -20px; margin-right: 10px; }
     cursor: pointer;
 }
 
-.form-layout{  
+#loginForm{  
     padding: 40px 20px 20px 27px;
 }
 
@@ -112,7 +112,7 @@ li:before { content: '\1F5F8'; margin-left: -20px; margin-right: 10px; }
     outline: none;
     border: none;
     display: block;
-    padding: 8px 0;
+    padding: 12px 15px;
     width: 355px;
     border: 1px solid #eee;
     border-radius: 5px;
@@ -120,6 +120,7 @@ li:before { content: '\1F5F8'; margin-left: -20px; margin-right: 10px; }
     font-size: 15px;
     z-index: 1;
     position: relative; /* Ensure relative positioning for proper z-index */
+    /* margin: 3px 0 10px 0px; */
 }
 
 .inputs:focus {

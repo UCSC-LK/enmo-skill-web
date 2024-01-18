@@ -7,21 +7,18 @@
     <title>Signup Page</title>
 </head>
 <body>
+    <div class="loading">
+        <div class="spin"></div>
+    </div>
 
     <div class="signup-main">
         <div class="signup-layout">
             <div class="left">
-                <h2>Success starts here</h2>
-                <ul>
-                    <li>Pay per project, not per hour</li>
-                    <li>Meet the Sri Lankan talent</li>
-                    <li>Quality Work, Every Time</li>
-                    <li>Budget-Friendly Brilliance</li>
-                </ul>
+               
             </div>
             <div class="right">
                 <p class="title">Create a new account</p>
-                <p class="nav-signup">    Already have an account? <span class="joinhere">Sign in</span></h5>
+                <p class="nav-signup">    Already have an account? <span class="joinhere" onclick="Logi()">Sign in</span></h5>
                 <form id ="form-layout" method="post">
                     
                     <label class="input-lable" for="loginemail">Email Adderss:</label>
@@ -36,7 +33,7 @@
                     <input type="password"  class="inputs" id="password" name="password" required>
                     
                     <br><br>
-                    <input type="submit" value="Signup" onclick="validateEmail()">
+                    <input type="submit" class="submit" value="Signup" onclick="validateEmail()">
                     
                 </form>
                 <div id="messageDiv" style="color: red;">  </div>

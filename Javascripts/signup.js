@@ -1,3 +1,6 @@
+const loding = document.querySelector(".loading");
+loding.style.display ="none"
+
 document
   .getElementById("form-layout")
   .addEventListener("submit", function (event) {
@@ -10,11 +13,12 @@ document
     };
 
     const messageDiv = document.getElementById("messageDiv");
+    
 
     console.log(formData);
 
     const jsonData = JSON.stringify(formData);
-
+    loding.style.display ="flex"
     // Make a fetch request
     fetch(BASE_URL+"/user", {
       method: "POST",
@@ -24,8 +28,9 @@ document
       body: jsonData,
     })
       .then((response) => {
+        loding.style.display ="none"
         if (response.ok) {
-          window.location.href = "../HTML/login.html"
+          window.location = "../HTML/emailValidationsend.html"+'?email='+encodeURIComponent(document.getElementById("email").value)
           messageDiv.innerHTML = "Registration successful ";
         } else if (response.status === 401) {
           // Unauthorized login (status code 401), display an error message
@@ -40,3 +45,9 @@ document
         console.error("An error occurred:", error);
       });
   });
+
+
+  function Logi(){
+    window.location.href = "../HTML/login.html"
+  }
+  
