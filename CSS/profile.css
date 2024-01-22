@@ -47,10 +47,10 @@ body{
 
 .profile-pic{
     width:200px;
-    height:200px;
-    border-radius: 50%;
+    clip-path: circle();
+    
     /* border: 20px solid white; */
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 
 .icon{
