@@ -1,3 +1,5 @@
+var userId = 69
+
 const all = document.querySelector(".all")
 const ongoing = document.querySelector(".ongoing")
 const solved = document.querySelector(".solved")
@@ -46,7 +48,7 @@ var requestOptions = {
     rejected.style.color="#9D9D9D"
 
 
-    fetch(BASE_URL+"/support?UserId=1&Role=Designer", requestOptions)
+    fetch(BASE_URL+"/support?Role=Designer&UserId="+userId, requestOptions)
     .then(response => response.json())
     .then(result => {
       console.log(result)
@@ -77,10 +79,15 @@ var requestOptions = {
         newItem.querySelector(".status").textContent=status
         newItem.querySelector(".date").textContent=item.date
 
-        
+        //delete a ticker------------------------------------------------------
         newItem.querySelector(".delete").addEventListener("click",()=>{ 
           deleteRequest(item.ref_no)
-         })   
+         })
+        
+         //update a ticket----------------------------------------------------
+        newItem.querySelector(".edit").addEventListener("click",()=>{ 
+          editTicket(item.ref_no,item.subject,item.description)
+         })  
 
         var itemDivs=[newItem.querySelector(".ticket-subject"),newItem.querySelector(".ticket-status"),newItem.querySelector(".ticket-date")];
         itemDivs.forEach(function(itemDiv) {
@@ -137,7 +144,7 @@ var requestOptions = {
   
 
   
-function deleteRequest(requestID){
+function deleteRequest(TicketID){
   if(confirm('Are you sure you want Delete this request?')){
 
     var requestOptions = {
@@ -145,7 +152,7 @@ function deleteRequest(requestID){
       redirect: 'follow'
     };
     
-    fetch(BASE_URL+"/support?TicketID="+requestID, requestOptions)
+    fetch(BASE_URL+"/support?TicketID="+TicketID, requestOptions)
       .then(response => response.text())
       .then(result => {alert(result)
         location.reload();})
@@ -176,5 +183,23 @@ function viewrequest(item,status){
 
 function createticket(){
   window.location.href = "../HTML/CSA-main.html"
+}
+
+function editTicket(TicketID,subject,description){ 
+
+  //store ticket data in local storage
+  var ticketData = {
+    ticketID:TicketID,
+    subject:subject,
+    description: description
+  };
+  localStorage.setItem('ticketData', JSON.stringify(ticketData));
+
+  //set parameter value
+  var pValue = "edit"; 
+  var url = "../HTML/createTicket.html" + "?pValue=" + encodeURIComponent(pValue);
+
+  // var newURL = "../HTML/createTicket.html?ref_no="+encodeURIComponent(TicketID)+"&subject="+encodeURIComponent(subject)+"&description="+encodeURIComponent(description) ;
+  window.location = url;
 }
 

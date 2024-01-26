@@ -46,7 +46,7 @@ body{
 }
 
 .profile-pic{
-    width:200px;
+    width:150px;
     clip-path: circle();
     
     /* border: 20px solid white; */

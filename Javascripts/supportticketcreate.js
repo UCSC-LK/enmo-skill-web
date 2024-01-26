@@ -1,21 +1,69 @@
-document.addEventListener("DOMContentLoaded", loadData);
-let ref_no=null;
+var userId = 69;
+
+// function getCookie(cookieName) {
+//     var name = cookieName + "=";
+//     var decodedCookie = decodeURIComponent(document.cookie);
+//     var cookieArray = decodedCookie.split(';');
+  
+//     for(var i = 0; i < cookieArray.length; i++) {
+//         var cookie = cookieArray[i].trim();
+//         if (cookie.indexOf(name) == 0) {
+//             return cookie.substring(name.length, cookie.length);
+//         }
+//     }
+//     return null;
+//   }
+//var userId = getCookie("User_ID");
+
+
+var pValue=null
+var ref_no=null;
+
+const url = new URL(window.location.href);
+var pValue = url.searchParams.get('pValue');
+
+if(pValue=="edit"){
+    loadData()
+}
+
+
+//load current data for update page---------------------------------------
 function loadData(){
-    const url = new URL(window.location.href);
-    const subject = url.searchParams.get('subject');
-    const description_value = url.searchParams.get('description');
-    ref_no=url.searchParams.get('ref_no');
+
+    console.log("01")
+
+    // get object from localStorage
+    var storedData = localStorage.getItem('ticketData');
+
+    // Parse the JSON string back to object
+    var ticketData = JSON.parse(storedData);
+
+    ref_no = ticketData.ticketID;
+    const subject = ticketData.subject;
+    const description = ticketData.description;
+    
+    localStorage.removeItem('ticketData');
+    
+    // const url = new URL(window.location.href);
+    // const subject = url.searchParams.get('subject');
+    // const description = url.searchParams.get('description');
+    // ref_no=url.searchParams.get('ref_no');
+
+    console.log(subject)
+    console.log(description)
+    console.log(ref_no)
 
     document.getElementById("subject").value = subject;
-    document.getElementById("description").value = description_value;
+    document.getElementById("description").value = description;
 }
+
 function ticketsubmission(){
     if(ref_no==null){
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
     
         var raw2 = JSON.stringify({
-            "requesterID":"1",//<<<<<<<<<<<<<< hardcoded here
+            "requesterID":userId,
             "description":document.getElementById("description").value,
             "subject":document.getElementById("subject").value
         });
@@ -55,7 +103,6 @@ function ticketsubmission(){
           .then(result => {alert(result)
             window.location="../HTML/tikectListDisigner.html"})
           .catch(error => console.log('error', error));
-      
       
     
     }
