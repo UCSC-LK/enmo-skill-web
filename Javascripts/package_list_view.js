@@ -8,6 +8,8 @@ const budgetButton = document.getElementById('filter_budget');
 const delTimeButton = document.getElementById('filter_del_time');
 const langButton = document.getElementById('filter_lanaguages');
 
+var loader = document.getElementById("loader-div");
+var block = document.getElementById("block");
 
 
 // Add a click event listener to each button
@@ -21,6 +23,10 @@ buttons.forEach(button => {
 
     // Add the 'active' class to the clicked button
     button.classList.add("active");
+
+    block.style.display = "none"
+    loader.style.cssText = "";
+
 
     loadAllPackages(category)
   });
@@ -136,13 +142,21 @@ function loadAllPackages(category){
       });
 
     })
+
+      // FINALLYYYY REMOVING THE LOADER
+      block.style.cssText = "";
+      loader.style.display = "none";
   })
+
+
 }
 
 // Add a click event listener to the Budget button
 budgetButton.addEventListener('click', function(event) {
     // Toggle the visibility of the budget dropdown
     budgetDropdown.style.display = (budgetDropdown.style.display === 'none' || budgetDropdown.style.display === '') ? 'block' : 'none';
+    delTimeDropdown.style.display = 'none';
+    langDropdown.style.display = 'none';
     
     // Stop the event propagation to prevent it from reaching the body click event listener
     event.stopPropagation();
@@ -164,6 +178,8 @@ budgetDropdown.addEventListener('click', function(event) {
 delTimeButton.addEventListener('click', function(event) {
     // Toggle the visibility of the budget dropdown
     delTimeDropdown.style.display = (delTimeDropdown.style.display === 'none' || delTimeDropdown.style.display === '') ? 'block' : 'none';
+    langDropdown.style.display = 'none';
+    budgetDropdown.style.display = 'none';
     
     // Stop the event propagation to prevent it from reaching the body click event listener
     event.stopPropagation();
@@ -185,6 +201,8 @@ delTimeDropdown.addEventListener('click', function(event) {
 langButton.addEventListener('click', function(event) {
     // Toggle the visibility of the budget dropdown
     langDropdown.style.display = (langDropdown.style.display === 'none' || langDropdown.style.display === '') ? 'block' : 'none';
+    budgetDropdown.style.display = 'none';
+    delTimeDropdown.style.display = 'none';
     
     // Stop the event propagation to prevent it from reaching the body click event listener
     event.stopPropagation();
