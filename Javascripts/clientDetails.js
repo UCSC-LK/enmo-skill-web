@@ -80,7 +80,8 @@ populateCountries();
   const fileInput = document.getElementById('image');
   const submitbtn = document.getElementById('submit');
   let urltext="";
-
+  const url = new URL(window.location.href);
+  const uid = url.searchParams.get('id');
 
   document.getElementById('myForm').addEventListener('submit', function(event) {
     event.preventDefault(); 
@@ -99,7 +100,7 @@ populateCountries();
     myHeaders.append("Content-Type", "application/json");
     
     var raw = JSON.stringify({
-      "id": getCookie("User_ID")
+      "id": uid
     });
     
     var requestOptions = {
@@ -143,8 +144,7 @@ populateCountries();
   });
 }
 
-const url = new URL(window.location.href);
-const uid = url.searchParams.get('id');
+
  
   function Writetodatabase(){
     var myHeaders = new Headers();
@@ -169,7 +169,7 @@ const uid = url.searchParams.get('id');
     
     fetch(BASE_URL+"/user", requestOptions)
       .then(response => response.text())
-      .then(result =>{ console.log(result);showMessage("ok",result,4000).then(window.location.href = "../HTML/login.html")})
+      .then(result =>{ console.log(result);showMessage("ok",result,4000);window.location.href = "../HTML/login.html"})
       .catch(error => {console.log('error', error)
       showMessage("error",error,4000)});
   }

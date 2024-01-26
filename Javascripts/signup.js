@@ -1,4 +1,14 @@
 const loding = document.querySelector(".loading");
+const overlay = document.querySelector(".signup-main");
+
+window.onclick = function(event) {
+
+  if (event.target == overlay) {
+    window.history.back()
+  }
+  
+}
+
 loding.style.display ="none"
 
 document
