@@ -51,10 +51,8 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
         // Successful login (status code 200), parse the JSON response and display the success message
         response.json().then((data) => {
           console.log("Message content:", data.message);
-          console.log("User_Level_ID:", data.userLevelID);
-          console.log("User_ID:", data.userID);
-          setCookie('User_ID', data.userID, 30); 
-          setCookie('User_Level_ID', data.userLevelID, 30); 
+          setCookie('JWT',"Bearer "+ data.JWT, 1); 
+          
 
           if(data.userLevelID==1){
             window.location.href = "../HTML/package_list_view.html"

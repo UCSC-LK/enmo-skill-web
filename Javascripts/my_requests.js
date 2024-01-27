@@ -13,7 +13,7 @@ function getCookie(cookieName) {
   }
   return null;
 }
-console.log("iD: " + getCookie("User_ID"));
+console.log("iD: " + getCookie("JWT"));
 
 
 let flagCreate=false;
