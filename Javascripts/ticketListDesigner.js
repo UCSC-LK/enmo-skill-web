@@ -33,7 +33,7 @@ rejected.addEventListener("click",()=>{
   rejected.style.color="#000000"
 })
 
-
+//get list of tickets----------------------------------------------------------
 var requestOptions = {
     method: 'GET',
     Credential:'include'
@@ -79,7 +79,7 @@ var requestOptions = {
         newItem.querySelector(".status").textContent=status
         newItem.querySelector(".date").textContent=item.date
 
-        //delete a ticker------------------------------------------------------
+        //delete a ticket------------------------------------------------------
         newItem.querySelector(".delete").addEventListener("click",()=>{ 
           deleteRequest(item.ref_no)
          })
@@ -87,11 +87,13 @@ var requestOptions = {
          //update a ticket----------------------------------------------------
         newItem.querySelector(".edit").addEventListener("click",()=>{ 
           editTicket(item.ref_no,item.subject,item.description)
-         })  
+         }) 
+      
 
         var itemDivs=[newItem.querySelector(".ticket-subject"),newItem.querySelector(".ticket-status"),newItem.querySelector(".ticket-date")];
+       
         itemDivs.forEach(function(itemDiv) {
-          itemDiv.addEventListener("click",()=>{ viewrequest(item,status)})
+          itemDiv.addEventListener("click",()=>{ viewticket(item.ref_no)})//view tickets--------------------------------------------
           itemDiv.addEventListener("mouseover",()=>{ hoverChnageAddClass(); })
           itemDiv.addEventListener("mouseout",()=>{hoverChnageRemoveClass();})
         });
@@ -132,8 +134,7 @@ var requestOptions = {
             perent.appendChild(newItem)
           
          }
-
-        
+      
   
       });
       
@@ -160,46 +161,80 @@ function deleteRequest(TicketID){
   }
 }
 
-function viewrequest(item,status){
-    let popup_con=document.querySelector(".pop-up-container");
-    let popup_details=document.querySelector(".pop-up");
-    let close=document.querySelector(".close")
+//popup view-----------------------------------------------------------------------------
+// function viewrequest(item,status){
+//   let popup_con=document.querySelector(".pop-up-container");
+//   let popup_details=document.querySelector(".pop-up");
+//   let close=document.querySelector(".close")
 
+//   let old_bodies= Array.from(popup_details.querySelectorAll(".pop-body"));
+//   old_bodies.slice(1).forEach(element=>{
+//     element.parentNode.removeChild(element);
+//   })
+  
+
+//   popup_con.style.display="flex";
+//   popup_details.style.display="inline";
+//   popup_details.querySelector(".subject").textContent = item.subject;
+//   popup_details.querySelector(".description").textContent = item.description;
+//   popup_details.querySelector(".date").textContent = item.date;
+//   //popup_details.querySelector(".time").textContent = item.time;
+//   popup_details.querySelector(".status").textContent =  status;
+
+//   const PopupPerent = document.querySelector(".scroll")
+//   const PopupChild = document.querySelector(".pop-body")
+
+//   var requestOptions = {
+//     method: 'GET',
+//     redirect: 'follow'
+//   };
+
+//   fetch("http://localhost:15000/enmo_skill_backend_war/support?Role=Client&UserId=" +encodeURIComponent(item.userId)+"&popup="+encodeURIComponent(item.ref_no), requestOptions)
+//     .then(response => response.json())
+//     .then(result => {
+//       console.log(result)
+//       result.forEach(element => {
+//         const newItem2 = PopupChild.cloneNode(true)
+//         console.log( newItem2);
+//         newItem2.querySelector(".subject").textContent=element.subject;
+//         newItem2.querySelector(".description").textContent=element.description;
+//         newItem2.querySelector(".date").textContent=element.date;
+  
+//         console.log(element.subject)
+//         console.log(element.description)
+//         console.log(element)
+  
+        
+//         PopupPerent.appendChild(newItem2)
+//       });
+
+
+//     })
+//    .catch(error => console.log('error', error));
     
-        popup_con.style.display="flex";
-        popup_details.style.display="inline";
-        popup_details.querySelector(".subject").textContent = item.subject;
-        popup_details.querySelector(".description").textContent = item.description;
-        popup_details.querySelector(".date").textContent = item.date;
-        //popup_details.querySelector(".time").textContent = item.time;
+//   close.onclick=(event)=>{
+//       popup_con.style.display="none";
+//       popup_details.style.display="none";
+//   }
+// }
 
-        popup_details.querySelector(".status").textContent =  status;
-    
-    close.onclick=(event)=>{
-        popup_con.style.display="none";
-        popup_details.style.display="none";
-    }
-}
-
+//load create ticket page-------------------------------------------------------------------
 function createticket(){
   window.location.href = "../HTML/CSA-main.html"
 }
 
-function editTicket(TicketID,subject,description){ 
-
-  //store ticket data in local storage
-  var ticketData = {
-    ticketID:TicketID,
-    subject:subject,
-    description: description
-  };
-  localStorage.setItem('ticketData', JSON.stringify(ticketData));
-
-  //set parameter value
-  var pValue = "edit"; 
-  var url = "../HTML/createTicket.html" + "?pValue=" + encodeURIComponent(pValue);
+//save update ticket details in local storage--------------------------------------------------
+function editTicket(TicketID){ 
+  
+  var pValue = "edit"
+  var url = "../HTML/createTicket.html" + "?pValue=" + encodeURIComponent(pValue)+"&TicketID="+encodeURIComponent(TicketID);
 
   // var newURL = "../HTML/createTicket.html?ref_no="+encodeURIComponent(TicketID)+"&subject="+encodeURIComponent(subject)+"&description="+encodeURIComponent(description) ;
   window.location = url;
+}
+
+function viewticket(ticketID){
+  var url ="../HTML/ticketListView.html?ticketID="+ encodeURIComponent(ticketID)
+  window.location.href = url
 }
 

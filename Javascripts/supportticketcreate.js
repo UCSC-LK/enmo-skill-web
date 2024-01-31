@@ -13,16 +13,17 @@ var userId = 69;
 //     }
 //     return null;
 //   }
-//var userId = getCookie("User_ID");
+// var userId = getCookie("User_ID");
 
 
-var pValue=null
+// var pValue=null
 var ref_no=null;
 
 const url = new URL(window.location.href);
-var pValue = url.searchParams.get('pValue');
+// var pValue = url.searchParams.get('pValue');
+var ref_no = url.searchParams.get('TicketID');
 
-if(pValue=="edit"){
+if(ref_no != null){
     loadData()
 }
 
@@ -32,29 +33,32 @@ function loadData(){
 
     console.log("01")
 
-    // get object from localStorage
-    var storedData = localStorage.getItem('ticketData');
+    var requestOptions = {
+    method: 'GET',
+    redirect: 'follow'
+    };
 
-    // Parse the JSON string back to object
-    var ticketData = JSON.parse(storedData);
+    fetch("http://localhost:15000/enmo_skill_backend_war/support?Role=Client&UserId="+encodeURIComponent(userId)+"&TicketId="+encodeURIComponent(ref_no), requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        result.forEach(element => {
+            document.getElementById("subject").value = element.subject;
+            document.getElementById("description").value = element.description;
+        })
+    })
+    .catch(error => console.log('error', error));
+        
+        // // const url = new URL(window.location.href);
+        // // const subject = url.searchParams.get('subject');
+        // // const description = url.searchParams.get('description');
+        // // ref_no=url.searchParams.get('ref_no');
 
-    ref_no = ticketData.ticketID;
-    const subject = ticketData.subject;
-    const description = ticketData.description;
-    
-    localStorage.removeItem('ticketData');
-    
-    // const url = new URL(window.location.href);
-    // const subject = url.searchParams.get('subject');
-    // const description = url.searchParams.get('description');
-    // ref_no=url.searchParams.get('ref_no');
+        // console.log(subject)
+        // console.log(description)
+        // console.log(ref_no)
 
-    console.log(subject)
-    console.log(description)
-    console.log(ref_no)
-
-    document.getElementById("subject").value = subject;
-    document.getElementById("description").value = description;
+        document.getElementById("subject").value = subject;
+        document.getElementById("description").value = description;
 }
 
 function ticketsubmission(){
