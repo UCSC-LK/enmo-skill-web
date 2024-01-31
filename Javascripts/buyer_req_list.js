@@ -1,17 +1,32 @@
+function getCookie(cookieName) {
+  var name = cookieName + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var cookieArray = decodedCookie.split(';');
 
+  for(var i = 0; i < cookieArray.length; i++) {
+      var cookie = cookieArray[i].trim();
+      if (cookie.indexOf(name) == 0) {
+          return cookie.substring(name.length, cookie.length);
+      }
+  }
+  return null;
+}
 
 const listContainer = document.getElementById("table");
 const count = document.getElementById("count");
 
 const listItemTemplate = document.querySelector(".row-hidden");
 
+var myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+myHeaders.append("Authorization", getCookie("JWT"));
 
 var requestOptions = {
   method: 'GET',
-  Credential:'include',
+  headers: myHeaders  
 };
 
-fetch(BASE_URL+"/request?Role=Designer", requestOptions)
+fetch(BASE_URL+"/request", requestOptions)
   .then(response => response.json())
   .then(result => {
     count.innerText=result.length;
