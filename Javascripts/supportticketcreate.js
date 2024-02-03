@@ -1,19 +1,16 @@
-var userId = 69;
-
-// function getCookie(cookieName) {
-//     var name = cookieName + "=";
-//     var decodedCookie = decodeURIComponent(document.cookie);
-//     var cookieArray = decodedCookie.split(';');
+function getCookie(cookieName) {
+    var name = cookieName + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var cookieArray = decodedCookie.split(';');
   
-//     for(var i = 0; i < cookieArray.length; i++) {
-//         var cookie = cookieArray[i].trim();
-//         if (cookie.indexOf(name) == 0) {
-//             return cookie.substring(name.length, cookie.length);
-//         }
-//     }
-//     return null;
-//   }
-// var userId = getCookie("User_ID");
+    for(var i = 0; i < cookieArray.length; i++) {
+        var cookie = cookieArray[i].trim();
+        if (cookie.indexOf(name) == 0) {
+            return cookie.substring(name.length, cookie.length);
+        }
+    }
+    return null;
+  } var userId = getCookie("User_ID");
 
 
 // var pValue=null
@@ -33,12 +30,19 @@ function loadData(){
 
     console.log("01")
 
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");                          
+    myHeaders.append("Authorization", getCookie("JWT"));   
+
+    var raw = JSON.stringify({})
+
     var requestOptions = {
     method: 'GET',
+    headers: myHeaders,
     redirect: 'follow'
     };
 
-    fetch("http://localhost:15000/enmo_skill_backend_war/support?Role=Client&UserId="+encodeURIComponent(userId)+"&TicketId="+encodeURIComponent(ref_no), requestOptions)
+    fetch("http://localhost:15000/enmo_skill_backend_war/support?icketId="+encodeURIComponent(ref_no), requestOptions)
     .then(response => response.json())
     .then(result => {
         result.forEach(element => {
@@ -64,7 +68,10 @@ function loadData(){
 function ticketsubmission(){
     if(ref_no==null){
         var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Content-Type", "application/json");                          
+        myHeaders.append("Authorization", getCookie("JWT"));   
+
+        var raw = JSON.stringify({})
     
         var raw2 = JSON.stringify({
             "requesterID":userId,
@@ -89,6 +96,7 @@ function ticketsubmission(){
 
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Authorization", getCookie("JWT")); 
         
         var raw = JSON.stringify({
             "ref_no":ref_no,

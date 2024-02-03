@@ -1,20 +1,16 @@
-var userId = 69;
+function getCookie(cookieName) {
+  var name = cookieName + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var cookieArray = decodedCookie.split(';');
 
-// function getCookie(cookieName) {
-//     var name = cookieName + "=";
-//     var decodedCookie = decodeURIComponent(document.cookie);
-//     var cookieArray = decodedCookie.split(';');
-  
-//     for(var i = 0; i < cookieArray.length; i++) {
-//         var cookie = cookieArray[i].trim();
-//         if (cookie.indexOf(name) == 0) {
-//             return cookie.substring(name.length, cookie.length);
-//         }
-//     }
-//     return null;
-//   }
-// var userId = getCookie("User_ID");
-
+  for(var i = 0; i < cookieArray.length; i++) {
+      var cookie = cookieArray[i].trim();
+      if (cookie.indexOf(name) == 0) {
+          return cookie.substring(name.length, cookie.length);
+      }
+  }
+  return null;
+}
 
 const url = new URL(window.location.href);
 var ticketID = url.searchParams.get('ticketID');
@@ -22,12 +18,20 @@ var ticketID = url.searchParams.get('ticketID');
 const PopupPerent = document.querySelector(".body-main")
 const PopupChild = document.querySelector(".body")
 
+var myHeaders = new Headers();                          
+myHeaders.append("Content-Type", "application/json");  
+myHeaders.append("Authorization", getCookie("JWT"));   
+
+var raw = JSON.stringify({});
+
+
 var requestOptions = {
     method: 'GET',
+    headers: myHeaders,
     redirect: 'follow'
     };
 
-    fetch("http://localhost:15000/enmo_skill_backend_war/support?Role=Client&UserId="+encodeURIComponent(userId)+"&TicketId="+encodeURIComponent(ticketID), requestOptions)
+    fetch("http://localhost:15000/enmo_skill_backend_war/support?TicketId="+encodeURIComponent(ticketID), requestOptions)
     .then(response => response.json())
     .then(result => {
         result.forEach(element => {
@@ -66,14 +70,28 @@ var requestOptions = {
     .catch(error => console.log('error', error));
 
     document.querySelector(".HistoryBTN").addEventListener("click",()=>{ 
-        getHistroy(userId,ticketID)
+        getHistroy(ticketID)
        })
 
-function  getHistroy(userId,ticketID){
+function  getHistroy(ticketID){
 
     document.querySelector(".HistoryBTN").remove();
 
-    fetch("http://localhost:15000/enmo_skill_backend_war/support?Role=Client&UserId=" +encodeURIComponent(userId)+"&popup="+encodeURIComponent(ticketID), requestOptions)
+    var myHeaders = new Headers();                          
+    myHeaders.append("Content-Type", "application/json");  
+    myHeaders.append("Authorization", getCookie("JWT"));   
+
+    var raw = JSON.stringify({});
+
+
+    var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow'
+    };
+
+
+    fetch("http://localhost:15000/enmo_skill_backend_war/support?popup="+encodeURIComponent(ticketID), requestOptions)
     .then(response => response.json())
     .then(result => {
     console.log(result)

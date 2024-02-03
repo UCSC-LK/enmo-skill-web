@@ -1,4 +1,16 @@
-var userId = 69
+function getCookie(cookieName) {
+  var name = cookieName + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var cookieArray = decodedCookie.split(';');
+
+  for(var i = 0; i < cookieArray.length; i++) {
+      var cookie = cookieArray[i].trim();
+      if (cookie.indexOf(name) == 0) {
+          return cookie.substring(name.length, cookie.length);
+      }
+  }
+  return null;
+}
 
 const all = document.querySelector(".all")
 const ongoing = document.querySelector(".ongoing")
@@ -34,11 +46,6 @@ rejected.addEventListener("click",()=>{
 })
 
 //get list of tickets----------------------------------------------------------
-var requestOptions = {
-    method: 'GET',
-    Credential:'include'
-  };
-
 
   function tableLoad(view){
     perent.innerHTML=""
@@ -47,8 +54,21 @@ var requestOptions = {
     solved.style.color="#9D9D9D"
     rejected.style.color="#9D9D9D"
 
+    var myHeaders = new Headers();                          
+    myHeaders.append("Content-Type", "application/json");  
+    myHeaders.append("Authorization", getCookie("JWT"));   
 
-    fetch(BASE_URL+"/support?Role=Designer&UserId="+userId, requestOptions)
+    var raw = JSON.stringify({});
+
+
+    var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        Credential:'include'
+      };
+
+
+    fetch(BASE_URL+"/support", requestOptions)
     .then(response => response.json())
     .then(result => {
       console.log(result)
@@ -147,9 +167,16 @@ var requestOptions = {
   
 function deleteRequest(TicketID){
   if(confirm('Are you sure you want Delete this request?')){
+    
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");  
+    myHeaders.append("Authorization", getCookie("JWT"));   
+
+    var raw = JSON.stringify({});
 
     var requestOptions = {
       method: 'DELETE',
+      headers: myHeaders,
       redirect: 'follow'
     };
     
