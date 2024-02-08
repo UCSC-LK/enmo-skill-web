@@ -42,7 +42,7 @@ function loadData(){
     redirect: 'follow'
     };
 
-    fetch("http://localhost:15000/enmo_skill_backend_war/support?icketId="+encodeURIComponent(ref_no), requestOptions)
+    fetch(BASE_URL+"/support?icketId="+encodeURIComponent(ref_no), requestOptions)
     .then(response => response.json())
     .then(result => {
         result.forEach(element => {

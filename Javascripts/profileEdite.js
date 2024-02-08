@@ -89,7 +89,7 @@ var requestOptions = {
 };
 
   
-fetch("http://localhost:15000/enmo_skill_backend_war/skill", requestOptions)
+fetch(BASE_URL+"/skill", requestOptions)
     .then(response => response.json())
     .then(result => {
 
@@ -262,7 +262,7 @@ var requestOptions = {
 };
 
 
-    fetch("http://localhost:15000/enmo_skill_backend_war/profile", requestOptions)
+    fetch(BASE_URL+"/profile", requestOptions)
     .then(response => response.json())
     .then(userData => {
         console.log(userData)
@@ -320,7 +320,7 @@ var requestOptions = {
             redirect: 'follow'
         };
     
-        fetch("http://localhost:15000/enmo_skill_backend_war/profile", requestOptions)
+        fetch(BASE_URL+"/profile", requestOptions)
             .then(response => response.text())
             .then(result => {
                 alert(result);
@@ -361,7 +361,7 @@ var requestOptions = {
             redirect: 'follow'
         };
 
-        fetch("http://localhost:15000/enmo_skill_backend_war/profile", requestOptions)
+        fetch(BASE_URL+"/profile", requestOptions)
             .then(response => response.text())
             .then(result =>  {alert(result)
                 window.location="../HTML/profile.html"})
@@ -384,7 +384,7 @@ var requestOptions = {
   redirect: 'follow'
 };
 
-fetch("http://localhost:15000/enmo_skill_backend_war/profile", requestOptions)
+fetch(BASE_URL+"/profile", requestOptions)
   .then(response => response.json())
   .then(result => {console.log(result)
     imgArea.innerHTML = '';

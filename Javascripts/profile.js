@@ -26,7 +26,7 @@ var requestOptions = {
     redirect: 'follow'                               
   };
   
-  fetch("http://localhost:15000/enmo_skill_backend_war/profile", requestOptions)
+  fetch(BASE_URL+"/profile", requestOptions)
     .then(response => response.json())
     .then(result => {
        
@@ -58,7 +58,7 @@ var requestOptions = {
 
 function editProfile(){
   var parameterValue = "edite";
-  var newURL = "../HTML/profileEdit.html?paramName=" + encodeURIComponent(parameterValue);
+  var newURL = BASE_URL+"/profileEdit.html?paramName=" + encodeURIComponent(parameterValue);
 
   window.location = newURL;
 }
@@ -76,7 +76,7 @@ var requestOptions = {
   redirect: 'follow'
 };
 
-fetch("http://localhost:15000/enmo_skill_backend_war/profile", requestOptions)
+fetch(BASE_URL+"/profile", requestOptions)
   .then(response => response.json())
   .then(result => {console.log(result)
     imgElement.src=result.url;

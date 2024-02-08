@@ -31,7 +31,7 @@ var requestOptions = {
     redirect: 'follow'
     };
 
-    fetch("http://localhost:15000/enmo_skill_backend_war/support?TicketId="+encodeURIComponent(ticketID), requestOptions)
+    fetch(BASE_URL+"/support?TicketId="+encodeURIComponent(ticketID), requestOptions)
     .then(response => response.json())
     .then(result => {
         result.forEach(element => {
@@ -95,7 +95,7 @@ function  getHistroy(ticketID){
     };
 
 
-    fetch("http://localhost:15000/enmo_skill_backend_war/support?popup="+encodeURIComponent(ticketID), requestOptions)
+    fetch(BASE_URL+"/support?popup="+encodeURIComponent(ticketID), requestOptions)
     .then(response => response.json())
     .then(result => {
     console.log(result)
