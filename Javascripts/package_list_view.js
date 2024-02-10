@@ -284,7 +284,7 @@ document.getElementById('btn-budget-apply').addEventListener("click", function()
 
     }
 
-    console.log(priceCode);
+    console.log("price code: " +priceCode);
 
     // decide the filters
     var filter_txt =""
@@ -337,6 +337,10 @@ function createFilterBox(filter_text, filter_type){
     // need to check which kind of filter is selected for the removal
     if (filter_type == "budget") {
       removeBudgetFilter();
+    } else if (filter_type == "delTime"){
+      removeDelTimeFilter();
+    } else if (filter_type == "lang"){
+      removeLangFilter();
     }
   })
 
@@ -398,11 +402,141 @@ function removeBudgetFilter(){
 
 }
 
-// add a delivery time filter
+///////////// add a delivery time filter
+document.getElementById('btn-deltime-apply').addEventListener('click', function(){
+  activeLoader();
+
+  var delTimeRadioButtons = document.getElementsByName('del-time');
+
+  delTimeCode = getSelectedRadioValue(delTimeRadioButtons)
+
+  console.log("deltime code: " +delTimeCode);
+
+  delTimeDropdown.style.display = 'none';
+
+  var filter_txt = "";
+  if (delTimeCode == 1) {
+    filter_txt  = "Express 24H";
+    createFilterBox(filter_txt, "delTime")
+  } else if (delTimeCode == 3) {
+    filter_txt  = "Up to 3 days";
+    createFilterBox(filter_txt, "delTime")
+  } else if (delTimeCode == 7){
+    filter_txt  = "Up to 7 days";
+    createFilterBox(filter_txt, "delTime")
+  }
+
+  // createFilterBox(filter_txt, "delTime")
+
+  // afterwards data fetching
+  loadAllPackages(category)
+})
+
+// remove the delivary time filter
+function removeDelTimeFilter(){
+
+  var delTimeRadioButtons = document.getElementsByName('del-time');
+
+  for (var i = 0; i < delTimeRadioButtons.length; i++) {
+    delTimeRadioButtons[i].checked = false;
+      
+  }
+  delTimeCode = 0;
+
+  activeLoader();
+  loadAllPackages(category)
+
+  document.getElementById("any_time").checked = true;
+}
+
+// set the logic of delivary time filter clear button
+document.getElementById('btn-deltime-clear').addEventListener('click', function()
+{
+  var delTimeRadioButtons = document.getElementsByName('del-time');
+
+  for (var i = 0; i < delTimeRadioButtons.length; i++) {
+    delTimeRadioButtons[i].checked = false;
+      
+}
+  
+  delTimeDropdown.style.display = 'none';
+  delTimeCode = 0;
+  // loadAllPackages(category)
+
+}
+)
+
+//////// add language filter ////
+document.getElementById('btn-lang-apply').addEventListener('click', function(){
+  activeLoader();
+
+  var langRadioButtons = document.getElementsByName('lang');
+
+  languageCode = getSelectedRadioValue(langRadioButtons)
+
+  console.log("lang code: " +languageCode);
+
+  langDropdown.style.display = 'none';
+
+  var filter_txt = "";
+  if (languageCode == 1) {
+    filter_txt = "English";
+    createFilterBox(filter_txt, "lang")
+  } else if (languageCode == 2) {
+    filter_txt = "Sinhala (සිංහල)";
+    createFilterBox(filter_txt, "lang")
+  } else if (languageCode == 3) {
+    filter_txt = "Tamil (தமிழ்)";
+    createFilterBox(filter_txt, "lang")
+  }
+
+  // afterwards data fetching
+  loadAllPackages(category)
+})
+
+// remove the language filter
+
+function removeLangFilter(){
+
+  var langRadioButtons = document.getElementsByName('lang');
+
+  for (var i = 0; i < langRadioButtons.length; i++) {
+    langRadioButtons[i].checked = false;
+      
+  }
+  languageCode = 0;
+
+  activeLoader();
+  loadAllPackages(category)
+
+  document.getElementById("any_lang").checked = true;
+}
+
+// set the logic of language filter clear button
+document.getElementById('btn-lang-clear').addEventListener('click', function()
+{
+  var langRadioButtons = document.getElementsByName('lang');
+  
+  for (var i = 0; i < langRadioButtons.length; i++) {
+    langRadioButtons[i].checked = false;
+
+  }
+
+  langDropdown.style.display = 'none';
+  languageCode = 0;
+
+})
 
 
+function getSelectedRadioValue(radiobtnset) {
+  for (var i = 0; i < radiobtnset.length; i++) {
+      if (radiobtnset[i].checked) {
+          return radiobtnset[i].value;
+      }
+  }
+  return null; 
+}
 
-// load filtered data function
 
 
 
