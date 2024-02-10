@@ -1,3 +1,6 @@
+const BASE_URL="http://localhost:15000/enmo_skill_backend_war"//fine error later---------------
+
+
 function getCookie(cookieName) {
   var name = cookieName + "=";
   var decodedCookie = decodeURIComponent(document.cookie);

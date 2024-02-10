@@ -20,9 +20,9 @@
             
             <div class="ticet-heder-box">
                 <div class="class2">
-                    <div><p class="div-cursor" style="color:black">ALL</a></p></div>
-                    <div><p class="div-cursor">ME</p></div>
-                    <div style="text-align: right"><button class="button div-cursor" onclick="createticket()">CREATE A TICKET</button></div>
+                    <div><p class="div-cursor all">ALL</a></p></div>
+                    <div><p class="div-cursor me">ME</p></div>
+                    <div style="text-align: right"><button class="button" onclick="createticket()">CREATE A TICKET</button></div>
                 </div>
             </div>
     
@@ -38,28 +38,45 @@
                         <!-- <div style="justify-content: left"><p style="padding: 1px 10px">Name</p></div> -->
                         <!-- <div></div> -->
                         <div><p>Name</p></div>
+                        <div></div>
                         <div><p>Role</p></div>
                         <div><p>Subject</p></div>
-                        <div><p>Status</p></div>
-                        <div><p>Agent</p></div>
-                        <div><p>Date</p></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
                         <div></div>
                     </div>
         
-                    <div style="display: none;">
-                        <div class="ticket-box-2" id="">
-                            <!-- <div><p class="img-profile image"></p></div> -->
-                            <div class="div-cursor"><p class="name"></p></div>
-                            <div><p class="role"></p></div>
-                            <div><p class="subject"></p></div>
-                            <div><p class="status"></p></div>
-                            <div><p class="agent"></p></div>
-                            <div><p class="date"></p></div>
-                            <div style="display: none;"><p class="description"></p></div>
-                            <!-- <div style="justify-self: end"><p class="icon div-cursor"></p></div> -->
+                    <div class="ticket-box-2"  style="display: none;" >
+                        <div class="ticket-box-3" id="">
+                            <div class="profile-pic-main aline"><img src="https://i.pinimg.com/564x/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg" class="profile-pic"></div>
+                            <div class="ticket-name aline"><p class="name"></p></div>
+                            <div class="ticket-role aline"><p class="role"></p></div>
+                            <div class="ticket-subject aline"><p class="subject"></p></div>
+                            <div class="ticket-agent aline"><p class="agent"><select id="agentSelect" class="agentSelect"></select></p></div>                            
+                            <div class="btn aline"><button class="button assignBTN">ASSIGN</button></div>
+                            <div class="ticket-role aline" style="display: none;"><p class="description"></p></div>
+                            <div class="status"></div>
+                            
                         </div>
                     </div>
+
+                    <div class="ticket-box-2"  style="display: none;" >
+                        <div class="ticket-box-4" >
+                        
+                                <div class="profile-pic-main"><img src="https://i.pinimg.com/564x/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg" class="profile-pic"></div>
+                                <div class="ticket-name" ><p class="name"></p></div>
+                                <div class="ticket-role"><p class="role"></p></div>
+                                <div class="ticket-subject"><p class="subject"></p></div>
+                                <div class="hover"></div>
+                                <div class="hover"></div>
+                                <div class="hover"></div>                                               
+                            
         
+                        </div>
+                    </div>
+
+                    <div class="parent" style="width: 100%; padding-right: 20px;"></div>      
                     
                    
                 </div>
