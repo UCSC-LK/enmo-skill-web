@@ -381,3 +381,38 @@ body {
     height: 80vh;
     margin: 0;
   }
+
+  .err{
+    color: red;
+  }
+
+.cross-style{
+  font-weight: bold;
+  /* margin-right: 5px; */
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.filter-text-style{
+  font-style: italic;
+  display: inline; 
+  margin-top: 0;
+  font-weight: bold;
+}
+
+.filter-row{
+  display: inline;
+}
+
+.tag-cloud {
+  display: inline-block;
+  /* color: white; */
+  padding: 8px 20px;
+  font-family: Arial;
+  border-radius: 25px;
+  background-color: #ebebeb;
+  margin-top: 8px;
+}
+
+
+

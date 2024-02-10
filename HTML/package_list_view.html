@@ -52,6 +52,7 @@
                 <div>
                     <div class="button-set">
 
+                        <!-- BUDGET DROPDOWN -->
                         <button class="filter" id="filter_budget" value="1">Budget
                             <i class="fa fa-caret-down"></i>
                         </button>
@@ -59,43 +60,44 @@
                         <div id="budget-dropdown" class="dropdown-content" style="display: none;">
                             <div class="menu-items">
                                 <div class="item-div">
-                                    <input type="radio" name="budget" value="low">
-                                    <div class="labels">
-                                        <label class="cat">Low</label> 
-                                        <label class="val">Under Rs.2000</label>
+                                    <input type="radio" name="budget" id="budget-min" value="1">
+                                    <div class="labels" >
+                                        <label class="cat" for="budget-min">Low</label> 
+                                        <label class="val" for="budget-min">Under Rs.2000</label>
                                     </div>
                                     
                                 </div>
                                 <div class="item-div">
-                                    <input type="radio" name="budget" value="mid">
-                                    <div class="labels">
-                                        <label class="cat">Mid range</label> 
-                                    <label class="val">Rs.2000 - Rs.5000</label>
+                                    <input type="radio" name="budget" id="budget-mid" value="2">
+                                    <div class="labels" >
+                                        <label for="budget" class="cat" for="budget-mid">Mid range</label> 
+                                        <label class="val" for="budget-mid">Rs.2000 - Rs.5000</label>
                                     </div>
                                     
                                 </div>
                                 <div class="item-div">
-                                    <input type="radio" name="budget" value="low">
+                                    <input type="radio" name="budget" id="budget-max" value="3">
                                     <div class="labels">
-                                        <label class="cat">High end</label> 
-                                    <label class="val">Rs.5000 and above</label>
+                                        <label class="cat" for="budget-max">High end</label> 
+                                        <label class="val" for="budget-max">Rs.5000 and above</label>
                                     </div>
                                     
                                 </div>
                                 <div class="item-div">
-                                    <input type="radio" name="budget" value="custom">
-                                    <div class="labels">
-                                        <label class="cat">Custom</label> 
+                                    <input type="radio" name="budget" id="budget-cust" value="custom">
+                                    <div class="labels" for="budget-cust">
+                                        <label class="cat" for="budget-cust" for="budget-custom">Custom</label> 
                                         <input type="number" name="budget-custom" id="budget-custom" placeholder="Enter budget in Rs." max="50000">
-                                
+                                        <p class="err" id="err_price"></p>
+                                        
                                     </div>
                                    
                                 </div>
                             </div>
 
                             <div class="btns">
-                                <button class="btn-clear" id="btn-clear">Clear all</button>
-                                <button class="btn-apply" id="btn-apply">Apply</button>
+                                <button class="btn-clear" id="btn-budget-clear">Clear all</button>
+                                <button class="btn-apply" id="btn-budget-apply">Apply</button>
                             </div>
                             
                             
@@ -196,6 +198,13 @@
 
                             
                     </div>
+                </div>
+
+                <div class="filter-row" id="filter-row">
+                    <!-- <span class="tag-cloud">
+                        <p class="filter-text-style">Filter criteria</p>
+                        <i class="cross-style">X</i>
+                    </span> -->
                 </div>
 
                 <div class="row" id="row">

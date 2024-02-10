@@ -10,12 +10,16 @@ const langButton = document.getElementById('filter_lanaguages');
 
 var loader = document.getElementById("loader-div");
 var block = document.getElementById("block");
-
+var budgetFilterFlag = false;
+var priceCode = 0;
+var delTimeCode = 0;
+var languageCode = 0;
+var category = 0;
 
 // Add a click event listener to each button
 buttons.forEach(button => {
   button.addEventListener("click", () => {
-    var category = button.value;
+    category = button.value;
         // Update the h1 element's innerHTML with the button's innerHTML
     h1Element.innerHTML = button.innerHTML;
 
@@ -24,13 +28,25 @@ buttons.forEach(button => {
     // Add the 'active' class to the clicked button
     button.classList.add("active");
 
-    block.style.display = "none"
-    loader.style.cssText = "";
+    // block.style.display = "none"
+    // loader.style.cssText = "";
+    activeLoader();
 
 
     loadAllPackages(category)
   });
 });
+
+function activeLoader(){
+  block.style.display = "none"
+  loader.style.cssText = "";
+
+}
+
+function removeLoader(){
+  block.style.cssText = "";
+  loader.style.display = "none";
+}
 
 function package(){
   window.location.href = "../HTML/package_view_client.html"
@@ -39,7 +55,7 @@ function package(){
 document.addEventListener("DOMContentLoaded", loadAllPackages(0))
 
 function loadAllPackages(category){
-  fetch(BASE_URL+`/packagelist?category=${category}`)
+  fetch(BASE_URL+`/packagelist?category=${category}&price=${priceCode}&delTimeCode=${delTimeCode}&language=${languageCode}`)
   .then((response)=>{
     if (!response.ok) {
       throw new Error('An error occured!');
@@ -144,8 +160,9 @@ function loadAllPackages(category){
     })
 
       // FINALLYYYY REMOVING THE LOADER
-      block.style.cssText = "";
-      loader.style.display = "none";
+      removeLoader();
+      // block.style.cssText = "";
+      // loader.style.display = "none";
   })
 
 
@@ -219,5 +236,174 @@ langDropdown.addEventListener('click', function(event) {
     // Stop the event propagation to prevent it from reaching the document body click event listener
     event.stopPropagation();
 });
+
+
+/////// handling filters //////////////////////////////////
+
+//add a budget filter
+document.getElementById('btn-budget-apply').addEventListener("click", function(){
+  
+  activeLoader();
+
+  budgetFilterFlag = true;  
+
+  var budgetCustomInput = document.getElementById('budget-custom');
+  var budgetRadioButtons = document.getElementsByName('budget');
+
+  // Function to get the selected radio button value
+  function getSelectedRadioValue() {
+      for (var i = 0; i < budgetRadioButtons.length; i++) {
+          if (budgetRadioButtons[i].checked) {
+              return budgetRadioButtons[i].value;
+          }
+      }
+      return null; 
+  }
+
+  priceCode = getSelectedRadioValue();
+  var budgetValue = ""
+
+  // check whether a radio button is selected
+  if (priceCode != null) {
+
+    // if a custon value is entered
+    if (priceCode === 'custom') {
+
+      budgetValue = budgetCustomInput.value;
+
+      // if an invalid value is entered
+      if (budgetValue < 500) {
+        document.getElementById('err_price').innerHTML = "Service starts at Rs.500"
+        budgetValue = "-1"
+      } else{
+        priceCode = budgetValue
+        budgetDropdown.style.display = 'none';
+      }
+    } else{
+      budgetDropdown.style.display = 'none';
+
+    }
+
+    console.log(priceCode);
+
+    // decide the filters
+    var filter_txt =""
+    if (budgetValue != "-1") {
+      if (priceCode == "1") {
+        filter_txt = "Low Under Rs.2000"
+      } else if (priceCode == "2"){
+        filter_txt = "Mid range Rs.2000 - Rs.5000"
+      } else if (priceCode == "3"){
+        filter_txt = "High end Rs.5000 and above"
+      } else{
+        filter_txt = "Budget: Rs."+priceCode
+      }
+
+      createFilterBox(filter_txt, "budget")
+
+
+      // afterwards data fetching
+      loadAllPackages(category)
+    }
+
+
+
+  } else{
+    budgetDropdown.style.display = "none"
+  }
+  
+
+// Example usage:
+
+})
+
+// create filter labels
+function createFilterBox(filter_text, filter_type){
+
+  var filter_row =  document.getElementById('filter-row')
+  var tag_cloud_span = document.createElement('span');
+  tag_cloud_span.classList.add('tag-cloud');
+
+  var paragraph = document.createElement('p');
+  paragraph.textContent = filter_text;
+  paragraph.classList.add('filter-text-style');
+
+  var closeIcon = document.createElement('i');
+  closeIcon.textContent = 'X';
+  closeIcon.classList.add('cross-style');
+  closeIcon.addEventListener('click', function(){
+    filter_row.removeChild(tag_cloud_span);
+
+    // need to check which kind of filter is selected for the removal
+    if (filter_type == "budget") {
+      removeBudgetFilter();
+    }
+  })
+
+  tag_cloud_span.appendChild(paragraph);
+  tag_cloud_span.appendChild(closeIcon);
+
+  filter_row.appendChild(tag_cloud_span);
+
+}
+
+
+// set the logic of budget filter clear button
+document.getElementById('btn-budget-clear').addEventListener('click', function()
+{
+  document.getElementById('budget-custom').value = '';
+  var budgetRadioButtons = document.getElementsByName('budget');
+
+  for (var i = 0; i < budgetRadioButtons.length; i++) {
+      budgetRadioButtons[i].checked = false;
+      
+}
+  document.getElementById("err_price").innerHTML =""
+  budgetDropdown.style.display = 'none';
+  priceCode = 0;
+  // loadAllPackages(category)
+
+}
+)
+
+
+// Get the custom radio button and custom input text box
+var customInput = document.getElementById('budget-custom');
+var customRadioButton = document.getElementById('budget-cust');
+
+// Add event listener to the text box for the focus event
+customInput.addEventListener('focus', function() {
+    // Check the associated radio button
+    customRadioButton.checked = true;
+
+    
+});
+
+// remove the budget filter
+function removeBudgetFilter(){
+  document.getElementById('budget-custom').value = '';
+  var budgetRadioButtons = document.getElementsByName('budget');
+
+  for (var i = 0; i < budgetRadioButtons.length; i++) {
+      budgetRadioButtons[i].checked = false;
+      
+  }
+  document.getElementById("err_price").innerHTML =""
+
+  console.log("inside remove budget");
+  priceCode = 0;
+
+  activeLoader();
+  loadAllPackages(category)
+
+}
+
+// add a delivery time filter
+
+
+
+// load filtered data function
+
+
 
 
