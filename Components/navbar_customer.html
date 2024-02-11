@@ -2,6 +2,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/navbar1.css">
+
+    <style>
+        .dropdown {
+          position: relative;
+          display: inline-block;
+        }
+      
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: -30px;
+            background-color: #f9f9f9;
+            min-width: 117px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            z-index: 100;
+        }
+      
+        .dropdown-content a {
+          color: black;
+          padding: 12px 16px;
+          text-decoration: none;
+          display: block;
+        }
+      
+        .dropdown-content a:hover {
+          background-color: #f1f1f1;
+        }
+      
+        .dropdown:hover .dropdown-content {
+          display: block;
+        }
+      
+      </style>
+
+
 </head>
 <body>
 <div class="navbar-content  ">
@@ -27,7 +62,15 @@
             <span class="orders" onclick="order()">Orders</span>
             <span class="getsupport" onclick="support()">Get Support</span>
             <span class="switch" onclick="switchuser()">Switch to Selling</span>
-            <image class= "profileimg" src = "../Assests/login_img1.jpg" onclick="profile()"/>
+            
+            <div class="dropdown">
+                <image class= "profileimg" src = "../Assests/login_img1.jpg" onclick="profile()"/>
+                <div class="dropdown-content">
+                  <a href="#">Option 1</a>
+                  <a href="#">Option 2</a>
+                  <a href="#">Option 3</a>
+                </div>
+            </div>
 
         </div>
         <script>
