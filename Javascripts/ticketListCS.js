@@ -16,7 +16,7 @@ function getCookie(cookieName) {
     return null;
   }
 
-  var userId = 32 //getCookie("User_ID");
+  var userId = 76 //getCookie("User_ID");
 
 const all = document.querySelector(".all")
 const me = document.querySelector(".me")
@@ -69,9 +69,10 @@ function tableLoad(view,userId){
       result.forEach(item => {
         
         if(view=="me"){
-          document.querySelector(".agent").remove()
                   
           const newItem = child.cloneNode(true)
+          newItem.querySelector(".agent").remove()
+
 
           newItem.querySelector(".btn").remove();
           newItem.querySelector('.profile-pic').src=item.url
@@ -81,7 +82,7 @@ function tableLoad(view,userId){
           if(item.role=="1"){newItem.querySelector(".role").textContent="Client"}
           else if(item.role=="2"){newItem.querySelector(".role").textContent="Designer"}
 
-          if(item.agentID==userId){perent.appendChild(newItem)}
+          if(item.agentID==userId && item.status==2){perent.appendChild(newItem)}
 
           var itemDivs=[
             newItem.querySelector(".ticket-name"),
@@ -92,12 +93,11 @@ function tableLoad(view,userId){
           ]
          
           itemDivs.forEach(function(itemDiv) {
-            //itemDiv.addEventListener("click",()=>{ viewticket(item.ref_no)})//view tickets--------------------------------------------
+            itemDiv.addEventListener("click",()=>{ viewticket(item.ref_no,true)})//view tickets--------------------------------------------
             itemDiv.addEventListener("mouseover",()=>{ hoverChnageAddClass(itemDivs); })
             itemDiv.addEventListener("mouseout",()=>{hoverChnageRemoveClass(itemDivs);})
           });
 
-          console.log(userId)
 
         }else{
           const newItem = child.cloneNode(true)
@@ -132,24 +132,12 @@ function tableLoad(view,userId){
         ]
        
         itemDivs.forEach(function(itemDiv) {
-          itemDiv.addEventListener("click",()=>{ viewticket(item.ref_no)})//view tickets--------------------------------------------
+          itemDiv.addEventListener("click",()=>{ viewticket(item.ref_no,false)})//view tickets--------------------------------------------
           itemDiv.addEventListener("mouseover",()=>{ hoverChnageAddClass(itemDivs); })
           itemDiv.addEventListener("mouseout",()=>{hoverChnageRemoveClass(itemDivs);})
         });
 
-        //  function hoverChnageAddClass(){
-        //   itemDivs.forEach(function(itemDiv) {
-        //     itemDiv.classList.add("hoverChange");
-        //   });
-        //  }
-        //  function hoverChnageRemoveClass(){
-        //   itemDivs.forEach(function(itemDiv) {
-        //     itemDiv.classList.remove("hoverChange");
-        //   });
-          
-        //  }
-
-        }
+      }
         
     })
   })            
@@ -225,9 +213,6 @@ function assing(selectedAgentId, ticketID){
     .catch(error => console.log('error', error));
 } 
 
-// viewticket(item.ref_no){
-//   //
-// }
 
 
 function hoverChnageAddClass(itemDivs){
@@ -239,5 +224,12 @@ function hoverChnageAddClass(itemDivs){
   itemDivs.forEach(function(itemDiv) {
     itemDiv.classList.remove("hoverChange");
   });
-  
  }
+
+
+ function viewticket(ticketID, assigned){
+
+  var url ="../HTML/ticketListViewSupport.html?ticketID="+ encodeURIComponent(ticketID)+"&assigned="+encodeURIComponent(assigned)
+    window.location.href = url
+  
+}

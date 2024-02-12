@@ -105,8 +105,8 @@ rejected.addEventListener("click",()=>{
          })
         
          //update a ticket----------------------------------------------------
-        newItem.querySelector(".edit").addEventListener("click",()=>{ 
-          editTicket(item.ref_no,item.subject,item.description)
+        newItem.querySelector(".edit").addEventListener("click",()=>{
+          editTicket(item.ref_no)
          }) 
       
 
@@ -166,6 +166,7 @@ rejected.addEventListener("click",()=>{
 
   
 function deleteRequest(TicketID){
+  console.log(TicketID)
   if(confirm('Are you sure you want Delete this request?')){
     
     var myHeaders = new Headers();
@@ -251,10 +252,11 @@ function createticket(){
 }
 
 //save update ticket details in local storage--------------------------------------------------
-function editTicket(TicketID){ 
+function editTicket(ticketID){ 
+  console.log(ticketID)
   
   var pValue = "edit"
-  var url = "../HTML/createTicket.html" + "?pValue=" + encodeURIComponent(pValue)+"&TicketID="+encodeURIComponent(TicketID);
+  var url = "../HTML/createTicket.html" + "?pValue=" + encodeURIComponent(pValue)+"&TicketID="+encodeURIComponent(ticketID);
 
   // var newURL = "../HTML/createTicket.html?ref_no="+encodeURIComponent(TicketID)+"&subject="+encodeURIComponent(subject)+"&description="+encodeURIComponent(description) ;
   window.location = url;

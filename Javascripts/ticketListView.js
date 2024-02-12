@@ -55,7 +55,7 @@ var requestOptions = {
                 case 1:
                   status="ONGOING"
                   document.querySelector(".header").textContent=status
-                  document.querySelector(".header-status").style.backgroundColor= "red" //rgba(234, 234, 0, 0.486)
+                  document.querySelector(".header-status").style.backgroundColor= "yellow" //rgba(234, 234, 0, 0.486)
                   break
       
                 case 2:
@@ -67,7 +67,7 @@ var requestOptions = {
                 case 3:
                   status="REJECTED"
                   document.querySelector(".header").textContent=status
-                  document.querySelector(".header-status").style.backgroundColor= rgba(255, 1, 1, 0.492)
+                  document.querySelector(".header-status").style.backgroundColor= "red"//rgba(255, 1, 1, 0.492)
                   break
        
               }

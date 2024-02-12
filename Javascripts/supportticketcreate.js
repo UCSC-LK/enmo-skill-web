@@ -10,7 +10,7 @@ function getCookie(cookieName) {
         }
     }
     return null;
-  } var userId = getCookie("User_ID");
+  } 
 
 
 // var pValue=null
@@ -21,14 +21,13 @@ const url = new URL(window.location.href);
 var ref_no = url.searchParams.get('TicketID');
 
 if(ref_no != null){
-    loadData()
+    loadData(ref_no)
 }
 
 
 //load current data for update page---------------------------------------
-function loadData(){
+function loadData(ref_no){
 
-    console.log("01")
 
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");                          
@@ -42,7 +41,7 @@ function loadData(){
     redirect: 'follow'
     };
 
-    fetch(BASE_URL+"/support?icketId="+encodeURIComponent(ref_no), requestOptions)
+    fetch(BASE_URL+"/support?TicketId="+encodeURIComponent(ref_no), requestOptions)
     .then(response => response.json())
     .then(result => {
         result.forEach(element => {
@@ -61,8 +60,8 @@ function loadData(){
         // console.log(description)
         // console.log(ref_no)
 
-        document.getElementById("subject").value = subject;
-        document.getElementById("description").value = description;
+        // document.getElementById("subject").value = subject;
+        // document.getElementById("description").value = description;
 }
 
 function ticketsubmission(){
