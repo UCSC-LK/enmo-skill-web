@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/package_view_client.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>Document</title>
+</head>
+<body>
+    <div class="main"  style="margin-top: 80px;">
+        <iframe src="../Components/navbar_customer.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;position: fixed;top: 0;z-index: 2;left: 0;"></iframe>
+        <div class="container">
+
+        
+        <div class="container-inside" id="container-inside" >
+
+            <div class="loader-div" id="loader-div"> 
+                <div class="loader"></div>
+            </div>
+
+
+                
+        <div class="block" id="block"  style="display: none;">
+                    <div class="inside-block">
+                        <div class="align-div">
+    
+                            <h1 class="headding-title" id="headding-title"></h1>
+        
+                            <div class="package-cover">
+                                <img id="designer-picture" alt="designer-profile-picture" class="designer-profile-picture">
+                                <p class="designer-username" id="designer-username1"></p>  
+                                <i class="sep">|</i>
+                                <p class="no-reviews" id="no-reviews"></p>
+                                <i class=" fa fa-star"></i>
+                                <p class="review-count" id="review-count"></p>
+                                <i class="sep">|</i>
+                                <p class="no-orders" id="no-orders"></p>
+                                
+                            </div>
+        
+                            <div class="image-holder" id="image-holder">
+                                    <img id="cover-image" alt="cover-image" class="cover-image">
+                                </div>
+        
+                                <div class="package-details">
+                                    <div class="subheader">
+                                        <h2 class="subheading border">Package details</h2>
+                                    </div>
+                                    <div id="description">
+                                        <!-- <p>
+                                            Are you in need of a captivating and distinctive logo that perfectly represents your brand's identity? Look no further! 
+                                            I am here to bring your vision to life with my exceptional logo design services.
+                                        </p>
+                                        <p>
+                                            Why Choose Me?
+                                            <ul>
+                                                <li>Custom Designs:</li>
+                                                <ul>
+                                                    <li>I take the time to understand your business, values, and target audience to create a unique and memorable 
+                                                        logo that sets you apart.</li>
+                                                </ul>
+                                                <li>Professional Expertise:</li>
+                                                <ul>
+                                                    <li>With years of experience, I have the design skills and creative flair to deliver outstanding logos 
+                                                        that leave a lasting impression.</li>
+                                                </ul>
+                                                <li>Unlimited Revisions:</li>
+                                                <ul>
+                                                    <li>I understand the importance of timely delivery. You can expect your logo within [Specify Your Delivery 
+                                                        Timeframe].</li>
+                                                </ul>
+                                                <li>Quick Turnaround:</li>
+                                                <ul>
+                                                    <li>I take the time to understand your business, values, and target audience to create a unique and memorable 
+                                                        logo that sets you apart.</li>
+                                                </ul>
+                                                <li>High-Quality Files:</li>
+                                                <ul>
+                                                    <li>You will receive high-resolution files suitable for web and print, ensuring your logo looks fantastic 
+                                                        in all applications.</li>
+                                                </ul>
+                                            </ul>
+                                        </p>
+                                        <p>
+                                            Let's collaborate to make your brand shine with a logo that speaks volumes. Contact me today and let's get started 
+                                            on your journey to a compelling brand image!
+                                        </p> -->
+                                    </div>
+                                    
+                                    <h3>Catogery</h3>
+                                    <p id="catogery"></p>
+                                </div>
+        
+                            <div class="designer-details">
+                                <div class="subheader">
+                                    <h2 class="subheading">About the Designer</h2>
+                                </div>
+                                <div class="designer-details-content">
+                                    <div class="row">
+                                        <img alt="designer-profile" id="designer-img" class="designer-img">
+                                    
+                                        <div class="data-row">
+                                            <p id="designer-username2" class="designer-username"></p>
+                                            <div class="review-row">
+                                                <p class="no-reviews" id="reviews-designer"></p>
+                                                <i class=" fa fa-star"></i>
+                                                <p class="review-count" id="review-count-designer"></p>
+                                            </div>
+    
+                                        </div> 
+                                        <button id="contact-btn" class="button-save-square" onclick="profile()">Contact Me</button>
+                                        
+                                    </div>
+    
+                                    <div class="short-data border">
+                                        <div class="sds">
+                                            <h3 class="ttl">From</h3>
+                                            <p class="cnt">Sri Lanka</p>
+                                        </div>
+                                        <div class="sds">
+                                            <h3 class="ttl">Member Since</h3>
+                                            <p class="cnt" id="member-since">April 2021</p>
+                                        </div>
+                                        <div class="sds">
+                                            <h3 class="ttl">Last delivery</h3>
+                                            <p class="cnt" id="last-deli">about 3 hours</p>
+                                        </div>
+                                        <div class="sds">
+                                            <h3 class="ttl">Languages</h3>
+                                            <p class="cnt" id="lang">English</p>
+                                        </div>
+                                        
+                                    </div>
+                                    <p class="des" id="des-designer">
+                                    </p>
+                                </div>
+                                
+                                  
+                            </div>
+        
+                            <div class="reviews">
+                                <div class="subheader">
+                                    <h2 class="subheading">Reviews</h2>
+                                </div>
+                                
+    
+                                <div class="review-frame">
+                                    <div class="reviewer-row">
+                                        <img alt="client-profile" id="client-img" class="client-img">
+    
+                                        <div class="st">
+                                            <h3 id="client-name"></h3>
+                                            <i class="sep-r">|</i>
+                                            <p class="country" id="client-country"></p>
+                                            <!-- <i class="sep-r">|</i>
+                                            <p class="no-reviews">5</p>
+                                            <i class=" fa fa-star"></i> -->
+                                            
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="review-body">
+                                    
+                                        <p id="the-review">
+                                        </p>
+                                    </div>
+                                    <p class="date" id="reviewd-date"></p>
+                                </div>
+                                <button class="button-save" onclick="reviews()">See more reviews</button>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    
+                    
+                </div>
+
+                <div class="sticky" id="sticky"  style="display: none;">
+                    <div id="logo-designing-pricing">
+                        <div class="pricing-details">
+                            <DIV class="subheader">
+                                <h2 class="subheading">Pricing details</h2>
+    
+                            </DIV>
+    
+                            <table class="table" id="price-table">
+                                <tr class="header">
+                                    <td class="table-header">Price package</td>
+                                    <td class="table-header">Platinum</th>
+                                    <td class="table-header">Silver</th>
+                                    <td class="table-header">Gold</th>
+                                </tr>
+                                <tbody id="table-body">
+
+                                </tbody>
+                                <!-- <tr>
+                                    <td>Price (Rs)</td>
+                                    <td class="price">100</t>
+                                    <td class="price">500</td>
+                                    <td class="price">1000</td>
+                                </tr>
+                                <tr id="rev-row">
+                                    <td>No of revisons</td>
+                                    <td>Unlimited</td>
+                                    <td>Unlimited</td>
+                                    <td>Unlimited</td>
+                                </tr>
+                                <tr>
+                                    <td>Delivery durarion</td>
+                                    <td>1 day</td>
+                                    <td>2 days</td>
+                                    <td>3 days</td>
+                                </tr>
+                                <tr>
+                                    <td>Logo transparancy</td>
+                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                                    
+                                    
+                                </tr>
+                                <tr>
+                                    <td>Vector file</td>
+                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                                <tr>
+                                    <td>Printable file</td>
+                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>3D mokup</td>
+                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                                <tr>
+                                    <td>Source file</td>
+                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>Printable file</td>
+                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>Social media kit</td>
+                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>No of concepts included</td>
+                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><button class="button-save" onclick="payment()">Select</button></td>
+                                    <td><button class="button-save" onclick="payment()">Select</button></td>
+                                    <td><button class="button-save" onclick="payment()">Select</button></td>
+                                </tr> -->
+    
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</body>
+
+<script>
+    function profile(){
+        window.location.href = "../HTML/profile.html"
+    }
+
+    function payment(){
+        window.location.href = "../HTML/payment.html"
+    }
+
+    function reviews(){
+        alert("UI is under construction")
+    }
+</script>
+<script src="../Javascripts/baseurl.js"></script>
+<script src="../Javascripts/package_view_client.js"></script>
+</html>
