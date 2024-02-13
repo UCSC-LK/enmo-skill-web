@@ -1,3 +1,23 @@
+function getCookie(cookieName) {
+    var name = cookieName + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var cookieArray = decodedCookie.split(';');
+  
+    for(var i = 0; i < cookieArray.length; i++) {
+        var cookie = cookieArray[i].trim();
+        if (cookie.indexOf(name) == 0) {
+            return cookie.substring(name.length, cookie.length);
+        }
+    }
+    return null;
+  }
+
+var myHeaders = new Headers();                          ///important
+myHeaders.append("Content-Type", "application/json");   ///important
+myHeaders.append("Authorization", getCookie("JWT"));    ///important
+
+var raw = JSON.stringify({});
+
 const url = new URL(window.location.href);
 const packageId = url.searchParams.get('packageId');
 console.log(packageId);
@@ -5,7 +25,10 @@ console.log(packageId);
 document.addEventListener( "DOMContentLoaded", loadData() );
 
 function loadData() {
-    fetch(BASE_URL+`/packageview?packageId=${packageId}`)
+    fetch(BASE_URL+`/packageview?packageId=${packageId}`,{
+        method: 'GET',
+        headers: myHeaders,
+    })
     .then((response) =>{
         if (!response.ok) {
             throw new Error('An error occured!');

@@ -13,7 +13,7 @@ function getCookie(cookieName) {
 }
 // console.log("iD: " + getCookie("User_ID"));
 
-// const UserId = getCookie("User_ID");
+const UserId = getCookie("User_ID");
 
 var myHeaders = new Headers();                          ///important
 myHeaders.append("Content-Type", "application/json");   ///important
@@ -43,13 +43,12 @@ function laodActivePkg() {
 
     var requestOptions = {
       method: 'GET',
-      headers: myHeaders,                                   ///important
-      body: raw,
+      headers: myHeaders,
       redirect: 'follow'
     };
 
     // console.log(BASE_URL+"/package");
-  fetch(BASE_URL+"/package?UserId="+UserId+"&packageId="+0, requestOptions)
+  fetch(BASE_URL+"/package?&packageId="+0, requestOptions)
     .then((response) => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -154,12 +153,11 @@ function laodPausedPkg() {
 
     var requestOptions = {
       method: 'GET',
-      headers: myHeaders,                                   ///important
-      body: raw,
+      headers: myHeaders,
       redirect: 'follow'
     };
   
-    fetch(BASE_URL+"/package?UserId="+UserId+"&packageId="+0, requestOptions)
+    fetch(BASE_URL+"/package?&packageId="+0, requestOptions)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -273,12 +271,11 @@ function laodPendingPkg() {
 
     var requestOptions = {
       method: 'GET',
-      headers: myHeaders,                                   ///important
-      body: raw,
+      headers: myHeaders,
       redirect: 'follow'
     };
 
-    fetch(BASE_URL+"/package?UserId="+UserId+"&packageId="+0, requestOptions)
+    fetch(BASE_URL+"/package?&packageId="+0, requestOptions)
     .then((response) => {
       if (!response.ok) {
         throw new Error('Cannot get data');
@@ -397,7 +394,7 @@ function deletePackage(selectedData) {
   if (flag) {
     const deleteUrl = `http://localhost:15000/enmo_skill_backend_war/package?packageId=${packageId}`;
 
-    fetch(BASE_URL+"/package?packageId="+packageId+"&UserId="+UserId, {
+    fetch(BASE_URL+"/package?packageId="+packageId, {
       method: 'DELETE',
       headers: myHeaders,
       body: JSON.stringify(selectedData),
@@ -429,7 +426,7 @@ function changeStatus(newStatus, selectedData){
 
   const updateUrl = `http://localhost:15000/enmo_skill_backend_war/package?packageId=${packageId}`;
 
-  fetch(BASE_URL+"/package?packageId="+packageId+"&UserId="+UserId, {
+  fetch(BASE_URL+"/package?packageId="+packageId, {
     method: 'PUT',
     headers: myHeaders,
     body: JSON.stringify(selectedData),
