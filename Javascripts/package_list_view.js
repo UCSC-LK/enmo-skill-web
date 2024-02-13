@@ -88,14 +88,14 @@ function loadAllPackages(category){
 
       // Create the profile image element
       var profileImgElement = document.createElement("img");
-      profileImgElement.src = "../Assests/login_img1.jpg";
+      profileImgElement.src = "../Assests/user_coloured.png";
       profileImgElement.alt = "";
       profileImgElement.classList.add("profile-img");
 
       // Create the designer name paragraph
       var designerNameParagraph = document.createElement("p");
       designerNameParagraph.classList.add("designer-name");
-      designerNameParagraph.textContent = "Joe A.";
+      designerNameParagraph.textContent = package.designerName;
 
       // Create the description paragraph
       var titleParagraph = document.createElement("p");

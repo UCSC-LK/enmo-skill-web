@@ -24,7 +24,7 @@ function loadData() {
         document.getElementById("headding-title").innerHTML = package_data.title;
 
         var designer_pic = document.getElementById("designer-picture");
-        designer_pic.src = "../Assests/login_img1.jpg"; // this data has to be store in the db
+        designer_pic.src = "../Assests/user_coloured.png"; // this data has to be store in the db
 
         document.getElementById("designer-username1").innerHTML = designer_data.display_name;
 
@@ -54,7 +54,7 @@ function loadData() {
         document.getElementById("catogery").innerHTML = cat;
 
         var designer_pic_2 = document.getElementById("designer-img");
-        designer_pic_2.src = "../Assests/login_img1.jpg"; // this data has to be store in the db
+        designer_pic_2.src = "../Assests/user_coloured.png"; // this data has to be store in the db
 
         document.getElementById("designer-username2").innerHTML = designer_data.display_name;
         document.getElementById("reviews-designer").innerHTML = 4.5; // need to fetch from reviews table
@@ -69,13 +69,13 @@ function loadData() {
         document.getElementById('des-designer').innerHTML = designer_data.description;
 
         var client_img  = document.getElementById('client-img')
-        client_img.src = "../Assests/login_img2.jpg"
+        client_img.src = "../Assests/user_coloured.png"
 
         document.getElementById("client-name").innerHTML = "Joe A."; // need to fetch from review table
         document.getElementById("client-country").innerHTML = "United States"; // need to fetch from client table
 
         // this too has to be fetched from review table
-        document.getElementById("the-review").innerHTML = "Working with Jane P. for my logo was a delight. They grasped my brand's essence and delivered a remarkable logo. The unlimited revisions, quick turnaround, and high-qualit files were exceptional. I couldn't be happier with the outcome. Highly recommend!";
+        document.getElementById("the-review").innerHTML = "Working with this seller for my project was a delight. They grasped my brand's essence and delivered a remarkable logo. The unlimited revisions, quick turnaround, and high-qualit files were exceptional. I couldn't be happier with the outcome. Highly recommend!";
 
         document.getElementById("reviewd-date").innerHTML = "3 months ago"
 
