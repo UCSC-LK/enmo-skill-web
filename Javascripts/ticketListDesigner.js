@@ -12,6 +12,9 @@ function getCookie(cookieName) {
   return null;
 }
 
+var userLevel = 2 //hard coded----------------------
+
+const createTicket = document.querySelector(".createTicket")
 const all = document.querySelector(".all")
 const ongoing = document.querySelector(".ongoing")
 const solved = document.querySelector(".solved")
@@ -20,6 +23,14 @@ const rejected = document.querySelector(".rejected")
 
 const perent = document.querySelector(".parent")
 const child = document.querySelector(".ticket-box-2")
+
+createTicket.addEventListener("click",()=>{
+  if(userLevel==1){
+    createticketClent()
+  }else if(userLevel==2){
+    createticketDesigner()
+  }
+})
 
 tableLoad("all")
 all.style.color="#000000"
@@ -247,8 +258,12 @@ function deleteRequest(TicketID){
 // }
 
 //load create ticket page-------------------------------------------------------------------
-function createticket(){
-  window.location.href = "../HTML/CSA-main.html"
+function createticketDesigner(){
+  window.location.href = "../HTML/CSA-designer.html"
+}
+
+function createticketClent(){
+  window.location.href = "../HTML/CSA-client.html"
 }
 
 //save update ticket details in local storage--------------------------------------------------
