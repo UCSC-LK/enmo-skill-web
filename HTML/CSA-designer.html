@@ -15,10 +15,15 @@
                 <h1>Designer on Enmo Skill</h1>
             </div>
             <div class="table">
+                <div class="row" onclick="editProfile()"><p class="text">Edit profile</p></div>
+                <div class="row" onclick="deactivateAccoun()"><p class="text">Deactivate account</p></div>
                 <div class="row" onclick="unableWithdrow()"><p class="text">Uneble to withdrow funds</p></div>
                 <div class="row" onclick="geFunds()"><p class="text">Did not get funds</p></div>
                 <div class="row" onclick="IssueOrder()"><p class="text">Issue with an order</p></div>
+                <div class="row" onclick="IssuePackege()"><p class="text">Issue with an Package</p></div>
                 <div class="row" onclick="other()"><p class="text">Other</p></div>
+                
+                
             </div>
             <div>
                 
@@ -39,8 +44,14 @@
 </body>
 
 <script>
-    function back(){
+     function back(){
         window.history.back();
+    }
+    function editProfile(){
+        window.location.href='./CSA-editProfile.html'
+    }
+    function deactivateAccoun(){
+        window.location.href='./CSA-deactivateAccoun.html'
     }
     function unableWithdrow(){
         window.location.href='./CSA-unableWithdrow.html';
@@ -50,6 +61,9 @@
     }
     function IssueOrder(){
         window.location.href='./CSA-IssueOrder.html';
+    }
+    function IssuePackege(){
+        window.location.href='./createTicket.html?value=packege';
     }
     function other(){
         window.location.href='./createTicket.html';

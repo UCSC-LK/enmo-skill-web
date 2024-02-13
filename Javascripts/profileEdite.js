@@ -11,7 +11,8 @@ function getCookie(cookieName) {
     }
     return null;
   }
-var userId = getCookie("User_ID");
+
+
 //Get parameter value---------------------------------------------------------
 var paramValue = null
 
@@ -74,13 +75,21 @@ const maxSkillClones = 2
 
 const skillDropdown = document.getElementById('skill');
 
+var myHeaders = new Headers();                          
+myHeaders.append("Content-Type", "application/json");   
+myHeaders.append("Authorization", getCookie("JWT"));    
+
+var raw = JSON.stringify({});
+
+
 var requestOptions = {
     method: 'GET',
+    headers: myHeaders, 
     redirect: 'follow'
 };
 
   
-fetch("http://localhost:15000/enmo_skill_backend_war/skill", requestOptions)
+fetch(BASE_URL+"/skill", requestOptions)
     .then(response => response.json())
     .then(result => {
 
@@ -240,7 +249,20 @@ if(paramValue == "edite"){
 
 //display current details-------------------------------------------------
 
-    fetch("http://localhost:15000/enmo_skill_backend_war/profile?role=Designer&userId="+userId, requestOptions)
+var myHeaders = new Headers();                          
+myHeaders.append("Content-Type", "application/json");   
+myHeaders.append("Authorization", getCookie("JWT"));    
+
+var raw = JSON.stringify({});
+
+var requestOptions = {
+    method: 'GET',
+    headers: myHeaders, 
+    redirect: 'follow'
+};
+
+
+    fetch(BASE_URL+"/profile", requestOptions)
     .then(response => response.json())
     .then(userData => {
         console.log(userData)
@@ -274,6 +296,7 @@ if(paramValue == "edite"){
 
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Authorization", getCookie("JWT"));  
     
         const fname = document.getElementById("firstName").value
         const lname = document.getElementById("lastName").value
@@ -281,7 +304,6 @@ if(paramValue == "edite"){
         const description = document.getElementById("description").value
     
         var raw = JSON.stringify({
-            "userId": userId,
             "role": "Designer",
             "fname": fname,
             "lname": lname,
@@ -298,7 +320,7 @@ if(paramValue == "edite"){
             redirect: 'follow'
         };
     
-        fetch("http://localhost:15000/enmo_skill_backend_war/profile", requestOptions)
+        fetch(BASE_URL+"/profile", requestOptions)
             .then(response => response.text())
             .then(result => {
                 alert(result);
@@ -315,6 +337,7 @@ if(paramValue == "edite"){
         
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Authorization", getCookie("JWT"));  
 
         const fname = document.getElementById("firstName").value
         const lname = document.getElementById("lastName").value
@@ -322,7 +345,6 @@ if(paramValue == "edite"){
         const description = document.getElementById("description").value
 
         var raw = JSON.stringify({
-            "userId": userId,
             "role": "Designer",
             "fname": fname,
             "lname": lname,
@@ -339,7 +361,7 @@ if(paramValue == "edite"){
             redirect: 'follow'
         };
 
-        fetch("http://localhost:15000/enmo_skill_backend_war/profile", requestOptions)
+        fetch(BASE_URL+"/profile", requestOptions)
             .then(response => response.text())
             .then(result =>  {alert(result)
                 window.location="../HTML/profile.html"})
@@ -352,17 +374,17 @@ if(paramValue == "edite"){
 
 var myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
+myHeaders.append("Authorization", getCookie("JWT"));  
 
 
 
 var requestOptions = {
   method: 'OPTIONS',
   headers: myHeaders,
-
   redirect: 'follow'
 };
 
-fetch("http://localhost:15000/enmo_skill_backend_war/profile?userId="+userId, requestOptions)
+fetch(BASE_URL+"/profile", requestOptions)
   .then(response => response.json())
   .then(result => {console.log(result)
     imgArea.innerHTML = '';

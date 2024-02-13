@@ -11,19 +11,25 @@ function getCookie(cookieName) {
   }
   return null;
 }
-var userId = getCookie("User_ID");
+// var userId = getCookie("User_ID");
+
+var myHeaders = new Headers();                          
+myHeaders.append("Content-Type", "application/json");   
+myHeaders.append("Authorization", getCookie("JWT"));    
+
+var raw = JSON.stringify({});
+
 
 var requestOptions = {
     method: 'GET',
-    redirect: 'follow'
+    headers: myHeaders, 
+    redirect: 'follow'                               
   };
   
-  fetch("http://localhost:15000/enmo_skill_backend_war/profile?role=Designer&userId="+userId, requestOptions)
+  fetch(BASE_URL+"/profile", requestOptions)
     .then(response => response.json())
     .then(result => {
-        console.log(result)
-
-
+       
         document.querySelector(".display-name").textContent = result.display_name;
         document.querySelector(".description").textContent = result.description;
 
@@ -33,8 +39,6 @@ var requestOptions = {
 
           setArray(languagesContainer,result.language);// set languages-------------
           setArray(skillsContainer,result.skills);     //set skills------------------
-
-        console.log(item.skills)
         
       })
     .catch(error => console.log('error', error));
@@ -54,32 +58,33 @@ var requestOptions = {
 
 function editProfile(){
   var parameterValue = "edite";
-  var newURL = "../HTML/profileEdit.html?paramName=" + encodeURIComponent(parameterValue);
+  var newURL = BASE_URL+"/profileEdit.html?paramName=" + encodeURIComponent(parameterValue);
 
   window.location = newURL;
 }
 
 
 const imgElement = document.querySelector('.profile-pic');
+
 var myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
-
-
+myHeaders.append("Authorization", getCookie("JWT"));    
 
 var requestOptions = {
   method: 'OPTIONS',
   headers: myHeaders,
-
   redirect: 'follow'
 };
 
-fetch("http://localhost:15000/enmo_skill_backend_war/profile?userId="+userId, requestOptions)
+fetch(BASE_URL+"/profile", requestOptions)
   .then(response => response.json())
   .then(result => {console.log(result)
     imgElement.src=result.url;
 
   })
   .catch(error => console.log('error', error));
+
+
 
 
 

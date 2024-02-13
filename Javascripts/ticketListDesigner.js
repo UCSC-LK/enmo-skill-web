@@ -1,3 +1,20 @@
+function getCookie(cookieName) {
+  var name = cookieName + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var cookieArray = decodedCookie.split(';');
+
+  for(var i = 0; i < cookieArray.length; i++) {
+      var cookie = cookieArray[i].trim();
+      if (cookie.indexOf(name) == 0) {
+          return cookie.substring(name.length, cookie.length);
+      }
+  }
+  return null;
+}
+
+var userLevel = 2 //hard coded----------------------
+
+const createTicket = document.querySelector(".createTicket")
 const all = document.querySelector(".all")
 const ongoing = document.querySelector(".ongoing")
 const solved = document.querySelector(".solved")
@@ -6,6 +23,14 @@ const rejected = document.querySelector(".rejected")
 
 const perent = document.querySelector(".parent")
 const child = document.querySelector(".ticket-box-2")
+
+createTicket.addEventListener("click",()=>{
+  if(userLevel==1){
+    createticketClent()
+  }else if(userLevel==2){
+    createticketDesigner()
+  }
+})
 
 tableLoad("all")
 all.style.color="#000000"
@@ -31,12 +56,7 @@ rejected.addEventListener("click",()=>{
   rejected.style.color="#000000"
 })
 
-
-var requestOptions = {
-    method: 'GET',
-    Credential:'include'
-  };
-
+//get list of tickets----------------------------------------------------------
 
   function tableLoad(view){
     perent.innerHTML=""
@@ -45,8 +65,21 @@ var requestOptions = {
     solved.style.color="#9D9D9D"
     rejected.style.color="#9D9D9D"
 
+    var myHeaders = new Headers();                          
+    myHeaders.append("Content-Type", "application/json");  
+    myHeaders.append("Authorization", getCookie("JWT"));   
 
-    fetch(BASE_URL+"/support?UserId=1&Role=Designer", requestOptions)
+    var raw = JSON.stringify({});
+
+
+    var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        Credential:'include'
+      };
+
+
+    fetch(BASE_URL+"/support", requestOptions)
     .then(response => response.json())
     .then(result => {
       console.log(result)
@@ -77,14 +110,21 @@ var requestOptions = {
         newItem.querySelector(".status").textContent=status
         newItem.querySelector(".date").textContent=item.date
 
-        
+        //delete a ticket------------------------------------------------------
         newItem.querySelector(".delete").addEventListener("click",()=>{ 
           deleteRequest(item.ref_no)
-         })   
+         })
+        
+         //update a ticket----------------------------------------------------
+        newItem.querySelector(".edit").addEventListener("click",()=>{
+          editTicket(item.ref_no)
+         }) 
+      
 
         var itemDivs=[newItem.querySelector(".ticket-subject"),newItem.querySelector(".ticket-status"),newItem.querySelector(".ticket-date")];
+       
         itemDivs.forEach(function(itemDiv) {
-          itemDiv.addEventListener("click",()=>{ viewrequest(item,status)})
+          itemDiv.addEventListener("click",()=>{ viewticket(item.ref_no)})//view tickets--------------------------------------------
           itemDiv.addEventListener("mouseover",()=>{ hoverChnageAddClass(); })
           itemDiv.addEventListener("mouseout",()=>{hoverChnageRemoveClass();})
         });
@@ -125,8 +165,7 @@ var requestOptions = {
             perent.appendChild(newItem)
           
          }
-
-        
+      
   
       });
       
@@ -137,15 +176,23 @@ var requestOptions = {
   
 
   
-function deleteRequest(requestID){
+function deleteRequest(TicketID){
+  console.log(TicketID)
   if(confirm('Are you sure you want Delete this request?')){
+    
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");  
+    myHeaders.append("Authorization", getCookie("JWT"));   
+
+    var raw = JSON.stringify({});
 
     var requestOptions = {
       method: 'DELETE',
+      headers: myHeaders,
       redirect: 'follow'
     };
     
-    fetch(BASE_URL+"/support?TicketID="+requestID, requestOptions)
+    fetch(BASE_URL+"/support?TicketID="+TicketID, requestOptions)
       .then(response => response.text())
       .then(result => {alert(result)
         location.reload();})
@@ -153,28 +200,85 @@ function deleteRequest(requestID){
   }
 }
 
-function viewrequest(item,status){
-    let popup_con=document.querySelector(".pop-up-container");
-    let popup_details=document.querySelector(".pop-up");
-    let close=document.querySelector(".close")
+//popup view-----------------------------------------------------------------------------
+// function viewrequest(item,status){
+//   let popup_con=document.querySelector(".pop-up-container");
+//   let popup_details=document.querySelector(".pop-up");
+//   let close=document.querySelector(".close")
 
-    
-        popup_con.style.display="flex";
-        popup_details.style.display="inline";
-        popup_details.querySelector(".subject").textContent = item.subject;
-        popup_details.querySelector(".description").textContent = item.description;
-        popup_details.querySelector(".date").textContent = item.date;
-        //popup_details.querySelector(".time").textContent = item.time;
+//   let old_bodies= Array.from(popup_details.querySelectorAll(".pop-body"));
+//   old_bodies.slice(1).forEach(element=>{
+//     element.parentNode.removeChild(element);
+//   })
+  
 
-        popup_details.querySelector(".status").textContent =  status;
+//   popup_con.style.display="flex";
+//   popup_details.style.display="inline";
+//   popup_details.querySelector(".subject").textContent = item.subject;
+//   popup_details.querySelector(".description").textContent = item.description;
+//   popup_details.querySelector(".date").textContent = item.date;
+//   //popup_details.querySelector(".time").textContent = item.time;
+//   popup_details.querySelector(".status").textContent =  status;
+
+//   const PopupPerent = document.querySelector(".scroll")
+//   const PopupChild = document.querySelector(".pop-body")
+
+//   var requestOptions = {
+//     method: 'GET',
+//     redirect: 'follow'
+//   };
+
+//   fetch("http://localhost:15000/enmo_skill_backend_war/support?Role=Client&UserId=" +encodeURIComponent(item.userId)+"&popup="+encodeURIComponent(item.ref_no), requestOptions)
+//     .then(response => response.json())
+//     .then(result => {
+//       console.log(result)
+//       result.forEach(element => {
+//         const newItem2 = PopupChild.cloneNode(true)
+//         console.log( newItem2);
+//         newItem2.querySelector(".subject").textContent=element.subject;
+//         newItem2.querySelector(".description").textContent=element.description;
+//         newItem2.querySelector(".date").textContent=element.date;
+  
+//         console.log(element.subject)
+//         console.log(element.description)
+//         console.log(element)
+  
+        
+//         PopupPerent.appendChild(newItem2)
+//       });
+
+
+//     })
+//    .catch(error => console.log('error', error));
     
-    close.onclick=(event)=>{
-        popup_con.style.display="none";
-        popup_details.style.display="none";
-    }
+//   close.onclick=(event)=>{
+//       popup_con.style.display="none";
+//       popup_details.style.display="none";
+//   }
+// }
+
+//load create ticket page-------------------------------------------------------------------
+function createticketDesigner(){
+  window.location.href = "../HTML/CSA-designer.html"
 }
 
-function createticket(){
-  window.location.href = "../HTML/CSA-main.html"
+function createticketClent(){
+  window.location.href = "../HTML/CSA-client.html"
+}
+
+//save update ticket details in local storage--------------------------------------------------
+function editTicket(ticketID){ 
+  console.log(ticketID)
+  
+  var pValue = "edit"
+  var url = "../HTML/createTicket.html" + "?pValue=" + encodeURIComponent(pValue)+"&TicketID="+encodeURIComponent(ticketID);
+
+  // var newURL = "../HTML/createTicket.html?ref_no="+encodeURIComponent(TicketID)+"&subject="+encodeURIComponent(subject)+"&description="+encodeURIComponent(description) ;
+  window.location = url;
+}
+
+function viewticket(ticketID){
+  var url ="../HTML/ticketListView.html?ticketID="+ encodeURIComponent(ticketID)
+  window.location.href = url
 }
 
