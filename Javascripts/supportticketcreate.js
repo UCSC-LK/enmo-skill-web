@@ -12,16 +12,60 @@ function getCookie(cookieName) {
     return null;
   } 
 
+  var perent = document.querySelector(".attachFile")
+  var chaild1 = document.querySelector(".order-main1")
+  var chaild2 = document.querySelector(".packege-main1")
+
 
 // var pValue=null
 var ref_no=null;
 
 const url = new URL(window.location.href);
-// var pValue = url.searchParams.get('pValue');
+ var value = url.searchParams.get('value');
 var ref_no = url.searchParams.get('TicketID');
+
+console.log(value)
 
 if(ref_no != null){
     loadData(ref_no)
+}
+
+if(value=="order"){
+    perent.appendChild(chaild1)
+    const order = document.querySelector(".order")
+    
+    var result = []//tempary array-----------
+
+    //fetch------------------
+    // Adding a default option
+    const defaultOption = { order_id: 0, title: 'Select an Order' };
+    result.unshift(defaultOption);
+
+    result.forEach(item => {
+        const option = document.createElement('option');
+        option.value = item.order_id;
+        option.textContent = item.title;
+        order.appendChild(option);
+      });
+}else if(value == "packege"){
+    perent.appendChild(chaild2)
+
+    const packege = document.querySelector(".packege")
+
+    var result = []//tempary array-----------
+    //fetch------------------
+
+    // Adding a default option
+    const defaultOption = { package_id: 0, title: 'Select a Package' };
+    result.unshift(defaultOption);
+
+    result.forEach(item => {
+        const option = document.createElement('option');
+        option.value = item.package_id;
+        option.textContent = item.title;
+        packege.appendChild(option);
+    });
+
 }
 
 
@@ -118,3 +162,4 @@ function ticketsubmission(){
     
     }
 }
+

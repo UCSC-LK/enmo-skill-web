@@ -121,3 +121,40 @@ body{
 .div-cursor{
     cursor: pointer;
 }
+
+input[type="file"] {
+    display: none;
+}
+
+/* Style for custom button */
+.custom-file-upload {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #e2e2e2;
+    color: #62646a;
+    display: inline-block;
+    padding: 4px 12px;
+    cursor: pointer;
+}
+
+.ustom-file-upload:hover{
+    background-color: #000000;
+    /* box-shadow: ; */
+}
+
+.packege-main1{
+    display: grid;
+    grid-template-columns:20% 10%;
+    padding: 10px;
+}
+
+.icon2{
+    width: 50px;
+    clip-path: circle(at center);
+}
+
+.dropdown{
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+}

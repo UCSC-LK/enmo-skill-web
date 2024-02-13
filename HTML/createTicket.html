@@ -32,7 +32,32 @@
                     <div><label class="input-lable" for="description"><h3>Description</h3></label></div>
                     <div><textarea  class="inputs-1" name="description" id="description" required></textarea></div>
                 </div>
-                <br>                             
+                <br> 
+                
+                
+            
+                <div class="attachFile">
+                    <label for="fileInput" class="custom-file-upload">Attach Files</label>
+                    <!-- Actual file input field -->
+                    <input type="file" id="fileInput" name="fileInput">
+                </div>
+
+                <div style="display: none;">
+                    <div class="packege-main1">
+                        <div><p class="packege-main2"><select id="packege" class="packege dropdown">
+                        </select></p></div>
+                        <!-- <div><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTh4QJM3RxMSUPh9FPu12R2cZsp4wQzSBiDI8R-nKZvvQ&s" class="icon2"></div> -->
+                    </div>
+                </div>
+
+                <div style="display: none;">
+                    <div class="order-main1">
+                        <div ><p class="order-main2"><select id="order" class="order dropdown"></select></p></div>
+                        <!-- <div ><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTh4QJM3RxMSUPh9FPu12R2cZsp4wQzSBiDI8R-nKZvvQ&s" class="icon2"></div> -->
+                    </div>
+                </div>
+                
+                
             </form>
 
             <div class ="botom-row">
@@ -46,7 +71,7 @@
                     </div>
                 </div>
                 
-
+                              
                 <div class="btn2" >
                     <input class="button div-cursor"  type="submit" value="Send Request" onclick="ticketsubmission()">
 
