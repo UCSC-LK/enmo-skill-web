@@ -41,13 +41,24 @@ document
         loding.style.display ="none"
         if (response.ok) {
           window.location = "../HTML/emailValidationsend.html"+'?email='+encodeURIComponent(document.getElementById("email").value)
-          messageDiv.innerHTML = "Registration successful ";
-        } else if (response.status === 401) {
+          // messageDiv.innerHTML = "Registration successful ";
+        } else if (response.status === 400) {
           // Unauthorized login (status code 401), display an error message
-          messageDiv.innerHTML = "Registration unsuccessful ";
+          //console.error("Error:", response.text().then((text) => console.log(text)));
+          response.text().then((text) => {messageDiv.innerHTML =  text});
+          showMessage("error","Email or Username already exists", 3000);
+        }else if (response.status === 406) {
+          // Unauthorized login (status code 401), display an error message
+          //console.error("Error:", response.text().then((text) => console.log(text)));
+          response.text().then((text) => {messageDiv.innerHTML =  text});
+          showMessage("error","Password should be at least 8 characters", 3000);
         } else {
           // Handle other status codes or errors
           console.error("Error:", response.status);
+          response.text().then((text) => {messageDiv.innerHTML =  text});
+          showMessage("error","Registration Failed!", 3000)
+          
+        
         }
       })
       .catch((error) => {

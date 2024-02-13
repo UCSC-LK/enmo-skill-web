@@ -23,7 +23,7 @@ fetch(BASE_URL+"/validate?option=send&email="+email, requestOptions)
         showMessage("ok",result,3000)
         sendFlag =true
       } else {
-        showMessage("ok",result,3000)
+        showMessage("error",result,3000)
         sendFlag =true
       }
 

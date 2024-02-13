@@ -29,7 +29,7 @@ fetch(BASE_URL + '/validate?key=' + key, requestOptions)
     if (data && data.UserId) {
       const USERID = data.UserId; // Assign UserId to USERID variable
       console.log(data); // Log the entire JSON response
-      window.location.href = "../HTML/clientDetails.html?id=" + USERID;
+      window.location.href = "../HTML/login.html" 
     } else {
       text.textContent = data; // Set text content from response for non-200 status
     }

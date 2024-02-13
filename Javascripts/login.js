@@ -52,15 +52,20 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
         response.json().then((data) => {
           console.log("Message content:", data.message);
           setCookie('JWT',"Bearer "+ data.JWT, 1); 
+          setCookie('Refresh Token',"Bearer "+ data.JWT2, 10); 
           
 
           if(data.userLevelID==1){
+            setCookie('UserLevel',"CUSTOMER", 30); 
             window.location.href = "../HTML/package_list_view.html"
           }else if(data.userLevelID==2){
+            setCookie('UserLevel',"DESIGNER", 30); 
             window.location.href = "../HTML/orderlist_designer.html"
           }else if(data.userLevelID==3){
+            setCookie('UserLevel',"ADMIN", 30); 
             window.location.href = "../HTML/view_client_list_admin.html"
           }else if(data.userLevelID==4){
+            setCookie('UserLevel',"CSA", 30); 
             window.location.href = "../HTML/ticketListCS.html"
           }
         });

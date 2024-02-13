@@ -16,6 +16,10 @@ function getCookie(cookieName) {
 console.log("iD: " + getCookie("JWT"));
 
 
+
+
+
+
 let flagCreate=false;
 let flagUpdate=false;
 const listContainer = document.getElementById("table");

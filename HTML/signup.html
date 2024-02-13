@@ -4,13 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/signup.css">
+    <link rel="stylesheet" href="../CSS/main.css">
     <title>Signup Page</title>
 </head>
 <body>
     <div class="loading">
         <div class="spin"></div>
     </div>
-
+    <div class="box-error">
+        <div class="closebtn">x</div>
+        <box-icon type='solid'class="erroricon" color="#fdfdfd" name='error-alt' animation='tada' size="50px"style="display:none;"></box-icon>
+        <box-icon name='check-circle'class="successicon" color="#fdfdfd"  animation='tada' size="50px" style="display:none;"></box-icon>
+        <div class="massage">
+            <p class="title-error">Error</p>
+            <p class="title-sucess">Success</p>
+            <p class="masssage">qa</p>
+        </div>
+    </div>
     <iframe src="../Components/navbar_no_user.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;position: fixed;top: 0;z-index: 0;left: 0;"></iframe>
    
     <div class="signup-main" >
@@ -35,7 +45,7 @@
                     <input type="password"  class="inputs" id="password" name="password" required>
                     
                     <br><br>
-                    <input type="submit" class="submit" value="Signup" onclick="validateEmail()">
+                    <input type="submit" class="submit" value="Signup" >
                     
                 </form>
                 <div id="messageDiv" style="color: red;">  </div>
@@ -45,6 +55,7 @@
 
     </div>
 <!-- Include the external JavaScript file -->
+<script src="../Javascripts/Toastmassage.js"></script>
 <script src="../Javascripts/baseurl.js"></script>
 <script src="../Javascripts/signup.js"></script>
 <!-- <script type="text/javascript">
