@@ -65,13 +65,24 @@
                 <div class="dropdown-content">
                   <a href="#">Option 1</a>
                   <a href="#">Option 2</a>
-                  <a href="#">Option 3</a>
+                  <a onclick="Logout()">Logout</a>
                 </div>
             </div>
         </div>
 
     </div>
     <script>
+        function Logout() {
+                function deleteCookie(name) {
+                    document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                }
+
+                deleteCookie("JWT");
+                deleteCookie("Refresh Token");
+                deleteCookie("UserLevel");
+                window.parent.location = '../HTML/login.html';
+
+            }
         function home() {
             // Replace the URL in the following line with the URL of the page you want to navigate to.
             window.parent.location = '../';

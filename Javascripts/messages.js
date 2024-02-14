@@ -25,7 +25,7 @@ var requestOptions = {
     redirect: 'follow'
   };
   function loadchat(){
-  fetch(BASE_URL+"/chats?userid="+getCookie("User_ID"), requestOptions)
+  fetch(BASE_URL+"/chats?userid="+35, requestOptions)
     .then(response => response.json())
     .then(result =>{
         console.log(result);
@@ -77,7 +77,7 @@ function openchat(item){
         redirect: 'follow'
       };
       
-      fetch(BASE_URL+"/messages?userid="+getCookie("User_ID")+"&chatid="+item.chatid, requestOptions)
+      fetch(BASE_URL+"/messages?userid="+35+"&chatid="+item.chatid, requestOptions)
         .then(response => response.json())
         .then(result => {console.log(result)
             messagesContainer.innerHTML = '';
@@ -132,7 +132,7 @@ function sendmessage() {
     myHeaders.append("Content-Type", "application/json");
 
     var raw = JSON.stringify({
-        "user": getCookie("User_ID"),
+        "user": 35,
         "chatid": chatid.chatid,
         "Message": input.value
     });

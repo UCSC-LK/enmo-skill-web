@@ -18,14 +18,11 @@ fetch(BASE_URL+"/validate?option=send&email="+email, requestOptions)
 .then(response => response.text())
 .then(result => {console.log(result)
     document.querySelector(".loading").style.display="none";
-    if (result.status === 200) {
+    
         timer()
         showMessage("ok",result,3000)
         sendFlag =true
-      } else {
-        showMessage("error",result,3000)
-        sendFlag =true
-      }
+      
 
 })
 .catch(error => {console.log('error', error);sendFlag =true});

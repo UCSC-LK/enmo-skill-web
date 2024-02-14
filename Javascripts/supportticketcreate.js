@@ -117,7 +117,7 @@ function ticketsubmission(){
         var raw = JSON.stringify({})
     
         var raw2 = JSON.stringify({
-            "requesterID":userId,
+            //"requesterID":userId,
             "description":document.getElementById("description").value,
             "subject":document.getElementById("subject").value
         });

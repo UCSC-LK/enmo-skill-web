@@ -12,7 +12,7 @@ function getCookie(cookieName) {
   return null;
 }
 
-var userLevel = 2 //hard coded----------------------
+// var userLevel = 2 //hard coded----------------------
 
 const createTicket = document.querySelector(".createTicket")
 const all = document.querySelector(".all")
@@ -25,11 +25,12 @@ const perent = document.querySelector(".parent")
 const child = document.querySelector(".ticket-box-2")
 
 createTicket.addEventListener("click",()=>{
-  if(userLevel==1){
-    createticketClent()
-  }else if(userLevel==2){
-    createticketDesigner()
-  }
+  createticketDesigner()
+  // if(userLevel==1){
+  //   createticketClent()
+  // }else if(userLevel==2){
+  //   createticketDesigner()
+  // }
 })
 
 tableLoad("all")
@@ -89,7 +90,7 @@ rejected.addEventListener("click",()=>{
         let status;
         switch(item.status){
           case 0:
-            status="Closed"
+            status="Rejected"
             newItem.querySelector(".panel").style.display="none"
             break
           
@@ -102,7 +103,7 @@ rejected.addEventListener("click",()=>{
             break
 
           case 3:
-            status="Rejected"
+            status="Closed"
             newItem.querySelector(".panel").style.display="none"
             break
  

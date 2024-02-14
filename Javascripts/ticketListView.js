@@ -46,11 +46,11 @@ var requestOptions = {
             var status = element.status
 
             switch(status){
-                case 0:
-                  status="CLOSED"
-                  document.querySelector(".header").textContent=status
-                  document.querySelector(".header-status").style.backgroundColor= "green"//rgba(0, 232, 28, 0.678)
-                  break
+              case 0:
+                status="REJECTED"
+                document.querySelector(".header").textContent=status
+                document.querySelector(".header-status").style.backgroundColor= "red"//rgba(255, 1, 1, 0.492)
+                break
                 
                 case 1:
                   status="ONGOING"
@@ -64,11 +64,11 @@ var requestOptions = {
                   document.querySelector(".header-status").style.backgroundColor=  "yellow"//rgba(234, 234, 0, 0.486)
                   break
       
-                case 3:
-                  status="REJECTED"
-                  document.querySelector(".header").textContent=status
-                  document.querySelector(".header-status").style.backgroundColor= "red"//rgba(255, 1, 1, 0.492)
-                  break
+                  case 3:
+                    status="CLOSED"
+                    document.querySelector(".header").textContent=status
+                    document.querySelector(".header-status").style.backgroundColor= "green"//rgba(0, 232, 28, 0.678)
+                    break
        
               }
         })

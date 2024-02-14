@@ -10,8 +10,7 @@
 <body>
 
     <div style="margin-top: 80px;">
-        <iframe src="../Components/navbar_seller.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;position: fixed;top: 0;z-index: 2;left: 0;"></iframe>
-
+        <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>
     <div class="container">
         <div class="main-container">
             
@@ -26,7 +25,7 @@
                     <div class="div-cursor-1"><p class="ongoing">ONGOING</p></div>
                     <div class="div-cursor-1"><p class="solved">SOLVED</p></div>
                     <div class="div-cursor-1"><p class="rejected">REJECTED</p></div>
-                    <div style="text-align: right;"><button class="button createTicket">CREATE A TICKET</button></div>
+                    <div style="text-align: right;"><button class="button createTicket" onclick="()=>{window.location.href='../HTML/CSA'}">CREATE A TICKET</button></div>
                 </div>
             </div>
             <div class="table" >
