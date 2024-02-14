@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/becomeaseller.css">
+      <link rel="stylesheet" href="../CSS/main.css">
+      <link rel="stylesheet" href="../CSS/navbar1.css">  
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    
+    <title> Additional Details Page</title>
+</head>
+<body>
+    
+    <div class="navbar-content" style="position: fixed; z-index: 10;">
+        <div class="navbar">
+            <!-- Logo -->
+            <div class="logo" onclick="home()">
+                <img src="../Assests/logo enmo.png" alt="Logo">
+            </div>
+        </div>
+    </div>
+    <div class="mainclass" style="overflow: auto;">
+       <div class="box">
+        <img src="../Assests/OC3GY41.png" alt="">
+        <div class="content">
+            <h1>What makes a successful EnmoSkill profile?</h1>
+            <p>Craft a profile that sets you apart from the rest on EnmoSkill, the platform where unique talents shine!</p>
+            <div class="c-box">
+                <div class="contain">
+                    <box-icon type='solid' color="#838383" size="50px" name='user-check'></box-icon>
+                    <p>Take your time in creating your profile so it’s exactly as you want it to be.</p>
+                </div>
+                <div class="contain">
+                    <box-icon color="#838383" size="50px" name='link'></box-icon>
+                    <p>Add credibility by linking out to your relevant professional networks.</p>
+                </div>
+                <div class="contain">
+                    <box-icon  color="#838383" size="50px" name='notepad'></box-icon>
+                    <p>Accurately describe your professional skills to help you get more work.</p>
+                </div>
+                <div class="contain">
+                    <box-icon type='solid' color="#838383" size="50px" name='image-add'></box-icon>
+                    <p>Put a face to your name! Upload a profile picture that clearly shows your face.</p>
+                </div>
+                <div class="contain">
+                    <box-icon type='solid' color="#838383" size="50px" name='lock'></box-icon>
+                    <p>To keep our community secure for everyone, we may ask you to verify your ID.</p>
+                </div>
+                
+            </div>
+            <div class="bottom">
+                <button class="button-become" onclick="Continue()" style="margin-top: 0; width: 170px;">Continue</button>
+                <p>Back</p>
+            </div>
+        </div>
+       </div>
+        
+    </div>
+
+</body>
+<script>
+    function home() {
+        // Replace the URL in the following line with the URL of the page you want to navigate to.
+        window.parent.location = '../';}
+        
+        function Continue() {
+        // Replace the URL in the following line with the URL of the page you want to navigate to.
+        window.parent.location = '../HTML/profileEdit.html';}
+</script>

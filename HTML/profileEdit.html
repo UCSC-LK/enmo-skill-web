@@ -4,11 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/profileEdit.css">
+    <link rel="stylesheet" href="../CSS/main.css">
     <title>Profile Details</title>
 </head>
 
 <body>
-    <iframe src="../Components/navbar_seller.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;position: fixed;top: 0;z-index: 2;left: 0;"></iframe>
+   <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>
+    <div class="box-error">
+        <div class="closebtn">x</div>
+        <box-icon type='solid'class="erroricon" color="#fdfdfd" name='error-alt' animation='tada' size="50px"style="display:none;"></box-icon>
+        <box-icon name='check-circle'class="successicon" color="#fdfdfd"  animation='tada' size="50px" style="display:none;"></box-icon>
+        <div class="massage">
+            <p class="title-error">Error</p>
+            <p class="title-sucess">Success</p>
+            <p class="masssage">qa</p>
+        </div>
+    </div>
+    
     <div class="container">
 
         <div class="container2">
@@ -146,14 +158,33 @@
         
             </div>
         </div>
-        
-        
-
-
 
     </div>
-
-    
+   
 </body>
 
 <script src="../Javascripts/profileEdite.js"></script>
+<script src="../Javascripts/Toastmassage.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+<script>
+    
+    
+// Toastify({
+//     text: "This is a toast",
+//     duration: 3000,
+//     destination: "https://github.com/apvarun/toastify-js",
+//     newWindow: true,
+//     close: true,    
+//     gravity: "bottom", // `top` or `bottom`
+//     position: "left", // `left`, `center` or `right`
+//     stopOnFocus: true, // Prevents dismissing of toast on hover
+//     style: {
+//       background: "linear-gradient(to right, #00b09b, #96c93d)",
+//     },
+//     onClick: function(){} // Callback after click
+//   }).showToast();
+//   console.log("iugserhunh");
+
+// </script>

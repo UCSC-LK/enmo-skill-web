@@ -6,12 +6,14 @@ html, body {
 
 
 .signup-main{
+    z-index: 1;
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.53);
+    position: relative;
 }
 .signup-layout{
     width: 900px;
@@ -25,10 +27,10 @@ html, body {
 .left{
     width: 50%;
     /* margin-right: 10px; */
-    background-image: url('../Assests/login_img2.jpg');
+    background-image: url('../Assests/background.jpg');
     background-size:cover;
     background-position: center;
-    background-color: rgba(2, 25, 80, 0.361);
+    background-color: rgba(49, 49, 49, 0.193);
     background-blend-mode:overlay;
     border-radius: 10px 0 0 10px;
 }
@@ -86,7 +88,7 @@ li:before { content: '\1F5F8'; margin-left: -20px; margin-right: 10px; }
     cursor: pointer;
 }
 
-.form-layout{  
+#form-layout{  
     padding: 40px 20px 20px 27px;
 }
 
@@ -110,7 +112,7 @@ li:before { content: '\1F5F8'; margin-left: -20px; margin-right: 10px; }
     outline: none;
     border: none;
     display: block;
-    padding: 8px 0;
+    padding: 12px 15px;
     width: 355px;
     border: 1px solid #eee;
     border-radius: 5px;
@@ -118,6 +120,7 @@ li:before { content: '\1F5F8'; margin-left: -20px; margin-right: 10px; }
     font-size: 15px;
     z-index: 1;
     position: relative; /* Ensure relative positioning for proper z-index */
+    /* margin: 3px 0 10px 0px; */
 }
 
 .inputs:focus {
@@ -167,8 +170,51 @@ input[type=submit]:hover{
     
 }
 
-
-
+.loading{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    background-color: #252525c5;
+    z-index: 2;
+    align-items: center;
+    justify-content: center;
+    animation: myAnim 2s ease 0s .5 normal forwards;
+}
+.spin {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 6px solid rgba(241, 241, 241, 0.464);
+    border-radius: 50%;
+    border-top-color: #ffffff;
+    animation: myAnim 2s ease 0s .5 normal forwards;
+    animation: spin 1s ease-in-out infinite;
+    -webkit-animation: spin 1s ease-in-out infinite;
+  }
+  @keyframes spin {
+    to {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+  @-webkit-keyframes spin {
+    to {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+    @keyframes myAnim {
+        0% {
+            opacity: 0;
+           
+        }
+    
+        100% {
+            opacity: 1;
+            
+        }
+    }
 
 
 

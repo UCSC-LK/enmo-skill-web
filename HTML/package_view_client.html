@@ -4,195 +4,225 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/package_view_client.css">
-    <!-- <script src="../Javascripts/package_view_client.js"></script> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <title>Package Overview</title>
 </head>
 <body>
     <div class="main" style="margin-top: 80px;">
-        <iframe src="../Components/navbar_customer.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;position: fixed;top: 0;z-index: 2;left: 0;"></iframe>
-        <div class="container">
+        <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>     <div class="container">
             <div class="block">
-                <h1 class="headding">I will do your logo design</h1>
+                <div class="inside-block">
+                    <div class="align-div">
 
-                <div class="package-cover">
-                    <img id="designer-picture" alt="designer-profile-picture" class="designer-profile-picture" src="../Assests/login_img1.jpg">
-                    <p class="designer-username" id="designer-username1">Jane P.</p>  
-                    <p class="no-reviews">5</p>
-                        <img src="../Assests/icons/icon_star.png" alt="" width="15px" height="15px" class="star">
-                        <p class="no-orders">(20 orders)</p>
-                    
-                </div>
+                        
+                        <h1 class="headding-title">I will do your logo design</h1>
+    
+                        <div class="package-cover">
+                            <img id="designer-picture" alt="designer-profile-picture" class="designer-profile-picture" src="../Assests/login_img1.jpg">
+                            <p class="designer-username" id="designer-username1">Jane P.</p>  
+                            <i class="sep">|</i>
+                            <p class="no-reviews">5</p>
+                            <i class=" fa fa-star"></i>
+                            <p class="review-count">(200)</p>
+                            <i class="sep">|</i>
+                            <p class="no-orders">4 Orders in Queue</p>
+                            
+                        </div>
+    
+                        <div class="image-holder" id="image-holder">
+                                <img id="cover-image" alt="cover-image" class="cover-image" src="../Assests/package_cover4.jpg">
+                            </div>
+    
+                            <div class="package-details">
+                                <div class="subheader">
+                                    <h2 class="subheading">Package details</h2>
+                                </div>
+                                <div id="description">
+                                    <p>
+                                        Are you in need of a captivating and distinctive logo that perfectly represents your brand's identity? Look no further! 
+                                        I am here to bring your vision to life with my exceptional logo design services.
+                                    </p>
+                                    <p>
+                                        Why Choose Me?
+                                        <ul>
+                                            <li>Custom Designs:</li>
+                                            <ul>
+                                                <li>I take the time to understand your business, values, and target audience to create a unique and memorable 
+                                                    logo that sets you apart.</li>
+                                            </ul>
+                                            <li>Professional Expertise:</li>
+                                            <ul>
+                                                <li>With years of experience, I have the design skills and creative flair to deliver outstanding logos 
+                                                    that leave a lasting impression.</li>
+                                            </ul>
+                                            <li>Unlimited Revisions:</li>
+                                            <ul>
+                                                <li>I understand the importance of timely delivery. You can expect your logo within [Specify Your Delivery 
+                                                    Timeframe].</li>
+                                            </ul>
+                                            <li>Quick Turnaround:</li>
+                                            <ul>
+                                                <li>I take the time to understand your business, values, and target audience to create a unique and memorable 
+                                                    logo that sets you apart.</li>
+                                            </ul>
+                                            <li>High-Quality Files:</li>
+                                            <ul>
+                                                <li>You will receive high-resolution files suitable for web and print, ensuring your logo looks fantastic 
+                                                    in all applications.</li>
+                                            </ul>
+                                        </ul>
+                                    </p>
+                                    <p>
+                                        Let's collaborate to make your brand shine with a logo that speaks volumes. Contact me today and let's get started 
+                                        on your journey to a compelling brand image!
+                                    </p>
+                                </div>
+                                
+                                <h3>Catogery</h3>
+                                <p id="catogery">Logo designing</p>
+                            </div>
+    
+                        <div class="designer-details">
+                            <div class="subheader">
+                                <h2 class="subheading">Designer details</h2>
+                            </div>
+                            <div class="row">
+                                <img alt="designer-profile" id="designer-img" class="designer-img" src="../Assests/login_img1.jpg">
+                            
+                                <div >
+                                    <p id="designer-username2" class="designer-username">Jane P.</p>
+                                    <button class="button-save" onclick="profile()">View Profile</button>
+                                </div> 
+                            </div>
+                              
+                        </div>
+    
+                        <div class="pricing-details">
+                            <DIV class="subheader">
+                                <h2 class="subheading">Pricing details</h2>
 
-                <div class="image-holder" id="image-holder">
-                        <img id="cover-image" alt="cover-image" class="cover-image" src="../Assests/package_cover4.jpg">
-                    </div>
+                            </DIV>
+    
+                            <table class="table">
+                                <tr class="header">
+                                    <th class="table-header">Price package</th>
+                                    <td class="table-header">Platinum</th>
+                                    <td class="table-header">Silver</th>
+                                    <td class="table-header">Gold</th>
+                                </tr>
+                                <tr>
+                                    <th>Price</th>
+                                    <td class="price">Rs.100</td>
+                                    <td class="price">RS.500</td>
+                                    <td class="price">Rs.1000</td>
+                                </tr>
+                                <tr>
+                                    <th>No of revisons</th>
+                                    <td>Unlimited</td>
+                                    <td>Unlimited</td>
+                                    <td>Unlimited</td>
+                                </tr>
+                                <tr>
+                                    <th>Delivery durarion</th>
+                                    <td>1 day</td>
+                                    <td>2 days</td>
+                                    <td>3 days</td>
+                                </tr>
+                                <tr>
+                                    <th>Logo transparancy</th>
+                                    <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px"></td>
+                                    <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px"></td>
+                                    <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px"></td>
+                                    
+                                </tr>
+                                <tr>
+                                    <th>Vector file</th>
+                                    <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px" class="no"></td>
+                                    <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px"></td>
+                                    <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px"></td>
+                                </tr>
+                                <tr>
+                                    <th>Printable file</th>
+                                    <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px"></td>
+                                    <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px"></td>
+                                    <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px"></td>
+                                </tr>
+                                <tr>
+                                    <th>3D mokup</th>
+                                    <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px" ></td>
+                                    <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px"></td>
+                                    <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px"></td>
+                                </tr>
+                                <tr>
+                                    <th>Source file</th>
+                                    <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px" class="no"></td>
+                                    <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px"></td>
+                                    <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px"></td>
+                                </tr>
+                                <tr>
+                                    <th>Printable file</th>
+                                    <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px"></td>
+                                    <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px"></td>
+                                    <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px"></td>
+                                </tr>
+                                <tr>
+                                    <th>Social media kit</th>
+                                    <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px" class="no"></td>
+                                    <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px" class="no"></td>
+                                    <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px"></td>
+                                </tr>
+                                <tr>
+                                    <th>No of concepts included</th>
+                                    <td class="deliverables">1</td>
+                                    <td class="deliverables">2</td>
+                                    <td class="deliverables">3</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><button class="button-save" onclick="payment()">Select</button></td>
+                                    <td><button class="button-save" onclick="payment()">Select</button></td>
+                                    <td><button class="button-save" onclick="payment()">Select</button></td>
+                                </tr>
+    
+                            </table>
+                        </div>
+    
+                        <div class="reviews">
+                            <div class="subheader">
+                                <h2 class="subheading">Reviews</h2>
+                            </div>
+                            <!-- <p class="recent-label">Most recent</p> -->
 
-                    <div class="package-details">
-                        <h2 class="subheadding">Package details</h2>
-                        <div id="description">
-                            <p>
-                                Are you in need of a captivating and distinctive logo that perfectly represents your brand's identity? Look no further! 
-                                I am here to bring your vision to life with my exceptional logo design services.
-                            </p>
-                            <p>
-                                Why Choose Me?
-                                <ul>
-                                    <li>Custom Designs:</li>
-                                    <ul>
-                                        <li>I take the time to understand your business, values, and target audience to create a unique and memorable 
-                                            logo that sets you apart.</li>
-                                    </ul>
-                                    <li>Professional Expertise:</li>
-                                    <ul>
-                                        <li>With years of experience, I have the design skills and creative flair to deliver outstanding logos 
-                                            that leave a lasting impression.</li>
-                                    </ul>
-                                    <li>Unlimited Revisions:</li>
-                                    <ul>
-                                        <li>I understand the importance of timely delivery. You can expect your logo within [Specify Your Delivery 
-                                            Timeframe].</li>
-                                    </ul>
-                                    <li>Quick Turnaround:</li>
-                                    <ul>
-                                        <li>I take the time to understand your business, values, and target audience to create a unique and memorable 
-                                            logo that sets you apart.</li>
-                                    </ul>
-                                    <li>High-Quality Files:</li>
-                                    <ul>
-                                        <li>You will receive high-resolution files suitable for web and print, ensuring your logo looks fantastic 
-                                            in all applications.</li>
-                                    </ul>
-                                </ul>
-                            </p>
-                            <p>
-                                Let's collaborate to make your brand shine with a logo that speaks volumes. Contact me today and let's get started 
-                                on your journey to a compelling brand image!
-                            </p>
+                            <div class="review-frame">
+                                <div class="reviewer-row">
+                                    <img alt="designer-profile" id="client-img" class="client-img" src="../Assests/login_img2.jpg">
+
+                                    <div class="st">
+                                        <h3>Joe A.</h3>
+                                        <p class="country">United States</p>
+                                        <p class="nr">5</p>
+                                        <img src="../Assests/icons/icon_star.png" alt="" width="10px" height="10px" class="star">
+                                    </div>
+                                    
+                                </div>
+                                <div class="review-body">
+                                
+                                    <p>
+                                        Working with Jane P. for my logo was a delight. They grasped my brand's essence and 
+                                        delivered a remarkable logo. The unlimited revisions, quick turnaround, and high-quality
+                                        files were exceptional. I couldn't be happier with the outcome. Highly recommend!
+                                    </p>
+                                </div>
+                                <p class="date">3 months ago</p>
+                            </div>
+                            <button class="button-save" onclick="reviews()">See more reviews</button>
                         </div>
                         
-                        <h3>Catogery</h3>
-                        <p id="catogery">Logo designing</p>
                     </div>
-
-                <div class="designer-details">
-                    <h2 class="subheadding">Designer details</h2>
-                    <div class="left">
-                        <img alt="designer-profile" id="designer-img" class="designer-img" src="../Assests/login_img1.jpg">
-                    </div>
-                   
-                    <div class="right">
-                        <p id="designer-username2" class="designer-username">Jane P.</p>
-                        <button class="button-save" onclick="profile()">View Profile</button>
-                    </div>   
                 </div>
-
-                <div class="pricing-details">
-                    <h2 class="subheadding">Pricing details</h2>
-
-                    <table class="table">
-                        <tr class="header">
-                            <th class="table-header">Price package</th>
-                            <td class="table-header">Platinum</th>
-                            <td class="table-header">Silver</th>
-                            <td class="table-header">Gold</th>
-                        </tr>
-                        <tr>
-                            <th>Price</th>
-                            <td class="price">Rs.100</td>
-                            <td class="price">RS.500</td>
-                            <td class="price">Rs.1000</td>
-                        </tr>
-                        <tr>
-                            <th>No of revisons</th>
-                            <td>Unlimited</td>
-                            <td>Unlimited</td>
-                            <td>Unlimited</td>
-                        </tr>
-                        <tr>
-                            <th>Delivery durarion</th>
-                            <td>1 day</td>
-                            <td>2 days</td>
-                            <td>3 days</td>
-                        </tr>
-                        <tr>
-                            <th>Logo transparancy</th>
-                            <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px"></td>
-                            <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px"></td>
-                            <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px"></td>
-                            
-                        </tr>
-                        <tr>
-                            <th>Vector file</th>
-                            <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px" class="no"></td>
-                            <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px"></td>
-                            <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px"></td>
-                        </tr>
-                        <tr>
-                            <th>Printable file</th>
-                            <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px"></td>
-                            <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px"></td>
-                            <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px"></td>
-                        </tr>
-                        <tr>
-                            <th>3D mokup</th>
-                            <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px" ></td>
-                            <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px"></td>
-                            <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px"></td>
-                        </tr>
-                        <tr>
-                            <th>Source file</th>
-                            <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px" class="no"></td>
-                            <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px"></td>
-                            <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px"></td>
-                        </tr>
-                        <tr>
-                            <th>Printable file</th>
-                            <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px"></td>
-                            <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px"></td>
-                            <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px"></td>
-                        </tr>
-                        <tr>
-                            <th>Social media kit</th>
-                            <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px" class="no"></td>
-                            <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px" class="no"></td>
-                            <td class="deliverables"><img src="../Assests/icons/icon_checkmark.png" width="20px" height="20px"></td>
-                        </tr>
-                        <tr>
-                            <th>No of concepts included</th>
-                            <td class="deliverables">1</td>
-                            <td class="deliverables">2</td>
-                            <td class="deliverables">3</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><button class="button-save" onclick="payment()">Select</button></td>
-                            <td><button class="button-save" onclick="payment()">Select</button></td>
-                            <td><button class="button-save" onclick="payment()">Select</button></td>
-                        </tr>
-
-                    </table>
-                </div>
-
-                <div class="reviews">
-                    <h2 class="subheadding">Reviews</h2>
-                    <div class="review-frame">
-                      <img alt="designer-profile" id="client-img" class="client-img" src="../Assests/login_img2.jpg">
-                      <h3>Joe A.</h3>
-                        <p class="country">United States</p>
-                        <p class="nr">5</p>
-                        <img src="../Assests/icons/icon_star.png" alt="" width="10px" height="10px" class="star">
-                      <div class="review-body">
-                        <p>
-                          Working with Jane P. for my logo was a delight. They grasped my brand's essence and 
-                          delivered a remarkable logo. The unlimited revisions, quick turnaround, and high-quality
-                          files were exceptional. I couldn't be happier with the outcome. Highly recommend!
-                        </p>
-                      </div>
-                      <p class="date">3 months ago</p>
-                    </div>
-                    <button class="button-save" onclick="reviews()">See more reviews</button>
-                  </div>
-                 
+                
+                
                 
             </div>
 
@@ -215,4 +245,7 @@
         alert("UI is under construction")
     }
 </script>
+
+<script src="../Javascripts/package_view_client.js"></script>
+
 </html>

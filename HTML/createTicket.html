@@ -8,8 +8,7 @@
 </head>
 
 <body>
-    <iframe src="../Components/navbar_seller.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;position: fixed;top: 0;z-index: 2;left: 0;"></iframe>
-
+    <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>
     <div class="container">
 
         <div class="form-box">
@@ -32,7 +31,32 @@
                     <div><label class="input-lable" for="description"><h3>Description</h3></label></div>
                     <div><textarea  class="inputs-1" name="description" id="description" required></textarea></div>
                 </div>
-                <br>                             
+                <br> 
+                
+                
+            
+                <div class="attachFile">
+                    <label for="fileInput" class="custom-file-upload">Attach Files</label>
+                    <!-- Actual file input field -->
+                    <input type="file" id="fileInput" name="fileInput">
+                </div>
+
+                <div style="display: none;">
+                    <div class="packege-main1">
+                        <div><p class="packege-main2"><select id="packege" class="packege dropdown">
+                        </select></p></div>
+                        <!-- <div><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTh4QJM3RxMSUPh9FPu12R2cZsp4wQzSBiDI8R-nKZvvQ&s" class="icon2"></div> -->
+                    </div>
+                </div>
+
+                <div style="display: none;">
+                    <div class="order-main1">
+                        <div ><p class="order-main2"><select id="order" class="order dropdown"></select></p></div>
+                        <!-- <div ><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTh4QJM3RxMSUPh9FPu12R2cZsp4wQzSBiDI8R-nKZvvQ&s" class="icon2"></div> -->
+                    </div>
+                </div>
+                
+                
             </form>
 
             <div class ="botom-row">
@@ -46,7 +70,7 @@
                     </div>
                 </div>
                 
-
+                              
                 <div class="btn2" >
                     <input class="button div-cursor"  type="submit" value="Send Request" onclick="ticketsubmission()">
 

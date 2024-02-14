@@ -40,6 +40,22 @@ body {
     font-weight: lighter;
 }
 
+.filter:hover{
+    cursor: pointer;
+    border: 1px solid #000;
+}
+
+.filter {
+    /* padding: 20px; */
+    padding: 13px 27px;
+    font-size: medium;
+    border: 1px solid #E5E5E5;
+    background-color: #fff;
+    border-radius: 7px;
+    transition: background-color 0.3s; /* Add a smooth transition effect */
+    margin-right: 10px;
+}
+
 .title {
     padding: 20px;
     font-size: medium;
@@ -200,3 +216,203 @@ body {
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+
+  dropdown-style{
+    padding-top: 10px;
+    padding-left: 1000px;
+  }
+
+  .dropdown-content1 {
+    /* display: none; */
+    position: fixed;
+    background-color: #fff;
+    width: 235px;
+    min-width: 80px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    margin-top: 8px;
+    border: 1px solid #ebebeb;
+    pointer-events: all;
+    border-radius: 7px;
+    padding-top: 35px;
+    padding-left: 25px;
+    /* float: left; */
+    
+ 
+  }
+
+  .menu-items{
+    cursor: pointer;
+    /* list-style-type: none; */
+    font-size: 15px;
+
+
+    li{
+        margin-bottom: 20px;
+    }
+
+    .cat{
+    
+        font-weight: bold;
+        margin-right: 10px;
+    }
+
+    .val{
+        
+        color: #74767e;
+    }
+
+    .labels{
+        /* display: flex; */
+        position: relative;
+        top: 5px;
+        left: 5px;
+    }
+
+    .item-div{
+        width: 90%;
+        display: flex;
+        margin-bottom: 25px;
+        
+    }
+  }
+
+  input[type="radio"]{
+    height:20px; 
+    width:20px; 
+    vertical-align: middle;
+    accent-color: black; 
+  }
+
+  input[type="number"] {
+    width: 65%;
+    /* box-shadow: inset 0 2px 4px 0 rgba(133, 133, 133, 0.05); */
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background: #FFF;
+    color: #444;
+    /* margin-bottom: 50px; */
+}
+
+#budget-custom::-webkit-inner-spin-button,
+#budget-custom::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Remove the default arrows for number input in Firefox */
+#budget-custom[type=number] {
+  -moz-appearance: textfield;
+  margin-top: 10px;
+}
+
+.btns{
+    width: 90%;
+    display: flex;
+    gap: 50px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.btn-apply {
+    background-color: #18181a;; /* Button background color (blue) */
+    color: #fff; /* Text color for the button */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 7px;
+    cursor: pointer;
+    float: right;
+    width: 90px;
+    font-weight: bold;
+}
+
+.btn-apply:hover{
+    background-color: #62646a;
+}
+
+.btn-clear {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    color: #62646a;
+    font-weight: bold;
+  }
+
+  .btn-clear:hover{
+    opacity: 0.8;
+  }
+
+  #del-time-dropdown{
+    left: 256px;
+  }
+
+  #language-dropdown{
+    left: 437px;
+  }
+
+  .loader {
+    display: flex;
+    width: 100px;
+    padding: 8px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: rgb(8, 60, 203);
+    --_m: 
+      conic-gradient(#0000 10%,#000),
+      linear-gradient(#000 0 0) content-box;
+    -webkit-mask: var(--_m);
+            mask: var(--_m);
+    -webkit-mask-composite: source-out;
+            mask-composite: subtract;
+    animation: l3 1s infinite linear;
+  }
+  @keyframes l3 {to{transform: rotate(1turn)}}
+
+  .loader-div{
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 80vh;
+    margin: 0;
+  }
+
+  .err{
+    color: red;
+  }
+
+.cross-style{
+  font-weight: bold;
+  /* margin-right: 5px; */
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.filter-text-style{
+  font-style: italic;
+  display: inline; 
+  margin-top: 0;
+  font-weight: bold;
+}
+
+.filter-row{
+  display: inline;
+}
+
+.tag-cloud {
+  display: inline-block;
+  /* color: white; */
+  padding: 8px 20px;
+  font-family: Arial;
+  border-radius: 25px;
+  background-color: #ebebeb;
+  margin-top: 8px;
+}
+
+
+

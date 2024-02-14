@@ -291,7 +291,7 @@ color: #fff;
     border-color: 2px solid black;
     border-radius: 10px;
     width: 556px;
-    height: auto;
+    /* height: auto; */
     z-index: 10002;
     display: none;
     position: fixed;
@@ -301,7 +301,12 @@ color: #fff;
     margin: 0;
     padding: 0;
     background-color: #e9fffa;
+    
 
+}
+.scroll{
+    max-height: 600px;
+    overflow-y: auto;
 }
 
 
@@ -317,6 +322,10 @@ color: #fff;
     width: 100%;
     margin: 0;
     box-shadow: 0 1px 10px #8080808c;
+}
+
+.description{
+    text-align:justify;
 }
 
 .status{

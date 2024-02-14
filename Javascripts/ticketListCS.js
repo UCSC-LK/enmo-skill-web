@@ -2,124 +2,234 @@ function createticket(){
     alert("UI is under construction")
 }
 
-// var requestOptions = {
-//   method: 'GET',
-//   Credential:'include',
-// };
+function getCookie(cookieName) {
+    var name = cookieName + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var cookieArray = decodedCookie.split(';');
   
-
-//fetch(res, requestOptions)
-   //.then(res  => response.json())
-   //.then(result => {
-    function ss(res) {
-
-        const listTictect = document.getElementById("ticket-box");
-        const listItemTemplate = document.querySelector(".ticket-box-2");
-        const count = document.getElementById("id");
-        
-        count.innerText=res.length;
-
-        res.forEach(item => {
-        const newItem = listItemTemplate.cloneNode(true);
-        //newItem.style.display ="block";
-        
-      //   newItem.querySelector(".user").addEventListener("click", function() {
-      //     console.log("Clicked username: " + item.username);
-      // });
-
-        //newItem.querySelector(".image").textContent = item.image;
-        //newItem.querySelector(".id").textContent = item.id;
-        newItem.id = item.id;
-        newItem.querySelector(".name").textContent = item.name;
-        newItem.querySelector(".role").textContent = item.role;
-        newItem.querySelector(".subject").textContent = item.subject;
-        newItem.querySelector(".status").textContent = item.status;
-        newItem.querySelector(".agent").textContent = item.agent;
-        newItem.querySelector(".date").textContent = item.date;
-        newItem.querySelector(".description").textContent = item.description;
-        
-       
-        listTictect.appendChild(newItem);
-
-        viewrequest(item);
-
-    });
-
+    for(var i = 0; i < cookieArray.length; i++) {
+        var cookie = cookieArray[i].trim();
+        if (cookie.indexOf(name) == 0) {
+            return cookie.substring(name.length, cookie.length);
+        }
+    }
+    return null;
   }
 
-const res=[
-    {
-        id:1,
-        //image:"../Assests/login_img1.jpg",
-        name:"Rone",
-        role:"designer",
-        subject:"Late payment",            
-        status:"Asigned",
-        agent:"Done",
-        date:"22/10/2020",
-        description:"  I hope this message finds you well. We would like to bring to your attention the outstandng payment for the project with referenc number [Project Number or Description], which is currently overdue. As per our agreement, the number [Project Number or Description], which is currently overdue. As per our agreement, the  payment was due on [Due Date]."
-      
-    },
-    {
-        id:2,
-        //image:"../Assests/login_img1.jpg",
-        name:"Rone",
-        role:"designer",
-        subject:"Late payment",            
-        status:"Asigned",
-        agent:"Don",
-        date:"22/10/2020",
-        description:"  I hope this message finds you well. We would like to bring to your attention the outstandng payment for the project with referenc number [Project Number or Description], which is currently overdue. As per our agreement, the number [Project Number or Description], which is currently overdue. As per our agreement, the  payment was due on [Due Date]."
-        //icon:"../Assests/icons/support.png"
-    },
+  var userId = 76 //getCookie("User_ID");
 
-    {
-        id:3,
-        //image:"../Assests/login_img1.jpg",
-        name:"Rone",
-        role:"designer",
-        subject:"Late payment",            
-        status:"Asigned",
-        agent:"Don",
-        date:"22/10/2020",
-        description:"  I hope this message finds you well. We would like to bring to your attention the outstandng payment for the project with referenc number [Project Number or Description], which is currently overdue. As per our agreement, the number [Project Number or Description], which is currently overdue. As per our agreement, the  payment was due on [Due Date]."
-        //icon:"../Assests/icons/support.png"
-    },
+const all = document.querySelector(".all")
+const me = document.querySelector(".me")
 
-    {
-        id:4,
-       
-        name:"Rone",
-        role:"designer",
-        subject:"Late payment",            
-        status:"Asigned",
-        agent:"Don",
-        date:"22/10/2020",
-        description:"  I hope this message finds you well. We would like to bring to your attention the outstandng payment for the project with referenc number [Project Number or Description], which is currently overdue. As per our agreement, the number [Project Number or Description], which is currently overdue. As per our agreement, the  payment was due on [Due Date]."
-        //icon:"../Assests/icons/support.png"
-    }
-];
+
+const perent=document.querySelector(".parent")
+const child=document.querySelector(".ticket-box-3")
+const child2=document.querySelector(".ticket-box-2")
+
+tableLoad("all")
+all.style.color="#000000"
+
+all.addEventListener("click",()=>{
   
-ss(res);
+  tableLoad("all",userId)
+  all.style.color="#000000"
+})
+
+me.addEventListener("click",()=>{
+  tableLoad("me",userId)
+  me.style.color="#000000"
+  
+})
 
 
+function tableLoad(view,userId){
 
-function viewrequest(item){
-    let popup_con=document.querySelector(".pop-up-container");
-    let popup_details=document.querySelector(".pop-up");
-    document.getElementById(item.id).addEventListener("click",(event)=>{
-        popup_con.style.display="flex";
-        popup_details.style.display="inline";
-        popup_details.querySelector(".name").textContent = item.name;
-        popup_details.querySelector(".role").textContent = item.role;
-        popup_details.querySelector(".subject").textContent = item.subject;
-        popup_details.querySelector(".status").textContent = item.status;
-        popup_details.querySelector(".agent").textContent = item.agent;
-        popup_details.querySelector(".date").textContent = item.date;
-        popup_details.querySelector(".description").textContent = item.description;
+  perent.innerHTML=""
+    all.style.color="#9D9D9D"
+    me.style.color="#9D9D9D"
+
+
+  var myHeaders = new Headers();                          
+  myHeaders.append("Content-Type", "application/json");  
+  myHeaders.append("Authorization", getCookie("JWT"));   
+
+  var raw = JSON.stringify({});
+
+    var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        Credential:'include'
+      };
+  
+  //get tickkets--------------------------------------------------------------
+    fetch(BASE_URL+"/support", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+      console.log(result)
+      result.forEach(item => {
+        
+        if(view=="me"){
+                  
+          const newItem = child.cloneNode(true)
+          newItem.querySelector(".agent").remove()
+
+
+          newItem.querySelector(".btn").remove();
+          newItem.querySelector('.profile-pic').src=item.url
+          newItem.querySelector(".name").textContent=item.userName
+          newItem.querySelector(".subject").textContent=item.subject
+
+          if(item.role=="1"){newItem.querySelector(".role").textContent="Client"}
+          else if(item.role=="2"){newItem.querySelector(".role").textContent="Designer"}
+
+          if(item.agentID==userId && item.status==2){perent.appendChild(newItem)}
+
+          var itemDivs=[
+            newItem.querySelector(".ticket-name"),
+            newItem.querySelector(".ticket-role"),
+            newItem.querySelector(".ticket-subject"),
+            newItem.querySelector(".profile-pic-main"),
+            //newItem.querySelector(".hover")
+          ]
+         
+          itemDivs.forEach(function(itemDiv) {
+            itemDiv.addEventListener("click",()=>{ viewticket(item.ref_no,true)})//view tickets--------------------------------------------
+            itemDiv.addEventListener("mouseover",()=>{ hoverChnageAddClass(itemDivs); })
+            itemDiv.addEventListener("mouseout",()=>{hoverChnageRemoveClass(itemDivs);})
+          });
+
+
+        }else{
+          const newItem = child.cloneNode(true)
+
+          newItem.querySelector(".profile-pic").src=item.url
+          newItem.querySelector(".name").textContent=item.userName
+          newItem.querySelector(".subject").textContent=item.subject
+          newItem.querySelector(".description").textContent=item.description
+          getAgent(newItem)                  
+
+          if(item.role=="1"){newItem.querySelector(".role").textContent="Client"}
+          else if(item.role=="2"){newItem.querySelector(".role").textContent="Designer"}
+    
+          if(item.status==1)perent.appendChild(newItem)
+        
+        // Get the selected agent ID 
+        const agentSelect = newItem.querySelector('.agentSelect');
+        let selectValue = 0; 
+
+        agentSelect.addEventListener("change", () => {
+          selectValue = agentSelect.value;
+        });
+        newItem.querySelector(".assignBTN").addEventListener("click",()=>{ 
+          assing(selectValue, item.ref_no)
+        })
+
+        var itemDivs=[
+          newItem.querySelector(".ticket-name"),
+          newItem.querySelector(".ticket-role"),
+          newItem.querySelector(".ticket-subject"),
+          newItem.querySelector(".profile-pic-main")
+        ]
+       
+        itemDivs.forEach(function(itemDiv) {
+          itemDiv.addEventListener("click",()=>{ viewticket(item.ref_no,false)})//view tickets--------------------------------------------
+          itemDiv.addEventListener("mouseover",()=>{ hoverChnageAddClass(itemDivs); })
+          itemDiv.addEventListener("mouseout",()=>{hoverChnageRemoveClass(itemDivs);})
+        });
+
+      }
+        
     })
-    popup_con.onclick=(event)=>{
-        popup_con.style.display="none";
-        popup_details.style.display="none";
-    }
-}    
+  })            
+        
+    .catch(error => console.log('error', error))
+
+}
+
+
+//get agents for deop down----------------------------------------------------------
+function getAgent(newItem) {
+  var myHeaders = new Headers();                          
+  myHeaders.append("Content-Type", "application/json");  
+  myHeaders.append("Authorization", getCookie("JWT"));   
+
+  var raw = JSON.stringify({});
+
+    var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        Credential:'include'
+      };
+  fetch(BASE_URL + "/supportAgent", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+      const agentSelect = newItem.querySelector('.agentSelect');
+
+      // Adding a default option
+      const defaultOption = { userId: 0, userName: 'Select an Agent' };
+      result.unshift(defaultOption);
+
+      // Sorting the array by userName
+      result.sort((a, b) => {
+        if (a.userName === defaultOption.userName) return -1; // Move "Select an Agent" to the top
+        if (b.userName === defaultOption.userName) return 1;  // Move "Select an Agent" to the top
+        return a.userName.localeCompare(b.userName);
+      });
+      console.log(result)
+
+      result.forEach(item => {
+        const option = document.createElement('option');
+        option.value = item.userId;
+        option.textContent = item.userName;
+        agentSelect.appendChild(option);
+      });
+
+    })
+    .catch(error => console.log('error', error));
+}
+
+//assign agrnt to ticket-------------------------------------------------
+function assing(selectedAgentId, ticketID){
+
+  console.log(ticketID)
+  console.log(selectedAgentId)
+
+  var myHeaders = new Headers();                          
+  myHeaders.append("Content-Type", "application/json");  
+  myHeaders.append("Authorization", getCookie("JWT"));   
+
+  var raw = JSON.stringify({});
+
+  var requestOptions = {
+    method: 'OPTIONS',
+    headers: myHeaders,
+    redirect: 'follow'
+  };
+  
+  fetch(BASE_URL+"/support?AgentID="+selectedAgentId+"&TicketId="+ticketID, requestOptions)
+    .then(response => response.text())
+    .then(result => {alert(result)
+      location.reload();})
+    .catch(error => console.log('error', error));
+} 
+
+
+
+function hoverChnageAddClass(itemDivs){
+  itemDivs.forEach(function(itemDiv) {
+    itemDiv.classList.add("hoverChange");
+  });
+ }
+ function hoverChnageRemoveClass(itemDivs){
+  itemDivs.forEach(function(itemDiv) {
+    itemDiv.classList.remove("hoverChange");
+  });
+ }
+
+
+ function viewticket(ticketID, assigned){
+
+  var url ="../HTML/ticketListViewSupport.html?ticketID="+ encodeURIComponent(ticketID)+"&assigned="+encodeURIComponent(assigned)
+    window.location.href = url
+  
+}

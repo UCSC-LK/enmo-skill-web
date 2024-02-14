@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/becomeaseller.css">
+      <link rel="stylesheet" href="../CSS/main.css">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    
+    <title> Additional Details Page</title>
+</head>
+<body>
+    <div class="mainclass">
+        <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>     <div class="container">
+            <div class="vidback">
+                <video id="background-video" autoplay loop muted poster="">
+                    <source src="../Assests/enmovid.mp4" type="video/mp4">
+                    </video>
+                    <div class="text">
+                        <h1 class="text-h1">Work Your Way</h1>
+                        <h3 class="text-h2">You bring the skill. We'll make earning easy</h3>
+                        
+                    </div>
+                    <button class="button-become" role="button" onclick="become()">Become a Seller</button>
+                    
+            </div>
+
+
+
+        </div>
+        <script>
+            function become(){
+                window.parent.location='../HTML/becomeaseller2.html';
+            }
+            </script>
+    </div>
+
+</body>
