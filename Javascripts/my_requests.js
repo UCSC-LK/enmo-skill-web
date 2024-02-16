@@ -13,7 +13,11 @@ function getCookie(cookieName) {
   }
   return null;
 }
-console.log("iD: " + getCookie("User_ID"));
+console.log("iD: " + getCookie("JWT"));
+
+
+
+
 
 
 let flagCreate=false;
@@ -76,12 +80,12 @@ createbtn.addEventListener("click",(event)=>{
   function dataWrite(valtitle,valDis,valduration,valBudget){
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", getCookie("JWT"));
     
     var raw2 = JSON.stringify({
       "title":valtitle,
       "duration": valduration,
       "budget": valBudget,
-      "userID": 28,//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< hardcoded here
       "discription": valDis,
       "sample_work_url": "https://abc.xyz"
     });
@@ -111,13 +115,17 @@ createbtn.addEventListener("click",(event)=>{
 
 
 //creating list start here
+var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", getCookie("JWT"));
 
 var requestOptions = {
   method: "GET",
   credentials:"include",
+  headers: myHeaders
 };
 
-fetch(BASE_URL + "/request?Role=Client&UserId=28", requestOptions)
+fetch(BASE_URL + "/request", requestOptions)
   .then(response => { return response.json() })
   .then(result => {
     console.log(result)

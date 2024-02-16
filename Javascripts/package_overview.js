@@ -16,7 +16,12 @@ function getCookie(cookieName) {
   
   const UserId = getCookie("User_ID");
 
-
+  var myHeaders = new Headers();                          ///important
+  myHeaders.append("Content-Type", "application/json");   ///important
+  myHeaders.append("Authorization", getCookie("JWT"));    ///important
+  
+  var raw = JSON.stringify({});
+  
 const form = document.getElementById("package_form");
 
 // handle both insertions and updates
@@ -73,15 +78,13 @@ form.addEventListener("submit", async (e) => {
     };
 
     const requestUrl = operationType === "update"
-        ? `${BASE_URL}/package?packageId=${packageId}&UserId=${UserId}`
-        : `${BASE_URL}/package?UserId=${UserId}`;
+        ? `${BASE_URL}/package?packageId=${packageId}`
+        : `${BASE_URL}/package`;
 
     try {
         const response = await fetch(requestUrl, {
             method: operationType === "update" ? "PUT" : "POST",
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: myHeaders,
             body: JSON.stringify(packageData),
         });
 
@@ -117,7 +120,10 @@ function loadData(){
     const category_value = url.searchParams.get('category');
     const description_value = url.searchParams.get('description');
 
-    fetch(BASE_URL+`/package?packageId=${packageId}&UserId=${0}`)
+    fetch(BASE_URL+`/package?packageId=${packageId}`,{
+        method: 'GET',
+        headers: myHeaders
+    })
     .then((response)=>{
         if (!response.ok) {
             throw new Error('Error occured');

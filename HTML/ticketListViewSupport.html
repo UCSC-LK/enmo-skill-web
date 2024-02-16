@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/ticketListViewSupport.css">
+    <title>Ticket List</title>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+</head>
+<body>
+
+    <div style="margin-top: 80px;">
+        <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>    </div>   
+
+    <div class="container">
+
+        
+        <div class="body-container">
+
+            <div class="header-status">
+                <div class="profile-pic-main"><img src="https://i.pinimg.com/564x/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg" class="profile-pic"></div>                               
+                <h1 class="header"></h1>
+                <div><p class="email"></p></div>
+                <!-- <b><p class="status">Ongoing</p></b> -->
+                <!-- <p class="close"><b>X</b></p> -->
+            </div>
+
+            
+
+            
+            <div class="body-main">
+
+                <div class="body">
+                    <div><p class="role"></p></div>
+                   
+                    <div><b><p class="subject"><h3></h3></p></b></div>
+                        
+                    <div><p class="description"></p></div>
+    
+                    <div><p class="date"></p></div>
+                    <hr>
+    
+                    <div>
+                        <input class="HistoryBTN"  type="submit" value="Ticket History">
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: none;">
+                <div class="btns">
+                    <input class="closeBTN"  type="submit" value="Solved">
+                    <input class="rejectBTN"  type="submit" value="Reject">
+                </div>
+            </div>
+
+        <div class="pop-up-container"></div>
+            <div class="pop-up">
+
+                <div class="massege"></div>
+                
+                <div class="pop-btns">
+                    <input class="yes popeBTN"  type="submit" value="Yes">
+                    <input class="no popeBTN"  type="submit" value="No">
+                </div>          
+                
+                
+            </div>
+        </div>
+            
+            
+            
+               
+            
+        </div>
+    </div>
+    
+    </div>
+    
+</body>   
+<script src="../Javascripts/ticketListViewSupport.js"></script> 

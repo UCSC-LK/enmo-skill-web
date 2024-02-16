@@ -1,4 +1,17 @@
-var userId = 51
+function getCookie(cookieName) {
+    var name = cookieName + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var cookieArray = decodedCookie.split(';');
+  
+    for(var i = 0; i < cookieArray.length; i++) {
+        var cookie = cookieArray[i].trim();
+        if (cookie.indexOf(name) == 0) {
+            return cookie.substring(name.length, cookie.length);
+        }
+    }
+    return null;
+  }
+
 
 //Get parameter value---------------------------------------------------------
 var paramValue = null
@@ -62,13 +75,21 @@ const maxSkillClones = 2
 
 const skillDropdown = document.getElementById('skill');
 
+var myHeaders = new Headers();                          
+myHeaders.append("Content-Type", "application/json");   
+myHeaders.append("Authorization", getCookie("JWT"));    
+
+var raw = JSON.stringify({});
+
+
 var requestOptions = {
     method: 'GET',
+    headers: myHeaders, 
     redirect: 'follow'
 };
 
   
-fetch("http://localhost:15000/enmo_skill_backend_war/skill", requestOptions)
+fetch(BASE_URL+"/skill", requestOptions)
     .then(response => response.json())
     .then(result => {
 
@@ -228,7 +249,20 @@ if(paramValue == "edite"){
 
 //display current details-------------------------------------------------
 
-    fetch("http://localhost:15000/enmo_skill_backend_war/profile?role=Designer&userId="+userId, requestOptions)
+var myHeaders = new Headers();                          
+myHeaders.append("Content-Type", "application/json");   
+myHeaders.append("Authorization", getCookie("JWT"));    
+
+var raw = JSON.stringify({});
+
+var requestOptions = {
+    method: 'GET',
+    headers: myHeaders, 
+    redirect: 'follow'
+};
+
+
+    fetch(BASE_URL+"/profile", requestOptions)
     .then(response => response.json())
     .then(userData => {
         console.log(userData)
@@ -262,6 +296,7 @@ if(paramValue == "edite"){
 
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Authorization", getCookie("JWT"));  
     
         const fname = document.getElementById("firstName").value
         const lname = document.getElementById("lastName").value
@@ -269,7 +304,6 @@ if(paramValue == "edite"){
         const description = document.getElementById("description").value
     
         var raw = JSON.stringify({
-            "userId": userId,
             "role": "Designer",
             "fname": fname,
             "lname": lname,
@@ -286,7 +320,7 @@ if(paramValue == "edite"){
             redirect: 'follow'
         };
     
-        fetch("http://localhost:15000/enmo_skill_backend_war/profile", requestOptions)
+        fetch(BASE_URL+"/profile", requestOptions)
             .then(response => response.text())
             .then(result => {
                 alert(result);
@@ -303,6 +337,7 @@ if(paramValue == "edite"){
         
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Authorization", getCookie("JWT"));  
 
         const fname = document.getElementById("firstName").value
         const lname = document.getElementById("lastName").value
@@ -310,7 +345,6 @@ if(paramValue == "edite"){
         const description = document.getElementById("description").value
 
         var raw = JSON.stringify({
-            "userId": userId,
             "role": "Designer",
             "fname": fname,
             "lname": lname,
@@ -327,7 +361,7 @@ if(paramValue == "edite"){
             redirect: 'follow'
         };
 
-        fetch("http://localhost:15000/enmo_skill_backend_war/profile", requestOptions)
+        fetch(BASE_URL+"/profile", requestOptions)
             .then(response => response.text())
             .then(result =>  {alert(result)
                 window.location="../HTML/profile.html"})
@@ -337,6 +371,32 @@ if(paramValue == "edite"){
 
 }
 
+
+var myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+myHeaders.append("Authorization", getCookie("JWT"));  
+
+
+
+var requestOptions = {
+  method: 'OPTIONS',
+  headers: myHeaders,
+  redirect: 'follow'
+};
+
+fetch(BASE_URL+"/profile", requestOptions)
+  .then(response => response.json())
+  .then(result => {console.log(result)
+    imgArea.innerHTML = '';
+
+            // Set the background image of .img-area and configure background size
+            imgArea.style.backgroundImage = `url(${result.url})`;
+            imgArea.style.backgroundSize = 'cover';
+            imgArea.style.backgroundRepeat = 'no-repeat';
+
+            imgArea.classList.add('active');
+            imgArea.dataset.img = image.name;})
+  .catch(error => console.log('error', error));
 
 
 

@@ -1,3 +1,23 @@
+function getCookie(cookieName) {
+    var name = cookieName + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var cookieArray = decodedCookie.split(';');
+  
+    for(var i = 0; i < cookieArray.length; i++) {
+        var cookie = cookieArray[i].trim();
+        if (cookie.indexOf(name) == 0) {
+            return cookie.substring(name.length, cookie.length);
+        }
+    }
+    return null;
+  }
+
+  var myHeaders = new Headers();                          ///important
+  myHeaders.append("Content-Type", "application/json");   ///important
+  myHeaders.append("Authorization", getCookie("JWT"));    ///important
+  
+  var raw = JSON.stringify({});
+
 document.addEventListener("DOMContentLoaded", setDeliverables);
 
 
@@ -21,7 +41,10 @@ var pricePackageId_platinum = 0;
 
 function loadData(){
 
-    fetch(BASE_URL+`/packagepricing?packageId=${packageId}`)
+    fetch(BASE_URL+`/packagepricing?packageId=${packageId}`,{
+        method: 'GET',
+        headers: myHeaders,
+    })
     .then((response)=>{
         if(!response.ok){
             throw new Error('Cannot get data');
@@ -507,9 +530,7 @@ document.getElementById("submit-bronze").addEventListener("click", async functio
     try{
         var response = await fetch(requestUrl, {
             method: operationType === "update" ? "PUT" : "POST",
-            headers:{
-                'Content-Type':'application/json',
-            },
+            headers:myHeaders,
             body: JSON.stringify(pricingData),
         });
 
@@ -647,9 +668,7 @@ document.getElementById("submit-silver").addEventListener("click", async functio
     try{
         var response = await fetch(requestUrl, {
             method: operationType === "update" ? "PUT" : "POST",
-            headers:{
-                'Content-Type':'application/json',
-            },
+            headers:myHeaders,
             body: JSON.stringify(pricingData),
         });
 
@@ -808,9 +827,7 @@ document.getElementById("submit-platinum").addEventListener("click", async funct
     try{
         var response = await fetch(requestUrl, {
             method: operationType === "update" ? "PUT" : "POST",
-            headers:{
-                'Content-Type':'application/json',
-            },
+            headers:myHeaders,
             body: JSON.stringify(pricingData),
         });
 

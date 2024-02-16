@@ -11,9 +11,15 @@ function getCookie(cookieName) {
   }
   return null;
 }
-console.log("iD: " + getCookie("User_ID"));
+// console.log("iD: " + getCookie("User_ID"));
 
 const UserId = getCookie("User_ID");
+
+var myHeaders = new Headers();                          ///important
+myHeaders.append("Content-Type", "application/json");   ///important
+myHeaders.append("Authorization", getCookie("JWT"));    ///important
+
+var raw = JSON.stringify({});
 
 document.addEventListener("DOMContentLoaded", laodActivePkg);
 
@@ -35,8 +41,14 @@ function laodActivePkg() {
 
     document.getElementById("title").innerHTML = "Active Packages"
 
+    var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
+
     // console.log(BASE_URL+"/package");
-  fetch(BASE_URL+"/package?UserId="+UserId+"&packageId="+0)
+  fetch(BASE_URL+"/package?&packageId="+0, requestOptions)
     .then((response) => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -138,8 +150,14 @@ function laodPausedPkg() {
     act.removeAttribute("class", "active")
 
     document.getElementById("title").innerHTML = "Paused Packages"
+
+    var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
   
-    fetch(BASE_URL+"/package?UserId="+UserId+"&packageId="+0)
+    fetch(BASE_URL+"/package?&packageId="+0, requestOptions)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -251,7 +269,13 @@ function laodPendingPkg() {
 
     document.getElementById("title").innerHTML = "Pending Packages"
 
-    fetch(BASE_URL+"/package?UserId="+UserId+"&packageId="+0)
+    var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
+
+    fetch(BASE_URL+"/package?&packageId="+0, requestOptions)
     .then((response) => {
       if (!response.ok) {
         throw new Error('Cannot get data');
@@ -370,11 +394,9 @@ function deletePackage(selectedData) {
   if (flag) {
     const deleteUrl = `http://localhost:15000/enmo_skill_backend_war/package?packageId=${packageId}`;
 
-    fetch(BASE_URL+"/package?packageId="+packageId+"&UserId="+UserId, {
+    fetch(BASE_URL+"/package?packageId="+packageId, {
       method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json', // You can adjust the content type if needed
-      },
+      headers: myHeaders,
       body: JSON.stringify(selectedData),
     })
       .then((response) => {
@@ -404,11 +426,9 @@ function changeStatus(newStatus, selectedData){
 
   const updateUrl = `http://localhost:15000/enmo_skill_backend_war/package?packageId=${packageId}`;
 
-  fetch(BASE_URL+"/package?packageId="+packageId+"&UserId="+UserId, {
+  fetch(BASE_URL+"/package?packageId="+packageId, {
     method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json', // You can adjust the content type if needed
-    },
+    headers: myHeaders,
     body: JSON.stringify(selectedData),
   })
     .then((response) => {
