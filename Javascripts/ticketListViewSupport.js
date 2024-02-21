@@ -88,7 +88,7 @@ function  getHistroy(ticketID){
         PopupPerent.appendChild(newItem)
     });
     
-    if(assigned=="true"){
+
         const btns = document.querySelector(".btns")
         PopupPerent.appendChild(btns)
 
@@ -105,10 +105,7 @@ function  getHistroy(ticketID){
             desition="reject"
             viewrequest(ticketID,desition)
         })
-    }
-    
-       
- 
+        
 
     })
     .catch(error => console.log('error', error));
@@ -124,7 +121,7 @@ function viewrequest(TicketID,desition){
   var massege= null  
   if(desition=="solved"){
     massege = "Are you want close this ticket?"
-    console.log("01")
+   
   }else if(desition=="reject"){
     massege = "Are you want reject this ticket?"
   }
@@ -132,7 +129,8 @@ function viewrequest(TicketID,desition){
 
   popup_con.style.display="flex";
   popup_details.style.display="inline";
-  console.log(massege)
+  
+  
   popup_details.querySelector(".massege").textContent = massege;
 
   var yes = document.querySelector(".yes")

@@ -1,6 +1,3 @@
-const BASE_URL="http://localhost:15000/enmo_skill_backend_war"//fine error later---------------
-
-
 function getCookie(cookieName) {
   var name = cookieName + "=";
   var decodedCookie = decodeURIComponent(document.cookie);
@@ -20,6 +17,7 @@ var ticketID = url.searchParams.get('ticketID');
 
 const PopupPerent = document.querySelector(".body-main")
 const PopupChild = document.querySelector(".body")
+const PopupChild2 = document.querySelector(".body2")
 
 var myHeaders = new Headers();                          
 myHeaders.append("Content-Type", "application/json");  
@@ -46,11 +44,6 @@ var requestOptions = {
             var status = element.status
 
             switch(status){
-              case 0:
-                status="REJECTED"
-                document.querySelector(".header").textContent=status
-                document.querySelector(".header-status").style.backgroundColor= "red"//rgba(255, 1, 1, 0.492)
-                break
                 
                 case 1:
                   status="ONGOING"
@@ -69,7 +62,13 @@ var requestOptions = {
                     document.querySelector(".header").textContent=status
                     document.querySelector(".header-status").style.backgroundColor= "green"//rgba(0, 232, 28, 0.678)
                     break
-       
+
+                  case 4:
+                    status="REJECTED"
+                    document.querySelector(".header").textContent=status
+                    document.querySelector(".header-status").style.backgroundColor= "red"//rgba(255, 1, 1, 0.492)
+                    break
+      
               }
         })
         
@@ -103,10 +102,11 @@ function  getHistroy(ticketID){
     .then(result => {
     console.log(result)
     result.forEach(element => {
-        const newItem = PopupChild.cloneNode(true)
-        newItem.querySelector(".subject").textContent=element.subject;
-        newItem.querySelector(".description").textContent=element.description;
-        newItem.querySelector(".date").textContent=element.date;
+        const newItem = PopupChild2.cloneNode(true)
+        //  newItem.querySelector(".subject").textContent=element.subject;
+
+        newItem.querySelector(".description2").textContent=element.description;
+        newItem.querySelector(".date2").textContent=element.date;
 
         PopupPerent.appendChild(newItem)
     });
