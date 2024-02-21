@@ -113,15 +113,18 @@ function tableLoad(view,userId){
     
           if(item.status==1)perent.appendChild(newItem)
         
-        // Get the selected agent ID 
+        // Get the selected agent ID------------------------------------------------------------------- 
         const agentSelect = newItem.querySelector('.agentSelect');
-        let selectValue = 0; 
+        let selectValue = 0;
+        let name = '';
 
         agentSelect.addEventListener("change", () => {
-          selectValue = agentSelect.value;
-        });
+          selectValue = agentSelect.value                                 //get selected agent ID-----
+          name=agentSelect.options[agentSelect.selectedIndex].textContent //get selected agent name------
+        })
+
         newItem.querySelector(".assignBTN").addEventListener("click",()=>{ 
-          assing(selectValue, item.ref_no)
+          viewrequest(item.ref_no,selectValue,name)  //call to popup------           
         })
 
         var itemDivs=[
@@ -213,7 +216,41 @@ function assing(selectedAgentId, ticketID){
     .catch(error => console.log('error', error));
 } 
 
+//viwe popup---------------------------------------------------------------------------------------
+function viewrequest(TicketID,agentID,agentName){
+  console.log(TicketID)
+  console.log(agentID)
+  console.log(agentName)
+ 
+  const popup_con = document.querySelector(".pop-up-container2");
+  const popup_details = document.querySelector(".pop-up2");
 
+  var massege= "Are you want assing this ticket to \'" + agentName + "\'?"
+
+  popup_con.style.display = "flex";
+  popup_details.style.display = "block";
+  
+  popup_details.querySelector(".massege").textContent = massege;
+
+  var yes = document.querySelector(".yes")
+  var no = document.querySelector(".no")
+
+  console.log("01")
+
+  yes.addEventListener("click",()=>{
+    if(agentID>0){
+      assing(agentID, TicketID)
+    }else{
+      alert("select a agent")
+    }
+    
+  })
+
+  no.addEventListener("click",()=>{
+    location.reload()
+  })  
+
+}
 
 function hoverChnageAddClass(itemDivs){
   itemDivs.forEach(function(itemDiv) {
