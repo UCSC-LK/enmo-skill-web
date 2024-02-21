@@ -12,18 +12,19 @@ function getCookie(cookieName) {
     return null;
   }
 
-    let userLevel = getCookie("UserLevel");
-  if(userLevel=="CUSTOMER"){
+    let userL = getCookie("UserLevel");
+  if(userL=="CUSTOMER"){
     url="/Components/navbar_customer.html"
-  }else if(userLevel=="DESIGNER"){
+  }else if(userL=="DESIGNER"){
     url="/Components/navbar_seller.html"
-  }else if(userLevel=="ADMIN"){
+  }else if(userL=="ADMIN"){
     url="/Components/navbar_admin.html"
-  }else if(userLevel=="CSA"){
+  }else if(userL=="CSA"){
     url="/Components/navbar_cs.html"
   }else{
     url="/Components/navbar_no_user.html"
   }
+  
 
 
   function loadHeaderBar(url) {
