@@ -89,11 +89,7 @@ rejected.addEventListener("click",()=>{
         newItem.querySelector(".subject").textContent=item.subject
         let status;
         switch(item.status){
-          case 0:
-            status="Rejected"
-            newItem.querySelector(".panel").style.display="none"
-            break
-          
+         
           case 1:
             status="Ongoing"
             break
@@ -106,7 +102,12 @@ rejected.addEventListener("click",()=>{
             status="Closed"
             newItem.querySelector(".panel").style.display="none"
             break
- 
+            
+          case 4:
+            status="Rejected"
+            newItem.querySelector(".panel").style.display="none"
+            break
+            
         }
         newItem.querySelector(".status").textContent=status
         newItem.querySelector(".date").textContent=item.date
@@ -151,13 +152,13 @@ rejected.addEventListener("click",()=>{
             break
 
           case "solved":
-            if(item.status==0){
+            if(item.status==3){
               perent.appendChild(newItem)
             }
             break
 
           case "rejected":
-            if(item.status==3){
+            if(item.status==4){
               perent.appendChild(newItem)
             }
             break
@@ -178,8 +179,27 @@ rejected.addEventListener("click",()=>{
 
   
 function deleteRequest(TicketID){
-  console.log(TicketID)
-  if(confirm('Are you sure you want Delete this request?')){
+
+  let popup_con=document.querySelector(".pop-up-container");
+  let popup_details=document.querySelector(".pop-up");
+
+  var massege= "Are you sure you want Delete this request?"  
+
+  popup_con.style.display="flex";
+  popup_details.style.display="inline";
+  
+  popup_details.querySelector(".massege").textContent = massege;
+
+  var textarea = document.getElementById("description");
+  textarea.remove();                                    // remove input feeld-------------------
+
+  var Delete = document.querySelector(".updateBTN")
+  var cancel = document.querySelector(".cancelBTN")
+
+  Delete.value="Delete"
+  cancel.value="Cancel"
+ 
+  Delete.addEventListener("click",()=>{
     
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");  
@@ -198,65 +218,63 @@ function deleteRequest(TicketID){
       .then(result => {alert(result)
         location.reload();})
       .catch(error => console.log('error', error));
-  }
+  })
+
+  cancel.addEventListener("click",()=>{
+    location.reload()
+  })
 }
 
-//popup view-----------------------------------------------------------------------------
-// function viewrequest(item,status){
-//   let popup_con=document.querySelector(".pop-up-container");
-//   let popup_details=document.querySelector(".pop-up");
-//   let close=document.querySelector(".close")
 
-//   let old_bodies= Array.from(popup_details.querySelectorAll(".pop-body"));
-//   old_bodies.slice(1).forEach(element=>{
-//     element.parentNode.removeChild(element);
-//   })
+function editTicket(ticketID){
+  let popup_con=document.querySelector(".pop-up-container");
+  let popup_details=document.querySelector(".pop-up");
+
+  var massege= "Add some Updates"  
+
+  popup_con.style.display="flex";
+  popup_details.style.display="inline";
   
+  popup_details.querySelector(".massege").textContent = massege;
 
-//   popup_con.style.display="flex";
-//   popup_details.style.display="inline";
-//   popup_details.querySelector(".subject").textContent = item.subject;
-//   popup_details.querySelector(".description").textContent = item.description;
-//   popup_details.querySelector(".date").textContent = item.date;
-//   //popup_details.querySelector(".time").textContent = item.time;
-//   popup_details.querySelector(".status").textContent =  status;
+  var submit = document.querySelector(".updateBTN")
+  var cancel = document.querySelector(".cancelBTN")
 
-//   const PopupPerent = document.querySelector(".scroll")
-//   const PopupChild = document.querySelector(".pop-body")
+  submit.value="Send"
+  cancel.value="Cancel"
 
-//   var requestOptions = {
-//     method: 'GET',
-//     redirect: 'follow'
-//   };
+  submit.addEventListener("click",()=>{
 
-//   fetch("http://localhost:15000/enmo_skill_backend_war/support?Role=Client&UserId=" +encodeURIComponent(item.userId)+"&popup="+encodeURIComponent(item.ref_no), requestOptions)
-//     .then(response => response.json())
-//     .then(result => {
-//       console.log(result)
-//       result.forEach(element => {
-//         const newItem2 = PopupChild.cloneNode(true)
-//         console.log( newItem2);
-//         newItem2.querySelector(".subject").textContent=element.subject;
-//         newItem2.querySelector(".description").textContent=element.description;
-//         newItem2.querySelector(".date").textContent=element.date;
-  
-//         console.log(element.subject)
-//         console.log(element.description)
-//         console.log(element)
-  
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", getCookie("JWT")); 
         
-//         PopupPerent.appendChild(newItem2)
-//       });
+    var raw = JSON.stringify({
+        "ref_no":ticketID,
+        "description":document.getElementById("description").value,
+    });
 
-
-//     })
-//    .catch(error => console.log('error', error));
+    console.log(raw)
     
-//   close.onclick=(event)=>{
-//       popup_con.style.display="none";
-//       popup_details.style.display="none";
-//   }
-// }
+    var requestOptions = {
+      method: 'PUT',
+      headers: myHeaders,
+      body: raw
+    };
+        
+    fetch(BASE_URL+"/support", requestOptions)
+      .then(response => response.text())
+      .then(result => {alert(result)
+        window.location="../HTML/tikectListDisigner.html"})
+      .catch(error => console.log('error', error));
+      })
+
+  cancel.addEventListener("click",()=>{
+    location.reload()
+  })
+
+
+}
 
 //load create ticket page-------------------------------------------------------------------
 function createticketDesigner(){
@@ -268,15 +286,15 @@ function createticketClent(){
 }
 
 //save update ticket details in local storage--------------------------------------------------
-function editTicket(ticketID){ 
-  console.log(ticketID)
+// function editTicket(ticketID){ 
+//   console.log(ticketID)
   
-  var pValue = "edit"
-  var url = "../HTML/createTicket.html" + "?pValue=" + encodeURIComponent(pValue)+"&TicketID="+encodeURIComponent(ticketID);
+//   var pValue = "edit"
+//   var url = "../HTML/createTicket.html" + "?pValue=" + encodeURIComponent(pValue)+"&TicketID="+encodeURIComponent(ticketID);
 
-  // var newURL = "../HTML/createTicket.html?ref_no="+encodeURIComponent(TicketID)+"&subject="+encodeURIComponent(subject)+"&description="+encodeURIComponent(description) ;
-  window.location = url;
-}
+//   // var newURL = "../HTML/createTicket.html?ref_no="+encodeURIComponent(TicketID)+"&subject="+encodeURIComponent(subject)+"&description="+encodeURIComponent(description) ;
+//   window.location = url;
+// }
 
 function viewticket(ticketID){
   var url ="../HTML/ticketListView.html?ticketID="+ encodeURIComponent(ticketID)

@@ -285,12 +285,13 @@ color: #fff;
     justify-content: center;
     align-items: center;
     
+    
 }
 .pop-up{
    
     border-color: 2px solid black;
     border-radius: 10px;
-    width: 556px;
+    width: 500px;
     /* height: auto; */
     z-index: 10002;
     display: none;
@@ -301,7 +302,7 @@ color: #fff;
     margin: 0;
     padding: 0;
     background-color: #e9fffa;
-    
+    padding: 20px;
 
 }
 .scroll{
@@ -322,6 +323,46 @@ color: #fff;
     width: 100%;
     margin: 0;
     box-shadow: 0 1px 10px #8080808c;
+}
+
+
+.massege{
+    text-align: left;
+    font-size: 16px;
+    padding-bottom: 10px;
+}
+
+.inputs{
+    resize: none;
+    width: 494px;
+    height: 100px;
+}
+
+.pop-btns{
+    padding-top: 20px;
+    display: flex;
+    justify-content: right; 
+    gap: 10px; 
+}
+
+
+.popeBTN{
+
+    font-size: 13px;
+    width: 70px;
+    padding:5px;
+    border-radius: 5px;
+    /* border-color: #838383; */
+    /* background-color: #ffffff; */
+    background-color: #838383;
+    color: #fff;
+    transition: .4s;
+}
+
+.popeBTN:hover{
+    box-shadow: 0px 0px 10px  #0e3a1a73;
+    background-color: #ffffff;
+    color: #000000;
 }
 
 .description{
