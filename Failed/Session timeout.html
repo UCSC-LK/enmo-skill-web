@@ -127,8 +127,11 @@
             
             setTimeout(updateCountdown, 1000);
         });
+        const urlParams = new URLSearchParams(window.location.search);
+        const returnUrl = urlParams.get('returnUrl');
         work();
         function work(){
+            
                     token=""
                     fetch(BASE_URL+"/validate?check=false", {
                         method: 'PUT',
@@ -154,7 +157,11 @@
                             button.addEventListener('click', function (event) {
                                 event.preventDefault();
                                 setCookie('JWT',"Bearer "+ token, 1); 
-                                window.history.back();
+                                if (returnUrl) {
+                                    window.location.href = returnUrl;
+                                }else{
+                                    window.location.href = '/';
+                                }
                                                                     
                             });
                         }
