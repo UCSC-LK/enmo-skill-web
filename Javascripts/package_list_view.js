@@ -25,9 +25,11 @@ const h1Element = document.querySelector(".headding");
 const budgetDropdown = document.getElementById('budget-dropdown');
 const delTimeDropdown = document.getElementById('del-time-dropdown');
 const langDropdown = document.getElementById('language-dropdown');
+const reviewDropdown = document.getElementById('review-dropdown');
 const budgetButton = document.getElementById('filter_budget');
 const delTimeButton = document.getElementById('filter_del_time');
 const langButton = document.getElementById('filter_lanaguages');
+const reviewButton = document.getElementById('filter_reviews');
 
 var loader = document.getElementById("loader-div");
 var block = document.getElementById("block");
@@ -36,6 +38,7 @@ var priceCode = 0;
 var delTimeCode = 0;
 var languageCode = 0;
 var category = 0;
+var reviewCode = 0;
 
 // Add a click event listener to each button
 buttons.forEach(button => {
@@ -76,7 +79,7 @@ function package(){
 document.addEventListener("DOMContentLoaded", loadAllPackages(0))
 
 function loadAllPackages(category){
-  fetch(BASE_URL+`/packagelist?category=${category}&price=${priceCode}&delTimeCode=${delTimeCode}&language=${languageCode}`, {
+  fetch(BASE_URL+`/packagelist?category=${category}&price=${priceCode}&delTimeCode=${delTimeCode}&language=${languageCode}&reviewCode=${reviewCode}`, {
     method: 'GET',
     headers: myHeaders,
   })
@@ -103,7 +106,7 @@ function loadAllPackages(category){
 
       // Create the image element
       var imgElement = document.createElement("img");
-      imgElement.src = "../Assests/package_cover4.jpg";
+      imgElement.src =package.coverUrl;
       imgElement.style.width = "100%";
 
       // Create the profile tile div
@@ -119,7 +122,7 @@ function loadAllPackages(category){
       // Create the designer name paragraph
       var designerNameParagraph = document.createElement("p");
       designerNameParagraph.classList.add("designer-name");
-      designerNameParagraph.textContent = package.designerName;
+      designerNameParagraph.textContent = package.designerUserName;
 
       // Create the description paragraph
       var titleParagraph = document.createElement("p");
@@ -137,12 +140,12 @@ function loadAllPackages(category){
       // Create the number of reviews paragraph
       var noReviewsParagraph = document.createElement("p");
       noReviewsParagraph.classList.add("no-reviews");
-      noReviewsParagraph.textContent = "5";
+      noReviewsParagraph.textContent = package.reviews;
 
       // Create the number of orders paragraph
       var noOrdersParagraph = document.createElement("p");
       noOrdersParagraph.classList.add("no-orders");
-      noOrdersParagraph.textContent = "(" + package.orders+")";
+      noOrdersParagraph.textContent = "(" + package.orders+")"; // has to fetch from the order table
 
       // Create the price paragraph
       var priceParagraph = document.createElement("p");
@@ -198,6 +201,7 @@ budgetButton.addEventListener('click', function(event) {
     budgetDropdown.style.display = (budgetDropdown.style.display === 'none' || budgetDropdown.style.display === '') ? 'block' : 'none';
     delTimeDropdown.style.display = 'none';
     langDropdown.style.display = 'none';
+    reviewDropdown.style.display = 'none';
     
     // Stop the event propagation to prevent it from reaching the body click event listener
     event.stopPropagation();
@@ -221,6 +225,7 @@ delTimeButton.addEventListener('click', function(event) {
     delTimeDropdown.style.display = (delTimeDropdown.style.display === 'none' || delTimeDropdown.style.display === '') ? 'block' : 'none';
     langDropdown.style.display = 'none';
     budgetDropdown.style.display = 'none';
+    reviewDropdown.style.display = 'none';
     
     // Stop the event propagation to prevent it from reaching the body click event listener
     event.stopPropagation();
@@ -244,6 +249,7 @@ langButton.addEventListener('click', function(event) {
     langDropdown.style.display = (langDropdown.style.display === 'none' || langDropdown.style.display === '') ? 'block' : 'none';
     budgetDropdown.style.display = 'none';
     delTimeDropdown.style.display = 'none';
+    reviewDropdown.style.display = 'none';
     
     // Stop the event propagation to prevent it from reaching the body click event listener
     event.stopPropagation();
@@ -257,6 +263,30 @@ document.body.addEventListener('click', function() {
 
 // Add a click event listener to the budget dropdown to prevent its closure when clicked inside
 langDropdown.addEventListener('click', function(event) {
+    // Stop the event propagation to prevent it from reaching the document body click event listener
+    event.stopPropagation();
+});
+
+// Add a click event listener to the Budget button
+reviewButton.addEventListener('click', function(event) {
+    // Toggle the visibility of the budget dropdown
+    reviewDropdown.style.display = (reviewDropdown.style.display === 'none' || reviewDropdown.style.display === '') ? 'block' : 'none';
+    budgetDropdown.style.display = 'none';
+    delTimeDropdown.style.display = 'none';
+    langDropdown.style.display = 'none';
+    
+    // Stop the event propagation to prevent it from reaching the body click event listener
+    event.stopPropagation();
+});
+
+// Add a click event listener to the document body
+document.body.addEventListener('click', function() {
+    // Hide the budget dropdown when a click occurs outside of it
+    reviewDropdown.style.display = 'none';
+});
+
+// Add a click event listener to the budget dropdown to prevent its closure when clicked inside
+reviewDropdown.addEventListener('click', function(event) {
     // Stop the event propagation to prevent it from reaching the document body click event listener
     event.stopPropagation();
 });
@@ -561,6 +591,63 @@ function getSelectedRadioValue(radiobtnset) {
   return null; 
 }
 
+
+///////////////////////////////////////////////////////////
+
+/* by CodePel 
+* www.codepel.com
+*/
+var sheet = document.createElement('style');
+var rangeInput = document.querySelectorAll('.range input');
+var prefs = ['webkit-slider-runnable-track', 'moz-range-track', 'ms-track'];
+
+document.body.appendChild(sheet);
+
+var getTrackStyle = function (el) {
+  var curVal = el.value;
+  var val = (curVal - 1) * 16.666666667;
+  var style = '';
+
+  // Set active label
+  var rangeLabels = document.querySelectorAll('.range-labels li');
+  rangeLabels.forEach(function (label) {
+    label.classList.remove('active', 'selected');
+  });
+
+  var curLabel = document.querySelector('.range-labels li:nth-child(' + curVal + ')');
+
+  curLabel.classList.add('active', 'selected');
+  var prevLabels = Array.from(curLabel.previousElementSibling);
+  prevLabels.forEach(function (label) {
+    label.classList.add('selected');
+  });
+
+  // Change background gradient
+  for (var i = 0; i < prefs.length; i++) {
+    style += '.range {background: linear-gradient(to right, #37adbf 0%, #37adbf ' + val + '%, #fff ' + val + '%, #fff 100%)}';
+    style += '.range input::-'+ prefs[i] + '{background: linear-gradient(to right, #37adbf 0%, #37adbf ' + val + '%, #b2b2b2 ' + val + '%, #b2b2b2 100%)}';
+  }
+
+  return style;
+};
+
+rangeInput.forEach(function (input) {
+  input.addEventListener('input', function () {
+    sheet.textContent = getTrackStyle(this);
+  });
+});
+
+// Change input value on label click
+var rangeLabels = document.querySelectorAll('.range-labels li');
+rangeLabels.forEach(function (label) {
+  label.addEventListener('click', function () {
+    var index = Array.from(rangeLabels).indexOf(label);
+    rangeInput.forEach(function (input) {
+      input.value = index + 1;
+      input.dispatchEvent(new Event('input'));
+    });
+  });
+});
 
 
 

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/package_list_view.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <title id="title">Top Graphic design packages - Enmo Skill</title>
@@ -16,7 +17,7 @@
             <div class="loader-div" id="loader-div"> 
                 <div class="loader"></div>
             </div>
-            <div id="block" class="block" style="display:none;">
+            <div id="block" class="block" style="display: none;">
 
                 <h1 class="headding">Top packages</h1>
                 <div class="button-set">
@@ -57,51 +58,59 @@
                             <i class="fa fa-caret-down"></i>
                         </button>
 
-                        <div id="budget-dropdown" class="dropdown-content1" style="display: none;">
+                        <div id="budget-dropdown" class="dropdown-content2" style="display: none;">
                             <div class="menu-items">
+                                
                                 <div class="item-div">
-                                    <input type="radio" name="budget" id="budget-min" value="1">
-                                    <div class="labels" >
-                                        <label class="cat" for="budget-min">Low</label> 
-                                        <label class="val" for="budget-min">Under Rs.2000</label>
-                                    </div>
-                                    
-                                </div>
-                                <div class="item-div">
-                                    <input type="radio" name="budget" id="budget-mid" value="2">
-                                    <div class="labels" >
-                                        <label for="budget" class="cat" for="budget-mid">Mid range</label> 
-                                        <label class="val" for="budget-mid">Rs.2000 - Rs.5000</label>
-                                    </div>
-                                    
-                                </div>
-                                <div class="item-div">
-                                    <input type="radio" name="budget" id="budget-max" value="3">
+                                    <input type="radio" name="budget" id="budget-max" value="0" checked>
                                     <div class="labels">
-                                        <label class="cat" for="budget-max">High end</label> 
-                                        <label class="val" for="budget-max">Rs.5000 and above</label>
+                                        <label class="cat" for="budget-max">Any</label> 
+                                        <!-- <label class="val" for="budget-max">Rs.5000 and above</label> -->
                                     </div>
                                     
                                 </div>
-                                <div class="item-div">
+                                <div class="item-div" style="width: 100%;">
                                     <input type="radio" name="budget" id="budget-cust" value="custom">
                                     <div class="labels" for="budget-cust">
                                         <label class="cat" for="budget-cust" for="budget-custom">Custom</label> 
-                                        <input type="number" name="budget-custom" id="budget-custom" placeholder="Enter budget in Rs." max="50000">
-                                        <p class="err" id="err_price"></p>
                                         
+                                        <div class="budget-slider">
+                                            <span id="starter-price" class="starter">Rs.500</span>
+                                        <span id="end-price" class="ending">>Rs.50000</span>
+
+                                        <div class="slider-container">
+                                            
+                                            <input type="range" min="500" max="50000" value="50000" step="500" class="slider" id="budget-range" >
+                                        </div>
+                                        <span class="slider-value">
+                                            <p class="budget-filter" id="b-value">50000</p>
+                                        </div>
+                                        
+                                        </span>
                                     </div>
                                    
                                 </div>
                             </div>
 
+                            <!-- <span id="starter" class="starter-price">Rs.500</span>
+                            <span id="end" class="ending-price">>Rs.50000</span>
+
+                            <div class="slider-container">
+                                
+                                <input type="range" min="500" max="50000" value="50000" step="500" class="slider" id="budget-range" >
+                              </div>
+                              <span class="slider-value">
+                                <p class="budget-filter" id="b-value">50000</p>
+                              </span> -->
+
+                              
                             <div class="btns">
                                 <button class="btn-clear" id="btn-budget-clear">Clear all</button>
                                 <button class="btn-apply" id="btn-budget-apply">Apply</button>
                             </div>
                             
                             
-                          </div>
+                        </div>
 
 
                         <button class="filter" id="filter_del_time" value="2">Delivery Time 
@@ -194,9 +203,66 @@
                             
                           </div>
 
+                        <button class="filter" id="filter_reviews" value="4">Reviews
+                            <i class="fa fa-caret-down"></i>
+                        </button>
 
+                        <div id="review-dropdown" class="dropdown-content1" style="display: none;">
+                            <div class="menu-items">
+                                <div class="item-div">
+                                    <input type="radio" name="review" value="5" id="5star">
+                                    <div class="labels">
+                                        <label class="cat" for="5star"> 5.0
+                                            <span class="fa fa-star checked"></span>
+                                        </label> 
+                                    </div>
+                                    
+                                </div>
+                                <div class="item-div">
+                                    <input type="radio" name="review" value="4.5" id="4.5star">
+                                    <div class="labels">
+                                        <label class="cat" for="4.5star">4.5 <span class="fa fa-star checked"></span> and above</label>
+                                    </div>
+
+                                </div>
+                                <div class="item-div">
+                                    <input type="radio" name="review" value="4" id="4star">
+                                    <div class="labels">
+                                        <label class="cat" for="4star">4 <span class="fa fa-star checked"></span> and above</label>
+                                    </div>
+
+                                </div>
+                                <div class="item-div">
+                                    <input type="radio" name="review" value="3.5" id="3.5star">
+                                    <div class="labels">
+                                        <label class="cat" for="3.5star">3.5 <span class="fa fa-star checked"></span> and above</label>
+                                    </div>
+                                </div>
+                                <div class="item-div">
+                                    <input type="radio" name="review" value="3" id="3star">
+                                    <div class="labels">
+                                        <label class="cat" for="3star">3 <span class="fa fa-star checked"></span> or more</label>
+                                    </div>
+                                </div>
+
+                                <div class="item-div">
+                                    <input type="radio" name="review" value="0" checked id="any_star">
+                                    <div class="labels">
+                                        <label class="cat" for="any_star">Any</label>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+                            <div class="btns">
+                                <button class="btn-clear" id="btn-review-clear">Clear all</button>
+                                <button class="btn-apply" id="btn-reveiw-apply">Apply</button>
+                            </div>
                             
-                    </div>
+                            
+                          </div>
+                            
+                    
                 </div>
 
                 <div class="filter-row" id="filter-row">
@@ -384,5 +450,18 @@
     <script src="../Javascripts/baseurl.js"></script>
     <script src="../Javascripts/login.js"></script>
     <script src="../Javascripts/package_list_view.js"></script>
+    
+    <script>
+        var rangeSlider = document.getElementById('budget-range');
+
+        // Get the paragraph element where the value will be displayed
+        var selectedBudget = document.getElementById('b-value');
+
+        // Add event listener for input event (when slider value changes)
+        rangeSlider.addEventListener('input', function() {
+        // Update the text content of the paragraph with the current value of the range slider
+        selectedBudget.textContent = this.value;
+        });
+    </script>
 </body>
 </html>

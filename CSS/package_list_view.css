@@ -54,6 +54,7 @@ body {
     border-radius: 7px;
     transition: background-color 0.3s; /* Add a smooth transition effect */
     margin-right: 10px;
+    /* position: relative; */
 }
 
 .title {
@@ -223,8 +224,6 @@ body {
   }
 
   .dropdown-content1 {
-    /* display: none; */
-    position: fixed;
     background-color: #fff;
     width: 235px;
     min-width: 80px;
@@ -238,6 +237,34 @@ body {
     padding-top: 35px;
     padding-left: 25px;
     /* float: left; */
+
+    position: absolute;
+    /* top: calc(100% + 8px); */
+    /* left: 50%;  */
+    /* transform: translateX(-50%); */
+    
+ 
+  }
+
+  .dropdown-content2 {
+    /* display: flex; */
+    align-items: center;
+    position: fixed;
+    background-color: #fff;
+    width: 250px;
+    min-width: 80px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    margin-top: 8px;
+    border: 1px solid #ebebeb;
+    pointer-events: all;
+    border-radius: 7px;
+    padding-top: 35px;
+    padding-left: 25px;
+    padding-right: 25px;
+    /* float: left; */
+    position: absolute;
     
  
   }
@@ -354,6 +381,10 @@ body {
     left: 437px;
   }
 
+  #review-dropdown{
+    left: 600px;
+  }
+
   .loader {
     display: flex;
     width: 100px;
@@ -415,4 +446,141 @@ body {
 }
 
 
+/*********************************************************/
 
+
+.slider-container {
+  width: 80%;
+  margin: 20px;
+  /* text-align: center; */
+}
+
+/* .slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 5px;
+  background: #e5e5e5; 
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #27418c; 
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #27418c;
+  cursor: pointer;
+} */
+
+input[type="range"] {
+  --c: #27418c; /* active color */
+  --g: 3px; /* the gap */
+  --l: 3px; /* line thickness*/
+  --s: 15px; /* thumb size*/
+  
+  width: 100%;
+  height: var(--s); /* needed for Firefox*/
+  --_c: color-mix(in srgb, var(--c), #000 var(--p,0%));
+  -webkit-appearance :none;
+  -moz-appearance :none;
+  appearance :none;
+  background: none;
+  cursor: pointer;
+  overflow: hidden;
+}
+input:focus-visible,
+input:hover{
+  --p: 25%;
+}
+input:active,
+input:focus-visible{
+  --_b: var(--s)
+}
+/* chromium */
+input[type="range" i]::-webkit-slider-thumb{
+  height: var(--s);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  box-shadow: 0 0 0 var(--_b,var(--l)) inset var(--_c);
+  border-image: linear-gradient(90deg,var(--_c) 50%,#ababab 0) 0 1/calc(50% - var(--l)/2) 100vw/0 calc(100vw + var(--g));
+  -webkit-appearance: none;
+  appearance: none;
+  transition: .3s;
+}
+/* Firefox */
+input[type="range"]::-moz-range-thumb {
+  height: var(--s);
+  width: var(--s);
+  background: none;
+  border-radius: 50%;
+  box-shadow: 0 0 0 var(--_b,var(--l)) inset var(--_c);
+  border-image: linear-gradient(90deg,var(--_c) 50%,#ababab 0) 0 1/calc(50% - var(--l)/2) 100vw/0 calc(100vw + var(--g));
+  -moz-appearance: none;
+  appearance: none;
+  transition: .3s;
+}
+@supports not (color: color-mix(in srgb,red,red)) {
+  input {
+    --_c: var(--c);
+  }
+}
+
+.starter{
+  font-weight: bold;
+  font-size: smaller; 
+  margin-top: 8px;
+  font-style: italic;
+  float: left;
+  color: #74767e;
+}
+
+.ending{
+  font-weight: bold;
+  font-size: smaller; 
+  margin-top: 8px;
+  font-style: italic;
+  float: right;
+  color: #74767e;
+}
+
+.slider-value{
+  display: flex;
+  justify-content: flex-end; /* Align text to the right */
+  align-items: center;
+  float: right;
+  /* background-color: #e5e5e5; */
+  border: 1px solid #74767e;
+  border-radius: 7px;
+  width: 90px;
+  height: 25px;
+  padding-right: 10px;
+  font-style: italic;
+  font-weight: bold;
+  color: #74767e;
+  margin-bottom: 20px;
+  
+}
+
+
+/* Style the tickmarks */
+input[type="range"]::-webkit-slider-thumb::before {
+  content: attr(value);
+  position: absolute;
+  top: calc(100% + 5px);
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: #555;
+}
