@@ -126,7 +126,18 @@ var requestOptions = {
 };
 
 fetch(BASE_URL + "/request", requestOptions)
-  .then(response => { return response.json() })
+  .then(response => 
+    {if(response.status == 401){
+      window.location.href = "../Failed/401.html";
+    }else if(response.status == 406){
+      const currentUrl = encodeURIComponent(window.location.href);
+      window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+    }else if(response.status == 404){
+      window.location.href = "../Failed/404.html";
+    }else {
+      return response.json()
+    }
+    })
   .then(result => {
     console.log(result)
     count.innerText=result.count;
@@ -202,16 +213,22 @@ function viewrequest(item){
 
 function deleteRequest(requestID){
   if(confirm('Are you sure you want Delete this request?')){
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", getCookie("JWT"));
 
     var requestOptions = {
       method: 'DELETE',
-      redirect: 'follow'
+      redirect: 'follow',
+      headers: myHeaders
     };
     
     fetch(BASE_URL+"/request?requestID="+requestID, requestOptions)
       .then(response => response.text())
       .then(result => {alert(result)
-        location.reload();})
+        console.log(result);
+        location.reload();
+      })
       .catch(error => console.log('error', error));
   }
 }
@@ -261,6 +278,8 @@ duration.value=item.duration;
   function dataupdate(valtitle,valDis,valduration,valBudget){
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", getCookie("JWT"));
+
     
     var raw = JSON.stringify({
       "title":valtitle,
@@ -278,9 +297,40 @@ duration.value=item.duration;
     };
     
     fetch(BASE_URL+"/request", requestOptions)
-      .then(response => response.text())
-      .then(result => {alert(result)
-        location.reload();})
+      .then(response => {if(response.status==201){
+        return response.text()}
+      else if(response.status==401){
+        window.location.reload();
+        
+      }
+      })
+      .then(result => {
+    
+        console.log(result);
+          Toastify({
+            text: result,
+            duration: 1500,
+            newWindow: true,
+            close: true,    
+            gravity: "bottom", // `top` or `bottom`
+            position: "right", // `left`, `center` or `right`
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            style: {
+              background: "linear-gradient(to right, #00b86e, #56b800)"
+            },
+            onClick: function(){} // Callback after click
+          }).showToast();
+        
+      
+        setTimeout(() => {
+          location.reload();
+        }, 1700);
+      
+
+
+
+        // location.reload();..
+      })
       .catch(error => console.log('error', error));
   
   }
@@ -288,3 +338,6 @@ duration.value=item.duration;
 
 
 }
+
+
+
