@@ -2,6 +2,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/navbar1.css">
+    <link rel="stylesheet" href="../CSS/main.css">
 
     <style>
         .dropdown {
@@ -40,10 +41,11 @@
 </head>
 <body>
 <div class="navbar-content  ">
+    
     <div class="navbar">
         <!-- Logo -->
         <div class="logo" onclick="home()">
-            <img src="../Assests/logo enmo.png" alt="Logo">
+            <img  src="../Assests/logo enmo.png" alt="Logo">
         </div>
         <!-- Search bar -->
         <div class="search-bar">
@@ -73,6 +75,7 @@
             </div>
 
         </div>
+        
         <script>
             function Logout() {
                 function deleteCookie(name) {
@@ -119,10 +122,70 @@
             
             function profile() {
                 // Replace the URL in the following line with the URL of the page you want to navigate to.
-                alert("UI is Under Construction")
+                window.parent.location='../HTML/client_profile.html';
             }
+
+            function getCookie(cookieName) {
+            var name = cookieName + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var cookieArray = decodedCookie.split(';');
+        
+            for(var i = 0; i < cookieArray.length; i++) {
+                var cookie = cookieArray[i].trim();
+                if (cookie.indexOf(name) == 0) {
+                    return cookie.substring(name.length, cookie.length);
+                }
+            }
+            return null;
+            }
+
             
-        </script>
-    </div>
+
+            fetch("../Javascripts/baseurl.js")
+            .then(response => {
+                if (!response.ok) {
+                throw new Error('Failed to load header bar');
+                }
+                return response.text();
+            }).then(html => { 
+                
+                const regex = /const BASE_URL = "(.*?)";/;
+                const matches = html.match(regex);
+                if (matches && matches.length >= 2) {
+                let baseURl = matches[1];
+                getpic(baseURl);
+                
+                
+                } else {
+                throw new Error('URL not found in the fetched HTML');
+                }
+            }).catch(error => {
+                console.error(error);
+            });
+
+            // console.log(getCookie("JWT"));
+            // console.log(baseURl);
+
+
+            const H1 = new Headers();
+            H1.append("Authorization", getCookie("JWT"));
+
+            function getpic(baseURl){
+            fetch(baseURl+"/profile_pic", {
+            method: "GET",
+            headers: H1,
+            })
+            .then((response) => response.json())
+            .then((result) => {console.log(result)
+                document.querySelector(".profileimg").src = result.url;})
+            .catch((error) => console.error(error));
+            }
+
+            
+                        
+
+            
+                    </script>
+                </div>
 </div>
 </body>

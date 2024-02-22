@@ -1,4 +1,4 @@
-function getCookie(cookieName) {
+function getCookies(cookieName) {
     var name = cookieName + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
     var cookieArray = decodedCookie.split(';');
@@ -12,26 +12,25 @@ function getCookie(cookieName) {
     return null;
   }
 
-    let userL = getCookie("UserLevel");
-  if(userL=="CUSTOMER"){
-    url="/Components/navbar_customer.html"
-  }else if(userL=="DESIGNER"){
-    url="/Components/navbar_seller.html"
-  }else if(userL=="ADMIN"){
-    url="/Components/navbar_admin.html"
-  }else if(userL=="CSA"){
-    url="/Components/navbar_cs.html"
+    let user = getCookies("UserLevel");
+  if(user=="CUSTOMER"){
+    window.location.href = "../HTML/login.html";
+  }else if(user=="DESIGNER"){
+    url="/Components/sidebar_seller.html"
+  }else if(user=="ADMIN"){
+    url="/Components/sidebar_seller.html"
+  }else if(user=="CSA"){
+    url="/Components/sidebar_seller.html"
   }else{
-    url="/Components/navbar_no_user.html"
+    window.location.href = "../HTML/login.html";
   }
-  
 
 
-  function loadHeaderBar(url) {
-    // Specify the path to the header HTML file based on the user role
+  function loadSideBar(url) {
     
     
-    // Use fetch to get the header HTML file
+    
+    
     fetch(url)
       .then(response => {
         if (!response.ok) {
@@ -40,14 +39,14 @@ function getCookie(cookieName) {
         return response.text();
       })
       .then(html => {
-        // Create a new DOM element to hold the HTML content
+        
         var headerElement = document.createElement('div');
         headerElement.innerHTML = html;
 
-        // Append the header content to the placeholder
-        document.getElementById('header-placeholder').appendChild(headerElement);
+        
+        document.getElementById('sidebar-placeholder').appendChild(headerElement);
 
-        // Execute scripts in the loaded HTML content
+        
         var scripts = headerElement.querySelectorAll('script');
         scripts.forEach(script => {
           var newScript = document.createElement('script');
@@ -61,4 +60,4 @@ function getCookie(cookieName) {
   }
 
   // Call the function to load the appropriate header bar
-  loadHeaderBar(url);
+  loadSideBar(url);

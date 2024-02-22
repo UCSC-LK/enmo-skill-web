@@ -6,13 +6,22 @@
     <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/buyer_req_list.css">
     <link rel="stylesheet" href="../CSS/buyer_request.css">
+    <link rel="stylesheet" href="../CSS/main.css">
+    
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <title>Buyer Requests</title>
 </head>
 
 <body>
     
-    <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>
+    <!-- <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script> -->
+    <div class="page">
+        <div id="sidebar-placeholder"></div><script src="../Javascripts/sidebar.js"></script>
+        <div class="pg-content" style="width: 100%; overflow: auto;">
+            <div id="header-placeholder" style="width: 100%; position: sticky; top: 0;"></div><script src="../Javascripts/header.js"></script>
+            
+        
+    
     <div class="major">
         <div class="main-container">
             <div class="header">
@@ -25,9 +34,7 @@
                 </div>
             </div>
             <div class="table" id="table">
-                <div class="upper">
-                    <p>Buyer Requests</p>
-                </div>
+                
                 <div class="row-main" >
                     <p class="date-main">DATE</p>
                     <p class="user-main">BUYER</p>
@@ -73,7 +80,9 @@
     </div>
     <script src="../Javascripts/baseurl.js"></script>
     <script src="../Javascripts/buyer_req_list.js"></script>
-   
+</div>
+
+</div>
     
 </body>
 
