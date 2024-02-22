@@ -114,9 +114,8 @@ function ticketsubmission(){
         myHeaders.append("Content-Type", "application/json");                          
         myHeaders.append("Authorization", getCookie("JWT"));   
 
-        var raw = JSON.stringify({})
     
-        var raw2 = JSON.stringify({
+        var raw = JSON.stringify({
             //"requesterID":userId,
             "description":document.getElementById("description").value,
             "subject":document.getElementById("subject").value
@@ -125,7 +124,7 @@ function ticketsubmission(){
         var requestOptions = {
         method: 'POST',
         headers: myHeaders,
-        body: raw2
+        body: raw
         };
         
         fetch(BASE_URL+"/support", requestOptions)
