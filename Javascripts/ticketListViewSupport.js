@@ -1,5 +1,3 @@
-const BASE_URL="http://localhost:15000/enmo_skill_backend_war"//fine error later---------------
-
 
 function getCookie(cookieName) {
   var name = cookieName + "=";
@@ -137,41 +135,70 @@ function viewrequest(TicketID,desition){
   var no = document.querySelector(".no")
 
   yes.addEventListener("click",()=>{
-
-    var myHeaders = new Headers();                          
-    myHeaders.append("Content-Type", "application/json");  
-    myHeaders.append("Authorization", getCookie("JWT"));  
-
-    var requestOptions = {
-        method: 'OPTIONS',
-        headers: myHeaders,
-        redirect: 'follow'
-      };
-
-    if(desition=="solved"){
-          
-        fetch(BASE_URL+"/support?Decision=Clos&TicketId="+encodeURIComponent(TicketID), requestOptions)
-        .then(response => response.text())
-        .then(result => {alert(result)
-            window.location="../HTML/ticketListCS.html"})
-        .catch(error => console.log('error', error));
-
-    }else if(desition=="reject"){
-        fetch(BASE_URL+"/support?Decision=Reject&TicketId="+encodeURIComponent(TicketID), requestOptions)
-        .then(response => response.text())
-        .then(result => {alert(result)
-            window.location="../HTML/ticketListCS.html"})
-        .catch(error => console.log('error', error));
-
-    }
+    viewrequest2(TicketID,desition)
   })
 
   no.addEventListener("click",()=>{
     location.reload()
   })
+}
 
+// add comment to ticket-------------------------------------------------------------------------------------
+function viewrequest2(TicketID,desition){
+    let popup_con=document.querySelector(".pop-up-container2");
+    let popup_details=document.querySelector(".pop-up2");
 
+    massege = "Add a comment "
 
+    popup_con.style.display="flex";
+    popup_details.style.display="inline";
+
+    popup_details.querySelector(".massege").textContent = massege;
+
+    var submit = document.querySelector(".submitBTN")
+    var cancel = document.querySelector(".cancelBTN")
+    
+
+    submit.addEventListener("click",()=>{
+
+        var myHeaders = new Headers();                          
+        myHeaders.append("Content-Type", "application/json");  
+        myHeaders.append("Authorization", getCookie("JWT"));  
+
+        var raw = JSON.stringify({
+            "description":document.getElementById("description").value      
+        });
+    
+    
+        var requestOptions = {
+            method: 'OPTIONS',
+            headers: myHeaders,
+            redirect: 'follow',
+            body: raw
+          };
+    
+        if(desition=="solved"){
+              
+            fetch(BASE_URL+"/support?Decision=Clos&TicketId="+encodeURIComponent(TicketID), requestOptions)
+            .then(response => response.text())
+            .then(result => {alert(result)
+                window.location="../HTML/ticketListCS.html"})
+            .catch(error => console.log('error', error));
+    
+        }else if(desition=="reject"){
+            fetch(BASE_URL+"/support?Decision=Reject&TicketId="+encodeURIComponent(TicketID), requestOptions)
+            .then(response => response.text())
+            .then(result => {alert(result)
+                window.location="../HTML/ticketListCS.html"})
+            .catch(error => console.log('error', error));
+    
+        }
+      })
+
+      cancel.addEventListener("click",()=>{
+        location.reload()
+      })
+    
 }
 
      

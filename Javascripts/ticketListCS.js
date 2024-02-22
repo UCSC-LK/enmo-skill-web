@@ -79,6 +79,10 @@ function tableLoad(view,userId){
           newItem.querySelector(".name").textContent=item.userName
           newItem.querySelector(".subject").textContent=item.subject
 
+          if(item.order<=0){
+            newItem.querySelector(".order1").style.display="none"
+          }
+
           if(item.role=="1"){newItem.querySelector(".role").textContent="Client"}
           else if(item.role=="2"){newItem.querySelector(".role").textContent="Designer"}
 
@@ -106,6 +110,11 @@ function tableLoad(view,userId){
           newItem.querySelector(".name").textContent=item.userName
           newItem.querySelector(".subject").textContent=item.subject
           newItem.querySelector(".description").textContent=item.description
+
+          if(item.order<=0){
+            newItem.querySelector(".order1").style.display="none"
+          }
+          
           getAgent(newItem)                  
 
           if(item.role=="1"){newItem.querySelector(".role").textContent="Client"}

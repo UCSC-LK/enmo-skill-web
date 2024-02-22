@@ -112,6 +112,10 @@ rejected.addEventListener("click",()=>{
         newItem.querySelector(".status").textContent=status
         newItem.querySelector(".date").textContent=item.date
 
+        if(item.order<=0){
+          newItem.querySelector(".order1").style.display="none"
+        }
+
         //delete a ticket------------------------------------------------------
         newItem.querySelector(".delete").addEventListener("click",()=>{ 
           deleteRequest(item.ref_no)
@@ -123,7 +127,7 @@ rejected.addEventListener("click",()=>{
          }) 
       
 
-        var itemDivs=[newItem.querySelector(".ticket-subject"),newItem.querySelector(".ticket-status"),newItem.querySelector(".ticket-date")];
+        var itemDivs=[newItem.querySelector(".ticket-subject"),newItem.querySelector(".ticket-status"),newItem.querySelector(".ticket-date"),newItem.querySelector(".order")];
        
         itemDivs.forEach(function(itemDiv) {
           itemDiv.addEventListener("click",()=>{ viewticket(item.ref_no)})//view tickets--------------------------------------------

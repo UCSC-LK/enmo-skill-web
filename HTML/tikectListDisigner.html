@@ -25,7 +25,7 @@
                     <div class="div-cursor-1"><p class="ongoing">ONGOING</p></div>
                     <div class="div-cursor-1"><p class="solved">SOLVED</p></div>
                     <div class="div-cursor-1"><p class="rejected">REJECTED</p></div>
-                    <div style="text-align: right;"><button class="button createTicket" onclick="()=>{window.location.href='../HTML/CSA'}">CREATE A TICKET</button></div>
+                    <div style="text-align: right;"><button class="button createTicket" onclick="()=>{window.location.href='../HTML/CSA'}">ADD NEW</button></div>
                 </div>
             </div>
             <div class="table" >
@@ -50,6 +50,10 @@
                             <div class="ticket-date aa"><p class="date"></p></div>
                             
                             <div class="ticket-status aa"><p class="status"></p></div>
+
+                            <div class="order">
+                                <div class="order1">Refund</div>
+                            </div>
                             
                             <div style="align-items: center;">
                                 <div class="panel">
@@ -57,7 +61,7 @@
                                     <button class="delete" ><box-icon type='solid' name='trash' color='white' size="15px"></box-icon></button>
                                 </div>
                             </div>  
-                            <div style="display: none"><p class="description"></p></div>       
+                            <!-- <div style="display: none"><p class="description"></p></div>        -->
                                         
                         </div>
 
@@ -82,7 +86,7 @@
                 <div class="input-main"><textarea  class="inputs" name="description" id="description" required></textarea></div>
                 
                 <div class="pop-btns">
-                    <input class="updateBTN popeBTN"  type="submit">
+                    <input class="submitBTN popeBTN"  type="submit">
                     <input class="cancelBTN popeBTN"  type="submit">
                 </div>          
                 

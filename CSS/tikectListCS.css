@@ -98,7 +98,7 @@ body{
     display: grid;
     width: 100%;
     height: auto; 
-    grid-template-columns: 3% 15% 10% 40% 15% 5% 5% 2%;
+    grid-template-columns: 3% 10% 10% 40% 10% 15% 5% 2%;
     border:  solid #ebebeb;
     border-top: none;
     border-left: none;
@@ -137,6 +137,20 @@ body{
     height: 30px;
      border-radius: 50%; 
     clip-path: circle(at center);
+}
+.order{
+    display: flex;
+    align-items: center;
+}
+
+.order1{
+    height: 15px;
+    padding: 5px;
+    border-radius: 10px;
+    border: 2px ridge #000000;
+    display: flex;
+    align-items:center;
+    
 }
 /*.pop-up-container{
     width: 100%;
@@ -267,7 +281,7 @@ body{
 .button{
     width:155px;
     height:35px;
-    border-radius: 45px;
+    border-radius: 5px;
     background-color: #000000;
     -webkit-text-fill-color: #FFFFFF;
     text-align: center;
