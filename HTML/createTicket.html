@@ -3,11 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/main.css">
     <link rel="stylesheet" href="../CSS/createTicket.css">
     <title>Create Tickets</title>
 </head>
 
 <body>
+
+    <div class="loading">
+        <div class="spin"></div>
+    </div>
+    
     <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>
     <div class="container">
 
@@ -38,7 +44,7 @@
                 <div class="attachFile">
                     <label for="fileInput" class="custom-file-upload">Attach Files</label>
                     <!-- Actual file input field -->
-                    <input type="file" id="fileInput" name="fileInput">
+                    <input type="file" id="fileInput" name="fileInput" onchange="uploadFile()">
                 </div>
 
                 <div style="display: none;">
@@ -72,7 +78,7 @@
                 
                               
                 <div class="btn2" >
-                    <input class="button div-cursor"  type="submit" value="Send Request" onclick="ticketsubmission()">
+                    <input class="button div-cursor"  type="submit" value="Send Request" id="submitbutton">
 
                 </div>
             </div>

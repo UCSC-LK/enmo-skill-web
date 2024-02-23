@@ -20,11 +20,12 @@ function getCookie(cookieName) {
 
 const all = document.querySelector(".all")
 const me = document.querySelector(".me")
-
-
 const perent=document.querySelector(".parent")
 const child=document.querySelector(".ticket-box-3")
 const child2=document.querySelector(".ticket-box-2")
+const loding = document.querySelector(".loading");
+
+loding.style.display ="none"
 
 tableLoad("all")
 all.style.color="#000000"
@@ -53,8 +54,6 @@ function tableLoad(view,userId){
   myHeaders.append("Content-Type", "application/json");  
   myHeaders.append("Authorization", getCookie("JWT"));   
 
-  var raw = JSON.stringify({});
-
     var requestOptions = {
         method: 'GET',
         headers: myHeaders,
@@ -62,8 +61,21 @@ function tableLoad(view,userId){
       };
   
   //get tickkets--------------------------------------------------------------
+  loding.style.display ="flex"
     fetch(BASE_URL+"/support", requestOptions)
-    .then(response => response.json())
+    .then(response =>{
+      loding.style.display ="none"
+      if(response.status == 401){
+        window.location.href = "../Failed/401.html";
+      }else if(response.status == 406){
+        const currentUrl = encodeURIComponent(window.location.href);
+        window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+      }else if(response.status == 404){
+        window.location.href = "../Failed/404.html";
+      }else {
+        return response.json()
+      }
+    })
     .then(result => {
       console.log(result)
       result.forEach(item => {
@@ -172,8 +184,22 @@ function getAgent(newItem) {
         headers: myHeaders,
         Credential:'include'
       };
+
+  loding.style.display ="flex"
   fetch(BASE_URL + "/supportAgent", requestOptions)
-    .then(response => response.json())
+  .then(response =>{
+    loding.style.display ="none"
+    if(response.status == 401){
+      window.location.href = "../Failed/401.html";
+    }else if(response.status == 406){
+      const currentUrl = encodeURIComponent(window.location.href);
+      window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+    }else if(response.status == 404){
+      window.location.href = "../Failed/404.html";
+    }else {
+      return response.json()
+    }
+  })
     .then(result => {
       const agentSelect = newItem.querySelector('.agentSelect');
 
@@ -218,8 +244,21 @@ function assing(selectedAgentId, ticketID){
     redirect: 'follow'
   };
   
+  loding.style.display ="flex"
   fetch(BASE_URL+"/support?AgentID="+selectedAgentId+"&TicketId="+ticketID, requestOptions)
-    .then(response => response.text())
+  .then(response =>{
+    loding.style.display ="none"
+    if(response.status == 401){
+      window.location.href = "../Failed/401.html";
+    }else if(response.status == 406){
+      const currentUrl = encodeURIComponent(window.location.href);
+      window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+    }else if(response.status == 404){
+      window.location.href = "../Failed/404.html";
+    }else {
+      return response.json()
+    }
+  })
     .then(result => {alert(result)
       location.reload();})
     .catch(error => console.log('error', error));
@@ -272,10 +311,13 @@ function hoverChnageAddClass(itemDivs){
   });
  }
 
-
+//show a ticket details------------------------------------------ 
  function viewticket(ticketID, assigned){
 
   var url ="../HTML/ticketListViewSupport.html?ticketID="+ encodeURIComponent(ticketID)+"&assigned="+encodeURIComponent(assigned)
     window.location.href = url
   
 }
+
+
+

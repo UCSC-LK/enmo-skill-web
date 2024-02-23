@@ -19,10 +19,13 @@ const all = document.querySelector(".all")
 const ongoing = document.querySelector(".ongoing")
 const solved = document.querySelector(".solved")
 const rejected = document.querySelector(".rejected")
+const loding = document.querySelector(".loading");
 
 
 const perent = document.querySelector(".parent")
 const child = document.querySelector(".ticket-box-2")
+
+loding.style.display ="none"
 
 createTicket.addEventListener("click",()=>{
   createticketDesigner()
@@ -79,9 +82,23 @@ rejected.addEventListener("click",()=>{
         Credential:'include'
       };
 
+      loding.style.display ="flex"
 
     fetch(BASE_URL+"/support", requestOptions)
-    .then(response => response.json())
+    .then(response =>{
+
+      loding.style.display ="none"
+      if(response.status == 401){
+        window.location.href = "../Failed/401.html";
+      }else if(response.status == 406){
+        const currentUrl = encodeURIComponent(window.location.href);
+        window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+      }else if(response.status == 404){
+        window.location.href = "../Failed/404.html";
+      }else {
+        return response.json()
+      }
+    })
     .then(result => {
       console.log(result)
       result.forEach(item => {
@@ -131,21 +148,21 @@ rejected.addEventListener("click",()=>{
        
         itemDivs.forEach(function(itemDiv) {
           itemDiv.addEventListener("click",()=>{ viewticket(item.ref_no)})//view tickets--------------------------------------------
-          itemDiv.addEventListener("mouseover",()=>{ hoverChnageAddClass(); })
-          itemDiv.addEventListener("mouseout",()=>{hoverChnageRemoveClass();})
+          // itemDiv.addEventListener("mouseover",()=>{ hoverChnageAddClass(); })
+          // itemDiv.addEventListener("mouseout",()=>{hoverChnageRemoveClass();})
         });
 
-         function hoverChnageAddClass(){
-          itemDivs.forEach(function(itemDiv) {
-            itemDiv.classList.add("hoverChange");
-          });
-         }
-         function hoverChnageRemoveClass(){
-          itemDivs.forEach(function(itemDiv) {
-            itemDiv.classList.remove("hoverChange");
-          });
+        //  function hoverChnageAddClass(){
+        //   itemDivs.forEach(function(itemDiv) {
+        //     itemDiv.classList.add("hoverChange");
+        //   });
+        //  }
+        //  function hoverChnageRemoveClass(){
+        //   itemDivs.forEach(function(itemDiv) {
+        //     itemDiv.classList.remove("hoverChange");
+        //   });
           
-         }
+        //  }
         
 
          switch(view){
@@ -216,9 +233,22 @@ function deleteRequest(TicketID){
       headers: myHeaders,
       redirect: 'follow'
     };
-    
+
+    loding.style.display ="flex"
     fetch(BASE_URL+"/support?TicketID="+TicketID, requestOptions)
-      .then(response => response.text())
+    .then(response => {
+      loding.style.display ="none"
+      if(response.status == 401){
+        window.location.href = "../Failed/401.html";
+      }else if(response.status == 406){
+        const currentUrl = encodeURIComponent(window.location.href);
+        window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+      }else if(response.status == 404){
+        window.location.href = "../Failed/404.html";
+      }else {
+        return response.text()
+      }
+    })
       .then(result => {alert(result)
         location.reload();})
       .catch(error => console.log('error', error));
@@ -244,8 +274,8 @@ function editTicket(ticketID){
   var submit = document.querySelector(".updateBTN")
   var cancel = document.querySelector(".cancelBTN")
 
-  submit.value="Send"
-  cancel.value="Cancel"
+  // submit.value="Send"
+  // cancel.value="Cancel"
 
   submit.addEventListener("click",()=>{
 
@@ -265,9 +295,22 @@ function editTicket(ticketID){
       headers: myHeaders,
       body: raw
     };
-        
+
+    loding.style.display ="flex"
     fetch(BASE_URL+"/support", requestOptions)
-      .then(response => response.text())
+    .then(response => {
+      loding.style.display ="none"
+      if(response.status == 401){
+        window.location.href = "../Failed/401.html";
+      }else if(response.status == 406){
+        const currentUrl = encodeURIComponent(window.location.href);
+        window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+      }else if(response.status == 404){
+        window.location.href = "../Failed/404.html";
+      }else {
+        return response.text()
+      }
+    })
       .then(result => {alert(result)
         window.location="../HTML/tikectListDisigner.html"})
       .catch(error => console.log('error', error));

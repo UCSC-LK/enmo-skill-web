@@ -4,18 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/tikectListDisigner.css">
+    <link rel="stylesheet" href="../CSS/main.css">
+    
     <title>Ticket List</title>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 </head>
 <body>
+    
+    <div class="loading">
+        <div class="spin"></div>
+    </div>
 
-    <div style="margin-top: 80px;">
-        <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>
+    <div class="page">
+        <div id="sidebar-placeholder"></div><script src="../Javascripts/sidebar.js"></script>
+        <div class="pg-content" style="width: 100%; overflow: auto;">
+            <div id="header-placeholder" style="width: 100%; position: sticky; top: 0;"></div><script src="../Javascripts/header.js"></script>
+           
     <div class="container">
         <div class="main-container">
             
             <div class="header">
-                <h2>Tickets</h2>
+                <h2>Support Tickets</h2>
             </div>
             
 
@@ -29,21 +38,26 @@
                 </div>
             </div>
             <div class="table" >
-                <div class="upper">
+                <!-- <div class="upper">
                     <p>Tickets</p>
-                </div>            
+                </div>             -->
     
                 <div class="ticket-box" id="ticket-box" style="border:none">
-                    <div class="ticket-box-1" style=" border-top: solid  #ebebeb;">
-                        <div><p>SUBJECT</p></div>
-                        <div><p>DATE</p></div>
-                        <div ><p>STATUS</p></div>
+                    <div class="ticket-box-1">
                         <div></div>
-                        <div></div>
+                        <div class="ticket-heder"><p>SUBJECT</p></div>
+                        <div class="ticket-heder"><p>DATE</p></div>
+                        <div class="ticket-heder"><p>STATUS</p></div>
+                        <div class="ticket-heder"></div>
+                        
                     </div>
     
                     <div style="display: none;">
                         <div class="ticket-box-2" id="" >
+
+                            <div class="order">
+                                <div class="order1"><b>R</b></div>
+                            </div>
 
                             <div class="ticket-subject div-cursor aa"><p class="subject"></p></div>
                             
@@ -51,9 +65,7 @@
                             
                             <div class="ticket-status aa"><p class="status"></p></div>
 
-                            <div class="order">
-                                <div class="order1">Refund</div>
-                            </div>
+                            
                             
                             <div style="align-items: center;">
                                 <div class="panel">
@@ -86,14 +98,14 @@
                 <div class="input-main"><textarea  class="inputs" name="description" id="description" required></textarea></div>
                 
                 <div class="pop-btns">
-                    <input class="submitBTN popeBTN"  type="submit">
-                    <input class="cancelBTN popeBTN"  type="submit">
+                    <input class="updateBTN popeBTN"  type="submit" value="Submit">
+                    <input class="cancelBTN popeBTN"  type="submit" value="Cancel">
                 </div>          
                 
                 
             </div>
         </div>
-    </div>
+    </div></div>
     <!-- <div class="pop-up-container"></div>
         <div class="pop-up">
 

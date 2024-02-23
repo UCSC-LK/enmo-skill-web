@@ -19,6 +19,9 @@ var assigned = url.searchParams.get('assigned')
 
 const PopupPerent = document.querySelector(".body-main")
 const PopupChild = document.querySelector(".body")
+const loding = document.querySelector(".loading");
+
+loding.style.display ="none"
 
 var myHeaders = new Headers();                          
 myHeaders.append("Content-Type", "application/json");  
@@ -33,8 +36,21 @@ var requestOptions = {
     redirect: 'follow'
     };
 
+    loding.style.display ="flex"
     fetch(BASE_URL+"/support?TicketId="+encodeURIComponent(ticketID), requestOptions)
-    .then(response => response.json())
+    .then(response => {
+      loding.style.display ="none"
+      if(response.status == 401){
+        window.location.href = "../Failed/401.html";
+      }else if(response.status == 406){
+        const currentUrl = encodeURIComponent(window.location.href);
+        window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+      }else if(response.status == 404){
+        window.location.href = "../Failed/404.html";
+      }else {
+        return response.json()
+      }
+    })
     .then(result => {
         result.forEach(element => {
             document.querySelector(".profile-pic").src = element.url;
@@ -72,9 +88,21 @@ function  getHistroy(ticketID){
     redirect: 'follow'
     };
 
-
+    loding.style.display ="flex"
     fetch(BASE_URL+"/support?popup="+encodeURIComponent(ticketID), requestOptions)
-    .then(response => response.json())
+    .then(response => {
+      loding.style.display ="none"
+      if(response.status == 401){
+        window.location.href = "../Failed/401.html";
+      }else if(response.status == 406){
+        const currentUrl = encodeURIComponent(window.location.href);
+        window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+      }else if(response.status == 404){
+        window.location.href = "../Failed/404.html";
+      }else {
+        return response.json()
+      }
+    })
     .then(result => {
     console.log(result)
     result.forEach(element => {
@@ -178,16 +206,41 @@ function viewrequest2(TicketID,desition){
           };
     
         if(desition=="solved"){
-              
+          loding.style.display ="flex" 
             fetch(BASE_URL+"/support?Decision=Clos&TicketId="+encodeURIComponent(TicketID), requestOptions)
-            .then(response => response.text())
+            .then(response => {
+              loding.style.display ="none"
+              if(response.status == 401){
+                window.location.href = "../Failed/401.html";
+              }else if(response.status == 406){
+                const currentUrl = encodeURIComponent(window.location.href);
+                window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+              }else if(response.status == 404){
+                window.location.href = "../Failed/404.html";
+              }else {
+                return response.json()
+              }
+            })
             .then(result => {alert(result)
                 window.location="../HTML/ticketListCS.html"})
             .catch(error => console.log('error', error));
     
         }else if(desition=="reject"){
+          loding.style.display ="flex"
             fetch(BASE_URL+"/support?Decision=Reject&TicketId="+encodeURIComponent(TicketID), requestOptions)
-            .then(response => response.text())
+            .then(response => {
+              loding.style.display ="none"
+              if(response.status == 401){
+                window.location.href = "../Failed/401.html";
+              }else if(response.status == 406){
+                const currentUrl = encodeURIComponent(window.location.href);
+                window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+              }else if(response.status == 404){
+                window.location.href = "../Failed/404.html";
+              }else {
+                return response.json()
+              }
+            })
             .then(result => {alert(result)
                 window.location="../HTML/ticketListCS.html"})
             .catch(error => console.log('error', error));

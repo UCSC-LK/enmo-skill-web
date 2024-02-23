@@ -12,6 +12,10 @@ function getCookie(cookieName) {
     return null;
   }
 
+  const loding = document.querySelector(".loading");
+
+  loding.style.display ="none"
+
 
 //Get parameter value---------------------------------------------------------
 var paramValue = null
@@ -88,9 +92,21 @@ var requestOptions = {
     redirect: 'follow'
 };
 
-  
+loding.style.display ="flex" 
 fetch(BASE_URL+"/skill", requestOptions)
-    .then(response => response.json())
+.then(response =>{
+    loding.style.display ="none"
+    if(response.status == 401){
+      window.location.href = "../Failed/401.html";
+    }else if(response.status == 406){
+      const currentUrl = encodeURIComponent(window.location.href);
+      window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+    }else if(response.status == 404){
+      window.location.href = "../Failed/404.html";
+    }else {
+      return response.json()
+    }
+  })
     .then(result => {
 
         result.push({"skills": "Select a skill","skill_id": "0"})
@@ -261,9 +277,21 @@ var requestOptions = {
     redirect: 'follow'
 };
 
-
+loding.style.display ="flex"
     fetch(BASE_URL+"/profile", requestOptions)
-    .then(response => response.json())
+    .then(response => {
+        loding.style.display ="none"
+        if(response.status == 401){
+          window.location.href = "../Failed/401.html";
+        }else if(response.status == 406){
+          const currentUrl = encodeURIComponent(window.location.href);
+          window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+        }else if(response.status == 404){
+          window.location.href = "../Failed/404.html";
+        }else {
+          return response.json()
+        }
+      })
     .then(userData => {
         console.log(userData)
         // Set initial values for input fields
@@ -361,8 +389,21 @@ var requestOptions = {
             redirect: 'follow'
         };
 
+        loding.style.display ="flex"
         fetch(BASE_URL+"/profile", requestOptions)
-            .then(response => response.text())
+            .then(response =>{
+                loding.style.display ="none"
+                if(response.status == 401){
+                window.location.href = "../Failed/401.html";
+            }else if(response.status == 406){
+                const currentUrl = encodeURIComponent(window.location.href);
+                window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+            }else if(response.status == 404){
+                window.location.href = "../Failed/404.html";
+            }else {
+                return response.json()
+            }
+            })
             .then(result =>  {alert(result)
                 window.location="../HTML/profile.html"})
             .catch(error => console.log('error', error));
@@ -384,8 +425,21 @@ var requestOptions = {
   redirect: 'follow'
 };
 
+loding.style.display ="flex"
 fetch(BASE_URL+"/profile", requestOptions)
-  .then(response => response.json())
+.then(response =>{
+    loding.style.display ="none"
+    if(response.status == 401){
+      window.location.href = "../Failed/401.html";
+    }else if(response.status == 406){
+      const currentUrl = encodeURIComponent(window.location.href);
+      window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+    }else if(response.status == 404){
+      window.location.href = "../Failed/404.html";
+    }else {
+      return response.json()
+    }
+  })
   .then(result => {console.log(result)
     imgArea.innerHTML = '';
 
