@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .container {
+            text-align: center;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            0% { transform: translateY(-50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        h1 {
+            font-size: 7em;
+            color: #333;
+            margin-bottom: 20px;
+            animation: pulse 1s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #666;
+            animation: fadeInDelay 1s ease-in-out 0.5s forwards;
+        }
+
+        @keyframes fadeInDelay {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+
+        @media only screen and (max-width: 600px) {
+            h1 {
+                font-size: 3.5em;
+            }
+
+            p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>404</h1>
+        <p>Oops! The server you are looking for could not be found.</p>
+        <p>Go back to <a href="/">homepage</a>.</p>
+    </div>
+</body>
+</html>

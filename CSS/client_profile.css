@@ -1,0 +1,143 @@
+
+.container {
+    width: 100%;
+    height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+background-color: #0000005f;
+z-index: 3;
+position: fixed;
+}
+
+.profile {
+    min-width: 300px;
+    display: flex;
+background-color: #fff;
+border-radius: 10px;
+padding: 20px;
+/* box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); */
+overflow: hidden;
+position: relative;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+.profile img {
+    width: 150px;
+clip-path: circle();
+/* height: 150px; */
+/* border-radius: 50%; */
+/* margin-bottom: 20px; */
+/* border: 5px solid #fff; */
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile h2 {
+  margin: 0 0;
+  margin-top: 15px;
+}
+.profile
+h5 {
+  margin: 0;
+  margin-bottom: 20px;
+  color: #777;
+}   
+
+.profile .detail-box {
+    display: flex;
+width: -webkit-fill-available;
+align-items: center;
+justify-content: center;
+margin-bottom: 10px;
+padding: 10px;
+border: 0.8px solid #d5d5d5;
+border-radius: 5px;
+background-color: #f9f9f98f;
+
+}
+.view{
+  width: -webkit-fill-available;
+}
+.edit{
+  display: none;
+  width: -webkit-fill-available;
+}
+.inputs3 {
+  background: none;
+  outline: none;
+  border: none;
+  display: block;
+  padding: 12px 15px;
+  width: -webkit-fill-available;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  color: #444;
+  font-size: 15px;
+  
+  /* margin: 3px 0 10px 0px; */
+}
+
+.profile .detail-box p {
+  margin: 0;
+  font-weight: 600;
+  color: #595959;
+}
+
+.tex{
+  font-weight: 100;
+  color: #000000;
+}
+
+.profile .edit-button , .profile .done-button{
+    margin-top: 20px;
+background-color: #000000;
+color: #fff;
+font-weight: 600;
+border: none;
+padding: 10px 20px;
+border-radius: 5px;
+cursor: pointer;
+width: -webkit-fill-available;
+transition: background-color 0.3s ease-out;
+}
+
+.profile .edit-button:hover {
+  background-color: #3a3a3a;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.profile {
+  animation: fadeIn 0.5s ease-out;
+}
+
+
+
+.gradient {
+  animation-duration: 1.8s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: #f6f7f8;
+  background: linear-gradient(to right, #fafafa 8%, #e9e9e9 38%, #fafafa 54%);
+  background-size: 1000px 640px;
+  min-height: 18px;
+  position: relative;
+  
+}
+
+@keyframes placeHolderShimmer{
+  0%{
+      background-position: -468px 0
+  }
+  100%{
+      background-position: 468px 0
+  }
+}

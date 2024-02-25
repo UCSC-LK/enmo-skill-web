@@ -27,7 +27,21 @@ var requestOptions = {
 };
 
 fetch(BASE_URL+"/request", requestOptions)
-  .then(response => response.json())
+  .then(response => 
+    {if(response.status == 401){
+      window.location.href = "../Failed/401.html";
+    }else if(response.status == 406){
+      const currentUrl = encodeURIComponent(window.location.href);
+      window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+    }else if(response.status == 404){
+      window.location.href = "../Failed/404.html";
+    }else if (response.status == 200) {
+      return response.json()
+    } else{
+      console.log("Error"+response.status)
+    }
+    
+    })
   .then(result => {
     count.innerText=result.length;
     result.forEach(item => {
