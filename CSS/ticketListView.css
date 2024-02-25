@@ -98,6 +98,7 @@ h2{
     
     float: left;
     width: 23%;
+    max-height: 270px;
     padding: 0 10px;
     border-style: solid;
     border-color:  #d2d2d285;
