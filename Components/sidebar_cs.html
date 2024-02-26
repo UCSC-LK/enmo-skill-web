@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="../CSS/sellerDash.css">
+
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+
+<body>
+  <nav class="sidebar open">
+    <header>
+      <div class="image-text">
+       
+
+        <div class="text logo-text">
+            <span class="image">
+                <img src="../Assests/logo enmo.png" alt="">
+              </span>
+          
+        </div>
+      </div>
+
+     
+    </header>
+
+    <div class="menu-bar">
+      <div class="menu">
+
+       
+
+        <ul class="menu-links">
+          <li class="nav-link">
+            <a onclick="All()">
+              <i class='bx bx-category icon'></i>
+              <span class="text nav-text">All</span>
+            </a>
+          </li>
+
+          <ul class="menu-links">
+            <li class="nav-link">
+              <a onclick="assigned()">
+                <i class='bx bx-category icon'></i>
+                <span class="text nav-text">Assigned</span>
+              </a>
+            </li>
+
+          <li class="nav-link">
+            <a a onclick="order()">
+              <i class='bx bx-archive icon'></i>
+              <span class="text nav-text">Refund</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a onclick="pakage()">
+              <i class='bx bx-package icon'></i>
+              <span class="text nav-text">Packages</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a onclick="old()">
+              <i class='bx bx-package icon'></i>
+              <span class="text nav-text">Old</span>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
+      <div class="bottom-content">
+        <li class="">
+          <a onclick="Logout()" class="logout">
+            <i class='bx bx-log-out icon' id="redicon"></i>
+            <span class="text nav-text1">Logout</span>
+          </a>
+        </li>
+
+        
+
+      </div>
+    </div>
+
+    <script>
+        function Logout() {
+            function deleteCookie(name) {
+                document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            }
+
+            deleteCookie("JWT");
+            deleteCookie("Refresh Token");
+            deleteCookie("UserLevel");
+            window.parent.location = '../HTML/login.html';
+
+        }
+        // function home() {
+           
+        //     window.parent.location = '../';
+        // }
+ 
+        function All() {
+            window.parent.location = '../HTML/ticketListCS.html?pvalue=All';
+        }
+        function assigned() {
+           window.parent.location = '../HTML/ticketListCS.html?pvalue=Assigned';
+       }
+
+        function order() {
+            window.parent.location = '../HTML/ticketListCS.html?pvalue=Refunds';
+        }
+        function pakage() {
+            window.parent.location='../HTML/ticketListCS.html?pvalue=Packeges';
+        }
+        function old() {
+           window.parent.location='../HTML/ticketListCS.html?pvalue=Old';
+       }
+        
+    </script>
+
+  </nav>
+
+ 
+
+  
+
+</body>
+
+</html>
