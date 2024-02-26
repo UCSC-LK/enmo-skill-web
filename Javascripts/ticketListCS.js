@@ -18,8 +18,11 @@ function getCookie(cookieName) {
 
   var userId = 76 //getCookie("User_ID");
 
-const all = document.querySelector(".all")
-const me = document.querySelector(".me")
+const urlParams = new URLSearchParams(window.location.search);
+const massage =  urlParams.get('pvalue')
+
+const header = document.querySelector(".all")
+// const me = document.querySelector(".me")
 const perent=document.querySelector(".parent")
 const child=document.querySelector(".ticket-box-3")
 const child2=document.querySelector(".ticket-box-2")
@@ -27,38 +30,44 @@ const loding = document.querySelector(".loading");
 
 loding.style.display ="none"
 
-tableLoad("all")
-all.style.color="#000000"
+header.textContent=massage //set hedder----------------------------------------------------------------------------------
 
-all.addEventListener("click",()=>{
-  
-  tableLoad("all",userId)
-  all.style.color="#000000"
-})
+// tableLoad("all")
+// all.style.color="#000000"
 
-me.addEventListener("click",()=>{
-  tableLoad("me",userId)
-  me.style.color="#000000"
+// all.addEventListener("click",()=>{
   
-})
+//   tableLoad("all",userId)
+//   all.style.color="#000000"
+// })
+
+// me.addEventListener("click",()=>{
+//   tableLoad("me",userId)
+//   me.style.color="#000000"
+  
+// })
+
+tableLoad(massage,userId)
+
 
 
 function tableLoad(view,userId){
 
-  perent.innerHTML=""
-    all.style.color="#9D9D9D"
-    me.style.color="#9D9D9D"
+
+  // perent.innerHTML=""
+  //   all.style.color="#9D9D9D"
+  //   // me.style.color="#9D9D9D"
 
 
   var myHeaders = new Headers();                          
   myHeaders.append("Content-Type", "application/json");  
   myHeaders.append("Authorization", getCookie("JWT"));   
 
-    var requestOptions = {
-        method: 'GET',
-        headers: myHeaders,
-        Credential:'include'
-      };
+  var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    Credential:'include'
+  };
   
   //get tickkets--------------------------------------------------------------
   loding.style.display ="flex"
@@ -80,42 +89,7 @@ function tableLoad(view,userId){
       console.log(result)
       result.forEach(item => {
         
-        if(view=="me"){
-                  
-          const newItem = child.cloneNode(true)
-          newItem.querySelector(".agent").remove()
-
-
-          newItem.querySelector(".btn").remove();
-          newItem.querySelector('.profile-pic').src=item.url
-          newItem.querySelector(".name").textContent=item.userName
-          newItem.querySelector(".subject").textContent=item.subject
-
-          if(item.order<=0){
-            newItem.querySelector(".order1").style.display="none"
-          }
-
-          if(item.role=="1"){newItem.querySelector(".role").textContent="Client"}
-          else if(item.role=="2"){newItem.querySelector(".role").textContent="Designer"}
-
-          if(item.agentID==userId && item.status==2){perent.appendChild(newItem)}
-
-          var itemDivs=[
-            newItem.querySelector(".ticket-name"),
-            newItem.querySelector(".ticket-role"),
-            newItem.querySelector(".ticket-subject"),
-            newItem.querySelector(".profile-pic-main"),
-            //newItem.querySelector(".hover")
-          ]
-         
-          itemDivs.forEach(function(itemDiv) {
-            itemDiv.addEventListener("click",()=>{ viewticket(item.ref_no,true)})//view tickets--------------------------------------------
-            itemDiv.addEventListener("mouseover",()=>{ hoverChnageAddClass(itemDivs); })
-            itemDiv.addEventListener("mouseout",()=>{hoverChnageRemoveClass(itemDivs);})
-          });
-
-
-        }else{
+        if(view=="All" && (item.status!=3 || item.status != 4)){
           const newItem = child.cloneNode(true)
 
           newItem.querySelector(".profile-pic").src=item.url
@@ -134,33 +108,72 @@ function tableLoad(view,userId){
     
           if(item.status==1)perent.appendChild(newItem)
         
-        // Get the selected agent ID------------------------------------------------------------------- 
-        const agentSelect = newItem.querySelector('.agentSelect');
-        let selectValue = 0;
-        let name = '';
+          // Get the selected agent ID------------------------------------------------------------------- 
+          const agentSelect = newItem.querySelector('.agentSelect');
+          let selectValue = 0;
+          let name = '';
 
-        agentSelect.addEventListener("change", () => {
-          selectValue = agentSelect.value                                 //get selected agent ID-----
-          name=agentSelect.options[agentSelect.selectedIndex].textContent //get selected agent name------
-        })
+          agentSelect.addEventListener("change", () => {
+            selectValue = agentSelect.value                                 //get selected agent ID-----
+            name=agentSelect.options[agentSelect.selectedIndex].textContent //get selected agent name------
+          })
 
-        newItem.querySelector(".assignBTN").addEventListener("click",()=>{ 
-          viewrequest(item.ref_no,selectValue,name)  //call to popup------           
-        })
+          newItem.querySelector(".assignBTN").addEventListener("click",()=>{ 
+            viewrequest(item.ref_no,selectValue,name)  //call to popup------           
+          })
 
-        var itemDivs=[
-          newItem.querySelector(".ticket-name"),
-          newItem.querySelector(".ticket-role"),
-          newItem.querySelector(".ticket-subject"),
-          newItem.querySelector(".profile-pic-main")
-        ]
+          var itemDivs=[
+            newItem.querySelector(".ticket-name"),
+            newItem.querySelector(".ticket-role"),
+            newItem.querySelector(".ticket-subject"),
+            newItem.querySelector(".profile-pic-main")
+          ]
        
-        itemDivs.forEach(function(itemDiv) {
-          itemDiv.addEventListener("click",()=>{ viewticket(item.ref_no,false)})//view tickets--------------------------------------------
-          itemDiv.addEventListener("mouseover",()=>{ hoverChnageAddClass(itemDivs); })
-          itemDiv.addEventListener("mouseout",()=>{hoverChnageRemoveClass(itemDivs);})
-        });
+          itemDivs.forEach(function(itemDiv) {
+            itemDiv.addEventListener("click",()=>{ viewticket(item.ref_no,false)})//view tickets--------------------------------------------
+          });             
 
+
+        }else{
+          const newItem = child.cloneNode(true)
+          newItem.querySelector(".agent").remove()
+
+
+          newItem.querySelector(".btn").remove();
+          newItem.querySelector('.profile-pic').src=item.url
+          newItem.querySelector(".name").textContent=item.userName
+          newItem.querySelector(".subject").textContent=item.subject
+
+          if(item.order<=0){
+            newItem.querySelector(".order1").style.display="none"
+          }
+
+          if(item.role=="1"){newItem.querySelector(".role").textContent="Client"}
+          else if(item.role=="2"){newItem.querySelector(".role").textContent="Designer"}
+
+          if(item.agentID==userId && item.status==2 && view=="Assigned"){
+            console.log("01")
+            perent.appendChild(newItem)
+          }else if(view=="Refunds" && item.order >0 && !(item.status == 3 || item.status == 4)){
+            perent.appendChild(newItem)
+          }else if(view=="Packeges" && item.packages > 0 && !(item.status == 3 || item.status == 4)){
+            perent.appendChild(newItem)
+          }else if(view=="Old" && (item.status == 3 || item.status == 4)){
+            perent.appendChild(newItem)
+          }
+
+
+          var itemDivs=[
+            newItem.querySelector(".ticket-name"),
+            newItem.querySelector(".ticket-role"),
+            newItem.querySelector(".ticket-subject"),
+            newItem.querySelector(".profile-pic-main"),
+            //newItem.querySelector(".hover")
+          ]
+         
+          itemDivs.forEach(function(itemDiv) {
+            itemDiv.addEventListener("click",()=>{ viewticket(item.ref_no,true)})//view tickets--------------------------------------------
+          });
       }
         
     })
@@ -176,8 +189,6 @@ function getAgent(newItem) {
   var myHeaders = new Headers();                          
   myHeaders.append("Content-Type", "application/json");  
   myHeaders.append("Authorization", getCookie("JWT"));   
-
-  var raw = JSON.stringify({});
 
     var requestOptions = {
         method: 'GET',
@@ -236,8 +247,6 @@ function assing(selectedAgentId, ticketID){
   myHeaders.append("Content-Type", "application/json");  
   myHeaders.append("Authorization", getCookie("JWT"));   
 
-  var raw = JSON.stringify({});
-
   var requestOptions = {
     method: 'OPTIONS',
     headers: myHeaders,
@@ -256,7 +265,7 @@ function assing(selectedAgentId, ticketID){
     }else if(response.status == 404){
       window.location.href = "../Failed/404.html";
     }else {
-      return response.json()
+      return response.text()
     }
   })
     .then(result => {alert(result)

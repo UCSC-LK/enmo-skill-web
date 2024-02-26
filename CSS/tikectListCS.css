@@ -3,20 +3,27 @@ body{
     background-color: #fdfdfd;
 }
 .container{
-    display: flex;
-    width: 94%;
+    display:flex;
+    width: 100%;
     height:auto;
     text-align: center;
     justify-content: center;
-    padding: 40px;
     position: relative;
-    background-color: #ffffff;
+    /* background-color: #ffffff; */
     position: relative;
-
+    margin-top: 40px;
+    margin-bottom: 20px;
 }
 
 .main-container{
-    width: 80%;
+    width: 90%;
+    font-family: "Poppins", sans-serif;
+}
+
+.all{
+    color: #3C3C3C;
+    font-size: 20px;
+    text-align: left;
 }
 
 .header{
@@ -25,7 +32,14 @@ body{
     text-align: left;
     -webkit-text-fill-color: #3C3C3C;
     justify-content: space-between;
+    font-weight: lighter;
 }
+.header h2 {
+    color: rgb(60, 60, 60);
+    font-size: 35px;
+    font-weight: lighter;
+}
+
 
 .table{
     padding: 10PX;
@@ -50,13 +64,24 @@ body{
    
     /*background-color:#fffff;*/
 }
+
 .class2{
     color:  #9D9D9D;
     padding: 10px;
     display: grid;
-    grid-template-columns: 10% 10% 80%;
+    grid-template-columns: 10% 90%;
     align-items:center;
     
+}
+
+.table{
+    padding: 10PX;
+    background-color: white;
+    margin-top: 10px;
+    border: solid;
+    border-width: 1px;
+    border-color: #ebebeb;
+    border-radius: 10px;
 }
 .ticket-box{
     width:100%; 
@@ -75,14 +100,16 @@ body{
     display: grid;
     width: 100%;
     height: auto; 
-    grid-template-columns:  3% 15% 10% 40% 20% 5% 5% 2%;
+    grid-template-columns:  3% 18% 10% 40% 20% 2% 5% 2%;
     border:  solid #ebebeb;
     border-left: none;
     border-right: none;
+    border-top: none;
     -webkit-text-fill-color: #A3A3A3;
     padding: 10px;
     /* gap: 10px; */
     align-content: center;
+    
 }
 
 .ticket-box-2{
@@ -92,13 +119,14 @@ body{
     position: relative;
     display: flex;
     flex-wrap: wrap;
+    
 }
 
 .ticket-box-3 {
     display: grid;
     width: 100%;
     height: auto; 
-    grid-template-columns: 3% 10% 10% 40% 10% 15% 5% 2%;
+    grid-template-columns: 3% 18% 10% 40% 3% 15% 5% 2%;
     border:  solid #ebebeb;
     border-top: none;
     border-left: none;
@@ -106,7 +134,14 @@ body{
     padding: 10px;
     /* gap: 10px; */
     align-content: center;
+    min-height: 100px;
 }
+
+.ticket-box-3:hover{
+    cursor: pointer;
+    background-color: #f7f7f7;
+}
+
 .ticket-box-4 {
     display: grid;
     width: 100%;
@@ -121,6 +156,17 @@ body{
     align-content: center;
 }
 
+.order1{
+    height: 15px;
+    width: auto;
+    padding: 5px 2px;
+    border-radius: 10px;
+    border: 2px ridge #090838;
+    display: flex;
+    align-items:center;
+    color:#090838;
+    font-size: 12px;
+}
 .hoverChange{
     cursor: pointer;
     background-color: #f7f7f7;
@@ -143,15 +189,6 @@ body{
     align-items: center;
 }
 
-.order1{
-    height: 15px;
-    padding: 5px;
-    border-radius: 10px;
-    border: 2px ridge #000000;
-    display: flex;
-    align-items:center;
-    
-}
 /*.pop-up-container{
     width: 100%;
     height: 100%;
