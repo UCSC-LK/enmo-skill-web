@@ -58,6 +58,7 @@ h2{
 }
 .body2{
     text-align: left;
+    padding-right: 20px;
 }
 
 .bottom-header{
@@ -88,6 +89,7 @@ h2{
 .description{
     text-align:justify;
     margin-left: 50px;
+    padding-right: 20px;
 }
 .description2{
     text-align:justify;
@@ -145,4 +147,16 @@ h2{
     background-color: #FFF;
     transition: 0.4s;
     cursor: pointer;
+}
+
+.even-item {
+    background-color:   #ebebeb;
+    border-style:solid;
+    border-color: #ebebeb;
+}
+
+.odd-item {
+    background-color: #ffffff;
+    border-style:solid;
+    border-color: #ebebeb;
 }

@@ -226,8 +226,6 @@ function deleteRequest(TicketID){
     myHeaders.append("Content-Type", "application/json");  
     myHeaders.append("Authorization", getCookie("JWT"));   
 
-    var raw = JSON.stringify({});
-
     var requestOptions = {
       method: 'DELETE',
       headers: myHeaders,

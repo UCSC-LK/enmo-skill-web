@@ -64,10 +64,15 @@ fetch(BASE_URL+"/support?TicketId="+encodeURIComponent(ticketID), requestOptions
 
       if(element.order){
         document.querySelector(".urgent").style.display="inline"
-        document.querySelector(".refund").style.display="inline"
       }else if(element.urgent){
         document.querySelector(".urgent").style.display="inline"
       }
+
+      
+    if(element.status==3 || element.ststus==4){
+      document.querySelector(".btns").remove()
+    }  
+
 
         setpackage(element.packages)// to display packege img-----------------------------------------
 
@@ -75,6 +80,7 @@ fetch(BASE_URL+"/support?TicketId="+encodeURIComponent(ticketID), requestOptions
     
 })
 .catch(error => console.log('error', error));
+
 
 document.querySelector(".HistoryBTN").addEventListener("click",()=>{ 
 
@@ -191,12 +197,15 @@ function viewrequest(TicketID,desition){
   let popup_con=document.querySelector(".pop-up-container");
   let popup_details=document.querySelector(".pop-up");
 
-  var massege= null  
+  var massege= null 
+  var pvalue = null 
   if(desition=="solved"){
     massege = "Are you want close this ticket?"
+    pvalue="Clos"
    
   }else if(desition=="reject"){
     massege = "Are you want reject this ticket?"
+    pvalue = "Reject"
   }
 
 
@@ -222,56 +231,33 @@ function viewrequest(TicketID,desition){
     redirect: 'follow',
   };
 
-  if(desition=="solved"){
-
-    loding.style.display ="flex" 
-    fetch(BASE_URL+"/support?Decision=Clos&TicketId="+encodeURIComponent(TicketID), requestOptions)
-    .then(response => {
-      loding.style.display ="none"
-      if(response.status == 401){
-        window.location.href = "../Failed/401.html";
-      }else if(response.status == 406){
-        const currentUrl = encodeURIComponent(window.location.href);
-        window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
-      }else if(response.status == 404){
-        window.location.href = "../Failed/404.html";
-      }else {
-        return response.json()
-      }
-    })
-    .then(result => {alert(result)
-        window.location="../HTML/ticketListCS.html"})
-    .catch(error => console.log('error', error));
-
-  }else if(desition=="reject"){
-    
-    loding.style.display ="flex"
-    fetch(BASE_URL+"/support?Decision=Reject&TicketId="+encodeURIComponent(TicketID), requestOptions)
-    .then(response => {
-      loding.style.display ="none"
-      if(response.status == 401){
-        window.location.href = "../Failed/401.html";
-      }else if(response.status == 406){
-        const currentUrl = encodeURIComponent(window.location.href);
-        window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
-      }else if(response.status == 404){
-        window.location.href = "../Failed/404.html";
-      }else {
-        return response.json()
-      }
-    })
-    .then(result => {alert(result)
-      window.location="../HTML/ticketListCS.html"
-    })
-    .catch(error => console.log('error', error));
-
+  loding.style.display ="flex" 
+  fetch(BASE_URL+"/support?Decision="+pvalue+"&TicketId="+encodeURIComponent(TicketID), requestOptions)
+  .then(response => {
+    loding.style.display ="none"
+    if(response.status == 401){
+      window.location.href = "../Failed/401.html";
+    }else if(response.status == 406){
+      const currentUrl = encodeURIComponent(window.location.href);
+      window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+    }else if(response.status == 404){
+      window.location.href = "../Failed/404.html";
+    }else {
+      return response.text()
     }
   })
+  .then(result => {alert(result)
+    window.location="../HTML/ticketListCS.html"})
+  .catch(error => console.log('error', error));
+
+
+   })
 
   no.addEventListener("click",()=>{
     location.reload()
   })
 }
+
 
 // add comment to ticket-------------------------------------------------------------------------------------
 function viewrequest2(TicketID){

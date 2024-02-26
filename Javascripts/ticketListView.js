@@ -119,9 +119,6 @@ function  getHistroy(ticketID){
     myHeaders.append("Content-Type", "application/json");  
     myHeaders.append("Authorization", getCookie("JWT"));   
 
-    var raw = JSON.stringify({});
-
-
     var requestOptions = {
     method: 'GET',
     headers: myHeaders,
@@ -146,12 +143,18 @@ function  getHistroy(ticketID){
     .then(result => {
     
     if(result.length>0){document.querySelector(".bottom-header").style.display="flex"}
-    result.forEach(element => {
-        const newItem = PopupChild2.cloneNode(true)
-        //  newItem.querySelector(".subject").textContent=element.subject;
+    result.forEach((element,index) => {
+      const newItem = PopupChild2.cloneNode(true)
+      //  newItem.querySelector(".subject").textContent=element.subject;
 
-        newItem.querySelector(".description2").textContent=element.description;
-        newItem.querySelector(".date2").textContent=element.date;
+      newItem.querySelector(".description2").textContent=element.description;
+      newItem.querySelector(".date2").textContent=element.date;
+
+      if (index % 2 === 0) {
+          newItem.classList.add("even-item");
+      } else {
+          newItem.classList.add("odd-item");
+      }
 
         PopupPerent.appendChild(newItem)
     });
