@@ -155,6 +155,14 @@ if(value=="order"){
 
 function ticketsubmission(fileURL,packageID,orderID){
 
+  var urgent = 0
+  var checkbox = document.getElementById("horns");
+  if (checkbox.checked) {
+    urgent=1
+  }
+
+  console.log(urgent)
+
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");                          
   myHeaders.append("Authorization", getCookie("JWT"));    
@@ -167,7 +175,8 @@ function ticketsubmission(fileURL,packageID,orderID){
     "subject":document.getElementById("subject").value,
     "fileURL":fileURL,
     "order": orderID,
-    "packages": packageID
+    "packages": packageID,
+    "urgent":urgent
 });
 
 
