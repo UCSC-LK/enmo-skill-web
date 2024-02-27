@@ -27,14 +27,13 @@ var myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");  
 myHeaders.append("Authorization", getCookie("JWT"));   
 
-var raw = JSON.stringify({});
 
 
 var requestOptions = {
     method: 'GET',
     headers: myHeaders,
     redirect: 'follow'
-    };
+};
 
 loding.style.display ="flex"
 fetch(BASE_URL+"/support?TicketId="+encodeURIComponent(ticketID), requestOptions)

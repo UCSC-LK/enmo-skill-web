@@ -89,7 +89,7 @@ function tableLoad(view,userId){
       console.log(result)
       result.forEach(item => {
         
-        if(view=="All" && (item.status!=3 || item.status != 4)){
+        if((view!="Assigned" || view !="Old" || view==null)  && !(item.status == 3 || item.status == 4)){
           const newItem = child.cloneNode(true)
 
           newItem.querySelector(".profile-pic").src=item.url
@@ -97,8 +97,20 @@ function tableLoad(view,userId){
           newItem.querySelector(".subject").textContent=item.subject
           newItem.querySelector(".description").textContent=item.description
 
-          if(item.order<=0){
+         
+          if(item.urgent==0){
+            newItem.querySelector(".order2").style.display="none"
+          }
+          if(item.order==0){
             newItem.querySelector(".order1").style.display="none"
+          }
+
+          if(view=="All" || view == null){
+            perent.appendChild(newItem)
+          }else if(view=="Refunds" && item.order >0  && item.agentID<=0){
+            perent.appendChild(newItem)
+          }else if(view=="Packeges" && item.packages > 0  && item.agentID<=0){
+            perent.appendChild(newItem)
           }
           
           getAgent(newItem)                  
@@ -106,7 +118,7 @@ function tableLoad(view,userId){
           if(item.role=="1"){newItem.querySelector(".role").textContent="Client"}
           else if(item.role=="2"){newItem.querySelector(".role").textContent="Designer"}
     
-          if(item.status==1)perent.appendChild(newItem)
+          // if(item.status==1)perent.appendChild(newItem)
         
           // Get the selected agent ID------------------------------------------------------------------- 
           const agentSelect = newItem.querySelector('.agentSelect');
@@ -144,19 +156,18 @@ function tableLoad(view,userId){
           newItem.querySelector(".name").textContent=item.userName
           newItem.querySelector(".subject").textContent=item.subject
 
-          if(item.order<=0){
+
+          if(item.urgent==0){
+            newItem.querySelector(".order2").style.display="none"
+          }
+          if(item.order==0){
             newItem.querySelector(".order1").style.display="none"
           }
-
+         
           if(item.role=="1"){newItem.querySelector(".role").textContent="Client"}
           else if(item.role=="2"){newItem.querySelector(".role").textContent="Designer"}
 
-          if(item.agentID==userId && item.status==2 && view=="Assigned"){
-            console.log("01")
-            perent.appendChild(newItem)
-          }else if(view=="Refunds" && item.order >0 && !(item.status == 3 || item.status == 4)){
-            perent.appendChild(newItem)
-          }else if(view=="Packeges" && item.packages > 0 && !(item.status == 3 || item.status == 4)){
+          if(item.agentID==userId && item.status==2 && view=="Assigned" && !(item.status == 3 || item.status == 4)){
             perent.appendChild(newItem)
           }else if(view=="Old" && (item.status == 3 || item.status == 4)){
             perent.appendChild(newItem)

@@ -126,7 +126,7 @@ body{
     display: grid;
     width: 100%;
     height: auto; 
-    grid-template-columns: 3% 18% 10% 40% 3% 15% 5% 2%;
+    grid-template-columns: 3% 18% 10% 40% 2% 15% 5% 2%;
     border:  solid #ebebeb;
     border-top: none;
     border-left: none;
@@ -146,7 +146,7 @@ body{
     display: grid;
     width: 100%;
     height: auto; 
-    grid-template-columns: 3% 15% 10% 40% 15% 5%;
+    grid-template-columns: 3% 15% 10% 45% 15% 5%;
     border:  solid #ebebeb;
     border-top: none;
     border-left: none;
@@ -162,11 +162,32 @@ body{
     padding: 5px 2px;
     border-radius: 10px;
     border: 2px ridge #090838;
-    display: flex;
     align-items:center;
     color:#090838;
     font-size: 12px;
+    display: flex;
 }
+
+.order2{
+    height: 15px;
+    width: auto;
+    padding: 5px 2px;
+    border-radius: 10px;
+    border: 2px ridge rgba(255, 1, 1, 0.492);
+    align-items:center;
+    color:rgba(255, 1, 1, 0.492);
+    font-size: 12px;
+    display: flex;
+}
+
+.order{
+    display: grid;
+    align-items: center;
+    max-width: 15px;
+
+    /* grid-template-columns: 50% 50%;   */
+}
+
 .hoverChange{
     cursor: pointer;
     background-color: #f7f7f7;
@@ -184,10 +205,7 @@ body{
      border-radius: 50%; 
     clip-path: circle(at center);
 }
-.order{
-    display: flex;
-    align-items: center;
-}
+
 
 /*.pop-up-container{
     width: 100%;
@@ -294,8 +312,8 @@ body{
 }
 
 .ticket-agent{
-    padding-left: 10px;
-    
+    padding-right: 50px;
+    margin-left: 20px;
 }
 
 .aline{
