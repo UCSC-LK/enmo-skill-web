@@ -62,7 +62,7 @@
                             <div class="menu-items">
                                 
                                 <div class="item-div">
-                                    <input type="radio" name="budget" id="budget-max" value="0" checked>
+                                    <input type="radio" name="budget" value="0" checked id="any_budget">
                                     <div class="labels">
                                         <label class="cat" for="budget-max">Any</label> 
                                         <!-- <label class="val" for="budget-max">Rs.5000 and above</label> -->
@@ -72,18 +72,18 @@
                                 <div class="item-div" style="width: 100%;">
                                     <input type="radio" name="budget" id="budget-cust" value="custom">
                                     <div class="labels" for="budget-cust">
-                                        <label class="cat" for="budget-cust" for="budget-custom">Custom</label> 
+                                        <label class="cat" for="budget-cust" id="cust_range_activator">Custom</label> 
                                         
                                         <div class="budget-slider">
                                             <span id="starter-price" class="starter">Rs.500</span>
-                                        <span id="end-price" class="ending">>Rs.50000</span>
+                                        <span id="end-price" class="ending">>Rs.10000</span>
 
                                         <div class="slider-container">
                                             
-                                            <input type="range" min="500" max="50000" value="50000" step="500" class="slider" id="budget-range" >
+                                            <input type="range" min="500" max="10000" value="500" step="500" class="slider" id="budget-range" disabled>
                                         </div>
                                         <span class="slider-value">
-                                            <p class="budget-filter" id="b-value">50000</p>
+                                            <p class="budget-filter" id="b-value">500</p>
                                         </div>
                                         
                                         </span>
@@ -196,8 +196,8 @@
                             </div>
 
                             <div class="btns">
-                                <button class="btn-clear" id="btn-lang-clear">Clear all</button>
-                                <button class="btn-apply" id="btn-lang-apply">Apply</button>
+                                <button class="btn-clear" id="btn-language-clear">Clear all</button>
+                                <button class="btn-apply" id="btn-language-apply">Apply</button>
                             </div>
                             
                             
@@ -256,7 +256,7 @@
 
                             <div class="btns">
                                 <button class="btn-clear" id="btn-review-clear">Clear all</button>
-                                <button class="btn-apply" id="btn-reveiw-apply">Apply</button>
+                                <button class="btn-apply" id="btn-review-apply">Apply</button>
                             </div>
                             
                             
@@ -444,6 +444,17 @@
                     </div> -->
                   
                 </div>
+
+                <div class="pagination">
+                    <button id="prevButton" onclick="prevPage()" class="filter">&#8249;</button>
+                    <div class="current-page"></div>
+                    <button id="nextButton" onclick="nextPage()" class="filter">&#8250;</button>
+                </div>
+
+            
+                </div>
+                
+                
             </div>
         </div>
     </div>
@@ -452,16 +463,27 @@
     <script src="../Javascripts/package_list_view.js"></script>
     
     <script>
-        var rangeSlider = document.getElementById('budget-range');
+        // Get the radio button and range slider elements
+var radioBtn = document.getElementById('budget-cust');
+var rangeSlider = document.getElementById('budget-range');
+var budget_val = document.getElementById('b-value')
 
-        // Get the paragraph element where the value will be displayed
-        var selectedBudget = document.getElementById('b-value');
 
-        // Add event listener for input event (when slider value changes)
-        rangeSlider.addEventListener('input', function() {
-        // Update the text content of the paragraph with the current value of the range slider
-        selectedBudget.textContent = this.value;
-        });
+// Add event listener for radio button change
+radioBtn.addEventListener('change', function() {
+    // Check if the radio button is checked
+    if (this.checked) {
+        // Enable the range slider
+        rangeSlider.disabled = false;
+    } else {
+        // Disable the range slider
+        rangeSlider.disabled = true;
+    }
+});
+
+rangeSlider.addEventListener('input', function(){
+    budget_val.innerHTML = this.value
+})
     </script>
 </body>
 </html>

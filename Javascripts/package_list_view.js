@@ -30,6 +30,7 @@ const budgetButton = document.getElementById('filter_budget');
 const delTimeButton = document.getElementById('filter_del_time');
 const langButton = document.getElementById('filter_lanaguages');
 const reviewButton = document.getElementById('filter_reviews');
+const packagesPerPage = 8;
 
 var loader = document.getElementById("loader-div");
 var block = document.getElementById("block");
@@ -39,6 +40,9 @@ var delTimeCode = 0;
 var languageCode = 0;
 var category = 0;
 var reviewCode = 0;
+var package_array = [];
+const itemsPerPage = 10;
+let currentPage = 1;
 
 // Add a click event listener to each button
 buttons.forEach(button => {
@@ -78,7 +82,12 @@ function package(){
 
 document.addEventListener("DOMContentLoaded", loadAllPackages(0))
 
-function loadAllPackages(category){
+function loadAllPackages(category, page = 1){
+
+  const itemsPerPage = 8; // Adjust the number of items per page as needed
+  const startIndex = (page - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
   fetch(BASE_URL+`/packagelist?category=${category}&price=${priceCode}&delTimeCode=${delTimeCode}&language=${languageCode}&reviewCode=${reviewCode}`, {
     method: 'GET',
     headers: myHeaders,
@@ -91,11 +100,15 @@ function loadAllPackages(category){
   })
   .then((packages) => {
     var row = document.getElementById("row");
+    package_array = packages;
 
     row.innerHTML = "";
 
-    packages.forEach((package) =>{
+    var packagesToShow = packages.slice(startIndex, endIndex);
 
+    packagesToShow.forEach((package) =>{
+
+      // packageCount += 1;
       // Create a new div element
       var columnDiv = document.createElement("div");
       columnDiv.classList.add("column");
@@ -190,10 +203,51 @@ function loadAllPackages(category){
       removeLoader();
       // block.style.cssText = "";
       // loader.style.display = "none";
+
+      // if (packageCount % 8 > packagesPerPage) {
+      //   exit();
+      // }
+      currentPage = page;
   })
 
 
 }
+
+function prevPage() {
+  if (currentPage > 1) {
+    currentPage--;
+    loadAllPackages(category, currentPage);
+    updatePaginationButtons();
+  }
+}
+
+function nextPage() {
+  const totalPages = Math.ceil(package_array.length / itemsPerPage);
+  if (currentPage < totalPages) {
+    currentPage++;
+    loadAllPackages(category, currentPage);
+    updatePaginationButtons();
+  }
+}
+
+function updatePaginationButtons() {
+  const prevButton = document.getElementById('prevButton');
+  const nextButton = document.getElementById('nextButton');
+  const totalPages = Math.ceil(package_array.length / itemsPerPage);
+
+  // Disable both buttons if the length of the packages array is less than 8
+  if (package_array.length < 8) {
+    console.log(package_array.length);
+    prevButton.disabled = true;
+    nextButton.disabled = true;
+    return; // Exit the function early
+  }
+
+  prevButton.disabled = currentPage === 1;
+  nextButton.disabled = currentPage === totalPages;
+}
+
+
 
 // Add a click event listener to the Budget button
 budgetButton.addEventListener('click', function(event) {
@@ -301,20 +355,20 @@ document.getElementById('btn-budget-apply').addEventListener("click", function()
 
   budgetFilterFlag = true;  
 
-  var budgetCustomInput = document.getElementById('budget-custom');
+  // var budgetCustomInput = document.getElementById('budget-custom');
   var budgetRadioButtons = document.getElementsByName('budget');
 
   // Function to get the selected radio button value
-  function getSelectedRadioValue() {
-      for (var i = 0; i < budgetRadioButtons.length; i++) {
-          if (budgetRadioButtons[i].checked) {
-              return budgetRadioButtons[i].value;
-          }
-      }
-      return null; 
-  }
+  // function getSelectedRadioValue() {
+  //     for (var i = 0; i < budgetRadioButtons.length; i++) {
+  //         if (budgetRadioButtons[i].checked) {
+  //             return budgetRadioButtons[i].value;
+  //         }
+  //     }
+  //     return null; 
+  // }
 
-  priceCode = getSelectedRadioValue();
+  priceCode = getSelectedRadioValue(budgetRadioButtons);
   var budgetValue = ""
 
   // check whether a radio button is selected
@@ -323,51 +377,32 @@ document.getElementById('btn-budget-apply').addEventListener("click", function()
     // if a custon value is entered
     if (priceCode === 'custom') {
 
-      budgetValue = budgetCustomInput.value;
+      budgetValue = document.getElementById('b-value').innerHTML;
+      console.log(budgetValue);
 
-      // if an invalid value is entered
-      if (budgetValue < 500) {
-        document.getElementById('err_price').innerHTML = "Service starts at Rs.500"
-        budgetValue = "-1"
-      } else{
-        priceCode = budgetValue
-        budgetDropdown.style.display = 'none';
-      }
-    } else{
       budgetDropdown.style.display = 'none';
 
     }
 
-    console.log("price code: " +priceCode);
+    // console.log("price code: " +priceCode);
 
     // decide the filters
     var filter_txt =""
-    if (budgetValue != "-1") {
-      if (priceCode == "1") {
-        filter_txt = "Low Under Rs.2000"
-      } else if (priceCode == "2"){
-        filter_txt = "Mid range Rs.2000 - Rs.5000"
-      } else if (priceCode == "3"){
-        filter_txt = "High end Rs.5000 and above"
-      } else{
+    if (budgetValue != null) {
+        priceCode = budgetValue;
         filter_txt = "Budget: Rs."+priceCode
-      }
+        createFilterBox(filter_txt, "budget")
 
-      createFilterBox(filter_txt, "budget")
+      }
+      console.log("price code: " +priceCode);
+    
+      ////////////////////////////////////////////////////////////////////////////////////////////// from here 21-02
 
 
       // afterwards data fetching
       loadAllPackages(category)
     }
 
-
-
-  } else{
-    budgetDropdown.style.display = "none"
-  }
-  
-
-// Example usage:
 
 })
 
@@ -379,7 +414,7 @@ function createFilterBox(filter_text, filter_type){
   tag_cloud_span.classList.add('tag-cloud');
 
   var paragraph = document.createElement('p');
-  paragraph.textContent = filter_text;
+  paragraph.innerHTML = filter_text;
   paragraph.classList.add('filter-text-style');
 
   var closeIcon = document.createElement('i');
@@ -395,6 +430,8 @@ function createFilterBox(filter_text, filter_type){
       removeDelTimeFilter();
     } else if (filter_type == "lang"){
       removeLangFilter();
+    } else if (filter_type == "review"){
+      removeReviewFilter();
     }
   })
 
@@ -409,55 +446,58 @@ function createFilterBox(filter_text, filter_type){
 // set the logic of budget filter clear button
 document.getElementById('btn-budget-clear').addEventListener('click', function()
 {
-  document.getElementById('budget-custom').value = '';
+  // document.getElementById('budget-custom').value = '';
   var budgetRadioButtons = document.getElementsByName('budget');
 
   for (var i = 0; i < budgetRadioButtons.length; i++) {
       budgetRadioButtons[i].checked = false;
       
 }
-  document.getElementById("err_price").innerHTML =""
+  // document.getElementById("err_price").innerHTML =""
   budgetDropdown.style.display = 'none';
   priceCode = 0;
   // loadAllPackages(category)
-
+  var val = document.getElementById("any_budget")
+  val.checked = true;
 }
 )
 
 
-// Get the custom radio button and custom input text box
-var customInput = document.getElementById('budget-custom');
-var customRadioButton = document.getElementById('budget-cust');
+// // Get the custom radio button and custom input text box
+// var customInput = document.getElementById('budget-custom');
+// var customRadioButton = document.getElementById('budget-cust');
 
-// Add event listener to the text box for the focus event
-customInput.addEventListener('focus', function() {
-    // Check the associated radio button
-    customRadioButton.checked = true;
+// // Add event listener to the text box for the focus event
+// customInput.addEventListener('focus', function() {
+//     // Check the associated radio button
+//     customRadioButton.checked = true;
 
     
-});
+// });
 
 // remove the budget filter
 function removeBudgetFilter(){
-  document.getElementById('budget-custom').value = '';
+  // document.getElementById('budget-custom').value = '';
   var budgetRadioButtons = document.getElementsByName('budget');
 
   for (var i = 0; i < budgetRadioButtons.length; i++) {
       budgetRadioButtons[i].checked = false;
       
   }
-  document.getElementById("err_price").innerHTML =""
-
   console.log("inside remove budget");
   priceCode = 0;
 
   activeLoader();
   loadAllPackages(category)
 
+  document.getElementById("any_budget").checked = true;
+
+
 }
 
 ///////////// add a delivery time filter
 document.getElementById('btn-deltime-apply').addEventListener('click', function(){
+  console.log("inside add delivery time");
   activeLoader();
 
   var delTimeRadioButtons = document.getElementsByName('del-time');
@@ -520,8 +560,80 @@ document.getElementById('btn-deltime-clear').addEventListener('click', function(
 }
 )
 
+///////////// add a review filter
+document.getElementById('btn-review-apply').addEventListener('click', function(){
+  activeLoader();
+
+  var reviewRadioButtons = document.getElementsByName('review');
+
+  reviewCode = getSelectedRadioValue(reviewRadioButtons)
+  console.log("inside review");
+
+  console.log("review code: " +reviewCode);
+
+  reviewDropdown.style.display = 'none';
+
+  var filter_txt = "";
+  if (reviewCode == 5) {
+    filter_txt  = "5.0 <span class='fa fa-star checked'></span>";
+    createFilterBox(filter_txt, "review")
+  } else if (reviewCode == 4.5) {
+    filter_txt  = "4.5 <span class='fa fa-star checked'></span> or above";
+    createFilterBox(filter_txt, "review")
+  } else if (reviewCode == 4){
+    filter_txt  = "4.0 <span class='fa fa-star checked'></span> or above";
+    createFilterBox(filter_txt, "review")
+  }else if (reviewCode == 3.5){
+    filter_txt  = "3.5 <span class='fa fa-star checked'></span> or above";
+    createFilterBox(filter_txt, "review")
+  } else if (reviewCode == 3){
+    filter_txt  = "3.0 <span class='fa fa-star checked'></span> or above";
+    createFilterBox(filter_txt, "review")
+  }
+
+  // createFilterBox(filter_txt, "delTime")
+
+  // afterwards data fetching
+  loadAllPackages(category)
+})
+
+// remove the review filter
+function removeReviewFilter(){
+
+  var reviewRadioButtons = document.getElementsByName('review');
+
+  for (var i = 0; i < reviewRadioButtons.length; i++) {
+    reviewRadioButtons[i].checked = false;
+      
+  }
+  reviewCode = 0;
+
+  activeLoader();
+  loadAllPackages(category)
+
+  document.getElementById("any_star").checked = true;
+}
+
+// set the logic of review filter clear button
+document.getElementById('btn-review-clear').addEventListener('click', function()
+{
+  var reviewRadioButtons = document.getElementsByName('review');
+
+
+  for (var i = 0; i < reviewRadioButtons.length; i++) {
+    reviewRadioButtons[i].checked = false;
+      
+}
+  
+  reviewDropdown.style.display = 'none';
+  reviewCode = 0;
+  // loadAllPackages(category)
+
+}
+)
+
 //////// add language filter ////
-document.getElementById('btn-lang-apply').addEventListener('click', function(){
+document.getElementById('btn-language-apply').addEventListener('click', function(){
   activeLoader();
 
   var langRadioButtons = document.getElementsByName('lang');
@@ -648,6 +760,7 @@ rangeLabels.forEach(function (label) {
     });
   });
 });
+
 
 
 
