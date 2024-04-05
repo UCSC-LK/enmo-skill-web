@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../CSS/main.css">
+    <link rel="stylesheet" href="../CSS/client_profile.css">
+    <title>Profile View</title>
+  
+</head>
+<body>
+    <div id="header-placeholder" style="width: 100%; z-index: 1; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>
+    <div class="loading">
+        <div class="spin"></div>
+    </div>
+  <div class="container">
+    <div class="profile">
+      <img class="prf_pic" src="../Assests/prof_pic_default.jpg" alt="Profile Picture">
+      
+
+      <h2 class="uname">Name</h2>
+      <h5>Client</h6>
+        <div class="view">
+            <div class="detail-box gradient fname-box"><p class="fname-p">Name <span class="tex fname"></span></p></div>
+            <div class="detail-box gradient email-box"><p class="email-p">Email  <span class="tex email"></span></p></div>
+            <div class="detail-box gradient cn-box"><p class="cn-p">Contact No  <span class="tex cn"></span></p></div>
+            <div class="detail-box gradient cou-box" ><p class="cou-p">Country  <span class="tex cou"></span></p></div>
+            <div class="detail-box gradient jd-box"><p class="jd-p">Joined Date  <span class="tex jd"></span></p></div>
+            <button class="edit-button">Edit Profile</button>
+        </div>
+        <div class="edit">
+            <label for="fileInput">Profile Picture:</label>
+            <input type="file" id="fileInput" accept="image/*" class="detail-box">
+            <label for="name-in">Name:</label>
+            <input type="text" class="detail-box name-in" placeholder="Name">
+            
+            <label for="contact-in">Contact No:</label>            
+            <input type="number" class="detail-box cn-in" placeholder="Contact No">
+
+            
+        <button class="done-button">Done</button>
+        </div>
+    
+    </div>
+  </div>
+  
+<script src="https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <script src = "../Javascripts/baseurl.js"> </script>
+  <script src="../Javascripts/client_profile.js"></script>
+
+</body>
+</html>

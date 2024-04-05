@@ -10,11 +10,25 @@
 <body>
     <!-- Include the navigation bar using an iframe 
     <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>
-    <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script><div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script><div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script><iframe src="../Components/navbar_cs.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;position: fixed;top: 0;z-index: 2;left: 0;"></iframe>
+    
 
-  
-        Please note that if your next element must have magin top 80px  
-            example -- <div style="margin-top=80px"></div>  -->
+
+
+    in fetch use this part to retrive the data from the backend and do the following steps
+
+    fetch(BASE_URL+"/ur endpont", requestOptions)
+  .then(response => 
+    {if(response.status == 401){
+      window.location.href = "../Failed/401.html";
+    }else if(response.status == 406){
+      const currentUrl = encodeURIComponent(window.location.href);
+      window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+    }else if(response.status == 404){
+      window.location.href = "../Failed/404.html";
+    }else {
+      return response.json()
+    }
+    }).then(data => {})
 
 
             
@@ -117,6 +131,30 @@
 
 
 
+
+<script src="https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+<script>
+    
+    
+Toastify({
+    text: "This is a toast",
+    duration: 3000,
+    destination: "https://github.com/apvarun/toastify-js",
+    newWindow: true,
+    close: true,    
+    gravity: "bottom", // `top` or `bottom`
+    position: "left", // `left`, `center` or `right`
+    stopOnFocus: true, // Prevents dismissing of toast on hover
+    style: {
+      background: "linear-gradient(to right, #00b09b, #96c93d)",
+    },
+    onClick: function(){} // Callback after click
+  }).showToast();
+  console.log("iugserhunh");
+
+// </script>
 
 
 
