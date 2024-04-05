@@ -22,7 +22,9 @@ const url = new URL(window.location.href);
 const packageId = url.searchParams.get('packageId');
 console.log(packageId);
 
-document.addEventListener( "DOMContentLoaded", loadData() );
+var deseignerId;
+
+document.addEventListener("DOMContentLoaded", loadData());
 
 function loadData() {
     fetch(BASE_URL+`/packageview?packageId=${packageId}`,{
@@ -37,12 +39,13 @@ function loadData() {
     })
     .then((resultset) =>{
         
-        var package_data = resultset[0];
-        var designer_data = resultset[1];
-        var pricing_data = resultset[2];
+        var package_data = resultset.packageModel;
+        var designer_data = resultset.profileModel;
+        var pricing_data = resultset.pricings;
 
         // console.log(pricing_data.pricing[0].noOfRevisions);
 
+        deseignerId = designer_data.userid;
 
         document.getElementById("headding-title").innerHTML = package_data.title;
 
@@ -56,7 +59,7 @@ function loadData() {
         document.getElementById("no-orders").innerHTML = 4 + ' Orderes in Queue'; // this has to be fetched from the order table
 
         var designer_pic = document.getElementById("cover-image");
-        designer_pic.src = "../Assests/package_cover4.jpg"; // this data has to be store in the db
+        designer_pic.src = package_data.coverUrl; // this data has to be store in the db
 
         var pkg_decription = document.getElementById("description");
         var description = document.createElement('p');
@@ -124,7 +127,7 @@ function loadData() {
                 
                 ]
                 
-                pricing_data.pricing.forEach(function(pricingItem){
+                pricing_data.forEach(function(pricingItem){
                     data_rows[0].push(pricingItem.price)
                     data_rows[1].push(pricingItem.noOfRevisions)
                     data_rows[2].push((pricingItem.deliveryDuration==1)?"1 Day":pricingItem.deliveryDuration+" Days")
@@ -188,7 +191,7 @@ function loadData() {
                 
                 ]
                 
-                pricing_data.pricing.forEach(function(pricingItem){
+                pricing_data.forEach(function(pricingItem){
                     data_rows[0].push(pricingItem.price)
                     data_rows[1].push(pricingItem.noOfRevisions)
                     data_rows[2].push((pricingItem.deliveryDuration==1)?"1 Day":pricingItem.deliveryDuration+" Days")
@@ -240,29 +243,27 @@ function loadData() {
                     ["Price (Rs)"],
                     ["No of Revisions"],
                     ["Delivery Duration"],
-                    ["Print-Ready"],
+                    ["Printable File"],
                     ["Source File"],
                     ["Double-sided"],
                     ["Custom Graphics"],
                     ["Photo editing"],
-                    ["Social media design"],
                     ["Commercial Use"],
                     [""]
                 
                 ]
                 
-                pricing_data.pricing.forEach(function(pricingItem){
+                pricing_data.forEach(function(pricingItem){
                     data_rows[0].push(pricingItem.price)
                     data_rows[1].push(pricingItem.noOfRevisions)
                     data_rows[2].push((pricingItem.deliveryDuration==1)?"1 Day":pricingItem.deliveryDuration+" Days")
-                    data_rows[3].push((pricingItem.deliverables.printReady==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
+                    data_rows[3].push((pricingItem.deliverables.printableFile==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
                     data_rows[4].push((pricingItem.deliverables.sourceFile==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
                     data_rows[5].push((pricingItem.deliverables.doubleSided==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
                     data_rows[6].push((pricingItem.deliverables.customGraphics==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
                     data_rows[7].push((pricingItem.deliverables.photoEditing==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-                    data_rows[8].push((pricingItem.deliverables.socialMediaDesign==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-                    data_rows[9].push((pricingItem.deliverables.commercialUse==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-                    data_rows[10].push('<button class="button-save" onclick="payment()">Select</button>')
+                    data_rows[8].push((pricingItem.deliverables.commercialUse==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
+                    data_rows[9].push('<button class="button-save" onclick="payment()">Select</button>')
                 })
                 
                 data_rows.forEach(function(row){
@@ -298,24 +299,23 @@ function loadData() {
                 break;
         
             case 4:
-                ["Custom graphics", "Source file", "Print-ready"];
 
                 var data_rows = [
                     ["Price (Rs)"],
                     ["No of Revisions"],
                     ["Delivery Duration"],
-                    ["Print-Ready"],
+                    ["Photo Editing"],
                     ["Source File"],
                     ["Custom Graphics"],
                     [""]
                 
                 ]
                 
-                pricing_data.pricing.forEach(function(pricingItem){
+                pricing_data.forEach(function(pricingItem){
                     data_rows[0].push(pricingItem.price)
                     data_rows[1].push(pricingItem.noOfRevisions)
                     data_rows[2].push((pricingItem.deliveryDuration==1)?"1 Day":pricingItem.deliveryDuration+" Days")
-                    data_rows[3].push((pricingItem.deliverables.printReady==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
+                    data_rows[3].push((pricingItem.deliverables.photoEditing==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
                     data_rows[4].push((pricingItem.deliverables.sourceFile==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
                     data_rows[5].push((pricingItem.deliverables.customGraphics==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
                     data_rows[6].push('<button class="button-save" onclick="payment()">Select</button>')
@@ -376,7 +376,7 @@ function loadData() {
 document.getElementById("contact-btn").addEventListener("click", function(e) {
     e.preventDefault();
     
-    // function to navigate to messaeges
+    window.location.href="../HTML/messages.html?createchat=true&id="+deseignerId
 
 })
 
