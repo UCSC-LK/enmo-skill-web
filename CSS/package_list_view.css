@@ -404,7 +404,7 @@ body {
   @keyframes l3 {to{transform: rotate(1turn)}}
 
   .loader-div{
-    background-color: #fff;
+    /* background-color: #fff; */
     display: flex;
     align-items: center;
     justify-content: center;

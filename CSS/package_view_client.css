@@ -20,7 +20,7 @@ main{
     margin: auto;
     padding: 30px;
     flex-direction: column;
-    background: rgba(255, 255, 255, 0.5); /* Corrected spelling */
+    /* background: rgba(255, 255, 255, 0.5);  */
     border: none; /* Corrected spelling */
     overflow: hidden; /* Replaced overflow-x and overflow-y */
 }
@@ -274,6 +274,7 @@ h3{
     padding: 20px;
     margin-bottom: 10px;
     border-radius: 7px;
+    background: rgba(255, 255, 255, 0.5);
 }
   
 .review-frame h3{
@@ -354,6 +355,7 @@ h3{
     padding: 20px;
     border: 1px solid #ebebeb;
     border-radius: 7px;
+    background: rgba(255, 255, 255, 0.5);
 
 }
 
@@ -480,7 +482,7 @@ h3{
   @keyframes l3 {to{transform: rotate(1turn)}}
 
   .loader-div{
-    background-color: #fff;
+    /* background-color: #fff; */
     display: flex;
     align-items: center;
     justify-content: center;

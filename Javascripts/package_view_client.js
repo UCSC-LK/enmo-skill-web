@@ -49,6 +49,8 @@ function loadData() {
 
         document.getElementById("headding-title").innerHTML = package_data.title;
 
+        document.getElementById("htmlTitle").innerHTML = package_data.title
+
         var designer_pic = document.getElementById("designer-picture");
         designer_pic.src = "../Assests/user_coloured.png"; // this data has to be store in the db
 
@@ -138,7 +140,7 @@ function loadData() {
                     data_rows[7].push((pricingItem.deliverables.mockup==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
                     data_rows[8].push((pricingItem.deliverables.sourceFile==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
                     data_rows[9].push((pricingItem.deliverables.socialMediaKit==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-                    data_rows[10].push('<button class="button-save" onclick="payment()">Select</button>')
+                    data_rows[10].push('<button class="button-save" onclick="createOrder('+pricingItem.price+')">Select</button>')
                 })
                 
                 data_rows.forEach(function(row){
@@ -202,7 +204,7 @@ function loadData() {
                     data_rows[7].push((pricingItem.deliverables.colour==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
                     data_rows[8].push((pricingItem.deliverables.fullBody==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
                     data_rows[9].push((pricingItem.deliverables.commercialUse==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-                    data_rows[10].push('<button class="button-save" onclick="payment()">Select</button>')
+                    data_rows[10].push('<button class="button-save" onclick="createOrder('+pricingItem.price+')">Select</button>')
                 })
                 
                 data_rows.forEach(function(row){
@@ -263,7 +265,7 @@ function loadData() {
                     data_rows[6].push((pricingItem.deliverables.customGraphics==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
                     data_rows[7].push((pricingItem.deliverables.photoEditing==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
                     data_rows[8].push((pricingItem.deliverables.commercialUse==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-                    data_rows[9].push('<button class="button-save" onclick="payment()">Select</button>')
+                    data_rows[9].push('<button class="button-save" onclick="createOrder('+pricingItem.price+')">Select</button>')
                 })
                 
                 data_rows.forEach(function(row){
@@ -318,7 +320,7 @@ function loadData() {
                     data_rows[3].push((pricingItem.deliverables.photoEditing==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
                     data_rows[4].push((pricingItem.deliverables.sourceFile==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
                     data_rows[5].push((pricingItem.deliverables.customGraphics==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-                    data_rows[6].push('<button class="button-save" onclick="payment()">Select</button>')
+                    data_rows[6].push('<button class="button-save" onclick="createOrder('+pricingItem.price+')">Select</button>')
                 })
                 
                 data_rows.forEach(function(row){
@@ -379,4 +381,35 @@ document.getElementById("contact-btn").addEventListener("click", function(e) {
     window.location.href="../HTML/messages.html?createchat=true&id="+deseignerId
 
 })
+
+function createOrder(price){
+    var reqBody = {
+        "packageId": packageId,
+        "designerId" : deseignerId,
+        "price" : price
+    }
+
+    fetch(BASE_URL+`/order`,{
+        method: 'POST',
+        headers: myHeaders,
+        body: JSON.stringify(reqBody)
+    }).then((response) => {
+        if (response.ok) {
+          console.log("Order created successfully");
+            var rsp = response.json();
+            rsp.then(data =>{
+                console.log(data.orderId);
+                window.location.href=`../HTML/payment.html?orderId=${data.orderId}&price=${price}&packageId=${packageId}`
+            })
+          
+        } else {
+          console.error("An error occurred while creating");
+        }
+      })
+      .catch((error) => {
+        console.error('An error occurred while creating');
+      });
+
+    
+}
 
