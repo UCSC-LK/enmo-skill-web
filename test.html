@@ -32,6 +32,7 @@
 </form> 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+<script src="../enmo-skill-web/Javascripts/baseurl.js"></script>
 
 <script>
 function getCookie(cookieName) {
@@ -73,7 +74,7 @@ function getCookie(cookieName) {
     redirect: "follow"
     };
 
-    fetch("http://localhost:15000/enmo_skill_backend_war/payment?orderId="+orderId+"&amount="+amount+"&currency="+currency, requestOptions)
+    fetch(BASE_URL+"/payment?orderId="+orderId+"&amount="+amount+"&currency="+currency, requestOptions)
     .then((response) => {if(response.status == 401){
       window.location.href = "../Failed/401.html";
     }else if(response.status == 406){
