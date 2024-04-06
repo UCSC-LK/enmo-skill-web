@@ -14,22 +14,25 @@
     <input type="hidden" name="return_url" value="https://enmoskill.codingblinders.com/HTML/successPayment.html">
     <input type="hidden" name="cancel_url" value="https://enmoskill.codingblinders.com/HTML/unsuccessPayment.html">
     <input type="hidden" name="notify_url" value="https://enmoskill.codingblinders.com/api/enmo-skill-backend/payment">  
-    </br></br>Item Details</br>
+    </br></br>orderId</br>
     <input type="text" name="order_id" id="order_id" value="ItemNo12345">
+  </br></br>Item name</br>
     <input type="text" name="items" value="Door bell wireless">
+  </br></br>currency</br>
     <input type="text" name="currency" id="currency" value="LKR">
+  </br></br>Value</br>
     <input type="text" name="amount" id="amount" value="1000">  
-    </br></br>Customer Details</br>
-    <input type="text" name="first_name" value="Saman">
-    <input type="text" name="last_name" value="Perera">
-    <input type="text" name="email" value="samanp@gmail.com">
-    <input type="text" name="phone" value="0771234567">
-    <input type="text" name="address" value="No.1, Galle Road">
-    <input type="text" name="city" value="Colombo">
+    
+    <input type="hidden" name="first_name" value="Saman">
+    <input type="hidden" name="last_name" value="Perera">
+    <input type="hidden" name="email" value="samanp@gmail.com">
+    <input type="hidden" name="phone" value="0771234567">
+    <input type="hidden" name="address" value="No.1, Galle Road">
+    <input type="hidden" name="city" value="Colombo">
     <input type="hidden" name="country" value="Sri Lanka">
-    <input type="text" name="hash" id="hashInput"> <!-- Hash value will be filled by JavaScript -->
+    <input type="hidden" name="hash" id="hashInput"> <!-- Hash value will be filled by JavaScript -->
     <button type="button" onclick="submitPayHereForm()">Buy Now</button>   
-    <button type="submit">submit</button>
+    <!-- <button type="submit">submit</button> -->
 </form> 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
