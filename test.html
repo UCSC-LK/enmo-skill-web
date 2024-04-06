@@ -49,23 +49,29 @@ function getCookie(cookieName) {
   }
   return null;
 }
- function submitPayHereForm() {
+ async function submitPayHereForm() {
     
     var orderId = document.getElementById('order_id').value; 
     var amount = document.getElementById('amount').value; 
     var currency = document.getElementById('currency').value; 
-    console.log(orderId,amount,currency);
+    // console.log(orderId,amount,currency);
 
     // Generate hash value
-    var hash =  generateHash(orderId,amount,currency);
-    document.getElementById('hashInput').value = hash;
-    console.log(hash);
+    try {
+        const hash = await generateHash(orderId, amount, currency);
+        document.getElementById('hashInput').value = hash;
+        console.log(hash);
+    } catch (error) {
+        console.error("Error generating and setting hash:", error);
+    }
 
     // Submit the form
     // document.getElementById('payhereForm').submit();
 }
 
- function generateHash(orderId, amount, currency) {
+ async function generateHash(orderId, amount, currency) {
+
+  return new Promise((resolve, reject) => {
     
     const myHeaders = new Headers();
     myHeaders.append("Authorization", getCookie("JWT"));
@@ -91,11 +97,12 @@ function getCookie(cookieName) {
     
     }).then((result) => {
       console.log(result);
-      return result;
+      resolve(result);
     })
     .catch((error) => console.error(error));
 
-
+  
+  });
 
 
     
