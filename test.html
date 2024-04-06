@@ -27,8 +27,9 @@
     <input type="text" name="address" value="No.1, Galle Road">
     <input type="text" name="city" value="Colombo">
     <input type="hidden" name="country" value="Sri Lanka">
-    <input type="hidden" name="hash" id="hashInput"> <!-- Hash value will be filled by JavaScript -->
+    <input type="text" name="hash" id="hashInput"> <!-- Hash value will be filled by JavaScript -->
     <button type="button" onclick="submitPayHereForm()">Buy Now</button>   
+    <button type="submit">submit</button>
 </form> 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
@@ -61,7 +62,7 @@ function getCookie(cookieName) {
     console.log(hash);
 
     // Submit the form
-    document.getElementById('payhereForm').submit();
+    // document.getElementById('payhereForm').submit();
 }
 
  function generateHash(orderId, amount, currency) {
