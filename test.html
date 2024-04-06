@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PayHere Checkout</title>
+</head>
+<body>
+
+<h2>PayHere Checkout</h2>
+
+<form id="payhereForm" method="post" action="https://sandbox.payhere.lk/pay/checkout">   
+    <input type="hidden" name="merchant_id" value="1226368">    <!-- Replace with your Merchant ID -->
+    <input type="hidden" name="return_url" value="http://sample.com/return">
+    <input type="hidden" name="cancel_url" value="http://sample.com/cancel">
+    <input type="hidden" name="notify_url" value="http://sample.com/notify">  
+    </br></br>Item Details</br>
+    <input type="text" name="order_id" id="order_id" value="ItemNo12345">
+    <input type="text" name="items" value="Door bell wireless">
+    <input type="text" name="currency" id="currency" value="LKR">
+    <input type="text" name="amount" id="amount" value="1000">  
+    </br></br>Customer Details</br>
+    <input type="text" name="first_name" value="Saman">
+    <input type="text" name="last_name" value="Perera">
+    <input type="text" name="email" value="samanp@gmail.com">
+    <input type="text" name="phone" value="0771234567">
+    <input type="text" name="address" value="No.1, Galle Road">
+    <input type="text" name="city" value="Colombo">
+    <input type="hidden" name="country" value="Sri Lanka">
+    <input type="hidden" name="hash" id="hashInput"> <!-- Hash value will be filled by JavaScript -->
+    <button type="button" onclick="submitPayHereForm()">Buy Now</button>   
+</form> 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+
+<script>
+function getCookie(cookieName) {
+  var name = cookieName + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var cookieArray = decodedCookie.split(';');
+
+  for(var i = 0; i < cookieArray.length; i++) {
+      var cookie = cookieArray[i].trim();
+      if (cookie.indexOf(name) == 0) {
+          return cookie.substring(name.length, cookie.length);
+      }
+  }
+  return null;
+}
+ function submitPayHereForm() {
+    
+    var orderId = document.getElementById('order_id').value; 
+    var amount = document.getElementById('amount').value; 
+    var currency = document.getElementById('currency').value; 
+    console.log(orderId,amount,currency);
+
+    // Generate hash value
+    var hash =  generateHash(orderId,amount,currency);
+    document.getElementById('hashInput').value = hash;
+    console.log(hash);
+
+    // Submit the form
+    document.getElementById('payhereForm').submit();
+}
+
+ function generateHash(orderId, amount, currency) {
+    
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", getCookie("JWT"));
+    const requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow"
+    };
+
+    fetch("http://localhost:15000/enmo_skill_backend_war/payment?orderId="+orderId+"&amount="+amount+"&currency="+currency, requestOptions)
+    .then((response) => {if(response.status == 401){
+      window.location.href = "../Failed/401.html";
+    }else if(response.status == 406){
+      const currentUrl = encodeURIComponent(window.location.href);
+      window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+    }else if(response.status == 404){
+      window.location.href = "../Failed/404.html";
+    }else if (response.status == 200) {
+      return response.text()
+    } else{
+      console.log("Error"+response.status)
+    }
+    
+    }).then((result) => {
+      console.log(result);
+      return result;
+    })
+    .catch((error) => console.error(error));
+
+
+
+
+    
+}
+
+</script>
+
+</body>
+</html>
