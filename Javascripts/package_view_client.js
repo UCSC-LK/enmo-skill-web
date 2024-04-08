@@ -22,7 +22,7 @@ const url = new URL(window.location.href);
 const packageId = url.searchParams.get('packageId');
 console.log(packageId);
 
-var deseignerId;
+// var deseignerId;
 
 document.addEventListener("DOMContentLoaded", loadData());
 
@@ -45,7 +45,7 @@ function loadData() {
 
         // console.log(pricing_data.pricing[0].noOfRevisions);
 
-        deseignerId = designer_data.userid;
+        deseignerId = designer_data.userId;
 
         document.getElementById("headding-title").innerHTML = package_data.title;
 
@@ -140,7 +140,7 @@ function loadData() {
                     data_rows[7].push((pricingItem.deliverables.mockup==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
                     data_rows[8].push((pricingItem.deliverables.sourceFile==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
                     data_rows[9].push((pricingItem.deliverables.socialMediaKit==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-                    data_rows[10].push('<button class="button-save" onclick="createOrder('+pricingItem.price+')">Select</button>')
+                    data_rows[10].push('<button class="button-save" onclick="createOrder('+pricingItem.price, +')">Select</button>')
                 })
                 
                 data_rows.forEach(function(row){
@@ -389,6 +389,8 @@ function createOrder(price){
         "price" : price
     }
 
+    console.log(deseignerId);
+
     fetch(BASE_URL+`/order`,{
         method: 'POST',
         headers: myHeaders,
@@ -398,8 +400,8 @@ function createOrder(price){
           console.log("Order created successfully");
             var rsp = response.json();
             rsp.then(data =>{
-                console.log(data.orderId);
-                window.location.href=`../HTML/payment.html?orderId=${data.orderId}&price=${price}&packageId=${packageId}`
+                console.log("Order ID: " + data.orderId);
+                window.location.href=`../HTML/payment.html?orderId=${data.orderId}`
             })
           
         } else {

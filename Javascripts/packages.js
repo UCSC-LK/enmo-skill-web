@@ -87,7 +87,7 @@ function laodActivePkg() {
     
             const p_orders = document.createElement('p');
             p_orders.innerHTML = element.orders;
-            p_orders.setAttribute("class", "orders")
+            p_orders.setAttribute("class", "noorders")
             row.appendChild(p_orders);
     
             const p_cancellations = document.createElement('p');
@@ -96,10 +96,12 @@ function laodActivePkg() {
             row.appendChild(p_cancellations);
     
             const p_buttons = document.createElement('p');
-            const span = document.createElement('span');
+            const span = document.createElement('div');
             const btn1 = document.createElement('button');
             const btn2 = document.createElement('button');
             const btn3 = document.createElement('button');
+
+            span.className = "align-buttons"
     
             btn1.setAttribute('class', 'pause-icon');
             btn2.setAttribute('class', 'edit-icon');
@@ -214,7 +216,7 @@ function laodPausedPkg() {
               row.appendChild(p_cancellations);
       
               const p_buttons = document.createElement('p');
-              const span = document.createElement('span');
+              const span = document.createElement('div');
               const btn1 = document.createElement('button');
               const btn2 = document.createElement('button');
               const btn3 = document.createElement('button');
@@ -324,7 +326,7 @@ function laodPendingPkg() {
             row.appendChild(p_cancellations);
     
             const p_buttons = document.createElement('p');
-            const span = document.createElement('span');
+            const span = document.createElement('div');
 
             span.setAttribute("style","opacity:0.5;")
             const btn1 = document.createElement('button');
@@ -384,37 +386,87 @@ function populateForm(selectedData) {
 
 }
 
+// function deletePackage(selectedData) {
+//   const packageId = selectedData.packageId;
+//   const title = selectedData.title;
+
+//   // Show a confirmation dialog to confirm deletion
+//   const flag = confirm(`Do you want to delete package with title: ${title}`);
+
+//   if (flag) {
+//     const deleteUrl = `http://localhost:15000/enmo_skill_backend_war/package?packageId=${packageId}`;
+
+//     fetch(BASE_URL+"/package?packageId="+packageId, {
+//       method: 'DELETE',
+//       headers: myHeaders,
+//       body: JSON.stringify(selectedData),
+//     })
+//       .then((response) => {
+//         if (response.ok) {
+//           // Successful deletion, you can handle this as needed
+//           console.log(`Package with packageId ${packageId} deleted successfully.`);
+//           location.replace(location.href);
+//         } else {
+//           // Handle errors
+//           alert("Failed to delete package");
+//           console.error(`Failed to delete package with packageId ${packageId}.`);
+//         }
+//       })
+//       .catch((error) => {
+//         console.error('Error deleting package:', error);
+//       });
+//   }
+// }
+
 function deletePackage(selectedData) {
   const packageId = selectedData.packageId;
   const title = selectedData.title;
 
-  // Show a confirmation dialog to confirm deletion
-  const flag = confirm(`Do you want to delete package with title: ${title}`);
+  // Show a Swal.fire confirmation dialog to confirm deletion
+  Swal.fire({
+    title: "Are you sure?",
+    text: `Do you want to delete this package ? You won't be able to revert this!`,
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      const deleteUrl = `http://localhost:15000/enmo_skill_backend_war/package?packageId=${packageId}`;
 
-  if (flag) {
-    const deleteUrl = `http://localhost:15000/enmo_skill_backend_war/package?packageId=${packageId}`;
-
-    fetch(BASE_URL+"/package?packageId="+packageId, {
-      method: 'DELETE',
-      headers: myHeaders,
-      body: JSON.stringify(selectedData),
-    })
-      .then((response) => {
-        if (response.ok) {
-          // Successful deletion, you can handle this as needed
-          console.log(`Package with packageId ${packageId} deleted successfully.`);
-          location.replace(location.href);
-        } else {
-          // Handle errors
-          alert("Failed to delete package");
-          console.error(`Failed to delete package with packageId ${packageId}.`);
-        }
-      })
-      .catch((error) => {
-        console.error('Error deleting package:', error);
-      });
-  }
+      fetch(BASE_URL + "/package?packageId=" + packageId, {
+          method: 'DELETE',
+          headers: myHeaders,
+          body: JSON.stringify(selectedData),
+        })
+        .then((response) => {
+          if (response.ok) {
+            // Successful deletion, you can handle this as needed
+            console.log(`Package with packageId ${packageId} deleted successfully.`);
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your package has been deleted.",
+              icon: "success"
+            }).then((result) => {
+              if (result.isConfirmed) {
+                location.replace(location.href);
+              }
+            });
+            // location.replace(location.href);
+          } else {
+            // Handle errors
+            alert("Failed to delete package");
+            console.error(`Failed to delete package with packageId ${packageId}.`);
+          }
+        })
+        .catch((error) => {
+          console.error('Error deleting package:', error);
+        });
+    }
+  });
 }
+
 
 document.getElementById("create").addEventListener("click", function(){
   window.location.href = '../HTML/package_overview.html'
