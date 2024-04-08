@@ -16,8 +16,6 @@ function getCookie(cookieName) {
     return null;
   }
 
-  var userId = 76 //getCookie("User_ID");
-
 const urlParams = new URLSearchParams(window.location.search);
 const massage =  urlParams.get('pvalue')
 
@@ -46,13 +44,14 @@ header.textContent=massage //set hedder-----------------------------------------
 //   me.style.color="#000000"
   
 // })
+if(massage=="Assigned"){
+  getAsignTicket()
+}
+tableLoad(massage)
 
-tableLoad(massage,userId)
 
 
-
-function tableLoad(view,userId){
-
+function tableLoad(view){
 
   // perent.innerHTML=""
   //   all.style.color="#9D9D9D"
@@ -88,8 +87,8 @@ function tableLoad(view,userId){
     .then(result => {
       console.log(result)
       result.forEach(item => {
-        
-        if((view!="Assigned" || view !="Old" || view==null)  && !(item.status == 3 || item.status == 4)){
+
+        if(item.agentID==0 && !(item.status==3||item.status==4) ){
           const newItem = child.cloneNode(true)
 
           newItem.querySelector(".profile-pic").src=item.url
@@ -142,20 +141,19 @@ function tableLoad(view,userId){
           ]
        
           itemDivs.forEach(function(itemDiv) {
-            itemDiv.addEventListener("click",()=>{ viewticket(item.ref_no,false)})//view tickets--------------------------------------------
+            itemDiv.addEventListener("click",()=>{ viewticket(item.ref_no,false,item.status)})//view tickets--------------------------------------------
           });             
 
 
-        }else{
+        }else if(view=="Old" && (item.status == 3 || item.status == 4)){
+          
           const newItem = child.cloneNode(true)
           newItem.querySelector(".agent").remove()
-
 
           newItem.querySelector(".btn").remove();
           newItem.querySelector('.profile-pic').src=item.url
           newItem.querySelector(".name").textContent=item.userName
           newItem.querySelector(".subject").textContent=item.subject
-
 
           if(item.urgent==0){
             newItem.querySelector(".order2").style.display="none"
@@ -167,12 +165,7 @@ function tableLoad(view,userId){
           if(item.role=="1"){newItem.querySelector(".role").textContent="Client"}
           else if(item.role=="2"){newItem.querySelector(".role").textContent="Designer"}
 
-          if(item.agentID==userId && item.status==2 && view=="Assigned" && !(item.status == 3 || item.status == 4)){
-            perent.appendChild(newItem)
-          }else if(view=="Old" && (item.status == 3 || item.status == 4)){
-            perent.appendChild(newItem)
-          }
-
+          perent.appendChild(newItem)   
 
           var itemDivs=[
             newItem.querySelector(".ticket-name"),
@@ -183,17 +176,83 @@ function tableLoad(view,userId){
           ]
          
           itemDivs.forEach(function(itemDiv) {
-            itemDiv.addEventListener("click",()=>{ viewticket(item.ref_no,true)})//view tickets--------------------------------------------
+            itemDiv.addEventListener("click",()=>{ viewticket(item.ref_no,true,item.status)})//view tickets--------------------------------------------
           });
-      }
+        }
+      })
         
-    })
-  })            
+    })        
         
     .catch(error => console.log('error', error))
 
 }
+//getAsignTicket-----------------------------------------------------------------------------
+function getAsignTicket(){
 
+  var myHeaders = new Headers();                          
+  myHeaders.append("Content-Type", "application/json");  
+  myHeaders.append("Authorization", getCookie("JWT"));   
+
+  var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    Credential:'include'
+  };
+  
+  loding.style.display ="flex"
+    fetch(BASE_URL+"/support?assign=1", requestOptions)
+    .then(response =>{
+      loding.style.display ="none"
+      if(response.status == 401){
+        window.location.href = "../Failed/401.html";
+      }else if(response.status == 406){
+        const currentUrl = encodeURIComponent(window.location.href);
+        window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+      }else if(response.status == 404){
+        window.location.href = "../Failed/404.html";
+      }else {
+        return response.json()
+      }
+    })
+    .then(result => {
+      console.log(result)
+      result.forEach(item => {
+
+        const newItem = child.cloneNode(true)
+        newItem.querySelector(".agent").remove()
+
+        newItem.querySelector(".btn").remove();
+        newItem.querySelector('.profile-pic').src=item.url
+        newItem.querySelector(".name").textContent=item.userName
+        newItem.querySelector(".subject").textContent=item.subject
+
+        if(item.urgent==0){
+          newItem.querySelector(".order2").style.display="none"
+        }
+        if(item.order==0){
+          newItem.querySelector(".order1").style.display="none"
+        }
+       
+        if(item.role=="1"){newItem.querySelector(".role").textContent="Client"}
+        else if(item.role=="2"){newItem.querySelector(".role").textContent="Designer"}
+        perent.appendChild(newItem)  
+
+          var itemDivs=[
+            newItem.querySelector(".ticket-name"),
+            newItem.querySelector(".ticket-role"),
+            newItem.querySelector(".ticket-subject"),
+            newItem.querySelector(".profile-pic-main"),
+            //newItem.querySelector(".hover")
+          ]
+         
+          itemDivs.forEach(function(itemDiv) {
+            itemDiv.addEventListener("click",()=>{ viewticket(item.ref_no,true,item.status)})//view tickets--------------------------------------------
+          });
+  
+      })
+  })
+
+}
 
 //get agents for deop down----------------------------------------------------------
 function getAgent(newItem) {
@@ -303,8 +362,6 @@ function viewrequest(TicketID,agentID,agentName){
   var yes = document.querySelector(".yes")
   var no = document.querySelector(".no")
 
-  console.log("01")
-
   yes.addEventListener("click",()=>{
     if(agentID>0){
       assing(agentID, TicketID)
@@ -332,9 +389,9 @@ function hoverChnageAddClass(itemDivs){
  }
 
 //show a ticket details------------------------------------------ 
- function viewticket(ticketID, assigned){
+ function viewticket(ticketID, assigned,status){
 
-  var url ="../HTML/ticketListViewSupport.html?ticketID="+ encodeURIComponent(ticketID)+"&assigned="+encodeURIComponent(assigned)
+  var url ="../HTML/ticketListViewSupport.html?ticketID="+ encodeURIComponent(ticketID)+"&assigned="+encodeURIComponent(assigned)+"&status="+encodeURIComponent(status)
     window.location.href = url
   
 }

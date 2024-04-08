@@ -155,19 +155,10 @@ if(value=="order"){
 
 function ticketsubmission(fileURL,packageID,orderID){
 
-  var urgent = 0
-  var checkbox = document.getElementById("horns");
-  if (checkbox.checked) {
-    urgent=1
-  }
-
-  console.log(urgent)
-
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");                          
   myHeaders.append("Authorization", getCookie("JWT"));    
   
-  console.log(packageID.value)
 
   var raw = JSON.stringify({
     //"requesterID":userId,
@@ -176,7 +167,6 @@ function ticketsubmission(fileURL,packageID,orderID){
     "fileURL":fileURL,
     "order": orderID,
     "packages": packageID,
-    "urgent":urgent
 });
 
 
