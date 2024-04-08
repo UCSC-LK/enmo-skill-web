@@ -9,10 +9,11 @@ body{
     text-align: center;
     justify-content: center;
     position: relative;
-    background-color: #ffffff;
+    /* background-color: #ffffff; */
     position: relative;
-    margin-top: 90px;
+    margin-top: 40px;
     margin-bottom: 20px;
+    z-index: 0;
 }
 .body-container{
     width: 80%;
@@ -22,16 +23,10 @@ body{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.urgent{
-    display: none;
-}
-.refund{
-    display: none;
-}
 
 .body-colum1{
     display: grid;
-    grid-template-columns: 70% 113%;
+    grid-template-columns: 65% 113%;
     gap:30px;
 }
 
@@ -41,6 +36,7 @@ body{
     gap: 10px;
 }
 .urgent{
+    display: none;
     background-color: rgba(255, 1, 1, 0.492);
     width: 90px;
     padding: 4px;
@@ -49,12 +45,23 @@ body{
     font-weight: 700;
 }
 .refund{
+    display: none;
     background-color: rgb(67, 211, 251);
     width: 90px;
     padding: 4px;
     border-radius: 5px;
     font-size: 14px;
     font-weight: 700;
+}
+.urgentMark{
+    display: none;
+    background-color: rgb(21, 198, 98);
+    width: 150px;
+    padding: 4px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
 }
 
 
@@ -65,6 +72,15 @@ h1{
 
 h2{
     color:#444;
+}
+
+.subject-main{
+    display: grid;
+    grid-template-columns: 7% 93%;
+}
+
+.subject{
+    text-align: left;
 }
 
 .header{
@@ -79,6 +95,11 @@ h2{
     height: auto;
     /* border-radius: 50%; */
     clip-path: circle(at center);
+}
+.body-main{
+    padding: 20px;
+    position: relative;
+    top: -10.5px;
 }
 
 .body{
@@ -97,6 +118,7 @@ h2{
     height: 40px;
     display: none;
 }
+
 .bottom-header2{
     display: flex;
     justify-content: left;
@@ -107,18 +129,35 @@ h2{
     margin-top: 20px;
 }
 
-.date{
+.bottom-header3{
+    display: flex;
+    justify-content: left;
+    color:#3C3C3C;
+    height: 40px;
+    display: none;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.role{
     font-weight: 800;
     color:#3C3C3C;
+    /* margin-left: 20px; */
 }
-.date2{
+.role2{
     font-weight: 800;
     color:#3C3C3C;
     margin-left: 20px;
 }
-
-.subject{
-   margin-left: 50px;
+.date{
+    /* font-weight: 520;
+    color:#3C3C3C; */
+    text-align: right;
+}
+.date2{
+    /* font-weight: 520;
+    color:#3C3C3C;
+    margin-left: 20px; */
+    text-align: right;
 }
 
 .description-main{
@@ -127,7 +166,7 @@ h2{
 
 .description{
     text-align:justify;
-    margin-left: 50px;
+    margin-left: 35px;
 }
 .description2{
     text-align:justify;
@@ -135,6 +174,10 @@ h2{
     
 }
 .description3{
+    text-align:justify;
+    margin-left: 50px;
+}
+.description4{
     text-align:justify;
     margin-left: 50px;
 }
@@ -164,6 +207,17 @@ h2{
     padding: 10px;
 }
 
+.header-status{
+    display: flex;
+    justify-content: left;
+    gap:20px;
+}
+
+.status-left{
+    gap:10px;
+    text-align: left;
+}
+
 .profile-img{
     width: 30px;
     height: 30px;
@@ -171,6 +225,11 @@ h2{
 
 }
 
+.reply {
+    display: flex;
+    justify-content: right;
+    padding-bottom: 10px;
+}
 .botom-btn{
     display: flex;
     justify-content: right;
@@ -181,6 +240,7 @@ h2{
     justify-content: right;
     gap: 10px;
     margin-top: 20px;
+   
 }
 
 .BTN{
