@@ -453,7 +453,6 @@ function deletePackage(selectedData) {
                 location.replace(location.href);
               }
             });
-            // location.replace(location.href);
           } else {
             // Handle errors
             alert("Failed to delete package");

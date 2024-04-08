@@ -21,44 +21,149 @@ function getCookie(cookieName) {
   myHeaders.append("Authorization", getCookie("JWT"));    ///important
   
   var raw = JSON.stringify({});
+
+  var url;
+  var packageId;
+  var title_value;
+  var category_value;
+  var description_value;
+
+
+
+  // Additional code for loading data for update
+document.addEventListener("DOMContentLoaded", function() {
+    // extract query parameters
+    url = new URL(window.location.href);
+    packageId = url.searchParams.get('packageId');
+    title_value = url.searchParams.get('title');
+    category_value = url.searchParams.get('category');
+    description_value = url.searchParams.get('description');
+});
+
+if (packageId != null) {
+    loadData()
+}
+
+function loadData(){
+    // extract query parameters
+
+
+    fetch(BASE_URL+`/package?packageId=${packageId}`,{
+        method: 'GET',
+        headers: myHeaders
+    })
+    .then((response)=>{
+        if (!response.ok) {
+            throw new Error('Error occured');
+        } else {
+            return response.json();
+        }
+    })
+    .then((data)=>{
+        console.log(data);
+
+        document.getElementById("title").value = data.title;
+        document.getElementById("category").value = data.category;
+        document.getElementById("description").value = data.description;
+       
+        
+    })
+
+   
+}
   
 const form = document.getElementById("package_form");
 
+document.addEventListener('DOMContentLoaded', function() {
+    const fileInput = document.getElementById('fileID');
+    const uploadButton = document.querySelector('.btn-upload');
+    const fileSupportText = document.querySelector('.drop_box p');
+  
+    uploadButton.addEventListener('click', function() {
+      fileInput.click();
+    //   uploadFile(fileInput)
+    });
+  
+    fileInput.addEventListener('change', function() {
+      const selectedFile = fileInput.files[0];
+      if (selectedFile) {
+        // Display the selected file name
+        fileSupportText.textContent = 'Selected File: ' + selectedFile.name;
+        // You can add further functionality here to handle the selected file
+        console.log('File selected:', selectedFile);
+        // You can perform file upload operations here, such as sending it to the server via AJAX
+      } else {
+        // Reset the text if no file is selected
+        fileSupportText.textContent = 'Files Supported: JPG, JPEG, PNG';
+      }
+    });
+  });
+
+  function uploadFile(file){
+    const myHeaders = new Headers();
+    myHeaders.append("endpoint", "profile_pics");
+    let RequestData = new FormData();
+    if (file) {
+        const formData = new FormData();
+        formData.append('file', file);
+
+        fetch(BASE_URL+'/file', {
+            method: 'POST',
+            headers: myHeaders,
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log('Success:', data);
+            RequestData={"url":data}
+            
+
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+  }
+
+
 // handle both insertions and updates
-form.addEventListener("submit", async (e) => {
+document.getElementById("button-next").addEventListener("click", async (e) => {
     e.preventDefault();
 
     // Get form field values
     const title = document.getElementById("title").value;
     const category = document.getElementById("category").value;
     const description = document.getElementById("description").value;
-    const cover_img = document.getElementById("img").files[0];
+    // const cover_img = document.getElementById("img").files[0];
 
     console.log(category);
 
-    var formData = new FormData();
-    formData.append('file', cover_img);
+    // var formData = new FormData();
+    // formData.append('file', cover_img);
 
-    let img_url = "";
+    // let img_url = "";
 
-    try {
-        // Upload image
-        const response = await fetch('http://localhost:15000/enmo_skill_backend_war/file', {
-            method: 'POST',
-            body: formData,
-        });
 
-        if (response.ok) {
-            img_url = await response.text(); // Wait for the image upload to complete
-            console.log(img_url);
-        } else {
-            console.error('Error uploading image:', response.statusText);
-            return; // Exit the function if there's an error
-        }
-    } catch (error) {
-        console.error('Error uploading image:', error);
-        return; // Exit the function if there's an error
-    }
+      
+
+    // try {
+    //     // Upload image
+    //     const response = await fetch('http://localhost:15000/enmo_skill_backend_war/file', {
+    //         method: 'POST',
+    //         body: formData,
+    //     });
+
+    //     if (response.ok) {
+    //         img_url = await response.text(); // Wait for the image upload to complete
+    //         console.log(img_url);
+    //     } else {
+    //         console.error('Error uploading image:', response.statusText);
+    //         return; // Exit the function if there's an error
+    //     }
+    // } catch (error) {
+    //     console.error('Error uploading image:', error);
+    //     return; // Exit the function if there's an error
+    // }
 
     // Continue with the rest of your code using img_url
     const url = new URL(window.location.href);
@@ -100,7 +205,12 @@ form.addEventListener("submit", async (e) => {
                 window.location.href = `../HTML/package_pricing.html?packageId=${packageId}&category=${category}&update=true`;
             }
         } else {
-            showPopupUnsuccess();
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!"
+              });
+            // showPopupUnsuccess();
             console.error(`Failed to ${operationType} package data.`);
         }
     } catch (error) {
@@ -109,40 +219,7 @@ form.addEventListener("submit", async (e) => {
 });
 
 
-// Additional code for loading data for update
-document.addEventListener("DOMContentLoaded", loadData);
 
-function loadData(){
-    // extract query parameters
-    const url = new URL(window.location.href);
-    const packageId = url.searchParams.get('packageId');
-    const title_value = url.searchParams.get('title');
-    const category_value = url.searchParams.get('category');
-    const description_value = url.searchParams.get('description');
-
-    fetch(BASE_URL+`/package?packageId=${packageId}`,{
-        method: 'GET',
-        headers: myHeaders
-    })
-    .then((response)=>{
-        if (!response.ok) {
-            throw new Error('Error occured');
-        } else {
-            return response.json();
-        }
-    })
-    .then((data)=>{
-        console.log(data);
-
-        document.getElementById("title").value = data.title;
-        document.getElementById("category").value = data.category;
-        document.getElementById("description").value = data.description;
-       
-        
-    })
-
-   
-}
 
 function showPopupUnsuccess() {
     var popupContainer = document.getElementById('popup-container-success');
