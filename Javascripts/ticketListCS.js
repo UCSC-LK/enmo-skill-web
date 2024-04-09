@@ -366,7 +366,10 @@ function viewrequest(TicketID,agentID,agentName){
     Swal.fire({
       template: "#my-template"
     }).then((result) => {
-      assing(agentID, TicketID)
+      if (result.isConfirmed) {
+        assing(agentID, TicketID)
+      }
+      
     })
   }else{
     Swal.fire({        

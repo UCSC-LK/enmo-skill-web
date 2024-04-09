@@ -27,6 +27,7 @@ function getCookie(cookieName) {
 
 const url = new URL(window.location.href);
  var value = url.searchParams.get('value');
+ var role = url.searchParams.get('role');
 // var ref_no = url.searchParams.get('TicketID');
 
 
@@ -153,8 +154,8 @@ if(value=="order"){
 //         // document.getElementById("description").value = description;
 // }
 
-function ticketsubmission(fileURL,packageID,orderID){
-
+function ticketsubmission(fileURL,packageID,orderID,role){
+  
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");                          
   myHeaders.append("Authorization", getCookie("JWT"));    
@@ -192,8 +193,29 @@ function ticketsubmission(fileURL,packageID,orderID){
     }
     })
     
-  .then(result => {alert(result);
-    window.location="../HTML/tikectListDisigner.html"})
+  .then(result => {if(result.includes("Data inserted successfully!")){
+    icons="success"
+  }else{
+  icons="error"
+  result="Error"
+}  
+  Swal.fire({        
+    icon: icons,
+    title: result,
+    showConfirmButton: false,
+    timer: 2000
+  });
+  
+  setTimeout(() => {
+    console.log(role)
+    if(role=="\"Designer\""){
+      window.location="../HTML/tikectListDisigner.html";
+    }else if(role=="Client"){
+      window.location="../HTML/tikectListClient.html"
+    }
+    
+  }, 2500);
+    })
 
   .catch(error => {console.log('error', error);
   });
@@ -223,8 +245,30 @@ function uploadFile() {
   });
 }
 
-
+// const document.querySelector("")
 submitbutton.addEventListener("click",()=>{
-  ticketsubmission(fileURL,packageID,orderID)
+ 
+  if(!document.getElementById("description").value.trim()  || !document.getElementById("subject").value.trim()){
+    Swal.fire({        
+      icon: "warning",
+      title: "No field can be empty",
+      showConfirmButton: false,
+      timer: 2000
+    });
+    
+  }else{
+    const template = document.querySelector('.my-template');
+    const swalTitle = template.content.querySelector('swal-title');
+    swalTitle.textContent = "Make a ticket?"
+    Swal.fire({
+        template: "#my-template"
+      }).then((result) => {  
+        if (result.isConfirmed) {
+          ticketsubmission(fileURL,packageID,orderID,role)
+        }    
+        
+      })
+  }
+  
 })
 

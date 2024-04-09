@@ -1,5 +1,5 @@
 body{
-    background-color: #fdfdfd;
+    /* background-color: #fdfdfd; */
     font-family: Arial, Helvetica, sans-serif
 }
 .container{
@@ -9,9 +9,9 @@ body{
     text-align: center;
     justify-content: center;
     position: relative;
-    background-color: #ffffff;
+    /* background-color: #ffffff; */
     position: relative;
-    margin-top: 100px;
+    margin-top: 40px;
     padding-bottom: 10px;
 }
 .body-container{
@@ -68,18 +68,42 @@ h2{
     height: 40px;
     display: none;
 }
-.date{
+.role{
     font-weight: 800;
     color:#3C3C3C;
+    /* margin-left: 20px; */
 }
-.date2{
+.role2{
     font-weight: 800;
     color:#3C3C3C;
     margin-left: 20px;
 }
+.date{
+    /* font-weight: 800;
+    color:#3C3C3C; */
+    text-align: right;
+}
+.date2{
+    /* font-weight: 800;
+    color:#3C3C3C;
+    margin-left: 20px; */
+    text-align: right;
+    margin-bottom: 5px;
+}
+
+.subject-main{
+    display: grid;
+    grid-template-columns: 7% 93%;
+}
 
 .subject{
-   margin-left: 50px;
+    text-align: left;
+}
+
+.body-main{
+    padding: 20px;
+    position: relative;
+    top: -10.5px;
 }
 
 .description-main{
@@ -132,8 +156,12 @@ h2{
     display: flex;
     justify-content: right;
 }
-
-.HistoryBTN{
+.reply {
+    display: flex;
+    justify-content: right;
+    padding-bottom: 10px;
+}
+.BTN{
     font-size: 15px;
     width: 150px;
     padding:5px;
@@ -142,11 +170,12 @@ h2{
     color: #FFF;
 }
 
-.HistoryBTN:hover{
+.BTN:hover{
     color: #000;
     background-color: #FFF;
     transition: 0.4s;
     cursor: pointer;
+    box-shadow: 0px 0px 10px  #0e3a1a73;
 }
 
 .even-item {

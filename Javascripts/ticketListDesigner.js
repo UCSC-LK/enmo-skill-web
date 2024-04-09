@@ -29,11 +29,6 @@ loding.style.display ="none"
 
 createTicket.addEventListener("click",()=>{
   createticketDesigner()
-  // if(userLevel==1){
-  //   createticketClent()
-  // }else if(userLevel==2){
-  //   createticketDesigner()
-  // }
 })
 
 tableLoad("all")
@@ -117,12 +112,12 @@ rejected.addEventListener("click",()=>{
 
           case 3:
             status="Closed"
-            newItem.querySelector(".panel").style.display="none"
+            // newItem.querySelector(".panel").style.display="none"
             break
             
           case 4:
             status="Rejected"
-            newItem.querySelector(".panel").style.display="none"
+            // newItem.querySelector(".panel").style.display="none"
             break
             
         }
@@ -134,14 +129,14 @@ rejected.addEventListener("click",()=>{
         }
 
         //delete a ticket------------------------------------------------------
-        newItem.querySelector(".delete").addEventListener("click",()=>{ 
-          deleteRequest(item.ref_no)
-         })
+        // newItem.querySelector(".delete").addEventListener("click",()=>{ 
+        //   deleteRequest(item.ref_no)
+        //  })
         
          //update a ticket----------------------------------------------------
-        newItem.querySelector(".edit").addEventListener("click",()=>{
-          editTicket(item.ref_no)
-         }) 
+        // newItem.querySelector(".edit").addEventListener("click",()=>{
+        //   editTicket(item.ref_no)
+        //  }) 
       
 
         var itemDivs=[newItem.querySelector(".ticket-subject"),newItem.querySelector(".ticket-status"),newItem.querySelector(".ticket-date"),newItem.querySelector(".order")];
@@ -199,127 +194,127 @@ rejected.addEventListener("click",()=>{
   
 
   
-function deleteRequest(TicketID){
+// function deleteRequest(TicketID){
 
-  let popup_con=document.querySelector(".pop-up-container");
-  let popup_details=document.querySelector(".pop-up");
+//   let popup_con=document.querySelector(".pop-up-container");
+//   let popup_details=document.querySelector(".pop-up");
 
-  var massege= "Are you sure you want Delete this request?"  
+//   var massege= "Are you sure you want Delete this request?"  
 
-  popup_con.style.display="flex";
-  popup_details.style.display="inline";
+//   popup_con.style.display="flex";
+//   popup_details.style.display="inline";
   
-  popup_details.querySelector(".massege").textContent = massege;
+//   popup_details.querySelector(".massege").textContent = massege;
 
-  var textarea = document.getElementById("description");
-  textarea.remove();                                    // remove input feeld-------------------
+//   var textarea = document.getElementById("description");
+//   textarea.remove();                                    // remove input feeld-------------------
 
-  var Delete = document.querySelector(".updateBTN")
-  var cancel = document.querySelector(".cancelBTN")
+//   var Delete = document.querySelector(".updateBTN")
+//   var cancel = document.querySelector(".cancelBTN")
 
-  Delete.value="Delete"
-  cancel.value="Cancel"
+//   Delete.value="Delete"
+//   cancel.value="Cancel"
  
-  Delete.addEventListener("click",()=>{
+//   Delete.addEventListener("click",()=>{
     
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");  
-    myHeaders.append("Authorization", getCookie("JWT"));   
+//     var myHeaders = new Headers();
+//     myHeaders.append("Content-Type", "application/json");  
+//     myHeaders.append("Authorization", getCookie("JWT"));   
 
-    var requestOptions = {
-      method: 'DELETE',
-      headers: myHeaders,
-      redirect: 'follow'
-    };
+//     var requestOptions = {
+//       method: 'DELETE',
+//       headers: myHeaders,
+//       redirect: 'follow'
+//     };
 
-    loding.style.display ="flex"
-    fetch(BASE_URL+"/support?TicketID="+TicketID, requestOptions)
-    .then(response => {
-      loding.style.display ="none"
-      if(response.status == 401){
-        window.location.href = "../Failed/401.html";
-      }else if(response.status == 406){
-        const currentUrl = encodeURIComponent(window.location.href);
-        window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
-      }else if(response.status == 404){
-        window.location.href = "../Failed/404.html";
-      }else {
-        return response.text()
-      }
-    })
-      .then(result => {alert(result)
-        location.reload();})
-      .catch(error => console.log('error', error));
-  })
+//     loding.style.display ="flex"
+//     fetch(BASE_URL+"/support?TicketID="+TicketID, requestOptions)
+//     .then(response => {
+//       loding.style.display ="none"
+//       if(response.status == 401){
+//         window.location.href = "../Failed/401.html";
+//       }else if(response.status == 406){
+//         const currentUrl = encodeURIComponent(window.location.href);
+//         window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+//       }else if(response.status == 404){
+//         window.location.href = "../Failed/404.html";
+//       }else {
+//         return response.text()
+//       }
+//     })
+//       .then(result => {alert(result)
+//         location.reload();})
+//       .catch(error => console.log('error', error));
+//   })
 
-  cancel.addEventListener("click",()=>{
-    location.reload()
-  })
-}
+//   cancel.addEventListener("click",()=>{
+//     location.reload()
+//   })
+// }
 
 
-function editTicket(ticketID){
-  let popup_con=document.querySelector(".pop-up-container");
-  let popup_details=document.querySelector(".pop-up");
+// function editTicket(ticketID){
+//   let popup_con=document.querySelector(".pop-up-container");
+//   let popup_details=document.querySelector(".pop-up");
 
-  var massege= "Add some Updates"  
+//   var massege= "Add some Updates"  
 
-  popup_con.style.display="flex";
-  popup_details.style.display="inline";
+//   popup_con.style.display="flex";
+//   popup_details.style.display="inline";
   
-  popup_details.querySelector(".massege").textContent = massege;
+//   popup_details.querySelector(".massege").textContent = massege;
 
-  var submit = document.querySelector(".updateBTN")
-  var cancel = document.querySelector(".cancelBTN")
+//   var submit = document.querySelector(".updateBTN")
+//   var cancel = document.querySelector(".cancelBTN")
 
-  // submit.value="Send"
-  // cancel.value="Cancel"
+//   // submit.value="Send"
+//   // cancel.value="Cancel"
 
-  submit.addEventListener("click",()=>{
+//   submit.addEventListener("click",()=>{
 
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-    myHeaders.append("Authorization", getCookie("JWT")); 
+//     var myHeaders = new Headers();
+//     myHeaders.append("Content-Type", "application/json");
+//     myHeaders.append("Authorization", getCookie("JWT")); 
         
-    var raw = JSON.stringify({
-        "ref_no":ticketID,
-        "description":document.getElementById("description").value,
-    });
+//     var raw = JSON.stringify({
+//         "ref_no":ticketID,
+//         "description":document.getElementById("description").value,
+//     });
 
-    console.log(raw)
+//     console.log(raw)
     
-    var requestOptions = {
-      method: 'PUT',
-      headers: myHeaders,
-      body: raw
-    };
+//     var requestOptions = {
+//       method: 'PUT',
+//       headers: myHeaders,
+//       body: raw
+//     };
 
-    loding.style.display ="flex"
-    fetch(BASE_URL+"/support", requestOptions)
-    .then(response => {
-      loding.style.display ="none"
-      if(response.status == 401){
-        window.location.href = "../Failed/401.html";
-      }else if(response.status == 406){
-        const currentUrl = encodeURIComponent(window.location.href);
-        window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
-      }else if(response.status == 404){
-        window.location.href = "../Failed/404.html";
-      }else {
-        return response.text()
-      }
-    })
-      .then(result => {alert(result)
-        window.location="../HTML/tikectListDisigner.html"})
-      .catch(error => console.log('error', error));
-      })
+//     loding.style.display ="flex"
+//     fetch(BASE_URL+"/support", requestOptions)
+//     .then(response => {
+//       loding.style.display ="none"
+//       if(response.status == 401){
+//         window.location.href = "../Failed/401.html";
+//       }else if(response.status == 406){
+//         const currentUrl = encodeURIComponent(window.location.href);
+//         window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+//       }else if(response.status == 404){
+//         window.location.href = "../Failed/404.html";
+//       }else {
+//         return response.text()
+//       }
+//     })
+//       .then(result => {alert(result)
+//         window.location="../HTML/tikectListDisigner.html"})
+//       .catch(error => console.log('error', error));
+//       })
 
-  cancel.addEventListener("click",()=>{
-    location.reload()
-  })
+//   cancel.addEventListener("click",()=>{
+//     location.reload()
+//   })
 
 
-}
+// }
 
 //load create ticket page-------------------------------------------------------------------
 function createticketDesigner(){
@@ -330,16 +325,6 @@ function createticketClent(){
   window.location.href = "../HTML/CSA-client.html"
 }
 
-//save update ticket details in local storage--------------------------------------------------
-// function editTicket(ticketID){ 
-//   console.log(ticketID)
-  
-//   var pValue = "edit"
-//   var url = "../HTML/createTicket.html" + "?pValue=" + encodeURIComponent(pValue)+"&TicketID="+encodeURIComponent(ticketID);
-
-//   // var newURL = "../HTML/createTicket.html?ref_no="+encodeURIComponent(TicketID)+"&subject="+encodeURIComponent(subject)+"&description="+encodeURIComponent(description) ;
-//   window.location = url;
-// }
 
 function viewticket(ticketID){
   var url ="../HTML/ticketListView.html?ticketID="+ encodeURIComponent(ticketID)

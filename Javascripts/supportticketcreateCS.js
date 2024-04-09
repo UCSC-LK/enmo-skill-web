@@ -20,14 +20,29 @@ loding.style.display ="none"
 
 submitbutton.addEventListener("click",()=>{
 
+  if(!document.getElementById("description").value.trim()  || !document.getElementById("subject").value.trim() || !document.getElementById("Complainant").value.trim()){
+    Swal.fire({        
+      icon: "warning",
+      title: "No field can be empty",
+      showConfirmButton: false,
+      timer: 2000
+    });
+    
+  }else{
     const template = document.querySelector('.my-template');
     const swalTitle = template.content.querySelector('swal-title');
     swalTitle.textContent = "Make a ticket?"
     Swal.fire({
         template: "#my-template"
       }).then((result) => {
-        ticketsubmission()
+        if (result.isConfirmed) {
+          ticketsubmission()
+        } 
+        
       })
+  }
+
+   
 })
 
 function ticketsubmission(){
