@@ -4,217 +4,377 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/package_pricing.css">
+    <link rel="stylesheet" href="../CSS/main.css">
+
     <title>Package Pricing</title>
 </head>
 <body>
-    <div class="main">
-       <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>    <div class="container">
-            <div class="block">
-                <h1 class="headding">Pricing</h1>
-                <div class="form">
-                    <form method="post">
-                        <div class="bronze">
+    <div class="page">
+        <div id="sidebar-placeholder"></div><script src="../Javascripts/sidebar.js"></script>
+        <div class="pg-content" style="width: 100%; overflow: auto;">
+            <div id="header-placeholder" style="width: 100%; position: sticky; top: 0;"></div><script src="../Javascripts/header.js"></script>
+                <div class="main">
+                    <div class="container">
+                        <div class="block">
+                            <h1 class="headding">Pricing</h1>
+                            <div class="form">
+                                <form method="post">
+                                    <div class="bronze">
 
-                            <h2 class="heading">Bronze</h2>
+                                        <h2 class="heading">Bronze</h2>
 
-                            <label>Price (Rs.)</label>
-                            <input type="text" name="price_b" id="price_b" class="price" min="1" max="10000000" required>
-                            
-                            <div class="deliverables">
-                                <label>Deiverables</label>
-                           
-                            <div class="chkbx">
-                                <!-- <input type="checkbox" name="" id="">Logo transparency <br> 
-                                <input type="checkbox" name="" id="">Vector file <br>
-                                <input type="checkbox" name="" id="">Printable file <br>
-                                <input type="checkbox" name="" id="">3D mockup <br>
-                                <input type="checkbox" name="" id="">Source file <br>
-                                <input type="checkbox" name="" id="">Social media kit <br> -->
-                            </div>
-                            </div>
+                                        <table class="arrange">
+                                            <tr>
+                                                <td>
+                                                    <label>Price (Rs.)</label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="price_b" id="price_b" class="price" min="1" max="10000000" required>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <div class="deliverables">
+                                                    <td>
+                                                        <label>Deiverables</label>
+                                                    </td>
+                                                    <td>
+                                                        <div class="chkbx">
+                                                            
+                                                        </div>
+                                                    </td>
+                                                </div>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label class="chg">No of concepts</label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="concepts_b" id="concepts_b" class="concepts" required min="1" max="25">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label class="duration-label">Delivery duration</label>
+                                                </td>
+                                                <td>
+                                                    <select name="duration_b" id="duration_b" required>
+                                                        <option value="none" disabled selected>Select</option>
+                                                        <option value="1">1 day</option>
+                                                        <option value="2">2 days</option>
+                                                        <option value="3">3 days</option>
+                                                        <option value="5">5 days</option>
+                                                        <option value="10">10-20 days</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label class="rev">No of revisons</label>
+                                                </td>
+                                                <td>
+                                                    <select name="rev_b" id="rev_b" required>
+                                                        <option value="none" disabled selected>Select</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="5">5</option>
+                                                        <option value="10">10</option>
+                                                        <option value="20">20</option>
+                                                        <option value="unlimited">unlimited</option>
+                                                    </select> 
+                                                </td>
+                                            </tr>
+                                        </table>
 
-                            <label class="chg"></label>
-                            <input type="text" name="concepts_b" id="concepts_b" class="concepts" required min="1" max="25">
-                            <br>
+                                        <button id="submit-bronze" class="button-save">Save</button>
 
-                            <label class="rev">No of revisons</label>
-                            <select name="rev_b" id="rev_b" required>
-                                <option value="none" disabled selected>Select</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="5">5</option>
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="unlimited">unlimited</option>
-                            </select>
+                                    </div>
+                                    <div class="silver">
 
-                            <br>
+                                        <h2 class="heading">Silver</h2>
 
-                            <label class="duration-label">Delivery duration</label>
-                            <select name="duration_b" id="duration_b" required>
-                                <option value="none" disabled selected>Select</option>
-                                <option value="1">1 day</option>
-                                <option value="2">2 days</option>
-                                <option value="3">3 days</option>
-                                <option value="5">5 days</option>
-                                <option value="10">10-20 days</option>
-                            </select>
+                                        <table class="arrange">
+                                            <tr>
+                                                <td>
+                                                    <label>Price (Rs.)</label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="price_s" id="price_s" class="price" required>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <div class="deliverables">
+                                                    <td>
+                                                        <label>Deiverables</label>
+                                                    </td>
+                                                    <td>
+                                                        <div class="chkbx">
+                                                
+                                                        </div>
+                                                    </td>
+                                                </div>
+                                               
+                                            </tr>
+                                            <tr>
+                                                
+                                                <td>
+                                                    <label class="chg">No of concepts</label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="concepts_s" id="concepts_s" class="concepts" required min="1" max="25">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label class="chg">Delivery duration</label>
+                                                </td>
+                                                <td>
+                                                    <select name="duration_s" id="duration_s" required>
+                                                        <option value="none" disabled selected>Select</option>
+                                                        <option value="1">1 day</option>
+                                                        <option value="2">2 days</option>
+                                                        <option value="3">3 days</option>
+                                                        <option value="5">5 days</option>
+                                                        <option value="10">10-20 days</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label class="rev">No of revisons</label>
+                                                </td>
+                                                <td>
+                                                    <select name="rev_s" id="rev_s" required>
+                                                        <option value="none" disabled selected>Select</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="5">5</option>
+                                                        <option value="10">10</option>
+                                                        <option value="20">20</option>
+                                                        <option value="unlimited">unlimited</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                        </table>
+<!-- 
+                                        <label>Price (Rs.)</label>
+                                        <input type="text" name="price_s" id="price_s" class="price" required>
+                                        <br>
+                                        <div class="deliverables">
+                                            <label>Deiverables</label>
+                                    
+                                        <div class="chkbx">
+                                            <input type="checkbox" name="" id="">Logo transparency <br> 
+                                            <input type="checkbox" name="" id="">Vector file <br>
+                                            <input type="checkbox" name="" id="">Printable file <br>
+                                            <input type="checkbox" name="" id="">3D mockup <br>
+                                            <input type="checkbox" name="" id="">Source file <br>
+                                            <input type="checkbox" name="" id="">Social media kit <br>
+                                        </div>
+                                        </div>
+                                        <label class="chg"></label>
+                                        <input type="text" name="concepts_s" id="concepts_s" class="concepts" required min="1" max="25">
+                                        <br>
+                                        <label class="rev">No of revisons</label>
+                                        <select name="rev_s" id="rev_s" required>
+                                            <option value="none" disabled selected>Select</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="5">5</option>
+                                            <option value="10">10</option>
+                                            <option value="20">20</option>
+                                            <option value="unlimited">unlimited</option>
+                                        </select>
 
-                            <br>
+                                        <br>
+                                        
+                                        <label class="duration-label">Delivery duration</label>
+                                        <select name="duration_s" id="duration_s" required>
+                                            <option value="none" disabled selected>Select</option>
+                                            <option value="1">1 day</option>
+                                            <option value="2">2 days</option>
+                                            <option value="3">3 days</option>
+                                            <option value="5">5 days</option>
+                                            <option value="10">10-20 days</option>
+                                        </select>
 
-                            <button id="submit-bronze" class="button-save">Save</button>
+                                        <br> -->
 
-                        </div>
-                        <div class="silver">
+                                        <button id="submit-silver" class="button-save">Save</button>
+                                    </div>
+                                    <div class="platinum">
 
-                            <h2 class="heading">Silver</h2>
+                                        <h2 class="heading">Platinum</h2>
 
-                            <label>Price (Rs.)</label>
-                            <input type="text" name="price_s" id="price_s" class="price" required>
-                            <br>
-                            <div class="deliverables">
-                                <label>Deiverables</label>
-                           
-                            <div class="chkbx">
-                                <input type="checkbox" name="" id="">Logo transparency <br> 
-                                <input type="checkbox" name="" id="">Vector file <br>
-                                <input type="checkbox" name="" id="">Printable file <br>
-                                <input type="checkbox" name="" id="">3D mockup <br>
-                                <input type="checkbox" name="" id="">Source file <br>
-                                <input type="checkbox" name="" id="">Social media kit <br>
-                            </div>
-                            </div>
-                            <label class="chg"></label>
-                            <input type="text" name="concepts_s" id="concepts_s" class="concepts" required min="1" max="25">
-                            <br>
-                            <label class="rev">No of revisons</label>
-                            <select name="rev_s" id="rev_s" required>
-                                <option value="none" disabled selected>Select</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="5">5</option>
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="unlimited">unlimited</option>
-                            </select>
+                                        <table class="arrange">
+                                            <tr>
+                                                <td>
+                                                
+                                                    <label>Price (Rs.)</label>
+                                                </td>
+                                                <td>
+                                                    
+                                                    <input type="text" name="price_p" id="price_p" class="price" required>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <div class="deliverables">
+                                                    <td>
+                                                        
+                                                        <label>Deiverables</label>
+                                                    </td>
+                                                    <td>
+                                                        
+                                                        <div class="chkbx">
+                                                                <!-- <input type="checkbox" name="" id="">Logo transparency <br> 
+                                                                <input type="checkbox" name="" id="">Vector file <br>
+                                                                <input type="checkbox" name="" id="">Printable file <br>
+                                                                <input type="checkbox" name="" id="">3D mockup <br>
+                                                                <input type="checkbox" name="" id="">Source file <br>
+                                                                <input type="checkbox" name="" id="">Social media kit <br> -->
+                                                        </div>
+                                                    </td>
+                                                </div>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label class="chg">No of concepts</label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="concepts_p" id="concepts_p" class="concepts" required min="1" max="25">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label class="duration-label">Delivery duration</label>
+                                                </td>
+                                                <td>
+                                                    <select name="duration_p" id="duration_p" required>
+                                                        <option value="none" disabled selected>Select</option>
+                                                        <option value="1">1 day</option>
+                                                        <option value="2">2 days</option>
+                                                        <option value="3">3 days</option>
+                                                        <option value="5">5 days</option>
+                                                        <option value="10">10-20 days</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                
+                                                <td>
+                                                    <label class="rev">No of revisons</label>
+                                                </td>
+                                                <td>
+                                                    <select name="rev_p" id="rev_p" required>
+                                                        <option value="none" disabled selected>Select</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="5">5</option>
+                                                        <option value="10">10</option>
+                                                        <option value="20">20</option>
+                                                        <option value="unlimited">unlimited</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                        </table>
+<!-- 
+                                        <label>Price (Rs.)</label>
+                                        <input type="text" name="price_p" id="price_p" class="price" required min="1" max="10000000">
 
-                            <br>
-                            
-                            <label class="duration-label">Delivery duration</label>
-                            <select name="duration_s" id="duration_s" required>
-                                <option value="none" disabled selected>Select</option>
-                                <option value="1">1 day</option>
-                                <option value="2">2 days</option>
-                                <option value="3">3 days</option>
-                                <option value="5">5 days</option>
-                                <option value="10">10-20 days</option>
-                            </select>
+                                        <br>
+                                        <div class="deliverables">
+                                            <label>Deiverables</label>
+                                    
+                                        <div class="chkbx">
+                                            
+                                        </div>
+                                        </div>
 
-                            <br>
+                                        <label class="chg"></label>
+                                        <input type="text" name="concepts_p" id="concepts_p" class="concepts" required min="1" max="25">
+                                        <br>
+                                        
+                                        <label class="rev">No of revisons</label>
+                                        <select name="rev_p" id="rev_p" required>
+                                            <option value="none" disabled selected>Select</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="5">5</option>
+                                            <option value="10">10</option>
+                                            <option value="20">20</option>
+                                            <option value="unlimited">unlimited</option>
+                                        </select>
 
-                            <button id="submit-silver" class="button-save">Save</button>
-                        </div>
-                        <div class="platinum">
+                                        <br>
+                                        
+                                        <label class="duration-label">Delivery duration</label>
+                                        <select name="duration_p" id="duration_p" required>
+                                            <option value="none" disabled selected>Select</option>
+                                            <option value="1">1 day</option>
+                                            <option value="2">2 days</option>
+                                            <option value="3">3 days</option>
+                                            <option value="5">5 days</option>
+                                            <option value="10">10-20 days</option>
+                                        </select>
 
-                            <h2 class="heading">Platinum</h2>
+                                        <br> -->
 
-                            <label>Price (Rs.)</label>
-                            <input type="text" name="price_p" id="price_p" class="price" required min="1" max="10000000">
+                                        <button id="submit-platinum" class="button-save">Save</button>
 
-                            <br>
-                            <div class="deliverables">
-                                <label>Deiverables</label>
-                           
-                            <div class="chkbx">
-                                <!-- <input type="checkbox" name="Logo transparency" value="Logo transparency" id="">Logo transparency <br> 
-                                <input type="checkbox" name="Vector file" value="Vector file">Vector file <br>
-                                <input type="checkbox" name="Printable file" value="Printable file">Printable file <br>
-                                <input type="checkbox" name="3D mockup" value="3D mockup">3D mockup <br>
-                                <input type="checkbox" name="Source file" value="Source file">Source file <br>
-                                <input type="checkbox" name="Social media kit" value="Social media kit" id="">Social media kit <br> -->
-                            </div>
-                            </div>
-
-                            <label class="chg"></label>
-                            <input type="text" name="concepts_p" id="concepts_p" class="concepts" required min="1" max="25">
-                            <br>
-                            
-                            <label class="rev">No of revisons</label>
-                            <select name="rev_p" id="rev_p" required>
-                                <option value="none" disabled selected>Select</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="5">5</option>
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="unlimited">unlimited</option>
-                            </select>
-
-                            <br>
-                            
-                            <label class="duration-label">Delivery duration</label>
-                            <select name="duration_p" id="duration_p" required>
-                                <option value="none" disabled selected>Select</option>
-                                <option value="1">1 day</option>
-                                <option value="2">2 days</option>
-                                <option value="3">3 days</option>
-                                <option value="5">5 days</option>
-                                <option value="10">10-20 days</option>
-                            </select>
-
-                            <br>
-
-                            <button id="submit-platinum" class="button-save">Save</button>
-
-                        </div>
-                        
-    
-                       
-                    </form>
-
-                    <button id="finish" class="button-save-alt">Finish</button>
-                </div>
+                                    </div>
+                                    
                 
-            </div>
+                                
+                                </form>
 
-            <div id="overlay1" class="overlay">
-                <div id="popup-container-success" class="popup-container">
-                    <div class="icon">
-                        <img class="success-img" src="../Assests/icons/success.svg" width="25%" alt="">
+                                <button id="finish" class="button-save-alt">Finish</button>
+                            </div>
+                            
+                        </div>
                     </div>
-                    <h1 id="status-success">Successfully Entered</h1>
-                    <button id="btn-success" class="btn-success">OK</button>
-                </div>
-            </div>
+                        
 
-            <div id="overlay2" class="overlay">
-                <div id="popup-container-unsuccess" class="popup-container">
-                    <div class="icon">
-                        <img class="unsuccess-img" src="../Assests/icons/unsuccess.png" width="25%" alt="">
+                        <div id="overlay1" class="overlay">
+                            <div id="popup-container-success" class="popup-container">
+                                <div class="icon">
+                                    <img class="success-img" src="../Assests/icons/success.svg" width="25%" alt="">
+                                </div>
+                                <h1 id="status-success">Successfully Entered</h1>
+                                <button id="btn-success" class="btn-success">OK</button>
+                            </div>
+                        </div>
+
+                        <div id="overlay2" class="overlay">
+                            <div id="popup-container-unsuccess" class="popup-container">
+                                <div class="icon">
+                                    <img class="unsuccess-img" src="../Assests/icons/unsuccess.png" width="25%" alt="">
+                                </div>
+                                <h1 id="status-unsuccess" >Error Ocuured !</h1>
+                                <button id="btn-unsuccess" class="btn-unsuccess">OK</button>
+                            </div>
+                        </div>
+
+                        <div id="overlay3" class="overlay">
+                            <div id="popup-container-unsuccess" class="popup-container">
+                                <div class="icon">
+                                    <img class="unsuccess-img" src="../Assests/icons/unsuccess.png" width="25%" alt="">
+                                </div>
+                                <h1 id="status-unsuccess" >Process Incomplete</h1>
+                                <p>Finish process before go back</p>
+                                <button id="btn-warning" class="btn-unsuccess">OK</button>
+                            </div>
+                        </div>
+
+                        
+
+                                
+
                     </div>
-                    <h1 id="status-unsuccess" >Error Ocuured !</h1>
-                    <button id="btn-unsuccess" class="btn-unsuccess">OK</button>
-                </div>
             </div>
-
-            <div id="overlay3" class="overlay">
-                <div id="popup-container-unsuccess" class="popup-container">
-                    <div class="icon">
-                        <img class="unsuccess-img" src="../Assests/icons/unsuccess.png" width="25%" alt="">
-                    </div>
-                    <h1 id="status-unsuccess" >Process Incomplete</h1>
-                    <p>Finish process before go back</p>
-                    <button id="btn-warning" class="btn-unsuccess">OK</button>
-                </div>
-            </div>
-
-            
-
-                    
-
         </div>
     </div> 
     <script src="../Javascripts/baseurl.js"></script>
     <script src="../Javascripts/package_pricing.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 </html>

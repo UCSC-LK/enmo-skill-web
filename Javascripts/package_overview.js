@@ -23,26 +23,27 @@ function getCookie(cookieName) {
   var raw = JSON.stringify({});
 
   var url;
-  var packageId;
-  var title_value;
-  var category_value;
-  var description_value;
+  var packageId = 0;
+  var title_value = "";
+  var category_value = 0;
+  var description_value = "";
 
 
 
-  // Additional code for loading data for update
-document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("DOMContentLoaded", function() {
     // extract query parameters
     url = new URL(window.location.href);
     packageId = url.searchParams.get('packageId');
-    title_value = url.searchParams.get('title');
-    category_value = url.searchParams.get('category');
-    description_value = url.searchParams.get('description');
-});
+    // title_value = url.searchParams.get('title');
+    // category_value = url.searchParams.get('category');
+    // description_value = url.searchParams.get('description');
 
-if (packageId != null) {
-    loadData()
-}
+    console.log(packageId); // Moved inside the DOMContentLoaded event listener
+
+    if (packageId != null) {
+        loadData();
+    }
+});
 
 function loadData(){
     // extract query parameters

@@ -56,219 +56,224 @@ function loadData(){
         pricePackageList.forEach(pricingData => {
             console.log(pricingData);
 
-            var del = pricingData.deliverables
+            // var del = pricingData.del
 
-            var deliverablesChk = document.querySelectorAll('input[type="checkbox"]');
-            var no_chk = deliverablesChk.length/3
+            // var deliverablesChk = document.querySelectorAll('input[type="checkbox"]');
+            // var no_chk = deliverablesChk.length/3
             // console.log(no_chk);
-            
-            if (category == "1" || category == "2") {
-                 //set bronze data
-                if (pricingData.type == "bronze") {
 
-                    pricePackageId_bronze = pricingData.pricePackageId;
-                    
-                    document.getElementById("price_b").value = pricingData.price;
-                    document.getElementById("concepts_b").value = pricingData.noOfConcepts;
-                    document.getElementById("rev_b").value = pricingData.noOfRevisions;
-                    document.getElementById("duration_b").value = pricingData.deliveryDuration;
-                    
-                    var deliverables = pricingData.deliverables;
-                    
-                    var chk = document.getElementsByClassName("chk_bronze");
+            if (pricingData.type == "bronze") {
 
-                    console.log(chk.length);
-                    
-                    for (var key in deliverables) {
-                        if (deliverables.hasOwnProperty(key)) {
-                            var value = deliverables[key];
-                            for (let i = 0; i < chk.length; i++) {
-                                // console.log(chk[i].getAttribute("value"));
-                                var ele = chk[i].getAttribute("value")
+                pricePackageId_bronze = pricingData.pricePackageId;
+                
+                document.getElementById("price_b").value = pricingData.price;
+                document.getElementById("concepts_b").value = pricingData.noOfConcepts;
+                document.getElementById("rev_b").value = pricingData.noOfRevisions;
+                document.getElementById("duration_b").value = pricingData.deliveryDuration;
+                
+                var deliverables = pricingData.del;
+                console.log(deliverables.deliverabId);
+                
+                var chk = document.getElementsByClassName("chk_bronze");
 
-                                if (key == ele && value == 1) {
-                                    // Check the checkbox if the value is 1
-                                    chk[i].checked = true;
-                                }
-                                
+                // console.log(chk.length);
+
+
+                
+                for (var key in deliverables) {
+                    if (deliverables.hasOwnProperty(key)) {
+                        var value = deliverables[key];
+                        for (let i = 0; i < chk.length; i++) {
+                            // console.log(chk[i].getAttribute("value"));
+                            var ele = chk[i].getAttribute("value")
+
+                            if (key == ele && value == 1) {
+                                // Check the checkbox if the value is 1
+                                chk[i].checked = true;
                             }
-
-
+                            
                         }
+
+
                     }
-                } else if (pricingData.type == "silver") {
-
-                    pricePackageId_silver = pricingData.pricePackageId;
-
-                    document.getElementById("price_s").value = pricingData.price;
-                    document.getElementById("concepts_s").value = pricingData.noOfConcepts;
-                    document.getElementById("rev_s").value = pricingData.noOfRevisions;
-                    document.getElementById("duration_s").value = pricingData.deliveryDuration;
-                    
-                    var deliverables = pricingData.deliverables;
-                    
-                    var chk = document.getElementsByClassName("chk_silver");
-
-                    console.log(chk.length);
-                    
-                    for (var key in deliverables) {
-                        if (deliverables.hasOwnProperty(key)) {
-                            var value = deliverables[key];
-                            console.log(key + " "+ value);
-                            for (let i = 0; i < chk.length; i++) {
-                                // console.log(chk[i].getAttribute("value"));
-                                var ele = chk[i].getAttribute("value")
-
-                                if (key == ele && value == 1) {
-                                    // Check the checkbox if the value is 1
-                                    chk[i].checked = true;
-                                }
-                                
-                            }
-
-
-                        }
-                    }
-                } else if (pricingData.type == "platinum") {
-
-                    pricePackageId_platinum = pricingData.pricePackageId;
-
-                    document.getElementById("price_p").value = pricingData.price;
-                    document.getElementById("concepts_p").value = pricingData.noOfConcepts;
-                    document.getElementById("rev_p").value = pricingData.noOfRevisions;
-                    document.getElementById("duration_p").value = pricingData.deliveryDuration;
-                    
-                    var deliverables = pricingData.deliverables;
-                    
-                    var chk = document.getElementsByClassName("chk_platinum");
-
-                    console.log(chk.length);
-                    
-                    for (var key in deliverables) {
-                        if (deliverables.hasOwnProperty(key)) {
-                            var value = deliverables[key];
-                            for (let i = 0; i < chk.length; i++) {
-                                // console.log(chk[i].getAttribute("value"));
-                                var ele = chk[i].getAttribute("value")
-
-                                if (key == ele && value == 1) {
-                                    // Check the checkbox if the value is 1
-                                    chk[i].checked = true;
-                                }
-                                
-                            }
-
-
-                        }
-                    }
-                } else {
-                    alert("Invalid type !")
                 }
-            } else if (category == "3" || category == "4") {
-                 //set bronze data
-                 if (pricingData.type == "bronze") {
+            } else if (pricingData.type == "silver") {
 
-                    pricePackageId_bronze = pricingData.pricePackageId;
-                    
-                    document.getElementById("price_b").value = pricingData.price;
-                    // document.getElementById("concepts_b").value = pricingData.noOfConcepts;
-                    document.getElementById("rev_b").value = pricingData.noOfRevisions;
-                    document.getElementById("duration_b").value = pricingData.deliveryDuration;
-                    
-                    var deliverables = pricingData.deliverables;
-                    
-                    var chk = document.getElementsByClassName("chk_bronze");
+                pricePackageId_silver = pricingData.pricePackageId;
 
-                    console.log(chk.length);
-                    
-                    for (var key in deliverables) {
-                        if (deliverables.hasOwnProperty(key)) {
-                            var value = deliverables[key];
-                            for (let i = 0; i < chk.length; i++) {
-                                // console.log(chk[i].getAttribute("value"));
-                                var ele = chk[i].getAttribute("value")
+                document.getElementById("price_s").value = pricingData.price;
+                document.getElementById("concepts_s").value = pricingData.noOfConcepts;
+                document.getElementById("rev_s").value = pricingData.noOfRevisions;
+                document.getElementById("duration_s").value = pricingData.deliveryDuration;
+                
+                var deliverables = pricingData.del;
+                
+                var chk = document.getElementsByClassName("chk_silver");
 
-                                if (key == ele && value == 1) {
-                                    // Check the checkbox if the value is 1
-                                    chk[i].checked = true;
-                                }
-                                
+                // console.log(chk.length);
+                
+                for (var key in deliverables) {
+                    if (deliverables.hasOwnProperty(key)) {
+                        var value = deliverables[key];
+                        console.log(key + " "+ value);
+                        for (let i = 0; i < chk.length; i++) {
+                            // console.log(chk[i].getAttribute("value"));
+                            var ele = chk[i].getAttribute("value")
+
+                            if (key == ele && value == 1) {
+                                // Check the checkbox if the value is 1
+                                chk[i].checked = true;
                             }
-
-
+                            
                         }
+
+
                     }
-                } else if (pricingData.type == "silver") {
-
-                    pricePackageId_silver = pricingData.pricePackageId;
-
-                    document.getElementById("price_s").value = pricingData.price;
-                    // document.getElementById("concepts_s").value = pricingData.noOfConcepts;
-                    document.getElementById("rev_s").value = pricingData.noOfRevisions;
-                    document.getElementById("duration_s").value = pricingData.deliveryDuration;
-                    
-                    var deliverables = pricingData.deliverables;
-                    
-                    var chk = document.getElementsByClassName("chk_silver");
-
-                    console.log(chk.length);
-                    
-                    for (var key in deliverables) {
-                        if (deliverables.hasOwnProperty(key)) {
-                            var value = deliverables[key];
-                            console.log(key + " "+ value);
-                            for (let i = 0; i < chk.length; i++) {
-                                // console.log(chk[i].getAttribute("value"));
-                                var ele = chk[i].getAttribute("value")
-
-                                if (key == ele && value == 1) {
-                                    // Check the checkbox if the value is 1
-                                    chk[i].checked = true;
-                                }
-                                
-                            }
-
-
-                        }
-                    }
-                } else if (pricingData.type == "platinum") {
-
-                    pricePackageId_platinum = pricingData.pricePackageId;
-
-                    document.getElementById("price_p").value = pricingData.price;
-                    // document.getElementById("concepts_p").value = pricingData.noOfConcepts;
-                    document.getElementById("rev_p").value = pricingData.noOfRevisions;
-                    document.getElementById("duration_p").value = pricingData.deliveryDuration;
-                    
-                    var deliverables = pricingData.deliverables;
-                    
-                    var chk = document.getElementsByClassName("chk_platinum");
-
-                    console.log(chk.length);
-                    
-                    for (var key in deliverables) {
-                        if (deliverables.hasOwnProperty(key)) {
-                            var value = deliverables[key];
-                            for (let i = 0; i < chk.length; i++) {
-                                // console.log(chk[i].getAttribute("value"));
-                                var ele = chk[i].getAttribute("value")
-
-                                if (key == ele && value == 1) {
-                                    // Check the checkbox if the value is 1
-                                    chk[i].checked = true;
-                                }
-                                
-                            }
-
-
-                        }
-                    }
-                } else {
-                    alert("Invalid type !")
                 }
-            } else{
-                alert("invalid category !")
+            } else if (pricingData.type == "platinum") {
+
+                pricePackageId_platinum = pricingData.pricePackageId;
+
+                document.getElementById("price_p").value = pricingData.price;
+                document.getElementById("concepts_p").value = pricingData.noOfConcepts;
+                document.getElementById("rev_p").value = pricingData.noOfRevisions;
+                document.getElementById("duration_p").value = pricingData.deliveryDuration;
+                
+                var deliverables = pricingData.del;
+                
+                var chk = document.getElementsByClassName("chk_platinum");
+
+                console.log(chk.length);
+                
+                for (var key in deliverables) {
+                    if (deliverables.hasOwnProperty(key)) {
+                        var value = deliverables[key];
+                        for (let i = 0; i < chk.length; i++) {
+                            // console.log(chk[i].getAttribute("value"));
+                            var ele = chk[i].getAttribute("value")
+
+                            if (key == ele && value == 1) {
+                                // Check the checkbox if the value is 1
+                                chk[i].checked = true;
+                            }
+                            
+                        }
+
+
+                    }
+                }
+            } else {
+                alert("Invalid type !")
             }
+            
+            // if (category == "1" || category == "2") {
+            //      //set bronze data
+
+            // } else if (category == "3" || category == "4") {
+            //      //set bronze data
+            //      if (pricingData.type == "bronze") {
+
+            //         pricePackageId_bronze = pricingData.pricePackageId;
+                    
+            //         document.getElementById("price_b").value = pricingData.price;
+            //         document.getElementById("concepts_b").value = pricingData.noOfConcepts;
+            //         document.getElementById("rev_b").value = pricingData.noOfRevisions;
+            //         document.getElementById("duration_b").value = pricingData.deliveryDuration;
+                    
+            //         var deliverables = pricingData.del;
+                    
+            //         var chk = document.getElementsByClassName("chk_bronze");
+
+            //         console.log(chk.length);
+                    
+            //         for (var key in deliverables) {
+            //             if (deliverables.hasOwnProperty(key)) {
+            //                 var value = deliverables[key];
+            //                 for (let i = 0; i < chk.length; i++) {
+            //                     // console.log(chk[i].getAttribute("value"));
+            //                     var ele = chk[i].getAttribute("value")
+
+            //                     if (key == ele && value == 1) {
+            //                         // Check the checkbox if the value is 1
+            //                         chk[i].checked = true;
+            //                     }
+                                
+            //                 }
+
+
+            //             }
+            //         }
+            //     } else if (pricingData.type == "silver") {
+
+            //         pricePackageId_silver = pricingData.pricePackageId;
+
+            //         document.getElementById("price_s").value = pricingData.price;
+            //         // document.getElementById("concepts_s").value = pricingData.noOfConcepts;
+            //         document.getElementById("rev_s").value = pricingData.noOfRevisions;
+            //         document.getElementById("duration_s").value = pricingData.deliveryDuration;
+                    
+            //         var deliverables = pricingData.deliverables;
+                    
+            //         var chk = document.getElementsByClassName("chk_silver");
+
+            //         console.log(chk.length);
+                    
+            //         for (var key in deliverables) {
+            //             if (deliverables.hasOwnProperty(key)) {
+            //                 var value = deliverables[key];
+            //                 console.log(key + " "+ value);
+            //                 for (let i = 0; i < chk.length; i++) {
+            //                     // console.log(chk[i].getAttribute("value"));
+            //                     var ele = chk[i].getAttribute("value")
+
+            //                     if (key == ele && value == 1) {
+            //                         // Check the checkbox if the value is 1
+            //                         chk[i].checked = true;
+            //                     }
+                                
+            //                 }
+
+
+            //             }
+            //         }
+            //     } else if (pricingData.type == "platinum") {
+
+            //         pricePackageId_platinum = pricingData.pricePackageId;
+
+            //         document.getElementById("price_p").value = pricingData.price;
+            //         // document.getElementById("concepts_p").value = pricingData.noOfConcepts;
+            //         document.getElementById("rev_p").value = pricingData.noOfRevisions;
+            //         document.getElementById("duration_p").value = pricingData.deliveryDuration;
+                    
+            //         var deliverables = pricingData.deliverables;
+                    
+            //         var chk = document.getElementsByClassName("chk_platinum");
+
+            //         console.log(chk.length);
+                    
+            //         for (var key in deliverables) {
+            //             if (deliverables.hasOwnProperty(key)) {
+            //                 var value = deliverables[key];
+            //                 for (let i = 0; i < chk.length; i++) {
+            //                     // console.log(chk[i].getAttribute("value"));
+            //                     var ele = chk[i].getAttribute("value")
+
+            //                     if (key == ele && value == 1) {
+            //                         // Check the checkbox if the value is 1
+            //                         chk[i].checked = true;
+            //                     }
+                                
+            //                 }
+
+
+            //             }
+            //         }
+            //     } else {
+            //         alert("Invalid type !")
+            //     }
+            // } else{
+            //     alert("invalid category !")
+            // }
 
            
         });
@@ -276,81 +281,131 @@ function loadData(){
 }
 
 function setDeliverables() {
-    
-    var deli_div = document.getElementsByClassName("chkbx");
-    var lb = document.getElementsByClassName("chg");
 
-    // Check if deli_div exists
-    if (deli_div.length > 0) {
-        // Clear any existing checkboxes
-        deli_div[0].innerHTML = "";
-        deli_div[1].innerHTML = "";
-        deli_div[2].innerHTML = "";
-
-        // Create and append checkboxes based on the category
-        switch (category) {
-            case "1":
-                // console.log("inside");
-
-                var checkboxValues = ["Logo transparency", "Vector file", "Printable file", "3D mockup", "Source file", "Social media kit"];
-                var valueschk = ["logoTransparency", "vectorFile", "printableFile", "mockup", "sourceFile", "socialMediaKit"];
-                for (let i = 0; i < 3; i++) {
-                    lb[i].innerHTML = "No of concepts";
-                    createCheckboxes(deli_div[i], checkboxValues, valueschk, i);
-                    
-                }
-
-
-                break;
-            case "2":
-                var checkboxValues = ["Source file", "High resolution", "Background/scene", "Color", "Full body", "Commercial use"];
-                var valueschk = ["sourceFile", "highResolution", "background_scene", "color", "fullBody", "commercialUse"];
-                for (let i = 0; i < 3; i++) {
-                    lb[i].innerHTML = "No of figures"
-                    createCheckboxes(deli_div[i], checkboxValues, valueschk, i);
-                    
-                }
-
-
-                break;
-            case "3":
-                var checkboxValues = ["Print-Ready", "Source File", "Double-sided", "Custom graphics", "Photo editing", "Social media design", "Commercial Use"];
-                var valueschk = ["printReady", "sourceFile", "doubleSided", "customGraphics", "photoEditing", "socialMediaDesign", "commercialUse"];
-                for (let i = 0; i < 3; i++) {
-                    lb.remove
-                    createCheckboxes(deli_div[i], checkboxValues, valueschk, i);    
-                }
-
-                document.getElementById("concepts_b").style.display = "none";
-                document.getElementById("concepts_s").style.display = "none";
-                document.getElementById("concepts_p").style.display = "none";
-
-                break;
-            case "4":
-                var checkboxValues = ["Custom graphics", "Source file", "Print-ready"];
-                var valueschk = ["customGraphics", "sourceFile", "printReady"];
-                for (let i = 0; i < 3; i++) {
-                    lb.remove
-                    createCheckboxes(deli_div[i], checkboxValues, valueschk, i);    
-                }
-
-                document.getElementById("concepts_b").style.display = "none";
-                document.getElementById("concepts_s").style.display = "none";
-                document.getElementById("concepts_p").style.display = "none";
-
-                break;
-            default:
-                alert("Something went wrong!");
-                window.location = "../HTML/packages.html";
-
-
+    fetch(BASE_URL + `/categorydata?categoryId=${category}`,{
+        method: 'GET',
+        headers: myHeaders
+    })
+    .then((response)=>{
+        if (!response.ok) {
+            throw new Error('Error occured');
+        } else {
+            return response.json();
         }
-    }
+    })
+    .then((data)=>{
 
-    if (updateFlag) {
-        console.log("in the update");
-        loadData();
-    }
+
+        var deli_div = document.getElementsByClassName("chkbx");
+        var lb = document.getElementsByClassName("chg");
+
+        // Check if deli_div exists
+        if (deli_div.length > 0) {
+            // Clear any existing checkboxes
+            deli_div[0].innerHTML = "";
+            deli_div[1].innerHTML = "";
+            deli_div[2].innerHTML = "";
+
+            for (let i = 0; i < 3; i++) {
+                
+                for (let j = 1; j <= 5; j++) {
+
+                    var str = "del_"+(j);
+                    
+                    // create checkbox
+                    var chk = document.createElement("input");
+                    chk.type = "checkbox";
+                    chk.value = str;
+
+                    // Create a label for the checkbox
+                    var label = document.createElement("label");
+                    label.innerHTML = data["del_"+j];
+
+                    // create break tag
+                    var br = document.createElement("br")
+
+                    if (i == 0) {
+                        chk.className = "chk_bronze"
+                    } else if (i == 1) {
+                        chk.className = "chk_silver"
+                    } else{
+                        chk.className = "chk_platinum"
+                    }
+
+                    deli_div[i].appendChild(chk);
+                    deli_div[i].appendChild(label);
+                    deli_div[i].appendChild(br);
+                }
+                
+            }
+
+            // Create and append checkboxes based on the category
+            // switch (category) {
+            //     case "1":
+            //         // console.log("inside");
+
+            //         var checkboxValues = ["Logo transparency", "Vector file", "Printable file", "3D mockup", "Source file", "Social media kit"];
+            //         var valueschk = ["logoTransparency", "vectorFile", "printableFile", "mockup", "sourceFile", "socialMediaKit"];
+            //         for (let i = 0; i < 3; i++) {
+            //             lb[i].innerHTML = "No of concepts";
+            //             createCheckboxes(deli_div[i], checkboxValues, valueschk, i);
+                        
+            //         }
+
+
+            //         break;
+            //     case "2":
+            //         var checkboxValues = ["Source file", "High resolution", "Background/scene", "Color", "Full body", "Commercial use"];
+            //         var valueschk = ["sourceFile", "highResolution", "background_scene", "color", "fullBody", "commercialUse"];
+            //         for (let i = 0; i < 3; i++) {
+            //             lb[i].innerHTML = "No of figures"
+            //             createCheckboxes(deli_div[i], checkboxValues, valueschk, i);
+                        
+            //         }
+
+
+            //         break;
+            //     case "3":
+            //         var checkboxValues = ["Print-Ready", "Source File", "Double-sided", "Custom graphics", "Photo editing", "Social media design", "Commercial Use"];
+            //         var valueschk = ["printReady", "sourceFile", "doubleSided", "customGraphics", "photoEditing", "socialMediaDesign", "commercialUse"];
+            //         for (let i = 0; i < 3; i++) {
+            //             lb.remove
+            //             createCheckboxes(deli_div[i], checkboxValues, valueschk, i);    
+            //         }
+
+            //         document.getElementById("concepts_b").style.display = "none";
+            //         document.getElementById("concepts_s").style.display = "none";
+            //         document.getElementById("concepts_p").style.display = "none";
+
+            //         break;
+            //     case "4":
+            //         var checkboxValues = ["Custom graphics", "Source file", "Print-ready", "Photo editing", "Social media design"];
+            //         var valueschk = ["customGraphics", "sourceFile", "printReady"];
+            //         for (let i = 0; i < 3; i++) {
+            //             lb.remove
+            //             createCheckboxes(deli_div[i], checkboxValues, valueschk, i);    
+            //         }
+
+            //         document.getElementById("concepts_b").style.display = "none";
+            //         document.getElementById("concepts_s").style.display = "none";
+            //         document.getElementById("concepts_p").style.display = "none";
+
+            //         break;
+            //     default:
+            //         alert("Something went wrong!");
+            //         window.location = "../HTML/packages.html";
+
+
+            // }
+        }
+
+        if (updateFlag) {
+            console.log("in the update");
+            loadData();
+        }
+    })
+    
+    
 }
 
 // function setupCheckBoxes(ele, values, label_val){
@@ -363,34 +418,34 @@ function setDeliverables() {
 
 // }
 
-function createCheckboxes(container, values, vl, type) {
-    // Create and append checkboxes in a loop
-    for (var i = 0; i < values.length; i++) {
-        var chk = document.createElement("input");
-        chk.type = "checkbox";
-        chk.value = vl[i];
+// function createCheckboxes(container, values, vl, type) {
+//     // Create and append checkboxes in a loop
+//     for (var i = 0; i < values.length; i++) {
+//         var chk = document.createElement("input");
+//         chk.type = "checkbox";
+//         chk.value = vl[i];
 
-        // Create a label for the checkbox
-        var label = document.createElement("label");
-        label.innerHTML = values[i];
+//         // Create a label for the checkbox
+//         var label = document.createElement("label");
+//         label.innerHTML = values[i];
 
-        if (type == 0) {
-            chk.className = "chk_bronze"
-        } else if (type == 1) {
-            chk.className = "chk_silver"
-        } else{
-            chk.className = "chk_platinum"
-        }
+//         if (type == 0) {
+//             chk.className = "chk_bronze"
+//         } else if (type == 1) {
+//             chk.className = "chk_silver"
+//         } else{
+//             chk.className = "chk_platinum"
+//         }
 
-        // create break tag
-        var br = document.createElement("br")
+//         // create break tag
+//         var br = document.createElement("br")
 
-        // Append the checkbox and label to the container
-        container.appendChild(chk);
-        container.appendChild(label);
-        container.appendChild(br)
-    }
-}
+//         // Append the checkbox and label to the container
+//         container.appendChild(chk);
+//         container.appendChild(label);
+//         container.appendChild(br)
+//     }
+// }
 
 
 // handling submits
@@ -461,69 +516,71 @@ document.getElementById("submit-bronze").addEventListener("click", async functio
 
     var pricingData = {}
 
-    switch (category) {
-        case "1":
-            pricingData = {
-                type: "bronze",
-                deliveryDuration: duration_b,
-                noOfRevisions: rev_b,
-                price: price_b,
-                noOfConcepts: concepts_b,
-                packageId: packageId,
-                deliverables: deliverablesObject
-            }
-            break;
+    // switch (category) {
+    //     case "1":
+    //         pricingData = {
+    //             type: "bronze",
+    //             deliveryDuration: duration_b,
+    //             noOfRevisions: rev_b,
+    //             price: price_b,
+    //             noOfConcepts: concepts_b,
+    //             packageId: packageId,
+    //             deliverables: deliverablesObject
+    //         }
+    //         break;
     
-        case "2":
-            pricingData = {
-                type: "bronze",
-                deliveryDuration: duration_b,
-                noOfRevisions: rev_b,
-                price: price_b,
-                noOfConcepts: concepts_b,
-                packageId: packageId,
-                deliverables: deliverablesObject
-            }
-            break;
+    //     case "2":
+    //         pricingData = {
+    //             type: "bronze",
+    //             deliveryDuration: duration_b,
+    //             noOfRevisions: rev_b,
+    //             price: price_b,
+    //             noOfConcepts: concepts_b,
+    //             packageId: packageId,
+    //             deliverables: deliverablesObject
+    //         }
+    //         break;
     
-        case "3":
-            pricingData = {
-                type: "bronze",
-                deliveryDuration: duration_b,
-                noOfRevisions: rev_b,
-                price: price_b,
-                packageId: packageId,
-                deliverables: deliverablesObject
-            }
-            break;
+    //     case "3":
+    //         pricingData = {
+    //             type: "bronze",
+    //             deliveryDuration: duration_b,
+    //             noOfRevisions: rev_b,
+    //             price: price_b,
+    //             packageId: packageId,
+    //             deliverables: deliverablesObject
+    //         }
+    //         break;
     
-        default:
-            pricingData = {
-                type: "bronze",
-                deliveryDuration: duration_b,
-                noOfRevisions: rev_b,
-                price: price_b,
-                packageId: packageId,
-                deliverables: deliverablesObject
-            }
-            break;
-    }
-
-    // var pricingData = {
-    //     type: "bronze",
-    //     deliveryDuration: duration_b,
-    //     noOfRevisions: rev_b,
-    //     price: price_b,
-    //     noOfConcepts: concepts_b,
-    //     packageId: packageId,
-    //     deliverables: deliverablesObject
+    //     default:
+    //         pricingData = {
+    //             type: "bronze",
+    //             deliveryDuration: duration_b,
+    //             noOfRevisions: rev_b,
+    //             price: price_b,
+    //             packageId: packageId,
+    //             deliverables: deliverablesObject
+    //         }
+    //         break;
     // }
+
+
+
+    var pricingData = {
+        type: "bronze",
+        deliveryDuration: duration_b,
+        noOfRevisions: rev_b,
+        price: price_b,
+        noOfConcepts: concepts_b,
+        packageId: packageId,
+        deliverables: deliverablesObject
+    }
 
     console.log(pricingData);
     const operationType = pricePackageId_bronze ? "update" : "insert";
 
     var requestUrl = operationType === "update"
-    ? `${BASE_URL}/packagepricing?packageId=${packageId}&category=${category}&pricePackageId=${pricePackageId_bronze}`
+    ? `${BASE_URL}/packagepricing?packageId=${packageId}&category=${category}`
     : `${BASE_URL}/packagepricing?packageId=${packageId}&category=${category}`;
 
 
@@ -550,8 +607,13 @@ document.getElementById("submit-bronze").addEventListener("click", async functio
             sbtn.style.backgroundColor = "#444";
         } else {
             //// unscussess popup
-            showPopupUnsuccess();
+            // showPopupUnsuccess();
             // checkFlagsUnsuccess();
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!"
+              });
             errFlag = 1
             console.error(`Failed to ${operationType} package data.`);
 
