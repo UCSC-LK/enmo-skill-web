@@ -1,7 +1,3 @@
-function createticket(){
-    alert("UI is under construction")
-}
-
 function getCookie(cookieName) {
     var name = cookieName + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -366,22 +362,24 @@ function viewrequest(TicketID,agentID,agentName){
   var massege= "Are you want assing this ticket to \'" + agentName + "\'?"
 
   swalTitle.textContent = massege;
-if(agentID>0){
-  Swal.fire({
-    template: "#my-template"
-  }).then((result) => {
-    assing(agentID, TicketID)
-  })
-}else{
-  Swal.fire({        
-    icon: "warning",
-    title: "Select an Agent",
-    showConfirmButton: false,
-    timer: 2000
-  });
+  if(agentID>0){
+    Swal.fire({
+      template: "#my-template"
+    }).then((result) => {
+      assing(agentID, TicketID)
+    })
+  }else{
+    Swal.fire({        
+      icon: "warning",
+      title: "Select an Agent",
+      showConfirmButton: false,
+      timer: 2000
+    });
+  }    
 }
-    
-
+//create ticket--------------------------------------------------------------------------------------------------------------
+function createticket(){
+  window.location.href="../HTML/createTicket-CSA.html"
 }
 
 function hoverChnageAddClass(itemDivs){

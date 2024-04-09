@@ -18,14 +18,12 @@ const url = new URL(window.location.href)
 var ticketID = url.searchParams.get('ticketID')
 var assigned = url.searchParams.get('assigned')
 var statuss = url.searchParams.get('status')
-var addmin = url.searchParams.get('admin')
-
-console.log(addmin)
 
 const PopupPerent = document.querySelector(".apendUpdates")
 const PopupChild = document.querySelector(".body")
 const PopupChild2 = document.querySelector(".body2")
 const loding = document.querySelector(".loading");
+
 
 viewMore(ticketID)
 
@@ -73,6 +71,7 @@ function getdata(ticketID,flag){
         document.querySelector(".ticketId").textContent = "Ticket Id: #"+ element.ref_no;
         // document.querySelector(".header").textContent = element.date;
 
+
       if(element.order){
         document.querySelector(".refund").style.display="inline"
       }
@@ -85,8 +84,13 @@ function getdata(ticketID,flag){
           markUgent(element.ref_no)}
         ) 
       }
-      if(addmin==1){
+
+      if(element.admin==1){
         document.querySelector(".toaddmin").style.display="inline"
+        document.querySelector(".closeBTN").style.display = "none";
+        document.querySelector(".assignBTN").style.display = "none";
+        document.querySelector(".rejectBTN").style.display = "none";
+        document.querySelector(".commentBTN").style.display = "none";        
       }
 
     setpackage(element.packages)// to display packege img-----------------------------------------
@@ -176,7 +180,7 @@ function  viewMore(ticketID){
   var desition = null;
 
 
-  if(statuss==3 || statuss ==4 || addmin == 1){
+  if(statuss==3 || statuss ==4){
     cloase.style.display = "none";
     assignBTN.style.display = "none";
     reject.style.display = "none";
@@ -314,7 +318,7 @@ function viewrequest(TicketID,desition){
 } 
 
 
-// add comment to ticket-------------------------------------------------------------------------------------
+// add reply to ticket-------------------------------------------------------------------------------------
 async function viewrequest2(TicketID){
 
   const { value: text } = await Swal.fire({
@@ -547,7 +551,7 @@ swalIcon.setAttribute('color', '#3085d6');// Update the color
           timer: 2000
         });
         setTimeout(() => {
-          window.location="../HTML/ticketListCS.html";
+          location.reload()
       }, 2500);
       })
       .catch(error => console.log('error', error));
