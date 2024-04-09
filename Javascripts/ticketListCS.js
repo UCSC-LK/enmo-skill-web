@@ -141,7 +141,7 @@ function tableLoad(view){
           ]
        
           itemDivs.forEach(function(itemDiv) {
-            itemDiv.addEventListener("click",()=>{ viewticket(item.ref_no,false,item.status)})//view tickets--------------------------------------------
+            itemDiv.addEventListener("click",()=>{ viewticket(item.ref_no,false,item.status,item.admin)})//view tickets--------------------------------------------
           });             
 
 
@@ -176,7 +176,7 @@ function tableLoad(view){
           ]
          
           itemDivs.forEach(function(itemDiv) {
-            itemDiv.addEventListener("click",()=>{ viewticket(item.ref_no,true,item.status)})//view tickets--------------------------------------------
+            itemDiv.addEventListener("click",()=>{ viewticket(item.ref_no,true,item.status,item.admin)})//view tickets--------------------------------------------
           });
         }
       })
@@ -246,7 +246,7 @@ function getAsignTicket(){
           ]
          
           itemDivs.forEach(function(itemDiv) {
-            itemDiv.addEventListener("click",()=>{ viewticket(item.ref_no,true,item.status)})//view tickets--------------------------------------------
+            itemDiv.addEventListener("click",()=>{ viewticket(item.ref_no,true,item.status,item.admin)})//view tickets--------------------------------------------
           });
   
       })
@@ -288,12 +288,6 @@ function getAgent(newItem) {
       const defaultOption = { userId: 0, userName: 'Select an Agent' };
       result.unshift(defaultOption);
 
-      // Sorting the array by userName
-      result.sort((a, b) => {
-        if (a.userName === defaultOption.userName) return -1; // Move "Select an Agent" to the top
-        if (b.userName === defaultOption.userName) return 1;  // Move "Select an Agent" to the top
-        return a.userName.localeCompare(b.userName);
-      });
       console.log(result)
 
       result.forEach(item => {
@@ -307,7 +301,7 @@ function getAgent(newItem) {
     .catch(error => console.log('error', error));
 }
 
-//assign agrnt to ticket-------------------------------------------------
+//assign agrnt to ticket-----------------------------------------------------------------------------------------------------
 function assing(selectedAgentId, ticketID){
 
   console.log(ticketID)
@@ -338,8 +332,24 @@ function assing(selectedAgentId, ticketID){
       return response.text()
     }
   })
-    .then(result => {alert(result)
-      location.reload();})
+    .then(result => {
+      var icons=null
+      if(result.includes("Ticket assign successful!")){
+        icons="success"
+      }else{
+      icons="error"
+      result="Error"
+    }  
+      Swal.fire({        
+        icon: icons,
+        title: result,
+        showConfirmButton: false,
+        timer: 2000
+      });
+      setTimeout(() => {
+        location.reload();
+      }, 2500);
+    })
     .catch(error => console.log('error', error));
 } 
 
@@ -349,31 +359,28 @@ function viewrequest(TicketID,agentID,agentName){
   console.log(agentID)
   console.log(agentName)
  
-  const popup_con = document.querySelector(".pop-up-container2");
-  const popup_details = document.querySelector(".pop-up2");
+  let popup_details=document.querySelector(".pop-up2");
+  const template = popup_details.querySelector('.my-template');
+  const swalTitle = template.content.querySelector('swal-title');
 
   var massege= "Are you want assing this ticket to \'" + agentName + "\'?"
 
-  popup_con.style.display = "flex";
-  popup_details.style.display = "block";
-  
-  popup_details.querySelector(".massege").textContent = massege;
-
-  var yes = document.querySelector(".yes")
-  var no = document.querySelector(".no")
-
-  yes.addEventListener("click",()=>{
-    if(agentID>0){
-      assing(agentID, TicketID)
-    }else{
-      alert("select a agent")
-    }
-    
+  swalTitle.textContent = massege;
+if(agentID>0){
+  Swal.fire({
+    template: "#my-template"
+  }).then((result) => {
+    assing(agentID, TicketID)
   })
-
-  no.addEventListener("click",()=>{
-    location.reload()
-  })  
+}else{
+  Swal.fire({        
+    icon: "warning",
+    title: "Select an Agent",
+    showConfirmButton: false,
+    timer: 2000
+  });
+}
+    
 
 }
 
@@ -389,9 +396,9 @@ function hoverChnageAddClass(itemDivs){
  }
 
 //show a ticket details------------------------------------------ 
- function viewticket(ticketID, assigned,status){
-
-  var url ="../HTML/ticketListViewSupport.html?ticketID="+ encodeURIComponent(ticketID)+"&assigned="+encodeURIComponent(assigned)+"&status="+encodeURIComponent(status)
+ function viewticket(ticketID, assigned,status,admin){
+ 
+  var url ="../HTML/ticketListViewSupport.html?ticketID="+ encodeURIComponent(ticketID)+"&assigned="+encodeURIComponent(assigned)+"&status="+encodeURIComponent(status)+"&admin="+encodeURIComponent(admin)
     window.location.href = url
   
 }
