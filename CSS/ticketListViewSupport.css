@@ -35,6 +35,15 @@ body{
     justify-content: right;
     gap: 10px;
 }
+.toaddmin{
+    display: none;
+    background-color: rgba(153, 170, 0, 0.492);
+    width: 150px;
+    padding: 4px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 700;
+}
 .urgent{
     display: none;
     background-color: rgba(255, 1, 1, 0.492);

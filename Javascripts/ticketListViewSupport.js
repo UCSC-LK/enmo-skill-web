@@ -13,10 +13,14 @@ function getCookie(cookieName) {
   return null;
 }
 
+
 const url = new URL(window.location.href)
 var ticketID = url.searchParams.get('ticketID')
 var assigned = url.searchParams.get('assigned')
 var statuss = url.searchParams.get('status')
+var addmin = url.searchParams.get('admin')
+
+console.log(addmin)
 
 const PopupPerent = document.querySelector(".apendUpdates")
 const PopupChild = document.querySelector(".body")
@@ -81,6 +85,9 @@ function getdata(ticketID,flag){
           markUgent(element.ref_no)}
         ) 
       }
+      if(addmin==1){
+        document.querySelector(".toaddmin").style.display="inline"
+      }
 
     setpackage(element.packages)// to display packege img-----------------------------------------
 
@@ -136,7 +143,6 @@ function  viewMore(ticketID){
     }
   })
   .then(result => {
-    var status = null
  
   result.forEach((element, index) => {
 
@@ -169,20 +175,25 @@ function  viewMore(ticketID){
   var comment = document.querySelector(".commentBTN")
   var desition = null;
 
-  console.log(status)
 
-  if(statuss==3 || statuss == 4){
-
+  if(statuss==3 || statuss ==4 || addmin == 1){
     cloase.style.display = "none";
     assignBTN.style.display = "none";
     reject.style.display = "none";
     comment.style.display = "none";
   }
+  // console.log(addmin)
+  // if(addmin == 1){
+  //   console.log(addmin)
 
+  //   cloase.style.display = "none";
+  //   assignBTN.style.display = "none";
+  //   reject.style.display = "none";
+  //   comment.style.display = "none";
+  // }
 
-  assignBTN.addEventListener("click",()=>{
-    
-    
+  assignBTN.addEventListener("click",()=>{    
+    toAdmin(ticketID)
   })
 
   cloase.addEventListener("click",()=>{
@@ -457,6 +468,86 @@ swalIcon.setAttribute('color', '#3085d6');// Update the color
         });
         setTimeout(() => {
           location.reload();
+      }, 2500);
+      })
+      .catch(error => console.log('error', error));
+    }else if (result.isDismissed) {
+      location.reload()
+    }
+
+  })
+
+
+}
+
+
+//assign to admin-----------------------------------------------------------------------------------------------------
+function toAdmin(ticketId){
+
+  let popup_details=document.querySelector(".pop-up");
+  const template = popup_details.querySelector('.my-template');
+  const swalTitle = template.content.querySelector('swal-title'); 
+  const swalIcon = template.content.querySelector('swal-icon');
+
+swalIcon.setAttribute('type', 'question');// Update the icon
+swalIcon.setAttribute('color', '#3085d6');// Update the color
+
+  var massege= null 
+
+  massege = "Assign this ticket to admin?"
+  swalTitle.textContent = massege;
+
+  Swal.fire({
+    template: "#my-template"
+  }).then((result) => {
+
+    if (result.isConfirmed) {
+
+      loding.style.display ="none"
+
+      var myHeaders = new Headers();                          
+      myHeaders.append("Content-Type", "application/json");  
+      myHeaders.append("Authorization", getCookie("JWT"));   
+    
+      
+      var requestOptions = {
+      method: 'OPTIONS',
+      headers: myHeaders,
+      redirect: 'follow'
+      };
+      
+      loding.style.display ="flex"
+      fetch(BASE_URL+"/support?TicketId="+encodeURIComponent(ticketId)+"&toAdmin=1", requestOptions)
+      .then(response => {
+        loding.style.display ="none";
+        if(response.status == 401){
+          window.location.href = "../Failed/401.html";
+        } else if(response.status == 406){
+          const currentUrl = encodeURIComponent(window.location.href);
+          window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+        } else if(response.status == 404){
+          window.location.href = "../Failed/404.html";
+        } else {
+          return response.text();
+        }
+      })
+      .then(result => {
+        var icons=null
+        console.log(result)
+      if(result.includes("Assign successful!")){
+        icons="success"
+      }else{
+        icons="error"
+        result="Error"
+      }
+        Swal.fire({
+          icon: icons,
+          title: result,
+          showConfirmButton: false,
+          timer: 2000
+        });
+        setTimeout(() => {
+          window.location="../HTML/ticketListCS.html";
       }, 2500);
       })
       .catch(error => console.log('error', error));
