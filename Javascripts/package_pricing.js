@@ -344,64 +344,7 @@ function setDeliverables() {
                 
             }
 
-            // Create and append checkboxes based on the category
-            // switch (category) {
-            //     case "1":
-            //         // console.log("inside");
 
-            //         var checkboxValues = ["Logo transparency", "Vector file", "Printable file", "3D mockup", "Source file", "Social media kit"];
-            //         var valueschk = ["logoTransparency", "vectorFile", "printableFile", "mockup", "sourceFile", "socialMediaKit"];
-            //         for (let i = 0; i < 3; i++) {
-            //             lb[i].innerHTML = "No of concepts";
-            //             createCheckboxes(deli_div[i], checkboxValues, valueschk, i);
-                        
-            //         }
-
-
-            //         break;
-            //     case "2":
-            //         var checkboxValues = ["Source file", "High resolution", "Background/scene", "Color", "Full body", "Commercial use"];
-            //         var valueschk = ["sourceFile", "highResolution", "background_scene", "color", "fullBody", "commercialUse"];
-            //         for (let i = 0; i < 3; i++) {
-            //             lb[i].innerHTML = "No of figures"
-            //             createCheckboxes(deli_div[i], checkboxValues, valueschk, i);
-                        
-            //         }
-
-
-            //         break;
-            //     case "3":
-            //         var checkboxValues = ["Print-Ready", "Source File", "Double-sided", "Custom graphics", "Photo editing", "Social media design", "Commercial Use"];
-            //         var valueschk = ["printReady", "sourceFile", "doubleSided", "customGraphics", "photoEditing", "socialMediaDesign", "commercialUse"];
-            //         for (let i = 0; i < 3; i++) {
-            //             lb.remove
-            //             createCheckboxes(deli_div[i], checkboxValues, valueschk, i);    
-            //         }
-
-            //         document.getElementById("concepts_b").style.display = "none";
-            //         document.getElementById("concepts_s").style.display = "none";
-            //         document.getElementById("concepts_p").style.display = "none";
-
-            //         break;
-            //     case "4":
-            //         var checkboxValues = ["Custom graphics", "Source file", "Print-ready", "Photo editing", "Social media design"];
-            //         var valueschk = ["customGraphics", "sourceFile", "printReady"];
-            //         for (let i = 0; i < 3; i++) {
-            //             lb.remove
-            //             createCheckboxes(deli_div[i], checkboxValues, valueschk, i);    
-            //         }
-
-            //         document.getElementById("concepts_b").style.display = "none";
-            //         document.getElementById("concepts_s").style.display = "none";
-            //         document.getElementById("concepts_p").style.display = "none";
-
-            //         break;
-            //     default:
-            //         alert("Something went wrong!");
-            //         window.location = "../HTML/packages.html";
-
-
-            // }
         }
 
         if (updateFlag) {
@@ -412,45 +355,6 @@ function setDeliverables() {
     
     
 }
-
-// function setupCheckBoxes(ele, values, label_val){
-//     var lb = document.getElementsByClassName("chg");
-//     for (let i = 0; i < 3; i++) {
-//         lb[i].innerHTML = label_val;
-//         createCheckboxes(ele[i], values);
-        
-//     }
-
-// }
-
-// function createCheckboxes(container, values, vl, type) {
-//     // Create and append checkboxes in a loop
-//     for (var i = 0; i < values.length; i++) {
-//         var chk = document.createElement("input");
-//         chk.type = "checkbox";
-//         chk.value = vl[i];
-
-//         // Create a label for the checkbox
-//         var label = document.createElement("label");
-//         label.innerHTML = values[i];
-
-//         if (type == 0) {
-//             chk.className = "chk_bronze"
-//         } else if (type == 1) {
-//             chk.className = "chk_silver"
-//         } else{
-//             chk.className = "chk_platinum"
-//         }
-
-//         // create break tag
-//         var br = document.createElement("br")
-
-//         // Append the checkbox and label to the container
-//         container.appendChild(chk);
-//         container.appendChild(label);
-//         container.appendChild(br)
-//     }
-// }
 
 
 // handling submits
@@ -465,27 +369,7 @@ document.getElementById("submit-bronze").addEventListener("click", async functio
     var duration_b = document.getElementById("duration_b").value;
     // var deliverables_chk = document.querySelectorAll('input[type="checkbox"]:checked');
     var deliverables = document.getElementsByClassName("chk_bronze")
-    // var deliverables = document.querySelectorAll('input[type="checkbox"]');
 
-    // var deliverablesObject = {};
-
-    // // deliverables.forEach(function(checkbox) {
-    // //     var checkboxValue = checkbox.value;
-
-    // //     // Check if the value doesn't exist in the deliverablesObject
-    // //     if (!(checkboxValue in deliverablesObject)) {
-    // //         deliverablesObject[checkboxValue] = 0;
-    // //     }
-    // // });
-
-    // deliverables.forEach(function(checkbox) {
-    //     var checkboxValue = checkbox.value;
-    //     deliverablesObject[checkboxValue] = 0;
-
-    //     if (checkbox.checked == true) {
-    //         deliverablesObject[checkboxValue] = 1;
-    //     }
-        
 
      // Convert deliverables to an array
      var deliverablesArray = Array.from(deliverables);
@@ -509,69 +393,9 @@ document.getElementById("submit-bronze").addEventListener("click", async functio
  
      // Print the deliverablesObject to the console
      console.log(deliverablesObject);
-    // });
 
-    // Update values to 1 for checked checkboxes
-    // deliverables_chk.forEach(function(checkbox) {
-    //     var checkboxValue = checkbox.value;
-
-    //     // Check if the value exists in the deliverablesObject
-    //     if (checkboxValue in deliverablesObject) {
-    //         deliverablesObject[checkboxValue] = 1;
-    //     }
-    // });
 
     var pricingData = {}
-
-    // switch (category) {
-    //     case "1":
-    //         pricingData = {
-    //             type: "bronze",
-    //             deliveryDuration: duration_b,
-    //             noOfRevisions: rev_b,
-    //             price: price_b,
-    //             noOfConcepts: concepts_b,
-    //             packageId: packageId,
-    //             deliverables: deliverablesObject
-    //         }
-    //         break;
-    
-    //     case "2":
-    //         pricingData = {
-    //             type: "bronze",
-    //             deliveryDuration: duration_b,
-    //             noOfRevisions: rev_b,
-    //             price: price_b,
-    //             noOfConcepts: concepts_b,
-    //             packageId: packageId,
-    //             deliverables: deliverablesObject
-    //         }
-    //         break;
-    
-    //     case "3":
-    //         pricingData = {
-    //             type: "bronze",
-    //             deliveryDuration: duration_b,
-    //             noOfRevisions: rev_b,
-    //             price: price_b,
-    //             packageId: packageId,
-    //             deliverables: deliverablesObject
-    //         }
-    //         break;
-    
-    //     default:
-    //         pricingData = {
-    //             type: "bronze",
-    //             deliveryDuration: duration_b,
-    //             noOfRevisions: rev_b,
-    //             price: price_b,
-    //             packageId: packageId,
-    //             deliverables: deliverablesObject
-    //         }
-    //         break;
-    // }
-
-
 
     var pricingData = {
         type: "bronze",
@@ -670,53 +494,6 @@ document.getElementById("submit-silver").addEventListener("click", async functio
 
     var pricingData = {}
 
-    // switch (category) {
-    //     case "1":
-    //         pricingData = {
-    //             type: "silver",
-    //             deliveryDuration: duration_s,
-    //             noOfRevisions: rev_s,
-    //             price: price_s,
-    //             noOfConcepts: concepts_s,
-    //             packageId: packageId,
-    //             deliverables: deliverablesObject
-    //         }
-    //         break;
-    
-    //     case "2":
-    //         pricingData = {
-    //             type: "silver",
-    //             deliveryDuration: duration_s,
-    //             noOfRevisions: rev_s,
-    //             price: price_s,
-    //             noOfConcepts: concepts_s,
-    //             packageId: packageId,
-    //             deliverables: deliverablesObject
-    //         }
-    //         break;
-    
-    //     case "3":
-    //         pricingData = {
-    //             type: "silver",
-    //             deliveryDuration: duration_s,
-    //             noOfRevisions: rev_s,
-    //             price: price_s,
-    //             packageId: packageId,
-    //             deliverables: deliverablesObject
-    //         }
-    //         break;
-    
-    //     default:
-    //         pricingData = {
-    //             type: "silver",
-    //             deliveryDuration: duration_s,
-    //             noOfRevisions: rev_s,
-    //             price: price_s,
-    //             packageId: packageId,
-    //             deliverables: deliverablesObject
-    //         }
-    //         break;
-    // }
 
     var pricingData = {
         type: "silver",
@@ -926,7 +703,8 @@ document.getElementById("submit-platinum").addEventListener("click", async funct
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
-                text: "Something went wrong!"
+                text: "Something went wrong!",
+                confirmButtonColor: "#293692"
               });
             //// unscussess popup
             // showPopupUnsuccess();
@@ -943,57 +721,57 @@ document.getElementById("submit-platinum").addEventListener("click", async funct
 });
 
 
-document.getElementById("btn-success").addEventListener("click", function(){
+// document.getElementById("btn-success").addEventListener("click", function(){
 
-    var popupContainer = document.getElementById('popup-container-success');
-    var overlay = document.getElementById('overlay1');
+//     var popupContainer = document.getElementById('popup-container-success');
+//     var overlay = document.getElementById('overlay1');
 
-    popupContainer.style.display = 'none';
-    overlay.style.display = 'none';
+//     popupContainer.style.display = 'none';
+//     overlay.style.display = 'none';
 
-    window.location = `../HTML/packages.html`
-})
+//     window.location = `../HTML/packages.html`
+// })
 
-document.getElementById("btn-unsuccess").addEventListener("click", function(){
+// document.getElementById("btn-unsuccess").addEventListener("click", function(){
 
-    var popupContainer = document.getElementById('popup-container-unsuccess');
-    var overlay = document.getElementById('overlay2');
+//     var popupContainer = document.getElementById('popup-container-unsuccess');
+//     var overlay = document.getElementById('overlay2');
 
-    popupContainer.style.display = 'none';
-    overlay.style.display = 'none';
-})
+//     popupContainer.style.display = 'none';
+//     overlay.style.display = 'none';
+// })
 
-document.getElementById("btn-warning").addEventListener("click", function(){
+// document.getElementById("btn-warning").addEventListener("click", function(){
 
-    var popupContainer = document.getElementById('popup-container-unsuccess');
-    var overlay = document.getElementById('overlay3');
+//     var popupContainer = document.getElementById('popup-container-unsuccess');
+//     var overlay = document.getElementById('overlay3');
 
-    popupContainer.style.display = 'none';
-    overlay.style.display = 'none';
-})
+//     popupContainer.style.display = 'none';
+//     overlay.style.display = 'none';
+// })
 
-function showPopupWarning() {
-    var popupContainer = document.getElementById('popup-container-success');
-    var overlay = document.getElementById('overlay3');
+// function showPopupWarning() {
+//     var popupContainer = document.getElementById('popup-container-success');
+//     var overlay = document.getElementById('overlay3');
     
-    overlay.style.display = 'block';
+//     overlay.style.display = 'block';
 
-}
+// }
 
-function showPopupSuccess() {
-    var popupContainer = document.getElementById('popup-container-success');
-    var overlay = document.getElementById('overlay1');
+// function showPopupSuccess() {
+//     var popupContainer = document.getElementById('popup-container-success');
+//     var overlay = document.getElementById('overlay1');
     
-    overlay.style.display = 'block';
+//     overlay.style.display = 'block';
 
-}
+// }
 
-function showPopupUnsuccess() {
-    var popupContainer = document.getElementById('popup-container-success');
-    var overlay = document.getElementById('overlay2');
+// function showPopupUnsuccess() {
+//     var popupContainer = document.getElementById('popup-container-success');
+//     var overlay = document.getElementById('overlay2');
     
-    overlay.style.display = 'block';
-  }
+//     overlay.style.display = 'block';
+//   }
 
 //   function closePopup() {
 //     var popupContainer = document.getElementById('popup-container');

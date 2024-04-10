@@ -28,17 +28,45 @@ function getCookie(cookieName) {
   var category_value = 0;
   var description_value = "";
 
+  const fileInput = document.getElementById('fileID');
+  const uploadButton = document.querySelector('.btn-upload');
+  const fileSupportText = document.querySelector('.drop_box p');
+  var selectedFile;
 
 
   document.addEventListener("DOMContentLoaded", function() {
+
     // extract query parameters
     url = new URL(window.location.href);
     packageId = url.searchParams.get('packageId');
-    // title_value = url.searchParams.get('title');
-    // category_value = url.searchParams.get('category');
-    // description_value = url.searchParams.get('description');
-
     console.log(packageId); // Moved inside the DOMContentLoaded event listener
+
+    // fetch category data and display them
+    fetch(BASE_URL + `/categorydata?categoryId=${0}`, {
+        method: 'GET',
+        headers: myHeaders
+    })
+    .then((response)=>{
+        if (!response.ok) {
+            throw new Error('Error occured');
+        } else {
+            return response.json();
+        }
+    })
+    .then((data)=>{
+
+        var select_categories = document.getElementById("category");
+
+        for (let i = 1; i <= data.length; i++) {
+            
+            var option = document.createElement("option");
+            option.value = i;
+            option.text = data[i-1].category;
+
+            select_categories.appendChild(option);
+            
+        }
+    })
 
     if (packageId != null) {
         loadData();
@@ -75,56 +103,54 @@ function loadData(){
   
 const form = document.getElementById("package_form");
 
-document.addEventListener('DOMContentLoaded', function() {
-    const fileInput = document.getElementById('fileID');
-    const uploadButton = document.querySelector('.btn-upload');
-    const fileSupportText = document.querySelector('.drop_box p');
-  
-    uploadButton.addEventListener('click', function() {
-      fileInput.click();
-    //   uploadFile(fileInput)
-    });
-  
-    fileInput.addEventListener('change', function() {
-      const selectedFile = fileInput.files[0];
-      if (selectedFile) {
-        // Display the selected file name
-        fileSupportText.textContent = 'Selected File: ' + selectedFile.name;
-        // You can add further functionality here to handle the selected file
-        console.log('File selected:', selectedFile);
-        // You can perform file upload operations here, such as sending it to the server via AJAX
-      } else {
-        // Reset the text if no file is selected
-        fileSupportText.textContent = 'Files Supported: JPG, JPEG, PNG';
-      }
-    });
+
+  uploadButton.addEventListener('click', function() {
+    fileInput.click();
+  //   uploadFile(fileInput)
   });
 
-  function uploadFile(file){
-    const myHeaders = new Headers();
-    myHeaders.append("endpoint", "profile_pics");
-    let RequestData = new FormData();
-    if (file) {
-        const formData = new FormData();
-        formData.append('file', file);
+  fileInput.addEventListener('change', function() {
+    selectedFile = fileInput.files[0];
 
-        fetch(BASE_URL+'/file', {
-            method: 'POST',
-            headers: myHeaders,
-            body: formData
-        })
-        .then(response => response.text())
-        .then(data => {
-            console.log('Success:', data);
-            RequestData={"url":data}
+    const reader = new FileReader();
+    reader.readAsDataURL(selectedFile);
+    if (selectedFile) {
+      // Display the selected file name
+      fileSupportText.textContent = 'Selected File: ' + selectedFile.name;
+      // You can add further functionality here to handle the selected file
+      console.log('File selected:', selectedFile);
+      // You can perform file upload operations here, such as sending it to the server via AJAX
+    } else {
+      // Reset the text if no file is selected
+      fileSupportText.textContent = 'Files Supported: JPG, JPEG, PNG';
+    }
+  });
+
+//   function uploadFile(file){
+//     const headers = new Headers();
+//     headers.append("endpoint", "profile_pics");
+//     let RequestData = new FormData();
+//     if (file) {
+//         const formData = new FormData();
+//         formData.append('file', file);
+
+//         fetch(BASE_URL+'/file', {
+//             method: 'POST',
+//             headers: myHeaders,
+//             body: formData
+//         })
+//         .then(response => response.text())
+//         .then(data => {
+//             console.log('Success:', data);
+//             RequestData={"url":data}
             
 
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    }
-  }
+//         })
+//         .catch(error => {
+//             console.error('Error:', error);
+//         });
+//     }
+//   }
 
 
 // handle both insertions and updates
@@ -139,10 +165,43 @@ document.getElementById("button-next").addEventListener("click", async (e) => {
 
     console.log(category);
 
+    // store cover image
+    const headers = new Headers();
+    headers.append("endpoint", "profile_pics");
+    let RequestData = new FormData();
+    if (selectedFile) {
+        const formData = new FormData();
+        formData.append('file', selectedFile);
+
+        fetch(BASE_URL+'/file', {
+            method: 'POST',
+            headers: headers,
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log('Success:', data);
+            RequestData={"url":data}
+            console.log(RequestData);
+
+        })
+        .catch(error => {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+                confirmButtonColor: "#293692"
+              });
+            console.error('Error:', error);
+        });
+    }
+
+    var img_url = RequestData.url;
+
+
     // var formData = new FormData();
     // formData.append('file', cover_img);
 
-    // let img_url = "";
 
 
       
@@ -175,8 +234,8 @@ document.getElementById("button-next").addEventListener("click", async (e) => {
         title: title,
         description: description,
         category: category,
-        coverUrl: "../Assests/package_cover4.jpg",
-        // coverUrl: img_url,
+        // coverUrl: "../Assests/package_cover4.jpg",
+        coverUrl: img_url,
         clicks: 0,
         orders: 0,
         cancellations: "0%",
@@ -209,7 +268,8 @@ document.getElementById("button-next").addEventListener("click", async (e) => {
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
-                text: "Something went wrong!"
+                text: "Something went wrong!",
+                confirmButtonColor: "#293692"
               });
             // showPopupUnsuccess();
             console.error(`Failed to ${operationType} package data.`);
