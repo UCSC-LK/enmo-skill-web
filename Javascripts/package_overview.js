@@ -31,7 +31,7 @@ function getCookie(cookieName) {
   const fileInput = document.getElementById('fileID');
   const uploadButton = document.querySelector('.btn-upload');
   const fileSupportText = document.querySelector('.drop_box p');
-  var selectedFile;
+  var selectedFile = null;
 
 
   document.addEventListener("DOMContentLoaded", function() {
@@ -94,6 +94,13 @@ function loadData(){
         document.getElementById("title").value = data.title;
         document.getElementById("category").value = data.category;
         document.getElementById("description").value = data.description;
+
+        // Split the URL by '/'
+        var parts = data.coverUrl.split('/');
+
+        // Get the last part of the URL (which should be the filename)
+        fileSupportText.textContent = parts[parts.length - 1];
+    
        
         
     })
@@ -164,6 +171,9 @@ document.getElementById("button-next").addEventListener("click", async (e) => {
     // const cover_img = document.getElementById("img").files[0];
 
     console.log(category);
+    
+    var img_url = null;
+
 
     // store cover image
     const headers = new Headers();
@@ -181,8 +191,64 @@ document.getElementById("button-next").addEventListener("click", async (e) => {
         .then(response => response.text())
         .then(data => {
             console.log('Success:', data);
-            RequestData={"url":data}
-            console.log(RequestData);
+            // RequestData={"url":data}
+            // console.log(RequestData);
+            img_url = data;
+
+            const url = new URL(window.location.href);
+    const packageId = url.searchParams.get('packageId');
+    const operationType = packageId ? "update" : "insert";
+
+    const packageData = {
+        title: title,
+        description: description,
+        category: category,
+        // coverUrl: "../Assests/package_cover4.jpg",
+        coverUrl: img_url,
+        clicks: 0,
+        orders: 0,
+        cancellations: "0%",
+        status: "active"
+    };
+
+    const requestUrl = operationType === "update"
+        ? `${BASE_URL}/package?packageId=${packageId}`
+        : `${BASE_URL}/package`;
+
+    try {
+        fetch(requestUrl, {
+            method: operationType === "update" ? "PUT" : "POST",
+            headers: myHeaders,
+            body: JSON.stringify(packageData),
+        })
+        .then((response)=>{
+            if (response.ok) {
+                console.log(`Package data ${operationType}d successfully.`);
+                if (operationType === "insert") {
+                    var rsp = response.json()
+                    rsp.then(data => {
+                        window.location.href = `../HTML/package_pricing.html?packageId=${data.result}&category=${category}`;
+                    })
+                    // window.location.href = `../HTML/package_pricing.html?packageId=${data.result}&category=${category}`;
+                } else {
+                    window.location.href = `../HTML/package_pricing.html?packageId=${packageId}&category=${category}&update=1`;
+                }
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!",
+                    confirmButtonColor: "#293692"
+                  });
+                // showPopupUnsuccess();
+                console.error(`Failed to ${operationType} package data.`);
+            }
+        })
+
+        
+    } catch (error) {
+        console.error("An error occurred:", error);
+    }
 
         })
         .catch(error => {
@@ -196,7 +262,6 @@ document.getElementById("button-next").addEventListener("click", async (e) => {
         });
     }
 
-    var img_url = RequestData.url;
 
 
     // var formData = new FormData();
@@ -226,57 +291,7 @@ document.getElementById("button-next").addEventListener("click", async (e) => {
     // }
 
     // Continue with the rest of your code using img_url
-    const url = new URL(window.location.href);
-    const packageId = url.searchParams.get('packageId');
-    const operationType = packageId ? "update" : "insert";
-
-    const packageData = {
-        title: title,
-        description: description,
-        category: category,
-        // coverUrl: "../Assests/package_cover4.jpg",
-        coverUrl: img_url,
-        clicks: 0,
-        orders: 0,
-        cancellations: "0%",
-        status: "active"
-    };
-
-    const requestUrl = operationType === "update"
-        ? `${BASE_URL}/package?packageId=${packageId}`
-        : `${BASE_URL}/package`;
-
-    try {
-        const response = await fetch(requestUrl, {
-            method: operationType === "update" ? "PUT" : "POST",
-            headers: myHeaders,
-            body: JSON.stringify(packageData),
-        });
-
-        if (response.ok) {
-            console.log(`Package data ${operationType}d successfully.`);
-            if (operationType === "insert") {
-                var rsp = response.json()
-                rsp.then(data => {
-                    window.location.href = `../HTML/package_pricing.html?packageId=${data.result}&category=${category}`;
-                })
-                // window.location.href = `../HTML/package_pricing.html?packageId=${data.result}&category=${category}`;
-            } else {
-                window.location.href = `../HTML/package_pricing.html?packageId=${packageId}&category=${category}&update=1`;
-            }
-        } else {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Something went wrong!",
-                confirmButtonColor: "#293692"
-              });
-            // showPopupUnsuccess();
-            console.error(`Failed to ${operationType} package data.`);
-        }
-    } catch (error) {
-        console.error("An error occurred:", error);
-    }
+    
 });
 
 
