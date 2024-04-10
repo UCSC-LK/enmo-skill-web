@@ -12,8 +12,6 @@ function getCookie(cookieName) {
   return null;
 }
 
-// var userLevel = 2 //hard coded----------------------
-
 const createTicket = document.querySelector(".createTicket")
 const all = document.querySelector(".all")
 const ongoing = document.querySelector(".ongoing")

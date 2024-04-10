@@ -207,7 +207,6 @@ function ticketsubmission(fileURL,packageID,orderID,role){
   });
   
   setTimeout(() => {
-    console.log(role)
     if(role=="\"Designer\""){
       window.location="../HTML/tikectListDisigner.html";
     }else if(role=="Client"){

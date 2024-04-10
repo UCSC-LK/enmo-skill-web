@@ -100,7 +100,7 @@ body{
     display: grid;
     width: 100%;
     height: auto; 
-    grid-template-columns:  3% 18% 10% 40% 20% 2% 5% 2%;
+    grid-template-columns:  21% 10% 40% 20% 2% 5% 2%;
     border:  solid #ebebeb;
     border-left: none;
     border-right: none;
@@ -126,7 +126,7 @@ body{
     display: grid;
     width: 100%;
     height: auto; 
-    grid-template-columns: 3% 18% 10% 40% 2% 15% 5% 2%;
+    grid-template-columns: 21% 10% 40% 2% 15% 5% 2%;
     border:  solid #ebebeb;
     border-top: none;
     border-left: none;

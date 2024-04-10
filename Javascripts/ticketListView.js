@@ -59,6 +59,7 @@ function getdata(ticketID,flag){
         document.querySelector(".subject").textContent = element.subject;
         document.querySelector(".description").textContent = element.description;
         document.querySelector(".date").textContent = element.date;
+        document.querySelector(".role").textContent="Me";
   
         // document.querySelector(".header").textContent = element.date;
   

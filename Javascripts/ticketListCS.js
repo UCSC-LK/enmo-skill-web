@@ -87,8 +87,9 @@ function tableLoad(view){
         if(item.agentID==0 && !(item.status==3||item.status==4) ){
           const newItem = child.cloneNode(true)
 
-          newItem.querySelector(".profile-pic").src=item.url
-          newItem.querySelector(".name").textContent=item.userName
+          // newItem.querySelector(".profile-pic").src=item.url
+          // newItem.querySelector(".name").textContent=item.userName
+          newItem.querySelector(".ticketId").textContent="#"+item.ref_no
           newItem.querySelector(".subject").textContent=item.subject
           newItem.querySelector(".description").textContent=item.description
 
@@ -130,10 +131,11 @@ function tableLoad(view){
           })
 
           var itemDivs=[
-            newItem.querySelector(".ticket-name"),
+            // newItem.querySelector(".ticket-name"),
+            newItem.querySelector(".ticketId"),
             newItem.querySelector(".ticket-role"),
-            newItem.querySelector(".ticket-subject"),
-            newItem.querySelector(".profile-pic-main")
+            newItem.querySelector(".ticket-subject")
+            // newItem.querySelector(".profile-pic-main")
           ]
        
           itemDivs.forEach(function(itemDiv) {
@@ -147,8 +149,9 @@ function tableLoad(view){
           newItem.querySelector(".agent").remove()
 
           newItem.querySelector(".btn").remove();
-          newItem.querySelector('.profile-pic').src=item.url
-          newItem.querySelector(".name").textContent=item.userName
+          // newItem.querySelector('.profile-pic').src=item.url
+          // newItem.querySelector(".name").textContent=item.userName
+          newItem.querySelector(".ticketId").textContent="#"+item.ref_no
           newItem.querySelector(".subject").textContent=item.subject
 
           if(item.urgent==0){

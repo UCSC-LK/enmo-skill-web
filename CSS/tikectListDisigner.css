@@ -1,5 +1,5 @@
 body{
-    background-color: #fdfdfd;
+    /* background-color: #fdfdfd; */
     font-family: Arial, Helvetica, sans-serif
 }
 .container{
@@ -139,7 +139,7 @@ body{
 .ticket-box-2 {
     display: grid;
     width: 100%;
-    min-height: 100px; 
+    min-height: 70px; 
     grid-template-columns: 3% 58% 15% 15% 8%;
     border-bottom: solid;
     border-color: #ebebeb;
