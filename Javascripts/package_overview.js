@@ -203,7 +203,7 @@ document.getElementById("button-next").addEventListener("click", async (e) => {
                 })
                 // window.location.href = `../HTML/package_pricing.html?packageId=${data.result}&category=${category}`;
             } else {
-                window.location.href = `../HTML/package_pricing.html?packageId=${packageId}&category=${category}&update=true`;
+                window.location.href = `../HTML/package_pricing.html?packageId=${packageId}&category=${category}&update=1`;
             }
         } else {
             Swal.fire({

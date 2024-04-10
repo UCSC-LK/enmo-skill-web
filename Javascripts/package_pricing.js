@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", setDeliverables);
 const url = new URL(window.location.href);
 const category = url.searchParams.get('category');
 const packageId = url.searchParams.get('packageId');
-const updateFlag = url.searchParams.get('update'); // this is not sent as the parameters
+const updateFlag = parseInt(url.searchParams.get('update')); // this is not sent as the parameters
 console.log(category);
 
 // setting flag variables
@@ -38,6 +38,10 @@ var errFlag = 0
 var pricePackageId_bronze = 0;
 var pricePackageId_silver = 0;
 var pricePackageId_platinum = 0;
+
+var deliverablesId_bronze = 0;
+var deliverablesId_silver = 0;
+var deliverablesId_platinum = 0;
 
 function loadData(){
 
@@ -56,15 +60,12 @@ function loadData(){
         pricePackageList.forEach(pricingData => {
             console.log(pricingData);
 
-            // var del = pricingData.del
-
-            // var deliverablesChk = document.querySelectorAll('input[type="checkbox"]');
-            // var no_chk = deliverablesChk.length/3
-            // console.log(no_chk);
 
             if (pricingData.type == "bronze") {
 
                 pricePackageId_bronze = pricingData.pricePackageId;
+                deliverablesId_bronze = pricingData.del.deliverablesId;
+
                 
                 document.getElementById("price_b").value = pricingData.price;
                 document.getElementById("concepts_b").value = pricingData.noOfConcepts;
@@ -100,6 +101,8 @@ function loadData(){
             } else if (pricingData.type == "silver") {
 
                 pricePackageId_silver = pricingData.pricePackageId;
+                deliverablesId_silver = pricingData.del.deliverablesId;
+
 
                 document.getElementById("price_s").value = pricingData.price;
                 document.getElementById("concepts_s").value = pricingData.noOfConcepts;
@@ -133,6 +136,8 @@ function loadData(){
             } else if (pricingData.type == "platinum") {
 
                 pricePackageId_platinum = pricingData.pricePackageId;
+                deliverablesId_platinum = pricingData.del.deliverablesId;
+
 
                 document.getElementById("price_p").value = pricingData.price;
                 document.getElementById("concepts_p").value = pricingData.noOfConcepts;
@@ -499,6 +504,8 @@ document.getElementById("submit-bronze").addEventListener("click", async functio
              deliverablesObject[checkboxValue] = 1;
          }
      });
+
+     deliverablesObject.categoryId = category;
  
      // Print the deliverablesObject to the console
      console.log(deliverablesObject);
@@ -573,15 +580,15 @@ document.getElementById("submit-bronze").addEventListener("click", async functio
         price: price_b,
         noOfConcepts: concepts_b,
         packageId: packageId,
-        deliverables: deliverablesObject
+        del: deliverablesObject
     }
 
     console.log(pricingData);
     const operationType = pricePackageId_bronze ? "update" : "insert";
 
     var requestUrl = operationType === "update"
-    ? `${BASE_URL}/packagepricing?packageId=${packageId}&category=${category}`
-    : `${BASE_URL}/packagepricing?packageId=${packageId}&category=${category}`;
+    ? `${BASE_URL}/packagepricing?pricePackageId=${pricePackageId_bronze}&deliverablesId=${deliverablesId_bronze}`
+    : `${BASE_URL}/packagepricing?packageId=${packageId}`;
 
 
     try{
@@ -657,74 +664,76 @@ document.getElementById("submit-silver").addEventListener("click", async functio
         }
     });
 
+    deliverablesObject.categoryId = category;
+
     console.log(deliverablesObject);
 
     var pricingData = {}
 
-    switch (category) {
-        case "1":
-            pricingData = {
-                type: "silver",
-                deliveryDuration: duration_s,
-                noOfRevisions: rev_s,
-                price: price_s,
-                noOfConcepts: concepts_s,
-                packageId: packageId,
-                deliverables: deliverablesObject
-            }
-            break;
+    // switch (category) {
+    //     case "1":
+    //         pricingData = {
+    //             type: "silver",
+    //             deliveryDuration: duration_s,
+    //             noOfRevisions: rev_s,
+    //             price: price_s,
+    //             noOfConcepts: concepts_s,
+    //             packageId: packageId,
+    //             deliverables: deliverablesObject
+    //         }
+    //         break;
     
-        case "2":
-            pricingData = {
-                type: "silver",
-                deliveryDuration: duration_s,
-                noOfRevisions: rev_s,
-                price: price_s,
-                noOfConcepts: concepts_s,
-                packageId: packageId,
-                deliverables: deliverablesObject
-            }
-            break;
+    //     case "2":
+    //         pricingData = {
+    //             type: "silver",
+    //             deliveryDuration: duration_s,
+    //             noOfRevisions: rev_s,
+    //             price: price_s,
+    //             noOfConcepts: concepts_s,
+    //             packageId: packageId,
+    //             deliverables: deliverablesObject
+    //         }
+    //         break;
     
-        case "3":
-            pricingData = {
-                type: "silver",
-                deliveryDuration: duration_s,
-                noOfRevisions: rev_s,
-                price: price_s,
-                packageId: packageId,
-                deliverables: deliverablesObject
-            }
-            break;
+    //     case "3":
+    //         pricingData = {
+    //             type: "silver",
+    //             deliveryDuration: duration_s,
+    //             noOfRevisions: rev_s,
+    //             price: price_s,
+    //             packageId: packageId,
+    //             deliverables: deliverablesObject
+    //         }
+    //         break;
     
-        default:
-            pricingData = {
-                type: "silver",
-                deliveryDuration: duration_s,
-                noOfRevisions: rev_s,
-                price: price_s,
-                packageId: packageId,
-                deliverables: deliverablesObject
-            }
-            break;
-    }
-
-    // var pricingData = {
-    //     type: "bronze",
-    //     deliveryDuration: duration_b,
-    //     noOfRevisions: rev_b,
-    //     price: price_b,
-    //     noOfConcepts: concepts_b,
-    //     packageId: packageId,
-    //     deliverables: deliverablesObject
+    //     default:
+    //         pricingData = {
+    //             type: "silver",
+    //             deliveryDuration: duration_s,
+    //             noOfRevisions: rev_s,
+    //             price: price_s,
+    //             packageId: packageId,
+    //             deliverables: deliverablesObject
+    //         }
+    //         break;
     // }
+
+    var pricingData = {
+        type: "silver",
+        deliveryDuration: duration_s,
+        noOfRevisions: rev_s,
+        price: price_s,
+        noOfConcepts: concepts_s,
+        packageId: packageId,
+        del: deliverablesObject
+    }
 
     console.log(pricingData);
     const operationType = pricePackageId_silver ? "update" : "insert";
 
     var requestUrl = operationType === "update"
-    ? `${BASE_URL}/packagepricing?packageId=${packageId}&category=${category}&pricePackageId=${pricePackageId_silver}`
-    : `${BASE_URL}/packagepricing?packageId=${packageId}&category=${category}`;
+    ? `${BASE_URL}/packagepricing?pricePackageId=${pricePackageId_silver}&deliverablesId=${deliverablesId_silver}`
+    : `${BASE_URL}/packagepricing?packageId=${packageId}`;
 
 
     try{
@@ -748,8 +757,13 @@ document.getElementById("submit-silver").addEventListener("click", async functio
             sbtn.innerHTML = "Saved";
             sbtn.style.backgroundColor = "#444";
         } else {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!"
+              });
             //// unscussess popup
-            showPopupUnsuccess();
+            // showPopupUnsuccess();
             // checkFlagsUnsuccess();
             errFlag = 1
             console.error(`Failed to ${operationType} package data.`);
@@ -816,74 +830,76 @@ document.getElementById("submit-platinum").addEventListener("click", async funct
         }
     });
 
+    deliverablesObject.categoryId = category;
+
     console.log(deliverablesObject);
 
     var pricingData = {}
 
-    switch (category) {
-        case "1":
-            pricingData = {
-                type: "platinum",
-                deliveryDuration: duration_p,
-                noOfRevisions: rev_p,
-                price: price_p,
-                noOfConcepts: concepts_p,
-                packageId: packageId,
-                deliverables: deliverablesObject
-            }
-            break;
+    // switch (category) {
+    //     case "1":
+    //         pricingData = {
+    //             type: "platinum",
+    //             deliveryDuration: duration_p,
+    //             noOfRevisions: rev_p,
+    //             price: price_p,
+    //             noOfConcepts: concepts_p,
+    //             packageId: packageId,
+    //             deliverables: deliverablesObject
+    //         }
+    //         break;
     
-        case "2":
-            pricingData = {
-                type: "platinum",
-                deliveryDuration: duration_p,
-                noOfRevisions: rev_p,
-                price: price_p,
-                noOfConcepts: concepts_p,
-                packageId: packageId,
-                deliverables: deliverablesObject
-            }
-            break;
+    //     case "2":
+    //         pricingData = {
+    //             type: "platinum",
+    //             deliveryDuration: duration_p,
+    //             noOfRevisions: rev_p,
+    //             price: price_p,
+    //             noOfConcepts: concepts_p,
+    //             packageId: packageId,
+    //             deliverables: deliverablesObject
+    //         }
+    //         break;
     
-        case "3":
-            pricingData = {
-                type: "platinum",
-                deliveryDuration: duration_p,
-                noOfRevisions: rev_p,
-                price: price_p,
-                packageId: packageId,
-                deliverables: deliverablesObject
-            }
-            break;
+    //     case "3":
+    //         pricingData = {
+    //             type: "platinum",
+    //             deliveryDuration: duration_p,
+    //             noOfRevisions: rev_p,
+    //             price: price_p,
+    //             packageId: packageId,
+    //             deliverables: deliverablesObject
+    //         }
+    //         break;
     
-        default:
-            pricingData = {
-                type: "platinum",
-                deliveryDuration: duration_p,
-                noOfRevisions: rev_p,
-                price: price_p,
-                packageId: packageId,
-                deliverables: deliverablesObject
-            }
-            break;
-    }
-
-    // var pricingData = {
-    //     type: "bronze",
-    //     deliveryDuration: duration_b,
-    //     noOfRevisions: rev_b,
-    //     price: price_b,
-    //     noOfConcepts: concepts_b,
-    //     packageId: packageId,
-    //     deliverables: deliverablesObject
+    //     default:
+    //         pricingData = {
+    //             type: "platinum",
+    //             deliveryDuration: duration_p,
+    //             noOfRevisions: rev_p,
+    //             price: price_p,
+    //             packageId: packageId,
+    //             deliverables: deliverablesObject
+    //         }
+    //         break;
     // }
+
+    var pricingData = {
+        type: "platinum",
+        deliveryDuration: duration_p,
+        noOfRevisions: rev_p,
+        price: price_p,
+        noOfConcepts: concepts_p,
+        packageId: packageId,
+        del: deliverablesObject
+    }
 
     console.log(pricingData);
     const operationType = pricePackageId_platinum ? "update" : "insert";
 
     var requestUrl = operationType === "update"
-    ? `${BASE_URL}/packagepricing?packageId=${packageId}&category=${category}&pricePackageId=${pricePackageId_platinum}`
-    : `${BASE_URL}/packagepricing?packageId=${packageId}&category=${category}`;
+    ? `${BASE_URL}/packagepricing?pricePackageId=${pricePackageId_platinum}&deliverablesId=${deliverablesId_platinum}`
+    : `${BASE_URL}/packagepricing?packageId=${packageId}`;
 
 
     try{
@@ -907,8 +923,13 @@ document.getElementById("submit-platinum").addEventListener("click", async funct
             sbtn.innerHTML = "Saved";
             sbtn.style.backgroundColor = "#444";
         } else {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!"
+              });
             //// unscussess popup
-            showPopupUnsuccess();
+            // showPopupUnsuccess();
             // checkFlagsUnsuccess();
             errFlag = 1;
             console.error(`Failed to ${operationType} package data.`);
@@ -984,14 +1005,41 @@ function showPopupUnsuccess() {
 
 function checkFlagsSuccess(){
     if (btn_bronze && btn_silver && btn_platinum) {
-        showPopupSuccess();
+        // showPopupSuccess();
+        Swal.fire({
+            title: "Success",
+            text: "Package data inserted successfully!",
+            icon: "success",
+            confirmButtonColor: "#293692"
+          })
+        .then((result)=>{
+            if (result.isConfirmed) {
+                location.replace(`../HTML/packages.html`)  
+            }
+        })
+
     }
     else{
-        if (updateFlag) {
-            showPopupSuccess();
+        if (!updateFlag) {
+            // showPopupSuccess();
+            Swal.fire({
+                title: "Success",
+                text: "Package data inserted successfully",
+                icon: "success",
+                confirmButtonColor: "#293692"
+              }).then((result)=>{
+                if (result.isConfirmed) {
+                    window.location = `../HTML/packages.html`    
+                }
+            })
             
         } else{
-        showPopupWarning()
+            Swal.fire({
+                icon: "warning",
+                title: "Warning",
+                text: "Save all changes before going back!",
+                confirmButtonColor: "#293692"
+              });
 
         }
     }
@@ -999,14 +1047,32 @@ function checkFlagsSuccess(){
 
 function checkFlagsUnsuccess(){
     if (btn_bronze && btn_silver && btn_platinum) {
-        showPopupUnsuccess()
+        // showPopupUnsuccess()
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+            confirmButtonColor: "#293692"
+          });
     }
     else{
         if (updateFlag) {
-            showPopupUnsuccess();
+            // showPopupUnsuccess();
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+                confirmButtonColor: "#293692"
+              });
             
         } else{
-        showPopupWarning()
+        // showPopupWarning()
+        Swal.fire({
+            icon: "warning",
+            title: "Warning",
+            text: "Save all changes before going back!",
+            confirmButtonColor: "#293692"
+          });
 
         }
     }
@@ -1020,6 +1086,17 @@ document.getElementById("finish").addEventListener("click", function(){
         checkFlagsSuccess()
     }
 })
+
+window.addEventListener('beforeunload', function (e) {
+    if (!(btn_bronze && btn_silver && btn_platinum)) {
+        Swal.fire({
+            icon: "warning",
+            title: "Warning",
+            text: "Save all changes before going back!",
+            confirmButtonColor: "#293692"
+          });
+    }
+});
 
 
 
