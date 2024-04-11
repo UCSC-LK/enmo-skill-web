@@ -12,6 +12,7 @@ function getCookie(cookieName) {
   return null;
 }
 
+
 const createTicket = document.querySelector(".createTicket")
 const all = document.querySelector(".all")
 const ongoing = document.querySelector(".ongoing")
@@ -65,9 +66,6 @@ rejected.addEventListener("click",()=>{
     var myHeaders = new Headers();                          
     myHeaders.append("Content-Type", "application/json");  
     myHeaders.append("Authorization", getCookie("JWT"));   
-
-    var raw = JSON.stringify({});
-
 
     var requestOptions = {
         method: 'GET',

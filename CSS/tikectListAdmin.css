@@ -8,11 +8,12 @@ body{
     height:auto;
     text-align: center;
     justify-content: center;
-    position: relative;
+    /* position: relative; */
     /* background-color: #ffffff; */
     position: relative;
     margin-top: 40px;
     margin-bottom: 20px;
+    z-index: 0;
 }
 
 .main-container{
@@ -20,9 +21,22 @@ body{
     font-family: "Poppins", sans-serif;
 }
 
+.ticet-heder-box{
+    border-top: solid;
+    border-bottom: solid;
+    border-color:#ebebeb;
+}
+.class2{
+    color: #9D9D9D;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 5% 5% 9% 10% 6% 65%;
+    align-items:center;    
+}
+
 .all{
     color: #3C3C3C;
-    font-size: 20px;
+    /* font-size: 20px; */
     text-align: left;
 }
 
@@ -57,22 +71,6 @@ body{
     color:rgb(60, 60, 60);
 }
 
-.ticet-heder-box{
-    border-top: solid;
-    border-bottom: solid;
-    border-color:#ebebeb;
-   
-    /*background-color:#fffff;*/
-}
-
-.class2{
-    color:  #9D9D9D;
-    padding: 10px;
-    display: grid;
-    grid-template-columns: 10% 90%;
-    align-items:center;
-    
-}
 
 .table{
     padding: 10PX;
@@ -157,7 +155,7 @@ body{
 }
 
 .order1{
-    height: 15px;
+    height: 5px;
     width: auto;
     padding: 5px 2px;
     border-radius: 10px;
@@ -169,7 +167,7 @@ body{
 }
 
 .order2{
-    height: 15px;
+    height: 5px;
     width: auto;
     padding: 5px 2px;
     border-radius: 10px;
@@ -350,6 +348,7 @@ body{
     cursor: pointer;
 }
 
+
 .assignBTN{
     background-color:#dedede;
     -webkit-text-fill-color: #000000;
@@ -357,5 +356,11 @@ body{
 
 .div-cursor{
     cursor: pointer;
+}
+.div-cursor-1{
+    cursor: pointer;
+    height: 100%;
+    transition: 0.2s;
+    border-radius: 10px;
 }
 
