@@ -80,7 +80,34 @@ function package(){
   window.location.href = "../HTML/package_view_client.html"
 }
 
-document.addEventListener("DOMContentLoaded", loadAllPackages(0))
+document.addEventListener("DOMContentLoaded", setCategories())
+
+function setCategories(){
+  var button_set = document.getElementById("button_set")
+
+  fetch(BASE_URL + `/categorydata?categoryId=${0}`,{
+    method: 'GET',
+    headers: myHeaders
+  })
+  .then((response) =>{
+    if (!response.ok) {
+      throw new Error('Error occured');
+    } else {
+      return response.json();
+    }
+  })
+  .then((data) => {
+    for (let i = 1; i <= data.length; i++) {
+      var btn = document.createElement('button');
+      btn.className = "title";
+      btn.value = i
+      btn.innerHTML = data[i-1].category;
+      
+    }
+  })
+
+  loadAllPackages(0)
+}
 
 function loadAllPackages(category, page = 1){
 
