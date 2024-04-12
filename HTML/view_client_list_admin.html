@@ -4,42 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/view_client_list_admin.css">
+    <link rel="stylesheet" href="../CSS/main.css">
+
 
     <title>Admin - Client List</title>
 </head>
 <body>
-    <div class="main">
-        <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>    <div class="container">
-            <div class="block">
-                <h1 class="headding">Client list</h1>
+    <div class="page">
+        <div id="sidebar-placeholder"></div><script src="../Javascripts/sidebar.js"></script>
+        <div class="pg-content" style="width: 100%; overflow: auto;">
+            <div id="header-placeholder" style="width: 100%; position: sticky; top: 0;"></div><script src="../Javascripts/header.js"></script>
+                <div class="main">
+                    <div class="container">
+                        <div class="block">
+                            <h1 class="headding">Client list</h1>
 
-                <div class="search">
-                    <input type="text" name="byid" id="byid" placeholder="Enter User Id">
-                    <div class="btn"><img class="img"  src="../Assests/icons/search_black.png" alt=""></div>
-                </div>
+                            <div class="search">
+                                <input type="text" name="byid" id="byid" placeholder="Enter User Id">
+                                <div class="btn"><img class="img"  src="../Assests/icons/search_black.png" alt=""></div>
+                            </div>
 
-                <div class="table">
-                    <div class="headers">
-                        <p class="header-id">USER ID</p>
-                        <p class="header-username">USER NAME</p>
-                        <p class="header-name">NAME</p>
-                        <p class="header-mail">EMAIL</p>
-                    </div>
+                            <div class="table">
+                                <div class="headers">
+                                    <p class="header-id">USER ID</p>
+                                    <p class="header-username">USER NAME</p>
+                                    <p class="header-name">NAME</p>
+                                    <p class="header-mail">EMAIL</p>
+                                </div>
 
-                    <div class="content" id="content">
-                        <div class="row" id="row1">
-                            <p class="id">12345</p>
-                            <p class="username">user1</p>
-                            <p class="name">John Doe</p>
-                            <p class="email">abc@mail.com</p>
+                                <div class="content" id="content">
+                                    <div class="row" id="row1">
+                                        <p class="id">12345</p>
+                                        <p class="username">user1</p>
+                                        <p class="name">John Doe</p>
+                                        <p class="email">abc@mail.com</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        
                         </div>
                     </div>
-                </div>
-
-            
+                        
+                    </div> 
             </div>
-        </div> 
-
+    </div>
 
         <div class="overlay" id="overlay">
                 
