@@ -12,433 +12,440 @@
     <title id="title">Top Graphic design packages - Enmo Skill</title>
 </head>
 <body>
-    <div class="main">
-        <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>
-        <div class="container" >
-
-            <div class="loader-div" id="loader-div"> 
-                <div class="loader"></div>
-            </div>
-            <div id="block" class="block" style="display: none;">
-
-                <h1 class="headding">Top packages</h1>
-                <div id="button-set" class="button-set">
-                    <!-- <button class="title" id="btn_logo" value="1">Logo designing</button>
-                    <button class="title" id="btn_illustration" value="2">Illustration</button>
-                    <button class="title" id="btn_flyer" value="3">Flyer designing</button>
-                    <button class="title" id="btn_banner" value="4">Banner designing</button> -->
-                </div>
-
-                <div>
-                    <div class="button-set">
-
-                        <!-- BUDGET DROPDOWN -->
-                        <button class="filter" id="filter_budget" value="1">Budget
-                            <i class="fa fa-caret-down"></i>
-                        </button>
-
-                        <div id="budget-dropdown" class="dropdown-content2" style="display: none;">
-                            <div class="menu-items">
-                                
-                                <div class="item-div">
-                                    <input type="radio" name="budget" value="0" checked id="any_budget">
-                                    <div class="labels">
-                                        <label class="cat" for="budget-max">Any</label> 
-                                        <!-- <label class="val" for="budget-max">Rs.5000 and above</label> -->
-                                    </div>
-                                    
-                                </div>
-                                <div class="item-div" style="width: 100%;">
-                                    <input type="radio" name="budget" id="budget-cust" value="custom">
-                                    <div class="labels" for="budget-cust">
-                                        <label class="cat" for="budget-cust" id="cust_range_activator">Custom</label> 
+    <div class="page">
+        <div id="sidebar-placeholder"></div><script src="../Javascripts/sidebar.js"></script>
+        <div class="pg-content" style="width: 100%; overflow: auto;">
+            <div id="header-placeholder" style="width: 100%; position: sticky; top: 0;"></div><script src="../Javascripts/header.js"></script>
+            <div class="main">
+                <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>
+                <div class="container" >
+        
+                    <div class="loader-div" id="loader-div"> 
+                        <div class="loader"></div>
+                    </div>
+                    <div id="block" class="block" style="display: none;">
+        
+                        <h1 class="headding">Top packages</h1>
+                        <div id="button-set" class="button-set">
+                            <!-- <button class="title" id="btn_logo" value="1">Logo designing</button>
+                            <button class="title" id="btn_illustration" value="2">Illustration</button>
+                            <button class="title" id="btn_flyer" value="3">Flyer designing</button>
+                            <button class="title" id="btn_banner" value="4">Banner designing</button> -->
+                        </div>
+        
+                        <div>
+                            <div class="button-set">
+        
+                                <!-- BUDGET DROPDOWN -->
+                                <button class="filter" id="filter_budget" value="1">Budget
+                                    <i class="fa fa-caret-down"></i>
+                                </button>
+        
+                                <div id="budget-dropdown" class="dropdown-content2" style="display: none;">
+                                    <div class="menu-items">
                                         
-                                        <div class="budget-slider">
-                                            <span id="starter-price" class="starter">Rs.500</span>
-                                        <span id="end-price" class="ending">>Rs.10000</span>
-
-                                        <div class="slider-container">
+                                        <div class="item-div">
+                                            <input type="radio" name="budget" value="0" checked id="any_budget">
+                                            <div class="labels">
+                                                <label class="cat" for="budget-max">Any</label> 
+                                                <!-- <label class="val" for="budget-max">Rs.5000 and above</label> -->
+                                            </div>
                                             
-                                            <input type="range" min="500" max="10000" value="500" step="500" class="slider" id="budget-range" disabled>
                                         </div>
-                                        <span class="slider-value">
-                                            <p class="budget-filter" id="b-value">500</p>
+                                        <div class="item-div" style="width: 100%;">
+                                            <input type="radio" name="budget" id="budget-cust" value="custom">
+                                            <div class="labels" for="budget-cust">
+                                                <label class="cat" for="budget-cust" id="cust_range_activator">Custom</label> 
+                                                
+                                                <div class="budget-slider">
+                                                    <span id="starter-price" class="starter">Rs.500</span>
+                                                <span id="end-price" class="ending">>Rs.10000</span>
+        
+                                                <div class="slider-container">
+                                                    
+                                                    <input type="range" min="500" max="10000" value="500" step="500" class="slider" id="budget-range" disabled>
+                                                </div>
+                                                <span class="slider-value">
+                                                    <p class="budget-filter" id="b-value">500</p>
+                                                </div>
+                                                
+                                                </span>
+                                            </div>
+                                           
                                         </div>
+                                    </div>
+        
+                                    <!-- <span id="starter" class="starter-price">Rs.500</span>
+                                    <span id="end" class="ending-price">>Rs.50000</span>
+        
+                                    <div class="slider-container">
                                         
-                                        </span>
+                                        <input type="range" min="500" max="50000" value="50000" step="500" class="slider" id="budget-range" >
+                                      </div>
+                                      <span class="slider-value">
+                                        <p class="budget-filter" id="b-value">50000</p>
+                                      </span> -->
+        
+                                      
+                                    <div class="btns">
+                                        <button class="btn-clear" id="btn-budget-clear">Clear all</button>
+                                        <button class="btn-apply" id="btn-budget-apply">Apply</button>
                                     </div>
-                                   
+                                    
+                                    
                                 </div>
-                            </div>
-
-                            <!-- <span id="starter" class="starter-price">Rs.500</span>
-                            <span id="end" class="ending-price">>Rs.50000</span>
-
-                            <div class="slider-container">
-                                
-                                <input type="range" min="500" max="50000" value="50000" step="500" class="slider" id="budget-range" >
-                              </div>
-                              <span class="slider-value">
-                                <p class="budget-filter" id="b-value">50000</p>
-                              </span> -->
-
-                              
-                            <div class="btns">
-                                <button class="btn-clear" id="btn-budget-clear">Clear all</button>
-                                <button class="btn-apply" id="btn-budget-apply">Apply</button>
-                            </div>
-                            
+        
+        
+                                <button class="filter" id="filter_del_time" value="2">Delivery Time 
+                                    <i class="fa fa-caret-down"></i>
+                                </button>
+        
+                                <div id="del-time-dropdown" class="dropdown-content1" style="display: none;">
+                                    <div class="menu-items">
+                                        <div class="item-div">
+                                            <input type="radio" name="del-time" value="1" id="1day">
+                                            <div class="labels">
+                                                <label class="cat" for="1day">Express 24H</label> 
+                                               
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="item-div">
+                                            <input type="radio" name="del-time" value="3" id="3day">
+                                            <div class="labels">
+                                                <label class="cat" for="3day">Up to 3 days</label> 
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="item-div">
+                                            <input type="radio" name="del-time" value="7" id="7day">
+                                            <div class="labels">
+                                                <label class="cat" for="7day">Up to 7 days</label>
+                                            </div>
+                                            
+                                        </div>
+        
+                                        <div class="item-div">
+                                            <input type="radio" name="del-time" value="0" checked id="any_time"> 
+                                            <div class="labels">
+                                                <label class="cat" for="any_time">Any time</label>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+        
+                                    <div class="btns">
+                                        <button class="btn-clear" id="btn-deltime-clear">Clear all</button>
+                                        <button class="btn-apply" id="btn-deltime-apply">Apply</button>
+                                    </div>
+                                    
+                                    
+                                  </div>
+                                <button class="filter" id="filter_lanaguages" value="3">Languages
+                                    <i class="fa fa-caret-down"></i>
+                                </button>
+        
+                                <div id="language-dropdown" class="dropdown-content1" style="display: none;">
+                                    <div class="menu-items">
+                                        <div class="item-div">
+                                            <input type="radio" name="lang" value="1" id="english">
+                                            <div class="labels">
+                                                <label class="cat" for="english">English</label> 
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="item-div">
+                                            <input type="radio" name="lang" value="2" id="sinhala">
+                                            <div class="labels">
+                                                <label class="cat" for="sinhala">Sinhala (සිංහල)</label> 
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="item-div">
+                                            <input type="radio" name="lang" value="3" id="tamil">
+                                            <div class="labels">
+                                                <label class="cat" for="tamil">Tamil (தமிழ்)</label>
+                                            </div>
+                                            
+                                        </div>
+        
+                                        <div class="item-div">
+                                            <input type="radio" name="lang" value="0" checked id="any_lang">
+                                            <div class="labels">
+                                                <label class="cat" for="any_lang">Any</label>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+        
+                                    <div class="btns">
+                                        <button class="btn-clear" id="btn-language-clear">Clear all</button>
+                                        <button class="btn-apply" id="btn-language-apply">Apply</button>
+                                    </div>
+                                    
+                                    
+                                  </div>
+        
+                                <button class="filter" id="filter_reviews" value="4">Reviews
+                                    <i class="fa fa-caret-down"></i>
+                                </button>
+        
+                                <div id="review-dropdown" class="dropdown-content1" style="display: none;">
+                                    <div class="menu-items">
+                                        <div class="item-div">
+                                            <input type="radio" name="review" value="5" id="5star">
+                                            <div class="labels">
+                                                <label class="cat" for="5star"> 5.0
+                                                    <span class="fa fa-star checked"></span>
+                                                </label> 
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="item-div">
+                                            <input type="radio" name="review" value="4.5" id="4.5star">
+                                            <div class="labels">
+                                                <label class="cat" for="4.5star">4.5 <span class="fa fa-star checked"></span> and above</label>
+                                            </div>
+        
+                                        </div>
+                                        <div class="item-div">
+                                            <input type="radio" name="review" value="4" id="4star">
+                                            <div class="labels">
+                                                <label class="cat" for="4star">4 <span class="fa fa-star checked"></span> and above</label>
+                                            </div>
+        
+                                        </div>
+                                        <div class="item-div">
+                                            <input type="radio" name="review" value="3.5" id="3.5star">
+                                            <div class="labels">
+                                                <label class="cat" for="3.5star">3.5 <span class="fa fa-star checked"></span> and above</label>
+                                            </div>
+                                        </div>
+                                        <div class="item-div">
+                                            <input type="radio" name="review" value="3" id="3star">
+                                            <div class="labels">
+                                                <label class="cat" for="3star">3 <span class="fa fa-star checked"></span> or more</label>
+                                            </div>
+                                        </div>
+        
+                                        <div class="item-div">
+                                            <input type="radio" name="review" value="0" checked id="any_star">
+                                            <div class="labels">
+                                                <label class="cat" for="any_star">Any</label>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+        
+                                    <div class="btns">
+                                        <button class="btn-clear" id="btn-review-clear">Clear all</button>
+                                        <button class="btn-apply" id="btn-review-apply">Apply</button>
+                                    </div>
+                                    
+                                    
+                                  </div>
+                                    
                             
                         </div>
-
-
-                        <button class="filter" id="filter_del_time" value="2">Delivery Time 
-                            <i class="fa fa-caret-down"></i>
-                        </button>
-
-                        <div id="del-time-dropdown" class="dropdown-content1" style="display: none;">
-                            <div class="menu-items">
-                                <div class="item-div">
-                                    <input type="radio" name="del-time" value="1" id="1day">
-                                    <div class="labels">
-                                        <label class="cat" for="1day">Express 24H</label> 
-                                       
+        
+                        <div class="filter-row" id="filter-row">
+                            <!-- <span class="tag-cloud">
+                                <p class="filter-text-style">Filter criteria</p>
+                                <i class="cross-style">X</i>
+                            </span> -->
+                        </div>
+        
+                        <div class="row" id="row">
+                            <!-- <div class="column">
+                                <div class="content">
+                                    <img src="../Assests/package_cover4.jpg" alt="Mountains" style="width:100%">
+                                    <div class="profile-tile">
+                                        <img src="../Assests/login_img1.jpg" alt="" class="profile-img">
+                                        <p class="designer-name">Joe A.</p>
                                     </div>
-                                    
-                                </div>
-                                <div class="item-div">
-                                    <input type="radio" name="del-time" value="3" id="3day">
-                                    <div class="labels">
-                                        <label class="cat" for="3day">Up to 3 days</label> 
+                                    <p>I will design your dream logo</p>
+                                    <div class="review-tile">
+                                        <span class="fa fa-star"></span>
+                                        <p class="no-reviews">5</p>
+                                        <p class="no-orders">(20)</p>
                                     </div>
-                                    
+                                    <p class="price">From Rs.1000</p>
                                 </div>
-                                <div class="item-div">
-                                    <input type="radio" name="del-time" value="7" id="7day">
-                                    <div class="labels">
-                                        <label class="cat" for="7day">Up to 7 days</label>
+                            </div> -->
+                          
+                            <!-- <div class="column">
+                                <div class="content">
+                                    <img src="../Assests/package_cover4.jpg" alt="Mountains" style="width:100%">
+                                    <div class="profile-tile">
+                                        <img src="../Assests/login_img1.jpg" alt="" class="profile-img">
+                                        <p class="designer-name">Joe A.</p>
                                     </div>
-                                    
-                                </div>
-
-                                <div class="item-div">
-                                    <input type="radio" name="del-time" value="0" checked id="any_time"> 
-                                    <div class="labels">
-                                        <label class="cat" for="any_time">Any time</label>
+                                    <p>I will design your dream logo</p>
+                                    <div class="review-tile">
+                                        <span class="fa fa-star"></span>
+                                        <p class="no-reviews">5</p>
+                                        <p class="no-orders">(20)</p>
                                     </div>
-                                    
+                                    <p class="price">From Rs.1000</p>
                                 </div>
-                            </div>
-
-                            <div class="btns">
-                                <button class="btn-clear" id="btn-deltime-clear">Clear all</button>
-                                <button class="btn-apply" id="btn-deltime-apply">Apply</button>
-                            </div>
-                            
-                            
-                          </div>
-                        <button class="filter" id="filter_lanaguages" value="3">Languages
-                            <i class="fa fa-caret-down"></i>
-                        </button>
-
-                        <div id="language-dropdown" class="dropdown-content1" style="display: none;">
-                            <div class="menu-items">
-                                <div class="item-div">
-                                    <input type="radio" name="lang" value="1" id="english">
-                                    <div class="labels">
-                                        <label class="cat" for="english">English</label> 
+                            </div> -->
+                          
+                            <!-- <div class="column">
+                                <div class="content">
+                                    <img src="../Assests/package_cover4.jpg" alt="Mountains" style="width:100%">
+                                    <div class="profile-tile">
+                                        <img src="../Assests/login_img1.jpg" alt="" class="profile-img">
+                                        <p class="designer-name">Joe A.</p>
                                     </div>
-                                    
-                                </div>
-                                <div class="item-div">
-                                    <input type="radio" name="lang" value="2" id="sinhala">
-                                    <div class="labels">
-                                        <label class="cat" for="sinhala">Sinhala (සිංහල)</label> 
+                                    <p>I will design your dream logo</p>
+                                    <div class="review-tile">
+                                        <span class="fa fa-star"></span>
+                                        <p class="no-reviews">5</p>
+                                        <p class="no-orders">(20)</p>
                                     </div>
-                                    
+                                    <p class="price">From Rs.1000</p>
                                 </div>
-                                <div class="item-div">
-                                    <input type="radio" name="lang" value="3" id="tamil">
-                                    <div class="labels">
-                                        <label class="cat" for="tamil">Tamil (தமிழ்)</label>
+                            </div> -->
+                          
+                            <!-- <div class="column">
+                                <div class="content">
+                                    <img src="../Assests/package_cover4.jpg" alt="Mountains" style="width:100%">
+                                    <div class="profile-tile">
+                                        <img src="../Assests/login_img1.jpg" alt="" class="profile-img">
+                                        <p class="designer-name">Joe A.</p>
                                     </div>
-                                    
-                                </div>
-
-                                <div class="item-div">
-                                    <input type="radio" name="lang" value="0" checked id="any_lang">
-                                    <div class="labels">
-                                        <label class="cat" for="any_lang">Any</label>
+                                    <p>I will design your dream logo</p>
+                                    <div class="review-tile">
+                                        <span class="fa fa-star"></span>
+                                        <p class="no-reviews">5</p>
+                                        <p class="no-orders">(20)</p>
                                     </div>
-                                    
+                                    <p class="price">From Rs.1000</p>
                                 </div>
-                            </div>
-
-                            <div class="btns">
-                                <button class="btn-clear" id="btn-language-clear">Clear all</button>
-                                <button class="btn-apply" id="btn-language-apply">Apply</button>
-                            </div>
-                            
-                            
-                          </div>
-
-                        <button class="filter" id="filter_reviews" value="4">Reviews
-                            <i class="fa fa-caret-down"></i>
-                        </button>
-
-                        <div id="review-dropdown" class="dropdown-content1" style="display: none;">
-                            <div class="menu-items">
-                                <div class="item-div">
-                                    <input type="radio" name="review" value="5" id="5star">
-                                    <div class="labels">
-                                        <label class="cat" for="5star"> 5.0
-                                            <span class="fa fa-star checked"></span>
-                                        </label> 
+                            </div> -->
+                          
+                            <!-- <div class="column">
+                                <div class="content">
+                                    <img src="../Assests/package_cover4.jpg" alt="Mountains" style="width:100%">
+                                    <div class="profile-tile">
+                                        <img src="../Assests/login_img1.jpg" alt="" class="profile-img">
+                                        <p class="designer-name">Joe A.</p>
                                     </div>
-                                    
-                                </div>
-                                <div class="item-div">
-                                    <input type="radio" name="review" value="4.5" id="4.5star">
-                                    <div class="labels">
-                                        <label class="cat" for="4.5star">4.5 <span class="fa fa-star checked"></span> and above</label>
+                                    <p>I will design your dream logo</p>
+                                    <div class="review-tile">
+                                        <span class="fa fa-star"></span>
+                                        <p class="no-reviews">5</p>
+                                        <p class="no-orders">(20)</p>
                                     </div>
-
+                                    <p class="price">From Rs.1000</p>
                                 </div>
-                                <div class="item-div">
-                                    <input type="radio" name="review" value="4" id="4star">
-                                    <div class="labels">
-                                        <label class="cat" for="4star">4 <span class="fa fa-star checked"></span> and above</label>
+                            </div> -->
+                          
+                            <!-- <div class="column">
+                                <div class="content">
+                                    <img src="../Assests/package_cover4.jpg" alt="Mountains" style="width:100%">
+                                    <div class="profile-tile">
+                                        <img src="../Assests/login_img1.jpg" alt="" class="profile-img">
+                                        <p class="designer-name">Joe A.</p>
                                     </div>
-
-                                </div>
-                                <div class="item-div">
-                                    <input type="radio" name="review" value="3.5" id="3.5star">
-                                    <div class="labels">
-                                        <label class="cat" for="3.5star">3.5 <span class="fa fa-star checked"></span> and above</label>
+                                    <p>I will design your dream logo</p>
+                                    <div class="review-tile">
+                                        <span class="fa fa-star"></span>
+                                        <p class="no-reviews">5</p>
+                                        <p class="no-orders">(20)</p>
                                     </div>
+                                    <p class="price">From Rs.1000</p>
                                 </div>
-                                <div class="item-div">
-                                    <input type="radio" name="review" value="3" id="3star">
-                                    <div class="labels">
-                                        <label class="cat" for="3star">3 <span class="fa fa-star checked"></span> or more</label>
+                            </div> -->
+                          
+                            <!-- <div class="column">
+                                <div class="content">
+                                    <img src="../Assests/package_cover4.jpg" alt="Mountains" style="width:100%">
+                                    <div class="profile-tile">
+                                        <img src="../Assests/login_img1.jpg" alt="" class="profile-img">
+                                        <p class="designer-name">Joe A.</p>
                                     </div>
-                                </div>
-
-                                <div class="item-div">
-                                    <input type="radio" name="review" value="0" checked id="any_star">
-                                    <div class="labels">
-                                        <label class="cat" for="any_star">Any</label>
+                                    <p>I will design your dream logo</p>
+                                    <div class="review-tile">
+                                        <span class="fa fa-star"></span>
+                                        <p class="no-reviews">5</p>
+                                        <p class="no-orders">(20)</p>
                                     </div>
-                                    
+                                    <p class="price">From Rs.1000</p>
                                 </div>
-                            </div>
-
-                            <div class="btns">
-                                <button class="btn-clear" id="btn-review-clear">Clear all</button>
-                                <button class="btn-apply" id="btn-review-apply">Apply</button>
-                            </div>
-                            
-                            
-                          </div>
-                            
+                            </div> -->
+                          
+                            <!-- <div class="column">
+                                <div class="content">
+                                    <img src="../Assests/package_cover4.jpg" alt="Mountains" style="width:100%">
+                                    <div class="profile-tile">
+                                        <img src="../Assests/login_img1.jpg" alt="" class="profile-img">
+                                        <p class="designer-name">Joe A.</p>
+                                    </div>
+                                    <p>I will design your dream logo</p>
+                                    <div class="review-tile">
+                                        <span class="fa fa-star"></span>
+                                        <p class="no-reviews">5</p>
+                                        <p class="no-orders">(20)</p>
+                                    </div>
+                                    <p class="price">From Rs.1000</p>
+                                </div>
+                            </div> -->
+                          
+                            <!-- <div class="column">
+                                <div class="content">
+                                    <img src="../Assests/package_cover4.jpg" alt="Mountains" style="width:100%">
+                                    <div class="profile-tile">
+                                        <img src="../Assests/login_img1.jpg" alt="" class="profile-img">
+                                        <p class="designer-name">Joe A.</p>
+                                    </div>
+                                    <p>I will design your dream logo</p>
+                                    <div class="review-tile">
+                                        <span class="fa fa-star"></span>
+                                        <p class="no-reviews">5</p>
+                                        <p class="no-orders">(20)</p>
+                                    </div>
+                                    <p class="price">From Rs.1000</p>
+                                </div>
+                            </div> -->
+                          
+                            <!-- <div class="column">
+                                <div class="content">
+                                    <img src="../Assests/package_cover4.jpg" alt="Mountains" style="width:100%">
+                                    <div class="profile-tile">
+                                        <img src="../Assests/login_img1.jpg" alt="" class="profile-img">
+                                        <p class="designer-name">Joe A.</p>
+                                    </div>
+                                    <p>I will design your dream logo</p>
+                                    <div class="review-tile">
+                                        <span class="fa fa-star"></span>
+                                        <p class="no-reviews">5</p>
+                                        <p class="no-orders">(20)</p>
+                                    </div>
+                                    <p class="price">From Rs.1000</p>
+                                </div>
+                            </div> -->
+                          
+                        </div>
+        
+                        <div class="pagination">
+                            <button id="prevButton" onclick="prevPage()" class="filter">&#8249;</button>
+                            <div class="current-page"></div>
+                            <button id="nextButton" onclick="nextPage()" class="filter">&#8250;</button>
+                        </div>
+        
                     
+                        </div>
+                        
+                        
+                    </div>
                 </div>
-
-                <div class="filter-row" id="filter-row">
-                    <!-- <span class="tag-cloud">
-                        <p class="filter-text-style">Filter criteria</p>
-                        <i class="cross-style">X</i>
-                    </span> -->
-                </div>
-
-                <div class="row" id="row">
-                    <!-- <div class="column">
-                        <div class="content">
-                            <img src="../Assests/package_cover4.jpg" alt="Mountains" style="width:100%">
-                            <div class="profile-tile">
-                                <img src="../Assests/login_img1.jpg" alt="" class="profile-img">
-                                <p class="designer-name">Joe A.</p>
-                            </div>
-                            <p>I will design your dream logo</p>
-                            <div class="review-tile">
-                                <span class="fa fa-star"></span>
-                                <p class="no-reviews">5</p>
-                                <p class="no-orders">(20)</p>
-                            </div>
-                            <p class="price">From Rs.1000</p>
-                        </div>
-                    </div> -->
-                  
-                    <!-- <div class="column">
-                        <div class="content">
-                            <img src="../Assests/package_cover4.jpg" alt="Mountains" style="width:100%">
-                            <div class="profile-tile">
-                                <img src="../Assests/login_img1.jpg" alt="" class="profile-img">
-                                <p class="designer-name">Joe A.</p>
-                            </div>
-                            <p>I will design your dream logo</p>
-                            <div class="review-tile">
-                                <span class="fa fa-star"></span>
-                                <p class="no-reviews">5</p>
-                                <p class="no-orders">(20)</p>
-                            </div>
-                            <p class="price">From Rs.1000</p>
-                        </div>
-                    </div> -->
-                  
-                    <!-- <div class="column">
-                        <div class="content">
-                            <img src="../Assests/package_cover4.jpg" alt="Mountains" style="width:100%">
-                            <div class="profile-tile">
-                                <img src="../Assests/login_img1.jpg" alt="" class="profile-img">
-                                <p class="designer-name">Joe A.</p>
-                            </div>
-                            <p>I will design your dream logo</p>
-                            <div class="review-tile">
-                                <span class="fa fa-star"></span>
-                                <p class="no-reviews">5</p>
-                                <p class="no-orders">(20)</p>
-                            </div>
-                            <p class="price">From Rs.1000</p>
-                        </div>
-                    </div> -->
-                  
-                    <!-- <div class="column">
-                        <div class="content">
-                            <img src="../Assests/package_cover4.jpg" alt="Mountains" style="width:100%">
-                            <div class="profile-tile">
-                                <img src="../Assests/login_img1.jpg" alt="" class="profile-img">
-                                <p class="designer-name">Joe A.</p>
-                            </div>
-                            <p>I will design your dream logo</p>
-                            <div class="review-tile">
-                                <span class="fa fa-star"></span>
-                                <p class="no-reviews">5</p>
-                                <p class="no-orders">(20)</p>
-                            </div>
-                            <p class="price">From Rs.1000</p>
-                        </div>
-                    </div> -->
-                  
-                    <!-- <div class="column">
-                        <div class="content">
-                            <img src="../Assests/package_cover4.jpg" alt="Mountains" style="width:100%">
-                            <div class="profile-tile">
-                                <img src="../Assests/login_img1.jpg" alt="" class="profile-img">
-                                <p class="designer-name">Joe A.</p>
-                            </div>
-                            <p>I will design your dream logo</p>
-                            <div class="review-tile">
-                                <span class="fa fa-star"></span>
-                                <p class="no-reviews">5</p>
-                                <p class="no-orders">(20)</p>
-                            </div>
-                            <p class="price">From Rs.1000</p>
-                        </div>
-                    </div> -->
-                  
-                    <!-- <div class="column">
-                        <div class="content">
-                            <img src="../Assests/package_cover4.jpg" alt="Mountains" style="width:100%">
-                            <div class="profile-tile">
-                                <img src="../Assests/login_img1.jpg" alt="" class="profile-img">
-                                <p class="designer-name">Joe A.</p>
-                            </div>
-                            <p>I will design your dream logo</p>
-                            <div class="review-tile">
-                                <span class="fa fa-star"></span>
-                                <p class="no-reviews">5</p>
-                                <p class="no-orders">(20)</p>
-                            </div>
-                            <p class="price">From Rs.1000</p>
-                        </div>
-                    </div> -->
-                  
-                    <!-- <div class="column">
-                        <div class="content">
-                            <img src="../Assests/package_cover4.jpg" alt="Mountains" style="width:100%">
-                            <div class="profile-tile">
-                                <img src="../Assests/login_img1.jpg" alt="" class="profile-img">
-                                <p class="designer-name">Joe A.</p>
-                            </div>
-                            <p>I will design your dream logo</p>
-                            <div class="review-tile">
-                                <span class="fa fa-star"></span>
-                                <p class="no-reviews">5</p>
-                                <p class="no-orders">(20)</p>
-                            </div>
-                            <p class="price">From Rs.1000</p>
-                        </div>
-                    </div> -->
-                  
-                    <!-- <div class="column">
-                        <div class="content">
-                            <img src="../Assests/package_cover4.jpg" alt="Mountains" style="width:100%">
-                            <div class="profile-tile">
-                                <img src="../Assests/login_img1.jpg" alt="" class="profile-img">
-                                <p class="designer-name">Joe A.</p>
-                            </div>
-                            <p>I will design your dream logo</p>
-                            <div class="review-tile">
-                                <span class="fa fa-star"></span>
-                                <p class="no-reviews">5</p>
-                                <p class="no-orders">(20)</p>
-                            </div>
-                            <p class="price">From Rs.1000</p>
-                        </div>
-                    </div> -->
-                  
-                    <!-- <div class="column">
-                        <div class="content">
-                            <img src="../Assests/package_cover4.jpg" alt="Mountains" style="width:100%">
-                            <div class="profile-tile">
-                                <img src="../Assests/login_img1.jpg" alt="" class="profile-img">
-                                <p class="designer-name">Joe A.</p>
-                            </div>
-                            <p>I will design your dream logo</p>
-                            <div class="review-tile">
-                                <span class="fa fa-star"></span>
-                                <p class="no-reviews">5</p>
-                                <p class="no-orders">(20)</p>
-                            </div>
-                            <p class="price">From Rs.1000</p>
-                        </div>
-                    </div> -->
-                  
-                    <!-- <div class="column">
-                        <div class="content">
-                            <img src="../Assests/package_cover4.jpg" alt="Mountains" style="width:100%">
-                            <div class="profile-tile">
-                                <img src="../Assests/login_img1.jpg" alt="" class="profile-img">
-                                <p class="designer-name">Joe A.</p>
-                            </div>
-                            <p>I will design your dream logo</p>
-                            <div class="review-tile">
-                                <span class="fa fa-star"></span>
-                                <p class="no-reviews">5</p>
-                                <p class="no-orders">(20)</p>
-                            </div>
-                            <p class="price">From Rs.1000</p>
-                        </div>
-                    </div> -->
-                  
-                </div>
-
-                <div class="pagination">
-                    <button id="prevButton" onclick="prevPage()" class="filter">&#8249;</button>
-                    <div class="current-page"></div>
-                    <button id="nextButton" onclick="nextPage()" class="filter">&#8250;</button>
-                </div>
-
-            
-                </div>
-                
-                
             </div>
         </div>
-    </div>
+        </div>
+    
     <script src="../Javascripts/baseurl.js"></script>
-    <!-- <script src="../Javascripts/login.js"></script> -->
+    <script src="../Javascripts/login.js"></script>
     <script src="../Javascripts/package_list_view.js"></script>
     
     <script>
