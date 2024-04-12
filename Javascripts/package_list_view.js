@@ -41,29 +41,29 @@ var languageCode = 0;
 var category = 0;
 var reviewCode = 0;
 var package_array = [];
-const itemsPerPage = 10;
+// const itemsPerPage = 10;
 let currentPage = 1;
 
 // Add a click event listener to each button
-buttons.forEach(button => {
-  button.addEventListener("click", () => {
-    category = button.value;
-        // Update the h1 element's innerHTML with the button's innerHTML
-    h1Element.innerHTML = button.innerHTML;
+// buttons.forEach(button => {
+//   button.addEventListener("click", () => {
+//     category = button.value;
+//         // Update the h1 element's innerHTML with the button's innerHTML
+//     h1Element.innerHTML = button.innerHTML;
 
-    buttons.forEach(btn => btn.classList.remove("active"));
+//     buttons.forEach(btn => btn.classList.remove("active"));
 
-    // Add the 'active' class to the clicked button
-    button.classList.add("active");
+//     // Add the 'active' class to the clicked button
+//     button.classList.add("active");
 
-    // block.style.display = "none"
-    // loader.style.cssText = "";
-    activeLoader();
+//     // block.style.display = "none"
+//     // loader.style.cssText = "";
+//     activeLoader();
 
 
-    loadAllPackages(category)
-  });
-});
+//     loadAllPackages(category)
+//   });
+// });
 
 function activeLoader(){
   block.style.display = "none"
@@ -82,32 +82,187 @@ function package(){
 
 document.addEventListener("DOMContentLoaded", setCategories())
 
-function setCategories(){
-  var button_set = document.getElementById("button_set")
-
-  fetch(BASE_URL + `/categorydata?categoryId=${0}`,{
+function setCategories() {
+  fetch(BASE_URL + `/categorydata?categoryId=${0}`, {
     method: 'GET',
     headers: myHeaders
   })
-  .then((response) =>{
+  .then((response) => {
     if (!response.ok) {
-      throw new Error('Error occured');
+      throw new Error('Error occurred');
     } else {
       return response.json();
     }
   })
   .then((data) => {
+    var btn_div = document.getElementById("button-set");
     for (let i = 1; i <= data.length; i++) {
       var btn = document.createElement('button');
       btn.className = "title";
-      btn.value = i
-      btn.innerHTML = data[i-1].category;
-      
-    }
-  })
+      btn.value = i;
+      btn.innerHTML = data[i - 1].category;
 
-  loadAllPackages(0)
+      // Immediately Invoked Function Expression (IIFE) to create a closure for each button
+      (function(btn) {
+        btn.addEventListener("click", () => {
+          category = btn.value;
+          console.log(category);
+          // Update the h1 element's innerHTML with the button's innerHTML
+          h1Element.innerHTML = btn.innerHTML;
+
+          // Remove "active" class from all buttons
+          document.querySelectorAll('.title').forEach(button => button.classList.remove('active'));
+
+          // Add the 'active' class to the clicked button
+          btn.classList.add("active");
+
+          activeLoader();
+
+          loadAllPackages(category);
+        });
+      })(btn);
+
+      btn_div.appendChild(btn);
+    }
+
+    // Call loadAllPackages after creating buttons
+    loadAllPackages(0);
+  });
 }
+
+
+// function setCategories() {
+  
+
+//   fetch(BASE_URL + `/categorydata?categoryId=${0}`, {
+//       method: 'GET',
+//       headers: myHeaders
+//   })
+//   .then((response) => {
+//       if (!response.ok) {
+//           throw new Error('Error occurred');
+//       } else {
+//           return response.json();
+//       }
+//   })
+//   .then((data) => {
+//     var btn_div = document.getElementById("button-set");
+//       for (let i = 1; i <= data.length; i++) {
+//           var btn = document.createElement('button');
+//           btn.className = "title";
+//           btn.value = i;
+//           btn.innerHTML = data[i - 1].category;
+
+//           btn.addEventListener("click", () => {
+//             category = btn.value;
+//             console.log(category);
+//                 // Update the h1 element's innerHTML with the button's innerHTML
+//             h1Element.innerHTML = btn.innerHTML;
+        
+//             // buttons.forEach(btn => btn.classList.remove("active"));
+//             if (btn.classList.contains("active")) {
+//               btn.classList.remove("active");
+//           }
+        
+//             // Add the 'active' class to the clicked button
+//             btn.classList.add("active");
+        
+//             // block.style.display = "none"
+//             // loader.style.cssText = "";
+//             activeLoader();
+        
+        
+//             loadAllPackages(category)
+//           });
+
+//           // Create a closure to capture the current value of i
+//           // (function(categoryValue) {
+//           //     btn.onclick = function() {
+//           //         category = categoryValue;
+//           //         h1Element.innerHTML = btn.innerHTML;
+//           //         btn.classList.remove("active");
+//           //         btn.classList.add("active");
+//           //         activeLoader();
+//           //         loadAllPackages(category);
+//           //     };
+//           // })(i);
+
+//           btn_div.appendChild(btn);
+//       }
+
+//       // Call loadAllPackages after creating buttons
+//       loadAllPackages(0);
+//   });
+// }
+
+
+// function setCategories(){
+//   var button_set = document.getElementById("button_set")
+
+//   fetch(BASE_URL + `/categorydata?categoryId=${0}`,{
+//     method: 'GET',
+//     headers: myHeaders
+//   })
+//   .then((response) =>{
+//     if (!response.ok) {
+//       throw new Error('Error occured');
+//     } else {
+//       return response.json();
+//     }
+//   })
+//   .then((data) => {
+
+//     for (let i = 1; i <= data.length; i++) {
+//       var btn = document.createElement('button');
+//       btn.className = "title";
+//       btn.value = i;
+//       btn.innerHTML = data[i - 1].category;
+  
+//       // Create a closure to capture the current value of i
+//       (function(categoryValue) {
+//           btn.onclick = function() {
+//               category = categoryValue;
+//               h1Element.innerHTML = btn.innerHTML;
+//               btn.classList.remove("active");
+//               btn.classList.add("active");
+//               activeLoader();
+//               loadAllPackages(category);
+//           };
+//       })(i);
+  
+//       btn_div.appendChild(btn);
+//   }
+  
+//     // var btn_div = document.getElementById("button-set")
+//     // for (let i = 1; i <= data.length; i++) {
+//     //   var btn = document.createElement('button');
+//     //   btn.className = "title";
+//     //   btn.value = i
+//     //   btn.innerHTML = data[i-1].category;
+//     //   btn.onclick = function () {
+//     //     category = i;
+//     //     // Update the h1 element's innerHTML with the button's innerHTML
+//     //     h1Element.innerHTML = btn.innerHTML;
+
+//     //     btn.classList.remove("active");
+
+//     //     // Add the 'active' class to the clicked button
+//     //     btn.classList.add("active");
+
+//     //     // block.style.display = "none"
+//     //     // loader.style.cssText = "";
+//     //     activeLoader();
+
+
+//     //     loadAllPackages(category)
+//     //   }
+//     //   btn_div.appendChild(btn);
+      
+//     // }
+//   })
+
+//   loadAllPackages(0)
+// }
 
 function loadAllPackages(category, page = 1){
 
