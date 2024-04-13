@@ -66,9 +66,6 @@ function getCookie(cookieName) {
       myHeaders.append("Content-Type", "application/json");  
       myHeaders.append("Authorization", getCookie("JWT"));   
   
-      var raw = JSON.stringify({});
-  
-  
       var requestOptions = {
           method: 'GET',
           headers: myHeaders,
@@ -93,7 +90,6 @@ function getCookie(cookieName) {
         }
       })
       .then(result => {
-        console.log(result)
         result.forEach(item => {
           const newItem = child.cloneNode(true)
           newItem.querySelector(".subject").textContent=item.subject
@@ -140,6 +136,7 @@ function getCookie(cookieName) {
           var itemDivs=[newItem.querySelector(".ticket-subject"),newItem.querySelector(".ticket-status"),newItem.querySelector(".ticket-date"),newItem.querySelector(".order")];
          
           itemDivs.forEach(function(itemDiv) {
+            console.log(item.ref_no)
             itemDiv.addEventListener("click",()=>{ viewticket(item.ref_no)})//view tickets--------------------------------------------
             // itemDiv.addEventListener("mouseover",()=>{ hoverChnageAddClass(); })
             // itemDiv.addEventListener("mouseout",()=>{hoverChnageRemoveClass();})

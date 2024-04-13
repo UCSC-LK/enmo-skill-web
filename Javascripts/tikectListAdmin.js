@@ -146,14 +146,14 @@ function tableLoad(view){
      
         itemDivs.forEach(function(itemDiv) {
           
-          itemDiv.addEventListener("click",()=>{ viewticket(item.ref_no,item.admin)})//view tickets--------------------------------------------
+          itemDiv.addEventListener("click",()=>{ viewticket(item.ref_no,item.admin,item.status)})//view tickets--------------------------------------------
         });          
 
 
         switch(view){
 
             case "me":
-              if(item.admin==1 && !(item.status == 3 || item.status == 4)){
+              if(item.admin==1 && (item.status == 1 || item.status == 2)){
                 newItem.querySelector(".agent").remove()
                 newItem.querySelector(".btn").remove();
                 perent.appendChild(newItem)
@@ -161,13 +161,13 @@ function tableLoad(view){
               break
   
             case "packages":
-              if(item.packages>0 && !(item.status == 3 || item.status == 4) && item.agentID<=0){
+              if(item.admin!=1 && item.packages>0 && (item.status == 1 || item.status == 2) && item.agentID<=0){
                 perent.appendChild(newItem)
               }
               break
   
             case "refunds":
-              if(item.order>0 && !(item.status == 3 || item.status == 4) && item.agentID<=0){
+              if(item.admin!=1 && item.order>0 && (item.status == 1 || item.status == 2) && item.agentID<=0){
                 perent.appendChild(newItem)
               }
               break
@@ -180,7 +180,7 @@ function tableLoad(view){
             break  
             
             default:
-              if(item.admin!=1 && (item.status != 3 || item.status != 4) && item.agentID<=0){
+              if(item.admin!=1 && (item.status == 1 || item.status == 2) && item.agentID<=0){
                 perent.appendChild(newItem)
               }
            }
@@ -340,8 +340,8 @@ function viewrequest(TicketID,agentID,agentName){
 //  }
 
 //show a ticket details------------------------------------------ 
- function viewticket(ticketID,admin){ 
-  var url ="../HTML/ticketListViewAdmin.html?ticketID="+ encodeURIComponent(ticketID)+"&admin="+encodeURIComponent(admin)
+ function viewticket(ticketID,admin,status){ 
+  var url ="../HTML/ticketListViewAdmin.html?ticketID="+ encodeURIComponent(ticketID)+"&admin="+encodeURIComponent(admin)+"&status="+encodeURIComponent(status)
     window.location.href = url
   
 }

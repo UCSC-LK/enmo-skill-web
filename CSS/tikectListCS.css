@@ -134,7 +134,7 @@ body{
     padding: 10px;
     /* gap: 10px; */
     align-content: center;
-    min-height: 70px;
+    min-height: 100px;
 }
 
 .ticket-box-3:hover{
@@ -353,6 +353,9 @@ body{
 .assignBTN{
     background-color:#dedede;
     -webkit-text-fill-color: #000000;
+}
+.setgap{
+    margin-left: 20px;
 }
 
 .div-cursor{

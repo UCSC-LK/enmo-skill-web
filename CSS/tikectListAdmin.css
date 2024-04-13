@@ -132,7 +132,7 @@ body{
     padding: 10px;
     /* gap: 10px; */
     align-content: center;
-    min-height: 70px;
+    min-height: 100px;
 }
 
 .ticket-box-3:hover{
@@ -155,7 +155,7 @@ body{
 }
 
 .order1{
-    height: 5px;
+    height: 16px;
     width: auto;
     padding: 5px 2px;
     border-radius: 10px;
@@ -167,7 +167,7 @@ body{
 }
 
 .order2{
-    height: 5px;
+    height: 16px;
     width: auto;
     padding: 5px 2px;
     border-radius: 10px;
@@ -182,6 +182,7 @@ body{
     display: grid;
     align-items: center;
     max-width: 15px;
+    row-gap: 5px;
 
     /* grid-template-columns: 50% 50%;   */
 }
@@ -312,6 +313,7 @@ body{
 .ticket-agent{
     padding-right: 50px;
     margin-left: 20px;
+    
 }
 
 .aline{
@@ -324,6 +326,7 @@ body{
     border-radius: 10px;
     /* box-shadow: 0px 0px 10px 5px #c3c3c35b; */
     cursor: pointer;
+    
 }
 
 .btn{
@@ -352,6 +355,9 @@ body{
 .assignBTN{
     background-color:#dedede;
     -webkit-text-fill-color: #000000;
+}
+.setgap{
+    margin-left: 20px;
 }
 
 .div-cursor{

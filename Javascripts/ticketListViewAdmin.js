@@ -16,7 +16,7 @@ function getCookie(cookieName) {
   
 const url = new URL(window.location.href)
 var ticketID = url.searchParams.get('ticketID')
-// var statuss = url.searchParams.get('status')
+var statuss = url.searchParams.get('status')
 var admin = url.searchParams.get('admin')
 
 const PopupPerent = document.querySelector(".apendUpdates")
@@ -168,7 +168,7 @@ function getdata(ticketID,flag){
     comment.style.display = "none";
     console.log(admin)
 
-    if(admin==1){
+    if(admin==1 && (statuss != 3 || statuss != 4)){
         cloase.style.display = "inline";
         reject.style.display = "inline";
         comment.style.display = "inline";

@@ -221,8 +221,9 @@ function getAsignTicket(){
         newItem.querySelector(".agent").remove()
 
         newItem.querySelector(".btn").remove();
-        newItem.querySelector('.profile-pic').src=item.url
-        newItem.querySelector(".name").textContent=item.userName
+        // newItem.querySelector('.profile-pic').src=item.url
+        // newItem.querySelector(".name").textContent=item.userName
+        newItem.querySelector(".ticketId").textContent= "#"+item.ref_no
         newItem.querySelector(".subject").textContent=item.subject
 
         if(item.urgent==0){
@@ -240,7 +241,7 @@ function getAsignTicket(){
             newItem.querySelector(".ticket-name"),
             newItem.querySelector(".ticket-role"),
             newItem.querySelector(".ticket-subject"),
-            newItem.querySelector(".profile-pic-main"),
+            // newItem.querySelector(".profile-pic-main"),
             //newItem.querySelector(".hover")
           ]
          
