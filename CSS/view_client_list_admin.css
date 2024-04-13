@@ -114,31 +114,38 @@ body {
   height: 80px;
 }
   .header-id, .id{
-    width: 5%;
+    flex: 1;
+    /* width: 5%;
     max-width: 5%;
-    min-width:5%;
+    min-width:5%; */
     padding-left: 10px;
   }
 
 .header-username, .username{
-    width: 25%;
+    /* width: 25%;
     max-width: 25%;
     min-width:25%;
-    padding-left: 130px;
+    padding-left: 130px; */
     /* padding-right: 10px; */
+    flex: 2;
+    padding-left: 10px;
 }
 .header-name, .name{
-    width: 35%;
+  flex: 2;
+  padding-left: 10px;
+    /* width: 35%;
     max-width: 35%;
     min-width:35%;
-    padding-left: 50px;
+    padding-left: 50px; */
     /* padding-right: 10px; */
 }
 
 .header-mail, .email{
-  width: 35%;
+  padding-left: 10px;
+  flex: 2;
+  /* width: 35%;
   max-width: 35%;
-  min-width:35%;
+  min-width:35%; */
   /* padding-left: 95px; */
   /* padding-right: 10px; */
 }
