@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/view_client_list_admin.css">
     <link rel="stylesheet" href="../CSS/main.css">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+
 
 
     <title>Admin - Client List</title>
@@ -20,11 +22,13 @@
                             <h1 class="headding">Client list</h1>
 
                             <div class="search">
-                                <input type="text" name="byid" id="byid" placeholder="Enter User Id">
-                                <div class="btn"><img class="img"  src="../Assests/icons/search_black.png" alt=""></div>
+                                <input type="text" name="byid" id="byid" placeholder="Enter User Id" class="search-box">
+                                <!-- <div class="btn"><img class="img"  src="../Assests/icons/search_black.png" alt=""></div> -->
+                                <div class="search-icon"><box-icon name='search'></box-icon></div>
+                                
                             </div>
 
-                            <div class="table">
+                            <div class="table2">
                                 <div class="headers">
                                     <p class="header-id">USER ID</p>
                                     <p class="header-username">USER NAME</p>
@@ -51,6 +55,8 @@
     </div>
 
         <div class="overlay" id="overlay">
+
+            <div class="overlay-div" id="overlay-div"></div>
                 
             <!-- <div class="main-view">
                 
