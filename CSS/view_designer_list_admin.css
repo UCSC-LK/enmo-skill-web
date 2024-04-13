@@ -169,6 +169,8 @@ body {
   justify-content: space-between;
   font-weight: lighter;
   margin-bottom: 10px;
+  font-size: 35px;
+
 }
 
 @-webkit-keyframes slideIn {
