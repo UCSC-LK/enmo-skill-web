@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="../CSS/main.css">
     <link rel="stylesheet" href="../CSS/design_category_admin.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Design Categories</title>
 </head>
@@ -36,7 +35,7 @@
                                 </div>
 
                                 <div class="content" id="content">
-                                    <div class="row-max">
+                                    <!-- <div class="row-max">
                                         <p class="id-cat">1</p>
                                         <p class="name-cat">Logo designing</p>
                                         <ul class="del-cat">
@@ -78,7 +77,7 @@
                                             <i class="fa fa-pencil-square-o icons" aria-hidden="true"></i>
                                             <i class="fa fa-trash-o icons" aria-hidden="true"></i>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -87,7 +86,35 @@
                     </div>
 
                     <div class="overlay" id="overlay">
-                        <div class="overlay-div2"></div>
+                        <div class="overlay-div3">
+                            <form id="Form">
+
+                                <div class="header-view">
+                                    <p class="close-top" id="overlay_close">X</p>
+                                </div>
+
+                                <div class="contain-bottom">
+                                    <p class="lab">Category Name</p>
+                                    <input type="text" class="title-input" id="category-name" required>
+                                    <p class="lab">Deliverable 01</p>
+                                    <input type="text" class="title-input" id="del-1" required>
+                                    <p class="lab">Deliverable 02</p>
+                                    <input type="text" class="title-input" id="del-2" required>
+                                    <p class="lab">Deliverable 03</p>
+                                    <input type="text" class="title-input" id="del-3" required>
+                                    <p class="lab">Deliverable 04</p>
+                                    <input type="text" class="title-input" id="del-4" required>
+                                    <p class="lab">Deliverable 05</p>
+                                    <input type="text" class="title-input" id="del-5" required>
+                                    <p class="rule">*Five categories should be added.</p>
+                                    
+
+                
+                                    <button type="submit" class="submit-button">Save</button>
+                                    
+                                </div> 
+                            </form>
+                        </div>
                     </div>
                 </div>
         </div>
@@ -95,4 +122,5 @@
 </body>
 <script src="../Javascripts/baseurl.js"></script>
 <script src="../Javascripts/design_category_admin.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>
