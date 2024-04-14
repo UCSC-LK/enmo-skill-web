@@ -139,7 +139,7 @@ body{
 .ticket-box-2 {
     display: grid;
     width: 100%;
-    min-height: 70px; 
+    min-height: 100px; 
     grid-template-columns: 3% 58% 15% 15% 8%;
     border-bottom: solid;
     border-color: #ebebeb;
