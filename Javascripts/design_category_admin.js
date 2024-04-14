@@ -93,6 +93,7 @@ function getCookie(cookieName) {
             const pencilIcon = document.createElement('i');
             pencilIcon.className = 'fa fa-pencil-square-o icons';
             pencilIcon.setAttribute('aria-hidden', 'true');
+            // add ebventlister to update
             pencilIcon.addEventListener('click', function() {
                 updataData(element);
             });
@@ -180,7 +181,7 @@ document.getElementById("Form").addEventListener('submit', function(e) {
     const operationType = update_flag ? "update" : "insert";
 
     const requestUrl = update_flag
-        ? `${BASE_URL}/categorydata?categoryid=${category_id}`
+        ? `${BASE_URL}/categorydata?categoryId=${category_id}`
         : `${BASE_URL}/categorydata`;
 
     fetch(requestUrl, {
@@ -308,15 +309,15 @@ document.getElementById("Form").addEventListener('submit', function(e) {
 
 function updataData(element){
     update_flag = true;
-    category_id = element.category_id;
+    category_id = element.categoryId;
     console.log(category_id);
     showOverlay();
 
-    category_name.innerHTML = element.category;
-    del_1.innerHTML = element.del_1;
-    del_2.innerHTML = element.del_2;
-    del_3.innerHTML = element.del_3;
-    del_4.innerHTML = element.del_4;
-    del_5.innerHTML = element.del_5;
+    category_name.value = element.category;
+    del_1.value = element.del_1;
+    del_2.value = element.del_2;
+    del_3.value = element.del_3;
+    del_4.value = element.del_4;
+    del_5.value = element.del_5;
 
 }
