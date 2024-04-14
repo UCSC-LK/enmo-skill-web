@@ -103,7 +103,12 @@ function getCookie(cookieName) {
             const trashIcon = document.createElement('i');
             trashIcon.className = 'fa fa-trash-o icons';
             trashIcon.setAttribute('aria-hidden', 'true');
-            // trashIcon.click = deleteData(element.categoryId)
+            
+            // add evenet lister to delete
+            trashIcon.addEventListener('click', function() {
+                deleteData(element.categoryId);
+            });
+
             iconHandleDiv.appendChild(trashIcon);
 
             rowMaxDiv.appendChild(iconHandleDiv);
@@ -211,100 +216,11 @@ document.getElementById("Form").addEventListener('submit', function(e) {
             console.error('Error occured');
             throw new Error('Error occurred'); 
         }
-        // if (!response.ok) {
-        //     console.log("hi");
-        //     throw new Error('Error occurred');
-           
-        // }
-        // return response.json();
+     
     })
-    // .then(data => {
-    //     console.log("bye");
-    //     console.log(`Data ${operationType}d successfully`);
-    //     Swal.fire({
-    //         icon: "success",
-    //         title: update_flag ? "Category data updated" : "New Category Added",
-    //     })
-    //     .then((result) => {
-    //         if (result.isConfirmed) {
-    //             hideOverlay();
-    //             location.reload();
-    //         }
-    //     });
-    // })
-    // .catch(error => {
-    //     Swal.fire({
-    //         icon: "error",
-    //         title: "Oops...",
-    //         text: error.message || "Something went wrong!"
-    //     });
-    //     console.error('Error:', error);
-    // });
+    
 });
 
-
-// document.getElementById("Form").addEventListener('submit', function(e) {
-//     e.preventDefault();
-
-//     var category_name = document.getElementById("category-name").value;
-//     var del_1 = document.getElementById("del-1").value;
-//     var del_2 = document.getElementById("del-2").value;
-//     var del_3 = document.getElementById("del-3").value;
-//     var del_4 = document.getElementById("del-4").value;
-//     var del_5 = document.getElementById("del-5").value;
-
-//     var requestBody = {
-//         category: category_name,
-//         del_1: del_1,
-//         del_2: del_2,
-//         del_3: del_3,
-//         del_4: del_4,
-//         del_5: del_5
-//     };
-
-//     console.log(requestBody);
-
-//     console.log(update_flag);
-
-//     const operationType = update_flag ? "update" : "insert";
-
-//     const requestUrl = update_flag
-//         ? `${BASE_URL}/categorydata?categoryid=${category_id}`
-//         : `${BASE_URL}/categorydata`;
-
-//     fetch(requestUrl, {
-//         method: update_flag ? 'PUT' : 'POST',
-//         headers: myHeaders,
-//         body: JSON.stringify(requestBody)
-//     })
-//     .then(response => {
-//         if (!response.ok) {
-//             throw new Error('Error occurred');
-//         }
-//         return response.json();
-//     })
-//     .then(data => {
-//         console.log(`Data ${operationType}d successfully`, data);
-//         Swal.fire({
-//             icon: "success",
-//             title: update_flag ? "Category data updated" : "New Category Added",
-//         })
-//         .then((result) => {
-//             if (result.isConfirmed) {
-//                 hideOverlay();
-//                 location.reload();
-//             }
-//         });
-//     })
-//     .catch(error => {
-//         Swal.fire({
-//             icon: "error",
-//             title: "Oops...",
-//             text: "Something went wrong!"
-//         });
-//         console.error('Error:', error);
-//     });
-// });
 
 
 function updataData(element){
@@ -320,4 +236,47 @@ function updataData(element){
     del_4.value = element.del_4;
     del_5.value = element.del_5;
 
+}
+
+function deleteData(category_id){
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+            fetch(`${BASE_URL}/categorydata?categoryId=${category_id}`, {
+                method: 'DELETE',
+                headers: myHeaders
+            })
+            .then((response)=>{
+                if (response.ok) {
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    })
+                    .then((result)=>{
+                        if (result.isConfirmed) {
+                            location.reload();
+                            
+                        }
+                    })
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Something went wrong!"
+                    });
+                    console.error('Error occured');
+                    throw new Error('Error occurred'); 
+                }
+            })
+        }
+      });
+   
 }
