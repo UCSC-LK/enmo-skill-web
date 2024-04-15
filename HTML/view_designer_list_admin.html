@@ -21,12 +21,24 @@
                         <div class="block">
                             <h1 class="headding">Designer list</h1>
 
-                            <div class="search">
-                                <input type="text" name="byid" id="byid" placeholder="Enter User Id" class="search-box">
-                                <!-- <div class="btn"><img class="img"  src="../Assests/icons/search_black.png" alt=""></div> -->
-                                <div class="search-icon"><box-icon name='search'></box-icon></div>
+                            <div class="navbar-body">
+                                <div class="nav-body">
+                                    <ul>
+                                        <li class="active" id="active_u">ACTIVE USERS</li>
+                                        <li id="banned_u">BANNED USERS</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="search">
+                                    <input type="text" name="byid" id="byid" placeholder="Enter User Id" class="search-box">
+                                    
+                                    <div class="search-icon"><box-icon name='search'></box-icon></div>
+                                </div>
+    
+                                
                             </div>
 
+                            
                             <div class="table2">
                                 <div class="headers">
                                     <p class="header-id">USER ID</p>
@@ -37,7 +49,7 @@
                                 </div>
 
                                 <div class="content" id="content">
-                                    <div class="row" id="row1">
+                                    <!-- <div class="row" id="row1">
                                         <p class="id">12345</p>
                                         <p class="username">user1</p>
                                         <p class="name">John Doe</p>
@@ -46,7 +58,7 @@
                                             <button class="see-more">See more</button>
 
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
 
@@ -60,7 +72,7 @@
 
         <div class="overlay" id="overlay">
 
-            <div class="overlay-div4">
+            <div id="overlay-div" class="overlay-div4">
                 <div class="close-top-div">
                     <p class="close-top">X</p>
 
@@ -69,49 +81,47 @@
                 <div class="contain-bottom">
                     <div class="profile-display">
                         <img alt="designer-profile" id="designer-img" class="profile-pic" src="https://i.ibb.co/Ry2J1Lg/pexels-photo-220453.webp">
-                        <p class="usename-top">user1</p> 
+                        <p class="usename-top" id="data-displayname"></p> 
                     </div>
                     
                     <table class="content-table">
                         <tbody>
                             <tr class="data-tr">
-                                <td class="td-data">
+                                <td class>
                                     <p class="tl">NAME</p>
-                                    <P id="data-name">John Doe</P>
+                                    <P id="data-name"></P>
                                 </td>
                                 <td>
                                     <p class="tl">DISPLAY NAME</p>
-                                    <P id="data-displayname">jona1</P>
+                                    <P id="data-displayname"></P>
                                 </td>
                             </tr >
                             <tr class="data-tr">
                                 <td>
                                     
                                     <p class="tl">EMAIL</p>
-                                    <P id="data-email">abc@mail.com</P>
+                                    <P id="data-email"></P>
                                 </td>
                                 <td>
                                     
                                     <p class="tl">CONTACT NO</p>
-                                    <P class="data-contact">566655666</P>
+                                    <P id="data-contact"></P>
                                 </td>
                             </tr>
                             <tr class="data-tr">
                                 <td>
                                     <p class="tl">NIC</p>
-                                    <P id="data-nic">2123645566655666</P>
+                                    <P id="data-nic"></P>
                                 </td>
                                 <td>
                                     <p class="tl">JOINED DATE</p>
-                                    <P class="data-joined">2023-10-29</P>
+                                    <P id="data-joined"></P>
                                 </td>
                             </tr>
                             <tr class="data-tr">
                                 <td colspan="2">
                                     <p class="tl">DESCRIPTION</p>
-                                    <P id="data-des">Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                                        sed do eiusmod tempor incididunt ut labore et dolore magna 
-                                    </P>
+                                    <P id="data-des"></P>
                                 </td>
                             </tr>
                         </tbody>
@@ -168,6 +178,9 @@
     
 </body>
 
+<script src="../Javascripts/baseurl.js"></script>
 <script src="../Javascripts/view_designer_list_admin.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 </html>
