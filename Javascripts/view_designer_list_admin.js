@@ -23,6 +23,10 @@ var raw = JSON.stringify({});
 
 var role = 0;
 var status_code = 0
+var search_active = false
+
+var active_u = document.getElementById("active_u")
+var banned_u = document.getElementById("banned_u")
 
 function on() {
     document.getElementById("overlay").style.display = "block";
@@ -242,8 +246,36 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
 
   
   function getActiveUsers(){
+    console.log("in active users");
     role = 2
     status_code = 1
+    fetch(`${BASE_URL}/user?role=${role}&status=${status_code}`,{
+      method: 'GET',
+      headers: myHeaders
+    })
+    .then((response)=>{
+      if(!response.ok){
+        throw new Error("Error occured")
+      } 
+      return response.json();
+    })
+    .then((data)=>{
+      createRows(data);
+    })
+    .catch((error)=>{
+       console.error(error)
+       Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!"
+      });
+     })
+  }
+  
+  function getBannedUsers(){
+    console.log("in banned users");
+    role = 2
+    status_code = 2
     fetch(`${BASE_URL}/user?role=${role}&status=${status_code}`,{
       method: 'GET',
       headers: myHeaders
@@ -323,6 +355,61 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
     
 
   }
+  function createRowsSingle(element){
+
+    var content = document.getElementById("content");
+    content.innerHTML = ""
+
+
+      // Create elements
+    const rowDiv = document.createElement('div');
+    rowDiv.className = 'row';
+    rowDiv.id = 'row1';
+
+    const idP = document.createElement('p');
+    idP.className = 'id';
+    idP.textContent = element.user.id;
+
+    const usernameP = document.createElement('p');
+    usernameP.classList.add('username');
+    // usernameP.classList.add('truncate-text');
+    usernameP.textContent = element.user.username;
+
+    const nameP = document.createElement('p');
+    nameP.classList.add('name');
+    nameP.classList.add('truncate-text');
+    nameP.textContent = element.fname + " "+ element.lname;
+
+    const emailP = document.createElement('p');
+    emailP.classList.add('email');
+    emailP.classList.add('truncate-text');
+    emailP.textContent = element.user.email;
+
+    const seeMoreDiv = document.createElement('div');
+    seeMoreDiv.className = 'see-more-btn';
+
+    const seeMoreBtn = document.createElement('button');
+    seeMoreBtn.className = 'see-more';
+    seeMoreBtn.textContent = 'See more';
+    seeMoreBtn.addEventListener('click', function(event){
+      event.stopPropagation();
+      popup(element);
+    });
+
+    // Append elements
+    seeMoreDiv.appendChild(seeMoreBtn);
+
+    rowDiv.appendChild(idP);
+    rowDiv.appendChild(usernameP);
+    rowDiv.appendChild(nameP);
+    rowDiv.appendChild(emailP);
+    rowDiv.appendChild(seeMoreDiv);
+
+    content.appendChild(rowDiv);
+  
+    
+
+  }
 
   function popup(data){
 
@@ -338,131 +425,103 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
     document.getElementById("data-des").innerHTML = data.user.description || "lorem impsum"
     document.getElementById("data-nic").textContent = data.user.NIC;
 
-  //   // Create elements for close-top-div
-  //   const closeTopDiv = document.createElement('div');
-  //   closeTopDiv.className = 'close-top-div';
-
-  //   const closeTopP = document.createElement('p');
-  //   closeTopP.className = 'close-top';
-  //   closeTopP.textContent = 'X';
-
-  //   closeTopDiv.appendChild(closeTopP);
-
-  //   // Create elements for profile-display
-  //   const profileDisplayDiv = document.createElement('div');
-  //   profileDisplayDiv.className = 'profile-display';
-
-  //   const profileImg = document.createElement('img');
-  //   profileImg.alt = 'designer-profile';
-  //   profileImg.className = 'profile-pic';
-  //   profileImg.id = 'designer-img';
-  //   profileImg.src = data.user.url || 'https://i.ibb.co/Ry2J1Lg/pexels-photo-220453.webp';
-
-  //   const usernameTopP = document.createElement('p');
-  //   usernameTopP.className = 'usename-top';
-  //   usernameTopP.textContent = data.user.username;
-
-  //   profileDisplayDiv.appendChild(profileImg);
-  //   profileDisplayDiv.appendChild(usernameTopP);
-
-  //   // Create elements for content-table
-  //   const table = document.createElement('table');
-  //   table.className = 'content-table';
-
-  //   const tbody = document.createElement('tbody');
-
-  //   const rows = [
-  //     { label: 'NAME', id: 'data-name', value: data.fname+" "+ data.lname},
-  //     { label: 'DISPLAY NAME', id: 'data-displayname', value: data.user.username },
-  //     { label: 'EMAIL', id: 'data-email', value: data.user.email },
-  //     { label: 'CONTACT NO', id: 'data-contact', value: data.user.contact_no },
-  //     { label: 'NIC', id: 'data-nic', value: data.user.NIC },
-  //     { label: 'JOINED DATE', id: 'data-joined', value: data.joinedDate },
-  //     // { label: 'DESCRIPTION', id: 'data-des', value: data.user.description || "lorem impsum"}
-  // ];
-
-  // // Create elements for each row
-  // for (let i = 0; i < rows.length; i=i+2) {
-
-  //   const tr = document.createElement('tr');
-  //   tr.className = 'data-tr';
-    
-  //   const td1 = document.createElement('td');
-  //   const td2 = document.createElement('td');
-
-  //   const tl1 = document.createElement('p');
-  //   tl1.className = 'tl';
-  //   tl1.textContent = rows[i].label;
-
-  //   const p1 = document.createElement('p');
-  //   p1.id = rows[i].id;
-  //   p1.textContent = rows[i].value;
-
-  //   td1.appendChild(tl1);
-  //   td1.appendChild(p1);
-
-  //   const tl2 = document.createElement('p');
-  //   tl2.className = 'tl';
-  //   tl2.textContent = rows[i+1].label;
-
-  //   const p2 = document.createElement('p');
-  //   p2.id = rows[i+1].id;
-  //   p2.textContent = rows[i+1].value;
-
-  //   td2.appendChild(tl2);
-  //   td2.appendChild(p2);
-
-  //   tr.appendChild(td1);
-  //   tr.appendChild(td2);
-
-  //   tbody.appendChild(tr);
-
-  // }
-
-  //   // rows.forEach(row => {
-  //   //     const tr = document.createElement('tr');
-  //   //     tr.className = 'data-tr';
-
-  //   //     const td1 = document.createElement('td');
-  //   //     const tl1 = document.createElement('p');
-  //   //     tl1.className = 'tl';
-  //   //     tl1.textContent = row.label;
-  //   //     const p1 = document.createElement('p');
-  //   //     p1.id = row.id;
-  //   //     p1.textContent = row.value;
-
-  //   //     td1.appendChild(tl1);
-  //   //     td1.appendChild(p1);
-
-  //   //     tr.appendChild(td1);
-
-  //   //     tbody.appendChild(tr);
-  //   // });
-
-  //   const tr = document.createElement('tr');
-  //   tr.className = 'data-tr';
-  //   const td = document.createElement('td');
-  //   td.colSpan = 2;
-  //   const p1 = document.createElement('p');
-  //   p1.className = 'tl';
-  //   p1.textContent = "DESCRIPTION"
-  //   const p2 = document.createElement('p');
-  //   p2.id = 'data-des';
-  //   p2.textContent = data.user.description || "lorem impsum";
-
-  //   tbody.appendChild(tr);
-    
-
-  //   table.appendChild(tbody);
-
-  //   // Create contain-bottom and append all elements
-  //   const containBottomDiv = document.createElement('div');
-  //   containBottomDiv.className = 'contain-bottom';
-
-  //   containBottomDiv.appendChild(profileDisplayDiv);
-  //   containBottomDiv.appendChild(table);
-
-  //   overlay_div.appendChild(closeTopDiv);
-
-  //   overlay_div.appendChild(containBottomDiv);
   }
+
+ active_u.addEventListener("click", function(e) {
+    e.preventDefault();
+
+    active_u.classList.add("active");
+    banned_u.classList.remove("active");
+    if (status_code == 2 || search_active == true) {
+        search_active = false;
+        getActiveUsers();
+    }
+  })
+
+  document.getElementById("banned_u").addEventListener("click", function(e){
+    e.preventDefault();
+    active_u.classList.remove("active");
+    banned_u.classList.add("active");
+    if (status_code == 1 || search_active == true) {
+      search_active = false;
+      getBannedUsers();
+    }
+  })
+
+  // document.getElementById("search-user").addEventListener("click", function(e){
+  //   e.preventDefault();
+
+  //   var userId = document.getElementById("byid").value;
+
+  //   if (userId != null) {
+  //   console.log(userId);
+
+  //     fetch(`${BASE_URL}/user?userId=${userId}`,{
+  //       method: 'GET',
+  //       headers: myHeaders
+  //     })
+  //     .then((response)=>{
+  //       if(!response.ok){
+  //         throw new Error("Error occured")
+  //       } 
+  //       return response.json();
+  //     })
+  //     .then((data)=>{
+  //       createRows(data);
+  //     })
+  //     .catch((error)=>{
+  //        console.error(error)
+  //        Swal.fire({
+  //         icon: "error",
+  //         title: "Oops...",
+  //         text: "Something went wrong!"
+  //       });
+  //      })
+  //   }
+
+    
+  // })
+
+  document.getElementById("search-user").addEventListener("click", function(e){
+    e.preventDefault();
+
+    search_active = true;
+
+    active_u.classList.remove("active");
+    banned_u.classList.remove("active");
+    
+    var userId = document.getElementById("byid").value;
+
+    if (userId.trim() !== "") { // Check if userId is not empty
+        console.log(userId);
+
+        fetch(`${BASE_URL}/user?userId=${userId}`, {
+            method: 'GET',
+            headers: myHeaders
+        })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error("Error occurred");
+            } 
+            return response.json();
+        })
+        .then((data) => {
+            createRowsSingle(data);
+        })
+        .catch((error) => {
+            console.error(error);
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!"
+            });
+        });
+    } else {
+        // Handle case where userId is empty
+        Swal.fire({
+            icon: "warning",
+            title: "Warning",
+            text: "Please enter a User ID!"
+        });
+    }
+});
