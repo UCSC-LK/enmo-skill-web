@@ -1,75 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/orderlist_designer.css">
-    <title>Pending Packages</title>
+    <link rel="stylesheet" href="../CSS/order_designer.css">
+    <link rel="stylesheet" href="../CSS/main.css">
+    
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <title>Manage Orders</title>
 </head>
+
 <body>
-    <div class="main" style="margin-top: 120px;">
-        <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>
-            <div class="main2">
-                <h1 class="heading">Manage Orders</h1>
 
-                <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>
-
-                    <table class="border">
+    <!-- <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script> -->
+    <div class="page">
+        <div id="sidebar-placeholder"></div><script src="../Javascripts/sidebar.js"></script>
+        <div class="pg-content" style="width: 100%; overflow: auto;">
+            <div id="header-placeholder" style="width: 100%; position: sticky; top: 0;"></div><script src="../Javascripts/header.js"></script>
             
-                        <th colspan = 6 class="col" >ACTIVE ORDERS</th>
-
-                        <tr>
-                                <th class="t-top">BUYER</th>
-                                <th class="t-top">GIG</th>
-                                <th class="t-top">DUE ON</th>
-                                <th class="t-top">DELIVERED AT</th>
-                                <th class="t-top">TOTAL</th>
-                                <th class="t-top">STATUS</th>
-
-                        </tr>
-                        <tr>
-                            <th><img src="../Assests/package_cover1.jpg" width="30px"> Jony</th>
-                            <th> do perfect video editing, color gradi </th>
-                            <th>Aug 21, 2021</th>
-                            <th>Aug 18, 2021</th>
-                            <th>$34</th>
-                            <th class="status-cell">Complete</th>
-                        </tr>
-                        <tr>
-                            <th><img src="../Assests/package_cover1.jpg" width="30px"> Jony</th>
-                            <th> do perfect video editing, color gradi </th>
-                            <th>Aug 21, 2021</th>
-                            <th>Aug 18, 2021</th>
-                            <th>$34</th>
-                            <th class="status-cell"> Complete</th>
-                        </tr>
-                        <tr>
-                            <th><img src="../Assests/package_cover1.jpg" width="30px"> Jony</th>
-                            <th> do perfect video editing, color gradi </th>
-                            <th>Aug 21, 2021</th>
-                            <th>Aug 18, 2021</th>
-                            <th>$34</th>
-                            <th class="status-cell"> Complete</th>
-                        </tr>
-                        <tr>
-                            <th><img src="../Assests/package_cover1.jpg" width="30px"> Jony</th>
-                            <th> do perfect video editing, color gradi </th>
-                            <th>Aug 21, 2021</th>
-                            <th>Aug 18, 2021</th>
-                            <th>$34</th>
-                            <th class="status-cell"> Complete</th>
-                        </tr>
-                        <tr>
-                            <th><img src="../Assests/package_cover1.jpg" width="30px"> Jony</th>
-                            <th> do perfect video editing, color gradi </th>
-                            <th>Aug 21, 2021</th>
-                            <th>Aug 18, 2021</th>
-                            <th>$34</th>
-                            <th class="status-cell"> Complete</th>
-                        </tr>
-                    </table>
+        <div class="major">
+            <div class="main-container">
+                <div class="header">
+                    <h2 >Manage Orders</h2>
+                    <div class="count">
+                        <div class="ct-bottom"><box-icon name='offer' type='solid' rotate='90' color='#a3a3a3' size = '20px' ></box-icon>
+                            <p ><span id="count">10</span>  Offers left Today</p>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="ticet-heder-box">
+                <div class="class2">
+                    <div class="div-cursor-1"><p class="ongoing">ACTIVE</p></div>
+                    <!-- <div class="div-cursor-1"><p class="ongoing">LATE</p></div> -->
+                    <div class="div-cursor-1"><p class="delivered">DELIVERED</p></div>
+                    <div class="div-cursor-1"><p class="completed">COMPLETED</p></div>
+                    <div class="div-cursor-1"><p class="canseled">CANCELLED</p></div>
+                    <!-- <div style="text-align: right;"><button class="button createTicket" onclick="()=>{window.location.href='../HTML/CSA'}">CREATE A TICKET</button></div> -->
+                </div>
             </div>
-    </div> 
-</body>
-</html>
+                <div class="table" id="table">
+                        <div class="row-main" >
+                            <p class="user-main">BUYER</p>
+                            <p class="gig-main">GIG</p>
+                            <p class="date-main">DUE ON</p>
+                            <p class="duration-main">DELIVERED AT</p>
+                            <p class="budget-main">TOTAL</p>
+                            <p class="status-main">STATUS</p>
+                        </div>
+                        <div class="table2" id="table2">
+                                <div class="row-hidden">
+                                    <p class="user"></p>
+                                <p class="gig"></p>
+                                <p class="date"></p>
+                                <p class="duration"></p>
+                                <p class="budget"><span class="budget-value"></span> $</p>
+                                <p class="status"  style="padding: 5px 15px; border-radius: 5px;"></p>
+                            </div>
+                        </div>
+            </div>
+                
+            </div>
 
+        </div>
+        
+        <div class="overlay-view"  >
+                    
+            <div class="main-view">
+                
+                <div class="header-view">
+                    <img class="image-profile" src="https://i.ibb.co/Ry2J1Lg/pexels-photo-220453.webp" alt="profileimg">
+                    <p class="usename-top"><span class="name-user">Isuru Liyanage</span> - Buyer Request</p>
+                    <p class="close-top">X</p>
+                </div>
+
+            <div class="contain-bottom">
+                <p class="tl">I want to Create a flyer </p>
+                <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto molestias labore voluptates. Mollitia, odit unde ex deserunt ipsa nostrum excepturi minus suscipit deleniti vel modi, tempore error nesciunt. Non, magnam.</p>
+                <div class="bottom-end">
+                    <p class="duration-textview">Deliver within <span class="description-text">13</span> Days</p>
+                    <p class="budget-textview">Rs. <span class="budget-text">1000</span>.00</p>    
+                </div>
+                <button class="proposal" role="button" ><span class="text">Submit a proposal</span></button>
+                </div> 
+            
+            </div>
+            
+        </div>
+        <script src="../Javascripts/baseurl.js"></script>
+    <script src="../Javascripts/order_list_designer.js"></script>
+</div>
+
+</div>
+    
+</body>
+
+</html>
