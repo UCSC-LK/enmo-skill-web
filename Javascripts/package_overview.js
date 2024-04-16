@@ -39,7 +39,7 @@ function getCookie(cookieName) {
     // extract query parameters
     url = new URL(window.location.href);
     packageId = url.searchParams.get('packageId');
-    console.log(packageId); // Moved inside the DOMContentLoaded event listener
+    console.log(packageId); 
 
     // fetch category data and display them
     fetch(BASE_URL + `/categorydata?categoryId=${0}`, {
@@ -48,6 +48,11 @@ function getCookie(cookieName) {
     })
     .then((response)=>{
         if (!response.ok) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!"
+              });
             throw new Error('Error occured');
         } else {
             return response.json();
@@ -169,9 +174,16 @@ document.getElementById("button-next").addEventListener("click", async (e) => {
     const category = document.getElementById("category").value;
     const description = document.getElementById("description").value;
     // const cover_img = document.getElementById("img").files[0];
-
     console.log(category);
-    
+
+    if (title.trim() === "" || description.trim()=== "" || category == 0) {
+        Swal.fire({
+            icon: "warning",
+            title: "Warning",
+            text: "Text fields must be filled"
+          });
+    } else {
+        
     var img_url = null;
 
 
@@ -188,79 +200,86 @@ document.getElementById("button-next").addEventListener("click", async (e) => {
             headers: headers,
             body: formData
         })
-        .then(response => response.text())
+        .then(response => {
+             if (!response.ok) {
+                 throw new Error('Error occured');
+             } else {
+                 return response.text();
+             }
+         })
+        // .then(response => response.text())
         .then(data => {
             console.log('Success:', data);
-            // RequestData={"url":data}
-            // console.log(RequestData);
-            img_url = data;
 
-            const url = new URL(window.location.href);
-    const packageId = url.searchParams.get('packageId');
-    const operationType = packageId ? "update" : "insert";
+            // call function to save data
+            saveData(title, category, description, data)
 
-    const packageData = {
-        title: title,
-        description: description,
-        category: category,
-        // coverUrl: "../Assests/package_cover4.jpg",
-        coverUrl: img_url,
-        clicks: 0,
-        orders: 0,
-        cancellations: "0%",
-        status: "active"
-    };
+    //         const url = new URL(window.location.href);
+    // const packageId = url.searchParams.get('packageId');
+    // const operationType = packageId ? "update" : "insert";
 
-    const requestUrl = operationType === "update"
-        ? `${BASE_URL}/package?packageId=${packageId}`
-        : `${BASE_URL}/package`;
+    // const packageData = {
+    //     title: title,
+    //     description: description,
+    //     category: category,
+    //     // coverUrl: "../Assests/package_cover4.jpg",
+    //     coverUrl: img_url,
+    //     clicks: 0,
+    //     orders: 0,
+    //     cancellations: "0%",
+    //     status: "active"
+    // };
 
-    try {
-        fetch(requestUrl, {
-            method: operationType === "update" ? "PUT" : "POST",
-            headers: myHeaders,
-            body: JSON.stringify(packageData),
-        })
-        .then((response)=>{
-            if (response.ok) {
-                console.log(`Package data ${operationType}d successfully.`);
-                if (operationType === "insert") {
-                    var rsp = response.json()
-                    rsp.then(data => {
-                        window.location.href = `../HTML/package_pricing.html?packageId=${data.result}&category=${category}`;
-                    })
-                    // window.location.href = `../HTML/package_pricing.html?packageId=${data.result}&category=${category}`;
-                } else {
-                    window.location.href = `../HTML/package_pricing.html?packageId=${packageId}&category=${category}&update=1`;
-                }
-            } else {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong!",
-                    confirmButtonColor: "#293692"
-                  });
-                // showPopupUnsuccess();
-                console.error(`Failed to ${operationType} package data.`);
-            }
-        })
+    // const requestUrl = operationType === "update"
+    //     ? `${BASE_URL}/package?packageId=${packageId}`
+    //     : `${BASE_URL}/package`;
+
+    // try {
+    //     fetch(requestUrl, {
+    //         method: operationType === "update" ? "PUT" : "POST",
+    //         headers: myHeaders,
+    //         body: JSON.stringify(packageData),
+    //     })
+    //     .then((response)=>{
+    //         if (response.ok) {
+    //             console.log(`Package data ${operationType}d successfully.`);
+    //             if (operationType === "insert") {
+    //                 var rsp = response.json()
+    //                 rsp.then(data => {
+    //                     window.location.href = `../HTML/package_pricing.html?packageId=${data.result}&category=${category}`;
+    //                 })
+    //                 // window.location.href = `../HTML/package_pricing.html?packageId=${data.result}&category=${category}`;
+    //             } else {
+    //                 window.location.href = `../HTML/package_pricing.html?packageId=${packageId}&category=${category}&update=1`;
+    //             }
+    //         } else {
+    //             Swal.fire({
+    //                 icon: "error",
+    //                 title: "Oops...",
+    //                 text: "Something went wrong!",
+    //                 confirmButtonColor: "#293692"
+    //               });
+    //             // showPopupUnsuccess();
+    //             console.error(`Failed to ${operationType} package data.`);
+    //         }
+    //     })
 
         
-    } catch (error) {
-        console.error("An error occurred:", error);
-    }
+    // } catch (error) {
+    //     console.error("An error occurred:", error);
+    // }
 
-        })
-        .catch(error => {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Something went wrong!",
-                confirmButtonColor: "#293692"
-              });
-            console.error('Error:', error);
-        });
-    }
+    //     })
+    //     .catch(error => {
+    //         Swal.fire({
+    //             icon: "error",
+    //             title: "Oops...",
+    //             text: "Something went wrong!",
+    //             confirmButtonColor: "#293692"
+    //           });
+    //         console.error('Error:', error);
+    //     });
+    // }
 
 
 
@@ -291,9 +310,117 @@ document.getElementById("button-next").addEventListener("click", async (e) => {
     // }
 
     // Continue with the rest of your code using img_url
+        })
+        .catch(error => {
+             Swal.fire({
+                 icon: "error",
+                 title: "Oops...",
+                 text: "Something went wrong!",
+                 confirmButtonColor: "#293692"
+               });
+             console.error('Error:', error);
+         });
+        
+    }
+    }
+
+    
     
 });
 
+function saveData(title, category, description,img_url){
+
+    const url = new URL(window.location.href);
+    const packageId = url.searchParams.get('packageId');
+    const operationType = packageId ? "update" : "insert";
+
+    const packageData = {
+        title: title,
+        description: description,
+        category: category,
+        // coverUrl: "../Assests/package_cover4.jpg",
+        coverUrl: img_url,
+        clicks: 0,
+        orders: 0,
+        cancellations: "0%",
+        status: "active"
+    };
+
+    const requestUrl = operationType === "update"
+        ? `${BASE_URL}/package?packageId=${packageId}`
+        : `${BASE_URL}/package`;
+
+   
+        fetch(requestUrl, {
+            method: operationType === "update" ? "PUT" : "POST",
+            headers: myHeaders,
+            body: JSON.stringify(packageData),
+        })
+        .then(response => 
+            {if(response.status == 401){
+              window.location.href = "../Failed/401.html";
+            }else if(response.status == 406){
+              const currentUrl = encodeURIComponent(window.location.href);
+              window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+            }else if(response.status == 404){
+              window.location.href = "../Failed/404.html";
+            }else if (response.status == 200) {
+            //   return response.json()
+                console.log(`Package data ${operationType}d successfully.`);
+                    if (operationType === "insert") {
+                        var rsp = response.json()
+                        rsp.then(data => {
+                            window.location.href = `../HTML/package_pricing.html?packageId=${data.result}&category=${category}`;
+                        })
+                        // window.location.href = `../HTML/package_pricing.html?packageId=${data.result}&category=${category}`;
+                    } else {
+                        window.location.href = `../HTML/package_pricing.html?packageId=${packageId}&category=${category}&update=1`;
+                    }
+            } else{
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!",
+                    confirmButtonColor: "#293692"
+                    });
+                console.error(`Failed to ${operationType} package data.`);
+                console.log("Error"+response.status)
+            }
+            
+            })
+        // .then((response)=>{
+        //     if (response.ok) {
+        //         console.log(`Package data ${operationType}d successfully.`);
+        //         if (operationType === "insert") {
+        //             var rsp = response.json()
+        //             rsp.then(data => {
+        //                 window.location.href = `../HTML/package_pricing.html?packageId=${data.result}&category=${category}`;
+        //             })
+        //             // window.location.href = `../HTML/package_pricing.html?packageId=${data.result}&category=${category}`;
+        //         } else {
+        //             window.location.href = `../HTML/package_pricing.html?packageId=${packageId}&category=${category}&update=1`;
+        //         }
+        //     } else {
+        //         Swal.fire({
+        //             icon: "error",
+        //             title: "Oops...",
+        //             text: "Something went wrong!",
+        //             confirmButtonColor: "#293692"
+        //           });
+        //         // showPopupUnsuccess();
+        //         console.error(`Failed to ${operationType} package data.`);
+        //     }
+        // })
+        .catch(error => {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+                confirmButtonColor: "#293692"
+              });
+            console.error('Error:', error);
+        });
+}
 
 
 

@@ -43,18 +43,43 @@ var deliverablesId_bronze = 0;
 var deliverablesId_silver = 0;
 var deliverablesId_platinum = 0;
 
+var update_b = 0;
+var update_s = 0;
+var update_p = 0;
+
 function loadData(){
 
     fetch(BASE_URL+`/packagepricing?packageId=${packageId}`,{
         method: 'GET',
         headers: myHeaders,
     })
-    .then((response)=>{
-        if(!response.ok){
-            throw new Error('Cannot get data');
+    .then(response => 
+        {if(response.status == 401){
+          window.location.href = "../Failed/401.html";
+        }else if(response.status == 406){
+          const currentUrl = encodeURIComponent(window.location.href);
+          window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+        }else if(response.status == 404){
+          window.location.href = "../Failed/404.html";
+        }else if (response.status == 200) {
+          return response.json()
+        } else{
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+                confirmButtonColor: "#293692"
+              });
+          console.log("Error"+response.status)
         }
-        return response.json();
-    })
+        
+        })
+    // .then((response)=>{
+    //     if(!response.ok){
+    //         throw new Error('Cannot get data');
+    //     }
+    //     return response.json();
+    // })
     .then((pricePackageList) => {
 
         pricePackageList.forEach(pricingData => {
@@ -170,118 +195,17 @@ function loadData(){
             } else {
                 alert("Invalid type !")
             }
-            
-            // if (category == "1" || category == "2") {
-            //      //set bronze data
 
-            // } else if (category == "3" || category == "4") {
-            //      //set bronze data
-            //      if (pricingData.type == "bronze") {
-
-            //         pricePackageId_bronze = pricingData.pricePackageId;
-                    
-            //         document.getElementById("price_b").value = pricingData.price;
-            //         document.getElementById("concepts_b").value = pricingData.noOfConcepts;
-            //         document.getElementById("rev_b").value = pricingData.noOfRevisions;
-            //         document.getElementById("duration_b").value = pricingData.deliveryDuration;
-                    
-            //         var deliverables = pricingData.del;
-                    
-            //         var chk = document.getElementsByClassName("chk_bronze");
-
-            //         console.log(chk.length);
-                    
-            //         for (var key in deliverables) {
-            //             if (deliverables.hasOwnProperty(key)) {
-            //                 var value = deliverables[key];
-            //                 for (let i = 0; i < chk.length; i++) {
-            //                     // console.log(chk[i].getAttribute("value"));
-            //                     var ele = chk[i].getAttribute("value")
-
-            //                     if (key == ele && value == 1) {
-            //                         // Check the checkbox if the value is 1
-            //                         chk[i].checked = true;
-            //                     }
-                                
-            //                 }
-
-
-            //             }
-            //         }
-            //     } else if (pricingData.type == "silver") {
-
-            //         pricePackageId_silver = pricingData.pricePackageId;
-
-            //         document.getElementById("price_s").value = pricingData.price;
-            //         // document.getElementById("concepts_s").value = pricingData.noOfConcepts;
-            //         document.getElementById("rev_s").value = pricingData.noOfRevisions;
-            //         document.getElementById("duration_s").value = pricingData.deliveryDuration;
-                    
-            //         var deliverables = pricingData.deliverables;
-                    
-            //         var chk = document.getElementsByClassName("chk_silver");
-
-            //         console.log(chk.length);
-                    
-            //         for (var key in deliverables) {
-            //             if (deliverables.hasOwnProperty(key)) {
-            //                 var value = deliverables[key];
-            //                 console.log(key + " "+ value);
-            //                 for (let i = 0; i < chk.length; i++) {
-            //                     // console.log(chk[i].getAttribute("value"));
-            //                     var ele = chk[i].getAttribute("value")
-
-            //                     if (key == ele && value == 1) {
-            //                         // Check the checkbox if the value is 1
-            //                         chk[i].checked = true;
-            //                     }
-                                
-            //                 }
-
-
-            //             }
-            //         }
-            //     } else if (pricingData.type == "platinum") {
-
-            //         pricePackageId_platinum = pricingData.pricePackageId;
-
-            //         document.getElementById("price_p").value = pricingData.price;
-            //         // document.getElementById("concepts_p").value = pricingData.noOfConcepts;
-            //         document.getElementById("rev_p").value = pricingData.noOfRevisions;
-            //         document.getElementById("duration_p").value = pricingData.deliveryDuration;
-                    
-            //         var deliverables = pricingData.deliverables;
-                    
-            //         var chk = document.getElementsByClassName("chk_platinum");
-
-            //         console.log(chk.length);
-                    
-            //         for (var key in deliverables) {
-            //             if (deliverables.hasOwnProperty(key)) {
-            //                 var value = deliverables[key];
-            //                 for (let i = 0; i < chk.length; i++) {
-            //                     // console.log(chk[i].getAttribute("value"));
-            //                     var ele = chk[i].getAttribute("value")
-
-            //                     if (key == ele && value == 1) {
-            //                         // Check the checkbox if the value is 1
-            //                         chk[i].checked = true;
-            //                     }
-                                
-            //                 }
-
-
-            //             }
-            //         }
-            //     } else {
-            //         alert("Invalid type !")
-            //     }
-            // } else{
-            //     alert("invalid category !")
-            // }
-
-           
         });
+    })
+    .catch(error =>{
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+            confirmButtonColor: "#293692"
+          });
+          console.error("Error: ", error)
     })
 }
 
@@ -291,13 +215,34 @@ function setDeliverables() {
         method: 'GET',
         headers: myHeaders
     })
-    .then((response)=>{
-        if (!response.ok) {
-            throw new Error('Error occured');
-        } else {
-            return response.json();
+    .then(response => 
+        {if(response.status == 401){
+          window.location.href = "../Failed/401.html";
+        }else if(response.status == 406){
+          const currentUrl = encodeURIComponent(window.location.href);
+          window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+        }else if(response.status == 404){
+          window.location.href = "../Failed/404.html";
+        }else if (response.status == 200) {
+          return response.json()
+        } else{
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+                confirmButtonColor: "#293692"
+              });
+          console.log("Error"+response.status)
         }
-    })
+        
+        })
+    // .then((response)=>{
+    //     if (!response.ok) {
+    //         throw new Error('Error occured');
+    //     } else {
+    //         return response.json();
+    //     }
+    // })
     .then((data)=>{
 
 
@@ -352,10 +297,23 @@ function setDeliverables() {
             loadData();
         }
     })
+    .catch(error=>{
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+            confirmButtonColor: "#293692"
+          });
+        console.error("Error: " + error)
+    })
     
     
 }
 
+// Function to check if a value is numeric
+function isNumeric(value) {
+    return /^-?\d*\.?\d+$/.test(value);
+}
 
 // handling submits
 document.getElementById("submit-bronze").addEventListener("click", async function(event){
@@ -367,8 +325,67 @@ document.getElementById("submit-bronze").addEventListener("click", async functio
     var concepts_b = document.getElementById("concepts_b").value;
     var rev_b = document.getElementById("rev_b").value;
     var duration_b = document.getElementById("duration_b").value;
-    // var deliverables_chk = document.querySelectorAll('input[type="checkbox"]:checked');
     var deliverables = document.getElementsByClassName("chk_bronze")
+
+    
+    
+    // Check if price_b is numeric and not empty
+    if (!price_b || !isNumeric(price_b)) {
+        Swal.fire({
+            icon: "warning",
+            title: "Warning",
+            text: "Price must be a numeric value and cannot be empty"
+          });
+        return; // Stop further execution
+    }
+    
+    // Check if concepts_b is numeric and not empty
+    if (!concepts_b || !isNumeric(concepts_b)) {
+        Swal.fire({
+            icon: "warning",
+            title: "Warning",
+            text: "No of conepts must be a numeric value and cannot be empty"
+          });
+        return; // Stop further execution
+    }
+    
+    // Check if a value is selected for rev_b
+    if (rev_b == "none") {
+        Swal.fire({
+            icon: "warning",
+            title: "Warning",
+            text: "Please select no of revisons"
+          });
+        return; // Stop further execution
+    }
+    
+    // Check if a value is selected for duration_b
+    if (duration_b == "none") {
+        Swal.fire({
+            icon: "warning",
+            title: "Warning",
+            text: "Please select a duration"
+          });
+        return; // Stop further execution
+    }
+    
+    // Check if at least one deliverable is selected
+    var isChecked = false;
+    for (var i = 0; i < deliverables.length; i++) {
+        if (deliverables[i].checked) {
+        isChecked = true;
+        break;
+        }
+    }
+    
+    if (!isChecked) {
+        Swal.fire({
+            icon: "warning",
+            title: "Warning",
+            text: "Please select either one of deliverables"
+          });
+        return; // Stop further execution
+    }
 
 
      // Convert deliverables to an array
@@ -408,50 +425,93 @@ document.getElementById("submit-bronze").addEventListener("click", async functio
     }
 
     console.log(pricingData);
-    const operationType = pricePackageId_bronze ? "update" : "insert";
+    console.log("update: "+update_b);
+
+    var operationType = pricePackageId_bronze ? "update" : "insert";
+    operationType = update_b ? "update" : "insert";
 
     var requestUrl = operationType === "update"
     ? `${BASE_URL}/packagepricing?pricePackageId=${pricePackageId_bronze}&deliverablesId=${deliverablesId_bronze}`
     : `${BASE_URL}/packagepricing?packageId=${packageId}`;
 
 
-    try{
-        var response = await fetch(requestUrl, {
+    
+        fetch(requestUrl, {
             method: operationType === "update" ? "PUT" : "POST",
             headers:myHeaders,
             body: JSON.stringify(pricingData),
-        });
-
-        if (response.ok) {
+        })
+        .then(response => 
+            {
+                console.log(response.status);
+                if(response.status == 401){
+              window.location.href = "../Failed/401.html";
+            }else if(response.status == 406){
+              const currentUrl = encodeURIComponent(window.location.href);
+              window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+            }else if(response.status == 404){
+              window.location.href = "../Failed/404.html";
+            }else if (response.status == 200) {
+            //   return response.json()
+            update_b = 1
             console.log(`Prcing data ${operationType}d successfully.`);
+
             // showPopupSuccess();
             if (operationType === "insert") {
                 var rsp = response.json();
                 rsp.then((data) => {
                     pricePackageId_bronze = data.pricePackageId
+                    deliverablesId_bronze = data.deliverablesId
                 })
+
             }
             
             // checkFlagsSuccess();
             var sbtn = document.getElementById("submit-bronze");
             sbtn.innerHTML = "Saved";
             sbtn.style.backgroundColor = "#444";
-        } else {
-            //// unscussess popup
-            // showPopupUnsuccess();
-            // checkFlagsUnsuccess();
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Something went wrong!"
-              });
-            errFlag = 1
-            console.error(`Failed to ${operationType} package data.`);
 
-        }
-    } catch (error) {
-        console.error("An error occurred:", error);
-    }
+            } else{
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!"
+                  });
+                errFlag = 1
+                console.error(`Failed to ${operationType} package data.`);
+                console.log("Error"+response.status)
+            }
+            
+            })
+
+        // if (response.ok) {
+        //     console.log(`Prcing data ${operationType}d successfully.`);
+        //     // showPopupSuccess();
+        //     if (operationType === "insert") {
+        //         var rsp = response.json();
+        //         rsp.then((data) => {
+        //             pricePackageId_bronze = data.pricePackageId
+        //         })
+        //     }
+            
+        //     // checkFlagsSuccess();
+        //     var sbtn = document.getElementById("submit-bronze");
+        //     sbtn.innerHTML = "Saved";
+        //     sbtn.style.backgroundColor = "#444";
+        // } else {
+        //     //// unscussess popup
+        //     // showPopupUnsuccess();
+        //     // checkFlagsUnsuccess();
+        //     Swal.fire({
+        //         icon: "error",
+        //         title: "Oops...",
+        //         text: "Something went wrong!"
+        //       });
+        //     errFlag = 1
+        //     console.error(`Failed to ${operationType} package data.`);
+
+        // }
+   
     
 
 });
@@ -466,8 +526,65 @@ document.getElementById("submit-silver").addEventListener("click", async functio
     var concepts_s = document.getElementById("concepts_s").value;
     var rev_s = document.getElementById("rev_s").value;
     var duration_s = document.getElementById("duration_s").value;
-    
     var deliverables = document.getElementsByClassName("chk_silver");
+
+    // Check if price_b is numeric and not empty
+    if (!price_s || !isNumeric(price_s)) {
+        Swal.fire({
+            icon: "warning",
+            title: "Warning",
+            text: "Price must be a numeric value and cannot be empty"
+          });
+        return; // Stop further execution
+    }
+    
+    // Check if concepts_b is numeric and not empty
+    if (!concepts_s || !isNumeric(concepts_s)) {
+        Swal.fire({
+            icon: "warning",
+            title: "Warning",
+            text: "No of conepts must be a numeric value and cannot be empty"
+          });
+        return; // Stop further execution
+    }
+    
+    // Check if a value is selected for rev_b
+    if (rev_s == "none") {
+        Swal.fire({
+            icon: "warning",
+            title: "Warning",
+            text: "Please select no of revisons"
+          });
+        return; // Stop further execution
+    }
+    
+    // Check if a value is selected for duration_b
+    if (duration_s == "none") {
+        Swal.fire({
+            icon: "warning",
+            title: "Warning",
+            text: "Please select a duration"
+          });
+        return; // Stop further execution
+    }
+    
+    // Check if at least one deliverable is selected
+    var isChecked = false;
+    for (var i = 0; i < deliverables.length; i++) {
+        if (deliverables[i].checked) {
+        isChecked = true;
+        break;
+        }
+    }
+    
+    if (!isChecked) {
+        Swal.fire({
+            icon: "warning",
+            title: "Warning",
+            text: "Please select either one of deliverables"
+          });
+        return; // Stop further execution
+    }
 
     // console.log(deliverables);
 
@@ -506,49 +623,86 @@ document.getElementById("submit-silver").addEventListener("click", async functio
     }
 
     console.log(pricingData);
-    const operationType = pricePackageId_silver ? "update" : "insert";
+    console.log("update :"+update_s);
+    var operationType = pricePackageId_silver ? "update" : "insert";
+    operationType = update_s ? "update" : "insert";
 
     var requestUrl = operationType === "update"
     ? `${BASE_URL}/packagepricing?pricePackageId=${pricePackageId_silver}&deliverablesId=${deliverablesId_silver}`
     : `${BASE_URL}/packagepricing?packageId=${packageId}`;
 
 
-    try{
-        var response = await fetch(requestUrl, {
+        fetch(requestUrl, {
             method: operationType === "update" ? "PUT" : "POST",
             headers:myHeaders,
             body: JSON.stringify(pricingData),
-        });
+        })
+        .then(response => 
+            {if(response.status == 401){
+              window.location.href = "../Failed/401.html";
+            }else if(response.status == 406){
+              const currentUrl = encodeURIComponent(window.location.href);
+              window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+            }else if(response.status == 404){
+              window.location.href = "../Failed/404.html";
+            }else if (response.status == 200) {
+            //   return response.json()
 
-        if (response.ok) {
-            console.log(`Prcing data ${operationType}d successfully.`);
-            // showPopupSuccess();
-            if (operationType === "insert") {
-                var rsp = response.json();
-                rsp.then((data) => {
-                    pricePackageId_silver = data.pricePackageId
-                })
+                update_s = 1;
+                console.log(`Prcing data ${operationType}d successfully.`);
+                // showPopupSuccess();
+                if (operationType === "insert") {
+                    var rsp = response.json();
+                    rsp.then((data) => {
+                        pricePackageId_silver = data.pricePackageId
+                        deliverablesId_silver = data.deliverablesId
+                    })
+                }
+                // checkFlagsSuccess();
+                var sbtn = document.getElementById("submit-silver");
+                sbtn.innerHTML = "Saved";
+                sbtn.style.backgroundColor = "#444";
+
+            } else{
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!"
+                  });
+                errFlag = 1
+                console.error(`Failed to ${operationType} package data.`);
+                console.log("Error"+response.status)
             }
-            // checkFlagsSuccess();
-            var sbtn = document.getElementById("submit-silver");
-            sbtn.innerHTML = "Saved";
-            sbtn.style.backgroundColor = "#444";
-        } else {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Something went wrong!"
-              });
-            //// unscussess popup
-            // showPopupUnsuccess();
-            // checkFlagsUnsuccess();
-            errFlag = 1
-            console.error(`Failed to ${operationType} package data.`);
+            
+            })
 
-        }
-    } catch (error) {
-        console.error("An error occurred:", error);
-    }
+        // if (response.ok) {
+        //     console.log(`Prcing data ${operationType}d successfully.`);
+        //     // showPopupSuccess();
+        //     if (operationType === "insert") {
+        //         var rsp = response.json();
+        //         rsp.then((data) => {
+        //             pricePackageId_silver = data.pricePackageId
+        //         })
+        //     }
+        //     // checkFlagsSuccess();
+        //     var sbtn = document.getElementById("submit-silver");
+        //     sbtn.innerHTML = "Saved";
+        //     sbtn.style.backgroundColor = "#444";
+        // } else {
+        //     Swal.fire({
+        //         icon: "error",
+        //         title: "Oops...",
+        //         text: "Something went wrong!"
+        //       });
+        //     //// unscussess popup
+        //     // showPopupUnsuccess();
+        //     // checkFlagsUnsuccess();
+        //     errFlag = 1
+        //     console.error(`Failed to ${operationType} package data.`);
+
+        // }
+    
     
 
 });
@@ -587,7 +741,63 @@ document.getElementById("submit-platinum").addEventListener("click", async funct
     //     }
     // });
 
-
+    // Check if price_b is numeric and not empty
+    if (!price_p || !isNumeric(price_p)) {
+        Swal.fire({
+            icon: "warning",
+            title: "Warning",
+            text: "Price must be a numeric value and cannot be empty"
+          });
+        return; // Stop further execution
+    }
+    
+    // Check if concepts_b is numeric and not empty
+    if (!concepts_p || !isNumeric(concepts_p)) {
+        Swal.fire({
+            icon: "warning",
+            title: "Warning",
+            text: "No of conepts must be a numeric value and cannot be empty"
+          });
+        return; // Stop further execution
+    }
+    
+    // Check if a value is selected for rev_b
+    if (rev_p == "none") {
+        Swal.fire({
+            icon: "warning",
+            title: "Warning",
+            text: "Please select no of revisons"
+          });
+        return; // Stop further execution
+    }
+    
+    // Check if a value is selected for duration_b
+    if (duration_p == "none") {
+        Swal.fire({
+            icon: "warning",
+            title: "Warning",
+            text: "Please select a duration"
+          });
+        return; // Stop further execution
+    }
+    
+    // Check if at least one deliverable is selected
+    var isChecked = false;
+    for (var i = 0; i < deliverables.length; i++) {
+        if (deliverables[i].checked) {
+        isChecked = true;
+        break;
+        }
+    }
+    
+    if (!isChecked) {
+        Swal.fire({
+            icon: "warning",
+            title: "Warning",
+            text: "Please select either one of deliverables"
+          });
+        return; // Stop further execution
+    }
     var deliverablesArray = Array.from(deliverables);
 
     var deliverablesObject = {};
@@ -613,53 +823,7 @@ document.getElementById("submit-platinum").addEventListener("click", async funct
 
     var pricingData = {}
 
-    // switch (category) {
-    //     case "1":
-    //         pricingData = {
-    //             type: "platinum",
-    //             deliveryDuration: duration_p,
-    //             noOfRevisions: rev_p,
-    //             price: price_p,
-    //             noOfConcepts: concepts_p,
-    //             packageId: packageId,
-    //             deliverables: deliverablesObject
-    //         }
-    //         break;
-    
-    //     case "2":
-    //         pricingData = {
-    //             type: "platinum",
-    //             deliveryDuration: duration_p,
-    //             noOfRevisions: rev_p,
-    //             price: price_p,
-    //             noOfConcepts: concepts_p,
-    //             packageId: packageId,
-    //             deliverables: deliverablesObject
-    //         }
-    //         break;
-    
-    //     case "3":
-    //         pricingData = {
-    //             type: "platinum",
-    //             deliveryDuration: duration_p,
-    //             noOfRevisions: rev_p,
-    //             price: price_p,
-    //             packageId: packageId,
-    //             deliverables: deliverablesObject
-    //         }
-    //         break;
-    
-    //     default:
-    //         pricingData = {
-    //             type: "platinum",
-    //             deliveryDuration: duration_p,
-    //             noOfRevisions: rev_p,
-    //             price: price_p,
-    //             packageId: packageId,
-    //             deliverables: deliverablesObject
-    //         }
-    //         break;
-    // }
+   
 
     var pricingData = {
         type: "platinum",
@@ -672,50 +836,87 @@ document.getElementById("submit-platinum").addEventListener("click", async funct
     }
 
     console.log(pricingData);
-    const operationType = pricePackageId_platinum ? "update" : "insert";
-
+    var operationType = pricePackageId_platinum ? "update" : "insert";
+    operationType = update_p ? "update" : "insert";
+    console.log(update_p);
     var requestUrl = operationType === "update"
     ? `${BASE_URL}/packagepricing?pricePackageId=${pricePackageId_platinum}&deliverablesId=${deliverablesId_platinum}`
     : `${BASE_URL}/packagepricing?packageId=${packageId}`;
 
 
-    try{
-        var response = await fetch(requestUrl, {
+
+        fetch(requestUrl, {
             method: operationType === "update" ? "PUT" : "POST",
             headers:myHeaders,
             body: JSON.stringify(pricingData),
-        });
+        })
+        .then(response => 
+            {if(response.status == 401){
+              window.location.href = "../Failed/401.html";
+            }else if(response.status == 406){
+              const currentUrl = encodeURIComponent(window.location.href);
+              window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+            }else if(response.status == 404){
+              window.location.href = "../Failed/404.html";
+            }else if (response.status == 200) {
+                //   return response.json()
+                update_p = 1
+                console.log(`Prcing data ${operationType}d successfully.`);
+                // showPopupSuccess();
+                if (operationType === "insert") {
+                    var rsp = response.json();
+                    rsp.then((data) => {
+                        pricePackageId_platinum = data.pricePackageId
+                        deliverablesId_platinum = data.deliverablesId
+                    })
+                }
+                // checkFlagsSuccess();
+                var sbtn = document.getElementById("submit-platinum");
+                sbtn.innerHTML = "Saved";
+                sbtn.style.backgroundColor = "#444";
 
-        if (response.ok) {
-            console.log(`Prcing data ${operationType}d successfully.`);
-            // showPopupSuccess();
-            if (operationType === "insert") {
-                var rsp = response.json();
-                rsp.then((data) => {
-                    pricePackageId_platinum = data.pricePackageId
-                })
-            }
-            // checkFlagsSuccess();
-            var sbtn = document.getElementById("submit-platinum");
-            sbtn.innerHTML = "Saved";
-            sbtn.style.backgroundColor = "#444";
-        } else {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Something went wrong!",
-                confirmButtonColor: "#293692"
-              });
-            //// unscussess popup
-            // showPopupUnsuccess();
-            // checkFlagsUnsuccess();
-            errFlag = 1;
-            console.error(`Failed to ${operationType} package data.`);
+                } else{
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Something went wrong!",
+                        confirmButtonColor: "#293692"
+                    });
+                    errFlag = 1;
+                    console.error(`Failed to ${operationType} package data.`);
+                    console.log("Error"+response.status)
+                }
+            
+            })
 
-        }
-    } catch (error) {
-        console.error("An error occurred:", error);
-    }
+        // if (response.ok) {
+        //     console.log(`Prcing data ${operationType}d successfully.`);
+        //     // showPopupSuccess();
+        //     if (operationType === "insert") {
+        //         var rsp = response.json();
+        //         rsp.then((data) => {
+        //             pricePackageId_platinum = data.pricePackageId
+        //         })
+        //     }
+        //     // checkFlagsSuccess();
+        //     var sbtn = document.getElementById("submit-platinum");
+        //     sbtn.innerHTML = "Saved";
+        //     sbtn.style.backgroundColor = "#444";
+        // } else {
+        //     Swal.fire({
+        //         icon: "error",
+        //         title: "Oops...",
+        //         text: "Something went wrong!",
+        //         confirmButtonColor: "#293692"
+        //       });
+        //     //// unscussess popup
+        //     // showPopupUnsuccess();
+        //     // checkFlagsUnsuccess();
+        //     errFlag = 1;
+        //     console.error(`Failed to ${operationType} package data.`);
+
+        // }
+
     
 
 });
@@ -782,6 +983,7 @@ document.getElementById("submit-platinum").addEventListener("click", async funct
 //   }
 
 function checkFlagsSuccess(){
+    console.log("IN FLAG SUCCESS");
     if (btn_bronze && btn_silver && btn_platinum) {
         // showPopupSuccess();
         Swal.fire({
@@ -824,6 +1026,7 @@ function checkFlagsSuccess(){
 }
 
 function checkFlagsUnsuccess(){
+    console.log("IN FLAG UNSUCCESS");
     if (btn_bronze && btn_silver && btn_platinum) {
         // showPopupUnsuccess()
         Swal.fire({
