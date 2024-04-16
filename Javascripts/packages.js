@@ -28,15 +28,13 @@ const pend = document.getElementById("pending")
 const paus = document.getElementById("paused")
 
 act.addEventListener("click", laodActivePkg)
-pend.addEventListener("click", laodPendingPkg)
+// pend.addEventListener("click", laodPendingPkg)
 paus.addEventListener("click", laodPausedPkg)
 
 function laodActivePkg() {
-  // Replace 'YOUR_API_URL' with the actual URL where your JSON data is hosted.
-  // const apiUrl = 'http://localhost:15000/enmo_skill_backend_war/package'; not needed
-
+  
     act.setAttribute("class", "active")
-    pend.removeAttribute("class", "active")
+    // pend.removeAttribute("class", "active")
     paus.removeAttribute("class", "active")
 
     document.getElementById("title").innerHTML = "Active Packages"
@@ -49,13 +47,41 @@ function laodActivePkg() {
 
     // console.log(BASE_URL+"/package");
   fetch(BASE_URL+"/package?&packageId="+0, requestOptions)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
+    // .then((response) => {
+    //   if (!response.ok) {
+    //     throw new Error('Network response was not ok');
+    //   }
+    //   return response.json();
+    // })
+    .then(response => 
+      {if(response.status == 401){
+        window.location.href = "../Failed/401.html";
+      }else if(response.status == 406){
+        const currentUrl = encodeURIComponent(window.location.href);
+        window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+      }else if(response.status == 404){
+        window.location.href = "../Failed/404.html";
+      }else if (response.status == 200) {
+        return response.json();
+      } else{
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!"
+        });
+        console.log("Error"+response.status)
       }
-      return response.json();
-    })
+      
+      })
     .then((data) => {
+
+      if (data == null) {
+        Swal.fire({
+          icon: "info",
+          // title: "Oops...",
+          text: "No packages!"
+        });
+      }
       // Assuming data is an array of objects similar to your active_packages.
 
         const content = document.getElementById('content');
@@ -139,16 +165,19 @@ function laodActivePkg() {
       });
     })
     .catch((error) => {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!"
+      });
       console.error('Error fetching data:', error);
     });
 }
 
 function laodPausedPkg() {
-    // Replace 'YOUR_API_URL' with the actual URL where your JSON data is hosted.
-    // const apiUrl = 'http://localhost:15000/enmo_skill_backend_war/package';
-
+    
     paus.setAttribute("class", "active")
-    pend.removeAttribute("class", "active")
+    // pend.removeAttribute("class", "active")
     act.removeAttribute("class", "active")
 
     document.getElementById("title").innerHTML = "Paused Packages"
@@ -160,13 +189,46 @@ function laodPausedPkg() {
     };
   
     fetch(BASE_URL+"/package?&packageId="+0, requestOptions)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
+    .then(response => 
+      {if(response.status == 401){
+        window.location.href = "../Failed/401.html";
+      }else if(response.status == 406){
+        const currentUrl = encodeURIComponent(window.location.href);
+        window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+      }else if(response.status == 404){
+        window.location.href = "../Failed/404.html";
+      }else if (response.status == 200) {
         return response.json();
+      } else{
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!"
+        });
+        console.log("Error"+response.status)
+      }
+      
       })
+      // .then((response) => 
+      // {
+      //   if (!response.ok) {
+      //     throw new Error('Network response was not ok');
+      //   }
+      //   return response.json();
+      // })
       .then((data) => {
+
+
+      //   if((data).length == 0){
+      //     console.log("no data found");
+      // }
+        // if (data == null) {
+        //   Swal.fire({
+        //     icon: "info",
+        //     // title: "Oops...",
+        //     text: "No packages!"
+        //   });
+        // }
         // Assuming data is an array of objects similar to your active_packages.
 
         const content = document.getElementById('content');
@@ -257,6 +319,11 @@ function laodPausedPkg() {
         });
       })
       .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!"
+        });
         console.error('Error fetching data:', error);
       });
   }
@@ -278,12 +345,32 @@ function laodPendingPkg() {
     };
 
     fetch(BASE_URL+"/package?&packageId="+0, requestOptions)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Cannot get data');
+    .then(response => 
+      {if(response.status == 401){
+        window.location.href = "../Failed/401.html";
+      }else if(response.status == 406){
+        const currentUrl = encodeURIComponent(window.location.href);
+        window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+      }else if(response.status == 404){
+        window.location.href = "../Failed/404.html";
+      }else if (response.status == 200) {
+        return response.json()
+      } else{
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!"
+        });
+        console.log("Error"+response.status)
       }
-      return response.json();
-    })
+      
+      })
+    // .then((response) => {
+    //   if (!response.ok) {
+    //     throw new Error('Cannot get data');
+    //   }
+    //   return response.json();
+    // })
     .then((data) => {
       // Assuming data is an array of objects similar to your active_packages.
 
@@ -366,6 +453,11 @@ function laodPendingPkg() {
       });
     })
     .catch((error) => {
+       Swal.fire({
+         icon: "error",
+         title: "Oops...",
+         text: "Something went wrong!"
+       });
       console.error('Error fetching data:', error);
     });
 }
@@ -377,10 +469,7 @@ function populateForm(selectedData) {
 
   const url = updae_form_url +
                 '?packageId='+encodeURIComponent(selectedData.packageId)
-                // '&title=' + encodeURIComponent(selectedData.title) +
-                // '&category=' + encodeURIComponent(selectedData.category) +
-                // '&description=' + encodeURIComponent(selectedData.description);
-
+              
   window.location = url;
 
 
@@ -433,16 +522,23 @@ function deletePackage(selectedData) {
     confirmButtonText: "Yes, delete it!"
   }).then((result) => {
     if (result.isConfirmed) {
-      const deleteUrl = `http://localhost:15000/enmo_skill_backend_war/package?packageId=${packageId}`;
+      // const deleteUrl = `http://localhost:15000/enmo_skill_backend_war/package?packageId=${packageId}`;
 
       fetch(BASE_URL + "/package?packageId=" + packageId, {
           method: 'DELETE',
           headers: myHeaders,
           body: JSON.stringify(selectedData),
         })
-        .then((response) => {
-          if (response.ok) {
-            // Successful deletion, you can handle this as needed
+        .then(response => 
+          {if(response.status == 401){
+            window.location.href = "../Failed/401.html";
+          }else if(response.status == 406){
+            const currentUrl = encodeURIComponent(window.location.href);
+            window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+          }else if(response.status == 404){
+            window.location.href = "../Failed/404.html";
+          }else if (response.status == 200) {
+            // return response;
             console.log(`Package with packageId ${packageId} deleted successfully.`);
             Swal.fire({
               title: "Deleted!",
@@ -451,15 +547,53 @@ function deletePackage(selectedData) {
             }).then((result) => {
               if (result.isConfirmed) {
                 location.replace(location.href);
-              }
+                }
+              });
+          } else{
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Something went wrong!"
             });
-          } else {
-            // Handle errors
-            alert("Failed to delete package");
-            console.error(`Failed to delete package with packageId ${packageId}.`);
+            console.log("Error"+response.status)
           }
-        })
+          
+          })
+          // .then((data) => {
+          //   console.log(`Package with packageId ${packageId} deleted successfully.`);
+          //   Swal.fire({
+          //     title: "Deleted!",
+          //     text: "Your package has been deleted.",
+          //     icon: "success"
+          //   }).then((result) => {
+          //     if (result.isConfirmed) {
+          //       location.replace(location.href);
+          //       }
+          //     });
+          // // if (response.ok) {
+          // //   // Successful deletion, you can handle this as needed
+          // //   console.log(`Package with packageId ${packageId} deleted successfully.`);
+          // //   Swal.fire({
+          // //     title: "Deleted!",
+          // //     text: "Your package has been deleted.",
+          // //     icon: "success"
+          // //   }).then((result) => {
+          // //     if (result.isConfirmed) {
+          // //       location.replace(location.href);
+          // //     }
+          // //   });
+          // // } else {
+          // //   // Handle errors
+          // //   alert("Failed to delete package");
+          // //   console.error(`Failed to delete package with packageId ${packageId}.`);
+          // // }
+          //   })
         .catch((error) => {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!"
+          });
           console.error('Error deleting package:', error);
         });
     }
@@ -482,24 +616,68 @@ function changeStatus(newStatus, selectedData){
     headers: myHeaders,
     body: JSON.stringify(selectedData),
   })
-    .then((response) => {
-      if (response.ok) {
-        // Successful deletion, you can handle this as needed
+  .then(response => 
+    {console.log(response.status);
+      if(response.status == 401){
+      window.location.href = "../Failed/401.html";
+    }else if(response.status == 406){
+      const currentUrl = encodeURIComponent(window.location.href);
+      window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+    }else if(response.status == 404){
+      window.location.href = "../Failed/404.html";
+    }else if (response.status == 200) {
+      // return response.json()
+      Swal.fire({
+        icon: "success",
+        title: "Updated",
+        text: "Status updated!"
+      }).then((result) => {
+          if (result.isConfirmed) {
+            if (newStatus == "paused") {
+                    // laodPausedPkg()
+                    laodActivePkg()
+                  } else {
+                    laodActivePkg()
+                  }
 
-        if (newStatus == "paused") {
-          // laodPausedPkg()
-          laodActivePkg()
-        } else {
-          laodActivePkg()
-        }
-       
-        
-        // Handle errors
-        // alert("Failed to delete package");
-        console.error(`status changed with packageId ${packageId}.`);
-      }
+                  console.log(`status changed with packageId ${packageId}.`);
+          }
+      })
+    } else{
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!"
+      });
+      console.log("Error"+response.status)
+    }
+    
     })
+    .then((data) => {
+      Swal.fire({
+        icon: "success",
+        title: "Updated",
+        text: "Status updated!"
+      }).then((result) => {
+          if (result.isConfirmed) {
+            if (newStatus == "paused") {
+                    // laodPausedPkg()
+                    laodActivePkg()
+                  } else {
+                    laodActivePkg()
+                  }
+
+                  console.log(`status changed with packageId ${packageId}.`);
+          }
+      })
+    })
+
     .catch((error) => {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!"
+      });
       console.error('Error updating status:', error);
     });
 
