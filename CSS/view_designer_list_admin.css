@@ -513,3 +513,7 @@ li a:hover {
   width: 100%;
   border-collapse: collapse;
 }
+
+*:focus {
+  outline: none;
+}

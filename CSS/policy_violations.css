@@ -628,5 +628,7 @@ body {
   border-radius: 7px;
 }
 
-
+*:focus {
+  outline: none;
+}
 
