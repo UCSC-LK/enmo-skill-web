@@ -33,6 +33,9 @@ function getCookie(cookieName) {
   const fileSupportText = document.querySelector('.drop_box p');
   var selectedFile = null;
 
+  var coverUrl_selected = null;
+  var upload_btn = false;
+
 
   document.addEventListener("DOMContentLoaded", function() {
 
@@ -99,6 +102,8 @@ function loadData(){
         document.getElementById("title").value = data.title;
         document.getElementById("category").value = data.category;
         document.getElementById("description").value = data.description;
+        coverUrl_selected = data.coverUrl
+        selectedFile = data.selectedFile
 
         // Split the URL by '/'
         var parts = data.coverUrl.split('/');
@@ -117,6 +122,8 @@ const form = document.getElementById("package_form");
 
 
   uploadButton.addEventListener('click', function() {
+    upload_btn = true;
+
     fileInput.click();
   //   uploadFile(fileInput)
   });
@@ -173,7 +180,8 @@ document.getElementById("button-next").addEventListener("click", async (e) => {
     const title = document.getElementById("title").value;
     const category = document.getElementById("category").value;
     const description = document.getElementById("description").value;
-    // const cover_img = document.getElementById("img").files[0];
+
+    // const cover_img = fileInput.files[0];
     console.log(category);
 
     if (title.trim() === "" || description.trim()=== "" || category == 0) {
@@ -186,6 +194,14 @@ document.getElementById("button-next").addEventListener("click", async (e) => {
         
     var img_url = null;
 
+    console.log(upload_btn);
+    console.log("hello before if");
+    if (!upload_btn) {
+        console.log("hello in the if");
+        saveData(title, category, description, coverUrl_selected)
+    }
+
+    console.log("hello after if");
 
     // store cover image
     const headers = new Headers();
