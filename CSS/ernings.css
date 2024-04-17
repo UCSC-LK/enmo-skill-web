@@ -57,6 +57,7 @@ body{
     border-bottom: solid;
     border-color:#ebebeb;
     margin-top: 30px;
+    
 }
 .aline{
     text-align: left;
@@ -67,6 +68,7 @@ body{
     grid-template-columns: 32.7% 32.7% 32.7%;
     gap: 11px;
     margin-top: 25px;
+    
 }
 
 
@@ -75,6 +77,7 @@ body{
     font-size: 18px;
     color:  #3C3C3C;
     text-align: left;
+    margin-bottom: 10px;
 }
 
 .upper-table{
@@ -85,6 +88,7 @@ body{
     border-color: #ebebeb;
     border-radius: 10px;
     height: 300px;
+    padding: 20px;
 }
 
 .table-text{

@@ -28,8 +28,8 @@ const loding = document.querySelector(".loading");
 
 loding.style.display ="none"
 
-tableLoad("all")
-all.style.color="#000000"
+tableLoad("me")
+me.style.color="#000000"
 
 all.addEventListener("click",()=>{
   

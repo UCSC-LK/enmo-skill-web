@@ -30,7 +30,7 @@ body{
     color: #9D9D9D;
     padding: 10px;
     display: grid;
-    grid-template-columns: 5% 5% 9% 10% 6% 65%;
+    grid-template-columns: 8% 4% 9% 10% 6% 65%;
     align-items:center;    
 }
 
