@@ -69,6 +69,12 @@ function getdata(ticketID,flag){
             document.querySelector(".date").textContent = element.date;
             document.querySelector(".role").textContent = role;
             document.querySelector(".ticketId").textContent = "Ticket Id: #"+ element.ref_no;
+            var userId=element.requesterID;
+
+              document.querySelector(".view-icon-main").addEventListener("click",()=>{
+                window.location="../HTML/policy_violations.html?userId="+userId;
+              })
+    
             // document.querySelector(".header").textContent = element.date;
 
 
@@ -162,7 +168,8 @@ function getdata(ticketID,flag){
     //bottom buttons----------------------------------------------
     var cloase = document.querySelector(".closeBTN")
     var reject = document.querySelector(".rejectBTN")
-    var comment = document.querySelector(".commentBTN")    
+    var comment = document.querySelector(".commentBTN")
+    var view = document.querySelector(".view-icon-main")    
     cloase.style.display = "none";
     reject.style.display = "none";
     comment.style.display = "none";
@@ -172,6 +179,7 @@ function getdata(ticketID,flag){
         cloase.style.display = "inline";
         reject.style.display = "inline";
         comment.style.display = "inline";
+        view.style.display = "flex";
     }
 
     var desition = null;
@@ -190,7 +198,8 @@ function getdata(ticketID,flag){
 
     comment.addEventListener("click",()=>{
         viewrequest2(ticketID)
-    })   
+    }) 
+    
   
     })
     .catch(error => console.log('error', error));

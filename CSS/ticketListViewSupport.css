@@ -95,8 +95,31 @@ h2{
 .header{
     margin: 0px;
 }
+.em{
+    display: flex;
+    gap: 10px;
+}
+
 .email{
     margin: 0px;
+}
+.view-icon-main{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+}
+.view-icon-main:hover{
+    background-color:#dedede;
+    cursor: pointer;
+}
+
+.view-icon{
+    width: 18px;
+    height: auto;
+    
 }
 
 .profile-pic{
