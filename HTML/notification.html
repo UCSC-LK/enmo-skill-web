@@ -9,6 +9,38 @@
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     
     <title>Notifications</title>
+    <style>
+        .one-item{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .unread{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+            background-color: #bcf3ff2c;
+            border-bottom: #68e3ff9a solid 3px;
+        }
+        .time{
+            margin-left: auto;
+            color: #a3a3a3;
+            font-size: x-small;
+            font-weight: bold;
+            width: 80px;
+            align-self: self-end;
+            margin-bottom: -5px;
+            text-align: end;
+            padding-right: 10px;
+
+        }
+    </style>
 </head>
 
 <body>
@@ -24,39 +56,104 @@
                     
                     
                     <div class="ct-bottom"><box-icon name='offer' type='solid' rotate='90' color='#a3a3a3' size = '20px' ></box-icon>
-                        <p><span id="count">3</span>  Unread Notifications</p>
+                        <p><span id="count">0</span>  Unread Notifications</p>
                     </div>
                     
                 </div>
             </div>
             
             <div class="table" id="table">
+                
                 <div class="upper">
-                    <p>Notifications</p>
-                </div>
-                <!-- <div class="row-main">
-                    <p class="date-main">DATE</p>
-                    <p class="dis">REQUEST</p>
-                    <p class="duration-main">DURATION</p>
-                    <p class="budget-main">BUDGET</p>
-                    <div class="panel"></div>
-                </div> -->
-                <div class="row">
-                    <box-icon type='solid' name='info-circle' size ="50px" style="padding: 0 20px;"></box-icon>
-                    <p >Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque id laboriosam consequatur rem vero? Laudantium facilis omnis ad alias recusandae temporibus, minus vero ipsa, consectetur, dolore id qui commodi ab.</p>
-                </div>
-                <div class="row">
                     
-                    <box-icon type='solid' name='badge-dollar' size ="50px" style="padding: 0 20px;"></box-icon>
-                    <p >Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque id laboriosam consequatur rem vero? Laudantium facilis omnis ad alias recusandae temporibus, minus vero ipsa, consectetur, dolore id qui commodi ab.</p>
                 </div>
-                <div class="row">
-                    <box-icon type='solid' name='time-five' size ="50px" style="padding: 0 20px;"></box-icon>
-                    <p >Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque id laboriosam consequatur rem vero? Laudantium facilis omnis ad alias recusandae temporibus, minus vero ipsa, consectetur, dolore id qui commodi ab.</p>
+                <div class="unread">
+                    <box-icon type='solid' name='info-circle' size ="50px" style="padding: 0 20px;"></box-icon>
+                    <p class="contentofn">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque id laboriosam consequatur rem vero? Laudantium facilis omnis ad alias recusandae temporibus, minus vero ipsa, consectetur, dolore id qui commodi ab.</p>
+                    <p class="time">12:00 PM</p>
                 </div>
+                <div class="one-item">
+                    <box-icon type='solid' name='info-circle' size ="50px" style="padding: 0 20px;"></box-icon>
+                    <p class="contentofn">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque id laboriosam consequatur rem vero? Laudantium facilis omnis ad alias recusandae temporibus, minus vero ipsa, consectetur, dolore id qui commodi ab.</p>
+                    <p class="time">12:00 PM</p>
+                </div>
+                
             </div>
 
         </div>
     </div>
+<script>
+    function getCookie(cookieName) {
+        var name = cookieName + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var cookieArray = decodedCookie.split(";");
+
+        for (var i = 0; i < cookieArray.length; i++) {
+            var cookie = cookieArray[i].trim();
+            if (cookie.indexOf(name) == 0) {
+            return cookie.substring(name.length, cookie.length);
+            }
+        }
+        return null;
+    }
+    const count = document.getElementById("count");
+    listItemTemplate = document.querySelector(".one-item");
+    listContainer=document.getElementById("table");
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", getCookie("JWT"));
+
+    const requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow"
+    };
+
+    fetch("http://localhost:15000/enmo_skill_backend_war/notification", requestOptions)
+    .then(response => 
+    {if(response.status == 401){
+      window.location.href = "../Failed/401.html";
+    }else if(response.status == 406){
+      const currentUrl = encodeURIComponent(window.location.href);
+      window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+    }else if(response.status == 404){
+      window.location.href = "../Failed/404.html";
+    }else {
+      return response.json()
+    }
+    })
+  .then(result => {
+    console.log(result)
+    count.innerText=result.count;
+    result.notifications.forEach(item => {
+    
+        const newItem = listItemTemplate.cloneNode(true);
+        // newItem.addEventListener("click",(event )=>{
+        //   event.stopPropagation();
+        // })
+        
+        
+
+
+
+        newItem.querySelector(".contentofn").textContent = item.content;
+        newItem.querySelector(".time").textContent = item.date;
+        
+        
+        
+        
+        newItem.classList.remove("row-hidden");
+        if(item.status==1){
+            newItem.classList.add("row"); 
+        }else{
+            
+        }
+        
+       
+        listContainer.appendChild(newItem);
+    })
+
+  })
+  .catch(error => console.log('error', error));
+</script>
 </body>
 
