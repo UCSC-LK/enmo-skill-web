@@ -664,14 +664,14 @@ input[type="range"]::-webkit-slider-thumb::before {
     clip-path: circle(at center);
     display: flex;
     justify-content: flex-start; 
-    transition: transform .3s;
+    /* transition: transform .3s; */
     
 }
 
 .profile-details-content{
     padding: 20px;
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     justify-content: center;
     flex-direction: column;
     border: 1px solid #ebebeb;
@@ -712,10 +712,10 @@ input[type="range"]::-webkit-slider-thumb::before {
 }
 
 
-@keyframes progress {
+/* @keyframes progress {
     0% { --percentage: 0; }
     100% { --percentage: var(--value); }
-  }
+  } */
   
   @property --percentage {
     syntax: '<number>';
@@ -777,11 +777,11 @@ input[type="range"]::-webkit-slider-thumb::before {
     padding-bottom: 20px;
   }
 
-  .progress-div{
+  /* .progress-div{
     display: flex;
     align-items: center;
     flex-direction: column;
-  }
+  } */
 
 
   @keyframes countup {
@@ -793,10 +793,67 @@ input[type="range"]::-webkit-slider-thumb::before {
     }
 }
 
-h1 {
+/* h1 {
     animation: countup 1s ease-in-out forwards;
+} */
+
+/* 
+.progress {
+  background: rgba(255,255,255,0.1);
+  justify-content: flex-start;
+  border-radius: 100px;
+  align-items: center;
+  position: relative;
+  padding: 0 5px;
+  display: flex;
+  height: 40px;
+  width: 500px;
+} */
+
+/* .progress-value {
+  animation: load 3s normal forwards;
+  box-shadow: 0 10px 40px -10px #fff;
+  border-radius: 100px;
+  background: #fff;
+  height: 30px;
+  width: 0;
 }
 
+@keyframes load {
+  0% { width: 0; }
+  100% { width: var(--value); }
+} */
 
+.progress-div {
+  display: flex;
+  align-items:flex-start;
+  flex-direction: column;
+  width: 100%; /* Set the width of the progress div */
+  border: 1px solid #ccc; /* Optional: Add a border */
+  margin-top: 20px; /* Optional: Add some margin */
+  border-radius: 20px;
+  padding: 2px;
+}
 
+.progress-value {
+  border-radius: 10px;
+  width: 0%; /* Initial width */
+  height: 7px; /* Height of the progress bar */
+  background-color: #007BFF; /* Color of the progress bar */
+  transition: width 0.3s ease-in-out; /* Optional: Add smooth transition */
+}
 
+.progress-text {
+  margin-top: 10px; /* Add some margin between progress bar and text */
+  font-size: 16px; /* Optional: Adjust font size */
+  margin-left: 10px;
+  font-weight: lighter;
+  font-size: 14px;
+}
+
+.progress{
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  
+}

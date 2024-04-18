@@ -48,3 +48,14 @@ typeWriter(p3, "Ratings", 50);
     }
     type();
 }
+// Sample p_value
+let p_value = 50; // This value should be between 0 and 100
+
+// Set the width of progress bar based on p_value
+const progressValue = document.getElementById("progressValue");
+progressValue.style.width = p_value + "%";
+
+// Update the progress bar text
+const progressText = document.getElementById("progressText");
+progressText.innerText = p_value + "%";
+

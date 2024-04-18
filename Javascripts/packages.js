@@ -87,6 +87,16 @@ function laodActivePkg() {
         const content = document.getElementById('content');
         content.innerHTML = ""
 
+        const activeCount = data.filter(item => item.status === 'active').length;
+
+        if (activeCount == 0) {
+          Swal.fire({
+            icon: "info",
+            text: "No acitve items",
+          });
+          
+        }
+
       data.forEach((element) => {
 
         const row = document.createElement('div');
@@ -235,7 +245,19 @@ function laodPausedPkg() {
         
         content.innerHTML = ""
 
+        const pausedCount = data.filter(item => item.status === 'paused').length;
+
+        if (pausedCount == 0) {
+          Swal.fire({
+            icon: "info",
+            text: "No paused items",
+          });
+          
+        }
+
+
         data.forEach((element) => {
+
           
           if (element.status == "paused") {
               

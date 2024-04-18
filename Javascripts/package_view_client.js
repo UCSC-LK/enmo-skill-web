@@ -22,7 +22,13 @@ const url = new URL(window.location.href);
 const packageId = url.searchParams.get('packageId');
 console.log(packageId);
 
-// var deseignerId;
+var tableCreated = false;
+
+var package_data;
+var designer_data;
+var pricing_data;
+let overlay_view=document.getElementById("overlay");
+
 
 document.addEventListener("DOMContentLoaded", loadData());
 
@@ -40,9 +46,9 @@ function loadData() {
     })
     .then((resultset) =>{
         
-        var package_data = resultset.packageModel;
-        var designer_data = resultset.profileModel;
-        var pricing_data = resultset.pricings;
+        package_data = resultset.packageModel;
+        designer_data = resultset.profileModel;
+        pricing_data = resultset.pricings;
 
         // console.log(pricing_data.pricing[0].noOfRevisions);
 
@@ -163,250 +169,6 @@ function loadData() {
         
         })
 
-        // switch (package_data.category) {
-        //     case 1:
-
-        //         var data_rows = [
-        //             ["Price (Rs)"],
-        //             ["No of Revisions"],
-        //             ["Delivery Duration"],
-        //             ["No of Concepts"],
-        //             ["Logo Transparency"],
-        //             ["Vector File"],
-        //             ["Printable file"],
-        //             ["3D Mockup"],
-        //             ["Source file"],
-        //             ["Social media kit"],
-        //             [""]
-                
-        //         ]
-                
-        //         pricing_data.forEach(function(pricingItem){
-        //             data_rows[0].push(pricingItem.price)
-        //             data_rows[1].push(pricingItem.noOfRevisions)
-        //             data_rows[2].push((pricingItem.deliveryDuration==1)?"1 Day":pricingItem.deliveryDuration+" Days")
-        //             data_rows[3].push(pricingItem.noOfConcepts)
-        //             data_rows[4].push((pricingItem.deliverables.logoTransparency==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[5].push((pricingItem.deliverables.vectorFile==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[6].push((pricingItem.deliverables.printableFile==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[7].push((pricingItem.deliverables.mockup==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[8].push((pricingItem.deliverables.sourceFile==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[9].push((pricingItem.deliverables.socialMediaKit==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[10].push('<button class="button-save" onclick="createOrder('+pricingItem.price, +')">Select</button>')
-        //         })
-                
-        //         data_rows.forEach(function(row){
-        //             var tr = document.createElement('tr');
-        //             tbody.appendChild(tr);
-                
-        //             if (row[0] == "Price (Rs)") {
-        //                 var i = 0
-        //                 row.forEach(function(cell){
-        //                     var td = document.createElement('td');
-        //                     tr.appendChild(td);
-        //                     td.innerHTML = cell;
-        //                     if (i > 0) {
-        //                         td.className = "price"
-        //                     }
-        //                     i += 1
-                
-        //                 })
-        //             } else {
-        //                 row.forEach(function(cell){
-                        
-        //                     var td = document.createElement('td');
-        //                     tr.appendChild(td);
-        //                     td.innerHTML = cell;
-                
-        //                 })
-                     
-        //             }
-                
-                    
-                
-        //         })
-                
-        //         break;
-
-        //     case 2:
-
-        //         var data_rows = [
-        //             ["Price (Rs)"],
-        //             ["No of Revisions"],
-        //             ["Delivery Duration"],
-        //             ["No of Figures"],
-        //             ["Source File"],
-        //             ["High Resolution"],
-        //             ["Background/scene"],
-        //             ["Color"],
-        //             ["Full Body"],
-        //             ["Commercial Use"],
-        //             [""]
-                
-        //         ]
-                
-        //         pricing_data.forEach(function(pricingItem){
-        //             data_rows[0].push(pricingItem.price)
-        //             data_rows[1].push(pricingItem.noOfRevisions)
-        //             data_rows[2].push((pricingItem.deliveryDuration==1)?"1 Day":pricingItem.deliveryDuration+" Days")
-        //             data_rows[3].push(pricingItem.noOfConcepts)
-        //             data_rows[4].push((pricingItem.deliverables.sourceFile==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[5].push((pricingItem.deliverables.highResolution==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[6].push((pricingItem.deliverables.background_scene==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[7].push((pricingItem.deliverables.colour==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[8].push((pricingItem.deliverables.fullBody==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[9].push((pricingItem.deliverables.commercialUse==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[10].push('<button class="button-save" onclick="createOrder('+pricingItem.price+')">Select</button>')
-        //         })
-                
-        //         data_rows.forEach(function(row){
-        //             var tr = document.createElement('tr');
-        //             tbody.appendChild(tr);
-                
-        //             if (row[0] == "Price (Rs)") {
-        //                 var i = 0
-        //                 row.forEach(function(cell){
-        //                     var td = document.createElement('td');
-        //                     tr.appendChild(td);
-        //                     td.innerHTML = cell;
-        //                     if (i > 0) {
-        //                         td.className = "price"
-        //                     }
-        //                     i += 1
-                
-        //                 })
-        //             } else {
-        //                 row.forEach(function(cell){
-                        
-        //                     var td = document.createElement('td');
-        //                     tr.appendChild(td);
-        //                     td.innerHTML = cell;
-                
-        //                 })
-                     
-        //             }
-                
-                    
-                
-        //         })
-        //         break;
-
-        //     case 3:
-
-        //         var data_rows = [
-        //             ["Price (Rs)"],
-        //             ["No of Revisions"],
-        //             ["Delivery Duration"],
-        //             ["Printable File"],
-        //             ["Source File"],
-        //             ["Double-sided"],
-        //             ["Custom Graphics"],
-        //             ["Photo editing"],
-        //             ["Commercial Use"],
-        //             [""]
-                
-        //         ]
-                
-        //         pricing_data.forEach(function(pricingItem){
-        //             data_rows[0].push(pricingItem.price)
-        //             data_rows[1].push(pricingItem.noOfRevisions)
-        //             data_rows[2].push((pricingItem.deliveryDuration==1)?"1 Day":pricingItem.deliveryDuration+" Days")
-        //             data_rows[3].push((pricingItem.deliverables.printableFile==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[4].push((pricingItem.deliverables.sourceFile==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[5].push((pricingItem.deliverables.doubleSided==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[6].push((pricingItem.deliverables.customGraphics==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[7].push((pricingItem.deliverables.photoEditing==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[8].push((pricingItem.deliverables.commercialUse==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[9].push('<button class="button-save" onclick="createOrder('+pricingItem.price+')">Select</button>')
-        //         })
-                
-        //         data_rows.forEach(function(row){
-        //             var tr = document.createElement('tr');
-        //             tbody.appendChild(tr);
-                
-        //             if (row[0] == "Price (Rs)") {
-        //                 var i = 0
-        //                 row.forEach(function(cell){
-        //                     var td = document.createElement('td');
-        //                     tr.appendChild(td);
-        //                     td.innerHTML = cell;
-        //                     if (i > 0) {
-        //                         td.className = "price"
-        //                     }
-        //                     i += 1
-                
-        //                 })
-        //             } else {
-        //                 row.forEach(function(cell){
-                        
-        //                     var td = document.createElement('td');
-        //                     tr.appendChild(td);
-        //                     td.innerHTML = cell;
-                
-        //                 })
-                     
-        //             }
-                
-                    
-                
-        //         })
-        //         break;
-        
-        //     case 4:
-
-        //         var data_rows = [
-        //             ["Price (Rs)"],
-        //             ["No of Revisions"],
-        //             ["Delivery Duration"],
-        //             ["Photo Editing"],
-        //             ["Source File"],
-        //             ["Custom Graphics"],
-        //             [""]
-                
-        //         ]
-                
-        //         pricing_data.forEach(function(pricingItem){
-        //             data_rows[0].push(pricingItem.price)
-        //             data_rows[1].push(pricingItem.noOfRevisions)
-        //             data_rows[2].push((pricingItem.deliveryDuration==1)?"1 Day":pricingItem.deliveryDuration+" Days")
-        //             data_rows[3].push((pricingItem.deliverables.photoEditing==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[4].push((pricingItem.deliverables.sourceFile==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[5].push((pricingItem.deliverables.customGraphics==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[6].push('<button class="button-save" onclick="createOrder('+pricingItem.price+')">Select</button>')
-        //         })
-                
-        //         data_rows.forEach(function(row){
-        //             var tr = document.createElement('tr');
-        //             tbody.appendChild(tr);
-                
-        //             if (row[0] == "Price (Rs)") {
-        //                 var i = 0
-        //                 row.forEach(function(cell){
-        //                     var td = document.createElement('td');
-        //                     tr.appendChild(td);
-        //                     td.innerHTML = cell;
-        //                     if (i > 0) {
-        //                         td.className = "price"
-        //                     }
-        //                     i += 1
-                
-        //                 })
-        //             } else {
-        //                 row.forEach(function(cell){
-                        
-        //                     var td = document.createElement('td');
-        //                     tr.appendChild(td);
-        //                     td.innerHTML = cell;
-                
-        //                 })
-                     
-        //             }
-                
-                    
-                
-        //         })
-        //         break;
-        // }
 
 
         // FINALLYYYY REMOVING THE LOADER
@@ -513,255 +275,7 @@ function loadData() {
         populatePricingTable(pricing_data)
        
 
-        // switch (package_data.category) {
-        //     case 1:
-
-        //         var data_rows = [
-        //             ["Price (Rs)"],
-        //             ["No of Revisions"],
-        //             ["Delivery Duration"],
-        //             ["No of Concepts"],
-        //             ["Logo Transparency"],
-        //             ["Vector File"],
-        //             ["Printable file"],
-        //             ["3D Mockup"],
-        //             ["Source file"],
-        //             ["Social media kit"],
-        //             [""]
-                
-        //         ]
-                
-        //         pricing_data.forEach(function(pricingItem){
-        //             data_rows[0].push(pricingItem.price)
-        //             data_rows[1].push(pricingItem.noOfRevisions)
-        //             data_rows[2].push((pricingItem.deliveryDuration==1)?"1 Day":pricingItem.deliveryDuration+" Days")
-        //             data_rows[3].push(pricingItem.noOfConcepts)
-        //             data_rows[4].push((pricingItem.deliverables.logoTransparency==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[5].push((pricingItem.deliverables.vectorFile==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[6].push((pricingItem.deliverables.printableFile==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[7].push((pricingItem.deliverables.mockup==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[8].push((pricingItem.deliverables.sourceFile==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[9].push((pricingItem.deliverables.socialMediaKit==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[10].push('<button class="button-save" onclick="createOrder('+pricingItem.price, +')">Select</button>')
-        //         })
-                
-        //         data_rows.forEach(function(row){
-        //             var tr = document.createElement('tr');
-        //             tbody.appendChild(tr);
-                
-        //             if (row[0] == "Price (Rs)") {
-        //                 var i = 0
-        //                 row.forEach(function(cell){
-        //                     var td = document.createElement('td');
-        //                     tr.appendChild(td);
-        //                     td.innerHTML = cell;
-        //                     if (i > 0) {
-        //                         td.className = "price"
-        //                     }
-        //                     i += 1
-                
-        //                 })
-        //             } else {
-        //                 row.forEach(function(cell){
-                        
-        //                     var td = document.createElement('td');
-        //                     tr.appendChild(td);
-        //                     td.innerHTML = cell;
-                
-        //                 })
-                     
-        //             }
-                
-                    
-                
-        //         })
-                
-        //         break;
-
-        //     case 2:
-
-        //         var data_rows = [
-        //             ["Price (Rs)"],
-        //             ["No of Revisions"],
-        //             ["Delivery Duration"],
-        //             ["No of Figures"],
-        //             ["Source File"],
-        //             ["High Resolution"],
-        //             ["Background/scene"],
-        //             ["Color"],
-        //             ["Full Body"],
-        //             ["Commercial Use"],
-        //             [""]
-                
-        //         ]
-                
-        //         pricing_data.forEach(function(pricingItem){
-        //             data_rows[0].push(pricingItem.price)
-        //             data_rows[1].push(pricingItem.noOfRevisions)
-        //             data_rows[2].push((pricingItem.deliveryDuration==1)?"1 Day":pricingItem.deliveryDuration+" Days")
-        //             data_rows[3].push(pricingItem.noOfConcepts)
-        //             data_rows[4].push((pricingItem.deliverables.sourceFile==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[5].push((pricingItem.deliverables.highResolution==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[6].push((pricingItem.deliverables.background_scene==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[7].push((pricingItem.deliverables.colour==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[8].push((pricingItem.deliverables.fullBody==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[9].push((pricingItem.deliverables.commercialUse==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[10].push('<button class="button-save" onclick="createOrder('+pricingItem.price+')">Select</button>')
-        //         })
-                
-        //         data_rows.forEach(function(row){
-        //             var tr = document.createElement('tr');
-        //             tbody.appendChild(tr);
-                
-        //             if (row[0] == "Price (Rs)") {
-        //                 var i = 0
-        //                 row.forEach(function(cell){
-        //                     var td = document.createElement('td');
-        //                     tr.appendChild(td);
-        //                     td.innerHTML = cell;
-        //                     if (i > 0) {
-        //                         td.className = "price"
-        //                     }
-        //                     i += 1
-                
-        //                 })
-        //             } else {
-        //                 row.forEach(function(cell){
-                        
-        //                     var td = document.createElement('td');
-        //                     tr.appendChild(td);
-        //                     td.innerHTML = cell;
-                
-        //                 })
-                     
-        //             }
-                
-                    
-                
-        //         })
-        //         break;
-
-        //     case 3:
-
-        //         var data_rows = [
-        //             ["Price (Rs)"],
-        //             ["No of Revisions"],
-        //             ["Delivery Duration"],
-        //             ["Printable File"],
-        //             ["Source File"],
-        //             ["Double-sided"],
-        //             ["Custom Graphics"],
-        //             ["Photo editing"],
-        //             ["Commercial Use"],
-        //             [""]
-                
-        //         ]
-                
-        //         pricing_data.forEach(function(pricingItem){
-        //             data_rows[0].push(pricingItem.price)
-        //             data_rows[1].push(pricingItem.noOfRevisions)
-        //             data_rows[2].push((pricingItem.deliveryDuration==1)?"1 Day":pricingItem.deliveryDuration+" Days")
-        //             data_rows[3].push((pricingItem.deliverables.printableFile==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[4].push((pricingItem.deliverables.sourceFile==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[5].push((pricingItem.deliverables.doubleSided==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[6].push((pricingItem.deliverables.customGraphics==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[7].push((pricingItem.deliverables.photoEditing==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[8].push((pricingItem.deliverables.commercialUse==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[9].push('<button class="button-save" onclick="createOrder('+pricingItem.price+')">Select</button>')
-        //         })
-                
-        //         data_rows.forEach(function(row){
-        //             var tr = document.createElement('tr');
-        //             tbody.appendChild(tr);
-                
-        //             if (row[0] == "Price (Rs)") {
-        //                 var i = 0
-        //                 row.forEach(function(cell){
-        //                     var td = document.createElement('td');
-        //                     tr.appendChild(td);
-        //                     td.innerHTML = cell;
-        //                     if (i > 0) {
-        //                         td.className = "price"
-        //                     }
-        //                     i += 1
-                
-        //                 })
-        //             } else {
-        //                 row.forEach(function(cell){
-                        
-        //                     var td = document.createElement('td');
-        //                     tr.appendChild(td);
-        //                     td.innerHTML = cell;
-                
-        //                 })
-                     
-        //             }
-                
-                    
-                
-        //         })
-        //         break;
-        
-        //     case 4:
-
-        //         var data_rows = [
-        //             ["Price (Rs)"],
-        //             ["No of Revisions"],
-        //             ["Delivery Duration"],
-        //             ["Photo Editing"],
-        //             ["Source File"],
-        //             ["Custom Graphics"],
-        //             [""]
-                
-        //         ]
-                
-        //         pricing_data.forEach(function(pricingItem){
-        //             data_rows[0].push(pricingItem.price)
-        //             data_rows[1].push(pricingItem.noOfRevisions)
-        //             data_rows[2].push((pricingItem.deliveryDuration==1)?"1 Day":pricingItem.deliveryDuration+" Days")
-        //             data_rows[3].push((pricingItem.deliverables.photoEditing==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[4].push((pricingItem.deliverables.sourceFile==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[5].push((pricingItem.deliverables.customGraphics==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-        //             data_rows[6].push('<button class="button-save" onclick="createOrder('+pricingItem.price+')">Select</button>')
-        //         })
-                
-        //         data_rows.forEach(function(row){
-        //             var tr = document.createElement('tr');
-        //             tbody.appendChild(tr);
-                
-        //             if (row[0] == "Price (Rs)") {
-        //                 var i = 0
-        //                 row.forEach(function(cell){
-        //                     var td = document.createElement('td');
-        //                     tr.appendChild(td);
-        //                     td.innerHTML = cell;
-        //                     if (i > 0) {
-        //                         td.className = "price"
-        //                     }
-        //                     i += 1
-                
-        //                 })
-        //             } else {
-        //                 row.forEach(function(cell){
-                        
-        //                     var td = document.createElement('td');
-        //                     tr.appendChild(td);
-        //                     td.innerHTML = cell;
-                
-        //                 })
-                     
-        //             }
-                
-                    
-                
-        //         })
-        //         break;
-        // }
-
-
-
-        // FINALLYYYY REMOVING THE LOADER
-        
+ 
 
         removeLoader()
 
@@ -772,10 +286,9 @@ function loadData() {
 
     })
 }
-
+i = 0
 function populatePricingTable(pricing_data){
-    let tableCreated = false;
-        
+    i = i + 1    
     getCategory(pricing_data[0].del.categoryId)
         .then((categoryData) => {
             console.log(categoryData);
@@ -804,8 +317,9 @@ function populatePricingTable(pricing_data){
                 data_rows[6].push((pricingItem.del.del_3==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
                 data_rows[7].push((pricingItem.del.del_4==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
                 data_rows[8].push((pricingItem.del.del_5==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-                data_rows[9].push('<button class="button-save" onclick="createOrder('+pricingItem.price+')">Select</button>')
-            })
+                // data_rows[9].push('<button class="button-save" onclick="createOrder('+pricingItem.price+')">Select</button>')
+                data_rows[9].push('<button class="button-save" onclick="showOrderOverlay('+pricingItem.price+')">Select</button>');
+            });
 
             if (!tableCreated) {
                 var tbody = document.getElementById("table-body");
@@ -915,3 +429,51 @@ function createOrder(price){
     
 }
 
+function on() {
+    console.log("inside on");
+    overlay_view.style.display = "block";
+    console.log("after on");
+  }
+  
+//   function off() {
+//     overlay_view.style.display = "none";
+//   }
+
+
+// overlay_view.addEventListener("click", function(){
+//     off()
+// })
+
+overlay_view.addEventListener("click", function(event) {
+    
+    var overlayDiv = document.getElementById("overlay-div");
+
+    // Check if the click target is outside the overlay div
+    if (!overlay_view.contains(event.target) && event.target !== overlayDiv) {
+        
+    }
+    overlay_view.classList.remove("overlay")
+    overlay_view.classList.remove("overlay-hidden")
+    overlayDiv.style.display = "none"
+
+});
+
+// function closePopup() {
+//   overlay_view.style.display = "none";
+// }
+
+function showOrderOverlay(price){
+    // location.reload();
+    
+    
+    overlay_view.classList.add('overlay');
+    overlay_view.classList.remove('overlay-hidden');
+    
+    console.log(price);
+}
+
+// document.getElementById("orderCreateBtn").addEventListener("click", function(){
+//     var req = document.getElementById("order-req").textContent;
+
+//     console.log(req);
+// })

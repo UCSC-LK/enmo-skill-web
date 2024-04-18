@@ -61,6 +61,7 @@
     padding: 10px 20px;
     border-radius: 7px;
     cursor: pointer;
+    font-weight: bold;
   }
   
   li a:hover {

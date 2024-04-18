@@ -41,7 +41,7 @@ var languageCode = 0;
 var category = 0;
 var reviewCode = 0;
 var package_array = [];
-// const itemsPerPage = 10;
+const itemsPerPage = 10;
 let currentPage = 1;
 
 // Add a click event listener to each button
