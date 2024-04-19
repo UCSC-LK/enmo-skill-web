@@ -32,6 +32,8 @@ body {
   }
 
   .table2{
+    display: flex;
+    flex-direction: row;
     padding: 15PX 10px;
     
     border-radius: 15px;
@@ -124,11 +126,11 @@ body {
 
 .panel{
     display: flex;
-    flex-direction: column;
-    align-items:center;
+    flex-direction: row;
+    /* align-items:center; */
     padding-top: 5px;
     padding-bottom: 5px;
-    width: 10%;
+    width: 100%;
     /* height: 70px; */
     justify-content: center;
     float: right;
@@ -302,7 +304,9 @@ body {
   box-sizing: border-box;
   border-color: #838383;
   cursor: pointer;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size:15px;
   line-height: 1.5;
   margin: 0;
@@ -332,7 +336,9 @@ body {
   box-sizing: border-box;
   border-color: #838383;
   cursor: pointer;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size:15px;
   line-height: 1.5;
   margin: 0;
@@ -487,9 +493,11 @@ body {
     clip-path: circle();
 }
 
-.usename-top{
+.usename-top-e{
    color: #383838;
     font-weight: bold;
+    margin-left: 10px;
+    font-size: 20px;
 }
 .close-top{
     font-weight: bold;
@@ -632,3 +640,174 @@ body {
   outline: none;
 }
 
+.column-div2{
+  flex: 0.1;
+}
+
+.column-div{
+  /* width: 50%; */
+  flex: 5;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  width: 100%;
+  border: 2px solid #ebebeb;
+  padding: 15px;
+  border-radius: 7px;
+} 
+
+.row-div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  /* width: 100%; */
+  /* border-bottom: 2px solid #ebebeb; */
+  /* padding: 15px; */
+ 
+
+}
+
+.subheading2{
+  font-weight: lighter;
+}
+
+.profile-pic {
+  width: 75px;
+  /* height: auto; */
+  clip-path: circle(at center);
+}
+
+.profile-display{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
+
+.data-div{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  /* width: 100%; */
+  padding-left: 10px;
+ 
+}
+
+.data-set, .pkg-set{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.package-details-content
+{
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 1px solid #ebebeb;
+    border-radius: 7px;
+    background: rgba(255, 255, 255, 0.5);
+    margin-bottom: 10px;
+    transition: transform .3s;
+}
+
+.stat1
+{
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    /* justify-content: space-evenly; */
+    flex-direction: row;
+    border-bottom: 1px solid #ebebeb;
+    border-radius: 7px;
+    background: rgba(255, 255, 255, 0.5);
+    margin-bottom: 10px;
+    transition: transform .3s;
+}
+
+.package-details-content:hover{
+  transform: scale(1.05);
+}
+
+
+.cover1{
+  /* width: 25%; */
+  flex: 1;
+  margin-right: 20px;
+  
+
+  img{
+      width: 100%;
+  }
+}
+
+.pkg-title{
+  /* width: 40%; */
+  flex: 2;
+  display: flex;
+  align-items: center;
+  margin-right: 1px;
+
+}
+
+.pkg-inner-div{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.pkg-ratings{
+  flex: 1;
+  display: flex;
+  align-items: center;
+  /* flex-direction: column; */
+  /* margin-right: 20px; */
+
+  p{
+      font-size: 12px;
+  }
+}
+
+.pkg-user{
+  display: flex;
+  align-items: center;
+  /* flex-direction: column; */
+
+}
+
+.order-label{
+  /* font-weight: bold; */
+  margin-right: 40px;
+  
+}
+
+box-icon{
+  margin-right: 5px;
+}
+
+.subheader{
+  display: flex;
+  justify-content: space-between;
+  /* font-weight: lighter; */
+  margin-bottom: 30px;
+}
+
+.main-row{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  /* width: 100%; */
+  /* border-bottom: 2px solid #ebebeb; */
+  /* padding: 15px; */
+}

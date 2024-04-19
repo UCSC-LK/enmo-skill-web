@@ -1,6 +1,6 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #fdfdfd;
+    /* background-color: #fdfdfd; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -675,7 +675,7 @@ input[type="range"]::-webkit-slider-thumb::before {
 }
 
 .profile-details-content, .category-details-content, .revenue-details-content,
-.package-details-content
+.ge-details-content
 {
     padding: 20px;
     display: flex;
@@ -685,7 +685,7 @@ input[type="range"]::-webkit-slider-thumb::before {
     border: 1px solid #ebebeb;
     border-radius: 7px;
     background: rgba(255, 255, 255, 0.5);
-
+packa
 }
 
 .notification-content{

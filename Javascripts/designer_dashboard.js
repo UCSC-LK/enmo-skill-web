@@ -165,10 +165,6 @@ function getData() {
           console.error("Element with ID 'notifications-content' not found");
       }
 
-        
-
-
-
     })
     .catch((error) => {
         Swal.fire({
