@@ -3,49 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/main.css">
     <link rel="stylesheet" href="../CSS/ticketListView.css">
     <title>Ticket List</title>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 </head>
 <body>
 
-    <div style="margin-top: 80px;">
-        <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>    </div>   
+    <div class="loading">
+        <div class="spin"></div>
+    </div>
 
-    <div class="container">
+    <div class="page">
+        <div id="sidebar-placeholder"></div><script src="../Javascripts/sidebar.js"></script>
+        <div class="pg-content" style="width: 100%; overflow: auto;">
+        <div id="header-placeholder" style="width: 100%; position: sticky; top: 0;"></div><script src="../Javascripts/header.js"></script>
 
-        
-        <div class="body-container">
+        <div class="container">
 
-            <div class="header-status">
-                <h1 class="header"></h1>
-                <!-- <b><p class="status">Ongoing</p></b> -->
-                <!-- <p class="close"><b>X</b></p> -->
-            </div>
+            
+            <div class="body-container">
 
-        
-            <div class="body-main">
-                <div class="body">
-                    <div><b><p class="subject"><h3></h3></p></b></div>
-                        
-                    <div><p class="description"></p></div>
-    
-                    <div><p class="date"></p></div>
-                    <hr>
-    
-                    <div>
-                        <input class="HistoryBTN"  type="submit" value="Ticket History">
-                    </div>
+                <div class="header-status">
+                    
+                    <div class="header"></div>
+                    <!-- <b><p class="status">Ongoing</p></b> -->
+                    <!-- <p class="close"><b>X</b></p> -->
                 </div>
+                <div class="subject-main"><h2>TITLE:</h2><b><h2 class="subject"></h2></b></div>  
+                <div class="reply"><input class="replyBTN BTN"  type="submit" value="Reply"></div> 
+
+                <div class="apendUpdates"></div>
+                    <div class="body2" id="body2">
+                        <div><p class="role2"></p></div>
+                        <div><p class="description2" id="description2"></p></div> 
+                        <div><p class="date2" id="date2"></p></div>               
+                    </div>
+
+            
+                <div class="body-main">
+                    <div class="body">
+                        <div class="body-colum">
+                            <div> 
+                                <div><p class="role"></p></div>                    
+                                <div><p class="description"></p></div> 
+                                <div><p class="date"></p></div>   
+                                
+                            </div>
+                            <div class="column" style="display: none;">
+                                <div class="content">
+                                    <img src="../Assests/package_cover4.jpg" alt="Mountains" style="width:100%">
+                                    <!-- <div class="profile-tile">
+                                        <img src="../Assests/login_img1.jpg" alt="" class="profile-img">
+                                        <p class="designer-name">Joe A.</p>
+                                    </div> -->
+                                    <p>I will design your dream logo</p>
+                                    <!-- <div class="review-tile">
+                                        <span class="fa fa-star"></span>
+                                        <p class="no-reviews">5</p>
+                                        <p class="no-orders">(20)</p>
+                                    </div>
+                                    <p class="price">From Rs.1000</p> -->
+                                </div>
+                            </div>
+                        </div>
+                    
+                        
+
+                    </div>
+
+                </div>        
+                
+                
+                
+                
             </div>
-            
-            
-               
-            
         </div>
-    </div>
     
     </div>
     
-</body>   
+</body> 
+<script src="../Javascripts/baseurl.js"></script>  
 <script src="../Javascripts/ticketListView.js"></script> 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

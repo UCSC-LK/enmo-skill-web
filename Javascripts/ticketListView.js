@@ -1,6 +1,3 @@
-const BASE_URL="http://localhost:15000/enmo_skill_backend_war"//fine error later---------------
-
-
 function getCookie(cookieName) {
   var name = cookieName + "=";
   var decodedCookie = decodeURIComponent(document.cookie);
@@ -18,78 +15,119 @@ function getCookie(cookieName) {
 const url = new URL(window.location.href);
 var ticketID = url.searchParams.get('ticketID');
 
-const PopupPerent = document.querySelector(".body-main")
+
+const PopupPerent = document.querySelector(".apendUpdates")
 const PopupChild = document.querySelector(".body")
+const PopupChild2 = document.querySelector(".body2")
+const loding = document.querySelector(".loading");
 
-var myHeaders = new Headers();                          
-myHeaders.append("Content-Type", "application/json");  
-myHeaders.append("Authorization", getCookie("JWT"));   
+loding.style.display ="none"
 
-var raw = JSON.stringify({});
+viewMore(ticketID)
 
-
-var requestOptions = {
-    method: 'GET',
-    headers: myHeaders,
-    redirect: 'follow'
-    };
-
-    fetch(BASE_URL+"/support?TicketId="+encodeURIComponent(ticketID), requestOptions)
-    .then(response => response.json())
+function getdata(ticketID,flag){
+  var myHeaders = new Headers();                          
+  myHeaders.append("Content-Type", "application/json");  
+  myHeaders.append("Authorization", getCookie("JWT"));   
+  
+  
+  
+  var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+  };
+  
+  loding.style.display ="flex"
+  fetch(BASE_URL+"/support?TicketId="+encodeURIComponent(ticketID), requestOptions)
+    .then(response => {
+      loding.style.display ="none"
+      if(response.status == 401){
+        window.location.href = "../Failed/401.html";
+      }else if(response.status == 406){
+        const currentUrl = encodeURIComponent(window.location.href);
+        window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+      }else if(response.status == 404){
+        window.location.href = "../Failed/404.html";
+      }else {
+        return response.json()
+      }
+    })
     .then(result => {
-        result.forEach(element => {
-            document.querySelector(".subject").textContent = element.subject;
-            document.querySelector(".description").textContent = element.description;
-            document.querySelector(".date").textContent = element.date;
-            // document.querySelector(".header").textContent = element.date;
+      console.log(result)
+      result.forEach(element => {
+        document.querySelector(".subject").textContent = element.subject;
+        document.querySelector(".description").textContent = element.description;
+        document.querySelector(".date").textContent = element.date;
+        document.querySelector(".role").textContent="Me";
+  
+        // document.querySelector(".header").textContent = element.date;
+  
+        var status = element.status
+  
+        setpackage(element.packages)// to display packege img-----------------------------------------
 
-            var status = element.status
+        if (flag % 2 === 0) {
+          document.querySelector(".body-main").classList.add("even-item");
+        } else {
+          document.querySelector(".body-main").classList.add("odd-item");
+        }
 
-            switch(status){
-              case 0:
-                status="REJECTED"
-                document.querySelector(".header").textContent=status
-                document.querySelector(".header-status").style.backgroundColor= "red"//rgba(255, 1, 1, 0.492)
-                break
-                
-                case 1:
-                  status="ONGOING"
-                  document.querySelector(".header").textContent=status
-                  document.querySelector(".header-status").style.backgroundColor= "yellow" //rgba(234, 234, 0, 0.486)
-                  break
-      
-                case 2:
-                  status="ONGOING"
-                  document.querySelector(".header").textContent=status
-                  document.querySelector(".header-status").style.backgroundColor=  "yellow"//rgba(234, 234, 0, 0.486)
-                  break
-      
-                  case 3:
-                    status="CLOSED"
-                    document.querySelector(".header").textContent=status
-                    document.querySelector(".header-status").style.backgroundColor= "green"//rgba(0, 232, 28, 0.678)
-                    break
-       
-              }
-        })
+        if(status==3 || status==4){
+          document.querySelector(".replyBTN").style.display= "none"
+        }
+     
+  
+        switch(status){
+            
+          case 1:
+            status="Ongoing"
+            document.querySelector(".header").textContent=status
+            document.querySelector(".header").style.backgroundColor= "rgba(234, 234, 0, 0.486)" 
+          break
+  
+          case 2:
+            status="Ongoing"
+            document.querySelector(".header").textContent=status
+            document.querySelector(".header").style.backgroundColor=  "rgba(234, 234, 0, 0.486)"
+            break
+  
+          case 3:
+            status="Closed"
+            document.querySelector(".header").textContent=status
+            document.querySelector(".header").style.backgroundColor= "rgba(0, 232, 28, 0.678)" 
+            break
+  
+          case 4:
+            status="Rejected"
+            document.querySelector(".header").textContent=status
+            document.querySelector(".header").style.backgroundColor= "rgba(255, 1, 1, 0.492)"
+            break
+          }
+      })
         
     })
-    .catch(error => console.log('error', error));
+  .catch(error => console.log('error', error));
 
-    document.querySelector(".HistoryBTN").addEventListener("click",()=>{ 
-        getHistroy(ticketID)
-       })
+  //is packege issue-----------------------------------------------------------------------------------
+  function setpackage(ispackage){
+    if(ispackage>0){
+      console.log(ispackage)
+      document.querySelector(".column").style.display = "flex"
+      document.querySelector(".body-colum").classList.add("body-colum1")
+    }
+  }
+}
 
-function  getHistroy(ticketID){
+function  viewMore(ticketID){
 
-    document.querySelector(".HistoryBTN").remove();
-
+  var flag= 0
+  var roleId=null;
+  var role = null
+    
     var myHeaders = new Headers();                          
     myHeaders.append("Content-Type", "application/json");  
     myHeaders.append("Authorization", getCookie("JWT"));   
-
-    var raw = JSON.stringify({});
-
 
     var requestOptions = {
     method: 'GET',
@@ -97,24 +135,141 @@ function  getHistroy(ticketID){
     redirect: 'follow'
     };
 
-
+    loding.style.display ="flex"
     fetch(BASE_URL+"/support?popup="+encodeURIComponent(ticketID), requestOptions)
-    .then(response => response.json())
+    .then(response => {
+      loding.style.display ="none"
+      if(response.status == 401){
+        window.location.href = "../Failed/401.html";
+      }else if(response.status == 406){
+        const currentUrl = encodeURIComponent(window.location.href);
+        window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+      }else if(response.status == 404){
+        window.location.href = "../Failed/404.html";
+      }else {
+        return response.json()
+      }
+    })
     .then(result => {
-    console.log(result)
-    result.forEach(element => {
-        const newItem = PopupChild.cloneNode(true)
-        newItem.querySelector(".subject").textContent=element.subject;
-        newItem.querySelector(".description").textContent=element.description;
-        newItem.querySelector(".date").textContent=element.date;
+    
+    // if(result.length>0){document.querySelector(".bottom-header").style.display="flex"}
+    result.forEach((element,index) => {
+      roleId=element.roleID
+      role = getRole(roleId)
+  
+        const newItem = PopupChild2.cloneNode(true)
+        newItem.querySelector(".role2").textContent=role;
+        newItem.querySelector(".description2").textContent=element.description;
+        newItem.querySelector(".date2").textContent=element.date;
 
-        PopupPerent.appendChild(newItem)
+        flag=flag+1
+
+        if (index % 2 === 0) {
+            newItem.classList.add("even-item");
+        } else {
+            newItem.classList.add("odd-item");
+        }
+    
+          PopupPerent.appendChild(newItem)
     });
 
 
     })
     .catch(error => console.log('error', error));
+    getdata(ticketID,flag+1)
+   
+
+    document.querySelector(".replyBTN").addEventListener("click",()=>{
+      viewrequest2(ticketID)
+    })
 } 
-     
+
+//reply------------------------------------------------------------------------------------------------------------------
+async function viewrequest2(TicketID){
+
+  const { value: text } = await Swal.fire({
+    input: "textarea",
+    inputLabel: "Message",
+    inputPlaceholder: "Type your message here...",
+    inputAttributes: {
+      "aria-label": "Type your message here"
+    },
+    showCancelButton: true
+  });
+
+  if (text) {
+    console.log(text)
+
+    var myHeaders = new Headers();                          
+    myHeaders.append("Content-Type", "application/json");  
+    myHeaders.append("Authorization", getCookie("JWT"));
+
+    var raw = JSON.stringify({
+      "ref_no":TicketID,
+      "description":text 
+    });
+  
+    var requestOptions = {
+      method: 'PUT',
+      headers: myHeaders,
+      redirect: 'follow',
+      body: raw
+    };
+
+    loding.style.display ="flex"
+    fetch(BASE_URL+"/support?TicketId="+encodeURIComponent(TicketID), requestOptions)
+    .then(response => {
+      loding.style.display ="none"
+      if(response.status == 401){
+        window.location.href = "../Failed/401.html";
+      }else if(response.status == 406){
+        const currentUrl = encodeURIComponent(window.location.href);
+        window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+      }else if(response.status == 404){
+        window.location.href = "../Failed/404.html";
+      }else {
+        return response.text()
+      }
+    })
+    .then(result => {
+      var icons = null;
+      if(result.includes("Data Updated successfully!")) {
+          icons = "success";
+      }else{
+          icons = "error";
+          result = "Error";
+      }
+      Swal.fire({
+          icon: icons,
+          title: result,
+          showConfirmButton: false,
+          timer: 2000
+      });
+      setTimeout(() => {
+        location.reload();
+    }, 2500);
+   
+    })
+    .catch(error => console.log('error', error));
+
+    }
+    
+  }
+
+
+//get role----------------------------------------------
+function getRole(roleId){
+  var role = null;
+
+  if(roleId == "4"){
+    role = "Support Center"
+  }else if(roleId == "3"){
+    role = "Support Center"
+  }else if(roleId == "2"){
+    role = "Me"
+  }
+
+  return role
+}
 
   

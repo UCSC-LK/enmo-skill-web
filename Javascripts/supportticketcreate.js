@@ -15,20 +15,27 @@ function getCookie(cookieName) {
   var perent = document.querySelector(".attachFile")
   var chaild1 = document.querySelector(".order-main1")
   var chaild2 = document.querySelector(".packege-main1")
+  var attachFile = document.querySelector(".attachFile")
+  var submitbutton = document.getElementById("submitbutton")
+  var packages = document.getElementById("packege")
+  var orders = document.getElementById("order")
+  const loding = document.querySelector(".loading");
 
 
 // var pValue=null
-var ref_no=null;
+// var ref_no=null;
 
 const url = new URL(window.location.href);
  var value = url.searchParams.get('value');
-var ref_no = url.searchParams.get('TicketID');
+ var role = url.searchParams.get('role');
+// var ref_no = url.searchParams.get('TicketID');
 
-console.log(value)
 
-if(ref_no != null){
-    loadData(ref_no)
-}
+// if(ref_no != null){
+//     loadData(ref_no)
+// }
+
+loding.style.display ="none"
 
 if(value=="order"){
     perent.appendChild(chaild1)
@@ -50,116 +57,218 @@ if(value=="order"){
 }else if(value == "packege"){
     perent.appendChild(chaild2)
 
-    const packege = document.querySelector(".packege")
 
-    var result = []//tempary array-----------
-    //fetch------------------
+    var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");                          
+        myHeaders.append("Authorization", getCookie("JWT")); 
+        
+    const requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow"
+      };
+      
+      loding.style.display ="none"
+      fetch(BASE_URL+"/package?packageId=0", requestOptions)
+      .then(response => {
+        loding.style.display ="none"
+        if(response.status == 401){
+          window.location.href = "../Failed/401.html";
+        }else if(response.status == 406){
+          const currentUrl = encodeURIComponent(window.location.href);
+          window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+        }else if(response.status == 404){
+          window.location.href = "../Failed/404.html";
+        }else {
+          return response.json()
+        }
+      })
+        .then((result) =>{
 
-    // Adding a default option
-    const defaultOption = { package_id: 0, title: 'Select a Package' };
-    result.unshift(defaultOption);
+            // Adding a default option
+            const defaultOption = { packageId: 0, title: 'Select a Package' };
+            result.unshift(defaultOption);
 
-    result.forEach(item => {
-        const option = document.createElement('option');
-        option.value = item.package_id;
-        option.textContent = item.title;
-        packege.appendChild(option);
-    });
+            result.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item.packageId;
+                option.textContent = item.title;
+                packege.appendChild(option);
+            });
+        })
+        .catch((error) => console.error(error));
 
+
+}
+//select values-----------------------------------------------------
+var packageID = 0;
+var orderID = 0;
+
+if(value=="order"){
+  packages.addEventListener("change", () => {
+    orderID = orders.value
+  })
+}else if(value == "packege"){
+  packages.addEventListener("change", () => {
+    packageID = packages.value
+  })
 }
 
 
 //load current data for update page---------------------------------------
-function loadData(ref_no){
+// function loadData(ref_no){
 
 
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");                          
-    myHeaders.append("Authorization", getCookie("JWT"));   
+//     var myHeaders = new Headers();
+//     myHeaders.append("Content-Type", "application/json");                          
+//     myHeaders.append("Authorization", getCookie("JWT"));   
 
-    var raw = JSON.stringify({})
+//     var raw = JSON.stringify({})
 
-    var requestOptions = {
-    method: 'GET',
-    headers: myHeaders,
-    redirect: 'follow'
-    };
+//     var requestOptions = {
+//     method: 'GET',
+//     headers: myHeaders,
+//     redirect: 'follow'
+//     };
 
-    fetch(BASE_URL+"/support?TicketId="+encodeURIComponent(ref_no), requestOptions)
-    .then(response => response.json())
-    .then(result => {
-        result.forEach(element => {
-            document.getElementById("subject").value = element.subject;
-            document.getElementById("description").value = element.description;
-        })
-    })
-    .catch(error => console.log('error', error));
+//     fetch(BASE_URL+"/support?TicketId="+encodeURIComponent(ref_no), requestOptions)
+//     .then(response => response.json())
+//     .then(result => {
+//         result.forEach(element => {
+//             document.getElementById("subject").value = element.subject;
+//             document.getElementById("description").value = element.description;
+//         })
+//     })
+//     .catch(error => console.log('error', error));
         
-        // // const url = new URL(window.location.href);
-        // // const subject = url.searchParams.get('subject');
-        // // const description = url.searchParams.get('description');
-        // // ref_no=url.searchParams.get('ref_no');
+//         // // const url = new URL(window.location.href);
+//         // // const subject = url.searchParams.get('subject');
+//         // // const description = url.searchParams.get('description');
+//         // // ref_no=url.searchParams.get('ref_no');
 
-        // console.log(subject)
-        // console.log(description)
-        // console.log(ref_no)
+//         // console.log(subject)
+//         // console.log(description)
+//         // console.log(ref_no)
 
-        // document.getElementById("subject").value = subject;
-        // document.getElementById("description").value = description;
-}
+//         // document.getElementById("subject").value = subject;
+//         // document.getElementById("description").value = description;
+// }
 
-function ticketsubmission(){
-    if(ref_no==null){
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");                          
-        myHeaders.append("Authorization", getCookie("JWT"));   
+function ticketsubmission(fileURL,packageID,orderID,role){
+  
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");                          
+  myHeaders.append("Authorization", getCookie("JWT"));    
+  
 
-        var raw = JSON.stringify({})
-    
-        var raw2 = JSON.stringify({
-            //"requesterID":userId,
-            "description":document.getElementById("description").value,
-            "subject":document.getElementById("subject").value
-        });
-    
-        var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw2
-        };
-        
-        fetch(BASE_URL+"/support", requestOptions)
-        .then(response => response.text())
-        .then(result => {alert(result);
-            window.location="../HTML/tikectListDisigner.html"})
-        .catch(error => {console.log('error', error);
-                        });
-        
-    }else{
+  var raw = JSON.stringify({
+    //"requesterID":userId,
+    "description":document.getElementById("description").value,
+    "subject":document.getElementById("subject").value,
+    "fileURL":fileURL,
+    "order": orderID,
+    "packages": packageID,
+  });
 
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        myHeaders.append("Authorization", getCookie("JWT")); 
-        
-        var raw = JSON.stringify({
-            "ref_no":ref_no,
-            "description":document.getElementById("description").value,
-            "subject":document.getElementById("subject").value
-        });
-        
-        var requestOptions = {
-          method: 'PUT',
-          headers: myHeaders,
-          body: raw
-        };
-        
-        fetch(BASE_URL+"/support", requestOptions)
-          .then(response => response.text())
-          .then(result => {alert(result)
-            window.location="../HTML/tikectListDisigner.html"})
-          .catch(error => console.log('error', error));
-      
-    
+
+  var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: raw
+  };
+  
+  loding.style.display ="flex"
+  fetch(BASE_URL+"/support", requestOptions)
+  .then(response => {
+    loding.style.display ="none"
+    if(response.status == 401){
+      window.location.href = "../Failed/401.html";
+    }else if(response.status == 406){
+      const currentUrl = encodeURIComponent(window.location.href);
+      window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+    }else if(response.status == 404){
+      window.location.href = "../Failed/404.html";
+    }else {
+      return response.text()
     }
+    })
+    
+.then(result => {
+  if(result.includes("Data inserted successfully!")){
+    icons="success"
+  }else{
+    icons="error"
+    result="Data insert failed"
+  }  
+  Swal.fire({        
+    icon: icons,
+    title: result,
+    showConfirmButton: false,
+    timer: 2000
+  });
+  
+  setTimeout(() => {
+    if(role=="\"Designer\""){
+      window.location="../HTML/tikectListDisigner.html";
+    }else if(role=="Client"){
+      window.location="../HTML/tikectListClient.html"
+    }
+    
+  }, 2500);
+    })
+
+  .catch(error => {console.log('error', error);
+  });
+      
 }
+
+//upload file-------------------------------------------------------------------
+var fileURL = null
+function uploadFile() {
+  var fileInput = document.getElementById('attachFile');
+  var file = fileInput.files[0];
+
+  var formData = new FormData();
+  formData.append('file', file);
+
+  fetch(BASE_URL+'/file', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.text())
+  .then(data => {
+    // document.getElementById('fileUrl').innerText = 'File URL: ' + data;
+    fileURL=data
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+}
+
+// const document.querySelector("")
+submitbutton.addEventListener("click",()=>{
+ 
+  if(!document.getElementById("description").value.trim()  || !document.getElementById("subject").value.trim()){
+    Swal.fire({        
+      icon: "warning",
+      title: "No field can be empty",
+      showConfirmButton: false,
+      timer: 2000
+    });
+    
+  }else{
+    const template = document.querySelector('.my-template');
+    const swalTitle = template.content.querySelector('swal-title');
+    swalTitle.textContent = "Make a ticket?"
+    Swal.fire({
+      template: "#my-template"
+    }).then((result) => {  
+      if (result.isConfirmed) {
+        ticketsubmission(fileURL,packageID,orderID,role)
+      }    
+      
+    })
+  }
+  
+})
 
