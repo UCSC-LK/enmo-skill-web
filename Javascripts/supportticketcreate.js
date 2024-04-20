@@ -168,7 +168,7 @@ function ticketsubmission(fileURL,packageID,orderID,role){
     "fileURL":fileURL,
     "order": orderID,
     "packages": packageID,
-});
+  });
 
 
   var requestOptions = {
@@ -193,12 +193,13 @@ function ticketsubmission(fileURL,packageID,orderID,role){
     }
     })
     
-  .then(result => {if(result.includes("Data inserted successfully!")){
+.then(result => {
+  if(result.includes("Data inserted successfully!")){
     icons="success"
   }else{
-  icons="error"
-  result="Error"
-}  
+    icons="error"
+    result="Data insert failed"
+  }  
   Swal.fire({        
     icon: icons,
     title: result,
@@ -260,13 +261,13 @@ submitbutton.addEventListener("click",()=>{
     const swalTitle = template.content.querySelector('swal-title');
     swalTitle.textContent = "Make a ticket?"
     Swal.fire({
-        template: "#my-template"
-      }).then((result) => {  
-        if (result.isConfirmed) {
-          ticketsubmission(fileURL,packageID,orderID,role)
-        }    
-        
-      })
+      template: "#my-template"
+    }).then((result) => {  
+      if (result.isConfirmed) {
+        ticketsubmission(fileURL,packageID,orderID,role)
+      }    
+      
+    })
   }
   
 })

@@ -12,7 +12,6 @@ function getCookie(cookieName) {
   return null;
 }
 
-
 const createTicket = document.querySelector(".createTicket")
 const all = document.querySelector(".all")
 const ongoing = document.querySelector(".ongoing")
