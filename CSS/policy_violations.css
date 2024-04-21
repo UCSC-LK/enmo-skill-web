@@ -833,6 +833,14 @@ body {
 }
 
 
+.subheader2{
+  display: flex;
+  justify-content: center;
+  /* font-weight: lighter; */
+  margin-bottom: 30px;
+}
+
+
 .no-warnings-show{
   display: flex;
   flex-direction: row;
@@ -967,4 +975,13 @@ body {
 
 input {
   text-align: center;
+}
+
+.btn-row{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
 }

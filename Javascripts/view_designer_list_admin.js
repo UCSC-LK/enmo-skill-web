@@ -382,7 +382,7 @@ function warningConfirmation(data){
     confirmButtonText: 'Yes! Send a warning'
   }).then((result) => {
     if (result.isConfirmed) {
-      alert("hellooooooo")
+      window.open("../HTML/policy_violations.html?userid="+data.user.id+"&username="+data.user.username, "_self")
     }
   })
 }
