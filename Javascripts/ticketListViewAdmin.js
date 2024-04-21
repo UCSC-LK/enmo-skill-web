@@ -1,4 +1,3 @@
-
 function getCookie(cookieName) {
     var name = cookieName + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -61,47 +60,45 @@ function getdata(ticketID,flag){
     .then(result => {
         result.forEach(element => {
 
-        var role= getRole(element.role)
+          var role= getRole(element.role)
         
-            document.querySelector(".profile-pic").src = element.url;
-            document.querySelector(".header").textContent = element.userName;
-            document.querySelector(".email").textContent = element.email;
-            document.querySelector(".subject").textContent = element.subject;
-            document.querySelector(".description").textContent = element.description;
-            document.querySelector(".date").textContent = element.date;
-            document.querySelector(".role").textContent = role;
-            document.querySelector(".ticketId").textContent = "Ticket Id: #"+ element.ref_no;
-            var userId=element.requesterID;
+          document.querySelector(".profile-pic").src = element.url;
+          document.querySelector(".header").textContent = element.userName;
+          document.querySelector(".email").textContent = element.email;
+          document.querySelector(".subject").textContent = element.subject;
+          document.querySelector(".description").textContent = element.description;
+          document.querySelector(".date").textContent = element.date;
+          document.querySelector(".role").textContent = role;
+          document.querySelector(".ticketId").textContent = "Ticket Id: #"+ element.ref_no;
+          var userId=element.requesterID;
 
-            //get packege details-----------------------------------------------------------------
-            if(element.packages>0){
-              document.querySelector(".column").style.display = "flex"
-              document.querySelector(".body-colum").classList.add("body-colum1")
+          //get packege details-----------------------------------------------------------------
+          if(element.packages>0){
+            document.querySelector(".column").style.display = "flex"
+            document.querySelector(".body-colum").classList.add("body-colum1")
 
-              getpackage(element.packages)
-            }
-
-              document.querySelector(".view-icon-main").addEventListener("click",()=>{
-                window.location="../HTML/policy_violations.html?userId="+userId;
-              })
+            getpackage(element.packages)
+          }
+            //for Policy violations--------------------------------------------------------------
+            document.querySelector(".view-icon-main").addEventListener("click",()=>{
+              window.location="../HTML/policy_violations.html?userId="+encodeURIComponent(userId)+"&userLevel="+encodeURIComponent(element.role);
+            })
     
             // document.querySelector(".header").textContent = element.date;
 
 
-        if(element.order){
-            document.querySelector(".refund").style.display="inline"
-        }
-        if(element.urgent){
-            document.querySelector(".urgent").style.display="inline"
-        }
-        
-        if (flag % 2 === 0) {
-        document.querySelector(".body-main").classList.add("even-item");
-        } else {
-        document.querySelector(".body-main").classList.add("odd-item");
-        }
+          if(element.order){
+              document.querySelector(".refund").style.display="inline"
+          }
+          if(element.urgent){
+              document.querySelector(".urgent").style.display="inline"
+          }
 
-             
+          if (flag % 2 === 0) {
+          document.querySelector(".body-main").classList.add("even-item");
+          } else {
+          document.querySelector(".body-main").classList.add("odd-item");
+          }  
     })
     
     })
