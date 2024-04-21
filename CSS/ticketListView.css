@@ -61,6 +61,13 @@ h2{
     padding-right: 20px;
 }
 
+.ticketIdTitle{
+    display: flex;
+    justify-content: left;
+    font-weight: 800;
+    color:#3C3C3C;
+}
+
 .bottom-header{
     display: flex;
     justify-content: left;
