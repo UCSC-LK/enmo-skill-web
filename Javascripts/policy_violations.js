@@ -28,7 +28,6 @@ const username = urlParams.get("username");
 const ticket_id_txtbox = document.getElementById("ticketid")
 const userid_txt = document.getElementById("userid-txt")
 const username_txt = document.getElementById("username-txt")
-const reason = document.getElementById("form-reason")
 
 document.getElementById("validate-ticket").addEventListener("click", () =>{
 
@@ -86,7 +85,7 @@ document.getElementById("validate-ticket").addEventListener("click", () =>{
           if (result.isConfirmed) {
 
              // if ticket id is valid
-              const formm = document.getElementById("form")
+              const formm = document.getElementById("form-form")
               formm.classList.remove("column-div2-hidden")
               formm.classList.add("column-div2-show")
 
@@ -94,8 +93,7 @@ document.getElementById("validate-ticket").addEventListener("click", () =>{
               userid_txt.value = userId;
               userid_txt.disabled = true
               username_txt.value = username;
-              username_txt.disabled = true;
-              
+              username_txt.disabled = true;   
           }
         })
 
@@ -113,4 +111,105 @@ document.getElementById("validate-ticket").addEventListener("click", () =>{
        text: "Something went wrong!"
      });
     })
+})
+
+document.getElementById("button-save").addEventListener("click", function(e){
+  e.preventDefault();
+
+  const reason = document.getElementById("form-reason");
+  const form_reason = reason.value;
+
+  console.log(typeof(form_reason.trim().length));
+  console.log(typeof(0));
+
+  if (form_reason.trim().length === 0) {
+    Swal.fire({
+      icon: "warning",
+      title: "Reason is required",
+      // text: "Reconnecting!"
+    });
+  } else {
+
+    const requestBody = {
+      ticketId_txtbox: ticket_id_txtbox.value,
+      reason: form_reason,
+      userId: userId
+    }
+  
+    // get a confirmation message
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, send a warning to user '" + username +"'"
+    }).then((result) => {
+      if (result.isConfirmed) {
+  
+         // save data
+        fetch(`${BASE_URL}/warning`, {
+          method: 'POST',
+          headers: myHeaders,
+          body: JSON.stringify(requestBody)
+        })
+        .then(response => 
+          {if(response.status == 401){
+            window.location.href = "../Failed/401.html";
+          }else if(response.status == 406){
+            const currentUrl = encodeURIComponent(window.location.href);
+            window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+          }else if(response.status == 404){
+            window.location.href = "../Failed/404.html";
+          }else if (response.status == 200) {
+            // return response.json();
+  
+            Swal.fire({
+              title: "Success!",
+              text: "Warning was sent",
+              icon: "success"
+            })
+            .then((result) => {
+              if (result.isConfirmed) {
+                window.location.href = "../HTML/view_designer_list_admin.html";
+              }
+            })
+  
+  
+          } else if (response.status == 500){
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Reconnecting!"
+            });
+            console.log("Error"+response.status)
+          }else{
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Something went wrong!"
+            });
+            console.log("Error"+response.status)
+          }
+          })
+  
+        
+      }
+    })
+    .catch((error)=>{
+      console.error(error)
+      Swal.fire({
+       icon: "error",
+       title: "Oops...",
+       text: "Something went wrong!"
+     });
+    })
+  }
+
+  
+
+ 
+
+
 })
