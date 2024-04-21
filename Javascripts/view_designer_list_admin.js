@@ -61,13 +61,34 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
       method: 'GET',
       headers: myHeaders
     })
-    .then((response)=>{
-      if(!response.ok){
-        throw new Error("Error occured")
-      } 
-      return response.json();
-    })
+    .then(response => 
+      {if(response.status == 401){
+        window.location.href = "../Failed/401.html";
+      }else if(response.status == 406){
+        const currentUrl = encodeURIComponent(window.location.href);
+        window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+      }else if(response.status == 404){
+        window.location.href = "../Failed/404.html";
+      }else if (response.status == 200) {
+        return response.json();
+      } else if (response.status == 500){
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Reconnecting!"
+        });
+        console.log("Error"+response.status)
+      }else{
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!"
+        });
+        console.log("Error"+response.status)
+      }
+      })
     .then((data)=>{
+      console.log(data);
       createRows(data);
     })
     .catch((error)=>{
@@ -92,13 +113,34 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
       method: 'GET',
       headers: myHeaders
     })
-    .then((response)=>{
-      if(!response.ok){
-        throw new Error("Error occured")
-      } 
-      return response.json();
-    })
+    .then(response => 
+      {if(response.status == 401){
+        window.location.href = "../Failed/401.html";
+      }else if(response.status == 406){
+        const currentUrl = encodeURIComponent(window.location.href);
+        window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+      }else if(response.status == 404){
+        window.location.href = "../Failed/404.html";
+      }else if (response.status == 200) {
+        return response.json();
+      } else if (response.status == 500){
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Reconnecting!"
+        });
+        console.log("Error"+response.status)
+      }else{
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!"
+        });
+        console.log("Error"+response.status)
+      }
+      })
     .then((data)=>{
+      console.log(data);
       createRows(data);
     })
     .catch((error)=>{
@@ -147,14 +189,38 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
 
     const seeMoreBtn = document.createElement('button');
     seeMoreBtn.className = 'see-more';
-    seeMoreBtn.textContent = 'See more';
+    seeMoreBtn.textContent = 'SEE MORE';
     seeMoreBtn.addEventListener('click', function(event){
       event.stopPropagation();
       popup(element);
     });
 
-    // Append elements
-    seeMoreDiv.appendChild(seeMoreBtn);
+    if (element.status == 1) {
+
+        const warnBtn = document.createElement('button');
+        warnBtn.className = 'warn';
+        warnBtn.textContent = 'WARN';
+        warnBtn.addEventListener('click', function(event){
+          event.stopPropagation();
+          warningConfirmation(element);
+      });
+
+      const bannBtn = document.createElement('button');
+      bannBtn.className = 'bann';
+      bannBtn.textContent = 'BANN';
+      bannBtn.addEventListener('click', function(event){
+        event.stopPropagation();
+        popup(element);
+      });
+
+      // Append elements
+      seeMoreDiv.appendChild(seeMoreBtn);
+      seeMoreDiv.appendChild(warnBtn);
+      seeMoreDiv.appendChild(bannBtn);
+    } else{
+      // Append elements
+      seeMoreDiv.appendChild(seeMoreBtn);
+    }
 
     rowDiv.appendChild(idP);
     rowDiv.appendChild(usernameP);
@@ -303,3 +369,20 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
         });
     }
 });
+
+function warningConfirmation(data){
+
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "Do you want to send a warning",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes! Send a warning'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      alert("hellooooooo")
+    }
+  })
+}
