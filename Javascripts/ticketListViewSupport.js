@@ -23,6 +23,8 @@ const PopupPerent = document.querySelector(".apendUpdates")
 const PopupChild = document.querySelector(".body")
 const PopupChild2 = document.querySelector(".body2")
 const loding = document.querySelector(".loading");
+const coverImage = document.querySelector('.gig-image1');
+const title = document.querySelector('.gig-title');
 
 
 viewMore(ticketID)
@@ -71,6 +73,13 @@ function getdata(ticketID,flag){
         document.querySelector(".ticketId").textContent = "Ticket Id: #"+ element.ref_no;
         // document.querySelector(".header").textContent = element.date;
 
+        //get packege details-----------------------------------------------------------------
+        if(element.packages>0){
+          document.querySelector(".column").style.display = "flex"
+          document.querySelector(".body-colum").classList.add("body-colum1")
+
+          getpackage(element.packages)
+        }
 
       if(element.order){
         document.querySelector(".refund").style.display="inline"
@@ -92,10 +101,6 @@ function getdata(ticketID,flag){
         document.querySelector(".rejectBTN").style.display = "none";
         document.querySelector(".commentBTN").style.display = "none";        
       }
-
-    setpackage(element.packages)// to display packege img-----------------------------------------
-
-
 
     if (flag % 2 === 0) {
       document.querySelector(".body-main").classList.add("even-item");
@@ -219,16 +224,6 @@ function  viewMore(ticketID){
   })
   .catch(error => console.log('error', error));
 } 
-
-function setpackage(ispackage){
-  if(ispackage>0){
-    console.log(ispackage)
-    document.querySelector(".column").style.display = "flex"
-    document.querySelector(".body-colum").classList.add("body-colum1")
-  }
-}
-
-
 
 //popup view-----------------------------------------------------------------------------
 function viewrequest(TicketID,desition){
@@ -563,6 +558,50 @@ swalIcon.setAttribute('color', '#3085d6');// Update the color
 
 
 }
+
+//get packege------------------------------------------------------
+function getpackage(packageID){
+  var myHeaders = new Headers();                          
+  myHeaders.append("Content-Type", "application/json");  
+  myHeaders.append("Authorization", getCookie("JWT"));  
+  
+  var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+  };
+  
+  loding.style.display ="flex"
+  fetch(BASE_URL+"/package?packageId="+encodeURIComponent(packageID), requestOptions)
+    .then(response => {
+      loding.style.display ="none"
+      if(response.status == 401){
+        window.location.href = "../Failed/401.html";
+      }else if(response.status == 406){
+        const currentUrl = encodeURIComponent(window.location.href);
+        window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+      }else if(response.status == 404){
+        window.location.href = "../Failed/404.html";
+      }else {
+        return response.json()
+      }
+    })
+    .then(result => {
+      console.log(result)
+      // result.forEach(element => {
+        const coverUrl = result.coverUrl;
+        const imageElement = document.createElement('img');
+        imageElement.src = coverUrl;
+        imageElement.width = '200';
+        coverImage.appendChild(imageElement);
+
+        title.textContent = result.title;
+
+
+      // })
+    })
+}
+
 
 
 
