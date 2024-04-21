@@ -36,10 +36,6 @@ function on() {
     document.getElementById("overlay").style.display = "none";
   }
 
-// document.getElementById("row1").addEventListener("click", function(){
-//     on()
-// })
-
 document.getElementById("overlay").addEventListener("click", function(){
     off()
 })
@@ -49,6 +45,30 @@ function closePopup() {
 }
 
 document.getElementById("overlay").addEventListener("click", closePopup);
+
+
+
+function on2() {
+  document.getElementById("overlay2").style.display = "block";
+}
+
+function off2() {
+  document.getElementById("overlay2").style.display = "none";
+}
+
+
+document.getElementById("overlay2").addEventListener("click", function(){
+  off2()
+})
+
+function closePopup2() {
+document.getElementById("overlay2").style.display = "none";
+}
+
+document.getElementById("overlay2").addEventListener("click", closePopup2);
+
+
+
 
 document.addEventListener("DOMContentLoaded", getActiveUsers)
   
@@ -222,8 +242,17 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
       popup(element);
     });
 
+    const checkWarn = document.createElement('button');
+    checkWarn.className = 'see-more';
+    checkWarn.textContent = 'CHECK WARNINGS';
+    checkWarn.addEventListener('click', function(event){
+      event.stopPropagation();
+      getWarnings(element.user.id);
+    });
+
     // Append elements
     seeMoreDiv.appendChild(seeMoreBtn);
+    seeMoreDiv.appendChild(checkWarn);
     seeMoreDiv.appendChild(makecsa);
 
     seeMoreDiv.appendChild(warnBtn);
@@ -399,7 +428,92 @@ function warningConfirmation(data){
     confirmButtonText: 'Yes! Send a warning'
   }).then((result) => {
     if (result.isConfirmed) {
-      alert("hellooooooo")
+      window.open("../HTML/policy_violations.html?userid="+data.user.id+"&username="+data.user.username, "_self")
     }
   })
 }
+
+function getWarnings(id) {
+
+  console.log(id);
+
+  fetch(`${BASE_URL}/warning?userId=${id}`, {
+    method: 'GET',
+    headers: myHeaders
+  })
+  .then(response => 
+    {if(response.status == 401){
+      window.location.href = "../Failed/401.html";
+    }else if(response.status == 406){
+      const currentUrl = encodeURIComponent(window.location.href);
+      window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+    }else if(response.status == 404){
+      window.location.href = "../Failed/404.html";
+    }else if (response.status == 200) {
+      return response.json();
+    } else if (response.status == 500){
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Reconnecting!"
+      });
+      console.log("Error"+response.status)
+    }else{
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went Wrong!"
+      });
+      console.log("Error"+response.status)
+    }
+    })
+    .then((data)=>{
+      console.log(data);
+      if (data.length > 0) {
+        
+        warnings_array = data;
+        on2();
+        
+        const warnDiv = document.getElementById("warn-content")
+        warnDiv.innerHTML = ""
+
+        data.forEach(element => {
+          
+          const rowDiv = document.createElement('div');
+          rowDiv.className = "package-details-content"
+
+          const rowInnerDiv = document.createElement('div');
+          rowInnerDiv.className = "pkg-inner-div"
+
+          rowInnerDiv.innerHTML = "<box-icon name='error-circle'></box-icon>"
+
+          const warnReason = document.createElement("p")
+          warnReason.className = "truncate-text"
+          warnReason.textContent = element.reason;
+
+          const warnDate = document.createElement("p")
+          warnDate.textContent = element.date;
+
+          rowInnerDiv.appendChild(warnReason)
+          rowInnerDiv.appendChild(warnDate)
+
+          rowDiv.appendChild(rowInnerDiv)
+
+          warnDiv.appendChild(rowDiv)
+        });
+
+      } else {
+        Swal.fire("No warnings to show");
+      }
+    })
+    .catch((error)=>{
+      console.error(error)
+      Swal.fire({
+       icon: "error",
+       title: "Oops...",
+       text: "Something went wrong!"
+     });
+    })
+}
+
+

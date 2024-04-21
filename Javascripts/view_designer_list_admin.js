@@ -28,6 +28,8 @@ var search_active = false
 var active_u = document.getElementById("active_u")
 var banned_u = document.getElementById("banned_u")
 
+var warnings_array = [];
+
 function on() {
     document.getElementById("overlay").style.display = "block";
   }
@@ -46,6 +48,27 @@ function closePopup() {
 }
 
 document.getElementById("overlay").addEventListener("click", closePopup);
+
+
+
+function on2() {
+    document.getElementById("overlay2").style.display = "block";
+  }
+  
+  function off2() {
+    document.getElementById("overlay2").style.display = "none";
+  }
+
+
+document.getElementById("overlay2").addEventListener("click", function(){
+    off2()
+})
+
+function closePopup2() {
+  document.getElementById("overlay2").style.display = "none";
+}
+
+document.getElementById("overlay2").addEventListener("click", closePopup2);
 
 document.addEventListener("DOMContentLoaded", getActiveUsers)
   
@@ -134,7 +157,7 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Something went wrong!"
+          text: "Something went Wrong!"
         });
         console.log("Error"+response.status)
       }
@@ -161,8 +184,13 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
     data.forEach(element => {
 
       // Create elements
+
+      const outerRowDiv = document.createElement("div");
+      outerRowDiv.className = 'outer-row';
+
+
     const rowDiv = document.createElement('div');
-    rowDiv.className = 'row';
+    rowDiv.className = 'row1';
     rowDiv.id = 'row1';
 
     const idP = document.createElement('p');
@@ -185,7 +213,7 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
     emailP.textContent = element.user.email;
 
     const seeMoreDiv = document.createElement('div');
-    seeMoreDiv.className = 'see-more-btn';
+    seeMoreDiv.className = 'see-more-btn-row';
 
     const seeMoreBtn = document.createElement('button');
     seeMoreBtn.className = 'see-more';
@@ -213,8 +241,17 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
         popup(element);
       });
 
+      const checkWarn = document.createElement('button');
+      checkWarn.className = 'see-more';
+      checkWarn.textContent = 'CHECK WARNINGS';
+      checkWarn.addEventListener('click', function(event){
+        event.stopPropagation();
+        getWarnings(element.user.id);
+      });
+
       // Append elements
       seeMoreDiv.appendChild(seeMoreBtn);
+      seeMoreDiv.appendChild(checkWarn);
       seeMoreDiv.appendChild(warnBtn);
       seeMoreDiv.appendChild(bannBtn);
     } else{
@@ -226,9 +263,12 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
     rowDiv.appendChild(usernameP);
     rowDiv.appendChild(nameP);
     rowDiv.appendChild(emailP);
-    rowDiv.appendChild(seeMoreDiv);
+    // rowDiv.appendChild(seeMoreDiv);
 
-    content.appendChild(rowDiv);
+    outerRowDiv.appendChild(rowDiv);
+    outerRowDiv.appendChild(seeMoreDiv)
+
+    content.appendChild(outerRowDiv);
     });
     
 
@@ -292,6 +332,8 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
   function popup(data){
 
     console.log(data.user.id);
+
+
     on();
 
     document.getElementById("designer-img").src = data.user.url || "https://i.ibb.co/Ry2J1Lg/pexels-photo-220453.webp"
@@ -386,3 +428,87 @@ function warningConfirmation(data){
     }
   })
 }
+
+function getWarnings(id) {
+
+  console.log(id);
+
+  fetch(`${BASE_URL}/warning?userId=${id}`, {
+    method: 'GET',
+    headers: myHeaders
+  })
+  .then(response => 
+    {if(response.status == 401){
+      window.location.href = "../Failed/401.html";
+    }else if(response.status == 406){
+      const currentUrl = encodeURIComponent(window.location.href);
+      window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+    }else if(response.status == 404){
+      window.location.href = "../Failed/404.html";
+    }else if (response.status == 200) {
+      return response.json();
+    } else if (response.status == 500){
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Reconnecting!"
+      });
+      console.log("Error"+response.status)
+    }else{
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went Wrong!"
+      });
+      console.log("Error"+response.status)
+    }
+    })
+    .then((data)=>{
+      console.log(data);
+      if (data.length > 0) {
+        
+        warnings_array = data;
+        on2();
+        
+        const warnDiv = document.getElementById("warn-content")
+        warnDiv.innerHTML = ""
+
+        data.forEach(element => {
+          
+          const rowDiv = document.createElement('div');
+          rowDiv.className = "package-details-content"
+
+          const rowInnerDiv = document.createElement('div');
+          rowInnerDiv.className = "pkg-inner-div"
+
+          rowInnerDiv.innerHTML = "<box-icon name='error-circle'></box-icon>"
+
+          const warnReason = document.createElement("p")
+          warnReason.className = "truncate-text"
+          warnReason.textContent = element.reason;
+
+          const warnDate = document.createElement("p")
+          warnDate.textContent = element.date;
+
+          rowInnerDiv.appendChild(warnReason)
+          rowInnerDiv.appendChild(warnDate)
+
+          rowDiv.appendChild(rowInnerDiv)
+
+          warnDiv.appendChild(rowDiv)
+        });
+
+      } else {
+        Swal.fire("No warnings to show");
+      }
+    })
+    .catch((error)=>{
+      console.error(error)
+      Swal.fire({
+       icon: "error",
+       title: "Oops...",
+       text: "Something went wrong!"
+     });
+    })
+}
+

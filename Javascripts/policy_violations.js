@@ -131,7 +131,7 @@ document.getElementById("button-save").addEventListener("click", function(e){
   } else {
 
     const requestBody = {
-      ticketId_txtbox: ticket_id_txtbox.value,
+      ticketId: ticket_id_txtbox.value,
       reason: form_reason,
       userId: userId
     }
@@ -212,4 +212,18 @@ document.getElementById("button-save").addEventListener("click", function(e){
  
 
 
+})
+
+document.getElementById("button-cancel").addEventListener("click", function(e){
+  e.preventDefault();
+
+  document.getElementById("form-reason").value = "";
+  document.getElementById("form-form").classList.remove("column-div2-show");
+  document.getElementById("form-form").classList.add("column-div2-hidden");
+
+  ticket_id_txtbox.disabled = false;
+  userid_txt.disabled = false;
+  username_txt.disabled = false;
+  
+  ticket_id_txtbox.value = "";
 })
