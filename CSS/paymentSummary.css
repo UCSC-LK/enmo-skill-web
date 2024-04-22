@@ -41,7 +41,7 @@ body{
 .r-table{
     background-color:white;
     border-radius: 5px;
-    padding: 20px;
+    padding: 26px;
 
 }
 
@@ -152,22 +152,24 @@ body{
     font-size: 16px;
     font-weight: bold;
     border-radius: 5px;
-    border: none;
+    border: black solid;
     background-color: black;
     color: white;
+    transition: .5s;
+
 }
 
 .place-order-btn:hover{
     color: black;
-    background-color:#b4b4b4;
+    background-color: #b4b4b4;
     cursor: pointer;
-    transition: 0.4s;
 }
 .logo{
     width: 80px;
 }
 .logo-text{
     text-align: left;
-    color: #3C3C3C;
+    color:#9D9D9D;
     padding: 5px;
+    font-size: 13px;
 }

@@ -41,9 +41,9 @@
                     <div>
                         <div class="upper-table" >
                             <div class="table-text">Balance available for use</div><br>
-                            <div class="table-maintext">Rs.30000</div><br>
-                            <div class="table-text">Withdrawn to date</div>
-                            <div class="table-text">Rs.45000</div><br>
+                            <div class="table-maintext available">Rs. 0.0</div><br>
+                            <div class="table-text">Last withdrawal amount</div>
+                            <div class="table-text lastAmount">Rs. 0.0</div><br>
                             <div class="btn"><input class="withdrw-btn"  type="submit" value="Withdraw balance" id="withdraw"></div>
                         </div>                       
                     </div>
@@ -54,12 +54,12 @@
                     <div class="upper-table" >
                         <div>
                             <div class="table-text">Payments being cleared</div><br>
-                            <div class="table-maintext f-size">Rs.30000</div>
+                            <div class="table-maintext f-size being">Rs. 0.0</div>
                         </div>
                         <br><hr><br>
                         <div>
                             <div class="table-text">Payments for active orders</div><br>
-                            <div class="table-maintext f-size">Rs.25000</div>
+                            <div class="table-maintext f-size active">Rs. 0.0</div>
                             <div class="table-text">Coming soon</div>
                         </div>
                     </div>
@@ -68,7 +68,7 @@
                     <div class="table-label">Earnings & expenses</div>
                     <div class="upper-table" >
                         <div class="table-text">Earnings to date</div><br>
-                        <div class="table-maintext">Rs.100000</div><br>
+                        <div class="table-maintext all">Rs. 0.0</div><br>
                         <div class="table-text">Your earnings since Joining.</div>
                     </div>
                 </div>
@@ -87,28 +87,24 @@
                         
                     </div>
     
-                    <!-- <div> -->
-                        <div class="ticket-box-2" id="" >
-                            <div class="erning-date"><div class="date">2024/05/20</div></div>
-                            <div class="erning-activity div-cursor aa"><p class="activity">Erning</p></div>                            
-                            <div class="erning-description aa"><p class="description"></p>order</div>                            
-                            <div class="erning-order aa"><p class="order"></p>#120</div>
-                            <div class="erning-amount aa"><p class="amount">Rs.2000.00</p></div>
-                        </div>
-                        <div class="ticket-box-2" id="" >
-                            <div class="erning-date"><div class="date">2024/05/20</div></div>
-                            <div class="erning-activity div-cursor aa"><p class="activity">Erning</p></div>                            
-                            <div class="erning-description aa"><p class="description"></p>order</div>                            
-                            <div class="erning-order aa"><p class="order"></p>#120</div>
-                            <div class="erning-amount aa"><p class="amount">Rs.2000.00</p></div>
+                    <div style="display: none;">
+                        <div class="order-box" id="" >
+                            <div class="erning-date"><div class="date"></div></div>
+                            <div class="erning-activity div-cursor aa">
+                                <p class="activity1">In proccessing</p>
+                                <p class="activity2">Withdrawable</p>
+                            </div>                            
+                            <div class="erning-description aa"><p class="description"></p></div>                            
+                            <div class="erning-order aa"><p class="order"></p></div>
+                            <div class="erning-amount aa"><p class="amount"></p></div>
                         </div>
 
-                    <!-- </div> -->
+                    </div>
 
                     <div class="parent" style="width: 100%; padding-right: 20px;"></div>
                                                             
                 </div>
-                <span id="id" style="display: none;"></span>
+                <!-- <span id="id" style="display: none;"></span> -->
                 
             </div>
             
@@ -119,5 +115,5 @@
 
 </body>
 <script src="../Javascripts/baseurl.js"></script>
-<script src="../Javascripts/ticketListDesigner.js">
-</script>
+<script src="../Javascripts/ernings.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
