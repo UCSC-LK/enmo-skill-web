@@ -7,7 +7,8 @@
     <title>Buyer Requests</title>
 </head>
 <body>
-    <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>
+    <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div>
+    <script src="../Javascripts/header.js"></script>
     <h1>Add Proposal</h1>
     <div class="first">
         <span class="second"> Create Customer Offer </span>
@@ -15,44 +16,38 @@
             <br/><br/>
             <br/><br/>
         </div>
-        <form id ="form-layout" method="post">
+        <form id="form-layout" method="post">
                     
             <label class="third">I will design an attractive logo and stationery</label>
             <input class="input" id="discription" placeholder="Describe your offer" required>
 
             <br>
-            <label class="second" >Total Amount </label>
-            <input type="number" class="input2"id="amount" placeholder="Amount " required>
-
-            <br> 
-            <label class="second" >Delivery Time</label>
-            <input type="number" class="input2" id="time" placeholder="Delivery Time " required>
-
-            <!-- <br>
-            <label class="second" >Date</label>
-            <input type="text"  class="input3" id="date" placeholder="Date " required> -->
-            
+            <label class="second">Package ID </label>
+            <select class="input" id="packageId" required>
+                <!-- Options will be dynamically populated here -->
+            </select>
+            <br>
+            <label class="second"> Title </label>
+            <input class="input" id="title" readonly>
+            <br>
+           <label class="second">Pricing packages</label> 
+            <select class="input" id="pricingPackages" required>
+                <!-- Pricing packages will be dynamically populated here -->
+            </select>
+            <br>
+            <label class="second">Delivery Duration (days)</label>
+            <input class="input" id="deliveryDuration" readonly>
+            <br>
+            <label class="second">Price ($)</label>
+            <input class="input" id="price" readonly>
             <br><br>
-            
             <input type="submit" value="submit">
             <div id="messageDiv" style="color: red;">  </div>
         </form>
-<!-- Include the external JavaScript file -->
-<script src="../Javascripts/auth.js"></script>
-<script src="../Javascripts/baseurl.js"></script>
-<script src="../Javascripts/proposal.js"></script>
+        <script src="../Javascripts/auth.js"></script>
+        <script src="../Javascripts/baseurl.js"></script>
+        <script src="../Javascripts/proposal.js"></script>
 
-<!-- <script>
-        // Add an event listener to the form's submit event
-        document.getElementById('form-layout').addEventListener('submit', function (e) {
-            // Prevent the default form submission behavior
-            e.preventDefault();
-            
-            // Your form submission logic can go here
-
-            // Reload the page after form submission
-            location.reload();
-        });
-    </script> -->
+    </div>
 </body>
 </html>
