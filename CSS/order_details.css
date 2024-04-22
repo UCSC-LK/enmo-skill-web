@@ -427,3 +427,7 @@ body {
     height: auto;
     /* Expand height when the dropdown is opened */
 }
+
+.table_inside3{
+    margin-left: 20px;
+}
