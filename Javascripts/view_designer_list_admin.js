@@ -185,8 +185,8 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
 
       // Create elements
 
-      const outerRowDiv = document.createElement("div");
-      outerRowDiv.className = 'outer-row';
+      // const outerRowDiv = document.createElement("div");
+      // outerRowDiv.className = 'outer-row';
 
 
     const rowDiv = document.createElement('div');
@@ -213,7 +213,7 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
     emailP.textContent = element.user.email;
 
     const seeMoreDiv = document.createElement('div');
-    seeMoreDiv.className = 'see-more-btn-row';
+    seeMoreDiv.className = 'see-more-btn';
 
     const seeMoreBtn = document.createElement('button');
     seeMoreBtn.className = 'see-more';
@@ -223,52 +223,55 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
       popup(element);
     });
 
-    if (element.status == 1) {
+    // if (element.status == 1) {
 
-        const warnBtn = document.createElement('button');
-        warnBtn.className = 'warn';
-        warnBtn.textContent = 'WARN';
-        warnBtn.addEventListener('click', function(event){
-          event.stopPropagation();
-          warningConfirmation(element);
-      });
+    //     const warnBtn = document.createElement('button');
+    //     warnBtn.className = 'warn';
+    //     warnBtn.textContent = 'WARN';
+    //     warnBtn.addEventListener('click', function(event){
+    //       event.stopPropagation();
+    //       warningConfirmation(element);
+    //   });
 
-      const bannBtn = document.createElement('button');
-      bannBtn.className = 'bann';
-      bannBtn.textContent = 'BANN';
-      bannBtn.addEventListener('click', function(event){
-        event.stopPropagation();
-        popup(element);
-      });
+    //   const bannBtn = document.createElement('button');
+    //   bannBtn.className = 'bann';
+    //   bannBtn.textContent = 'BANN';
+    //   bannBtn.addEventListener('click', function(event){
+    //     event.stopPropagation();
+    //     popup(element);
+    //   });
 
-      const checkWarn = document.createElement('button');
-      checkWarn.className = 'see-more';
-      checkWarn.textContent = 'CHECK WARNINGS';
-      checkWarn.addEventListener('click', function(event){
-        event.stopPropagation();
-        getWarnings(element.user.id);
-      });
+    //   const checkWarn = document.createElement('button');
+    //   checkWarn.className = 'see-more';
+    //   checkWarn.textContent = 'CHECK WARNINGS';
+    //   checkWarn.addEventListener('click', function(event){
+    //     event.stopPropagation();
+    //     getWarnings(element.user.id);
+    //   });
 
-      // Append elements
-      seeMoreDiv.appendChild(seeMoreBtn);
-      seeMoreDiv.appendChild(checkWarn);
-      seeMoreDiv.appendChild(warnBtn);
-      seeMoreDiv.appendChild(bannBtn);
-    } else{
-      // Append elements
-      seeMoreDiv.appendChild(seeMoreBtn);
-    }
+    //   // Append elements
+    //   seeMoreDiv.appendChild(seeMoreBtn);
+    //   // seeMoreDiv.appendChild(checkWarn);
+    //   // seeMoreDiv.appendChild(warnBtn);
+    //   // seeMoreDiv.appendChild(bannBtn);
+    // } else{
+    //   // Append elements
+    //   seeMoreDiv.appendChild(seeMoreBtn);
+    // }
+
+    seeMoreDiv.appendChild(seeMoreBtn);
+
 
     rowDiv.appendChild(idP);
     rowDiv.appendChild(usernameP);
     rowDiv.appendChild(nameP);
     rowDiv.appendChild(emailP);
-    // rowDiv.appendChild(seeMoreDiv);
+    rowDiv.appendChild(seeMoreDiv);
 
-    outerRowDiv.appendChild(rowDiv);
-    outerRowDiv.appendChild(seeMoreDiv)
+    // outerRowDiv.appendChild(rowDiv);
+    // outerRowDiv.appendChild(seeMoreDiv)
 
-    content.appendChild(outerRowDiv);
+    content.appendChild(rowDiv);
     });
     
 
@@ -344,6 +347,8 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
     document.getElementById("data-joined").textContent = data.joinedDate;
     document.getElementById("data-des").innerHTML = data.user.description || "lorem impsum"
     document.getElementById("data-nic").textContent = data.user.NIC;
+    
+    
 
   }
 

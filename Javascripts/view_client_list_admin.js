@@ -198,7 +198,7 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
     const nameP = document.createElement('p');
     nameP.classList.add('name');
     nameP.classList.add('truncate-text');
-    nameP.textContent = element.name;
+    nameP.textContent = element.user.name;
 
     const emailP = document.createElement('p');
     emailP.classList.add('email');
@@ -338,7 +338,8 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
     on();
 
     document.getElementById("designer-img").src = data.user.url || "https://i.ibb.co/Ry2J1Lg/pexels-photo-220453.webp"
-    document.getElementById("data-name").textContent = data.name;
+    document.getElementById("data-name").textContent = data.user.name;
+    document.getElementById("data-displayname1").textContent = data.user.username;
     document.getElementById("data-displayname").textContent = data.user.username;
     document.getElementById("data-email").textContent = data.user.email;
     document.getElementById("data-contact").textContent = data.user.contact_no;
