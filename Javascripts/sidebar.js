@@ -14,7 +14,9 @@ function getCookies(cookieName) {
 
     let user = getCookies("UserLevel");
   if(user=="CUSTOMER"){
-    window.location.href = "../HTML/login.html";
+    url = "/Components/sidebar_seller.html";
+  } else if (user == "CLIENT") {
+    url = "/Components/sidebar_seller.html";
   }else if(user=="DESIGNER"){
     url="/Components/sidebar_seller.html"
   }else if(user=="ADMIN"){

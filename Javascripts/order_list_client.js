@@ -25,8 +25,6 @@ const canseled = document.querySelector(".canseled");
 const perent = document.querySelector(".parent");
 const child = document.querySelector(".row-hidden");
 
-
-
 ongoing.addEventListener("click", () => {
   updateColor(ongoing, "#56D74E");
   tableLoad("ongoing");
@@ -64,16 +62,18 @@ function loadOngoingOrders() {
 // Call the function to load ongoing orders when the page loads
 window.onload = loadOngoingOrders;
 
-
 //get list of Orders----------------------------------------------------------
 function tableLoad(view) {
-
   while (list2.firstChild) {
     list2.removeChild(list2.firstChild);
   }
-  
-const JWTTOk = getCookie("JWT");
-  console.log("Token" + JWTTOk)
+  // ongoing.style.color = "#56D74E";
+  // delivered.style.color = "#2E4ADE";
+  // completed.style.color = "#9446BB";
+  // canseled.style.color = "#CC2B1F";
+
+  const JWTTOk = getCookie("JWT");
+  console.log("Token" + JWTTOk);
 
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
@@ -126,21 +126,20 @@ const JWTTOk = getCookie("JWT");
 
         console.log("Status" + item.status);
 
-         var itemDivs = [
-           newItem.querySelector(".user"),
-           newItem.querySelector(".gig"),
-           newItem.querySelector(".date"),
-           newItem.querySelector(".date"),
-           newItem.querySelector(".budget-value"),
-           newItem.querySelector(".status"),
+        var itemDivs = [
+          newItem.querySelector(".user"),
+          newItem.querySelector(".gig"),
+          newItem.querySelector(".date"),
+          newItem.querySelector(".date"),
+          newItem.querySelector(".budget-value"),
+          newItem.querySelector(".status"),
         ];
-        
-        console.log("OderID" + item.orderId)
-       
-        itemDivs.forEach(function(itemDiv) {
-          itemDiv.addEventListener("click",()=>{ vieworder(item.orderId);})//view order--------------------------------------------
-        });
 
+        itemDivs.forEach(function (itemDiv) {
+          itemDiv.addEventListener("click", () => {
+            vieworder(item.order_id);
+          }); //view order--------------------------------------------
+        });
 
         switch (view) {
           case "ongoing":
@@ -189,128 +188,13 @@ const JWTTOk = getCookie("JWT");
         //     window.location.href = `../HTML/order_details.html`;
         //   });
       });
-
     })
     .catch((error) => console.log("error", error));
-  
-  
 }
 
-function vieworder(order_id) {
+function vieworder(ticketID) {
   var url =
-    "../HTML/order_details_designer.html?order_id=" +
-    encodeURIComponent(order_id);
+    "../HTML/order_details_client.html?order_id=" + encodeURIComponent(ticketID);
   window.location.href = url;
 }
 
-
-
-// // function deleteRequest(TicketID) {
-// //   console.log(TicketID);
-// //   if (confirm("Are you sure you want Delete this request?")) {
-// //     var myHeaders = new Headers();
-// //     myHeaders.append("Content-Type", "application/json");
-// //     myHeaders.append("Authorization", getCookie("JWT"));
-
-// //     var raw = JSON.stringify({});
-
-// //     var requestOptions = {
-// //       method: "DELETE",
-// //       headers: myHeaders,
-// //       redirect: "follow",
-// //     };
-
-// //     fetch(BASE_URL + "/support?TicketID=" + TicketID, requestOptions)
-// //       .then((response) => response.text())
-// //       .then((result) => {
-// //         alert(result);
-// //         location.reload();
-// //       })
-// //       .catch((error) => console.log("error", error));
-// //   }
-// // }
-
-// //popup view-----------------------------------------------------------------------------
-// // function viewrequest(item,status){
-// //   let popup_con=document.querySelector(".pop-up-container");
-// //   let popup_details=document.querySelector(".pop-up");
-// //   let close=document.querySelector(".close")
-
-// //   let old_bodies= Array.from(popup_details.querySelectorAll(".pop-body"));
-// //   old_bodies.slice(1).forEach(element=>{
-// //     element.parentNode.removeChild(element);
-// //   })
-
-// //   popup_con.style.display="flex";
-// //   popup_details.style.display="inline";
-// //   popup_details.querySelector(".subject").textContent = item.subject;
-// //   popup_details.querySelector(".description").textContent = item.description;
-// //   popup_details.querySelector(".date").textContent = item.date;
-// //   //popup_details.querySelector(".time").textContent = item.time;
-// //   popup_details.querySelector(".status").textContent =  status;
-
-// //   const PopupPerent = document.querySelector(".scroll")
-// //   const PopupChild = document.querySelector(".pop-body")
-
-// //   var requestOptions = {
-// //     method: 'GET',
-// //     redirect: 'follow'
-// //   };
-
-// //   fetch("http://localhost:15000/enmo_skill_backend_war/support?Role=Client&UserId=" +encodeURIComponent(item.userId)+"&popup="+encodeURIComponent(item.ref_no), requestOptions)
-// //     .then(response => response.json())
-// //     .then(result => {
-// //       console.log(result)
-// //       result.forEach(element => {
-// //         const newItem2 = PopupChild.cloneNode(true)
-// //         console.log( newItem2);
-// //         newItem2.querySelector(".subject").textContent=element.subject;
-// //         newItem2.querySelector(".description").textContent=element.description;
-// //         newItem2.querySelector(".date").textContent=element.date;
-
-// //         console.log(element.subject)
-// //         console.log(element.description)
-// //         console.log(element)
-
-// //         PopupPerent.appendChild(newItem2)
-// //       });
-
-// //     })
-// //    .catch(error => console.log('error', error));
-
-// //   close.onclick=(event)=>{
-// //       popup_con.style.display="none";
-// //       popup_details.style.display="none";
-// //   }
-// // }
-
-// //load create ticket page-------------------------------------------------------------------
-// function createticketDesigner() {
-//   window.location.href = "../HTML/CSA-designer.html";
-// }
-
-// function createticketClent() {
-//   window.location.href = "../HTML/CSA-client.html";
-// }
-
-// //save update ticket details in local storage--------------------------------------------------
-// function editTicket(ticketID) {
-//   console.log(ticketID);
-
-//   var pValue = "edit";
-//   var url =
-//     "../HTML/createTicket.html" +
-//     "?pValue=" +
-//     encodeURIComponent(pValue) +
-//     "&TicketID=" +
-//     encodeURIComponent(ticketID);
-
-//   // var newURL = "../HTML/createTicket.html?ref_no="+encodeURIComponent(TicketID)+"&subject="+encodeURIComponent(subject)+"&description="+encodeURIComponent(description) ;
-//   window.location = url;
-// }
-
-// function viewticket(ticketID) {
-//   var url =
-//     "../HTML/ticketListView.html?ticketID=" + encodeURIComponent(ticketID);
-//   window.location.href = url;
-// }
