@@ -4,62 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/package_overview.css">
+    <link rel="stylesheet" href="../CSS/main.css">
+
 
     <title>Package Overview</title>
 </head>
 <body>
-    <div class="main" style="margin-top: 80px;">
-        <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>
-        <div class="container">
-            <div class="block">
-                <h1 class="headding">Overview</h1>
-                <div class="form" >
-                    <form id="package_form">
+    <div class="page">
+        <div id="sidebar-placeholder"></div><script src="../Javascripts/sidebar.js"></script>
+        <div class="pg-content" style="width: 100%; overflow: auto;">
+            <div id="header-placeholder" style="width: 100%; position: sticky; top: 0;"></div><script src="../Javascripts/header.js"></script>
+                <div class="main" >
+                    <!-- <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script> -->
+                    <div class="container">
+                        <div class="block">
+                            <h1 class="headding">Overview</h1>
+                            <div class="form" >
+                                <!-- <form id="package_form"> -->
 
-                        <label for="title" class="label-title">Package title</label>
-                        <input type="text" name="title" id="title" required>
-                        <br>
-    
-                        <label for="category">Category</label>
-                        <select name="category" width="100%" id="category" required>
-                            <option value="0"selected>Select a category</option>
-                            <option value="1">Logo designing</option>
-                            <option value="2">Illustraton</option>
-                            <option value="3">Flyer designing</option>
-                            <option value="4">Banner designing</option>
-                        </select>
-
-                        <br>
-    
-                        <label for="description">Description</label>
-                        <textarea name="description" id="description" cols="62" rows="5" required></textarea>
-                        <br>
-    
-                        <label for="img">Cover image</label>
-                        <input type="file" id="img" name="img" accept="image/*">
-
-                        <br><br>
-    
-                        <button type="submit" class="button-save" id="button-next">Next</button>
-                    </form>
-                </div>
+                                    <label for="title" class="label-title">Package title</label>
+                                    <input type="text" name="title" id="title" required>
+                                    <br>
                 
-            </div>
+                                    <label for="category">Category</label>
+                                    <select name="category" width="100%" id="category" required>
+                                        <option value="0"selected>Select a category</option>
+                                        <!-- <option value="1">Logo designing</option>
+                                        <option value="2">Illustraton</option>
+                                        <option value="3">Flyer designing</option>
+                                        <option value="4">Banner designing</option> -->
+                                    </select>
 
-            <div id="overlay2" class="overlay">
-                <div id="popup-container-unsuccess" class="popup-container">
-                    <div class="icon">
-                        <img class="unsuccess-img" src="../Assests/icons/unsuccess.png" width="25%" alt="">
+                                    <br>
+                
+                                    <label for="description">Description</label>
+                                    <textarea name="description" id="description" cols="62" rows="5" required></textarea>
+                                    <br>
+                
+                                    <div class="img-row">
+                                        <label for="img">Cover image</label>
+                                            <div class="drop_box">
+                                                <header>
+                                                <h4>Select File here</h4>
+                                                </header>
+                                                <p>Files Supported: JPG, JPEG, PNG</p>
+                                                <input type="file" accept=".jpg, .jpeg, .png" id="fileID" style="display:none;">
+                                                <button class="btn-upload">Choose File</button>
+                                            </div>
+                                    </div>
+                                    
+                                    <!-- <input type="file" id="img" name="img" accept="image/*">
+
+                                    <br><br> -->
+                
+                                    <button type="submit" class="button-save" id="button-next">Next</button>
+                                <!-- </form> -->
+                            </div>
+                            
+                        </div>
+
+                        <!-- <div id="overlay2" class="overlay">
+                            <div id="popup-container-unsuccess" class="popup-container">
+                                <div class="icon">
+                                    <img class="unsuccess-img" src="../Assests/icons/unsuccess.png" width="25%" alt="">
+                                </div>
+                                <h1 id="status-unsuccess" >Error Ocuured !</h1>
+                                <button id="btn-unsuccess" class="btn-unsuccess">OK</button>
+                            </div>
+                        </div> -->
+
                     </div>
-                    <h1 id="status-unsuccess" >Error Ocuured !</h1>
-                    <button id="btn-unsuccess" class="btn-unsuccess">OK</button>
-                </div>
+                </div> 
             </div>
-
         </div>
-    </div> 
     <script src="../Javascripts/baseurl.js"></script>
     <script src="../Javascripts/package_overview.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 
 </html>

@@ -4,89 +4,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/packages.css">
+    <link rel="stylesheet" href="../CSS/main.css">
+    
     
     <title>Packages</title>
 </head>
 <body>
-    <div class="main" >
-    <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>
-        <div class="container">
-            <div class="block">
-                <h1 class="headding">Packages</h1>
-
-                <div class="navbar">
-                    <div class="nav">
-                        <ul>
-                            <li id="active">ACTIVE</li>
-                            <li id="pending">PENDING</li>
-                            <li id="paused">PAUSED</li>
-                        </ul>
-                    </div>
-                    <div class="btn">
-                        <button id="create">Create New Package</button>
-                    </div>
-                    
-                    
-                </div>
-    
-                <div class="table">
-                    
-                    <div class="title">
-                        <p id="title"></p>
-                    </div>
-                    
-                    <div class="headers">
-                        <p></p>
-                        <p class="header-package">PACKAGE</p>
-                        <p class="header-clicks">CLICKS</p>
-                        <p class="header-orders">ORDERS</p>
-                        <p class="header-cancellations">CANCELLATIONS</p>
-                        <p></p>
-                    </div>
-        
-                    <div class="content" id="content">
-                        <div class="row">
-                            <p class="pkg-img">
-                                <img alt="">
-                            </p>
-                            <p class="pakg">this is title aaaaaaaaaaa aaaaaaa aaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaan aaaaaaaaaaaaa</p>
-                            <p class="clicks">100</p>
-                            <p class="orders">23</p>
-                            <p class="cancellations">0%</p>
-                            <p >
-                                <span class="button-set">
-                                    <button class="pause-icon"></button>
-                                    <button class="edit-icon"></button>
-                                    <button class="delete-icon"></button>
-                            </span>
-                            </p>
-                            
-                        </div>
-                        <div class="row">
-                            <p class="pkg-img"></p>
-                            <p class="pakg">this is title aaaaaaaaaaa aaaaaaa aaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaan aaaaaaaaaaaaa</p>
-                            <p class="clicks">100</p>
-                            <p class="orders">23</p>
-                            <p class="cancellations">0%</p>
-                            <p >
-                                <span class="button-set">
-                                    <button class="pause-icon"></button>
-                                    <button class="edit-icon"></button>
-                                    <button class="delete-icon"></button>
-                            </span>
-                            </p>
-                            
-                        </div>
-                    </div>
-                </div>
-    
+    <div class="page">
+        <div id="sidebar-placeholder"></div><script src="../Javascripts/sidebar.js"></script>
+        <div class="pg-content" style="width: 100%; overflow: auto;">
+            <div id="header-placeholder" style="width: 100%; position: sticky; top: 0;"></div><script src="../Javascripts/header.js"></script>
+            <div class="main" > 
+                    <div class="container">
+                        <div class="block">
+                            <h1 class="headding">Packages</h1>
+            
+                            <div class="navbar-body">
+                                <div class="nav-body">
+                                    <ul>
+                                        <li id="active">ACTIVE</li>
+                                        <!-- <li id="pending">PENDING</li> -->
+                                        <li id="paused">PAUSED</li>
+                                    </ul>
+                                </div>
+                                <div class="btn">
+                                    <button id="create">Create New Package</button>
+                                </div>
+                                
+                                
+                            </div>
                 
-    
+                            <div class="table">
+                                
+                                <div class="title">
+                                    <p id="title"></p>
+                                </div>
+                                
+                                <div class="headers">
+                                    <p class="empty"></p>
+                                    <p class="header-package">PACKAGE</p>
+                                    <p class="header-clicks">CLICKS</p>
+                                    <p class="header-orders">ORDERS</p>
+                                    <p class="header-cancellations">CANCELLATIONS</p>
+                                    <p class="empty2"></p>
+                                </div>
+                    
+                                <div class="content" id="content">
+                                    <div class="row">
+                                        <p class="pkg-img">
+                                            <img alt="">
+                                        </p>
+                                        <p class="pakg">this is title aaaaaaaaaaa aaaaaaa aaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaan aaaaaaaaaaaaa</p>
+                                        <p class="clicks">100</p>
+                                        <p class="noorders">23</p>
+                                        <p class="cancellations">0%</p>
+                                        <p >
+                                            <span class="button-set">
+                                                <button class="pause-icon"></button>
+                                                <button class="edit-icon"></button>
+                                                <button class="delete-icon"></button>
+                                        </span>
+                                        </p>
+                                        
+                                    </div>
+                                    <div class="row">
+                                        <p class="pkg-img"></p>
+                                        <p class="pakg">this is title aaaaaaaaaaa aaaaaaa aaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaan aaaaaaaaaaaaa</p>
+                                        <p class="clicks">100</p>
+                                        <p class="orders">23</p>
+                                        <p class="cancellations">0%</p>
+                                        <p >
+                                            <div class="button-set">
+                                                <button class="pause-icon"></button>
+                                                <button class="edit-icon"></button>
+                                                <button class="delete-icon"></button>
+                                            </div>
+                                        </p>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                
+                            
+                
+                        </div>
+                    </div>
+                </div> 
+                
             </div>
-        </div>
-    </div>
+            </div>
     
     <script src="../Javascripts/packages.js"></script>
     <script src="../Javascripts/baseurl.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
