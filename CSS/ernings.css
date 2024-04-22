@@ -131,7 +131,7 @@ body{
     display: flex;
     justify-content: left;
 }
-.ticket-box{
+/* .ticket-box{
     width:100%; 
     text-align: left;
     align-items: center;
@@ -142,7 +142,7 @@ body{
     display: flex;
     flex-wrap: wrap;
     /*background-color:black;*/
-}
+/* }  */
 .class2{
     color: #9D9D9D;
     /* padding: 10px; */
@@ -212,11 +212,11 @@ body{
 }
 
 
-.ticket-box-2 {
+.order-box {
     display: grid;
     width: 100%;
     min-height: 100px; 
-    grid-template-columns: 21.4% 20.7% 25.5% 17.6% 14.8%;
+    grid-template-columns: 21.7% 21.1% 26% 17.9% 13.3%;
     border-bottom: solid;
     border-color: #ebebeb;
     padding: 10px;
@@ -253,7 +253,7 @@ body{
     justify-content: center;
 }
 
-
+/* 
 .div-cursor-1{
     cursor: pointer;
     height: 100%;
@@ -272,7 +272,18 @@ body{
     height: 100%;
     transition: 0.4s;
     
+} */
+
+.activity1{
+    display: none;
 }
 
+.activity2{
+    display: none;
+}
+.activity2:hover{
+    cursor: pointer;
+    color:rgb(2, 2, 93);
+}
 
 
