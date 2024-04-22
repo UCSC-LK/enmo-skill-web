@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/package_view_client.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../CSS/main.css">
 
-    <title>Document</title>
+    <title id="htmlTitle">Loading...</title>
 </head>
 <body>
     <div class="main"  style="margin-top: 80px;">
@@ -14,15 +15,15 @@
         <div class="container">
 
         
-        <div class="container-inside" id="container-inside" >
+            <div class="container-inside" id="container-inside" >
 
-            <div class="loader-div" id="loader-div"> 
-                <div class="loader"></div>
-            </div>
+                <div class="loader-div" id="loader-div"> 
+                    <div class="loader"></div>
+                </div>
 
 
                 
-        <div class="block" id="block"  style="display: none;">
+                <div class="block" id="block"  style="display: none;">
                     <div class="inside-block">
                         <div class="align-div">
     
@@ -110,7 +111,7 @@
                                             </div>
     
                                         </div> 
-                                        <button id="contact-btn" class="button-save-square" onclick="profile()">Contact Me</button>
+                                        <button id="contact-btn" class="button-save-square">Contact Me</button>
                                         
                                     </div>
     
@@ -188,93 +189,44 @@
     
                             <table class="table" id="price-table">
                                 <tr class="header">
-                                    <td class="table-header">Price package</td>
-                                    <td class="table-header">Platinum</th>
-                                    <td class="table-header">Silver</th>
-                                    <td class="table-header">Gold</th>
+                                    <th class="table-header">Price package</th>
+                                    <th class="table-header">Platinum</th>
+                                    <th class="table-header">Silver</th>
+                                    <th class="table-header">Gold</th>
                                 </tr>
                                 <tbody id="table-body">
 
                                 </tbody>
-                                <!-- <tr>
-                                    <td>Price (Rs)</td>
-                                    <td class="price">100</t>
-                                    <td class="price">500</td>
-                                    <td class="price">1000</td>
-                                </tr>
-                                <tr id="rev-row">
-                                    <td>No of revisons</td>
-                                    <td>Unlimited</td>
-                                    <td>Unlimited</td>
-                                    <td>Unlimited</td>
-                                </tr>
-                                <tr>
-                                    <td>Delivery durarion</td>
-                                    <td>1 day</td>
-                                    <td>2 days</td>
-                                    <td>3 days</td>
-                                </tr>
-                                <tr>
-                                    <td>Logo transparancy</td>
-                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                                    
-                                    
-                                </tr>
-                                <tr>
-                                    <td>Vector file</td>
-                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                                <tr>
-                                    <td>Printable file</td>
-                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                                </tr>
-                                <tr>
-                                    <td>3D mokup</td>
-                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                                <tr>
-                                    <td>Source file</td>
-                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                                </tr>
-                                <tr>
-                                    <td>Printable file</td>
-                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                                </tr>
-                                <tr>
-                                    <td>Social media kit</td>
-                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                                </tr>
-                                <tr>
-                                    <td>No of concepts included</td>
-                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td><button class="button-save" onclick="payment()">Select</button></td>
-                                    <td><button class="button-save" onclick="payment()">Select</button></td>
-                                    <td><button class="button-save" onclick="payment()">Select</button></td>
-                                </tr> -->
-    
+                                
                             </table>
                         </div>
                     </div>
                 </div>
+
+                
             </div>
             
+            <div class="overlay-hidden" id="overlay" >
+
+                <div id="overlay-div" class="overlay-div2">
+
+                    <div class="overlay-content">
+                        <p class="overlay-hed">Tell us about your work</p>
+                        <p class="overlay-sub">What are your requirements?</p>
+
+                        <textarea name="order-req" id="order-req" cols="30" rows="15"></textarea>
+
+                        <button class="btn-apply" id="orderCreateBtn">Create order</button>
+                    </div>
+
+                    
+
+                
+                </div>
+    
+             
+                
+            </div>
             
         </div>
     </div>
@@ -285,9 +237,9 @@
         window.location.href = "../HTML/profile.html"
     }
 
-    function payment(){
-        window.location.href = "../HTML/payment.html"
-    }
+    // function payment(){
+    //     window.location.href = "../HTML/payment.html"
+    // }
 
     function reviews(){
         alert("UI is under construction")

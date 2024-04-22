@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/main.css">
+    <link rel="stylesheet" href="../CSS/admin_dashboard.css">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <div class="page">
+        <div id="sidebar-placeholder"></div><script src="../Javascripts/sidebar.js"></script>
+        <div class="pg-content" style="width: 100%; overflow: auto;">
+            <div id="header-placeholder" style="width: 100%; position: sticky; top: 0;"></div><script src="../Javascripts/header.js"></script>
+                <div class="main">
+                    <div class="container">
+                        <div class="block">
+                            <h1 class="headding">Dashboard</h1>
+
+                            <div class="row">
+                                <div class="column1">
+                                    <div id="note1" class="note">
+                                        <box-icon name='user' type='solid' size="40px" class="row-icons"></box-icon>
+                                        <div class="align-set">
+                                            <h1 id="order-count">100+</h1>
+                                            <p>Users</p>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="column1">
+                                    <div id="note2" class="note">
+                                        <box-icon name='money' size="40px" class="row-icons"></box-icon>
+                                        <div class="align-set">
+                                            <h1 id="earning-count">LKR 100000</h1>
+                                            <p>Transactions</p>
+                                        </div>
+        
+                                    </div>
+                                </div>
+                                <div class="column1">
+                                    <div id="note3" class="note">
+                                        <box-icon type='solid' name='package' size="40px" class="row-icons"></box-icon>
+                                        <div class="align-set">         
+                                            <h1 id="package-count">100+</h1>
+                                            <p>Packages</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row2">
+                                <div class="category-details">
+                                    <div class="subheader">
+                                        <h2 class="subheading">Best selling categories</h2>
+                                    </div>
+                                    
+                                    <div class="category-details-content">
+                                        <canvas id="myChart"></canvas>
+
+                                    </div>
+                                </div>
+                                <div style="width: 10%;"></div>
+                                <div class="revenue-details">
+                                    <div class="subheader">
+                                        <h2 class="subheading">Revenue overview</h2>
+                                    </div>
+                                    
+                                    <div class="revenue-details-content">
+                                        <canvas  id="revenueChart"></canvas>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row2">
+                                <div class="package-details">
+                                    <div class="subheader">
+                                        <h2 class="subheading">Best selling package</h2>
+                                    </div>
+                                    
+                                    <div class="package-details-content">
+                                        <div class="pkg-inner-div">
+
+                                            <div class="cover">
+                                                <img src="../Assests/package_cover4.jpg" alt="">
+                                            </div>
+                                            <div class="pkg-title">
+                                                <p class="truncate-text">I will be your logo designer</p>
+                                            </div>
+                                            <div class="pkg-ratings">
+                                                <label class="cat" for="5star"> 4.5
+                                                    <span class="fa fa-star checked"></span>
+                                                </label>
+                                            </div>
+                                            <div class="pkg-user">
+                                                <p>Main</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+</body>
+
+<script src="../Javascripts/admin_dashboard.js"></script>
+</html>

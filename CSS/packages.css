@@ -1,40 +1,52 @@
-.table {
+/* .table {
     padding: 10px;
     background-color: white;
     margin-top: 10px;
     border: solid;
     border-width: 1px;
     border-color: #ebebeb;
-  }
+  } */
+
+  .table{
+    padding: 15PX 10px;
+    
+    border-radius: 15px;
+    background-color: white;
+    margin-top: 5px;
+    border: solid;
+    border-width: 1px;
+    border-color: #ebebeb;
+}
   
-  .navbar {
+  .navbar-body {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-bottom: 5px;
-    border-bottom: solid;
+    /* border-bottom: solid;
     border-color: #ebebeb;
-    border-width: 2px;
+    border-width: 2px; */
+    margin-top: 30px;
   }
   
-  .navbar .nav {
+  .navbar-body .nav-body {
     display: flex;
     cursor: pointer;
   }
   
-  .navbar ul {
+  .navbar-body ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
   }
   
-  .navbar li {
+  .navbar-body li {
     float: left;
     padding-right: 25px;
   }
   
-  .navbar a {
+  .navbar-body a {
     display: block;
     color: white;
     text-align: center;
@@ -42,13 +54,14 @@
     text-decoration: none;
   }
   
-  .navbar button {
+  .btn button {
     background-color: #18181a;
     color: #fff;
     border: none;
     padding: 10px 20px;
-    border-radius: 20px;
+    border-radius: 7px;
     cursor: pointer;
+    font-weight: bold;
   }
   
   li a:hover {
@@ -59,7 +72,7 @@
     font-weight: bold;
   }
   
-  .navbar .btn {
+  .navbar-body .btn {
     float: right;
   }
   
@@ -75,7 +88,7 @@
     width: 100%;
   }
   .container {
-    margin-top: 80px;
+    /* margin-top: 80px; */
     padding: 40px 0;
     width: 100%;
     display: flex;
@@ -93,6 +106,7 @@
     display: flex;
     justify-content: space-between;
     font-weight: lighter;
+    font-size: 35px;
   }
   
   .title {
@@ -101,6 +115,8 @@
     border-width: 2px;
     font-weight: bold;
     color: rgb(60, 60, 60);
+    margin-top: 20px;
+    padding-left: 10px;
   }
   
   .headers {
@@ -113,14 +129,17 @@
     font-weight: bold;
     color: #a3a3a3;
     font-size: small;
+    margin-top: 20px;
   }
   
-  .headers .header-package {
-    width: 20%;
+  /* .headers .header-package {
+    width: 35%;
     max-width: 20%;
     min-width: 20%;
+    padding-left: 10px;
+    flex: 1;
   }
-  
+   */
   .row {
     display: flex;
     align-items: center; /* Vertically center content */
@@ -129,6 +148,7 @@
     border-bottom: solid;
     border-color: #ebebeb;
     border-width: 1px;
+    height: 80px;
   }
   
   .pause-icon {
@@ -175,46 +195,60 @@
     cursor: pointer;
   }
   
-  .pkg-img {
-    width: 10%;
+  .pkg-img, .empty {
+    /* width: 10%;
     max-width: 10%;
-    min-width: 10%;
-    
-    
+    min-width: 10%; */
+    flex: 1;
+    padding-left: 10px;
   }
   
-  .row .pakg {
-    width: 60%;
+  .row .pakg, .header-package {
+    /* width: 60%;
     max-width: 75%;
     min-width: 20%;
-    padding-right: 10px;
+    padding-right: 10px; */
+    flex: 5;
+    padding-left: 10px;
   }
   
-  .row .clicks{
-    width: 20%;
+  .row .clicks ,.header-clicks{
+    /* width: 60%;
     max-width: 20%;
-    min-width: 10%;
+    display: flex;
+    align-items: center; */
+    flex: 2;
+    padding-left: 10px;
     
   }
   
-  .row .orders{
-    width: 15%;
-    max-width: 15%;
-    min-width: 15%;
-    padding-left: 40px;
-    padding-right: 40px;
+  .row .noorders, .header-orders{
+    /* width: 30%;
+    max-width: 15%; */
+    /* min-width: 15%; */
+    /* padding-left: 40px;
+    padding-right: 40px; */
+    /* display: flex;
+    align-items: center; */
+    flex: 2;
+    padding-left: 10px;
   }
   
-  .row .cancellations{
-    width: 15%;
-    max-width: 15%;
-    min-width: 15%;
+  .row .cancellations, .header-cancellations {
+    /* width: 15%;
+    max-width: 15%; */
+    /* min-width: 15%; */
+    flex: 2;
+    padding-left: 10px;
   }
   
-  .button-set {
-    width: 30%;
+  .button-set, .empty2 {
+    flex: 2;
+    padding-left: 10px;
+    /* width: 30%;
     max-width: 30%;
-    min-width: 30%;
+    min-width: 30%; */
+    /* display: inline */
   }
   
   /* .cover{
@@ -227,6 +261,33 @@
     width: 50%;
     height: auto;
   }
+
+  .btn-apply {
+    background-color: #18181a;; /* Button background color (blue) */
+    color: #fff; /* Text color for the button */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 7px;
+    cursor: pointer;
+    float: right;
+    width: 90px;
+    font-weight: bold;
+}
   
+
+.header h2{
+  color:rgb(60, 60, 60);
+  font-size: 35px;
+  font-weight: lighter;
+}
+
+.align-buttons{
+  display: flex;
+  align-items: center;
+}
+
+/* header-orders{
+  width: 10px;
+} */
   
   

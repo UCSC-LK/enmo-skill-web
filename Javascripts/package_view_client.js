@@ -22,9 +22,18 @@ const url = new URL(window.location.href);
 const packageId = url.searchParams.get('packageId');
 console.log(packageId);
 
-document.addEventListener( "DOMContentLoaded", loadData() );
+var tableCreated = false;
+
+var package_data;
+var designer_data;
+var pricing_data;
+let overlay_view=document.getElementById("overlay");
+
+
+document.addEventListener("DOMContentLoaded", loadData());
 
 function loadData() {
+
     fetch(BASE_URL+`/packageview?packageId=${packageId}`,{
         method: 'GET',
         headers: myHeaders,
@@ -37,14 +46,17 @@ function loadData() {
     })
     .then((resultset) =>{
         
-        var package_data = resultset[0];
-        var designer_data = resultset[1];
-        var pricing_data = resultset[2];
+        package_data = resultset.packageModel;
+        designer_data = resultset.profileModel;
+        pricing_data = resultset.pricings;
 
         // console.log(pricing_data.pricing[0].noOfRevisions);
 
+        deseignerId = designer_data.userId;
 
         document.getElementById("headding-title").innerHTML = package_data.title;
+
+        document.getElementById("htmlTitle").innerHTML = package_data.title
 
         var designer_pic = document.getElementById("designer-picture");
         designer_pic.src = "../Assests/user_coloured.png"; // this data has to be store in the db
@@ -56,25 +68,19 @@ function loadData() {
         document.getElementById("no-orders").innerHTML = 4 + ' Orderes in Queue'; // this has to be fetched from the order table
 
         var designer_pic = document.getElementById("cover-image");
-        designer_pic.src = "../Assests/package_cover4.jpg"; // this data has to be store in the db
+        designer_pic.src = package_data.coverUrl; // this data has to be store in the db
 
         var pkg_decription = document.getElementById("description");
         var description = document.createElement('p');
         description.innerHTML = package_data.description;
         pkg_decription.appendChild(description);
 
-        var cat = ""
-        if (package_data.category == 1) {
-            cat = "Logo Designing"
-        } else if (package_data.category == 2) {
-            cat = "Illustration"   
-        } else if (package_data.category == 3) {
-            cat = "Flyer design"   
-        } else{
-            cat = "Banner design"
-        }
+        console.log(pricing_data[0].del.categoryId);
 
-        document.getElementById("catogery").innerHTML = cat;
+        var categoryData = getCategory(pricing_data[0].del.categoryId)
+        console.log(categoryData);
+
+        document.getElementById("catogery").innerHTML = categoryData.category;
 
         var designer_pic_2 = document.getElementById("designer-img");
         designer_pic_2.src = "../Assests/user_coloured.png"; // this data has to be store in the db
@@ -106,253 +112,63 @@ function loadData() {
 
         // console.log(pricing_data.pricing[0].deliverables.pricePackageId);
 
-        switch (package_data.category) {
-            case 1:
+        var data_rows = [
+            ["Price (Rs)"],
+            ["No of Revisions"],
+            ["Delivery Duration"],
+            ["No of Concepts"],
+            [categoryData.del_1],
+            [categoryData.del_2],
+            [categoryData.del_3],
+            [categoryData.del_4],
+            [categoryData.del_5],
+            [""]  
+        ]
 
-                var data_rows = [
-                    ["Price (Rs)"],
-                    ["No of Revisions"],
-                    ["Delivery Duration"],
-                    ["No of Concepts"],
-                    ["Logo Transparency"],
-                    ["Vector File"],
-                    ["Printable file"],
-                    ["3D Mockup"],
-                    ["Source file"],
-                    ["Social media kit"],
-                    [""]
-                
-                ]
-                
-                pricing_data.pricing.forEach(function(pricingItem){
-                    data_rows[0].push(pricingItem.price)
-                    data_rows[1].push(pricingItem.noOfRevisions)
-                    data_rows[2].push((pricingItem.deliveryDuration==1)?"1 Day":pricingItem.deliveryDuration+" Days")
-                    data_rows[3].push(pricingItem.noOfConcepts)
-                    data_rows[4].push((pricingItem.deliverables.logoTransparency==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-                    data_rows[5].push((pricingItem.deliverables.vectorFile==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-                    data_rows[6].push((pricingItem.deliverables.printableFile==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-                    data_rows[7].push((pricingItem.deliverables.mockup==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-                    data_rows[8].push((pricingItem.deliverables.sourceFile==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-                    data_rows[9].push((pricingItem.deliverables.socialMediaKit==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-                    data_rows[10].push('<button class="button-save" onclick="payment()">Select</button>')
-                })
-                
-                data_rows.forEach(function(row){
-                    var tr = document.createElement('tr');
-                    tbody.appendChild(tr);
-                
-                    if (row[0] == "Price (Rs)") {
-                        var i = 0
-                        row.forEach(function(cell){
-                            var td = document.createElement('td');
-                            tr.appendChild(td);
-                            td.innerHTML = cell;
-                            if (i > 0) {
-                                td.className = "price"
-                            }
-                            i += 1
-                
-                        })
-                    } else {
-                        row.forEach(function(cell){
-                        
-                            var td = document.createElement('td');
-                            tr.appendChild(td);
-                            td.innerHTML = cell;
-                
-                        })
-                     
-                    }
-                
-                    
-                
-                })
-                
-                break;
-
-            case 2:
-
-                var data_rows = [
-                    ["Price (Rs)"],
-                    ["No of Revisions"],
-                    ["Delivery Duration"],
-                    ["No of Figures"],
-                    ["Source File"],
-                    ["High Resolution"],
-                    ["Background/scene"],
-                    ["Color"],
-                    ["Full Body"],
-                    ["Commercial Use"],
-                    [""]
-                
-                ]
-                
-                pricing_data.pricing.forEach(function(pricingItem){
-                    data_rows[0].push(pricingItem.price)
-                    data_rows[1].push(pricingItem.noOfRevisions)
-                    data_rows[2].push((pricingItem.deliveryDuration==1)?"1 Day":pricingItem.deliveryDuration+" Days")
-                    data_rows[3].push(pricingItem.noOfConcepts)
-                    data_rows[4].push((pricingItem.deliverables.sourceFile==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-                    data_rows[5].push((pricingItem.deliverables.highResolution==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-                    data_rows[6].push((pricingItem.deliverables.background_scene==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-                    data_rows[7].push((pricingItem.deliverables.colour==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-                    data_rows[8].push((pricingItem.deliverables.fullBody==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-                    data_rows[9].push((pricingItem.deliverables.commercialUse==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-                    data_rows[10].push('<button class="button-save" onclick="payment()">Select</button>')
-                })
-                
-                data_rows.forEach(function(row){
-                    var tr = document.createElement('tr');
-                    tbody.appendChild(tr);
-                
-                    if (row[0] == "Price (Rs)") {
-                        var i = 0
-                        row.forEach(function(cell){
-                            var td = document.createElement('td');
-                            tr.appendChild(td);
-                            td.innerHTML = cell;
-                            if (i > 0) {
-                                td.className = "price"
-                            }
-                            i += 1
-                
-                        })
-                    } else {
-                        row.forEach(function(cell){
-                        
-                            var td = document.createElement('td');
-                            tr.appendChild(td);
-                            td.innerHTML = cell;
-                
-                        })
-                     
-                    }
-                
-                    
-                
-                })
-                break;
-
-            case 3:
-
-                var data_rows = [
-                    ["Price (Rs)"],
-                    ["No of Revisions"],
-                    ["Delivery Duration"],
-                    ["Print-Ready"],
-                    ["Source File"],
-                    ["Double-sided"],
-                    ["Custom Graphics"],
-                    ["Photo editing"],
-                    ["Social media design"],
-                    ["Commercial Use"],
-                    [""]
-                
-                ]
-                
-                pricing_data.pricing.forEach(function(pricingItem){
-                    data_rows[0].push(pricingItem.price)
-                    data_rows[1].push(pricingItem.noOfRevisions)
-                    data_rows[2].push((pricingItem.deliveryDuration==1)?"1 Day":pricingItem.deliveryDuration+" Days")
-                    data_rows[3].push((pricingItem.deliverables.printReady==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-                    data_rows[4].push((pricingItem.deliverables.sourceFile==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-                    data_rows[5].push((pricingItem.deliverables.doubleSided==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-                    data_rows[6].push((pricingItem.deliverables.customGraphics==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-                    data_rows[7].push((pricingItem.deliverables.photoEditing==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-                    data_rows[8].push((pricingItem.deliverables.socialMediaDesign==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-                    data_rows[9].push((pricingItem.deliverables.commercialUse==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-                    data_rows[10].push('<button class="button-save" onclick="payment()">Select</button>')
-                })
-                
-                data_rows.forEach(function(row){
-                    var tr = document.createElement('tr');
-                    tbody.appendChild(tr);
-                
-                    if (row[0] == "Price (Rs)") {
-                        var i = 0
-                        row.forEach(function(cell){
-                            var td = document.createElement('td');
-                            tr.appendChild(td);
-                            td.innerHTML = cell;
-                            if (i > 0) {
-                                td.className = "price"
-                            }
-                            i += 1
-                
-                        })
-                    } else {
-                        row.forEach(function(cell){
-                        
-                            var td = document.createElement('td');
-                            tr.appendChild(td);
-                            td.innerHTML = cell;
-                
-                        })
-                     
-                    }
-                
-                    
-                
-                })
-                break;
+        pricing_data.forEach(function(pricingItem){
+            data_rows[0].push(pricingItem.price)
+            data_rows[1].push(pricingItem.noOfRevisions)
+            data_rows[2].push((pricingItem.deliveryDuration==1)?"1 Day":pricingItem.deliveryDuration+" Days")
+            data_rows[3].push(pricingItem.noOfConcepts)
+            data_rows[4].push((pricingItem.del.del_1==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
+            data_rows[5].push((pricingItem.del.del_2==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
+            data_rows[6].push((pricingItem.del.del_3==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
+            data_rows[7].push((pricingItem.del.del_4==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
+            data_rows[8].push((pricingItem.del.del_5==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
+            data_rows[9].push('<button class="button-save" onclick="createOrder('+pricingItem.price, +')">Select</button>')
+        })
         
-            case 4:
-                ["Custom graphics", "Source file", "Print-ready"];
-
-                var data_rows = [
-                    ["Price (Rs)"],
-                    ["No of Revisions"],
-                    ["Delivery Duration"],
-                    ["Print-Ready"],
-                    ["Source File"],
-                    ["Custom Graphics"],
-                    [""]
-                
-                ]
-                
-                pricing_data.pricing.forEach(function(pricingItem){
-                    data_rows[0].push(pricingItem.price)
-                    data_rows[1].push(pricingItem.noOfRevisions)
-                    data_rows[2].push((pricingItem.deliveryDuration==1)?"1 Day":pricingItem.deliveryDuration+" Days")
-                    data_rows[3].push((pricingItem.deliverables.printReady==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-                    data_rows[4].push((pricingItem.deliverables.sourceFile==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-                    data_rows[5].push((pricingItem.deliverables.customGraphics==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-                    data_rows[6].push('<button class="button-save" onclick="payment()">Select</button>')
-                })
-                
-                data_rows.forEach(function(row){
-                    var tr = document.createElement('tr');
-                    tbody.appendChild(tr);
-                
-                    if (row[0] == "Price (Rs)") {
-                        var i = 0
-                        row.forEach(function(cell){
-                            var td = document.createElement('td');
-                            tr.appendChild(td);
-                            td.innerHTML = cell;
-                            if (i > 0) {
-                                td.className = "price"
-                            }
-                            i += 1
-                
-                        })
-                    } else {
-                        row.forEach(function(cell){
-                        
-                            var td = document.createElement('td');
-                            tr.appendChild(td);
-                            td.innerHTML = cell;
-                
-                        })
-                     
+        data_rows.forEach(function(row){
+            var tr = document.createElement('tr');
+            tbody.appendChild(tr);
+        
+            if (row[0] == "Price (Rs)") {
+                var i = 0
+                row.forEach(function(cell){
+                    var td = document.createElement('td');
+                    tr.appendChild(td);
+                    td.innerHTML = cell;
+                    if (i > 0) {
+                        td.className = "price"
                     }
-                
-                    
-                
+                    i += 1
+        
                 })
-                break;
-        }
+            } else {
+                row.forEach(function(cell){
+                
+                    var td = document.createElement('td');
+                    tr.appendChild(td);
+                    td.innerHTML = cell;
+        
+                })
+             
+            }
+        
+            
+        
+        })
+
 
 
         // FINALLYYYY REMOVING THE LOADER
@@ -373,10 +189,291 @@ function loadData() {
     })
 }
 
+document.addEventListener("DOMContentLoaded", function(){
+    loadData();
+});
+
+function loadData() {
+
+    fetch(BASE_URL+`/packageview?packageId=${packageId}`,{
+        method: 'GET',
+        headers: myHeaders,
+    })
+    .then((response) =>{
+        if (!response.ok) {
+            throw new Error('An error occured!');
+        }
+        return response.json();
+    })
+    .then((resultset) =>{
+        
+        var package_data = resultset.packageModel;
+        var designer_data = resultset.profileModel;
+        var pricing_data = resultset.pricings;
+
+        // console.log(pricing_data.pricing[0].noOfRevisions);
+
+        deseignerId = designer_data.userId;
+
+        document.getElementById("headding-title").innerHTML = package_data.title;
+
+        document.getElementById("htmlTitle").innerHTML = package_data.title
+
+        var designer_pic = document.getElementById("designer-picture");
+        designer_pic.src = "../Assests/user_coloured.png"; // this data has to be store in the db
+
+        document.getElementById("designer-username1").innerHTML = designer_data.display_name;
+
+        document.getElementById("no-reviews").innerHTML = 5; // this has to be fetched from the review table
+        document.getElementById("review-count").innerHTML = '(' + 200 + ')'; // this has to be fetched from the review table
+        document.getElementById("no-orders").innerHTML = 4 + ' Orderes in Queue'; // this has to be fetched from the order table
+
+        var designer_pic = document.getElementById("cover-image");
+        designer_pic.src = package_data.coverUrl; // this data has to be store in the db
+
+        var pkg_decription = document.getElementById("description");
+        var description = document.createElement('p');
+        description.innerHTML = package_data.description;
+        pkg_decription.appendChild(description);
+
+        // console.log(pricing_data[0].del.categoryId);
+
+        // var categoryData = getCategory(pricing_data[0].del.categoryId)
+        // console.log(categoryData);
+
+        // document.getElementById("catogery").innerHTML = categoryData.category;
+
+        var designer_pic_2 = document.getElementById("designer-img");
+        designer_pic_2.src = "../Assests/user_coloured.png"; // this data has to be store in the db
+
+        document.getElementById("designer-username2").innerHTML = designer_data.display_name;
+        document.getElementById("reviews-designer").innerHTML = 4.5; // need to fetch from reviews table
+        document.getElementById("review-count-designer").innerHTML = '(' + 471 +')'; // need to fetch from reviews table
+
+        document.getElementById("member-since").innerHTML = "April 2021" // this data has to be stored in the designer or user or tables
+        document.getElementById("last-deli").innerHTML = "3 hours ago" // fetch from the order table
+
+        var lang = designer_data.language;
+        document.getElementById("lang").innerHTML = lang.join(' ');
+
+        document.getElementById('des-designer').innerHTML = designer_data.description;
+
+        var client_img  = document.getElementById('client-img')
+        client_img.src = "../Assests/user_coloured.png"
+
+        document.getElementById("client-name").innerHTML = "Joe A."; // need to fetch from review table
+        document.getElementById("client-country").innerHTML = "United States"; // need to fetch from client table
+
+        // this too has to be fetched from review table
+        document.getElementById("the-review").innerHTML = "Working with this seller for my project was a delight. They grasped my brand's essence and delivered a remarkable logo. The unlimited revisions, quick turnaround, and high-qualit files were exceptional. I couldn't be happier with the outcome. Highly recommend!";
+
+        document.getElementById("reviewd-date").innerHTML = "3 months ago"
+
+        
+
+
+        populatePricingTable(pricing_data)
+       
+
+ 
+
+        removeLoader()
+
+
+
+
+
+
+    })
+}
+i = 0
+function populatePricingTable(pricing_data){
+    i = i + 1    
+    getCategory(pricing_data[0].del.categoryId)
+        .then((categoryData) => {
+            console.log(categoryData);
+            document.getElementById("catogery").innerHTML = categoryData.category;
+            
+            var data_rows = [
+                ["Price (Rs)"],
+                ["No of Revisions"],
+                ["Delivery Duration"],
+                ["No of Concepts"],
+                [categoryData.del_1],
+                [categoryData.del_2],
+                [categoryData.del_3],
+                [categoryData.del_4],
+                [categoryData.del_5],
+                [""]  
+            ]
+    
+            pricing_data.forEach(function(pricingItem){
+                data_rows[0].push(pricingItem.price)
+                data_rows[1].push(pricingItem.noOfRevisions)
+                data_rows[2].push((pricingItem.deliveryDuration==1)?"1 Day":pricingItem.deliveryDuration+" Days")
+                data_rows[3].push(pricingItem.noOfConcepts)
+                data_rows[4].push((pricingItem.del.del_1==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
+                data_rows[5].push((pricingItem.del.del_2==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
+                data_rows[6].push((pricingItem.del.del_3==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
+                data_rows[7].push((pricingItem.del.del_4==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
+                data_rows[8].push((pricingItem.del.del_5==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
+                // data_rows[9].push('<button class="button-save" onclick="createOrder('+pricingItem.price+')">Select</button>')
+                data_rows[9].push('<button class="button-save" onclick="showOrderOverlay('+pricingItem.price+')">Select</button>');
+            });
+
+            if (!tableCreated) {
+                var tbody = document.getElementById("table-body");
+            
+                data_rows.forEach(function(row){
+                    var tr = document.createElement('tr');
+                    tbody.appendChild(tr);
+                
+                    if (row[0] == "Price (Rs)") {
+                        var i = 0
+                        row.forEach(function(cell){
+                            var td = document.createElement('td');
+                            tr.appendChild(td);
+                            td.innerHTML = cell;
+                            if (i > 0) {
+                                td.className = "price"
+                            }
+                            i += 1
+                
+                        })
+                    } else {
+                        row.forEach(function(cell){
+                        
+                            var td = document.createElement('td');
+                            tr.appendChild(td);
+                            td.innerHTML = cell;
+                
+                        })
+                    
+                    }
+                
+                    
+                
+                })
+
+                tableCreated = true;
+            }
+
+            
+        })
+        .catch((error) => {
+            console.error('Error fetching category data:', error);
+    });
+}
+
+function removeLoader(){
+    var loader = document.getElementById("loader-div");
+    var block = document.getElementById("block");
+    var sticky = document.getElementById("sticky");
+
+    block.style.cssText = "";
+    sticky.style.cssText = "";
+    loader.style.display = "none";
+}
+
+function getCategory(categoryId){
+    return fetch(BASE_URL + `/categorydata?categoryId=${categoryId}`,{
+        method: 'GET',
+        headers: myHeaders
+      })
+      .then((response) =>{
+        if (!response.ok) {
+          throw new Error('Error occurred');
+        } else {
+          return response.json();
+        }
+      });
+}
+
 document.getElementById("contact-btn").addEventListener("click", function(e) {
     e.preventDefault();
     
-    // function to navigate to messaeges
+    window.location.href="../HTML/messages.html?createchat=true&id="+deseignerId
 
 })
 
+function createOrder(price){
+    var reqBody = {
+        "packageId": packageId,
+        "designerId" : deseignerId,
+        "price" : price
+    }
+
+    console.log(deseignerId);
+
+    fetch(BASE_URL+`/order`,{
+        method: 'POST',
+        headers: myHeaders,
+        body: JSON.stringify(reqBody)
+    }).then((response) => {
+        if (response.ok) {
+          console.log("Order created successfully");
+            var rsp = response.json();
+            rsp.then(data =>{
+                console.log("Order ID: " + data.orderId);
+                window.location.href=`../HTML/payment.html?orderId=${data.orderId}`
+            })
+          
+        } else {
+          console.error("An error occurred while creating");
+        }
+      })
+      .catch((error) => {
+        console.error('An error occurred while creating');
+      });
+
+    
+}
+
+function on() {
+    console.log("inside on");
+    overlay_view.style.display = "block";
+    console.log("after on");
+  }
+  
+//   function off() {
+//     overlay_view.style.display = "none";
+//   }
+
+
+// overlay_view.addEventListener("click", function(){
+//     off()
+// })
+
+overlay_view.addEventListener("click", function(event) {
+    
+    var overlayDiv = document.getElementById("overlay-div");
+
+    // Check if the click target is outside the overlay div
+    if (!overlay_view.contains(event.target) && event.target !== overlayDiv) {
+        
+    }
+    overlay_view.classList.remove("overlay")
+    overlay_view.classList.remove("overlay-hidden")
+    overlayDiv.style.display = "none"
+
+});
+
+// function closePopup() {
+//   overlay_view.style.display = "none";
+// }
+
+function showOrderOverlay(price){
+    // location.reload();
+    
+    
+    overlay_view.classList.add('overlay');
+    overlay_view.classList.remove('overlay-hidden');
+    
+    console.log(price);
+}
+
+// document.getElementById("orderCreateBtn").addEventListener("click", function(){
+//     var req = document.getElementById("order-req").textContent;
+
+//     console.log(req);
+// })

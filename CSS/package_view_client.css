@@ -20,7 +20,7 @@ main{
     margin: auto;
     padding: 30px;
     flex-direction: column;
-    background: rgba(255, 255, 255, 0.5); /* Corrected spelling */
+    /* background: rgba(255, 255, 255, 0.5);  */
     border: none; /* Corrected spelling */
     overflow: hidden; /* Replaced overflow-x and overflow-y */
 }
@@ -274,6 +274,7 @@ h3{
     padding: 20px;
     margin-bottom: 10px;
     border-radius: 7px;
+    background: rgba(255, 255, 255, 0.5);
 }
   
 .review-frame h3{
@@ -354,6 +355,7 @@ h3{
     padding: 20px;
     border: 1px solid #ebebeb;
     border-radius: 7px;
+    background: rgba(255, 255, 255, 0.5);
 
 }
 
@@ -480,7 +482,7 @@ h3{
   @keyframes l3 {to{transform: rotate(1turn)}}
 
   .loader-div{
-    background-color: #fff;
+    /* background-color: #fff; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -488,3 +490,96 @@ h3{
     height: 80vh;
     margin: 0;
   }
+
+  .overlay-hidden {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* background-color: rgba(0,0,0,0.5); */
+    background-color:#000000c3;
+    z-index: 2;
+    /* cursor: pointer; */
+  }
+  .overlay {
+    position: fixed;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* background-color: rgba(0,0,0,0.5); */
+    background-color:#000000c3;
+    z-index: 2;
+    /* cursor: pointer; */
+  }
+  
+  .overlay-div2{
+    width: 30%;
+    height: 70%;
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* font-size: 50px; */
+    /* color: white; */
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    border-radius: 7px;
+  }
+
+  .overlay-content{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 30px;
+    margin: 0;
+  }
+
+  .overlay-hed{
+    /* margin: 0; */
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .overlay-sub{
+    margin: 0;
+    font-size: 14px;
+  }
+
+  *:focus {
+    outline: none;
+  }
+  
+  #order-req{
+    width: 95%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background: #FFF;
+    /* display: inline; */
+    resize: none;
+    padding: 10px;
+    color: #444;
+    vertical-align: text-top;
+    /* margin-left: 11px; */
+    margin-bottom: 50px;
+}
+
+.btn-apply {
+    background-color: #18181a;; /* Button background color (blue) */
+    color: #fff; /* Text color for the button */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 7px;
+    cursor: pointer;
+    float: right;
+    width: 40%;
+    font-weight: bold;
+}
