@@ -20,9 +20,9 @@ function getCookies(cookieName) {
   }else if(user=="DESIGNER"){
     url="/Components/sidebar_seller.html"
   }else if(user=="ADMIN"){
-    url="/Components/sidebar_seller.html"
+    url="/Components/sidebar_admin.html"
   }else if(user=="CSA"){
-    url="/Components/sidebar_seller.html"
+    url="/Components/sidebar_cs.html"
   }else{
     window.location.href = "../HTML/login.html";
   }

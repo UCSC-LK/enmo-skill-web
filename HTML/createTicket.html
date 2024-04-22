@@ -3,11 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/main.css">
     <link rel="stylesheet" href="../CSS/createTicket.css">
     <title>Create Tickets</title>
 </head>
 
 <body>
+
+    <div class="loading">
+        <div class="spin"></div>
+    </div>
+    
     <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>
     <div class="container">
 
@@ -38,7 +44,7 @@
                 <div class="attachFile">
                     <label for="fileInput" class="custom-file-upload">Attach Files</label>
                     <!-- Actual file input field -->
-                    <input type="file" id="fileInput" name="fileInput">
+                    <input type="file" id="fileInput" name="fileInput" onchange="uploadFile()">
                 </div>
 
                 <div style="display: none;">
@@ -55,8 +61,7 @@
                         <!-- <div ><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTh4QJM3RxMSUPh9FPu12R2cZsp4wQzSBiDI8R-nKZvvQ&s" class="icon2"></div> -->
                     </div>
                 </div>
-                
-                
+
             </form>
 
             <div class ="botom-row">
@@ -72,7 +77,7 @@
                 
                               
                 <div class="btn2" >
-                    <input class="button div-cursor"  type="submit" value="Send Request" onclick="ticketsubmission()">
+                    <input class="button div-cursor"  type="submit" value="Send Request" id="submitbutton">
 
                 </div>
             </div>
@@ -82,8 +87,33 @@
             <img src="../Assests/icons/CSA1.png">
         </div>
     </div>
+    <template id="my-template" class="my-template">
+                     
+        <swal-title >
+            Save changes to "Untitled 1" before closing?
+        </swal-title>
+        <swal-icon type="question"></swal-icon>
+        <swal-button type="confirm">
+          Yes
+        </swal-button>
+        <swal-button type="cancel">
+          No
+        </swal-button>
+        <!-- <swal-button type="deny">
+          Close without Saving
+        </swal-button> -->
+        <!-- <swal-param name="allowEscapeKey" value="false" />
+        <swal-param
+          name="customClass"
+          value='{ "popup": "my-popup" }' />
+        <swal-function-param
+          name="didOpen"
+          value="popup => console.log(popup)" /> -->
+    </template>
+
     <script src="../Javascripts/baseurl.js"></script>
     <script src="../Javascripts/supportticketcreate.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
 

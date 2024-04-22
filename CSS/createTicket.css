@@ -158,3 +158,8 @@ input[type="file"] {
     border-radius: 10px;
     cursor: pointer;
 }
+
+.cbox{
+    margin-top: 20px;
+    color: #444;
+}

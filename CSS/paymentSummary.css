@@ -1,0 +1,175 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container{
+    display:flex;
+    width: 100%;
+    height:auto;
+    text-align: center;
+    justify-content: center;
+    position: relative;
+    position: relative;
+    margin-top: 40px;
+    margin-bottom: 20px;
+   
+}
+.main-container{
+    display: grid;
+    width: 80%;
+    grid-template-columns: 70% 30%;
+    font-family: "Poppins", sans-serif;
+    gap: 20px;
+}
+.left-table{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    gap: 20px;
+}
+
+.address-details-2{
+    display: none;
+}
+.right-table{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    
+}
+
+.r-table{
+    background-color:white;
+    border-radius: 5px;
+    padding: 26px;
+
+}
+
+.address-details{
+    background-color:white;
+    border-radius: 5px;
+    padding: 20px 40px;
+    text-align: left;
+}
+
+.shipingAddress{
+    font-size: 18px;
+    font-weight: bold;
+    color: #3C3C3C;
+}
+
+.tite-size{
+    font-size: 20px;
+}
+
+.ntext{
+    color:  #9D9D9D;
+}
+.stext{
+    color: #3C3C3C;
+    font-weight: bold;
+}
+.changeBtn{
+    position: relative;
+    /* top: -72px; */
+    left: 688px;
+    color: blue;
+    text-decoration: underline;
+    font-size: small;
+}
+.changeBtn:hover{
+    color: rgb(1, 1, 106);
+    cursor: pointer;
+}
+.order-details{
+    background-color:white;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: left;
+}
+.designerName{
+    font-size: 20px;
+    font-weight: bold;
+    color: #3C3C3C;
+}
+.package-details{
+    display: flex;
+}
+
+.gig-image{
+    width:200px ;
+}
+
+.package-type{
+    padding-top: 10px;
+}
+
+.title-details{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.summary{
+    display: flex;
+}
+.t-grid{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.summary-up{
+    text-align: left;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.summary-down{
+    text-align: left;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.s-price{
+    text-align: right;
+}
+.t-price{
+    text-align: right;
+}
+.total-price{
+    text-align: right;
+    font-size: 20px;
+}
+.place-order{
+    display: flex;
+    justify-content: center;
+}
+
+.place-order-btn{
+    width: 150px;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    border: black solid;
+    background-color: black;
+    color: white;
+    transition: .5s;
+
+}
+
+.place-order-btn:hover{
+    color: black;
+    background-color: #b4b4b4;
+    cursor: pointer;
+}
+.logo{
+    width: 80px;
+}
+.logo-text{
+    text-align: left;
+    color:#9D9D9D;
+    padding: 5px;
+    font-size: 13px;
+}

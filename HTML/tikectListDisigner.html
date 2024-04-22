@@ -4,20 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/tikectListDisigner.css">
+    <link rel="stylesheet" href="../CSS/main.css">
+    
     <title>Ticket List</title>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 </head>
 <body>
+    
+    <div class="loading">
+        <div class="spin"></div>
+    </div>
 
-    <div style="margin-top: 80px;">
-        <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>
-    <div class="container">
-        <div class="main-container">
+    <div class="page">
+        <div id="sidebar-placeholder"></div><script src="../Javascripts/sidebar.js"></script>
+        <div class="pg-content" style="width: 100%; overflow: auto;">
+        <div id="header-placeholder" style="width: 100%; position: sticky; top: 0;"></div><script src="../Javascripts/header.js"></script>
+           
+        <div class="container">
+            <div class="main-container">
             
             <div class="header">
-                <h2>Tickets</h2>
+                <h2>Support Tickets</h2>
             </div>
-            
 
             <div class="ticet-heder-box">
                 <div class="class2">
@@ -25,39 +33,46 @@
                     <div class="div-cursor-1"><p class="ongoing">ONGOING</p></div>
                     <div class="div-cursor-1"><p class="solved">SOLVED</p></div>
                     <div class="div-cursor-1"><p class="rejected">REJECTED</p></div>
-                    <div style="text-align: right;"><button class="button createTicket" onclick="()=>{window.location.href='../HTML/CSA'}">CREATE A TICKET</button></div>
+                    <div style="text-align: right;"><button class="button createTicket" onclick="()=>{window.location.href='../HTML/CSA'}">ADD NEW</button></div>
                 </div>
             </div>
             <div class="table" >
-                <div class="upper">
+                <!-- <div class="upper">
                     <p>Tickets</p>
-                </div>            
+                </div>             -->
     
                 <div class="ticket-box" id="ticket-box" style="border:none">
-                    <div class="ticket-box-1" style=" border-top: solid  #ebebeb;">
-                        <div><p>SUBJECT</p></div>
-                        <div><p>DATE</p></div>
-                        <div ><p>STATUS</p></div>
+                    <div class="ticket-box-1">
                         <div></div>
-                        <div></div>
+                        <div class="ticket-heder"><p>SUBJECT</p></div>
+                        <div class="ticket-heder"><p>DATE</p></div>
+                        <div class="ticket-heder"><p>STATUS</p></div>
+                        <div class="ticket-heder"></div>
+                        
                     </div>
     
                     <div style="display: none;">
                         <div class="ticket-box-2" id="" >
+
+                            <div class="order">
+                                <div class="order1"><b>$</b></div>
+                            </div>
 
                             <div class="ticket-subject div-cursor aa"><p class="subject"></p></div>
                             
                             <div class="ticket-date aa"><p class="date"></p></div>
                             
                             <div class="ticket-status aa"><p class="status"></p></div>
+
                             
-                            <div style="align-items: center;">
+                            
+                            <!-- <div style="align-items: center;">
                                 <div class="panel">
                                     <button class="edit"><box-icon name='edit' class="editicon" color='#838383' type='solid' size="15px" margin="0" padding="0" ></box-icon>   </button>
                                     <button class="delete" ><box-icon type='solid' name='trash' color='white' size="15px"></box-icon></button>
                                 </div>
-                            </div>  
-                            <div style="display: none"><p class="description"></p></div>       
+                            </div>   -->
+                            <!-- <div style="display: none"><p class="description"></p></div>        -->
                                         
                         </div>
 
@@ -73,6 +88,23 @@
         </div>
        
     </div>
+
+    <div class="pop-up-container"></div>
+            <div class="pop-up">
+
+                <div class="massege"></div>
+               
+                <div class="input-main"><textarea  class="inputs" name="description" id="description" required></textarea></div>
+                
+                <div class="pop-btns">
+                    <input class="updateBTN popeBTN"  type="submit" value="Submit">
+                    <input class="cancelBTN popeBTN"  type="submit" value="Cancel">
+                </div>          
+                
+                
+            </div>
+        </div>
+    </div></div>
     <!-- <div class="pop-up-container"></div>
         <div class="pop-up">
 

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/main.css">
+    <link rel="stylesheet" href="../CSS/createTicket.css">
+    <title>Create Tickets</title>
+</head>
+
+<body>
+
+    <div class="loading">
+        <div class="spin"></div>
+    </div>
+    
+    <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>
+    <div class="container">
+
+        <div class="form-box">
+            
+            <form class ="form-layout" method="post">
+                <div>
+                    <div><label class="input-lable" for="Complainant"><h3>Complainant ID</h3></label></div>
+                    <div><input  class="inputs" name="Complainant" id="Complainant" required></div>
+                </div>
+                <div>
+                    <div><label class="input-lable" for="subject"><h3>Subject</h3></label></div>
+                    <div><input  class="inputs" name="subject" id="subject" required></div>
+                </div>                
+                <br>
+                <div>
+                    <div><label class="input-lable" for="description"><h3>Description</h3></label></div>
+                    <div><textarea  class="inputs-1" name="description" id="description" required></textarea></div>
+                </div>
+                <br> 
+
+            </form>
+
+            <div class ="botom-row">
+                
+                <div class="btn1">
+                    <div>
+                        <div class="back" onclick="back()">
+                            <div  class="icon"><img src="../Assests/icons/back.png"></div>
+                            <div><b>Back</b></div>
+                        </div>
+                    </div>
+                </div>
+                
+                              
+                <div class="btn2" >
+                    <input class="button div-cursor"  type="submit" value="Send Request" id="submitbutton">
+
+                </div>
+            </div>
+        </div>
+        
+        <div class="img">
+            <img src="../Assests/icons/CSA1.png">
+        </div>
+    </div>
+
+    <template id="my-template" class="my-template">
+                     
+        <swal-title >
+            Save changes to "Untitled 1" before closing?
+        </swal-title>
+        <swal-icon type="question"></swal-icon>
+        <swal-button type="confirm">
+          Yes
+        </swal-button>
+        <swal-button type="cancel">
+          No
+        </swal-button>
+        <!-- <swal-button type="deny">
+          Close without Saving
+        </swal-button> -->
+        <!-- <swal-param name="allowEscapeKey" value="false" />
+        <swal-param
+          name="customClass"
+          value='{ "popup": "my-popup" }' />
+        <swal-function-param
+          name="didOpen"
+          value="popup => console.log(popup)" /> -->
+    </template>
+    
+    <script src="../Javascripts/baseurl.js"></script>
+    <script src="../Javascripts/supportticketcreateCS.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+
+
+<script>
+     function back(){
+        window.history.back();
+    }
+</script>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/main.css">
+    <link rel="stylesheet" href="../CSS/paymentSummary.css">
+    <title>Please confirm order</title>
+</head>
+<body>
+
+    <div class="loading">
+        <div class="spin"></div>
+    </div>
+
+    <div class="page">
+        <div class="pg-content" style="width: 100%; overflow: auto;">
+        <div id="header-placeholder" style="width: 100%; position: sticky; top: 0;"></div><script src="../Javascripts/header.js"></script>
+
+        <div class="container">
+            <div class="main-container">
+                <div class="left-table">
+                    <div class="address-details address-details-1">
+                        <div class="shipingAddress">Shipping Address</div><br>
+                        <div class="username stext"><span class="first_name"></span> <span class="last_name"></span></div>
+                        <div class="pnumber ntext"></div>
+                        <div class="email ntext"></div>
+                        <div class="address ntext"></div>
+                        <div class="city ntext"></div>
+                        <div class="country ntext"></div>
+                        <div class="changeBtn update">Change</div>
+                    </div>
+                    <div class="address-details address-details-2">
+                        <div class="shipingAddress">Shipping Address</div><br>
+                        <div class="changeBtn add">Add</div>
+                    </div>
+                    <div class="order-details">
+                        <div class="designerName"></div><br>
+                        <div class="package-details">
+                            <div class="gig-image">
+                                <!-- <img src="../Assests/package_cover4.jpg" alt="Mountains" style="width:100%"><br> -->
+                                <div class="gig-image1"></div>
+                                <div class="package-type"></div>
+                            </div>
+                            <div class="title-details">
+                                <p class="gig-title"></p>
+                                <p class="price stext"></p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+    
+                <div class="right-table">
+                    <div class="r-table">
+                        <div class="summary">
+                            <div class="summary-up">
+                                <div class="stext tite-size">Summary</div><br>
+                                <div class="t-grid"><div>Total item costs</div><div class="t-price">Rs.0.0</div></div><br>
+                                <div class="t-grid"><div>Website fees</div><div class="s-price">Rs.0.0</div></div>
+                            
+                            </div>                       
+                                                    
+                        </div>
+                        <hr><br>
+                        <div class="summary-down">
+                            <div class="t-grid stext"><div>Total</div><div class="total-price stext">Rs.0.0</div></div>
+                        </div><br><br>
+    
+                        <div class="place-order"><input class="place-order-btn"  type="submit" value="Place Order"></div><br>
+                        <div class="ntext">Upon clicking 'Place Order', I confirm I have read <span style="color: blue;cursor: pointer;"> all terms and policies</span></div>
+                        
+                    </div>
+                   
+                    <div class="r-table">
+                        <div class="logo">
+                            <img src="..\Assests\logo enmo.png" id="coverImage" alt="Mountains" style="width:100%">
+                            <br>
+                        </div><br>
+                        <div class="logo-text">ENMO skill keeps your information and payment safe</div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+
+        </div>
+            
+    </div>
+
+    <script src="../Javascripts/baseurl.js"></script>
+    <script src="../Javascripts/paymentSummary.js"></script>
+</body>        
