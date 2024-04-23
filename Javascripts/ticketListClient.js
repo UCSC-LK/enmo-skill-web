@@ -318,7 +318,7 @@ function getCookie(cookieName) {
   
   
   function viewticket(ticketID){
-    var url ="../HTML/ticketListView.html?ticketID="+ encodeURIComponent(ticketID)
+    var url ="../HTML/ticketListViewClient.html?ticketID="+ encodeURIComponent(ticketID)
     window.location.href = url
   }
   
