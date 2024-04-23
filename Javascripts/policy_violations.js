@@ -23,11 +23,14 @@ var raw = JSON.stringify({});
 
 const urlParams = new URLSearchParams(window.location.search);
 const userId = urlParams.get("userid");
-const username = urlParams.get("username");
+const type = urlParams.get("type");
+// const username = urlParams.get("username");
 
 const ticket_id_txtbox = document.getElementById("ticketid")
 const userid_txt = document.getElementById("userid-txt")
-const username_txt = document.getElementById("username-txt")
+// const username_txt = document.getElementById("username-txt")
+
+document.querySelector(".subheading2").innerHTML = (type == "warning") ? "Warning Form" : "Bann Form";
 
 document.getElementById("validate-ticket").addEventListener("click", () =>{
 
@@ -48,13 +51,7 @@ document.getElementById("validate-ticket").addEventListener("click", () =>{
         window.location.href = "../Failed/404.html";
       }else if (response.status == 200) {
         return response.json();
-      } else if (response.status == 500){
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Reconnecting!"
-        });
-        console.log("Error"+response.status)
+      
       }else{
         Swal.fire({
           icon: "error",
@@ -92,8 +89,8 @@ document.getElementById("validate-ticket").addEventListener("click", () =>{
               ticket_id_txtbox.disabled = true
               userid_txt.value = userId;
               userid_txt.disabled = true
-              username_txt.value = username;
-              username_txt.disabled = true;   
+              // username_txt.value = username;
+              // username_txt.disabled = true;   
           }
         })
 
@@ -144,12 +141,12 @@ document.getElementById("button-save").addEventListener("click", function(e){
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, send a warning to user '" + username +"'"
+      confirmButtonText: "Yes, send it!"
     }).then((result) => {
       if (result.isConfirmed) {
   
          // save data
-        fetch(`${BASE_URL}/warning`, {
+        fetch(`${BASE_URL}/${type}`, {
           method: 'POST',
           headers: myHeaders,
           body: JSON.stringify(requestBody)
@@ -166,30 +163,19 @@ document.getElementById("button-save").addEventListener("click", function(e){
             // return response.json();
   
             Swal.fire({
-              title: "Success!",
-              text: "Warning was sent",
-              icon: "success"
+              icon: "success",
+              title: "Success",
+              confirmButtonColor: "#000000"
             })
             .then((result) => {
+
+              // window.location.href = "../HTML/admin_dashboard.html";
+
               if (result.isConfirmed) {
-                window.location.href = "../HTML/view_designer_list_admin.html";
+                window.location.href = "../HTML/admin_dashboard.html";
               }
             })
-  
-  
-          } else if (response.status == 500){
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "Reconnecting!"
-            });
-            console.log("Error"+response.status)
           }else{
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "Something went wrong!"
-            });
             console.log("Error"+response.status)
           }
           })
@@ -202,7 +188,8 @@ document.getElementById("button-save").addEventListener("click", function(e){
       Swal.fire({
        icon: "error",
        title: "Oops...",
-       text: "Something went wrong!"
+       text: "Something went wrong!",
+       confirmButtonColor: "#000000"
      });
     })
   }

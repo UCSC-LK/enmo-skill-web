@@ -318,7 +318,7 @@ z-index: 2;
 
 .overlay-div4{
 width: 40%;
-height: 95%;
+height: auto;
 background-color: #fff;
 position: absolute;
 top: 50%;
@@ -393,6 +393,27 @@ font-weight: bold;
 
 }
 
+.see-more-btn-row{
+  display: flex;
+  flex-direction: row;
+  /* margin-left: 40%; */
+
+  /* max-height: fit-content; */
+  margin-top: 30px;
+  margin-bottom: 10px;
+  justify-content: center;
+}
+
+.see-more-btn-row-hidden{
+  display: none;
+  flex-direction: row;
+  /* margin-left: 40%; */
+
+  /* max-height: fit-content; */
+  margin-top: 30px;
+  margin-bottom: 10px;
+  justify-content: center;
+}
 
 .see-more:hover{
   background-color: #444;

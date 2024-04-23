@@ -418,7 +418,7 @@ function warningConfirmation(){
     confirmButtonText: 'Yes! Send a warning'
   }).then((result) => {
     if (result.isConfirmed) {
-      window.open("../HTML/policy_violations.html?userid="+clicked_user.user.id,  "_self")
+      window.open("../HTML/policy_violations.html?userid="+clicked_user.user.id)
     }
   })
 }
