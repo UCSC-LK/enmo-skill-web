@@ -49,6 +49,7 @@ body{
 } */
 
 .header{
+    display: flex;
     color:#3C3C3C;
     padding: 3px;
     font-size: 14px;
@@ -58,6 +59,7 @@ body{
     font-weight: 900;
     max-height: 20px;
     text-align: center;
+    justify-content: center;
 }
 
 h2{
@@ -115,7 +117,7 @@ h2{
 
 .subject-main{
     display: grid;
-    grid-template-columns: 7% 84% 8% ;
+    grid-template-columns: 7% 83% 10% ;
     align-items: center;
     text-align: left;
     width: 100%;

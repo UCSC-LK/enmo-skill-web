@@ -43,6 +43,8 @@ body{
     border-radius: 5px;
     font-size: 14px;
     font-weight: 700;
+    max-height: 50px;
+    text-align: center;
 }
 .urgent{
     display: none;
@@ -52,6 +54,8 @@ body{
     border-radius: 5px;
     font-size: 14px;
     font-weight: 700;
+    max-height: 50px;
+    text-align: center;
 }
 .refund{
     display: none;
@@ -61,6 +65,8 @@ body{
     border-radius: 5px;
     font-size: 14px;
     font-weight: 700;
+    max-height: 50px;
+    text-align: center;
 }
 .urgentMark{
     display: none;
@@ -85,7 +91,10 @@ h2{
 
 .subject-main{
     display: grid;
-    grid-template-columns: 7% 93%;
+    grid-template-columns: 7% 53% 40% ;
+    align-items: center;
+    text-align: left;
+    width: 100%;
 }
 
 .subject{
@@ -94,6 +103,7 @@ h2{
 
 .header{
     margin: 0px;
+
 }
 .em{
     display: flex;
