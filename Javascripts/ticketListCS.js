@@ -111,8 +111,8 @@ function tableLoad(view){
           
           getAgent(newItem)                  
 
-          if(item.role=="1"){newItem.querySelector(".role").textContent="Client"}
-          else if(item.role=="2"){newItem.querySelector(".role").textContent="Designer"}
+          if(item.role=="1"){newItem.querySelector(".role1").textContent="Client"}
+          else if(item.role=="2"){newItem.querySelector(".role1").textContent="Designer"}
     
           // if(item.status==1)perent.appendChild(newItem)
         
@@ -161,8 +161,8 @@ function tableLoad(view){
             newItem.querySelector(".order1").style.display="none"
           }
          
-          if(item.role=="1"){newItem.querySelector(".role").textContent="Client"}
-          else if(item.role=="2"){newItem.querySelector(".role").textContent="Designer"}
+          if(item.role=="1"){newItem.querySelector(".role1").textContent="Client"}
+          else if(item.role=="2"){newItem.querySelector(".role1").textContent="Designer"}
 
           perent.appendChild(newItem)   
 
@@ -233,8 +233,8 @@ function getAsignTicket(){
           newItem.querySelector(".order1").style.display="none"
         }
        
-        if(item.role=="1"){newItem.querySelector(".role").textContent="Client"}
-        else if(item.role=="2"){newItem.querySelector(".role").textContent="Designer"}
+        if(item.role=="1"){newItem.querySelector(".role1").textContent="Client"}
+        else if(item.role=="2"){newItem.querySelector(".role1").textContent="Designer"}
         perent.appendChild(newItem)  
 
           var itemDivs=[

@@ -61,7 +61,7 @@ function getdata(ticketID,flag){
     .then(result => {
       console.log(result)
       result.forEach(element => {
-        document.querySelector(".subject").textContent = element.subject;
+        document.querySelector(".subject").textContent =" "+ element.subject;
         document.querySelector(".description").textContent = element.description;
         document.querySelector(".date").textContent = element.date;
         document.querySelector(".role").textContent="Me";
