@@ -301,8 +301,29 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
       popup(element);
     });
 
-    // Append elements
-    seeMoreDiv.appendChild(seeMoreBtn);
+
+    if (element.status == 1) {
+
+      
+      const makecsa = document.createElement('button');
+      makecsa.className = 'see-more';
+      makecsa.textContent = 'Make CSA';
+      makecsa.addEventListener('click', function(event){
+        event.stopPropagation();
+        csaConfirmation(element);
+      });
+
+           // Append elements
+     seeMoreDiv.appendChild(seeMoreBtn);
+     seeMoreDiv.appendChild(makecsa);
+
+
+    } else{
+           // Append elements
+     seeMoreDiv.appendChild(seeMoreBtn);
+    //  seeMoreDiv.appendChild(makecsa);
+    }
+
 
     rowDiv.appendChild(idP);
     rowDiv.appendChild(usernameP);
@@ -536,7 +557,7 @@ function csaConfirmation(user){
       confirmButtonText: 'Yes! Make CSA'
     }).then((result) => {
       if (result.isConfirmed) {
-        makeCSA(user);
+        makeCSA(user.user);
       }
     })
 }
@@ -558,3 +579,45 @@ document.getElementById("bann").addEventListener("click", function(e) {
     }
   })
 })
+
+function makeCSA(user){
+  fetch(`${BASE_URL}/userupdate?role=4`,{
+    method: 'PUT',
+    headers: myHeaders,
+    body: JSON.stringify(user)
+  })
+  .then(response => 
+    {if(response.status == 401){
+      window.location.href = "../Failed/401.html";
+    }else if(response.status == 406){
+      const currentUrl = encodeURIComponent(window.location.href);
+      window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+    }else if(response.status == 404){
+      window.location.href = "../Failed/404.html";
+    }else if (response.status == 200) {
+      Swal.fire({
+        icon: "success",
+        title: "success",
+        text: "User level upgraded successfully",
+        confirmButtonColor: "#000000"
+      });
+    }else{
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went Wrong!",
+        confirmButtonColor: "#000000"
+      });
+      console.log("Error"+response.status)
+    }
+    })
+    .catch((error)=>{
+      console.error(error)
+      Swal.fire({
+       icon: "error",
+       title: "Oops...",
+       text: "Something went wrong!",
+       confirmButtonColor: "#000000"
+     });
+    })
+}
