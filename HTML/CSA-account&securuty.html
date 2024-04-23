@@ -8,34 +8,43 @@
 </head>
 
 <body>
-   <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>
-    <div class="container">
-        <div class="contain-box">
-            <div>
-                <h1>Account & security</h1>
-            </div>
-            <div class="table">
-                <div class="row" onclick="editProfile()"><p class="text">Edit profile</p></div>
-                <div class="row" onclick="deactivateAccoun()"><p class="text">Deactivate account</p></div>
-                <div class="row" onclick="genaralInformation()"><p class="text">Genaral information</p></div>
-                <div class="row" onclick="ReportBug()"><p class="text">Report a bug</p></div>
-            </div>
-            <div class="back" onclick="back()">
-                <div  class="icon"><img src="../Assests/icons/back.png"></div>
-                <div>Back</div>
+    <div class="page">
+        <div class="pg-content" style="width: 100%; overflow: auto;">
+            <div id="header-placeholder" style="width: 100%; position: sticky; top: 0;"></div><script src="../Javascripts/header.js"></script>
+            <div class="container">
+                <div class="main-container">
+                    
+                    <div class="table-main">
+                        <div class="contain-box">
+                
+                            <div class="table">
+                                <div class="row" onclick="editProfile()"><p class="text">Edit profile</p></div>
+                                <div class="row" onclick="deactivateAccoun()"><p class="text">Deactivate account</p></div>
+                                <div class="row" onclick="genaralInformation()"><p class="text">Genaral information</p></div>
+                                <div class="row" onclick="ReportBug()"><p class="text">Report a bug</p></div>
+                            </div>
+                            <!-- <div class="back" onclick="back()">
+                                <div  class="icon"><img src="../Assests/icons/back.png"></div>
+                                <div>Back</div>
+                            </div> -->
+                        </div>
+                        <div class="imag">
+                            <img src="../Assests/icons/CSA2.png">
+                        </div>
+                    </div>
+                </div>
+                
+        
             </div>
         </div>
-        <div class="imag">
-            <img src="../Assests/icons/CSA2.png">
-        </div>
-
     </div>
+    
 
 </body>
 <script>
-    function back(){
-        window.history.back();
-    }
+    // function back(){
+    //     window.history.back();
+    // }
     function editProfile(){
         window.location.href='./CSA-editProfile.html'
     }
