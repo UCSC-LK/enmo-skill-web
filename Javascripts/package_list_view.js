@@ -861,19 +861,19 @@ function removeLangFilter(){
 }
 
 // set the logic of language filter clear button
-document.getElementById('btn-lang-clear').addEventListener('click', function()
-{
-  var langRadioButtons = document.getElementsByName('lang');
+// document.getElementById('btn-lang-clear').addEventListener('click', function()
+// {
+//   var langRadioButtons = document.getElementsByName('lang');
   
-  for (var i = 0; i < langRadioButtons.length; i++) {
-    langRadioButtons[i].checked = false;
+//   for (var i = 0; i < langRadioButtons.length; i++) {
+//     langRadioButtons[i].checked = false;
 
-  }
+//   }
 
-  langDropdown.style.display = 'none';
-  languageCode = 0;
+//   langDropdown.style.display = 'none';
+//   languageCode = 0;
 
-})
+// })
 
 
 function getSelectedRadioValue(radiobtnset) {
