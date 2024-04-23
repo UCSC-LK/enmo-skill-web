@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/main.css">
+    <link rel="stylesheet" href="../CSS/ticketListViewClint.css">
+    <title>Ticket List</title>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+</head>
+<body>
+
+    <div class="loading">
+        <div class="spin"></div>
+    </div>
+
+    <div class="page">
+        <div class="pg-content" style="width: 100%; overflow: auto;">
+            <div id="header-placeholder" style="width: 100%; position: sticky; top: 0;"></div><script src="../Javascripts/header.js"></script>
+
+            <div class="container"> 
+                <div class="container-main">
+                    <div class="body-container">
+
+                        <div class="subject-main">
+                            <h2>TITLE: </h2><b><h2 class="subject"></h2></b>
+                            <div class="header"></div>
+                        </div>
+                        <div class="ticketIdTitle">
+                            <div>Ticket Id:</div>   
+                            <div class="ticketId"></div>
+                        </div>  
+                        <div class="reply">
+                            <input class="replyBTN BTN"  type="submit" value="Reply">
+                        </div> 
+        
+                        <div class="apendUpdates"></div>
+
+                        <div class="body2" id="body2">
+                            <div><p class="role2"></p></div>
+                            <div><p class="description2" id="description2"></p></div> 
+                            <div><p class="date2" id="date2"></p></div>               
+                        </div>
+        
+                    
+                        <div class="body-main">
+                            <div class="body">
+                                <div class="body-colum">
+                                    <div> 
+                                        <div><p class="role"></p></div>                    
+                                        <div><p class="description"></p></div> 
+                                        <div><p class="date"></p></div>   
+                                        
+                                    </div>
+                             
+                                </div>
+                            
+                                
+        
+                            </div>
+        
+                        </div>        
+                        
+                        
+                        
+                        
+                    </div>
+                </div>             
+                
+                
+            </div>
+        </div>
+    
+    </div>
+    
+</body> 
+<script src="../Javascripts/baseurl.js"></script>  
+<script src="../Javascripts/ticketListViewClient.js"></script> 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
