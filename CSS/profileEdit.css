@@ -1,6 +1,6 @@
 body{
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #fdfdfd;
+    /* background-color: #fdfdfd; */
 }
 
 h1{
@@ -13,24 +13,46 @@ h3{
     
 }
 
- .container{
-    width: 83%;
+.container{
+    display:flex;
+    width: 100%;
     height:auto;
-    background-size: cover;
-    background-color: #ffffff;
-    /* background-position: center;
+    text-align: center;
+    justify-content: center;
+    /* position: relative; */
+    /* background-color: #ffffff; */
+    position: relative;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    z-index: 0;
+    
+}
+.header{
+    border-width: 2px;
     display: flex;
-    align-items:center; */
-    /* padding-top:100px;
-    padding-left: 50px; */
-    justify-content: left; 
-    padding-top: 100px;
-    padding-left: 250px; 
-    padding-bottom: 50px;
+    text-align: left;
+    -webkit-text-fill-color: #3C3C3C;
+    justify-content: space-between;
+    font-weight: lighter;
+}
+.header h2 {
+    color: rgb(60, 60, 60);
+    font-size: 35px;
+    font-weight: lighter;
+}
+.main-container{
+    width: 80%;
+    text-align: left;
+
 } 
 
 .container2{
-    width: 80%;
+    width: 100%;
+    /* display: flex; */
+    /* justify-content: left; */
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
 }
 
 .heder{
@@ -40,7 +62,7 @@ h3{
 .paragraph{ 
     color:#868686 ;
     font-size: 13px;
-    width: 90%;
+    width: 100%;
 }
 
 .inputs-1 {
@@ -49,12 +71,12 @@ h3{
     border: none;
     display: block;
     padding: 8px 10px;
-    width: 97%;
+    width: 98%;
     border: 1px solid #868686;
     border-radius: 5px;
     color: #444;
     font-size: 15px;
-    z-index: 1;
+    /* z-index: 1; */
     position: relative; /* Ensure relative positioning for proper z-index */
 }
 
@@ -64,14 +86,14 @@ h3{
     border: none;
     display: block;
     padding: 8px 10px;
-    width: 100%;
+    width: 98%;
     height: 200px;
     resize: none;
     border: 1px solid  #868686;
     border-radius: 5px;
     color: #444;
     font-size: 15px;
-    z-index: 1;
+    /* z-index: 1; */
     position: relative; /* Ensure relative positioning for proper z-index */
 }
 
@@ -149,6 +171,16 @@ h3{
 .img-btn{
     display: none;
 }
+.skill{
+    padding: 5px;
+    border-radius: 5px;
+    width: 140px;
+}
+.language{
+    padding: 5px;
+    border-radius: 5px;
+    width: 140px;
+}
 
 .btn{
     color: #444;
@@ -185,4 +217,5 @@ h3{
     background-color: #FFF;
     transition: 0.4s;
     cursor: pointer;
+    transition: 0.5s;
 }

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
-    <link rel="stylesheet" href="../CSS/profileEdit.css">
     <link rel="stylesheet" href="../CSS/main.css">
+    <link rel="stylesheet" href="../CSS/profileEdit.css">
     <title>Profile Details</title>
 </head>
 
@@ -13,9 +13,154 @@
     <div class="loading">
         <div class="spin"></div>
     </div>
-    
-   <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>
-    <div class="box-error">
+    <div class="page">
+        <div class="pg-content" style="width: 100%; overflow: auto;">
+            <div id="header-placeholder" style="width: 100%; position: sticky; top: 0;z-index: 1;"></div><script src="../Javascripts/header.js"></script>
+            <div class="container">
+                <div class="main-container">
+                    <div class="header">
+                        <h2>Personal Info</h2>
+                    </div>
+                    <div class="table-main">
+                        <div class="container2"> 
+                            <div class="form-layout">
+                                <div>
+                                    <h3>Full Name</h3>
+                                    <p class="paragraph">Ex.Chamara Weerasinhe</p>
+                                    <input  class="inputs-1" name="firstName" id="firstName" required>
+                                    <br>
+                                    <input  class="inputs-1" name="lastName" id="lastName" required>
+                                                
+                                </div>
+                                <br><br><br>
+                                <div>
+                                    <h3>Display Name</h3>
+                                    <p class="paragraph">
+                                        To help build credible and authentic connections with customers, they'll now see your
+                                        display name.<br>
+                                        We suggest using your first name and first initial of your last name.
+                                        
+                                    </p>             
+                                                           
+                                    <input  class="inputs-1" name="displayName" id="displayName" required>
+                                            
+                                </div>
+                                <br><br><br>
+                
+                                <div>
+                                    <h3>Profile Picture</h3>
+                                    <p class="paragraph">
+                                        Add a profile picture Of yourself so customers will know exactly who they'll be working with.
+                                    </p>
+                
+                                    <div class="img-container">
+                                        <input type="file" id="file" accept="image/*" hidden>
+                                        <div class="img-area" data-img="">
+                                        
+                                            <img src="../Assests/icons/cloud-computing.png">
+                                        
+                                            <h3>Upload Image</h3>
+                                            <p>Image size must be less than <span>2MB</span></p>
+                                                                    
+                                        </div>
+                                        <div class="img-btn">
+                                            <button class="btn select-image" style="margin-left: 80px;">Select Image</button>
+                                        </div>
+                                  
+                                    </div>
+                                    
+                
+                                </div>
+                                <br><br><br>
+                
+                                <div>
+                                    <h3>Description</h3>
+                                    <textarea  class="inputs" name="description" id="description" required></textarea>
+                                </div>
+                
+                                <br><br><br>
+                
+                
+                                <div>
+                
+                                    <h3>Skills</h3>
+                                    <p class="paragraph">Choose your skills less than six.</p>
+                                    
+                                    <div  class="skill-selecter-main">
+                                        <div style="display: none;" >
+                                            <div class="skill-selecter">
+                                                <br>
+                                                <select id="skill" name="skill" class="skill" required></select>
+                                                    
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <br>
+                
+                                    <div class="btn-bottom">
+                                        <div class="add-skill-btn">
+                                            <button class="btn setSkills">Add skills</button>
+                                        </div>
+                
+                                        <!-- <div>select
+                                            <button class="btn reset">Reset Languages</button>
+                                        </div> -->
+                                    </div>
+                                    
+                                </div>
+                                <br><br><br>
+                
+                                <div>
+                
+                                    <h3>Langeages</h3>
+                                    <p class="paragraph">Select which languages you can communicate.</p>
+                                    
+                                    <div  class="languag-selecter-main">
+                                        <div style="display: none;">
+                                            <div class="language-selecter">
+                                                <br>
+                                                <select id="language" name="language" class="language" required>
+                                                    <option value="">Select a lanuage</option>
+                                                    <option value="Sinhala">Sinhala</option>
+                                                    <option value="English">English</option>
+                                                    <option value="Tamil">Tamil</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <br>
+                
+                                    <div class="btn-bottom">
+                                        <div class="add-btn">
+                                            <button class="btn setLanguage">Add Language</button>
+                                        </div>
+                
+                                        <!-- <div>
+                                            <button class="btn reset">Reset Languages</button>
+                                        </div> -->
+                                    </div>
+                                    
+                                </div>
+                
+                                <br><br>
+                
+                                <div>
+                                    <input class="saveBTN div-cursor"  type="submit" value="Save Details">
+                                </div>
+                        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                
+        
+            </div>
+        </div>
+    </div>
+   <div class="box-error">
         <div class="closebtn">x</div>
         <box-icon type='solid'class="erroricon" color="#fdfdfd" name='error-alt' animation='tada' size="50px"style="display:none;"></box-icon>
         <box-icon name='check-circle'class="successicon" color="#fdfdfd"  animation='tada' size="50px" style="display:none;"></box-icon>
@@ -26,147 +171,10 @@
         </div>
     </div>
     
-    <div class="container">
-
-        <div class="container2">
-            <div class="heder">
-                <h1>Personal Info</h1>   
-                <hr>
-            </div> 
-            <br> 
-            <div class="form-layout">
-                <div>
-                    <h3>Full Name</h3>
-                    <p class="paragraph">Ex.Chamara Weerasinhe</p>
-                    <input  class="inputs-1" name="firstName" id="firstName" required>
-                    <br>
-                    <input  class="inputs-1" name="lastName" id="lastName" required>
-                                
-                </div>
-                <br><br><br>
-                <div>
-                    <h3>Display Name</h3>
-                    <p class="paragraph">
-                        To help build credible and authentic connections with customers, they'll now see your
-                        display name.<br>
-                        We suggest using your first name and first initial of your last name.
-                        
-                    </p>             
-                                           
-                    <input  class="inputs-1" name="displayName" id="displayName" required>
-                            
-                </div>
-                <br><br><br>
-
-                <div>
-                    <h3>Profile Picture</h3>
-                    <p class="paragraph">
-                        Add a profile picture Of yourself so customers will know exactly who they'll be working with.
-                    </p>
-
-                    <div class="img-container">
-                        <input type="file" id="file" accept="image/*" hidden>
-                        <div class="img-area" data-img="">
-                        
-                            <img src="../Assests/icons/cloud-computing.png">
-                        
-                            <h3>Upload Image</h3>
-                            <p>Image size must be less than <span>2MB</span></p>
-                                                    
-                        </div>
-                        <div class="img-btn">
-                            <button class="btn select-image" style="margin-left: 80px;">Select Image</button>
-                        </div>
-                  
-                    </div>
-                    
-
-                </div>
-                <br><br><br>
-
-                <div>
-                    <h3>Description</h3>
-                    <textarea  class="inputs" name="description" id="description" required></textarea>
-                </div>
-
-                <br><br><br>
-
-
-                <div>
-
-                    <h3>Skills</h3>
-                    <p class="paragraph">Choose your skills less than six.</p>
-                    
-                    <div  class="skill-selecter-main">
-                        <div style="display: none;" >
-                            <div class="skill-selecter">
-                                <br>
-                                <select id="skill" name="skill" class="skill" required></select>
-                                    
-                            </div>
-                        </div>
-                        
-                    </div>
-                    <br>
-
-                    <div class="btn-bottom">
-                        <div class="add-skill-btn">
-                            <button class="btn setSkills">Add skills</button>
-                        </div>
-
-                        <!-- <div>select
-                            <button class="btn reset">Reset Languages</button>
-                        </div> -->
-                    </div>
-                    
-                </div>
-                <br><br><br>
-
-                <div>
-
-                    <h3>Langeages</h3>
-                    <p class="paragraph">Select which languages you can communicate.</p>
-                    
-                    <div  class="languag-selecter-main">
-                        <div style="display: none;">
-                            <div class="language-selecter">
-                                <br>
-                                <select id="language" name="language" class="language" required>
-                                    <option value="">Select a lanuage</option>
-                                    <option value="Sinhala">Sinhala</option>
-                                    <option value="English">English</option>
-                                    <option value="Tamil">Tamil</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    <br>
-
-                    <div class="btn-bottom">
-                        <div class="add-btn">
-                            <button class="btn setLanguage">Add Language</button>
-                        </div>
-
-                        <!-- <div>
-                            <button class="btn reset">Reset Languages</button>
-                        </div> -->
-                    </div>
-                    
-                </div>
-
-                <br><br>
-
-                <div>
-                    <input class="saveBTN div-cursor"  type="submit" value="Save Details">
-                </div>
-        
-            </div>
-        </div>
-
-    </div>
+    
    
 </body>
-
+<script src="../Javascripts/baseurl.js"></script>
 <script src="../Javascripts/profileEdite.js"></script>
-<script src="../Javascripts/Toastmassage.js"></script>
+
+
