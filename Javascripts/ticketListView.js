@@ -23,6 +23,7 @@ const loding = document.querySelector(".loading");
 const coverImage = document.querySelector('.gig-image1');
 const title = document.querySelector('.gig-title');
 const ticketId = document.querySelector('.ticketId');
+const orderId = document.querySelector('.order');
 
 loding.style.display ="none"
 
@@ -65,6 +66,11 @@ function getdata(ticketID,flag){
         document.querySelector(".description").textContent = element.description;
         document.querySelector(".date").textContent = element.date;
         document.querySelector(".role").textContent="Me";
+
+        if(element.order>0){
+          orderId.style.display="inline"
+          orderId.textContent="Order ID: #"+element.order
+        }
   
         // document.querySelector(".header").textContent = element.date;
   

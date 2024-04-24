@@ -13,6 +13,7 @@ body{
     position: relative;
     margin-top: 40px;
     padding-bottom: 10px;
+    
 }
 .body-container{
     width: 80%;
@@ -164,6 +165,16 @@ h2{
     padding: 10px;
 }
 
+.order{
+    display: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: #3C3C3C;
+    cursor: pointer;
+}
+.order1{
+margin-top: 20px;
+}
 .profile-img{
     width: 30px;
     height: 30px;
