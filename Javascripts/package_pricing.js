@@ -236,13 +236,7 @@ function setDeliverables() {
         }
         
         })
-    // .then((response)=>{
-    //     if (!response.ok) {
-    //         throw new Error('Error occured');
-    //     } else {
-    //         return response.json();
-    //     }
-    // })
+
     .then((data)=>{
 
 
@@ -470,6 +464,13 @@ document.getElementById("submit-bronze").addEventListener("click", async functio
             var sbtn = document.getElementById("submit-bronze");
             sbtn.innerHTML = "Saved";
             sbtn.style.backgroundColor = "#444";
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Deliverables data saved",
+                showConfirmButton: false,
+                timer: 1500
+              });
 
             } else{
                 Swal.fire({
@@ -484,35 +485,6 @@ document.getElementById("submit-bronze").addEventListener("click", async functio
             
             })
 
-        // if (response.ok) {
-        //     console.log(`Prcing data ${operationType}d successfully.`);
-        //     // showPopupSuccess();
-        //     if (operationType === "insert") {
-        //         var rsp = response.json();
-        //         rsp.then((data) => {
-        //             pricePackageId_bronze = data.pricePackageId
-        //         })
-        //     }
-            
-        //     // checkFlagsSuccess();
-        //     var sbtn = document.getElementById("submit-bronze");
-        //     sbtn.innerHTML = "Saved";
-        //     sbtn.style.backgroundColor = "#444";
-        // } else {
-        //     //// unscussess popup
-        //     // showPopupUnsuccess();
-        //     // checkFlagsUnsuccess();
-        //     Swal.fire({
-        //         icon: "error",
-        //         title: "Oops...",
-        //         text: "Something went wrong!"
-        //       });
-        //     errFlag = 1
-        //     console.error(`Failed to ${operationType} package data.`);
-
-        // }
-   
-    
 
 });
 
@@ -659,6 +631,13 @@ document.getElementById("submit-silver").addEventListener("click", async functio
                 var sbtn = document.getElementById("submit-silver");
                 sbtn.innerHTML = "Saved";
                 sbtn.style.backgroundColor = "#444";
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Deliverables data saved",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
 
             } else{
                 Swal.fire({
@@ -672,35 +651,6 @@ document.getElementById("submit-silver").addEventListener("click", async functio
             }
             
             })
-
-        // if (response.ok) {
-        //     console.log(`Prcing data ${operationType}d successfully.`);
-        //     // showPopupSuccess();
-        //     if (operationType === "insert") {
-        //         var rsp = response.json();
-        //         rsp.then((data) => {
-        //             pricePackageId_silver = data.pricePackageId
-        //         })
-        //     }
-        //     // checkFlagsSuccess();
-        //     var sbtn = document.getElementById("submit-silver");
-        //     sbtn.innerHTML = "Saved";
-        //     sbtn.style.backgroundColor = "#444";
-        // } else {
-        //     Swal.fire({
-        //         icon: "error",
-        //         title: "Oops...",
-        //         text: "Something went wrong!"
-        //       });
-        //     //// unscussess popup
-        //     // showPopupUnsuccess();
-        //     // checkFlagsUnsuccess();
-        //     errFlag = 1
-        //     console.error(`Failed to ${operationType} package data.`);
-
-        // }
-    
-    
 
 });
 // handling submits
@@ -871,6 +821,13 @@ document.getElementById("submit-platinum").addEventListener("click", async funct
                 var sbtn = document.getElementById("submit-platinum");
                 sbtn.innerHTML = "Saved";
                 sbtn.style.backgroundColor = "#444";
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Deliverables data saved",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
 
                 } else{
                     Swal.fire({
@@ -884,7 +841,14 @@ document.getElementById("submit-platinum").addEventListener("click", async funct
                     console.log("Error"+response.status)
                 }
             
-            })
+            }).catch((error) => {
+                Swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: "Something went wrong!"
+                });
+                console.error('Error fetching data:', error);
+              });
 
         // if (response.ok) {
         //     console.log(`Prcing data ${operationType}d successfully.`);
