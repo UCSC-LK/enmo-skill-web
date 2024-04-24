@@ -20,13 +20,9 @@ body {
 }
 
 .block {
-    display: flex;
-    flex-direction: column;
-    width: 85%;
-    margin: auto;
-    padding: 30px;
-    border: none; /* Corrected spelling */
-    overflow: hidden; /* Replaced overflow-x and overflow-y */
+
+  width: 90%;
+
 }
 
 
@@ -85,42 +81,23 @@ body {
     padding: 0 10px;
   }
   /* Float four columns side by side */
-.column1 {
-    
-    float: left;
-    width: 33%;
-    padding: 10px 10px;
-    
+  .column1 {
+    width: calc(33.33% - 10px); /* 33.33% width for each box with 10px space */
+    height: 40%; /* or your preferred height */
+    /* background-color: #ddd;  */
+    margin-right: 5px; /* half of the space */
+    margin-left: 5px; /* half of the space */
   }
 
-  /* Remove extra left and right margins, due to padding */
-.row {margin: 10px -16px;}
-.row2 {
-    /* margin: 10px ;  */
-    display: flex; 
+  .row1 {
+    display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    /* margin-bottom:30px ; */
     align-items: baseline;
-    margin-bottom: 75px;
-}
+    margin-top: 30px;
+  }
 
-/* Add padding BETWEEN each column */
-.row,
-.row > .column {
-  padding: 8px;
-}
-/* Add padding BETWEEN each column */
-.row,
-.row > .column1 {
-  padding: 20px;
-  /* margin-right: 20px; */
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
 
 /* Content */
 .content {
@@ -132,12 +109,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: row;
+    flex-direction: column;
     padding: 20px;
     border: 1px solid #ebebeb;
     border-radius: 7px;
     /* background: rgba(255, 255, 255, 0.5); */
     background-color: #fff;
+    height: 200px;
   }
   
 
@@ -685,7 +663,7 @@ input[type="range"]::-webkit-slider-thumb::before {
     border: 1px solid #ebebeb;
     border-radius: 7px;
     background: rgba(255, 255, 255, 0.5);
-packa
+
 }
 
 .notification-content{
@@ -874,4 +852,18 @@ packa
     align-items: center;
     /* flex-direction: column; */
 
+}
+
+.note{
+  h1{
+    font-size: 40px;
+    color: #18181a;
+  }
+
+  p{
+  
+    color: #a3a3a3;
+
+    font-weight: bold;
+  }
 }

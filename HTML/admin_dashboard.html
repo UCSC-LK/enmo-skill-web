@@ -24,39 +24,44 @@
                         <div class="block">
                             <h1 class="headding">Dashboard</h1>
 
-                            <div class="row">
+                            <div class="row1">
                                 <div class="column1">
                                     <div id="note1" class="note">
-                                        <box-icon name='user' type='solid' size="40px" class="row-icons"></box-icon>
-                                        <div class="align-set">
-                                            <h1 id="order-count">100+</h1>
-                                            <p>Users</p>
-                                        </div>
-                                        
+                                        <h1 id="order-count">100+</h1>
+                                        <p></p>
                                     </div>
                                 </div>
                                 <div class="column1">
                                     <div id="note2" class="note">
-                                        <box-icon name='money' size="40px" class="row-icons"></box-icon>
-                                        <div class="align-set">
-                                            <h1 id="earning-count">LKR 100000</h1>
-                                            <p>Transactions</p>
-                                        </div>
+                                        <h1 id="earning-count">LKR 100000</h1>
+                                        <p></p>
         
                                     </div>
                                 </div>
                                 <div class="column1">
                                     <div id="note3" class="note">
-                                        <box-icon type='solid' name='package' size="40px" class="row-icons"></box-icon>
-                                        <div class="align-set">         
-                                            <h1 id="package-count">100+</h1>
-                                            <p>Packages</p>
-                                        </div>
+                                    <h1>100+</h1>
+                                    <p></p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="row2">
+                            <div class="row1">
+                                <div class="category-details">
+                                    <div class="subheader">
+                                        <h2 class="subheading">Best selling categories</h2>
+                                    </div>
+                                    
+                                    <div class="category-details-content">
+                                        <canvas id="myChart"></canvas>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+
+                            <!-- <div class="row2">
                                 <div class="category-details">
                                     <div class="subheader">
                                         <h2 class="subheading">Best selling categories</h2>
@@ -78,9 +83,9 @@
 
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
-                            <div class="row2">
+                            <!-- <div class="row2">
                                 <div class="package-details">
                                     <div class="subheader">
                                         <h2 class="subheading">Best selling package</h2>
@@ -107,7 +112,7 @@
 
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -115,5 +120,8 @@
         </div>
 </body>
 
+<script src="../Javascripts/baseurl.js"></script>
 <script src="../Javascripts/admin_dashboard.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </html>
