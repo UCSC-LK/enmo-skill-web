@@ -290,7 +290,7 @@ function getCookie(cookieName) {
         }else if(response.status == 404){
           window.location.href = "../Failed/404.html";
         }else {
-          return response.json()
+          return response.text()
         }
       })
       .then(result => {
