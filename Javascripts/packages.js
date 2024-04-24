@@ -42,7 +42,7 @@ function laodActivePkg() {
     var requestOptions = {
       method: 'GET',
       headers: myHeaders,
-      redirect: 'follow'
+      // redirect: 'follow'
     };
 
     // console.log(BASE_URL+"/package");
@@ -64,24 +64,24 @@ function laodActivePkg() {
       }else if (response.status == 200) {
         return response.json();
       } else{
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!"
-        });
+        // Swal.fire({
+        //   icon: "error",
+        //   title: "Oops...",
+        //   text: "Something went wrong!"
+        // });
         console.log("Error"+response.status)
       }
       
       })
     .then((data) => {
 
-      if (data == null) {
-        Swal.fire({
-          icon: "info",
-          // title: "Oops...",
-          text: "No packages!"
-        });
-      }
+      // if (data == null) {
+      //   Swal.fire({
+      //     icon: "info",
+      //     // title: "Oops...",
+      //     text: "No packages!"
+      //   });
+      // }
       // Assuming data is an array of objects similar to your active_packages.
 
         const content = document.getElementById('content');

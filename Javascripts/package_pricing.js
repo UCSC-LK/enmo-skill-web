@@ -609,9 +609,6 @@ document.getElementById("submit-silver").addEventListener("click", async functio
 
     console.log(deliverablesObject);
 
-    var pricingData = {}
-
-
     var pricingData = {
         type: "silver",
         deliveryDuration: duration_s,

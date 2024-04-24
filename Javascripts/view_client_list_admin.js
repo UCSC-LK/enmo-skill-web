@@ -479,13 +479,6 @@ function getWarnings(id) {
       window.location.href = "../Failed/404.html";
     }else if (response.status == 200) {
       return response.json();
-    } else if (response.status == 500){
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Reconnecting!"
-      });
-      console.log("Error"+response.status)
     }else{
       Swal.fire({
         icon: "error",
