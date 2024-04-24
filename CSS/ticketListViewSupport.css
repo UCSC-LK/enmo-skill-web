@@ -190,6 +190,17 @@ h2{
     color:#3C3C3C;
     margin-left: 20px;
 }
+
+.order{
+    display: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: #3C3C3C;
+    cursor: pointer;
+}
+.order1{
+    margin-top: 20px;
+}
 .date{
     /* font-weight: 520;
     color:#3C3C3C; */

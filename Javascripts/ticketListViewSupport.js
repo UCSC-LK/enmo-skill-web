@@ -25,6 +25,7 @@ const PopupChild2 = document.querySelector(".body2")
 const loding = document.querySelector(".loading");
 const coverImage = document.querySelector('.gig-image1');
 const title = document.querySelector('.gig-title');
+const orderId = document.querySelector('.order');
 
 
 viewMore(ticketID)
@@ -61,7 +62,7 @@ function getdata(ticketID,flag){
   .then(result => {
     result.forEach(element => {
 
-      var role= getRole(element.role)
+      var role1= getRole(element.role)
       
         document.querySelector(".profile-pic").src = element.url;
         document.querySelector(".header").textContent = element.userName;
@@ -69,9 +70,16 @@ function getdata(ticketID,flag){
         document.querySelector(".subject").textContent = element.subject;
         document.querySelector(".description").textContent = element.description;
         document.querySelector(".date").textContent = element.date;
-        document.querySelector(".role").textContent = role;
+        document.querySelector(".role1").textContent = role1;
         document.querySelector(".ticketId").textContent = "Ticket Id: #"+ element.ref_no;
         // document.querySelector(".header").textContent = element.date;
+
+        //set order--------------------------------------------------------------------------
+        if(element.order>0){
+          orderId.style.display="inline"
+          orderId.textContent="Order ID: #"+element.order
+        }
+  
 
         //get packege details-----------------------------------------------------------------
         if(element.packages>0){
