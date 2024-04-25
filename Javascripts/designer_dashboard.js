@@ -32,8 +32,9 @@ const p3 = document.getElementById("note3").querySelector("p");
 // const notifications_div =  document.getElementById("notifications-div")
 const no_notificaton = document.getElementById("not-div-hidden");
 const notification_container = document.getElementById("notification-container")
-const listItemTemplate = document.querySelector(".not-row-hidden");
+// const listItemTemplate = document.querySelector(".not-row-hidden");
 const listContainer = document.querySelector(".msg-div-inner");
+const listItemTemplate = document.querySelector(".not-row-hidden");
 
   function typeWriter(element, text, speed) {
     let i = 0;
@@ -287,7 +288,7 @@ fetch(BASE_URL+"/chats", requestOptions)
   .then(result =>{
       console.log(result);
 
-      const listItemTemplate = document.querySelector(".not-row-hidden");
+      
       // listContainer.innerHTML="<div class=\"title-bar\"><p class=\"title-text\">Messages</p></div>"
 
       result.forEach(item => {

@@ -421,8 +421,8 @@ document.getElementById("submit-bronze").addEventListener("click", async functio
     console.log(pricingData);
     console.log("update: "+update_b);
 
-    var operationType = pricePackageId_bronze ? "update" : "insert";
-    operationType = update_b ? "update" : "insert";
+    let operationType = pricePackageId_bronze ? "update" : "insert";
+    // operationType = update_b ? "update" : "insert";
 
     var requestUrl = operationType === "update"
     ? `${BASE_URL}/packagepricing?pricePackageId=${pricePackageId_bronze}&deliverablesId=${deliverablesId_bronze}`
@@ -594,7 +594,7 @@ document.getElementById("submit-silver").addEventListener("click", async functio
     console.log(pricingData);
     console.log("update :"+update_s);
     var operationType = pricePackageId_silver ? "update" : "insert";
-    operationType = update_s ? "update" : "insert";
+    // operationType = update_s ? "update" : "insert";
 
     var requestUrl = operationType === "update"
     ? `${BASE_URL}/packagepricing?pricePackageId=${pricePackageId_silver}&deliverablesId=${deliverablesId_silver}`
@@ -784,7 +784,7 @@ document.getElementById("submit-platinum").addEventListener("click", async funct
 
     console.log(pricingData);
     var operationType = pricePackageId_platinum ? "update" : "insert";
-    operationType = update_p ? "update" : "insert";
+    // operationType = update_p ? "update" : "insert";
     console.log(update_p);
     var requestUrl = operationType === "update"
     ? `${BASE_URL}/packagepricing?pricePackageId=${pricePackageId_platinum}&deliverablesId=${deliverablesId_platinum}`
