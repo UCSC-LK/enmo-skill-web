@@ -3,50 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/main.css">
     <link rel="stylesheet" href="../CSS/CSA-main.css">
     <title>Get contact support</title>
 </head>
 
 <body>
-   <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>
-    <div class="container">
-        <div class="contain-box">
-            <div>
-                <h1>Designer on Enmo Skill</h1>
-            </div>
-            <div class="table">
-                <div class="row" onclick="editProfile()"><p class="text">Edit profile</p></div>
-                <div class="row" onclick="deactivateAccoun()"><p class="text">Deactivate account</p></div>
-                <div class="row" onclick="unableWithdrow()"><p class="text">Uneble to withdrow funds</p></div>
-                <div class="row" onclick="geFunds()"><p class="text">Did not get funds</p></div>
-                <div class="row" onclick="IssueOrder()"><p class="text">Issue with an order</p></div>
-                <div class="row" onclick="IssuePackege()"><p class="text">Issue with an Package</p></div>
-                <div class="row" onclick="other()"><p class="text">Other</p></div>
+    <div class="page">
+        <div class="pg-content" style="width: 100%; overflow: auto;">
+            <div id="header-placeholder" style="width: 100%; position: sticky; top: 0;z-index: 1;"></div><script src="../Javascripts/header.js"></script>
+            <div class="container">
+                <div class="main-container">
+                    <div class="header">
+                        <h2>Designer on Enmo Skill</h2>
+                    </div>
+                    <div class="table-main">
+                        <div class="contain-box">
+                        
+                            <div class="table">
+                                <div class="row" onclick="editProfile()"><p class="text">Edit profile</p></div>
+                                <div class="row" onclick="deactivateAccoun()"><p class="text">Deactivate account</p></div>
+                                <div class="row" onclick="unableWithdrow()"><p class="text">Uneble to withdrow funds</p></div>
+                                <div class="row" onclick="geFunds()"><p class="text">Did not get funds</p></div>
+                                <div class="row" onclick="IssueOrder()"><p class="text">Issue with an order</p></div>
+                                <div class="row" onclick="IssuePackege()"><p class="text">Issue with an Package</p></div>
+                                <div class="row" onclick="other()"><p class="text">Other</p></div>
+                                                               
+                                
+                            </div>
+                            <div>
+                                
+                            </div>
+                            <!-- <div class="back" onclick="back()">
+                                <div  class="icon"><img src="../Assests/icons/back.png"></div>
+                                <div>Back</div>
+                            </div> -->
                 
                 
-            </div>
-            <div>
+                        </div>
+                        <div class="imag">
+                            <img src="../Assests/icons/CSA2.png">
+                        </div>
                 
-            </div>
-            <div class="back" onclick="back()">
-                <div  class="icon"><img src="../Assests/icons/back.png"></div>
-                <div>Back</div>
-            </div>
-
-
+                    </div>
+                </div>
+                    
+                </div>
         </div>
-        <div class="imag">
-            <img src="../Assests/icons/CSA2.png">
-        </div>
-
     </div>
+  
 
 </body>
 
 <script>
-     function back(){
-        window.history.back();
-    }
+    //  function back(){
+    //     window.history.back();
+    // }
     function editProfile(){
         window.location.href='./CSA-editProfile.html'
     }

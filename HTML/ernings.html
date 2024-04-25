@@ -18,7 +18,7 @@
     <div class="page">
         <div id="sidebar-placeholder"></div><script src="../Javascripts/sidebar.js"></script>
         <div class="pg-content" style="width: 100%; overflow: auto;">
-        <div id="header-placeholder" style="width: 100%; position: sticky; top: 0;"></div><script src="../Javascripts/header.js"></script>
+        <div id="header-placeholder" style="width: 100%; position: sticky; top: 0;z-index: 1;"></div><script src="../Javascripts/header.js"></script>
            
         <div class="container">
             <div class="main-container">
@@ -80,9 +80,9 @@
                     <div class="ticket-box-1">
                         
                         <div class="ticket-heder"><p>Date</p></div>
-                        <div class="ticket-heder"><p>Activity</p></div>
-                        <div class="ticket-heder"><p>Description</p></div>
                         <div class="ticket-heder"><p>order</p></div>
+                        <div class="ticket-heder"><p>Activity</p></div>
+                        <div class="ticket-heder"><p>Description</p></div>                        
                         <div class="ticket-heder"><p>Amount</p></div>
                         
                     </div>
@@ -90,12 +90,14 @@
                     <div style="display: none;">
                         <div class="order-box" id="" >
                             <div class="erning-date"><div class="date"></div></div>
+                            <div class="erning-order aa"><p class="order"></p></div>
                             <div class="erning-activity div-cursor aa">
-                                <p class="activity1">In proccessing</p>
-                                <p class="activity2">Withdrawable</p>
+                                <p class="activity1">Claimed</p>
+                                <p class="activity2">To climed</p>
+                                <p class="activity3">Pending</p>
                             </div>                            
                             <div class="erning-description aa"><p class="description"></p></div>                            
-                            <div class="erning-order aa"><p class="order"></p></div>
+                            
                             <div class="erning-amount aa"><p class="amount"></p></div>
                         </div>
 

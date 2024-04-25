@@ -144,7 +144,7 @@ body{
     display: grid;
     width: 100%;
     height: auto; 
-    grid-template-columns: 3% 15% 10% 45% 15% 5%;
+    grid-template-columns: 21% 10% 40% 20% 2% 5% 2%;
     border:  solid #ebebeb;
     border-top: none;
     border-left: none;
@@ -203,6 +203,15 @@ body{
     height: 30px;
      border-radius: 50%; 
     clip-path: circle(at center);
+}
+.role1{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #081e9a;
+    background-color: #80808066;
+    padding: 5px;
+    border-radius: 5px;
+    min-width: 75px;
+    text-align: center;
 }
 
 

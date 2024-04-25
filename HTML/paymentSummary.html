@@ -38,7 +38,7 @@
                         <div class="designerName"></div><br>
                         <div class="package-details">
                             <div class="gig-image">
-                                <!-- <img src="../Assests/package_cover4.jpg" alt="Mountains" style="width:100%"><br> -->
+                                <img src="" id="image" alt="Mountains" style="width:100%"><br>
                                 <div class="gig-image1"></div>
                                 <div class="package-type"></div>
                             </div>
@@ -86,9 +86,30 @@
             
 
         </div>
+
+        <form id="payhereForm" method="post" action="https://sandbox.payhere.lk/pay/checkout">   
+            <input type="hidden" name="merchant_id" value="1226368">    <!-- Replace with your Merchant ID -->
+            <input type="hidden" name="return_url" value="https://enmoskill.codingblinders.com/HTML/successPayment.html">
+            <input type="hidden" name="cancel_url" value="https://enmoskill.codingblinders.com/HTML/unsuccessPayment.html">
+            <input type="hidden" name="notify_url" value="https://enmoskill.codingblinders.com/api/enmo-skill-backend/payment">  
+    
+            <input type="hidden" name="order_id" id="order_id" >         
+            <input type="hidden" name="items" id="itemd" >
+            <input type="hidden" name="currency" id="currency" value="LKR">
+            <input type="hidden" name="amount" id="amount" >             
+            <input type="hidden" name="first_name" id="first_name" >
+            <input type="hidden" name="last_name" id="last_name" >
+            <input type="hidden" name="email" id="email">
+            <input type="hidden" name="phone" id="phone">
+            <input type="hidden" name="address" id="address">
+            <input type="hidden" name="city" id="city">
+            <input type="hidden" name="country" id="country">
+            <input type="hidden" name="hash" id="hashInput"> 
+        </form> 
             
     </div>
 
     <script src="../Javascripts/baseurl.js"></script>
     <script src="../Javascripts/paymentSummary.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>        

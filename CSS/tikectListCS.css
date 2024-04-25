@@ -205,7 +205,14 @@ body{
      border-radius: 50%; 
     clip-path: circle(at center);
 }
-
+.role{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #081e9a;
+    background-color: #80808066;
+    padding: 5px;
+    border-radius: 5px;
+    min-width: 75px;
+}
 
 /*.pop-up-container{
     width: 100%;

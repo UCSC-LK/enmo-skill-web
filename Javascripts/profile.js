@@ -21,9 +21,6 @@ var myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");   
 myHeaders.append("Authorization", getCookie("JWT"));    
 
-var raw = JSON.stringify({});
-
-
 var requestOptions = {
     method: 'GET',
     headers: myHeaders, 
@@ -94,11 +91,21 @@ var requestOptions = {
 };
 loding.style.display ="flex"
 fetch(BASE_URL+"/profile", requestOptions)
-  .then(response => {
-    loding.style.display ="none"
-    response.json()
-  })
-  .then(result => {console.log(result)
+.then(response => {
+  loding.style.display ="none"
+  if(response.status == 401){
+    window.location.href = "../Failed/401.html";
+  }else if(response.status == 406){
+    const currentUrl = encodeURIComponent(window.location.href);
+    window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+  }else if(response.status == 404){
+    window.location.href = "../Failed/404.html";
+  }else {
+    return response.json()
+  }
+})
+  .then(result => {
+    console.log(result)
     imgElement.src=result.url;
 
   })

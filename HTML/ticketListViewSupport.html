@@ -16,7 +16,7 @@
     <div class="page">
         <div id="sidebar-placeholder"></div><script src="../Javascripts/sidebar.js"></script>
         <div class="pg-content" style="width: 100%; overflow: auto;">
-        <div id="header-placeholder" style="width: 100%; position: sticky; top: 0;"></div><script src="../Javascripts/header.js"></script>
+        <div id="header-placeholder" style="width: 100%; position: sticky; top: 0;z-index: 0"></div><script src="../Javascripts/header.js"></script>
 
         <div class="container">
 
@@ -26,13 +26,18 @@
     
     
                 <div class="type">
-                    <div class="toaddmin">Assigned to admin</div>
-                    <div class="urgentMark">Mark as ugent</div>
-                    <div class="urgent">Urgent</div>
-                    <div class="refund">Refund $</div>                
+                    
+                    <div class="urgentMark">Mark as ugent</div>               
                 </div>
     
-                <div class="subject-main"><h2>TITLE:</h2><b><h2 class="subject"></h2></b></div>  
+                <div class="subject-main">
+                    <h2>TITLE:</h2><b><h2 class="subject"></h2></b>
+                    <div class="type">
+                        <div class="toaddmin">Assigned to admin</div>
+                        <div class="urgent">Urgent</div>
+                        <div class="refund">Refund $</div>                
+                    </div>
+                </div>  
                 <!-- <div class="bottom-header" id="Updates"><h2 class="">Updates</h2></div> -->
                 <div class="reply"><input class="commentBTN BTN"  type="submit" value="Reply"></div>
                 <div class="apendUpdates"></div>
@@ -46,8 +51,9 @@
                     <div class="body">                   
                         <div class="body-colum">                      
                             <div>
-                                <div><p class="role"></p></div>                   
+                                <div><p class="role1"></p></div>                   
                                 <div><h3 class="description-main"></h3><p class="description"></p></div>
+                                <div class="order1"><p class="order"></p></div>
                                 <div><p class="date"></p></div>           
                             </div>
     

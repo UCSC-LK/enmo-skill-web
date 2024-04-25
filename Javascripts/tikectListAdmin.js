@@ -116,8 +116,8 @@ function tableLoad(view){
         }
                           
 
-        if(item.role=="1"){newItem.querySelector(".role").textContent="Client"}
-        else if(item.role=="2"){newItem.querySelector(".role").textContent="Designer"}
+        if(item.role=="1"){newItem.querySelector(".role1").textContent="Client"}
+        else if(item.role=="2"){newItem.querySelector(".role1").textContent="Designer"}
   
         // if(item.status==1)perent.appendChild(newItem)
       

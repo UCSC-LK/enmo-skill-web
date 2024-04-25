@@ -20,7 +20,7 @@ body{
     height: auto;
     padding: 10px 40px;
     border-radius: 5px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 
 
@@ -43,6 +43,8 @@ body{
     border-radius: 5px;
     font-size: 14px;
     font-weight: 700;
+    max-height: 50px;
+    text-align: center;
 }
 .urgent{
     display: none;
@@ -52,6 +54,8 @@ body{
     border-radius: 5px;
     font-size: 14px;
     font-weight: 700;
+    max-height: 50px;
+    text-align: center;
 }
 .refund{
     display: none;
@@ -61,6 +65,8 @@ body{
     border-radius: 5px;
     font-size: 14px;
     font-weight: 700;
+    max-height: 50px;
+    text-align: center;
 }
 .urgentMark{
     display: none;
@@ -85,7 +91,10 @@ h2{
 
 .subject-main{
     display: grid;
-    grid-template-columns: 7% 93%;
+    grid-template-columns: 7% 53% 40% ;
+    align-items: center;
+    text-align: left;
+    width: 100%;
 }
 
 .subject{
@@ -94,6 +103,7 @@ h2{
 
 .header{
     margin: 0px;
+
 }
 .em{
     display: flex;
@@ -179,6 +189,17 @@ h2{
     font-weight: 800;
     color:#3C3C3C;
     margin-left: 20px;
+}
+
+.order{
+    display: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: #3C3C3C;
+    cursor: pointer;
+}
+.order1{
+    margin-top: 20px;
 }
 .date{
     /* font-weight: 520;
