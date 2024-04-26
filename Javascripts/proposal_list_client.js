@@ -66,34 +66,19 @@ fetch(
   })
   .then((result) => {
     console.log("result " + result);
-    count.innerText = result.length;
+    // count.innerText = result.length;
     result.forEach((item) => {
       const newItem = listItemTemplate.cloneNode(true);
 
-      //   newItem.querySelector(".user").addEventListener("click", function() {
-      //     console.log("Clicked username: " + item.username);
-      // });
-
-      newItem
-        .querySelector(".edit")
-        .addEventListener("click", function (event) {
-          event.stopPropagation();
-          editRequest(item);
-        });
-      newItem
-        .querySelector(".delete")
-        .addEventListener("click", function (event) {
-          event.stopPropagation();
-          deleteRequest(item.proposalID);
-        });
-      newItem.querySelector(".requestID").textContent = item.requestID;
-      newItem.querySelector(".title").textContent = item.title;
+      newItem.querySelector(".requestID").textContent = item.designerId;
+      newItem.querySelector(".title2").textContent = item.title;
       newItem.querySelector(".duration").textContent =
         item.deliveryDuration + " Days";
       newItem.querySelector(".price").textContent = "Rs. " + item.price + ".00";
       newItem.querySelector(".package").textContent = item.pricingPackage;
       //   newItem.querySelector(".budget").textContent = "Rs. " + item.budget;
       newItem.addEventListener("click", () => {
+        currentItem = item; // Store the current item
         viewrequest(item);
       });
 
@@ -117,20 +102,82 @@ const Discriptionview = document.querySelector(".description");
 const Budgetview = document.querySelector(".budget-text");
 const durationview = document.querySelector(".description-text");
 
+// Define the event listener outside of the viewrequest function
+const btn = document.querySelector(".aceptproposal");
+btn.addEventListener("click", () => {
+  // Assuming currentItem is defined somewhere
+  createOrder(currentItem);
+});
+
 function viewrequest(item) {
   popupview.style.display = "flex";
   closetn.addEventListener("click", () => {
     console.log("Script is running");
+    // Remove the event listener when the popup is closed
+    btn.removeEventListener("click", createOrder);
 
     popupview.style.display = "none";
   });
   titleview.innerHTML = item.title;
-  username.innerHTML = item.username;
+  username.innerHTML = item.requestID;
   // userurl
-  Discriptionview.innerHTML = item.discription;
-  Budgetview.innerHTML = item.budget;
-  durationview.innerHTML = item.duration;
+  Discriptionview.innerHTML = item.pricingPackage;
+  Budgetview.innerHTML = item.price;
+  durationview.innerHTML = item.deliveryDuration;
 }
+
+const createOrder = (item) => {
+  // Prepare the data for the POST request
+  const orderData = {
+    requirements: item.discription,
+    status: 0,
+    designerId: item.designerId,
+    packageId: item.packageId,
+    price: item.price,
+    pricePackageID: item.price_package_id,
+    proposalID: item.proposalID,
+    deliveryDuration: item.deliveryDuration,
+  };
+
+  const JWTTOk = getCookie("JWT");
+  console.log("Token" + JWTTOk);
+
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  myHeaders.append("Authorization", getCookie("JWT"));
+
+  var requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    Credential: "include", 
+    body: JSON.stringify(orderData),
+  };
+
+  // Send the POST request
+  fetch(BASE_URL + `/order`, requestOptions)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      // Handle the response data, e.g., redirect to a confirmation page
+      console.log("Order created successfully:", data);
+      const orderID = data.orderId;
+      console.log("deed", orderID)
+      
+      window.location.href =
+         `https://enmoskill.codingblinders.com/HTML/paymentSummary.html?orderID=${orderID}`;
+    })
+    .catch((error) => {
+      console.error("Error creating order:", error);
+      alert("Error creating order. Please try again later.");
+    });
+};
+
+/////////////////////////////////////////////////
+
 
 function deleteRequest(proposalID) {
   if (confirm("Are you sure you want Delete this request?")) {

@@ -120,7 +120,7 @@ function updatePricingDetails() {
 
     if (selectedPackage) {
         document.getElementById("deliveryDuration").value = selectedPackage.deliveryDuration;
-        document.getElementById("price").value = selectedPackage.price;
+        // document.getElementById("price").value = selectedPackage.price;
     }
 }
 
@@ -173,9 +173,11 @@ document
 
     console.log("jsonData"+ jsonData)
 
-    // Make a fetch request
+    const urlParams = new URLSearchParams(window.location.search);
+    const requestID = urlParams.get("requestID");
+
     fetch(
-      BASE_URL + "/proposal?RequestId=114", //hardcode
+      BASE_URL + `/proposal?RequestId=${requestID}`, //hardcode
       {
         method: "POST",
         credentials: "include",
