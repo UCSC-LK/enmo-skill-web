@@ -64,16 +64,25 @@ const p3 = document.getElementById("note3").querySelector("p");
     })
     .then(data =>{
 
+      document.getElementById("user-count").innerHTML = data.userCount
         typeWriter(p1, "Users", 50);
-        typeWriter(p2, "Transactions", 50);
+        document.getElementById("earning-count").innerHTML = "LKR " + data.totalEarnings
+        typeWriter(p2, "Total earnings", 50);
+        document.getElementById("pkg-count").innerHTML = data.packageCount
         typeWriter(p3, "Packages", 50);
 
         console.log(typeof(data));
+
         let category_analysis ={}
+        let order_analysis = {}
+
         category_analysis = data.categoryAnalytics
         console.log(category_analysis);
 
+        order_analysis = data.date_orders
+
         createPie(category_analysis)
+        drawRevenueChart(order_analysis)
     })
   }
 
@@ -92,10 +101,10 @@ const p3 = document.getElementById("note3").querySelector("p");
             label: 'Orders',
             data: dataValues,
             backgroundColor: [
-                'rgb(255, 99, 132)',  // Logo designing
-                'rgb(54, 162, 235)',  // Illustration
-                'rgb(255, 206, 86)',  // Banner designing
-                'rgb(75, 192, 192)',  // Flyer designing
+                'rgb(22, 29, 80)',  // Logo designing
+                'rgb(49, 65, 180)',  // Illustration
+                'rgb(27, 36, 100)',  // Banner designing
+                'rgb(75, 90, 206)',  // Flyer designing
             ]
         }]
     };
@@ -125,6 +134,58 @@ const p3 = document.getElementById("note3").querySelector("p");
         data: data,
         options: options
     });
+}
+
+function drawRevenueChart(data) {
+  
+  // Extract labels and data
+  const sortedData = Object.entries(data).sort(([date1], [date2]) => new Date(date1) - new Date(date2));
+  const labels = sortedData.map(([date]) => new Date(date).getDate());
+  const values = sortedData.map(([, earnings]) => earnings);
+
+  // Create a canvas element
+  const revenue_canvas = document.getElementById('revenueChart');
+
+  // Create the chart
+  const ctx = revenue_canvas.getContext('2d');
+  const myChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+          labels: labels,
+          datasets: [{
+              label: 'Income in April',
+              data: values,
+              fill: false,
+              borderColor: '#212b78',
+              tension: 0.1
+          }]
+      },
+      options: {
+        // scales: {
+        //     y: {
+        //         beginAtZero: true
+        //     }
+        // },
+        // Set the height of the chart
+        plugins: {
+            legend: {
+                position: 'right',
+                display: false,
+                boxWidth: 20,
+                
+            }
+        },
+        layout: {
+            padding: {
+                top: 0,
+                bottom: 0
+            }
+        },
+        responsive: true,
+        // maintainAspectRatio: false,
+        height:400
+    }
+  });
 }
 
 
