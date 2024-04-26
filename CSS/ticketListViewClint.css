@@ -1,45 +1,52 @@
 body{
     /* background-color: #fdfdfd; */
     font-family: Arial, Helvetica, sans-serif
+    
 }
 .container{
     display:flex;
     width: 100%;
-    height:auto;
+    /* height:auto; */
     text-align: center;
     justify-content: center;
     position: relative;
     /* background-color: #ffffff; */
     position: relative;
     margin-top: 40px;
-    padding-bottom: 10px;
-    
-}
-.body-container{
-    width: 80%;
-    height: auto;
-    padding: 20px 40px;
-    border-radius: 5px;
-    background-color: white;
-    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+    margin-bottom: 20px;
 }
 
-.body-colum1{
+.container-main{
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    /* height: auto; */
+}
+.body-container{
+    width: 100%;
+    padding: 20px 40px;
+    border-radius: 5px;
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+    background-color: white;
+}
+
+/* .body-colum1{
     display: grid;
     grid-template-columns: 57% 113%;
     gap:25px;
-}
+} */
 
 /* h1{
     color:#3C3C3C;
     padding: 5px;
 } */
 
-.header-status{
+/* .header-status{
     display: flex;
-    justify-content: left;
+    justify-content: right;
     margin-bottom: 10px;
-}
+    max-height: 20;
+} */
 
 .header{
     display: flex;
@@ -50,11 +57,10 @@ body{
     /* background-color: #000; */
     border-radius:5px;
     font-weight: 900;
+    max-height: 20px;
     text-align: center;
     justify-content: center;
-    /* text-align: center; */
 }
-
 
 h2{
     color:#444;
@@ -73,9 +79,10 @@ h2{
     justify-content: left;
     font-weight: 800;
     color:#3C3C3C;
+    text-align: left;
 }
 .ticketId{
-    padding-left: 10px;
+    padding-left: 8px;
 }
 
 .bottom-header{
@@ -95,6 +102,16 @@ h2{
     color:#3C3C3C;
     margin-left: 20px;
 }
+.order{
+    display: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: #3C3C3C;
+    cursor: pointer;
+}
+.order1{
+    margin-top: 20px;
+}
 .date{
     /* font-weight: 800;
     color:#3C3C3C; */
@@ -110,7 +127,7 @@ h2{
 
 .subject-main{
     display: grid;
-    grid-template-columns: 7% 82% 11% ;
+    grid-template-columns: 7% 83% 10% ;
     align-items: center;
     text-align: left;
     width: 100%;
@@ -118,13 +135,12 @@ h2{
 
 .subject{
     text-align: left;
-    padding-left: 10px;
 }
 
 .body-main{
     padding: 20px;
     position: relative;
-    top: -10.5px;
+    top: -16.5px;
 }
 
 .description-main{
@@ -165,16 +181,6 @@ h2{
     padding: 10px;
 }
 
-.order{
-    display: none;
-    font-size: 20px;
-    font-weight: bold;
-    color: #3C3C3C;
-    cursor: pointer;
-}
-.order1{
-margin-top: 20px;
-}
 .profile-img{
     width: 30px;
     height: 30px;

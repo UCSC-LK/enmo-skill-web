@@ -41,7 +41,7 @@ body{
 .r-table{
     background-color:white;
     border-radius: 5px;
-    padding: 26px;
+    padding: 23.4px;
 
 }
 
@@ -69,13 +69,21 @@ body{
     color: #3C3C3C;
     font-weight: bold;
 }
+.address-details-1{
+    display: none;
+}
+.address-details-2{
+    display: none;
+}
+
 .changeBtn{
-    position: relative;
+    /* position: relative; */
     /* top: -72px; */
     left: 688px;
     color: blue;
     text-decoration: underline;
     font-size: small;
+    margin-top: 20px;
 }
 .changeBtn:hover{
     color: rgb(1, 1, 106);

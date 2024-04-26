@@ -3,61 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/main.css">
     <link rel="stylesheet" href="../CSS/CSA-main2.css">
     <title>Get contact support</title>
 </head>
 
 <body>
-   <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>
-    <div class="container">
-        <div class="contain-box">
-            <div>
-                <h1>Issue with an order</h1>
-            </div>
-            <div class="table">
-                <div class="row"><p class="text">
-                    It's recommended that you send a message to the buyer via your Manage orders page
-                    <br><br>
-                    If you cannot come to a mutual agreement, contact Customer Support 
-                </p></div>
-                
-            </div>
-            <div class="bottom-row">
-                <div class="back" onclick="back()">
-                    <div  class="icon"><img src="../Assests/icons/back.png"></div>
-                    <div><b>Back</b></div>
-                </div>
+    <div class="page">
+        <div class="pg-content" style="width: 100%; overflow: auto;">
+            <div id="header-placeholder" style="width: 100%; position: sticky; top: 0;"></div><script src="../Javascripts/header.js"></script>
+           
+            <div class="container">
+                <div class="main-container">
+                    <div class="header">
+                        <h2>Issue with an order</h2>
+                    </div>
+                    <div class="table-main">
+                        <div class="contain-box">
                     
-                <div class="help" onclick="help()">
-                    <b>I still need help</b>
+                            <div class="table1">
+                                <div class="row"><p class="text">
+                                    It's recommended that you send a message to the buyer via your Manage orders page
+                                    <br><br>
+                                    If you cannot come to a mutual agreement, contact Customer Support 
+                                </p></div>
+                                
+                            </div>
+                            <div class="bottom-row">
+                                <!-- <div class="back" onclick="back()">
+                                    <div  class="icon"><img src="../Assests/icons/back.png"></div>
+                                    <div><b>Back</b></div>
+                                </div> -->
+                                    
+                                <div class="help" onclick="help()">
+                                    <b>I still need help</b>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="imag">
+                            <img src="../Assests/icons/CSA2.png">
+                        </div>
+                    </div>
                 </div>
+                
+        
             </div>
-            
         </div>
-        <div class="imag">
-            <img src="../Assests/icons/CSA2.png">
-        </div>
-
     </div>
+    
 
 </body>
 <script>
-    function back(){
-        window.history.back();
-    }
+    // function back(){
+    //     window.history.back();
+    // }
 
     function help(){
         window.location.href='./createTicket.html?value=order&role="Designer"';
     }
 </script>
-<div>
+<!-- <div>
     <h1>Issue with an order</h1>
-</div>
-<div class="table">
+</div> -->
+<!-- <div class="table">
     <div class="row"><p class="text">
         It's recommended that you send a message to the buyer via your Manage orders page
         <br><br>
         If you cannot come to a mutual agreement, contact Customer Support 
     </p></div>
     
-</div>
+</div> -->

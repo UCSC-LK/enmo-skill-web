@@ -68,9 +68,16 @@ function getdata(ticketID,flag){
           document.querySelector(".subject").textContent = element.subject;
           document.querySelector(".description").textContent = element.description;
           document.querySelector(".date").textContent = element.date;
-          document.querySelector(".role").textContent = role;
+          document.querySelector(".role1").textContent = role;
+          
           document.querySelector(".ticketId").textContent = "Ticket Id: #"+ element.ref_no;
           var userId=element.requesterID;
+
+          //set orderr id --------------------------------------------------------------------
+          if(element.order>0){
+            document.querySelector(".order").style.display="inline"
+            document.querySelector(".order").textContent="Oder ID: #"+element.order;
+          }
 
           //get packege details-----------------------------------------------------------------
           if(element.packages>0){

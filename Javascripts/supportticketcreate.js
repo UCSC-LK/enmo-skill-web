@@ -41,19 +41,50 @@ if(value=="order"){
     perent.appendChild(chaild1)
     const order = document.querySelector(".order")
     
-    var result = []//tempary array-----------
+    // var result = []//tempary array-----------
 
-    //fetch------------------
-    // Adding a default option
-    const defaultOption = { order_id: 0, title: 'Select an Order' };
-    result.unshift(defaultOption);
 
-    result.forEach(item => {
-        const option = document.createElement('option');
-        option.value = item.order_id;
-        option.textContent = item.title;
-        order.appendChild(option);
-      });
+    var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");                          
+        myHeaders.append("Authorization", getCookie("JWT")); 
+        
+    const requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow"
+      };
+      
+      loding.style.display ="none"
+      fetch(BASE_URL+"/ernings", requestOptions)
+      .then(response => {
+        loding.style.display ="none"
+        if(response.status == 401){
+          window.location.href = "../Failed/401.html";
+        }else if(response.status == 406){
+          const currentUrl = encodeURIComponent(window.location.href);
+          window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+        }else if(response.status == 404){
+          window.location.href = "../Failed/404.html";
+        }else {
+          return response.json()
+        }
+      })
+        .then((result) =>{
+          console.log(result)
+            // Adding a default option
+            const defaultOption = { orderId: 0, orderId: 'Select' };
+            result.unshift(defaultOption);
+            var title=" Order ID: "
+            result.forEach(item => {
+              
+                const option = document.createElement('option');
+                option.value = item.orderId;
+                option.textContent =title+item.orderId;
+                order.appendChild(option);
+            });
+        })
+        .catch((error) => console.error(error));
+
 }else if(value == "packege"){
     perent.appendChild(chaild2)
 
@@ -84,6 +115,7 @@ if(value=="order"){
         }
       })
         .then((result) =>{
+          console.log(result)
 
             // Adding a default option
             const defaultOption = { packageId: 0, title: 'Select a Package' };
@@ -105,7 +137,7 @@ var packageID = 0;
 var orderID = 0;
 
 if(value=="order"){
-  packages.addEventListener("change", () => {
+  orders.addEventListener("change", () => {
     orderID = orders.value
   })
 }else if(value == "packege"){
@@ -214,7 +246,7 @@ function ticketsubmission(fileURL,packageID,orderID,role){
       window.location="../HTML/tikectListClient.html"
     }
     
-  }, 2500);
+  }, 25000);
     })
 
   .catch(error => {console.log('error', error);
@@ -264,6 +296,7 @@ submitbutton.addEventListener("click",()=>{
       template: "#my-template"
     }).then((result) => {  
       if (result.isConfirmed) {
+        console.log(orderID)
         ticketsubmission(fileURL,packageID,orderID,role)
       }    
       
