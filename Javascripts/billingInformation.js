@@ -30,7 +30,9 @@ const swalTitle = template.content.querySelector('swal-title');
 loding.style.display ="none"
 
 const url = new URL(window.location.href);
-var type = url.searchParams.get('type');
+const type = url.searchParams.get('type');
+const caombackURL = url.searchParams.get('combackURL')
+
 
 //get data-------------------------------------------
 if(type=="add"){
@@ -188,7 +190,7 @@ fetch(BASE_URL+"/billingInformation", requestOptions)
   });
   
   setTimeout(() => {
-    window.location="../HTML/paymentSummary.html";
+    window.location=caombackURL;
   }, 2500);
     })
 
