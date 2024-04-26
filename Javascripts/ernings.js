@@ -20,88 +20,121 @@ const all = document.querySelector(".all")
 const lastAmount = document.querySelector(".lastAmount")
 const withdrwbtn = document.querySelector(".withdrw-btn")
 const orderBox = document.querySelector(".order-box")
-// const amount = document.querySelector(".amount")
-// const orderID = document.querySelector(".order")
-// const description = document.querySelector(".description")
 const activity = document.querySelector(".activity")
-// const date = querySelector(".date")
-const parent = document.querySelector(".parent")
+const parentPending = document.querySelector(".parentPending")
+const parentToClaimd = document.querySelector(".parentToClaimd")
+const parentClaimd = document.querySelector(".parentClaimd")
+const parentDelived = document.querySelector(".parentDelived")
 
 
 loding.style.display ="none"
-getdata("/ernings")
 
-Promise.all([
-  getdata("/ernings?price=1"),
-  getdata("/ernings")
-])
-.then(([priceInfo, listInfo]) => {
-  // Price data
-  const obj = priceInfo[0];
-  available.textContent = "Rs. " + obj.available;
-  being.textContent = "Rs. " + obj.begin;
-  active.textContent = "Rs. " + obj.active;
-  all.textContent = "Rs. " + obj.all;
-  lastAmount.textContent = "Rs. " + obj.lastAmount;
+//get prices--------------------------------------------------------------------
+var myHeaders = new Headers();                          
+myHeaders.append("Content-Type", "application/json");  
+myHeaders.append("Authorization", getCookie("JWT"));   
 
-  // List data
-  listInfo.forEach(element => {
-   
+var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    Credential:'include'
+  };
+
+  loding.style.display ="flex"
+
+fetch(BASE_URL+"/ernings?price=1", requestOptions)
+.then(response =>{
+
+  loding.style.display ="none"
+  if(response.status == 401){
+    window.location.href = "../Failed/401.html";
+  }else if(response.status == 406){
+    const currentUrl = encodeURIComponent(window.location.href);
+    window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+  }else if(response.status == 404){
+    window.location.href = "../Failed/404.html";
+  }else {
+    return response.json()
+  }
+})
+.then(result => {
+  result.forEach(ithem => {
+    available.textContent = "Rs. " + ithem.available;
+    being.textContent = "Rs. " + ithem.begin;
+    active.textContent = "Rs. " + ithem.active;
+    all.textContent = "Rs. " + ithem.all;
+    lastAmount.textContent = "Rs. " + ithem.lastAmount;
+  })
+})
+
+// get list----------------------------------------------------------------------------------
+var myHeaders = new Headers();                          
+myHeaders.append("Content-Type", "application/json");  
+myHeaders.append("Authorization", getCookie("JWT"));   
+
+var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    Credential:'include'
+  };
+
+  loding.style.display ="flex"
+
+fetch(BASE_URL+"/ernings", requestOptions)
+.then(response =>{
+
+  loding.style.display ="none"
+  if(response.status == 401){
+    window.location.href = "../Failed/401.html";
+  }else if(response.status == 406){
+    const currentUrl = encodeURIComponent(window.location.href);
+    window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+  }else if(response.status == 404){
+    window.location.href = "../Failed/404.html";
+  }else {
+    return response.json()
+  }
+})
+.then(result =>{
+  result.forEach(element =>{
     const newItem = orderBox.cloneNode(true);  
-    
-    var dateString = element.date;
+    var isAvailble = element.isAvailable
+    var dateString = element.date
     var parts = dateString.split(" ");
     var datePart = parts[0];
-    newItem.querySelector(".date").textContent = datePart;
-    newItem.querySelector(".amount").textContent= element.amount;
+    newItem.querySelector(".date").textContent = datePart
+    newItem.querySelector(".amount").textContent= "Rs. "+element.amount
     newItem.querySelector(".order").textContent="#"+element.orderId
 
-    if (element.status == 0 || element.status == 1) {
-      newItem.querySelector(".description").textContent = "Active";
-      newItem.querySelector(".activity1").style.display="inline"
-      parent.appendChild(newItem); 
-    }else if(element.status == 2){
-      newItem.querySelector(".description").textContent = "Deliverd";
-      newItem.querySelector(".activity1").style.display="inline"
-      parent.appendChild(newItem);
+    if (element.status == 0 || element.status == 1 || element.status == 2) {
+      newItem.querySelector(".description").textContent = "-"
+      newItem.querySelector(".activityPenging").style.display="inline"
+      parentPending.appendChild(newItem); 
     }else if(element.status == 3){
-      newItem.querySelector(".description").textContent = "Comleted";
-      newItem.querySelector(".activity2").style.display="inline"
-      parent.appendChild(newItem);
-    }
-  });
-});
-
-  function getdata(endpoint){
-    var myHeaders = new Headers();                          
-    myHeaders.append("Content-Type", "application/json");  
-    myHeaders.append("Authorization", getCookie("JWT"));   
-
-    var requestOptions = {
-        method: 'GET',
-        headers: myHeaders,
-        Credential:'include'
-      };
-
-      loding.style.display ="flex"
-
-    return fetch(BASE_URL+endpoint, requestOptions)
-    .then(response =>{
-
-      loding.style.display ="none"
-      if(response.status == 401){
-        window.location.href = "../Failed/401.html";
-      }else if(response.status == 406){
-        const currentUrl = encodeURIComponent(window.location.href);
-        window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
-      }else if(response.status == 404){
-        window.location.href = "../Failed/404.html";
-      }else {
-        return response.json()
+      if(isAvailble){
+        newItem.querySelector(".description").textContent = "Now"
+        newItem.querySelector(".activityToClimed").style.display="inline"
+        parentToClaimd.appendChild(newItem);
+      }else{
+        if(element.remainingDays==1){ newItem.querySelector(".description").textContent = element.remainingDays + " day"}
+        else{ newItem.querySelector(".description").textContent = element.remainingDays + " days"}
+        newItem.querySelector(".activityPenging").style.display="inline"
+        parentDelived.appendChild(newItem);
       }
-    })
-      
-}
+ 
+    }else if(element.status == 4){
+      newItem.querySelector(".description").textContent = "-"
+      newItem.querySelector(".activityCancel").style.display="inline"
+      parentClaimd.appendChild(newItem);
+    }else if(element.status == 5){
+      newItem.querySelector(".description").textContent = "-"
+      newItem.querySelector(".activityClimed").style.display="inline"
+      parentPending.appendChild(newItem);
+    }
+  })
+})
+  
+
 
 
 withdrwbtn.addEventListener("click",()=>{
