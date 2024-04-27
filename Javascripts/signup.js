@@ -11,6 +11,17 @@ window.onclick = function(event) {
   }
   
 }
+const Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+  }
+});
 
 loding.style.display ="none"
 
@@ -49,23 +60,36 @@ document
           // Unauthorized login (status code 401), display an error message
           //console.error("Error:", response.text().then((text) => console.log(text)));
           response.text().then((text) => {messageDiv.innerHTML =  text});
-          showMessage("error","Email or Username already exists", 3000);
+          Toast.fire({
+            icon: "error",
+            title: "Uername already exists!",
+          });
         }else if (response.status === 406) {
           // Unauthorized login (status code 401), display an error message
           //console.error("Error:", response.text().then((text) => console.log(text)));
           response.text().then((text) => {messageDiv.innerHTML =  text});
-          showMessage("error","Password should be at least 8 characters", 3000);
+          Toast.fire({
+            icon: "error",
+            title: "Password must be greater than 8 characters!",
+          });
         } else {
           // Handle other status codes or errors
           console.error("Error:", response.status);
           response.text().then((text) => {messageDiv.innerHTML =  text});
-          showMessage("error","Registration Failed!", 3000)
+          Toast.fire({
+            icon: "error",
+            title: "An error occurred! Code: "+response.status,
+          });
           
         
         }
       })
       .catch((error) => {
         // Handle network errors or other exceptions
+        Toast.fire({
+          icon: "error",
+          title: "An error occurred!",
+        });
         console.error("An error occurred:", error);
       });
 
@@ -188,5 +212,98 @@ async function fetchCountries() {
   } catch (error) {
     console.error('Error fetching country data:', error);
     return [];
+  }
+}
+
+
+let emailfield = document.getElementById("email")
+let userfield = document.getElementById("username")
+let usertext = document.querySelector(".username-text")
+let emailtext = document.querySelector(".email-text")
+
+
+
+const handleInput = (end) => {
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  
+  
+
+  const requestOptions = {
+    method: "OPTIONS",
+    headers: myHeaders,
+    redirect: "follow"
+  };
+
+  fetch(BASE_URL+"/user?"+end, requestOptions)
+    .then((response) => {
+      if(response.status === 200){
+        emailtext.style.display = "flex"
+        emailtext.textContent = "Email can be used"
+        emailtext.style.color = "#00ff00"
+      }
+      else if(response.status === 409){
+        emailtext.style.display = "flex"
+        emailtext.textContent = "Email already exists"
+        emailtext.style.color = "red"
+      }
+      else if(response.status === 417){
+        emailtext.style.display = "flex"
+        emailtext.textContent = "Invalid Email"
+        emailtext.style.color = "red"
+      }
+    })
+    
+    .catch((error) => console.error(error));
+}
+const handleInputusername = (end) => {
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  const requestOptions = {
+    method: "OPTIONS",
+    headers: myHeaders,
+    redirect: "follow"
+  };
+
+  fetch(BASE_URL+"/user?"+end, requestOptions)
+    .then((response) => {
+      if(response.status === 200){
+        usertext.style.display = "flex"
+        usertext.textContent = "Username can be used"
+        usertext.style.color = "#00ff00"
+      }
+      else if(response.status === 409){
+        usertext.style.display = "flex"
+        usertext.textContent = "Username already exists"
+        usertext.style.color = "red"
+      }
+      
+    })
+    .catch((error) => console.error(error));
+}
+
+const handleBlur = () => {
+  // This function will be called when the input field loses focus
+  // You can add logging or any other action you want to perform here
+  console.log("User finished typing:", inputField.value);
+};
+
+emailfield.addEventListener('blur', ()=>handleInput("email="+emailfield.value))
+userfield.addEventListener('blur', ()=>handleInputusername("username="+userfield.value))
+
+
+function togglePasswordVisibility() {
+  var passwordField = document.getElementById("password");
+  var icon = document.getElementById("toggle-icon");
+
+  if (passwordField.type === "password") {
+      passwordField.type = "text";
+      icon.setAttribute("name", "show");
+      
+  } else {
+      passwordField.type = "password";
+      icon.setAttribute("name", "hide");
+      
   }
 }
