@@ -514,3 +514,76 @@ function calculateEndTime(createdTime, deliveryDuration) {
 
   return endTime;
 }
+
+
+const popupview = document.querySelector(".overlay");
+const closetn = document.querySelector(".close");
+
+// const delivery = document.querySelector(".submit");
+
+function loadAnotherHTML() {
+  popupview.style.display = "flex";
+  closetn.addEventListener("click", () => {
+    console.log("Script is running");
+
+    popupview.style.display = "none";
+  });
+}
+
+//Send message to the designer part
+
+document.getElementById("Form").addEventListener("submit", function (event) {
+  event.preventDefault();
+  var description = document.querySelector(".description-input").value;
+  console.log("description", description);
+  const orderId2 = getOrderIDFromURL();
+
+  const orderdetailsData = {
+    orderID: orderId2,
+    client_message: description,
+  };
+
+  console.log("orderdetailsData: ", orderdetailsData);
+
+  const JWT = getCookie("JWT");
+  console.log("Token: " + JWT); // Consider removing for production
+
+
+  // var myHeaders = new Headers();
+  // myHeaders.append("Content-Type", "application/json");
+  // myHeaders.append("Authorization", getCookie("JWT"));
+
+  // var requestOptions = {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //     Authorization: `${JWT}`, // Add JWT token to the headers
+  //   },
+  //   Credential: "include",
+  //   body: JSON.stringify(orderdetailsData),
+  // };
+  // Send the POST request
+  fetch(BASE_URL + `/orderDetails`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: JWT, // Make sure the token is passed correctly with Bearer if needed
+    },
+    credentials: "include", // Correct the property name from Credential to credentials
+    body: JSON.stringify(orderdetailsData),
+  })
+    .then(response => response.json().then(data => ({ status: response.status, body: data })))
+    .then(obj => {
+      if (obj.status !== 200) {
+        throw new Error('Network response was not ok: ' + JSON.stringify(obj.body));
+      }
+      console.log("Message sent successfully:", obj.body);
+      const orderID = obj.body.orderId;
+      console.log("Order ID:", orderID);
+    })
+    .catch(error => {
+      console.error("Error sending the message:", error);
+      alert("Error sending the message. Please try again later.");
+    });
+
+});

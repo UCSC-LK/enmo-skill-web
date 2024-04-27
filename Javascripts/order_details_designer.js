@@ -121,40 +121,41 @@ document.addEventListener("DOMContentLoaded", function () {
         newItem.querySelector(".tabledata").textContent = formattedDeliveryDate2;
       
         // Check if deliver_work is null or undefined
-        if (item.deliver_work === null || item.deliver_work === undefined) {
-          const removeDiv = newItem.querySelector(".remove");
-          console.log("Remove Div:", removeDiv); // Check if removeDiv is selected correctly
-          if (removeDiv) {
-            removeDiv.style.display = "none"; // Hide the div instead of removing it, if needed again
-            console.log("Removed .remove div");
-          } else {
-            console.log(".remove div not found");
-          }
+        // if (item.deliver_work === null || item.deliver_work === undefined) {
+        //   const removeDiv = newItem.querySelector(".remove");
+        //   console.log("Remove Div:", removeDiv); // Check if removeDiv is selected correctly
+        //   if (removeDiv) {
+        //     removeDiv.style.display = "none"; // Hide the div instead of removing it, if needed again
+        //     console.log("Removed .remove div");
+        //   } else {
+        //     console.log(".remove div not found");
+        //   }
 
-          // Find and disable the download icon
-          const downloadIcon = newItem.querySelector(".download-icon");
-          if (downloadIcon) {
-            downloadIcon.style.pointerEvents = "none"; // Disable interaction
-            downloadIcon.style.opacity = "0.5"; // Visually indicate it's disabled
-          }
-          return;
-        } else {
+        //   // Find and disable the download icon
+        //   const downloadIcon = newItem.querySelector(".download-icon");
+        //   if (downloadIcon) {
+        //     downloadIcon.style.pointerEvents = "none"; // Disable interaction
+        //     downloadIcon.style.opacity = "0.5"; // Visually indicate it's disabled
+        //   }
+        //   return;
+        // } else {
           // Check if the work content is an image URL
-          if (
-            item.deliver_work.includes(".jpg") ||
-            item.deliver_work.includes(".png") ||
-            item.deliver_work.includes(".jpeg") ||
-            item.deliver_work.includes(".gif")
-          ) {
-            // Create an <img> element for displaying the image
-            const imageElement = document.createElement("img");
-            imageElement.src = item.deliver_work;
-            imageElement.alt = "Work Image";
-            newItem.querySelector(".work").appendChild(imageElement);
-          } else {
-            // If it's not an image URL, simply display the text
-            newItem.querySelector(".work").textContent = item.deliver_work;
-          }
+        if (
+          item.deliver_work.includes(".jpg") ||
+          item.deliver_work.includes(".png") ||
+          item.deliver_work.includes(".jpeg") ||
+          item.deliver_work.includes(".gif")
+        ) {
+          // Create an <img> element for displaying the image
+          const imageElement = document.createElement("img");
+          imageElement.src = item.deliver_work;
+          imageElement.alt = "Work Image";
+          newItem.querySelector(".work").appendChild(imageElement);
+        }
+          // } else {
+          //   // If it's not an image URL, simply display the text
+          //   newItem.querySelector(".work").textContent = item.deliver_work;
+          // }
 
           const downloadIcon = newItem.querySelector(".download-icon");
 
@@ -166,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function () {
             downloadLink.download = "work_image.jpg"; // Specify the filename for download
             downloadLink.click(); // Simulate click to start download
           });
-        }
+        // }
 
         // Set delivery number based on index
         if (index % 2 === 0) {
@@ -458,6 +459,10 @@ getPackageID(orderId2)
   });
 
 
+  function loadAnotherHTML() {
+    window.location.href = "deliverwork.html";
+  }
+
   //Timer
 
 // Function to update the timer every second
@@ -506,5 +511,18 @@ function calculateEndTime(createdTime, deliveryDuration) {
     return endTime;
 }
 
+const popupview = document.querySelector(".overlay");
+const closetn = document.querySelector(".close");
+
+// const delivery = document.querySelector(".submit");
+
+function loadAnotherHTML() {
+  popupview.style.display = "flex";
+  closetn.addEventListener("click", () => {
+    console.log("Script is running");
+
+    popupview.style.display = "none";
+  });
+}
 
 

@@ -461,15 +461,18 @@ body {
 }
 
 .submit {
-    background-color: green;
-    color: white;
-    border: none;
-    padding: 8px 8px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 500px;
-    margin-top: 10px;
-    justify-content: flex-end;
+            background-color: #18181a;
+            ;
+            /* Button background color (blue) */
+            color: #fff;
+            /* Text color for the button */
+            border: none;
+            padding: 10px 20px;
+            border-radius: 7px;
+            cursor: pointer;
+            float: right;
+            width: 100%;
+            font-weight: bold;
 }
 
 /* CSS */
@@ -588,4 +591,15 @@ p.orderID {
 
 .attach {
     margin-bottom: 20px;
+}
+
+.footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+.deliverybu{
+    display: flex;
+    margin-right: 10px;
 }

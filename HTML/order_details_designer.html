@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../CSS/order_details.css">
     <!-- <link rel="stylesheet" href="../CSS/order_designer.css"> -->
     <link rel="stylesheet" href="../CSS/main.css">
+    <link rel="stylesheet" href="../CSS/order_details_popup.css">
     
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <title>Orders Details</title>
@@ -110,29 +111,6 @@
                         </div>
                     </div>
                     <div class="table" id="table">
-                        <!-- <div class="row-n"  id="orderDetails">
-                            <div class="ct-bottom">
-                                <div class="row-n"  id="orderDetails">
-                                    <div class="user-n"> Date</div>
-                                </div>
-                                <div class="icon-wrapper">
-                                    <box-icon name='offer' type='solid' rotate='90' color='#a3a3a3' size='20px'></box-icon> 
-                                </div>
-                                <div class="title">
-                                    <p id="count"> <span id="count">Udeesha</span> Sent the Requements </p> <div> asass</div>
-                                </div>
-                                <div class="table3" id="table">
-                                    <div class="table_inside1">
-                                        <p class="table_inside2">DELIVERY #1</p>
-                                        <div class="header"></div>
-                                        <br>
-                                        <div class="table3_con">Hii this is my work</div>
-                                        <div class="table3_con">cwdd</div>
-   
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
                         <div class="table2" id="table2">
                                 <div class="row-hidden">
                                     <div class="ct-bottom">
@@ -182,10 +160,32 @@
                     </div>
                     <br>
                     <div class="deliverybu">
-                        <button class="submit">DELIVERY</button>
+                        <button class="submit" onclick="loadAnotherHTML()">DELIVERY</button>
                     </div>
                     <br>
                     <br>
+
+                <div class="overlay">
+                <div class="body">
+                    <div class="main" style="position: fixed; left: 35%; top: 22%; animation:none;">
+                        
+                        <div class="container">
+                            <form  id="Form">
+                            <p class="close">X</p>
+                            <p class="title2" style="font-size: 25px; text-align: center;">Deliver Your Work</p><br />
+                            
+                            <p class="title2">Describe your delivery in detail</p>
+                            <p class="subtline">Provide customer to in detail instructions for Understand effectively and utilize your work </p>
+                            <textarea class="description-input" placeholder="Describe your project here..."required></textarea>
+                            <input type="file" style="margin-top: 20px;" class="title-input">
+                            
+                            <button class="submit-button" style="background-color: #838383;" >Upload Your Work</button>  
+                        </form>
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
             </div>
 
         </div>

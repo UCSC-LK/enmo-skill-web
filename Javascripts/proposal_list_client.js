@@ -139,6 +139,8 @@ const createOrder = (item) => {
     deliveryDuration: item.deliveryDuration,
   };
 
+  console.log("orderData: ", orderData);
+
   const JWTTOk = getCookie("JWT");
   console.log("Token" + JWTTOk);
 
@@ -167,8 +169,8 @@ const createOrder = (item) => {
       const orderID = data.orderId;
       console.log("deed", orderID)
       
-      window.location.href =
-         `https://enmoskill.codingblinders.com/HTML/paymentSummary.html?orderID=${orderID}`;
+      // window.location.href =
+      //    `https://enmoskill.codingblinders.com/HTML/paymentSummary.html?orderID=${orderID}`;
     })
     .catch((error) => {
       console.error("Error creating order:", error);

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/order_details_client.css">
+    <link rel="stylesheet" href="../CSS/order_details_popup.css">
     
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <title>Orders Details</title>
@@ -146,11 +147,37 @@
                         </div>
                     </div>
                     <br>
-                    <div class="deliverybu">
-                        <button class="submit">MESSAGE</button>
+                    <div class="footer">
+                        <div class="deliverybu">
+                            <button class="submit" onclick="loadAnotherHTML()">MESSAGE</button>
+                        </div>
+                        <div class="deliverybu">
+                            <button class="submit">FINISHED</button>
+                        </div>
                     </div>
                     <br>
                     <br>
+
+                    <div class="overlay">
+                <div class="body">
+                    <div class="main" style="position: fixed; left: 35%; top: 22%; animation:none;">
+                        
+                        <div class="container">
+                            <form  id="Form">
+                            <p class="close">X</p>
+                            <p class="title2" style="font-size: 25px; text-align: center;">Send Your Message</p><br />
+                            
+                            <p class="title2">Describe your feedback</p>
+                            <textarea class="description-input" placeholder="Describe your project here..."required></textarea>
+                            <!-- <input type="file" style="margin-top: 20px;" class="title-input"> -->
+                            
+                            <button type="submit" class="submit-button" style="background-color: #838383;" >Send</button>  
+                        </form>
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
             </div>
 
         </div>
