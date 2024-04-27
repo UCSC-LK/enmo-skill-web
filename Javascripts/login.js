@@ -5,6 +5,17 @@ function setCookie(name, value, daysToExpire) {
   document.cookie = `${name}=${value}; ${expires}; path=/`;
 }
 
+const Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+  }
+});
 
 const overlay = document.querySelector(".login-main");
 
@@ -15,6 +26,9 @@ window.onclick = function(event) {
   }
   
 }
+const loding = document.querySelector(".loading");
+loding.style.display ="none"
+
 document.getElementById("loginForm").addEventListener("submit", function (event) {
   event.preventDefault(); // Prevent the default form submission
 
@@ -36,7 +50,7 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
   // Convert the JavaScript object to JSON
   const jsonData = JSON.stringify(userData);
   console.log(jsonData);
-
+  loding.style.display ="flex"
   // Send a POST request with JSON data to your backend
   fetch(BASE_URL+"/login", {
     method: "POST",
@@ -47,13 +61,18 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
     body: jsonData,
   })
     .then((response) => {
+      loding.style.display ="none"
       if (response.ok) {
         // Successful login (status code 200), parse the JSON response and display the success message
         response.json().then((data) => {
           console.log("Message content:", data.message);
           setCookie('JWT',"Bearer "+ data.JWT, 1); 
           setCookie('Refresh Token',"Bearer "+ data.JWT2, 10); 
-          
+          Toast.fire({
+            icon: "success",
+            title: "Login successful"
+          }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.timer) {
 
           if(data.userLevelID==1){
             setCookie('UserLevel',"CUSTOMER", 30); 
@@ -67,26 +86,117 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
           }else if(data.userLevelID==4){
             setCookie('UserLevel',"CSA", 30); 
             window.location.href = "../HTML/ticketListCS.html"
-          }
+          }}});
         });
 
       } else if (response.status === 401) {
         // Unauthorized login (status code 401), display an error message
         response.json().then((data) => {
           console.log("Error message content:", data.message);
-          alert("Login unsuccessful")
-          messageDiv.innerHTML = "Login unsuccessful ";
+          Toast.fire({
+            icon: "error",
+            title: "Username or password is incorrect"
+          })
+          // messageDiv.innerHTML = "Login unsuccessful ";
         });
         console.log("Login unsuccessful");
       } else {
         // Handle other status codes or errors
+        Toast.fire({
+          icon: "error",
+          title: "An error occurred. Please try again later"
+        })
         console.error("Error:", response.status);
       }
 
     })
     .catch((error) => {
+      loding.style.display ="none"
       console.error("Error:", error);
       messageDiv.innerHTML = error;
     });}
 });
 
+
+function Signup(){
+  window.location.href = "../HTML/signup.html"
+}
+function Terms(){
+  window.location.href = "../HTML/terms_and_conditions.html"
+}
+
+
+
+async function Forgot(){
+  const { value: email } = await Swal.fire({
+    title: "Forgot Password", 
+    input: "email",
+    position: "center",
+    inputLabel: "You can reset your password by entering your email address",
+    inputPlaceholder: "testemail@abc.com",
+    confirmButtonText: "Reset Password",
+    confirmButtonColor: "#000000",
+    
+  });
+  if (email) {
+
+    loding.style.display ="flex"
+    const requestOptions = {
+      method: "POST",
+      redirect: "follow",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    fetch(BASE_URL+"/passwordreset?email="+email, requestOptions)
+      .then((response) => {
+        loding.style.display ="none"
+        if (response.status==200){
+          Toast.fire({
+            icon: "success",
+            title: "Password reset email sent"
+          }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.timer) {
+              location.reload();
+            }
+          }
+          );
+        }else if(response.status==100){
+          Toast.fire({
+            icon: "error",
+            title: "Server error, please try again later"
+          });
+        }else if(response.status==400){
+          Toast.fire({
+            icon: "error",
+            title: "Email not found. Please enter a valid email address"
+          });
+        }else{
+          Toast.fire({
+            icon: "error",
+            title: "An error occurred. Please try again later"
+          });
+        }
+      })
+      .catch((error) => {console.error(error)
+        loding.style.display ="none"});
+        
+    }
+}
+
+
+function togglePasswordVisibility() {
+  var passwordField = document.getElementById("password");
+  var icon = document.getElementById("toggle-icon");
+
+  if (passwordField.type === "password") {
+      passwordField.type = "text";
+      icon.setAttribute("name", "show");
+      
+  } else {
+      passwordField.type = "password";
+      icon.setAttribute("name", "hide");
+      
+  }
+}
