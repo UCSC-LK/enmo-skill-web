@@ -159,6 +159,7 @@ input[type=submit]:hover{
     justify-content: right;
     padding-right: 0;
     margin-right: 0;
+    margin-top: -18px;
     display: flex;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 13px;
@@ -183,3 +184,16 @@ input[type=submit]:hover{
 
 
 
+
+.password-wrapper {
+    position: relative;
+}
+
+.toggle-password {
+    position: relative;
+    right: -351px;
+    top: -33px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 150;
+}
