@@ -102,20 +102,20 @@ fetch(
       //     console.log("Clicked username: " + item.username);
       // });
 
-      newItem
-        .querySelector(".edit")
-        .addEventListener("click", function (event) {
-          event.stopPropagation();
-          editRequest(item);
-        });
-      newItem
-        .querySelector(".delete")
-        .addEventListener("click", function (event) {
-          event.stopPropagation();
-          deleteRequest(item.proposalID);
-        });
+      // newItem
+      //   .querySelector(".edit")
+      //   .addEventListener("click", function (event) {
+      //     event.stopPropagation();
+      //     editRequest(item);
+      //   });
+      // newItem
+      //   .querySelector(".delete")
+      //   .addEventListener("click", function (event) {
+      //     event.stopPropagation();
+      //     deleteRequest(item.proposalID);
+      //   });
       newItem.querySelector(".requestID").textContent = item.requestID;
-      newItem.querySelector(".title").textContent = item.title;
+      newItem.querySelector(".title2").textContent = item.title;
       newItem.querySelector(".duration").textContent = item.deliveryDuration + " Days";
       newItem.querySelector(".price").textContent = "Rs. " + item.price + ".00";
       newItem.querySelector(".package").textContent = item.pricingPackage;
@@ -156,11 +156,11 @@ console.log("Script is running");
     popupview.style.display = "none";
   });
   titleview.innerHTML = item.title;
-  username.innerHTML = item.username;
+  username.innerHTML = item.requestID;
   // userurl
-  Discriptionview.innerHTML = item.discription;
-  Budgetview.innerHTML = item.budget;
-  durationview.innerHTML = item.duration;
+  Discriptionview.innerHTML = item.pricingPackage;
+  Budgetview.innerHTML = item.price;
+  durationview.innerHTML = item.deliveryDuration;
 }
 
 
@@ -264,5 +264,37 @@ function editRequest(item) {
       })
       .catch((error) => console.log("error", error));
   }
+}
+
+function GetClientDetails(packageID) {
+  const requestOptions = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: getCookie("JWT"), // Assuming you have a function to retrieve JWT token from cookies
+    },
+    Credential: "include",
+  };
+
+  return fetch(
+    BASE_URL + `/packagepricing?packageId=${packageID}`,
+    requestOptions
+  )
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      // Assuming the response data contains delivery_duration
+      const deliveryDuration = data[0].deliveryDuration;
+      console.log("PackageID", deliveryDuration);
+      return deliveryDuration;
+    })
+    .catch((error) => {
+      console.error("Error fetching delivery duration:", error);
+      return null; // Return null or handle error appropriately
+    });
 }
 

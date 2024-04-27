@@ -17,7 +17,7 @@ body {
 
 .header {
 
-    border-bottom: solid;
+    /* border-bottom: solid; */
     border-color: #ebebeb;
     border-width: 2px;
     display: flex;
@@ -120,9 +120,9 @@ body {
 }
 
 .row-main {
-    height: auto;
+    height: 170px;
     padding: 0px 20px;
-    border-bottom: 2px solid rgb(235, 235, 235);
+    /* border-bottom: 2px solid rgb(235, 235, 235); */
     border-color: rgb(235, 235, 235);
     border-width: 2px;
     transition: height 0.3s ease;
@@ -130,7 +130,7 @@ body {
 
 
 .row-main.expanded {
-    height: auto;
+    height: 170px;
     /* Expand height when the dropdown is opened */
 }
 
@@ -148,6 +148,7 @@ body {
 .duration-main,
 .budget-main,
 .gig-main,
+.user-main2,
 .status-main {
     width: 50%;
     max-width: 50%;
@@ -202,8 +203,14 @@ body {
 
 .BBB {
     justify-content: left;
+    margin-top: 10px;
+    margin-left: 10px;
+    /* border-bottom: solid; */
 }
 
+.CCC{
+    margin-left: 770px;
+}
 /* Dropdown button - ensuring it does not have unintended margins or paddings affecting position */
 .dropbtn {
     background-color: transparent;
@@ -213,32 +220,46 @@ body {
     border: none;
     cursor: pointer;
     position: relative;
-    margin-left: 240px;
+    margin-left: 280px;
+    transition: height 0.3s ease;
 }
 
-
-/* Keep the dropdown content positioned relative to the dropbtn */
-.dropdown-content {
+.dropdown-content2{
     display: none;
     position: relative;
     left: 0;
-    /* align the dropdown content to the right of dropbtn */
     background-color: #f9f9f9;
-    width: 450px;
+    width: 10px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+    z-index: 100;
+    margin-left: 40px;
+    border-radius: 5px;
+        min-width: 300px;
 }
 
+/* Keep the dropdown content positioned relative to the dropbtn */
+.dropdown-contentup {
+    display: none;
+    position: relative;
+    left: 0;
+    background-color: #f9f9f9;
+    width: 950px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    margin-left: 40px;
+    border-radius: 5px;
+}
+
+
 /* To show the dropdown content when it is active (toggled to show) */
-.dropdown.active .dropdown-content {
+.dropdownup.active .dropdown-contentup {
     display: block;
     width: 100%;
 }
 
-.dropdown {
+.dropdownup {
     /* position: relative; */
-    width: 100%;
-    
+    width: 100%;    
 }
 
 .title{
@@ -268,14 +289,91 @@ body {
     border-color: #ebebeb;
     flex-basis: 100%;
     margin-top: 30px;
+    min-height: max-content;
+}
+
+.table32 {
+    display: flex;
+    flex-direction: column;
+    /* This makes child elements stack vertically */
+    padding: 15px 10px;
+    border-radius: 15px;
+    background-color: white;
+    margin-top: 30px;
+    border: 1px solid #ebebeb;
+    width: 100%;
+    /* Use 100% or other suitable width */
+    min-height: max-content;
+    /* Allows container to grow as needed */
+}
+
+.table3_content {
+    display: block;
+    width: 100%;
+    min-height: auto;
+    word-wrap: break-word;
+    margin-left: 20px;
+    margin-top: 20px;
 }
 
 .table_inside1{
     width: 100%;
 }
 .table_inside2{
-    margin-left: 10px;
+    margin-left: 30px;
     margin-right: 10px;
+}
+.table_inside3{
+    width: 100%;
+        border-radius: 10px 10px 10px 10px;
+        background-color: #ccc;
+        justify-content: 40px;
+}
+
+.table_inside4 {
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+    margin-left: 25px;
+}
+
+.message {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 25px;
+    margin-right: 425px;
+    width: 500px;
+    height: auto;
+    display: flex;
+        flex-direction: column;
+        /* Stacks children vertically */
+        padding: 15px 10px;
+        border-radius: 15px;
+        background-color: white;
+        border: 1px solid #ebebeb;
+        /* Example fixed width, adjust as needed */
+        min-height: max-content;
+
+}
+
+.message-text {
+    white-space: normal;
+    margin-right: 125px;
+    display: block;
+        /* Default block for text content */
+        width: 100%;
+        /* Takes full width of the parent */
+        word-wrap: break-word;
+}
+
+.delivery-work {
+    display: flex;
+    align-items: center;
+}
+
+.download-icon {
+    margin-left: 10px;
+    cursor: pointer;
 }
 
 .table3_con{
@@ -294,24 +392,24 @@ body {
     margin-left: 190px;
 }
 .row-n.expanded {
-    height: auto;
+    height: 150px;
     /* Expand height when the dropdown is opened */
 }
 
 .row-n {
     height: auto;
-    padding: 0px 20px;
-    border-bottom: 2px solid rgb(235, 235, 235);
+    padding: 0px 10px;
+    /* border-bottom: 2px solid rgb(235, 235, 235); */
     border-color: rgb(235, 235, 235);
     border-width: 2px;
-    transition: height 0.3s ease;
+    transition: height 0.1s ease;
     /* Add transition for smooth height change */
 }
 
 .row-np {
     height: auto;
     padding: 0px 20px;
-    border-bottom: 2px solid rgb(235, 235, 235);
+    /* border-bottom: 2px solid rgb(235, 235, 235); */
     border-color: rgb(235, 235, 235);
     border-width: 2px;
     /* transition: height 0.8s ease; */
@@ -338,7 +436,7 @@ body {
 .dropdown2 {
     /* position: relative; */
     width: 100%;
-
+    height: max-content;
 }
 
 .container {
@@ -405,10 +503,9 @@ body {
     padding: 10PX 10px;
     border-radius: 15px;
     background-color: white;
-    margin-top: 20px;
     border: solid;
     border-width: 1px;
-    border-color: #ebebeb;
+    border-color: white;
 
 
 }
@@ -427,3 +524,77 @@ body {
     height: auto;
     /* Expand height when the dropdown is opened */
 }
+
+p.orderID {
+    font-size: 35px;
+    font-weight: bold;
+    margin-left: 30px;
+}
+
+.drp1{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+        margin-left: 20px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        margin-right: 20px;
+}
+
+.drp2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: inset;
+}
+
+.drp3{
+    display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 20px;
+        margin-left: 10px;
+}
+
+.user-n{
+    width: 100px;
+    padding-left: 29px;
+    margin-left: -30px;
+    border-radius: 0px 15px 15px 0px;
+    background-color: #ccc;
+}
+
+.user-np{
+    width: 100px;
+    padding-left: 29px;
+    margin-left: -61px;
+    border-radius: 0px 15px 15px 0px;
+    background-color: #ccc;
+}
+
+
+.icon2 {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+    margin-left: -30px;
+}
+
+.image_frame {
+    width: 150px;
+    height: 150px;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.work img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.attach{
+    margin-bottom: 20px;
+}
+
