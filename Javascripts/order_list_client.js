@@ -97,29 +97,7 @@ function tableLoad(view) {
         newItem.querySelector(".user").textContent = item.clientId;
         newItem.querySelector(".gig").textContent = item.packageId;
         newItem.querySelector(".date").textContent = item.createdTime;
-        
-        const deliveryDurationInDays = item.deliveryDuration;
-
-        console.log("deliveryDurationInDays", deliveryDurationInDays);
-        const createdTime = item.createdTime;
-
-        console.log("createdTime", createdTime);
-
-        // Calculate due date
-        const dueDate = new Date(createdTime);
-        dueDate.setDate(dueDate.getDate() + deliveryDurationInDays);
-
-        const formattedDueDate = dueDate.toLocaleString("en-US", {
-          month: "short",
-          day: "2-digit",
-          year: "numeric",
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-          hour12: true,
-        });
-
-        newItem.querySelector(".duration").textContent = formattedDueDate;
+        newItem.querySelector(".date").textContent = item.createdTime;
         newItem.querySelector(".budget-value").textContent = item.price;
         const statusElement = newItem.querySelector(".status"); // Get the status element
         switch (item.status) {
@@ -147,7 +125,6 @@ function tableLoad(view) {
           statusElement.textContent;
 
         console.log("Status" + item.status);
-        console.log("order_id" + item.orderId);
 
         var itemDivs = [
           newItem.querySelector(".user"),
@@ -160,13 +137,13 @@ function tableLoad(view) {
 
         itemDivs.forEach(function (itemDiv) {
           itemDiv.addEventListener("click", () => {
-            vieworder(item.orderId);
+            vieworder(item.order_id);
           }); //view order--------------------------------------------
         });
 
         switch (view) {
           case "ongoing":
-            if (item.status == 1) {
+            if (item.status == 0) {
               newItem.classList.remove("row-hidden");
               newItem.classList.add("row");
               list2.appendChild(newItem);
@@ -174,7 +151,7 @@ function tableLoad(view) {
             break;
 
           case "delivered":
-            if (item.status == 2) {
+            if (item.status == 1) {
               newItem.classList.remove("row-hidden");
               newItem.classList.add("row");
               list2.appendChild(newItem);
@@ -182,7 +159,7 @@ function tableLoad(view) {
             break;
 
           case "completed":
-            if (item.status == 3) {
+            if (item.status == 2) {
               newItem.classList.remove("row-hidden");
               newItem.classList.add("row");
               list2.appendChild(newItem);
@@ -190,7 +167,7 @@ function tableLoad(view) {
             break;
 
           case "canseled":
-            if (item.status == 4) {
+            if (item.status == 3) {
               newItem.classList.remove("row-hidden");
               newItem.classList.add("row");
               list2.appendChild(newItem);

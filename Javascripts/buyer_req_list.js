@@ -39,7 +39,7 @@ fetch(BASE_URL+"/request", requestOptions)
       return response.json()
     } else{
       console.log("Error"+response.status)
-  }
+    }
     
     })
   .then(result => {
@@ -62,7 +62,8 @@ fetch(BASE_URL+"/request", requestOptions)
         })
         
         newItem.classList.remove("row-hidden");
-        newItem.classList.add("row");        
+        newItem.classList.add("row"); 
+       
         listContainer.appendChild(newItem);
     })
 
@@ -78,8 +79,6 @@ fetch(BASE_URL+"/request", requestOptions)
   const Budgetview = document.querySelector('.budget-text');
   const durationview = document.querySelector('.description-text');
   const btn = document.querySelector('.proposal');
-  
-
   btn.addEventListener("click",()=>{
     window.location.href = "../HTML/proposal_add.html"
   })
@@ -96,13 +95,7 @@ function viewrequest(item){
   Budgetview.innerHTML=item.budget;
   durationview.innerHTML=item.duration;
 
-  const btn = document.querySelector(".proposal");
 
-  btn.addEventListener("click", () => {
-    window.location.href =
-      "../HTML/proposal_add.html?requestID=" +
-      encodeURIComponent(item.requestID);
-  });
 }
 
 
