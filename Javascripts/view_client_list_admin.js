@@ -28,6 +28,8 @@ var search_active = false
 var active_u = document.getElementById("active_u")
 var banned_u = document.getElementById("banned_u")
 
+let clicked_user = {}
+
 function on() {
     document.getElementById("overlay").style.display = "block";
   }
@@ -213,55 +215,36 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
     seeMoreBtn.textContent = 'See more';
     seeMoreBtn.addEventListener('click', function(event){
       event.stopPropagation();
+      clicked_user = element;
       popup(element);
     });
 
-    const makecsa = document.createElement('button');
-    makecsa.className = 'see-more';
-    makecsa.textContent = 'Make CSA';
-    // makecsa.addEventListener('click', function(event){
-    //   event.stopPropagation();
-    //   popup(element);
-    // });
+
 
     if (element.status == 1) {
 
-      const warnBtn = document.createElement('button');
-      warnBtn.className = 'warn';
-      warnBtn.textContent = 'WARN';
-      warnBtn.addEventListener('click', function(event){
+      
+      const makecsa = document.createElement('button');
+      makecsa.className = 'see-more';
+      makecsa.textContent = 'Make CSA';
+      makecsa.addEventListener('click', function(event){
         event.stopPropagation();
-        warningConfirmation(element);
-    });
+        csaConfirmation(element);
+      });
 
-    const bannBtn = document.createElement('button');
-    bannBtn.className = 'bann';
-    bannBtn.textContent = 'BANN';
-    bannBtn.addEventListener('click', function(event){
-      event.stopPropagation();
-      popup(element);
-    });
+           // Append elements
+     seeMoreDiv.appendChild(seeMoreBtn);
+     seeMoreDiv.appendChild(makecsa);
 
-    const checkWarn = document.createElement('button');
-    checkWarn.className = 'see-more';
-    checkWarn.textContent = 'CHECK WARNINGS';
-    checkWarn.addEventListener('click', function(event){
-      event.stopPropagation();
-      getWarnings(element.user.id);
-    });
 
-    // Append elements
-    seeMoreDiv.appendChild(seeMoreBtn);
-    seeMoreDiv.appendChild(checkWarn);
-    seeMoreDiv.appendChild(makecsa);
+    } else{
+           // Append elements
+     seeMoreDiv.appendChild(seeMoreBtn);
+    //  seeMoreDiv.appendChild(makecsa);
+    }
 
-    seeMoreDiv.appendChild(warnBtn);
-    seeMoreDiv.appendChild(bannBtn);
-  } else{
-    // Append elements
-    seeMoreDiv.appendChild(seeMoreBtn);
-    seeMoreDiv.appendChild(makecsa);
-  }
+
+
 
     
 
@@ -314,11 +297,33 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
     seeMoreBtn.textContent = 'See more';
     seeMoreBtn.addEventListener('click', function(event){
       event.stopPropagation();
+      clicked_user = element;
       popup(element);
     });
 
-    // Append elements
-    seeMoreDiv.appendChild(seeMoreBtn);
+
+    if (element.status == 1) {
+
+      
+      const makecsa = document.createElement('button');
+      makecsa.className = 'see-more';
+      makecsa.textContent = 'Make CSA';
+      makecsa.addEventListener('click', function(event){
+        event.stopPropagation();
+        csaConfirmation(element);
+      });
+
+           // Append elements
+     seeMoreDiv.appendChild(seeMoreBtn);
+     seeMoreDiv.appendChild(makecsa);
+
+
+    } else{
+           // Append elements
+     seeMoreDiv.appendChild(seeMoreBtn);
+    //  seeMoreDiv.appendChild(makecsa);
+    }
+
 
     rowDiv.appendChild(idP);
     rowDiv.appendChild(usernameP);
@@ -347,6 +352,14 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
     document.getElementById("data-des").innerHTML = data.user.description || "lorem impsum"
     document.getElementById("data-nic").textContent = data.user.NIC;
     document.getElementById("data-country").textContent = data.user.country;
+
+    if (data.status == 1) {
+      document.getElementById("options-btn").classList.add("see-more-btn-row")
+      document.getElementById("options-btn").classList.remove("see-more-btn-row-hidden")
+    } else{
+      document.getElementById("options-btn").classList.add("see-more-btn-row-hidden")
+      document.getElementById("options-btn").classList.remove("see-more-btn-row")
+    }
 
 
   }
@@ -416,8 +429,15 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
     }
 });
 
+document.getElementById("sendWarning").addEventListener("click", function(e){
+  e.preventDefault();
 
-function warningConfirmation(data){
+  warningConfirmation();
+
+})
+
+
+function warningConfirmation(){
 
   Swal.fire({
     title: 'Are you sure?',
@@ -429,10 +449,17 @@ function warningConfirmation(data){
     confirmButtonText: 'Yes! Send a warning'
   }).then((result) => {
     if (result.isConfirmed) {
-      window.open("../HTML/policy_violations.html?userid="+data.user.id+"&username="+data.user.username, "_self")
+      window.open("../HTML/policy_violations.html?userid="+clicked_user.user.id+"&type=warning")
     }
   })
 }
+
+document.getElementById("showWarnings").addEventListener("click", function(e){
+
+  e.preventDefault();
+  getWarnings(clicked_user.user.id);
+  
+})
 
 function getWarnings(id) {
 
@@ -452,13 +479,6 @@ function getWarnings(id) {
       window.location.href = "../Failed/404.html";
     }else if (response.status == 200) {
       return response.json();
-    } else if (response.status == 500){
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Reconnecting!"
-      });
-      console.log("Error"+response.status)
     }else{
       Swal.fire({
         icon: "error",
@@ -518,3 +538,79 @@ function getWarnings(id) {
 }
 
 
+function csaConfirmation(user){
+  
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "Do you want to make this user a CSA",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes! Make CSA'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        makeCSA(user.user);
+      }
+    })
+}
+
+document.getElementById("bann").addEventListener("click", function(e) {
+  e.preventDefault();
+
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "Do you want suspend the user",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes! Suspend user'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      window.open("../HTML/policy_violations.html?userid="+clicked_user.user.id+"&type=bann")
+    }
+  })
+})
+
+function makeCSA(user){
+  fetch(`${BASE_URL}/userupdate?role=4`,{
+    method: 'PUT',
+    headers: myHeaders,
+    body: JSON.stringify(user)
+  })
+  .then(response => 
+    {if(response.status == 401){
+      window.location.href = "../Failed/401.html";
+    }else if(response.status == 406){
+      const currentUrl = encodeURIComponent(window.location.href);
+      window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+    }else if(response.status == 404){
+      window.location.href = "../Failed/404.html";
+    }else if (response.status == 200) {
+      Swal.fire({
+        icon: "success",
+        title: "success",
+        text: "User level upgraded successfully",
+        confirmButtonColor: "#000000"
+      });
+    }else{
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went Wrong!",
+        confirmButtonColor: "#000000"
+      });
+      console.log("Error"+response.status)
+    }
+    })
+    .catch((error)=>{
+      console.error(error)
+      Swal.fire({
+       icon: "error",
+       title: "Oops...",
+       text: "Something went wrong!",
+       confirmButtonColor: "#000000"
+     });
+    })
+}

@@ -44,8 +44,8 @@ if(type=="add"){
   })
 }else if(type=="update"){
   getdata('GET',"/billingInformation")
-  .then(result => {
-    result.forEach(item => {
+  .then(item => {
+    // result.forEach(item => {
       fname.value=item.fname;
       lname.value=item.lname;
       pnumber.value=item.pNumber;
@@ -53,7 +53,7 @@ if(type=="add"){
       address.value=item.address;
       city.value=item.city;
       country.value=item.country;      
-    })      
+    // })      
   })
 }
 

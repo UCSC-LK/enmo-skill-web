@@ -29,6 +29,7 @@ var active_u = document.getElementById("active_u")
 var banned_u = document.getElementById("banned_u")
 
 var warnings_array = [];
+let clicked_user = {}
 
 function on() {
     document.getElementById("overlay").style.display = "block";
@@ -94,19 +95,9 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
         window.location.href = "../Failed/404.html";
       }else if (response.status == 200) {
         return response.json();
-      } else if (response.status == 500){
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Reconnecting!"
-        });
-        console.log("Error"+response.status)
+      }else if (response.status == 500) {
+        // location.reload();
       }else{
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!"
-        });
         console.log("Error"+response.status)
       }
       })
@@ -116,11 +107,7 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
     })
     .catch((error)=>{
        console.error(error)
-       Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Something went wrong!"
-      });
+       
      })
   }
   
@@ -146,20 +133,11 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
         window.location.href = "../Failed/404.html";
       }else if (response.status == 200) {
         return response.json();
-      } else if (response.status == 500){
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Reconnecting!"
-        });
-        console.log("Error"+response.status)
+      }else if (response.status == 500) {
+        // location.reload();
+      
       }else{
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Something went Wrong!"
-        });
-        console.log("Error"+response.status)
+        console.error("Error"+response.status)
       }
       })
     .then((data)=>{
@@ -168,11 +146,7 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
     })
     .catch((error)=>{
        console.error(error)
-       Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Something went wrong!"
-      });
+      
      })
   }
 
@@ -190,7 +164,7 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
 
 
     const rowDiv = document.createElement('div');
-    rowDiv.className = 'row1';
+    rowDiv.className = 'row';
     rowDiv.id = 'row1';
 
     const idP = document.createElement('p');
@@ -220,6 +194,7 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
     seeMoreBtn.textContent = 'SEE MORE';
     seeMoreBtn.addEventListener('click', function(event){
       event.stopPropagation();
+      clicked_user = element
       popup(element);
     });
 
@@ -342,13 +317,20 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
     document.getElementById("designer-img").src = data.user.url || "https://i.ibb.co/Ry2J1Lg/pexels-photo-220453.webp"
     document.getElementById("data-name").textContent = data.fname + " "+ data.lname;
     document.getElementById("data-displayname").textContent = data.user.username;
+    document.getElementById("data-displayname1").textContent = data.user.username;
     document.getElementById("data-email").textContent = data.user.email;
     document.getElementById("data-contact").textContent = data.user.contact_no;
     document.getElementById("data-joined").textContent = data.joinedDate;
     document.getElementById("data-des").innerHTML = data.user.description || "lorem impsum"
     document.getElementById("data-nic").textContent = data.user.NIC;
-    
-    
+
+    if (data.status == 1) {
+      document.getElementById("options-btn").classList.add("see-more-btn-row")
+      document.getElementById("options-btn").classList.remove("see-more-btn-row-hidden")
+    } else{
+      document.getElementById("options-btn").classList.add("see-more-btn-row-hidden")
+      document.getElementById("options-btn").classList.remove("see-more-btn-row")
+    }
 
   }
 
@@ -417,7 +399,14 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
     }
 });
 
-function warningConfirmation(data){
+document.getElementById("sendWarning").addEventListener("click", function(e){
+  e.preventDefault();
+
+  warningConfirmation();
+
+})
+
+function warningConfirmation(){
 
   Swal.fire({
     title: 'Are you sure?',
@@ -429,10 +418,17 @@ function warningConfirmation(data){
     confirmButtonText: 'Yes! Send a warning'
   }).then((result) => {
     if (result.isConfirmed) {
-      window.open("../HTML/policy_violations.html?userid="+data.user.id+"&username="+data.user.username, "_self")
+      window.open("../HTML/policy_violations.html?userid="+clicked_user.user.id)
     }
   })
 }
+
+document.getElementById("showWarnings").addEventListener("click", function(e){
+
+  e.preventDefault();
+  getWarnings(clicked_user.user.id);
+  
+})
 
 function getWarnings(id) {
 
@@ -452,19 +448,7 @@ function getWarnings(id) {
       window.location.href = "../Failed/404.html";
     }else if (response.status == 200) {
       return response.json();
-    } else if (response.status == 500){
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Reconnecting!"
-      });
-      console.log("Error"+response.status)
     }else{
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Something went Wrong!"
-      });
       console.log("Error"+response.status)
     }
     })
@@ -515,5 +499,5 @@ function getWarnings(id) {
        text: "Something went wrong!"
      });
     })
-}
 
+}

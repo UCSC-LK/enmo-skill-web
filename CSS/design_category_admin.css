@@ -73,6 +73,7 @@
     padding: 10px 20px;
     border-radius: 7px;
     cursor: pointer;
+    font-weight: bold;
   }
   
   li a:hover {
@@ -109,7 +110,7 @@
   }
   
   .block {
-    width: 80%;
+    width: 90%;
   }
   
   .headding {
@@ -444,8 +445,9 @@
     padding: 10px 20px;
     font-weight: bold;
     border: none;
-    border-radius: 5px;
+    border-radius: 7px;
     cursor: pointer;
+    font-weight: bold;
   }
   
   .submit-button:hover {

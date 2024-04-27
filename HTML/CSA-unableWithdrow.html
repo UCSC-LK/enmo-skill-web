@@ -8,40 +8,51 @@
 </head>
 
 <body>
-   <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>
-    <div class="container">
-        <div class="contain-box">
-            <div>
-                <h1>Uneble to withdrow fundsr</h1>
-            </div>
-            <div class="table">
-                <div class="row"><p class="text">
-                    <b>Troubleshoot withdrawals</b><br><br>
-                    <ul>
-                        <li>Check your Earnings page to see if you have funds available for withdrawal</li><br>
-                        <li>Make sure you've set up a withdrawal method</li><br>
-                        <li>You can only make 1 withdrawal every 24 hours</li>
-                    </ul>
-                </p></div>
-                
-            </div>
-            <div class="bottom-row">
-                <div class="back" onclick="back()">
-                    <div  class="icon"><img src="../Assests/icons/back.png"></div>
-                    <div><b>Back</b></div>
-                </div>
+    <div class="page">
+        <div class="pg-content" style="width: 100%; overflow: auto;">
+            <div id="header-placeholder" style="width: 100%; position: sticky; top: 0;"></div><script src="../Javascripts/header.js"></script>
+            <div class="container">
+                <div class="main-container">
+                    <div class="header">
+                        <h2>Uneble to withdrow funds</h2>
+                    </div>
+                    <div class="table-main">
+                        <div class="contain-box">
                     
-                <div class="help" onclick="help()">
-                    <b>I still need help</b>
+                            <div class="table1">
+                                <div class="row"><p class="text">
+                                    <b>Troubleshoot withdrawals</b><br><br>
+                                    <ul>
+                                        <li>Check your Earnings page to see if you have funds available for withdrawal</li><br>
+                                        <li>Make sure you've set up a withdrawal method</li><br>
+                                        <li>You can only make 1 withdrawal every 24 hours</li>
+                                    </ul>
+                                </p></div>
+                                
+                            </div>
+                            <div class="bottom-row">
+                                <!-- <div class="back" onclick="back()">
+                                    <div  class="icon"><img src="../Assests/icons/back.png"></div>
+                                    <div><b>Back</b></div>
+                                </div> -->
+                                    
+                                <div class="help" onclick="help()">
+                                    <b>I still need help</b>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="imag">
+                            <img src="../Assests/icons/CSA2.png">
+                        </div>
+                    </div>
                 </div>
+                
+        
             </div>
-            
         </div>
-        <div class="imag">
-            <img src="../Assests/icons/CSA2.png">
-        </div>
-
     </div>
+    
 
 </body>
 <script>

@@ -47,8 +47,12 @@ Promise.all([
   // List data
   listInfo.forEach(element => {
    
-    const newItem = orderBox.cloneNode(true);    
-    newItem.querySelector(".date").textContent = element.date;
+    const newItem = orderBox.cloneNode(true);  
+    
+    var dateString = element.date;
+    var parts = dateString.split(" ");
+    var datePart = parts[0];
+    newItem.querySelector(".date").textContent = datePart;
     newItem.querySelector(".amount").textContent= element.amount;
     newItem.querySelector(".order").textContent="#"+element.orderId
 

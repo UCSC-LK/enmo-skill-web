@@ -13,53 +13,63 @@
     <div class="loading">
         <div class="spin"></div>
     </div>
-    
-    <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>
-    <div class="container">
-
-        <div class="form-box">
-            
-            <form class ="form-layout" method="post">
-                <div>
-                    <div><label class="input-lable" for="Complainant"><h3>Complainant ID</h3></label></div>
-                    <div><input  class="inputs" name="Complainant" id="Complainant" required></div>
-                </div>
-                <div>
-                    <div><label class="input-lable" for="subject"><h3>Subject</h3></label></div>
-                    <div><input  class="inputs" name="subject" id="subject" required></div>
-                </div>                
-                <br>
-                <div>
-                    <div><label class="input-lable" for="description"><h3>Description</h3></label></div>
-                    <div><textarea  class="inputs-1" name="description" id="description" required></textarea></div>
-                </div>
-                <br> 
-
-            </form>
-
-            <div class ="botom-row">
+    <div class="page">
+        <div class="pg-content" style="width: 100%; overflow: auto;">
+            <div id="header-placeholder" style="width: 100%; position: sticky; top: 0;z-index: 1;"></div><script src="../Javascripts/header.js"></script>
+            <div class="container">
+                <div class="main-container">
+                    
+                    <div class="table-main">
+                        <div class="form-box">
+                    
+                            <form class ="form-layout" method="post">
+                                <div>
+                                    <div><label class="input-lable" for="Complainant"><h3>Complainant ID</h3></label></div>
+                                    <div><input  class="inputs" name="Complainant" id="Complainant" required></div>
+                                </div>
+                                <div>
+                                    <div><label class="input-lable" for="subject"><h3>Subject</h3></label></div>
+                                    <div><input  class="inputs" name="subject" id="subject" required></div>
+                                </div>                
+                                <br>
+                                <div>
+                                    <div><label class="input-lable" for="description"><h3>Description</h3></label></div>
+                                    <div><textarea  class="inputs-1" name="description" id="description" required></textarea></div>
+                                </div>
+                                <br> 
                 
-                <div class="btn1">
-                    <div>
-                        <div class="back" onclick="back()">
-                            <div  class="icon"><img src="../Assests/icons/back.png"></div>
-                            <div><b>Back</b></div>
+                            </form>
+                
+                            <div class ="botom-row">
+                                
+                                <!-- <div class="btn1">
+                                    <div>
+                                        <div class="back" onclick="back()">
+                                            <div  class="icon"><img src="../Assests/icons/back.png"></div>
+                                            <div><b>Back</b></div>
+                                        </div>
+                                    </div>
+                                </div> -->
+                                
+                                              
+                                <div class="btn2" >
+                                    <input class="button div-cursor"  type="submit" value="Send Request" id="submitbutton">
+                
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="img">
+                            <img src="../Assests/icons/CSA1.png">
                         </div>
                     </div>
                 </div>
                 
-                              
-                <div class="btn2" >
-                    <input class="button div-cursor"  type="submit" value="Send Request" id="submitbutton">
-
-                </div>
             </div>
         </div>
-        
-        <div class="img">
-            <img src="../Assests/icons/CSA1.png">
-        </div>
     </div>
+    
+    
 
     <template id="my-template" class="my-template">
                      
