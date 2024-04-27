@@ -66,6 +66,8 @@ fetch(BASE_URL+"/ernings?price=1", requestOptions)
     lastAmount.textContent = "Rs. " + ithem.lastAmount;
   })
 })
+.catch(error => console.log('error', error));
+
 
 // get list----------------------------------------------------------------------------------
 var myHeaders = new Headers();                          
@@ -131,8 +133,39 @@ fetch(BASE_URL+"/ernings", requestOptions)
       newItem.querySelector(".activityClimed").style.display="inline"
       parentPending.appendChild(newItem);
     }
+
+    newItem.querySelector(".activityToClimed").addEventListener("click",()=>{
+      Swal.fire({
+        title: "Add to account?",
+        icon: "question",
+        // iconHtml: "؟",
+        confirmButtonText: "Yes",
+        cancelButtonText: "No",
+        showCancelButton: true,
+        // showCloseButton: true
+      })
+      .then((result) => {  
+            if (result.isConfirmed) {
+              toClaimed(element.orderId)
+            }
+          })
+    // swalTitle.textContent = "Add to account?"
+    //  Swal.fire({
+    //     template: "#my-template"    
+    //   }).then((result) => {  
+    //     if (result.isConfirmed) {
+    //       toClaimed(element.orderId)
+    //     }    
+        
+    //   })
+       
+    // })
+    })
   })
 })
+.catch(error => console.log('error', error));
+
+  
   
 
 
@@ -140,6 +173,9 @@ fetch(BASE_URL+"/ernings", requestOptions)
 withdrwbtn.addEventListener("click",()=>{
   withdrawal()
 })
+
+
+
 
 //reply------------------------------------------------------------------------------------------------------------------
 async function withdrawal(){
@@ -217,4 +253,71 @@ if (amount) {
 
   }
 
+}
+
+function toClaimed(orderID){
+
+  var myHeaders = new Headers();                          
+  myHeaders.append("Content-Type", "application/json");  
+  myHeaders.append("Authorization", getCookie("JWT"));   
+
+  var requestOptions = {
+      method: 'OPTIONS',
+      headers: myHeaders,
+      Credential:'include'
+    };
+
+    loding.style.display ="flex"
+
+  fetch(BASE_URL+"/ernings?orderID="+orderID, requestOptions)
+  .then(response =>{
+
+    loding.style.display ="none"
+    if(response.status == 401){
+      window.location.href = "../Failed/401.html";
+    }else if(response.status == 406){
+      const currentUrl = encodeURIComponent(window.location.href);
+      window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+    }else if(response.status == 404){
+      window.location.href = "../Failed/404.html";
+    }else {
+      return response.text()
+    }
+  })
+  .then(result =>{
+    if(result.includes("Money added to account!")){
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+      });
+      Toast.fire({
+        icon: "success",
+        title: "Money added to account!"
+      })
+      setTimeout(() => {
+        location.reload()
+      }, 2500);
+      
+    }else{
+      icons="error"
+      result="Failed to add money to the account!"
+      Swal.fire({        
+        icon: icons,
+        title: result,
+        showConfirmButton: false,
+        timer: 2000
+      });
+    }  
+
+    
+  
+    
+  })
 }

@@ -154,6 +154,11 @@ body{
     
 }
 
+.overview{
+    color:rgb(60, 60, 60);
+    cursor: pointer;
+}
+
 
 .table{
     padding: 10PX;
