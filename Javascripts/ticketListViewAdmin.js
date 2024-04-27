@@ -25,10 +25,12 @@ const loding = document.querySelector(".loading");
 const coverImage = document.querySelector('.gig-image1');
 const title = document.querySelector('.gig-title');
 
+let cancel;
+
 
 viewMore(ticketID,admin)
   
-function getdata(ticketID,flag){
+function getdata(ticketID,flag,admin){
     loding.style.display ="none"
 
     var myHeaders = new Headers();                          
@@ -77,6 +79,10 @@ function getdata(ticketID,flag){
           if(element.order>0){
             document.querySelector(".order").style.display="inline"
             document.querySelector(".order").textContent="Oder ID: #"+element.order;
+            if(admin==1){
+              document.querySelector(".cnceiOderBTN").style.display="inline"
+            }
+
           }
 
           //get packege details-----------------------------------------------------------------
@@ -173,16 +179,19 @@ function getdata(ticketID,flag){
         PopupPerent.appendChild(newItem)
     })
   
-    getdata(ticketID,flag)
+    getdata(ticketID,flag,admin)
     
     //bottom buttons----------------------------------------------
     var cloase = document.querySelector(".closeBTN")
     var reject = document.querySelector(".rejectBTN")
     var comment = document.querySelector(".commentBTN")
-    var view = document.querySelector(".view-icon-main")    
+    var view = document.querySelector(".view-icon-main")   
+    // var cancelorder = document.querySelector(".cnceiOderBTN")
     cloase.style.display = "none";
     reject.style.display = "none";
     comment.style.display = "none";
+    // cancelorder.style.display="none";
+    
     console.log(admin)
 
     if(admin==1 && (statuss != 3 || statuss != 4)){
@@ -191,6 +200,7 @@ function getdata(ticketID,flag){
         comment.style.display = "inline";
         view.style.display = "flex";
     }
+
 
     var desition = null;
 
