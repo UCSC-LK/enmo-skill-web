@@ -620,7 +620,7 @@ document.getElementById("orderCreateBtn").addEventListener("click", function(){
             var rsp = response.json();
             rsp.then(data =>{
                 console.log("Order ID: " + data.orderId);
-                window.location.href=`https://enmoskill.codingblinders.com/HTML/paymentSummary.html?orderId=${data.orderId}`
+                window.location.href=`../HTML/paymentSummary.html?orderID=${data.orderId}`
             })
         }else{
         //   Swal.fire({
