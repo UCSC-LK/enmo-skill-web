@@ -20,66 +20,146 @@ function getCookie(cookieName) {
   myHeaders.append("Content-Type", "application/json");   ///important
   myHeaders.append("Authorization", getCookie("JWT"));    ///important
   
-  var raw = JSON.stringify({});
+  // var raw = JSON.stringify({});
 
-  var url;
-  var packageId = 0;
-  var title_value = "";
-  var category_value = 0;
-  var description_value = "";
+  let url;
+  let packageId = 0;
+  let title_value = "";
+  let category_value = 0;
+  let description_value = "";
 
   const fileInput = document.getElementById('fileID');
   const uploadButton = document.querySelector('.btn-upload');
   const fileSupportText = document.querySelector('.drop_box p');
   var selectedFile = null;
 
-  var coverUrl_selected = null;
-  var upload_btn = false;
+  let coverUrl_selected = null;
+  let upload_btn = false;
 
+  let package = {}
 
-  document.addEventListener("DOMContentLoaded", function() {
+//   document.addEventListener("DOMContentLoaded", function() {
 
-    // extract query parameters
-    url = new URL(window.location.href);
-    packageId = url.searchParams.get('packageId');
-    console.log(packageId); 
+//     // extract query parameters
+//     url = new URL(window.location.href);
+//     packageId = url.searchParams.get('packageId');
+//     console.log(packageId); 
 
-    // fetch category data and display them
-    fetch(BASE_URL + `/categorydata?categoryId=${0}`, {
-        method: 'GET',
-        headers: myHeaders
-    })
-    .then((response)=>{
-        if (!response.ok) {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Something went wrong!"
-              });
-            throw new Error('Error occured');
-        } else {
-            return response.json();
-        }
-    })
-    .then((data)=>{
+//     // fetch category data and display them
+//     fetch(BASE_URL + `/categorydata?categoryId=${0}`, {
+//         method: 'GET',
+//         headers: myHeaders
+//     })
+//     .then(response => 
+//       {if(response.status == 401){
+//         window.location.href = "../Failed/401.html";
+//       }else if(response.status == 406){
+//         const currentUrl = encodeURIComponent(window.location.href);
+//         window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+//       }else if(response.status == 404){
+//         window.location.href = "../Failed/404.html";
+//       }else if (response.status == 200) {
+//         return response.json();
+//       }else{
+//         Swal.fire({
+//           icon: "error",
+//           title: "Oops...",
+//           text: "Something went Wrong!"
+//         });
+//         console.log("Error"+response.status)
+//       }
+//       })
+//     .then((data)=>{
 
-        var select_categories = document.getElementById("category");
+//         var select_categories = document.getElementById("category");
 
-        for (let i = 1; i <= data.length; i++) {
+//         for (let i = 1; i <= data.length; i++) {
             
-            var option = document.createElement("option");
-            option.value = i;
-            option.text = data[i-1].category;
+//             var option = document.createElement("option");
+//             option.value = i;
+//             option.text = data[i-1].category;
 
-            select_categories.appendChild(option);
+//             select_categories.appendChild(option);
             
-        }
-    })
+//         }
+//     })
+//     .catch((error)=>{
+//       console.error(error)
+//       Swal.fire({
+//        icon: "error",
+//        title: "Oops...",
+//        text: "Something went wrong!"
+//      });
+//     })
 
-    if (packageId != null) {
-        loadData();
-    }
+//     if (packageId != null) {
+//         loadData();
+//     }
+// });
+
+document.addEventListener("DOMContentLoaded", async function () {
+  url = new URL(window.location.href);
+  packageId = url.searchParams.get('packageId');
+  console.log(packageId);
+
+  try {
+      const response = await fetch(BASE_URL + `/categorydata?categoryId=${0}`, {
+          method: 'GET',
+          headers: myHeaders
+      });
+
+      if(response.status == 401){
+        window.location.href = "../Failed/401.html";
+      }else if(response.status == 406){
+        const currentUrl = encodeURIComponent(window.location.href);
+        window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+      }else if(response.status == 404){
+        window.location.href = "../Failed/404.html";
+      }else if (response.status == 200) {
+        const data = await response.json();
+        populateCategories(data);
+      }else{
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went Wrong!"
+        });
+        console.log("Error"+response.status)
+      }
+
+      // if (!response.ok) {
+      //     throw new Error('Error occurred');
+      // }
+
+      // const data = await response.json();
+      // populateCategories(data);
+
+  } catch (error) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Something went Wrong!"
+    });
+    console.log("Error"+response.status)
+  }
+
+  if (packageId) {
+      loadData();
+  }
 });
+
+function populateCategories(data) {
+  var select_categories = document.getElementById("category");
+
+  for (let i = 1; i <= data.length; i++) {
+      var option = document.createElement("option");
+      option.value = i;
+      option.text = data[i - 1].category;
+
+      select_categories.appendChild(option);
+  }
+}
+
 
 function loadData(){
     // extract query parameters
@@ -89,13 +169,25 @@ function loadData(){
         method: 'GET',
         headers: myHeaders
     })
-    .then((response)=>{
-        if (!response.ok) {
-            throw new Error('Error occured');
-        } else {
-            return response.json();
+    .then(response => 
+        {if(response.status == 401){
+          window.location.href = "../Failed/401.html";
+        }else if(response.status == 406){
+          const currentUrl = encodeURIComponent(window.location.href);
+          window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+        }else if(response.status == 404){
+          window.location.href = "../Failed/404.html";
+        }else if (response.status == 200) {
+          return response.json();
+        }else{
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went Wrong!"
+          });
+          console.log("Error"+response.status)
         }
-    })
+        })
     .then((data)=>{
         console.log(data);
 
@@ -114,6 +206,14 @@ function loadData(){
        
         
     })
+    .catch((error)=>{
+        console.error(error)
+        Swal.fire({
+         icon: "error",
+         title: "Oops...",
+         text: "Something went wrong!"
+       });
+      })
 
    
 }
@@ -173,7 +273,7 @@ const form = document.getElementById("package_form");
 
 
 // handle both insertions and updates
-document.getElementById("button-next").addEventListener("click", async (e) => {
+document.getElementById("button-next").addEventListener("click", function (e) {
     e.preventDefault();
 
     // Get form field values
@@ -216,13 +316,25 @@ document.getElementById("button-next").addEventListener("click", async (e) => {
             headers: headers,
             body: formData
         })
-        .then(response => {
-             if (!response.ok) {
-                 throw new Error('Error occured');
-             } else {
-                 return response.text();
-             }
-         })
+        .then(response => 
+            {if(response.status == 401){
+              window.location.href = "../Failed/401.html";
+            }else if(response.status == 406){
+              const currentUrl = encodeURIComponent(window.location.href);
+              window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+            }else if(response.status == 404){
+              window.location.href = "../Failed/404.html";
+            }else if (response.status == 200) {
+              return response.text();
+            }else{
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went Wrong!"
+              });
+              console.log("Error"+response.status)
+            }
+            })
         // .then(response => response.text())
         .then(data => {
             console.log('Success:', data);
@@ -358,7 +470,7 @@ function saveData(title, category, description,img_url){
         coverUrl: img_url,
         clicks: 0,
         orders: 0,
-        cancellations: "0%",
+        cancellations: 0,
         status: "active"
     };
 
