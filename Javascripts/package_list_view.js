@@ -87,13 +87,33 @@ function setCategories() {
     method: 'GET',
     headers: myHeaders
   })
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error('Error occurred');
-    } else {
+  .then(response => 
+    {if(response.status == 401){
+      window.location.href = "../Failed/401.html";
+    }else if(response.status == 406){
+      const currentUrl = encodeURIComponent(window.location.href);
+      window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+    }else if(response.status == 404){
+      window.location.href = "../Failed/404.html";
+    }else if (response.status == 200) {
       return response.json();
+    } else{
+      // Swal.fire({
+      //   icon: "error",
+      //   title: "Oops...",
+      //   text: "Something went wrong!"
+      // });
+      console.log("Error"+response.status)
     }
-  })
+    
+    })
+  // .then((response) => {
+  //   if (!response.ok) {
+  //     throw new Error('Error occurred');
+  //   } else {
+  //     return response.json();
+  //   }
+  // })
   .then((data) => {
     var btn_div = document.getElementById("button-set");
     for (let i = 1; i <= data.length; i++) {
@@ -127,6 +147,14 @@ function setCategories() {
 
     // Call loadAllPackages after creating buttons
     loadAllPackages(0);
+  })
+  .catch((error) => {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Something went wrong!"
+    });
+    console.error('Error fetching data:', error);
   });
 }
 
@@ -274,12 +302,26 @@ function loadAllPackages(category, page = 1){
     method: 'GET',
     headers: myHeaders,
   })
-  .then((response)=>{
-    if (!response.ok) {
-      throw new Error('An error occured!');
+  .then(response => 
+    {if(response.status == 401){
+      window.location.href = "../Failed/401.html";
+    }else if(response.status == 406){
+      const currentUrl = encodeURIComponent(window.location.href);
+      window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+    }else if(response.status == 404){
+      window.location.href = "../Failed/404.html";
+    }else if (response.status == 200) {
+      return response.json();
+    } else{
+      // Swal.fire({
+      //   icon: "error",
+      //   title: "Oops...",
+      //   text: "Something went wrong!"
+      // });
+      console.log("Error"+response.status)
     }
-    return response.json();
-  })
+    
+    })
   .then((packages) => {
     var row = document.getElementById("row");
     package_array = packages;
@@ -391,6 +433,14 @@ function loadAllPackages(category, page = 1){
       // }
       currentPage = page;
   })
+  .catch((error) => {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Something went wrong!"
+    });
+    console.error('Error fetching data:', error);
+  });
 
 
 }
@@ -861,19 +911,19 @@ function removeLangFilter(){
 }
 
 // set the logic of language filter clear button
-document.getElementById('btn-lang-clear').addEventListener('click', function()
-{
-  var langRadioButtons = document.getElementsByName('lang');
+// document.getElementById('btn-lang-clear').addEventListener('click', function()
+// {
+//   var langRadioButtons = document.getElementsByName('lang');
   
-  for (var i = 0; i < langRadioButtons.length; i++) {
-    langRadioButtons[i].checked = false;
+//   for (var i = 0; i < langRadioButtons.length; i++) {
+//     langRadioButtons[i].checked = false;
 
-  }
+//   }
 
-  langDropdown.style.display = 'none';
-  languageCode = 0;
+//   langDropdown.style.display = 'none';
+//   languageCode = 0;
 
-})
+// })
 
 
 function getSelectedRadioValue(radiobtnset) {
@@ -888,9 +938,6 @@ function getSelectedRadioValue(radiobtnset) {
 
 ///////////////////////////////////////////////////////////
 
-/* by CodePel 
-* www.codepel.com
-*/
 var sheet = document.createElement('style');
 var rangeInput = document.querySelectorAll('.range input');
 var prefs = ['webkit-slider-runnable-track', 'moz-range-track', 'ms-track'];

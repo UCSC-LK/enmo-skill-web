@@ -1,21 +1,3 @@
-// Assume this is the response from your backend API
-
-// Function to set a cookie
-// function setCookie(name, value, daysToExpire) {
-//     const date = new Date();
-//     date.setTime(date.getTime() + (daysToExpire * 24 * 60 * 60 * 1000));
-//     const expires = `expires=${date.toUTCString()}`;
-//     document.cookie = `${name}=${value}; ${expires}; path=/`;
-//   }
-
-//   // Usage
-//   setCookie('username', 'john_doe', 30); // Save a username cookie with a 30-day expiration
-
-// const listContainer = document.getElementById("table");
-// const count = document.getElementById("count");
-
-// const listItemTemplate = document.querySelector(".row-hidden");
-
 let flagCreate = false;
 let flagUpdate = false;
 const listContainer = document.getElementById("table");
@@ -36,16 +18,6 @@ const form = document.getElementById("Form");
 const form2 = document.getElementById("Form");
 const submitbtn = document.querySelector(".submit-button");
 
-// function getCookie(name, cookieString) {
-//   const cookies = (cookieString || document.cookie).split(";");
-//   for (const cookie of cookies) {
-//     const [cookieName, cookieValue] = cookie.trim().split("=");
-//     if (cookieName === name) {
-//       return cookieValue;
-//     }
-//   }
-//   return null;
-// }
 
 function getCookie(cookieName) {
   var name = cookieName + "=";
@@ -68,7 +40,7 @@ function divideToken(token) {
 
 const devideToken = divideToken(jwtToken);
 console.log(devideToken);
-console.log( "aaaaa" , jwtToken)
+console.log("aaaaa", jwtToken);
 
 if (!devideToken) {
   console.log("JWT token not found in the cookie. Redirecting to login page.");
@@ -90,7 +62,7 @@ fetch(
 )
   .then((response) => {
     console.log("RES " + response);
-    return response.json()
+    return response.json();
   })
   .then((result) => {
     console.log("result " + result);
@@ -116,12 +88,12 @@ fetch(
         });
       newItem.querySelector(".requestID").textContent = item.requestID;
       newItem.querySelector(".title").textContent = item.title;
-      newItem.querySelector(".duration").textContent = item.deliveryDuration + " Days";
+      newItem.querySelector(".duration").textContent =
+        item.deliveryDuration + " Days";
       newItem.querySelector(".price").textContent = "Rs. " + item.price + ".00";
       newItem.querySelector(".package").textContent = item.pricingPackage;
       //   newItem.querySelector(".budget").textContent = "Rs. " + item.budget;
       newItem.addEventListener("click", () => {
-        
         viewrequest(item);
       });
 
@@ -145,13 +117,10 @@ const Discriptionview = document.querySelector(".description");
 const Budgetview = document.querySelector(".budget-text");
 const durationview = document.querySelector(".description-text");
 
-
-
 function viewrequest(item) {
   popupview.style.display = "flex";
   closetn.addEventListener("click", () => {
-
-console.log("Script is running");
+    console.log("Script is running");
 
     popupview.style.display = "none";
   });
@@ -162,7 +131,6 @@ console.log("Script is running");
   Budgetview.innerHTML = item.budget;
   durationview.innerHTML = item.duration;
 }
-
 
 function deleteRequest(proposalID) {
   if (confirm("Are you sure you want Delete this request?")) {
@@ -176,11 +144,7 @@ function deleteRequest(proposalID) {
       },
     };
 
-    fetch(
-      BASE_URL+"/proposal?ProposalId=" +
-        proposalID,
-      requestOptions
-    )
+    fetch(BASE_URL + "/proposal?ProposalId=" + proposalID, requestOptions)
       .then((response) => response.text())
       .then((result) => {
         alert(result);
@@ -237,7 +201,7 @@ function editRequest(item) {
       description: valtitle,
       duration: valduration,
       budget: valBudget,
-    //   requestID: item.requestID, //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< hardcoded here
+      //   requestID: item.requestID, //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< hardcoded here
       // date: valDis,
     });
 
@@ -252,11 +216,7 @@ function editRequest(item) {
       },
     };
 
-    fetch(
-      BASE_URL+"/proposal?ProposalId=" +
-        item.proposalID,
-      requestOptions
-    )
+    fetch(BASE_URL + "/proposal?ProposalId=" + item.proposalID, requestOptions)
       .then((response) => response.text())
       .then((result) => {
         alert(result);
@@ -265,4 +225,3 @@ function editRequest(item) {
       .catch((error) => console.log("error", error));
   }
 }
-

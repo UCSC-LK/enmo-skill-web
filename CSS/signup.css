@@ -176,12 +176,25 @@ input[type=submit]:hover{
     color: #7f7f7f;
     font-family: Arial, Helvetica, sans-serif;
     padding: 20px;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 .btm_text span{
     text-decoration: underline;
     font-weight: 550;
     
+}
+
+.password-wrapper {
+    position: relative;
+}
+
+.toggle-password {
+    position: relative;
+    right: -351px;
+    top: -33px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 150;
 }
 
 

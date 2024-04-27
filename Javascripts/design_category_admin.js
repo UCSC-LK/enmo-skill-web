@@ -42,13 +42,28 @@ function getCookie(cookieName) {
         method: 'GET',
         headers: myHeaders
     })
-    .then((respones)=>{
-         if (!respones.ok) {
-             throw new Error('Error occured');
-         } else {
-             return respones.json();
-         }
-     })
+    // .then((respones)=>{
+    //      if (!respones.ok) {
+    //          throw new Error('Error occured');
+    //      } else {
+    //          return respones.json();
+    //      }
+    //  })
+    .then(response => 
+        {if(response.status == 401){
+          window.location.href = "../Failed/401.html";
+        }else if(response.status == 406){
+          const currentUrl = encodeURIComponent(window.location.href);
+          window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+        }else if(response.status == 404){
+          window.location.href = "../Failed/404.html";
+        }else if (response.status == 200) {
+          return response.json()
+        } else{
+          console.log("Error"+response.status)
+        }
+        
+        })
     .then((resultset)=>{
 
         update_flag = false;
@@ -119,6 +134,7 @@ function getCookie(cookieName) {
             
 
     })
+    .catch(error => console.log('error', error));
   })
 
 // Function to show the overlay

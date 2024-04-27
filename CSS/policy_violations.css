@@ -668,7 +668,7 @@ body {
 } 
 
 
-.column-div2{
+.column-div2-show{
   /* width: 50%; */
   display: flex;
   flex-direction: column;

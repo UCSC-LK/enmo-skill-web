@@ -134,7 +134,7 @@ fetch(BASE_URL+"/payment?orderId="+orderID, requestOptions)
     const currentUrl = encodeURIComponent(window.location.href);
     window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
   }else if(response.status == 404){
-    window.location.href = "../Failed/404.html";
+    // window.location.href = "../Failed/404.html";
   }else {
     return response.json()
   }
