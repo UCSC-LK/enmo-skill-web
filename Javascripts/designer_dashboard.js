@@ -88,7 +88,7 @@ function getData() {
         // add boxes
         order_count.innerText = data.pendingOrders;
         earnings_count.innerText = "LKR " + data.totalEarnings;
-        reviews1.innerHTML = data.userRatings + '<span class="fa fa-star checked"></span>';
+        reviews1.innerHTML = (data.userRatings == 0) ? 0 : data.userRatings + '<span class="fa fa-star checked"></span>';
 
         typeWriter(p1, "Pending orders", 50);
         typeWriter(p2, "Total earnings", 50);
@@ -101,14 +101,14 @@ function getData() {
         profile_img.src = data.profileImg || "../Assests/user_coloured.png"
 
         // set username
-        document.getElementById("designer-username").innerHTML = data.profileModel.display_name
+        document.getElementById("designer-username").innerHTML = (data.profileModel.display_name==null) ? "Your name" : data.profileModel.display_name
 
         //set full name
-        document.getElementById("fullname").innerHTML = data.profileModel.fname + " " + data.profileModel.lname;
+        document.getElementById("fullname").innerHTML = (data.profileModel.fname == null || data.profileModel.name == null) ? "Your name" : data.profileModel.fname + " " + data.profileModel.lname;
 
-        document.getElementById("reviews2").innerHTML = data.userRatings + "<span class='fa fa-star checked'></span>"
+        document.getElementById("reviews2").innerHTML =(data.userRatings == 0) ? "-" : data.userRatings + "<span class='fa fa-star checked'></span>"
 
-        document.getElementById("des-description").innerHTML = data.profileModel.description
+        document.getElementById("des-description").innerHTML = (data.profileModel.description == null) ? "Your description" : data.profileModel.description
 
         // calculate completion rate
         let total_orders = data.completedOrders + data.cancelledOrders;
@@ -125,7 +125,7 @@ function getData() {
 
         // Update the progress bar text
         const progressText = document.getElementById("progressText");
-        progressText.innerText = completion_rate + "%";
+        progressText.innerText = (isNaN(completion_rate)) ? 0 : completion_rate + "%";
 
         document.getElementById("work-completed").innerHTML = data.completedOrders
 
@@ -288,10 +288,12 @@ fetch(BASE_URL+"/chats", requestOptions)
   .then(result =>{
       console.log(result);
 
-      
-      // listContainer.innerHTML="<div class=\"title-bar\"><p class=\"title-text\">Messages</p></div>"
-
-      result.forEach(item => {
+      if (result.length == 0) {
+        let p = document.createElement("p");
+        p.innerHTML = "No messeges";
+        listContainer.appendChild(p);
+      } else{
+        result.forEach(item => {
           const newItem = listItemTemplate.cloneNode(true);
           newItem.querySelector(".u-name").textContent = item.name;
           newItem.querySelector(".l-msg").textContent = item.lastmsg;
@@ -311,6 +313,12 @@ fetch(BASE_URL+"/chats", requestOptions)
 
           listContainer.appendChild(newItem)
       });
+      }
+
+      
+      // listContainer.innerHTML="<div class=\"title-bar\"><p class=\"title-text\">Messages</p></div>"
+
+      
       
 
 
