@@ -31,6 +31,8 @@ let overlay_view=document.getElementById("overlay");
 let deseignerId = 0;
 let Selected_pricing_item = null;
 
+let uploadUrl = null;
+
 
 // document.addEventListener("DOMContentLoaded", loadData());
 
@@ -229,9 +231,12 @@ function loadData() {
     // })
     .then((resultset) =>{
         
-        var package_data = resultset.packageModel;
-        var designer_data = resultset.profileModel;
-        var pricing_data = resultset.pricings;
+        const package_data = resultset.packageModel;
+        const designer_data = resultset.profileModel;
+        const pricing_data = resultset.pricings;
+
+        const pendingOrders = resultset.pendingOrders;
+        const userRatings = resultset.userRatings.toFixed(1);
 
         // console.log(pricing_data.pricing[0].noOfRevisions);
 
@@ -242,13 +247,13 @@ function loadData() {
         document.getElementById("htmlTitle").innerHTML = package_data.title
 
         var designer_pic = document.getElementById("designer-picture");
-        designer_pic.src = "../Assests/user_coloured.png"; // this data has to be store in the db
+        designer_pic.src = (designer_data.url) ? designer_data.url : "../Assests/user_coloured.png"; // this data has to be store in the db
 
         document.getElementById("designer-username1").innerHTML = designer_data.display_name;
 
-        document.getElementById("no-reviews").innerHTML = 5; // this has to be fetched from the review table
-        document.getElementById("review-count").innerHTML = '(' + 200 + ')'; // this has to be fetched from the review table
-        document.getElementById("no-orders").innerHTML = 4 + ' Orderes in Queue'; // this has to be fetched from the order table
+        document.getElementById("no-reviews").innerHTML = package_data.avgRatings; // this has to be fetched from the review table
+        // document.getElementById("review-count").innerHTML = '(' + 200 + ')'; // this has to be fetched from the review table
+        document.getElementById("no-orders").innerHTML = pendingOrders + ' Orderes in Queue'; // this has to be fetched from the order table
 
         var designer_pic = document.getElementById("cover-image");
         designer_pic.src = package_data.coverUrl; // this data has to be store in the db
@@ -266,16 +271,30 @@ function loadData() {
         document.getElementById("catogery").innerHTML = categoryData.category;
 
         var designer_pic_2 = document.getElementById("designer-img");
-        designer_pic_2.src = "../Assests/user_coloured.png"; // this data has to be store in the db
+        designer_pic_2.src = (designer_data.url) ? designer_data.url : "../Assests/user_coloured.png";
 
         document.getElementById("designer-username2").innerHTML = designer_data.display_name;
-        document.getElementById("reviews-designer").innerHTML = 4.5; // need to fetch from reviews table
-        document.getElementById("review-count-designer").innerHTML = '(' + 471 +')'; // need to fetch from reviews table
+        document.getElementById("reviews-designer").innerHTML = userRatings; 
+        // document.getElementById("review-count-designer").innerHTML = '(' + 471 +')'; 
 
-        document.getElementById("member-since").innerHTML = "April 2021" // this data has to be stored in the designer or user or tables
-        document.getElementById("last-deli").innerHTML = "3 hours ago" // fetch from the order table
+        // setting since
+        const date = new Date(designer_data.joinedDate);
+        const year = date.getFullYear();
+        const monthIndex = date.getMonth();
+        const monthNames = [
+          "January", "February", "March", "April", "May", "June",
+          "July", "August", "September", "October", "November", "December"
+        ];
+        const monthName = monthNames[monthIndex];
 
-        var lang = designer_data.language;
+        document.getElementById("member-since").innerHTML = monthName + " " + year; 
+        // document.getElementById("last-deli").innerHTML = "3 hours ago" // fetch from the order table
+
+        // set languages
+        let lang = designer_data.language;
+        console.log(typeof(lang));
+        let langHTML = "";
+
         document.getElementById("lang").innerHTML = lang.join(' ');
 
         document.getElementById('des-designer').innerHTML = designer_data.description;
@@ -638,7 +657,7 @@ document.getElementById("orderCreateBtn").addEventListener("click", function(){
 
     Selected_pricing_item = {
         ...Selected_pricing_item,
-        requirements: req,
+        requirements: (uploadUrl != null) ? req + " sample work: " + uploadUrl: req,
         designerId: deseignerId,
         packageId: packageId
     }
@@ -684,3 +703,64 @@ document.getElementById("orderCreateBtn").addEventListener("click", function(){
            });
           })
 })
+
+
+document.getElementById("fileUpload").addEventListener("click", function() {
+  document.getElementById("uploadInput").click(); // Click the hidden file input
+});
+
+document.getElementById("uploadInput").addEventListener("change", function() {
+  const files = this.files[0];
+  console.log("Selected files:", files);
+
+
+
+  if (files) {
+    // Store samples
+    const headers = new Headers();
+    headers.append("endpoint", "profile_pics");
+    const formData = new FormData();
+    formData.append('file', files);
+
+    fetch(BASE_URL+'/file', {
+      method: 'POST',
+      headers: headers,
+      body: formData
+    })
+    .then(response => {
+      if(response.status == 401) {
+        window.location.href = "../Failed/401.html";
+      } else if(response.status == 406) {
+        const currentUrl = encodeURIComponent(window.location.href);
+        window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+      } else if(response.status == 404) {
+        window.location.href = "../Failed/404.html";
+      } else if (response.status == 200) {
+        return response.text();
+      } else {
+        throw new Error('Something went wrong!');
+      }
+    })
+    .then(data => {
+      console.log('Success:', data);
+      uploadUrl = data;
+      document.getElementById("uccess-tick").innerHTML = "<box-icon name='check-circle' animation='tada' ></box-icon>"
+    })
+    .catch(error => {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.message || "Something went wrong!",
+        confirmButtonColor: "#000000"
+      });
+      console.error('Error:', error);
+    });
+  } else {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "No file selected!",
+      confirmButtonColor: "#000000"
+    });
+  }
+});
