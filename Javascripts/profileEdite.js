@@ -11,7 +11,7 @@ function getCookie(cookieName) {
     }
     return null;
   }
-
+  const skillsArray1 = [];
   const loding = document.querySelector(".loading");
 
   loding.style.display ="none"
@@ -85,14 +85,15 @@ if(paramValue == "edite"){
 
 
 //drop down skills------------------------------------------------------------------
-const parentSkill = document.querySelector(".skill-selecter-main");
-const childSkill = document.querySelector(".skill-selecter");
+// const parentSkill = document.querySelector(".skill-selecter-main");
+// const childSkill = document.querySelector(".skill-selecter");
 
-let selectedSkill = []
+// let selectedSkill = []
+var skillsArray2 = []
 let cloneCount1=0
 const maxSkillClones = 2
 
-const skillDropdown = document.getElementById('skill');
+// const skillDropdowns = document.getElementById('skill');
 
 var myHeaders = new Headers();                          
 myHeaders.append("Content-Type", "application/json");   
@@ -122,84 +123,28 @@ fetch(BASE_URL+"/skill", requestOptions)
   })
 .then(result => {
 
-    result.push({"skills": "Select a skill","skill_id": "0"})
 
-    result.sort(function(a, b) {
-        return (a.skill_id - b.skill_id);
-    }).sort(function(a, b) {
-        return (a.skill_id - b.skill_id);
-    });
-
-    console.log(result)
-
-    // Populate the skill dropdown with options 
-    result.forEach(skill => {  
-        const option = document.createElement('option');
-        option.value = skill.skill_id;
-        option.textContent = skill.skills;
-        skillDropdown.appendChild(option);
-        console.log(option)
-
-    });
+    result.forEach(item=>{
+        skillsArray1.push(item)
+        
+    })
+    console.log(skillsArray1)
+    populateDropdown()
 })
 .catch(error => console.log('error', error));
 
-document.querySelector(".setSkills").addEventListener("click",()=>{
-
-    if(cloneCount1<maxSkillClones){
-        const newItemSkill = childSkill.cloneNode(true);
-        parentSkill.appendChild(newItemSkill);
-        cloneCount1++
-    }
-    
-
-document.querySelectorAll(".skill").forEach((select) => {
-    select.addEventListener("change", () => {
-
-        const selectedValue = select.value;
-        
-        selectedSkill.push(selectedValue)
-
-        // Reset display for all options in all dropdowns
-        document.querySelectorAll(".skill").forEach((option) => {
-            option.style.display = "";
-        });
-
-        // Hide the selected option 
-        document.querySelectorAll(".skill").forEach((otherSelect) => {
-            const optionToHide = otherSelect.querySelector(`[value="${selectedValue}"]`);
-            if (optionToHide) {
-                optionToHide.style.display = "none";
-            }
-        });
-
-        const optionToHide = select.querySelector(`[value="0"]`);
-        if (optionToHide) {
-            optionToHide.style.display = "none";
-        }
-
-    });
-});
-
-if(cloneCount1 == maxSkillClones){
-    document.querySelector(".add-skill-btn").style.display="none"
-}
-
-})
 
 
+ //drop down language----------------------------------------------------------------------------------
+// const languageParent = document.querySelector(".languag-selecter-main");
+// const languageChild = document.querySelector(".language-selecter");
+// const addButton = document.querySelector(".setLanguage");
 
+// let cloneCount = 0;
+// const maxClones = 3;
+let LanguageArray = []
 
-//drop down language----------------------------------------------------------------------------------
-const languageParent = document.querySelector(".languag-selecter-main");
-const languageChild = document.querySelector(".language-selecter");
-const addButton = document.querySelector(".setLanguage");
-
-let cloneCount = 0;
-const maxClones = 3;
-let selectedLanguages = []
-
-const languageDropdown = document.getElementById('language');
+// const languageDropdown = document.getElementById('language');
 
 var myHeaders = new Headers();                          
 myHeaders.append("Content-Type", "application/json");   
@@ -227,79 +172,15 @@ fetch(BASE_URL+"/languages", requestOptions)
     }
   })
 .then(result => {
-
-    result.push({"language": "Select a language","language_id": "0"})
-    result.sort(function(a, b) {
-        return (a.language_id - b.language_id);
-    }).sort(function(a, b) {
-        return (a.language_id - b.language_id);
-    });
-
-    console.log(result)
-
-    // Populate the skill dropdown with options 
     result.forEach(language => {  
-        const option = document.createElement('option');
-        option.value = language.language_id;
-        option.textContent = language.language;
-        languageDropdown.appendChild(option);
-        console.log(option)
-
+        LanguageArray.push(language)
     });
+    console.log(LanguageArray)
+    populateDropdownLanguage()
 })
 .catch(error => console.log('error', error));
 
-document.querySelector(".add-btn").addEventListener("click",()=>{
 
-    if(cloneCount1<maxClones){
-        const newItemSkill = languageChild.cloneNode(true);
-        languageParent.appendChild(newItemSkill);
-        cloneCount1++
-    }
-
-
-    document.querySelectorAll(".language").forEach((select) => {
-        select.addEventListener("change", () => {
-
-        const selectedValue = select.value;
-
-        if(select.value==1){
-            selectedLanguages.push("Sinhala")
-        }else if(select.value==2){
-            selectedLanguages.push("English")
-        }else if(select.value==3){
-            selectedLanguages.push("Tamil")
-        }
-        
-
-        // Reset display for all options in all dropdowns
-        document.querySelectorAll(".language").forEach((option) => {
-            option.style.display = "";
-        });
-
-        // Hide the selected option 
-        document.querySelectorAll(".language").forEach((otherSelect) => {
-            const optionToHide = otherSelect.querySelector(`[value="${selectedValue}"]`);
-            if (optionToHide) {
-                optionToHide.style.display = "none";
-            }
-        });
-
-        const optionToHide = select.querySelector(`[value="0"]`);
-        if (optionToHide) {
-            optionToHide.style.display = "none";
-        }
-
-    });
-});
-
-if(cloneCount1 == maxClones){
-    document.querySelector(".add-btn").style.display="none"
-}
-
-})
-
-console.log(selectedLanguages)
 
 if(paramValue == "edite"){
 
@@ -493,7 +374,7 @@ fetch(BASE_URL+"/profile", requestOptions)
         
     })
     })
-     .catch(error => console.log('error', error));
+    //  .catch(error => console.log('error', error));
     
 
 }
@@ -544,3 +425,121 @@ fetch(BASE_URL + "/profile", requestOptions)
 
 
 
+  const skillDropdown = document.getElementById('skill-dropdown');
+  const skillTagsContainer = document.getElementById('skill-tags');
+  const submitButton = document.getElementById('submit-btn');
+
+  // Function to populate the dropdown with skills--------------------------------------------------------------------------------
+  function populateDropdown() {
+    const option = document.createElement('option');
+          option.value = 0;
+          option.textContent = "Select Skills";
+          skillDropdown.appendChild(option);
+      skillsArray1.forEach(skill => {
+        console.log(skill)
+          const option = document.createElement('option');
+          option.value = skill.skill_id;
+          option.textContent = skill.skills;
+          skillDropdown.appendChild(option);
+      });
+  }
+
+  function addSkillTag(skill) {
+      const tag = document.createElement('span');
+      tag.classList.add('skill-tag');
+      tag.textContent = skill.skills;
+      tag.dataset.skillId = skill.skill_id;
+      skillTagsContainer.appendChild(tag);
+
+      tag.addEventListener('click', () => {
+          tag.remove();
+    
+          const option = document.createElement('option');
+          option.value = skill.skill_id;
+          option.textContent = skill.skills;
+          skillDropdown.appendChild(option);
+      });
+  }
+
+  
+  skillDropdown.addEventListener('change', () => {
+      const selectedOption = skillDropdown.options[skillDropdown.selectedIndex];
+      const selectedSkill = skillsArray1.find(skill => skill.skill_id == selectedOption.value);
+      if (selectedSkill) {
+          addSkillTag(selectedSkill);
+          selectedOption.remove();
+      }
+  });
+
+
+  submitButton.addEventListener('click', () => {
+      const selectedSkills = Array.from(document.querySelectorAll('.submit-btn-language')).map(tag => ({
+          skills: tag.textContent,
+          skill_id: tag.dataset.skillId
+      }));
+      console.log(selectedSkills);
+  });
+
+  // Populate the dropdown initially
+//   populateDropdown();
+
+
+
+const languageDropdown = document.getElementById('language-dropdown');
+  const languageContainer = document.getElementById('language-tags');
+  const submitButtonlanguage = document.getElementById('submit-btn-language');
+
+  // Function to populate the dropdown with skills--------------------------------------------------------------------------------
+  function populateDropdownLanguage() {
+    const option = document.createElement('option');
+          option.value = 0;
+          option.textContent = "Select Languages";
+          languageDropdown.appendChild(option);
+          LanguageArray.forEach(language => {
+        console.log(language)
+          const option = document.createElement('option');
+          option.value = language.language_id;
+          option.textContent = language.language;
+          languageDropdown.appendChild(option);
+      });
+  }
+
+
+  function addLanguageTag(language) {
+      const tag = document.createElement('span');
+      tag.classList.add('language-tag');
+      tag.textContent = language.language;
+      tag.dataset.languageId = language.language_id;
+      languageContainer.appendChild(tag);
+    
+      tag.addEventListener('click', () => {
+          tag.remove();
+          
+          const option = document.createElement('option');
+          option.value = language.language_id;
+          option.textContent = language.language;
+          languageDropdown.appendChild(option);
+      });
+  }
+
+
+  languageDropdown.addEventListener('change', () => {
+      const selectedOptionlanguage = languageDropdown.options[languageDropdown.selectedIndex];
+    //   console.log(selectedOptionlanguage)
+      const selectedLanguage = LanguageArray.find(language => language.language_id == selectedOptionlanguage.value);
+    //   console.log(selectedLanguage)
+      if (selectedLanguage) {
+        console.log(selectedLanguage)
+        addLanguageTag(selectedLanguage);
+        selectedOptionlanguage.remove();
+      }
+  });
+
+ 
+  submitButtonlanguage.addEventListener('click', () => {
+      const selectedLanguage = Array.from(document.querySelectorAll('.language-tag')).map(tag => ({
+          language: tag.textContent,
+          language: tag.dataset.languageId
+      }));
+      console.log(selectedLanguage);
+  });

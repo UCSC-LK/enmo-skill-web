@@ -59,6 +59,12 @@ h3{
     width: 100%;    
 }
 
+.name{
+    display: grid;
+    grid-template-columns: 48% 48%;
+    gap: 37px;
+}
+
 .paragraph{ 
     color:#868686 ;
     font-size: 13px;
@@ -218,4 +224,74 @@ h3{
     transition: 0.4s;
     cursor: pointer;
     transition: 0.5s;
+}
+
+/* .languageParent{
+    display: flex;
+    gap:5px
+}
+.language{
+   border: 1px solid;
+   width: 100px;
+   text-align: center;
+}
+
+.selected{
+    background-color: #73bef3;
+} */
+#skill-tags {
+    margin-top: 10px;
+}
+.skill-tag {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: 5px;
+    cursor: pointer;
+    border:#000 solid 1px;
+}
+.skill-tag:hover {
+    background-color: #fd0000;
+    color: white;
+}
+
+.selection{
+    padding:3px;
+    max-height: 25px;
+    margin-left: 50px;
+    width: 200px;
+    border-radius: 5px;
+    
+}
+
+.skill-header{
+    display: flex;
+}
+
+.selection-header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.language-header{
+    display: flex;
+}
+
+#language-tags {
+    margin-top: 10px;
+}
+.language-tag {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: 5px;
+    cursor: pointer;
+    border:#000 solid 1px;
+}
+.language-tag:hover {
+    background-color: #fd0000;
+    color: white;
 }
