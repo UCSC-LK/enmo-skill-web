@@ -154,6 +154,11 @@ body{
     
 }
 
+.overview{
+    color:rgb(60, 60, 60);
+    cursor: pointer;
+}
+
 
 .table{
     padding: 10PX;
@@ -188,10 +193,10 @@ body{
 
 .ticket-box-1 {
     display: grid;
-    width: 100%;
+    width: 99%;
     height: 40px; 
-    grid-template-columns:20% 20% 25% 17% 18%;  
-    gap: 10px;
+    grid-template-columns:20% 17% 30% 20%  13%;  
+    /* gap: 10px; */
     align-content:center;
     /* gap: 20px; */
     padding: 5px 20px;
@@ -216,11 +221,12 @@ body{
     display: grid;
     width: 100%;
     min-height: 100px; 
-    grid-template-columns: 21.7% 21.1% 26% 17.9% 13.3%;
+    grid-template-columns: 20% 17% 30% 20%  13%;  
+    /* gap: 10px; */
     border-bottom: solid;
     border-color: #ebebeb;
     padding: 10px;
-    gap: 0px;
+    /* gap: 0px; */
     align-content: center;
     
 }
@@ -274,16 +280,45 @@ body{
     
 } */
 
-.activity1{
+.activityPenging{
     display: none;
+    background-color: rgba(244, 244, 171, 0.851);
+    padding: 5px;
+    border-radius: 5px;
+    width: 95px;
+    text-align: center;
 }
 
-.activity2{
+.activityToClimed{
     display: none;
+    background-color: rgba(40, 243, 40, 0.366);
+    padding: 5px;
+    border-radius: 5px;
+    width: 95px;
+    text-align: center;
+    transition: 0.5s;
 }
-.activity2:hover{
+.activityToClimed:hover{
     cursor: pointer;
-    color:rgb(2, 2, 93);
+    color:white;
+    background-color: rgba(11, 73, 11, 0.803);
+}
+
+.activityClimed{
+    display: none;
+    background-color: rgba(122, 122, 243, 0.371);
+    padding: 5px;
+    border-radius: 5px;
+    width: 95px;
+    text-align: center;
+}
+.activityCancel{
+    display: none;
+    background-color: rgba(246, 72, 72, 0.34);
+    padding: 5px;
+    border-radius: 5px;
+    width: 95px;
+    text-align: center;
 }
 
 

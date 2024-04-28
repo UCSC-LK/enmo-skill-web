@@ -14,7 +14,17 @@ function getCookie(cookieName) {
   return null;
 }
 console.log("iD: " + getCookie("JWT"));
-
+const Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+  }
+});
 
 
 
@@ -97,9 +107,28 @@ createbtn.addEventListener("click",(event)=>{
     };
     
     fetch(BASE_URL+"/request", requestOptions)
-      .then(response => response.text())
-      .then(result => {alert(result);
-        location.reload();})
+      .then(response => {
+        if(response.status==201){
+          Toast.fire({
+            icon: "success",
+            title: "Request Created Successfully"
+          }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.timer) {
+              location.reload();
+            }
+          })
+        }else if(response.status == 401){
+          window.location.href = "../Failed/401.html";
+        }else if(response.status == 406){
+          const currentUrl = encodeURIComponent(window.location.href);
+          window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+        }else if(response.status == 404){
+          window.location.href = "../Failed/404.html";
+        }else {
+          return response.json()
+        }
+      })
+      
       .catch(error => {console.log('error', error);
                       });
     
@@ -212,7 +241,18 @@ function viewrequest(item){
 //delete request start here
 
 function deleteRequest(requestID){
-  if(confirm('Are you sure you want Delete this request?')){
+
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!"
+  }).then((result) => {
+    if (result.isConfirmed) {
+    
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("Authorization", getCookie("JWT"));
@@ -225,12 +265,20 @@ function deleteRequest(requestID){
     
     fetch(BASE_URL+"/request?requestID="+requestID, requestOptions)
       .then(response => response.text())
-      .then(result => {alert(result)
+      .then(result => {
+        Toast.fire({
+          icon: "success",
+          title: "Request Deleted Successfully"
+        }).then((result) => {
+          if (result.dismiss === Swal.DismissReason.timer) {
+            location.reload();
+          }
+        });
         console.log(result);
         location.reload();
       })
       .catch(error => console.log('error', error));
-  }
+  }});
 }
 
 window.onclick = function(event) {
@@ -299,32 +347,26 @@ duration.value=item.duration;
     fetch(BASE_URL+"/request", requestOptions)
       .then(response => {if(response.status==201){
         return response.text()}
-      else if(response.status==401){
-        window.location.reload();
-        
+      else if(response.status == 401){
+        window.location.href = "../Failed/401.html";
+      }else if(response.status == 406){
+        const currentUrl = encodeURIComponent(window.location.href);
+        window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+      }else if(response.status == 404){
+        window.location.href = "../Failed/404.html";
       }
       })
       .then(result => {
     
         console.log(result);
-          Toastify({
-            text: result,
-            duration: 1500,
-            newWindow: true,
-            close: true,    
-            gravity: "bottom", // `top` or `bottom`
-            position: "right", // `left`, `center` or `right`
-            stopOnFocus: true, // Prevents dismissing of toast on hover
-            style: {
-              background: "linear-gradient(to right, #00b86e, #56b800)"
-            },
-            onClick: function(){} // Callback after click
-          }).showToast();
-        
-      
-        setTimeout(() => {
-          location.reload();
-        }, 1700);
+        Toast.fire({
+          icon: "success",
+          title: "Request Updated Successfully"
+        }).then((result) => {
+          if (result.dismiss === Swal.DismissReason.timer) {
+            location.reload();
+          }
+        });
       
 
 

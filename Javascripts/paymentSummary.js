@@ -45,6 +45,9 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const orderID = urlParams.get('orderID')
 
+const comeBackURL = "../HTML/paymentSummary.html"+queryString
+
+
 //get biliing infor----------------------------------------------------------------------------
 var myHeaders = new Headers();                          
 myHeaders.append("Content-Type", "application/json");  
@@ -162,11 +165,11 @@ fetch(BASE_URL+"/payment?orderId="+orderID, requestOptions)
 })
 
 update.addEventListener("click",()=>{
-  window.location.href = "../HTML/billingInformation.html?type=update"
+  window.location.href = "../HTML/billingInformation.html?type=update&combackURL="+encodeURIComponent(comeBackURL)
 })
 
 add.addEventListener("click",()=>{
-  window.location.href = "../HTML/billingInformation.html?type=add"
+  window.location.href = "../HTML/billingInformation.html?type=add&combackURL="+encodeURIComponent(comeBackURL)
 })
 
 document.querySelector(".place-order-btn").addEventListener("click",()=>{

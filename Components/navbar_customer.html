@@ -5,12 +5,13 @@
     <link rel="stylesheet" href="../CSS/main.css">
 
     <style>
-        .dropdown {
+        .dropdown-prf {
           position: relative;
           display: inline-block;
         }
+
       
-        .dropdown-content {
+        .dropdown-content-prf {
             display: none;
             position: absolute;
             right: -30px;
@@ -20,18 +21,18 @@
             z-index: 100;
         }
       
-        .dropdown-content a {
+        .dropdown-content-prf a {
           color: black;
           padding: 12px 16px;
           text-decoration: none;
           display: block;
         }
       
-        .dropdown-content a:hover {
+        .dropdown-content-prf a:hover {
           background-color: #f1f1f1;
         }
       
-        .dropdown:hover .dropdown-content {
+        .dropdown-prf:hover .dropdown-content-prf {
           display: block;
         }
       
@@ -49,23 +50,24 @@
         </div>
         <!-- Search bar -->
         
-        <div class="menu">
-            <button class="massages"onclick="massages()"></button>
-            
-            <button class="notification" onclick="notification()"></button>
-        </div>
+        
         <!-- Login and Sign buttons -->
         <div class="user-actions">
+            <div class="menu" style="margin-right: 40px;">
+                <button class="massages"onclick="massages()"></button>
+                
+                <button class="notification" onclick="notification()"></button>
+            </div>
             <span class="orders" onclick="myrequests()">My requests</span>
             <span class="orders" onclick="order()">Orders</span>
             <span class="getsupport" onclick="support()">Get Support</span>
             <span class="switch" onclick="switchuser()">Switch to Selling</span>
             
-            <div class="dropdown">
-                <image class= "profileimg" src = "../Assests/prof_pic_default.jpg" onclick="profile()"/>
-                <div class="dropdown-content">
-                  <a href="#">Option 1</a>
-                  <a href="#">Option 2</a>
+            <div class="dropdown-prf">
+                <image class= "profileimg" src = "../Assests/prof_pic_default.jpg" "/>
+                <div class="dropdown-content-prf">
+                  <a onclick="profile()">View Profile</a>
+                  <a href="#">Settings</a>
                   <a onclick="Logout()">Logout</a>
                 </div>
             </div>

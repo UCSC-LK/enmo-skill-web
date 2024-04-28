@@ -4,6 +4,7 @@ body{
 }
 .container{
     display:flex;
+
     width: 100%;
     height:auto;
     text-align: center;
@@ -15,12 +16,24 @@ body{
     margin-bottom: 20px;
     z-index: 0;
 }
+.container2{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
 .body-container{
-    width: 80%;
+    
+    width: 100%;
     height: auto;
-    padding: 10px 40px;
+    padding: 40px 40px;
     border-radius: 5px;
+    background-color: white;
     /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+}
+
+.title{
+    display: flex;
+    justify-content: left;
 }
 
 
@@ -80,12 +93,18 @@ h1{
 }
 
 h2{
-    color:#444;
+    color: rgb(60, 60, 60);
+    font-size: 35px;
+    font-weight: lighter;
+    margin-bottom: 10px;
 }
 
 .subject-main{
-    display: grid;
-    grid-template-columns: 7% 70% 23%;
+    /* display: grid;
+    grid-template-columns: 7% 70% 23%; */
+    display: flex;
+    justify-content: right;
+    padding-bottom: 20px;
 }
 .up-btn{
     display: flex;
@@ -260,6 +279,7 @@ h2{
     display: flex;
     justify-content: left;
     gap:20px;
+    padding-top: 20px;
 }
 
 .status-left{
@@ -278,6 +298,7 @@ h2{
     display: flex;
     justify-content: right;
     padding-bottom: 10px;
+    padding-bottom: 20px;
 }
 .botom-btn{
     display: flex;
@@ -322,6 +343,23 @@ h2{
 }
 
 .closeBTN:hover{
+    box-shadow: 0px 0px 10px  #0e3a1a73;
+    background-color: #ffffff;
+    color: #000000;
+}
+.cnceiOderBTN{
+    display: none;
+    font-size: 15px;
+    width: 150px;
+    padding:5px;
+    border-radius: 5px;
+    /* border-color: #838383; */
+    /* background-color: #ffffff; */
+    background-color: #fd05059f;
+    color: #fff;
+    transition: .4s;
+}
+.cnceiOderBTN:hover{
     box-shadow: 0px 0px 10px  #0e3a1a73;
     background-color: #ffffff;
     color: #000000;
