@@ -647,6 +647,17 @@ document.getElementById("orderCreateBtn").addEventListener("click", function(){
     var req = document.getElementById("order-req").value;
     console.log(req);
 
+    if (req.trim() == "") {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Please enter your requirements!",
+            confirmButtonColor: "#000000"
+          });
+          return;
+      
+    }
+
     // const reqBody = {
     //     "packageId": packageId,
     //     "price":Selected_pricing_item.price,
