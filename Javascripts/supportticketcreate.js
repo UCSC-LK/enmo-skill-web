@@ -246,7 +246,7 @@ function ticketsubmission(fileURL,packageID,orderID,role){
       window.location="../HTML/tikectListClient.html"
     }
     
-  }, 25000);
+  }, 2500);
     })
 
   .catch(error => {console.log('error', error);
