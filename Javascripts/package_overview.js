@@ -153,7 +153,7 @@ function populateCategories(data) {
 
   for (let i = 1; i <= data.length; i++) {
       var option = document.createElement("option");
-      option.value = i;
+      option.value = data[i-1].categoryId;
       option.text = data[i - 1].category;
 
       select_categories.appendChild(option);

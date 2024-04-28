@@ -324,31 +324,75 @@ function populatePricingTable(pricing_data){
             console.log(categoryData);
             document.getElementById("catogery").innerHTML = categoryData.category;
             
-            var data_rows = [
-                ["Price (Rs)"],
-                ["No of Revisions"],
-                ["Delivery Duration"],
-                ["No of Concepts"],
-                [categoryData.del_1],
-                [categoryData.del_2],
-                [categoryData.del_3],
-                [categoryData.del_4],
-                [categoryData.del_5],
-                [""]  
-            ]
+            // var data_rows = [
+            //     ["Price (Rs)"],
+            //     ["No of Revisions"],
+            //     ["Delivery Duration"],
+            //     ["No of Concepts"],
+            //     [categoryData.del_1],
+            //     [categoryData.del_2],
+            //     [categoryData.del_3],
+            //     [categoryData.del_4],
+            //     [categoryData.del_5],
+            //     [""]  
+            // ]
+
+            let data_rows = [
+              ["Price (Rs)"],
+              ["No of Revisions"],
+              ["Delivery Duration"],
+              ["No of Concepts"]
+          ];
+
+          for (let i = 1; i <= Object.keys(categoryData).length - 2; i++) {
+            let delProperty = categoryData["del_" + i];
+            if (delProperty !== undefined) {
+                data_rows.push([delProperty]);
+            }
+          }
+
+          data_rows.push([""]);
+          console.log(data_rows);
+    
+            // pricing_data.forEach(function(pricingItem){
+            //     data_rows[0].push(pricingItem.price)
+            //     data_rows[1].push(pricingItem.noOfRevisions)
+            //     data_rows[2].push((pricingItem.deliveryDuration==1)?"1 Day":pricingItem.deliveryDuration+" Days")
+            //     data_rows[3].push(pricingItem.noOfConcepts)
+            //     data_rows[4].push((pricingItem.del.del_1==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
+            //     data_rows[5].push((pricingItem.del.del_2==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
+            //     data_rows[6].push((pricingItem.del.del_3==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
+            //     data_rows[7].push((pricingItem.del.del_4==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
+            //     data_rows[8].push((pricingItem.del.del_5==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
+            //     // data_rows[9].push('<button class="button-save" onclick="createOrder('+pricingItem.price+')">Select</button>')
+            //     data_rows[9].push('<button class="button-save" onclick="showOrderOverlay(\'' + pricingItem.price + '\', \'' + pricingItem.pricePackageId + '\')">Select</button>');            
+            //   });
     
             pricing_data.forEach(function(pricingItem){
+              console.log(pricingItem);
                 data_rows[0].push(pricingItem.price)
                 data_rows[1].push(pricingItem.noOfRevisions)
                 data_rows[2].push((pricingItem.deliveryDuration==1)?"1 Day":pricingItem.deliveryDuration+" Days")
                 data_rows[3].push(pricingItem.noOfConcepts)
-                data_rows[4].push((pricingItem.del.del_1==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-                data_rows[5].push((pricingItem.del.del_2==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-                data_rows[6].push((pricingItem.del.del_3==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-                data_rows[7].push((pricingItem.del.del_4==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
-                data_rows[8].push((pricingItem.del.del_5==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
+                
+                let deliverables_properties = pricingItem.del;
+
+                let j = 0
+                for (j = 1; j <= Object.keys(categoryData).length - 2; j++) {
+                  let delProperty = deliverables_properties["del_" + j];
+                  if (delProperty!== undefined) {
+                      data_rows[3+j].push((delProperty==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
+                  }
+                }
+                console.log(j);
+                // data_rows[4].push((pricingItem.del.del_1==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
+                // data_rows[5].push((pricingItem.del.del_2==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
+                // data_rows[6].push((pricingItem.del.del_3==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
+                // data_rows[7].push((pricingItem.del.del_4==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
+                // data_rows[8].push((pricingItem.del.del_5==1)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-check" style="color:#ebebeb;" aria-hidden="true"></i>')
                 // data_rows[9].push('<button class="button-save" onclick="createOrder('+pricingItem.price+')">Select</button>')
-                data_rows[9].push('<button class="button-save" onclick="showOrderOverlay(\'' + pricingItem.price + '\', \'' + pricingItem.pricePackageId + '\')">Select</button>');            });
+                data_rows[3+j].push('<button class="button-save" onclick="showOrderOverlay(\'' + pricingItem.price + '\', \'' + pricingItem.pricePackageId + '\')">Select</button>');            
+              });
 
             if (!tableCreated) {
                 var tbody = document.getElementById("table-body");
@@ -608,7 +652,7 @@ document.getElementById("orderCreateBtn").addEventListener("click", function(){
     })
     .then(response => 
         {
-            if(response.status == 401){
+          if(response.status == 401){
           window.location.href = "../Failed/401.html";
         }else if(response.status == 406){
           const currentUrl = encodeURIComponent(window.location.href);

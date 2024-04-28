@@ -239,6 +239,7 @@ function setDeliverables() {
 
     .then((data)=>{
 
+        console.log(data);
 
         var deli_div = document.getElementsByClassName("chkbx");
         var lb = document.getElementsByClassName("chg");
@@ -252,7 +253,7 @@ function setDeliverables() {
 
             for (let i = 0; i < 3; i++) {
                 
-                for (let j = 1; j <= 5; j++) {
+                for (let j = 1; j <= Object.keys(data).length-2; j++) {
 
                     var str = "del_"+(j);
                     
