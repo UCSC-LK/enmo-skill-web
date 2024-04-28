@@ -224,7 +224,27 @@ loding.style.display ="flex"
 //send put request-------------------------------------------------------------
 
 document.querySelector(".saveBTN").addEventListener("click", () => {
-    console.log("ssaa")
+
+    var selectedSkill = []
+    var selectedLanguages = []
+    const selectedSkills = Array.from(document.querySelectorAll('.skill-tag')).map(tag => ({
+        skills: tag.textContent,
+        skill_id: tag.dataset.skillId
+    }));
+
+    const selectedLanguage = Array.from(document.querySelectorAll('.language-tag')).map(tag => ({
+        language: tag.textContent,
+        language_id: tag.dataset.languageId
+    }));
+    
+
+    selectedSkills.forEach(item =>{
+        selectedSkill.push(item.skill_id)
+    })
+    selectedLanguage.forEach(item =>{
+        selectedLanguages.push(item.language_id)
+    })
+    console.log(selectedLanguages)
 
 var myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
@@ -303,6 +323,26 @@ fetch(BASE_URL+"/profile", requestOptions)
 //send post request-------------------------------------------------------------
 
     document.querySelector(".saveBTN").addEventListener("click",()=>{
+
+        var selectedSkill = []
+        var selectedLanguages = []
+        const selectedSkills = Array.from(document.querySelectorAll('.skill-tag')).map(tag => ({
+            skills: tag.textContent,
+            skill_id: tag.dataset.skillId
+        }));
+    
+        const selectedLanguage = Array.from(document.querySelectorAll('.language-tag')).map(tag => ({
+            language: tag.textContent,
+            language: tag.dataset.languageId
+        }));
+        
+    
+        selectedSkills.forEach(item =>{
+            selectedSkill.push(item.skill_id)
+        })
+        selectedLanguage.forEach(item =>{
+            selectedLanguages.push(item.language)
+        })
         
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
@@ -472,13 +512,13 @@ fetch(BASE_URL + "/profile", requestOptions)
   });
 
 
-  submitButton.addEventListener('click', () => {
-      const selectedSkills = Array.from(document.querySelectorAll('.submit-btn-language')).map(tag => ({
-          skills: tag.textContent,
-          skill_id: tag.dataset.skillId
-      }));
-      console.log(selectedSkills);
-  });
+//   submitButton.addEventListener('click', () => {
+//       const selectedSkills = Array.from(document.querySelectorAll('..skill-tag')).map(tag => ({
+//           skills: tag.textContent,
+//           skill_id: tag.dataset.skillId
+//       }));
+//       console.log(selectedSkills);
+//   });
 
   // Populate the dropdown initially
 //   populateDropdown();
@@ -536,10 +576,10 @@ const languageDropdown = document.getElementById('language-dropdown');
   });
 
  
-  submitButtonlanguage.addEventListener('click', () => {
-      const selectedLanguage = Array.from(document.querySelectorAll('.language-tag')).map(tag => ({
-          language: tag.textContent,
-          language: tag.dataset.languageId
-      }));
-      console.log(selectedLanguage);
-  });
+//   submitButtonlanguage.addEventListener('click', () => {
+//       const selectedLanguage = Array.from(document.querySelectorAll('.language-tag')).map(tag => ({
+//           language: tag.textContent,
+//           language: tag.dataset.languageId
+//       }));
+//       console.log(selectedLanguage);
+//   });

@@ -257,16 +257,25 @@ h3{
 }
 
 .selection{
-    padding:3px;
+    /* padding:3px;
     max-height: 25px;
     margin-left: 50px;
     width: 200px;
+    border-radius: 5px; */
+    padding: 8px 10px;
+    width: 100%;
+    border: 1px solid #868686;
     border-radius: 5px;
+    color: #444;
+    font-size: 15px;
+    /* z-index: 1; */
+    position: relative;
     
 }
 
 .skill-header{
-    display: flex;
+    display: grid;
+    grid-template-columns: 15% 85%;
 }
 
 .selection-header{
@@ -276,7 +285,8 @@ h3{
 }
 
 .language-header{
-    display: flex;
+    display: grid;
+    grid-template-columns: 15% 85%;
 }
 
 #language-tags {
