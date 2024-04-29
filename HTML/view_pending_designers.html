@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../CSS/buyer_req_list.css">
     <link rel="stylesheet" href="../CSS/main.css">
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 
@@ -20,15 +21,10 @@
                 <div class="main">
                     <div class="container">
                         <div class="block">
-                            <h1 class="headding">Client list</h1>
+                            <h1 class="headding">Designer Request list</h1>
 
                             <div class="navbar-body">
-                                <div class="nav-body">
-                                    <ul>
-                                        <li class="active" id="active_u">ACTIVE USERS</li>
-                                        <li id="banned_u">BANNED USERS</li>
-                                    </ul>
-                                </div>
+                                
                                 
                                 
 
@@ -42,7 +38,7 @@
                                     <p class="dis" style="max-width: 40%;min-width: 40%; width: 40%;">EMAIL</p>
                                    
                                 </div>
-                                <div class="row">
+                                <div class="row-hidden">
                                     <p class="date" id="id-des">ddd</p>
                                     <p class="user" id="name-des" style="max-width: 40%;min-width: 40%; width: 40%;">sjdndnndndn dnndndndd</p>
                                     <p class="dis" id="email-des" style="max-width: 40%;min-width: 40%; width: 40%;">ddd</p>
@@ -50,13 +46,7 @@
                                 </div>
                             </div>
 
-                            <script>
-                                const table = document.getElementById('table');
-                                const row = document.querySelector('.row');
-                                
-
-                            </script>
-
+                            
                         
                         </div>
                     </div>
@@ -65,7 +55,7 @@
             </div>
     </div>
 
-        <div class="overlay" id="overlay">
+        <div class="overlay" id="overlay" >
 
             <div class="overlay-div4" id="overlay-div">
                 <div class="close-top-div">
@@ -86,10 +76,7 @@
                                     <p class="tl">NAME</p>
                                     <P id="data-name"></P>
                                 </td>
-                                <td>
-                                    <p class="tl">USERNAME</p>
-                                    <P id="data-displayname1"></P>
-                                </td>
+                                
                             </tr >
                             <tr class="data-tr">
                                 <td>
@@ -97,46 +84,149 @@
                                     <p class="tl">EMAIL</p>
                                     <P id="data-email"></P>
                                 </td>
+                                
+                            </tr>
+                            <tr class="data-tr">
                                 <td>
                                     
                                     <p class="tl">CONTACT NO</p>
                                     <P id="data-contact"></P>
                                 </td>
+                                
                             </tr>
                             <tr class="data-tr">
                                 <td>
                                     <p class="tl">NIC</p>
                                     <P id="data-nic"></P>
                                 </td>
+                                
+                            </tr>
+                            <tr class="data-tr">
                                 <td>
-                                    <p class="tl">JOINED DATE</p>
-                                    <P id="data-joined"></P>
+                                    <p class="tl">Address</p>
+                                    <P id="data-address"></P>
                                 </td>
+                                
                             </tr>
-                            <tr class="data-tr">
-                                <td colspan="2">
-                                    <p class="tl">COUNTRY</p>
-                                    <P id="data-country"></P>
-                                </td>
-                            </tr>
-                            <tr class="data-tr">
-                                <td colspan="2">
-                                    <p class="tl">DESCRIPTION</p>
-                                    <P id="data-des"></P>
-                                </td>
-                            </tr>
+                            
+                            
+
                         </tbody>
                     </table>
 
-                    <div id="options-btn" class="see-more-btn-row-hidden">
-                        <button id="showWarnings" class="see-more">Show previous warnings</button>
-                        <button id="sendWarning" class="warn">Send a warning</button>
-                        <button id="bann" class="bann">Bann account</button>
+                    <div id="options-btn" class="see-more-btn-row">
+                        <button id="showWarnings" class="see-more">NIC Front</button>
+                        <button id="sendWarning" class="see-more">NIC Back</button>
+                        <button id="bann1" class="bann accept" style="background-color: yellowgreen;">Accept</button>
+                        <button id="bann" class="bann">Reject</button>
                     </div>
                 </div>
             </div>
+            <script src="../Javascripts/baseurl.js"></script>
                 
-           
+            <script>
+                const table = document.getElementById('table');
+                const row = document.querySelector('.row-hidden');
+
+
+                const myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+                myHeaders.append("Authorization", getCookie("JWT"));
+                const requestOptions = {
+                method: "GET",
+                headers: myHeaders,
+                redirect: "follow"
+                };
+
+                fetch(BASE_URL+"/verifydesigner", requestOptions)
+                .then((response) =>{if(response.status == 401){
+                    window.location.href = "../Failed/401.html";
+                    }else if(response.status == 406){
+                    const currentUrl = encodeURIComponent(window.location.href);
+                    window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+                    }else if(response.status == 404){
+                    window.location.href = "../Failed/404.html";
+                    }else if (response.status == 200) {
+                    return response.json()
+                    } else{
+                    console.log("Error"+response.status)
+                    }
+                
+                })
+                .then((result) => {console.log(result)
+                    result.forEach(item => {
+
+                    const newItem = row.cloneNode(true);
+                    newItem.querySelector(".date").textContent = item.designerID;
+                    newItem.querySelector(".user").textContent = item.designerName;
+                    newItem.querySelector(".dis").textContent = item.email;
+                    
+                //   newItem.querySelector(".user").addEventListener("click", function() {
+                //     console.log("Clicked username: " + item.username);
+                // });
+                    // newItem.getElementById("id-des").textContent = item.designerID;
+                    // newItem.getElementById("id-des").textContent = item.designerID;
+                    // newItem.getElementById("name-des").textContent = item.designerName;
+                    // newItem.getElementById("email-des").textContent = item.email;
+                    
+                    newItem.addEventListener("click",()=>{
+                    viewrequest(item);
+                    })
+                    
+                    newItem.classList.remove("row-hidden");
+                    newItem.classList.add("row"); 
+                
+                    table.appendChild(newItem);
+                })
+})
+                .catch((error) => console.error(error));
+
+
+
+                function viewrequest(item){
+                    document.querySelector(".profile-pic").src = item.url;
+
+                    document.getElementById("overlay").style.display = "flex";
+                    document.getElementById("data-name").textContent = item.designerName;
+                    document.getElementById("data-email").textContent = item.email;
+                    document.getElementById("data-contact").textContent = item.desinerPhone;
+                    document.getElementById("data-nic").textContent = item.NIC;
+                    document.getElementById("data-address").textContent = item.Address;
+                    
+                    document.getElementById("showWarnings").addEventListener("click",()=>{
+                        Swal.fire({
+                   
+                        text: "NIC Front View.",
+                        imageUrl: item.nicfront,
+                        imageWidth: 400,
+                        imageHeight: 200,
+                        imageAlt: "Custom image"
+
+                        });
+                    });
+                    document.getElementById("sendWarning").addEventListener("click",()=>{
+                        Swal.fire({
+                   
+                        text: "NIC Back View.",
+                        imageUrl: item.nicback,
+                        imageWidth: 400,
+                        imageHeight: 200,
+                        imageAlt: "Custom image"
+
+                        });
+                    });
+                    document.getElementById("bann1").addEventListener("click",()=>{
+
+                    })
+
+
+                }
+                document.querySelector(".close-top").addEventListener("click",()=>{
+                    document.getElementById("overlay").style.display = "none";
+                });
+
+            </script>
+
             
         </div>
 
@@ -168,8 +258,8 @@
     
 </body>
 
-<script src="../Javascripts/baseurl.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 
 <script src="../Javascripts/verify_designer_list_admin.js"></script>
 
