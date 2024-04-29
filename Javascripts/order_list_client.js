@@ -26,22 +26,22 @@ const perent = document.querySelector(".parent");
 const child = document.querySelector(".row-hidden");
 
 ongoing.addEventListener("click", () => {
-  updateColor(ongoing, "#56D74E");
+  // updateColor(ongoing, "#56D74E");
   tableLoad("ongoing");
 });
 
 delivered.addEventListener("click", () => {
-  updateColor(delivered, "#2E4ADE");
+  // updateColor(delivered, "#2E4ADE");
   tableLoad("delivered");
 });
 
 completed.addEventListener("click", () => {
-  updateColor(completed, "#9446BB");
+  // updateColor(completed, "#9446BB");
   tableLoad("completed");
 });
 
 canseled.addEventListener("click", () => {
-  updateColor(canseled, "#CC2B1F");
+  // updateColor(canseled, "#CC2B1F");
   tableLoad("canseled");
 });
 
@@ -122,23 +122,24 @@ function tableLoad(view) {
 
         newItem.querySelector(".duration").textContent = formattedDueDate;
         newItem.querySelector(".budget-value").textContent = item.price;
-        const statusElement = newItem.querySelector(".status"); // Get the status element
+        const statusElement = newItem.querySelector(".status");
+         // Get the status element
         switch (item.status) {
           case 1:
             statusElement.textContent = "Ongoing";
-            statusElement.style.backgroundColor = "#56D74E";
+            statusElement.style.backgroundColor = "#9D9D9D";
             break;
           case 2:
             statusElement.textContent = "Delivered";
-            statusElement.style.backgroundColor = "#2E4ADE";
+            statusElement.style.backgroundColor = "#9D9D9D";
             break;
           case 3:
             statusElement.textContent = "Completed";
-            statusElement.style.backgroundColor = "#9446BB";
+            statusElement.style.backgroundColor = "#9D9D9D";
             break;
           case 4:
             statusElement.textContent = "Canceled";
-            statusElement.style.backgroundColor = "#CC2B1F";
+            statusElement.style.backgroundColor = "#9D9D9D";
             break;
           default:
             statusElement.textContent = "unknown";
