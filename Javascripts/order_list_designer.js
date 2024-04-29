@@ -94,26 +94,49 @@ const JWTTOk = getCookie("JWT");
       result.forEach((item) => {
         const newItem = child.cloneNode(true);
         console.log("NEwItem" + newItem);
-        newItem.querySelector(".user").textContent = item.clientId;
-        newItem.querySelector(".gig").textContent = item.packageId;
+        console.log("item.package_title" + item.package_title);
+        newItem.querySelector(".user").textContent = item.designer_name;
+        newItem.querySelector(".gig").textContent = item.package_title;
         newItem.querySelector(".date").textContent = item.createdTime;
-        newItem.querySelector(".date").textContent = item.createdTime;
+
+        const deliveryDurationInDays = item.deliveryDuration;
+
+        console.log("deliveryDurationInDays", deliveryDurationInDays);
+        const createdTime = item.createdTime;
+
+        console.log("createdTime", createdTime);
+
+        // Calculate due date
+        const dueDate = new Date(createdTime);
+        dueDate.setDate(dueDate.getDate() + deliveryDurationInDays);
+        
+        const formattedDueDate = dueDate.toLocaleString("en-US", {
+          month: "short",
+          day: "2-digit",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: true,
+        });
+
+        newItem.querySelector(".duration").textContent = formattedDueDate;
         newItem.querySelector(".budget-value").textContent = item.price;
         const statusElement = newItem.querySelector(".status"); // Get the status element
         switch (item.status) {
-          case 0:
+          case 1:
             statusElement.textContent = "Ongoing";
             statusElement.style.backgroundColor = "#56D74E";
             break;
-          case 1:
+          case 2:
             statusElement.textContent = "Delivered";
             statusElement.style.backgroundColor = "#2E4ADE";
             break;
-          case 2:
+          case 3:
             statusElement.textContent = "Completed";
             statusElement.style.backgroundColor = "#9446BB";
             break;
-          case 3:
+          case 4:
             statusElement.textContent = "Canceled";
             statusElement.style.backgroundColor = "#CC2B1F";
             break;
@@ -126,32 +149,26 @@ const JWTTOk = getCookie("JWT");
 
         console.log("Status" + item.status);
 
-         var itemDivs = [
-           newItem.querySelector(".user"),
-           newItem.querySelector(".gig"),
-           newItem.querySelector(".date"),
-           newItem.querySelector(".date"),
-           newItem.querySelector(".budget-value"),
-           newItem.querySelector(".status"),
+        var itemDivs = [
+          newItem.querySelector(".user"),
+          newItem.querySelector(".gig"),
+          newItem.querySelector(".date"),
+          newItem.querySelector(".date"),
+          newItem.querySelector(".budget-value"),
+          newItem.querySelector(".status"),
+          newItem.querySelector(".duration"),
         ];
-        
-        console.log("OderID" + item.orderId)
-       
-        itemDivs.forEach(function(itemDiv) {
-          itemDiv.addEventListener("click",()=>{ vieworder(item.orderId);})//view order--------------------------------------------
-        });
 
+        console.log("OderID" + item.orderId);
+
+        itemDivs.forEach(function (itemDiv) {
+          itemDiv.addEventListener("click", () => {
+            vieworder(item.orderId);
+          }); //view order--------------------------------------------
+        });
 
         switch (view) {
           case "ongoing":
-            if (item.status == 0) {
-              newItem.classList.remove("row-hidden");
-              newItem.classList.add("row");
-              list2.appendChild(newItem);
-            }
-            break;
-
-          case "delivered":
             if (item.status == 1) {
               newItem.classList.remove("row-hidden");
               newItem.classList.add("row");
@@ -159,7 +176,7 @@ const JWTTOk = getCookie("JWT");
             }
             break;
 
-          case "completed":
+          case "delivered":
             if (item.status == 2) {
               newItem.classList.remove("row-hidden");
               newItem.classList.add("row");
@@ -167,8 +184,16 @@ const JWTTOk = getCookie("JWT");
             }
             break;
 
-          case "canseled":
+          case "completed":
             if (item.status == 3) {
+              newItem.classList.remove("row-hidden");
+              newItem.classList.add("row");
+              list2.appendChild(newItem);
+            }
+            break;
+
+          case "canseled":
+            if (item.status == 4) {
               newItem.classList.remove("row-hidden");
               newItem.classList.add("row");
               list2.appendChild(newItem);
@@ -191,9 +216,7 @@ const JWTTOk = getCookie("JWT");
       });
 
     })
-    .catch((error) => console.log("error", error));
-  
-  
+    .catch((error) => console.log("error", error));  
 }
 
 function vieworder(order_id) {

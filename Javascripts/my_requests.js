@@ -125,7 +125,16 @@ createbtn.addEventListener("click",(event)=>{
         }else if(response.status == 404){
           window.location.href = "../Failed/404.html";
         }else {
-          return response.json()
+          response.text().then(result => {
+            Toast.fire({
+              icon: "error",
+              title: result
+            }).then((result) => {
+              if (result.dismiss === Swal.DismissReason.timer) {
+                location.reload();
+              }
+            });
+          });
         }
       })
       
@@ -164,9 +173,9 @@ fetch(BASE_URL + "/request", requestOptions)
     }else if(response.status == 404){
       window.location.href = "../Failed/404.html";
     }else {
-      return response.json()
+      return response.json();
     }
-    })
+  })
   .then(result => {
     console.log(result)
     count.innerText=result.count;
@@ -268,7 +277,7 @@ function deleteRequest(requestID){
       .then(result => {
         Toast.fire({
           icon: "success",
-          title: "Request Deleted Successfully"
+          title: result,
         }).then((result) => {
           if (result.dismiss === Swal.DismissReason.timer) {
             location.reload();
@@ -354,6 +363,17 @@ duration.value=item.duration;
         window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
       }else if(response.status == 404){
         window.location.href = "../Failed/404.html";
+      }else {
+        response.text().then(result => {
+          Toast.fire({
+            icon: "error",
+            title: result
+          }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.timer) {
+              location.reload();
+            }
+          });
+        });
       }
       })
       .then(result => {

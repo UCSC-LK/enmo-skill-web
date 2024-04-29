@@ -66,34 +66,19 @@ fetch(
   })
   .then((result) => {
     console.log("result " + result);
-    count.innerText = result.length;
+    // count.innerText = result.length;
     result.forEach((item) => {
       const newItem = listItemTemplate.cloneNode(true);
 
-      //   newItem.querySelector(".user").addEventListener("click", function() {
-      //     console.log("Clicked username: " + item.username);
-      // });
-
-      newItem
-        .querySelector(".edit")
-        .addEventListener("click", function (event) {
-          event.stopPropagation();
-          editRequest(item);
-        });
-      newItem
-        .querySelector(".delete")
-        .addEventListener("click", function (event) {
-          event.stopPropagation();
-          deleteRequest(item.proposalID);
-        });
-      newItem.querySelector(".requestID").textContent = item.requestID;
-      newItem.querySelector(".title").textContent = item.title;
+      newItem.querySelector(".requestID").textContent = item.designerId;
+      newItem.querySelector(".title2").textContent = item.title;
       newItem.querySelector(".duration").textContent =
         item.deliveryDuration + " Days";
       newItem.querySelector(".price").textContent = "Rs. " + item.price + ".00";
       newItem.querySelector(".package").textContent = item.pricingPackage;
       //   newItem.querySelector(".budget").textContent = "Rs. " + item.budget;
       newItem.addEventListener("click", () => {
+        currentItem = item; // Store the current item
         viewrequest(item);
       });
 
@@ -110,118 +95,98 @@ fetch(
 
 const popupview = document.querySelector(".overlay-view");
 const titleview = document.querySelector(".tl");
-const closetn = document.querySelector(".close-top");
+const closetnv = document.querySelector(".close-top");
 const username = document.querySelector(".name-user");
 const userurl = document.querySelector(".image-profile");
 const Discriptionview = document.querySelector(".description");
 const Budgetview = document.querySelector(".budget-text");
 const durationview = document.querySelector(".description-text");
 
+// Define the event listener outside of the viewrequest function
+const btn = document.querySelector(".aceptproposal");
+btn.addEventListener("click", () => {
+    createOrder(currentItem);
+});
+
 function viewrequest(item) {
   popupview.style.display = "flex";
   closetn.addEventListener("click", () => {
     console.log("Script is running");
+    // Remove the event listener when the popup is closed
+    btn.removeEventListener("click", createOrder);
 
     popupview.style.display = "none";
   });
   titleview.innerHTML = item.title;
-  username.innerHTML = item.username;
+  username.innerHTML = item.requestID;
   // userurl
-  Discriptionview.innerHTML = item.discription;
-  Budgetview.innerHTML = item.budget;
-  durationview.innerHTML = item.duration;
+  Discriptionview.innerHTML = item.pricingPackage;
+  Budgetview.innerHTML = item.price;
+  durationview.innerHTML = item.deliveryDuration;
 }
 
-function deleteRequest(proposalID) {
-  if (confirm("Are you sure you want Delete this request?")) {
-    var requestOptions = {
-      method: "DELETE",
-      redirect: "follow",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${devideToken}`, // Add JWT token to the headers
-      },
-    };
 
-    fetch(BASE_URL + "/proposal?ProposalId=" + proposalID, requestOptions)
-      .then((response) => response.text())
-      .then((result) => {
-        alert(result);
-        location.reload();
-      })
-      .catch((error) => console.log("error", error));
-  }
-}
+function createOrder(item) {
+  
+  const closetn = document.querySelector(".close-top");
 
-window.onclick = function (event) {
-  if (event.target == overlay) {
-    popup.style.display = "none";
-  }
-  if (event.target == popupview) {
+  closetn.addEventListener("click", () => {
+    console.log("Script is running");
     popupview.style.display = "none";
-  }
-};
+  });
+  
+  const JWTTOk = getCookie("JWT");
+  console.log("Token" + JWTTOk);
 
-//this is updating request
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  myHeaders.append("Authorization", getCookie("JWT"));
 
-function editRequest(item) {
-  flagUpdate = true;
-  popup.style.display = "block";
-  submitbtn.innerText = "Update Proposal";
-  closebtn.addEventListener("click", () => {
-    popup.style.display = "none";
+  const raw = JSON.stringify({
+    requirements: item.discription,
+    status: 0,
+    designerId: item.designerId,
+    packageId: item.packageId,
+    price: item.price,
+    pricePackageId: item.price_package_id,
+    proposalID: item.proposalID,
+    deliveryDuration: item.deliveryDuration,
   });
 
-  title1.value = item.description;
-  // Dis.value = item.date;
-  Budget.value = item.budget;
-  duration.value = item.duration;
+  const requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: raw,
+    redirect: "follow",
+  };
 
-  function handleupdateSubmit(event) {
-    if (!flagUpdate) return;
-    flagUpdate = false;
-    event.preventDefault();
-    const valuetitle = title1.value;
-    // const valueDis = Dis.value;
-    const valueBudget = Budget.value;
-    // const valueurl = null;
-    const valueduration = duration.value;
-    dataupdate(valuetitle, valueduration, valueBudget);
-
-    popup.style.display = "none";
-  }
-  form2.addEventListener("submit", handleupdateSubmit);
-
-  function dataupdate(valtitle, valduration, valBudget) {
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    var raw = JSON.stringify({
-      description: valtitle,
-      duration: valduration,
-      budget: valBudget,
-      //   requestID: item.requestID, //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< hardcoded here
-      // date: valDis,
+  fetch(`${BASE_URL}/order`, requestOptions)
+    .then((response) => {
+      if (response.status == 401) {
+        window.location.href = "../Failed/401.html";
+      } else if (response.status == 406) {
+        const currentUrl = encodeURIComponent(window.location.href);
+        window.location.href =
+          "../Failed/Session%20timeout.html?returnUrl=" + currentUrl;
+      } else if (response.status == 404) {
+        window.location.href = "../Failed/404.html";
+      } else if (response.status == 200) {
+        console.log("Order created successfully");
+        var rsp = response.json();
+        rsp.then((data) => {
+          console.log("Order ID: " + data.orderId);
+          window.location.href = `../HTML/paymentSummary.html?orderID=${data.orderId}`;
+        });
+      } else {
+        console.log("Error" + response.status);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+      });
     });
-
-    var requestOptions = {
-      method: "PUT",
-      headers: myHeaders,
-      body: raw,
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${devideToken}`, // Add JWT token to the headers
-      },
-    };
-
-    fetch(BASE_URL + "/proposal?ProposalId=" + item.proposalID, requestOptions)
-      .then((response) => response.text())
-      .then((result) => {
-        alert(result);
-        location.reload();
-      })
-      .catch((error) => console.log("error", error));
-  }
-}
+};
