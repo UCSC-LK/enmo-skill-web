@@ -3,29 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
-    <link rel="stylesheet" href="../CSS/becomeaseller.css">
-      <link rel="stylesheet" href="../CSS/main.css">
-    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     
-    <title> Additional Details Page</title>
+      <link rel="stylesheet" href="../CSS/main.css">
+      <link rel="stylesheet" href="../CSS/my_request.css">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+
+    <style>
+        
+    </style>
+    
+    <title>Profile Verification</title>
 </head>
 <body>
-    <div class="mainclass">
+   
         <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>     <div class="container">
-            <div class="vidback">
-                <video id="background-video" autoplay loop muted poster="">
-                    <source src="../Assests/enmovid.mp4" type="video/mp4">
-                    </video>
-                    <div class="text">
-                        <h1 class="text-h1">Work Your Way</h1>
-                        <h3 class="text-h2">You bring the skill. We'll make earning easy</h3>
-                        
+            <div class="major">
+                <div class="main-container">
+                    <div class="header">
+                        <div class="firstele">
+                        <h2>Verify Your Details</h2>
+                        </div>
                     </div>
-                    <button class="button-become" role="button" onclick="become()">Become a Seller</button>
-                    
+                        <div class="table">
+
+                        <form action="#" method="post" enctype="multipart/form-data">
+                            <label for="address">Address:</label>
+                            <input type="text" id="address" name="address" required>
+                            <small>(Address should match the one shown in your NIC)</small><br>
+                            
+                            <label for="telephone">Telephone Number:</label>
+                            <input type="tel" id="telephone" name="telephone" required>
+                            <small>(A one-time password will be sent to this number)</small><br>
+                            
+                            <label for="nic_front">NIC Front Image:</label>
+                            <input type="file" id="nic_front" name="nic_front" accept="image/*" required><br>
+                            <img id="nic_front_preview" src="#" alt="NIC Front Preview" style="display: none; max-width: 200px; max-height: 200px;"><br>
+                            
+                            <label for="nic_back">NIC Back Image:</label>
+                            <input type="file" id="nic_back" name="nic_back" accept="image/*" required><br>
+                            <img id="nic_back_preview" src="#" alt="NIC Back Preview" style="display: none; max-width: 200px; max-height: 200px;"><br>
+                            
+                            <input type="submit" value="Next">
+                        </form>
+
+                        <div class="content">
+                            <div class="content-title">Verification Process</div>
+                            <p>Once you submit the form, your profile will be under review for verification. This process may take up to 3 working days. You will receive a notification once your profile is verified. After verification, you can start working as a designer in our system.</p>
+                            <p>Please ensure that the information provided is accurate and matches the details on your National Identity Card (NIC).</p>
+                            <p>If you need any assistance, feel free to contact our support team.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
+    
+</div>
 
 
+
+<script>
+    // Function to preview image before upload
+    function previewImage(input, imgID) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            document.getElementById(imgID).src = e.target.result;
+            document.getElementById(imgID).style.display = "block";
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+    
+    // Event listeners for file input changes
+    document.getElementById('nic_front').addEventListener('change', function(){
+        previewImage(this, 'nic_front_preview');
+    });
+    
+    document.getElementById('nic_back').addEventListener('change', function(){
+        previewImage(this, 'nic_back_preview');
+    });
+</script>
 
         </div>
         <script>
