@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/view_client_list_admin.css">
+    <link rel="stylesheet" href="../CSS/buyer_req_list.css">
+    <link rel="stylesheet" href="../CSS/main.css">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+
+
+
+    <title>Admin - Client List</title>
+</head>
+<body>
+    <div class="page">
+        <div id="sidebar-placeholder"></div><script src="../Javascripts/sidebar.js"></script>
+        <div class="pg-content" style="width: 100%; overflow: auto;">
+            <div id="header-placeholder" style="width: 100%; position: sticky; top: 0;"></div><script src="../Javascripts/header.js"></script>
+                <div class="main">
+                    <div class="container">
+                        <div class="block">
+                            <h1 class="headding">Client list</h1>
+
+                            <div class="navbar-body">
+                                <div class="nav-body">
+                                    <ul>
+                                        <li class="active" id="active_u">ACTIVE USERS</li>
+                                        <li id="banned_u">BANNED USERS</li>
+                                    </ul>
+                                </div>
+                                
+                                
+
+                            </div>
+
+                            <div class="table" id="table">
+                
+                                <div class="row-main" >
+                                    <p class="date-main">DESIGNER ID</p>
+                                    <p class="user-main" style="max-width: 40%;min-width: 40%; width: 40%;">FULL NAME</p>
+                                    <p class="dis" style="max-width: 40%;min-width: 40%; width: 40%;">EMAIL</p>
+                                   
+                                </div>
+                                <div class="row">
+                                    <p class="date" id="id-des">ddd</p>
+                                    <p class="user" id="name-des" style="max-width: 40%;min-width: 40%; width: 40%;">sjdndnndndn dnndndndd</p>
+                                    <p class="dis" id="email-des" style="max-width: 40%;min-width: 40%; width: 40%;">ddd</p>
+                                    
+                                </div>
+                            </div>
+
+                            <script>
+                                const table = document.getElementById('table');
+                                const row = document.querySelector('.row');
+                                
+
+                            </script>
+
+                        
+                        </div>
+                    </div>
+                        
+                    </div> 
+            </div>
+    </div>
+
+        <div class="overlay" id="overlay">
+
+            <div class="overlay-div4" id="overlay-div">
+                <div class="close-top-div">
+                    <p class="close-top">X</p>
+
+                </div>
+
+                <div class="contain-bottom">
+                    <div class="profile-display">
+                        <img alt="designer-profile" id="designer-img" class="profile-pic" src="https://i.ibb.co/Ry2J1Lg/pexels-photo-220453.webp">
+                        <p class="usename-top" id="data-displayname"></p> 
+                    </div>
+                    
+                    <table class="content-table">
+                        <tbody>
+                            <tr class="data-tr">
+                                <td class>
+                                    <p class="tl">NAME</p>
+                                    <P id="data-name"></P>
+                                </td>
+                                <td>
+                                    <p class="tl">USERNAME</p>
+                                    <P id="data-displayname1"></P>
+                                </td>
+                            </tr >
+                            <tr class="data-tr">
+                                <td>
+                                    
+                                    <p class="tl">EMAIL</p>
+                                    <P id="data-email"></P>
+                                </td>
+                                <td>
+                                    
+                                    <p class="tl">CONTACT NO</p>
+                                    <P id="data-contact"></P>
+                                </td>
+                            </tr>
+                            <tr class="data-tr">
+                                <td>
+                                    <p class="tl">NIC</p>
+                                    <P id="data-nic"></P>
+                                </td>
+                                <td>
+                                    <p class="tl">JOINED DATE</p>
+                                    <P id="data-joined"></P>
+                                </td>
+                            </tr>
+                            <tr class="data-tr">
+                                <td colspan="2">
+                                    <p class="tl">COUNTRY</p>
+                                    <P id="data-country"></P>
+                                </td>
+                            </tr>
+                            <tr class="data-tr">
+                                <td colspan="2">
+                                    <p class="tl">DESCRIPTION</p>
+                                    <P id="data-des"></P>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div id="options-btn" class="see-more-btn-row-hidden">
+                        <button id="showWarnings" class="see-more">Show previous warnings</button>
+                        <button id="sendWarning" class="warn">Send a warning</button>
+                        <button id="bann" class="bann">Bann account</button>
+                    </div>
+                </div>
+            </div>
+                
+           
+            
+        </div>
+
+        <div class="overlay" id="overlay2">
+            <div id="overlay-div2" class="overlay-div5">
+                <div class="close-top-div">
+                    <p class="close-top">X</p>
+                    
+                </div>
+
+                <div class="subheader2">
+                    <h2 class="subheading2">Warnings list</h2>
+                </div>
+
+                <div id="warn-content" class="contain-bottom">
+                   <!-- <div class="package-details-content">
+                        <div class="pkg-inner-div">
+                            <box-icon name='error-circle'></box-icon>
+                            <p id="warn-reason"></p>
+                            <p id="warn-date"></p>
+                        </div>
+                   </div> -->
+
+                    
+                </div>
+            </div>
+        </div>
+    </div> 
+    
+</body>
+
+<script src="../Javascripts/baseurl.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script src="../Javascripts/verify_designer_list_admin.js"></script>
+
+</html>

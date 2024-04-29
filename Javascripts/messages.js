@@ -210,7 +210,7 @@ function sendmessage() {
         redirect: 'follow'
     };
 
-    fetch("http://localhost:15000/enmo_skill_backend_war/messages", requestOptions)
+    fetch(BASE_URL+"/messages", requestOptions)
         .then(response =>{
             if (response.status === 201){
             const newItem = messagesOUT.cloneNode(true);
