@@ -28,6 +28,14 @@ function getCookie(cookieName) {
 const url = new URL(window.location.href);
  var value = url.searchParams.get('value');
  var role = url.searchParams.get('role');
+ var order_id=0;
+ if(url.searchParams.get('orderID')!=null){
+  order_id = url.searchParams.get('orderID');
+  document.querySelector(".title-order").textContent= "Oreder ID "+order_id
+
+    document.querySelector(".dropdown").style.display="none"
+  
+ }
 // var ref_no = url.searchParams.get('TicketID');
 
 
@@ -38,6 +46,8 @@ const url = new URL(window.location.href);
 loding.style.display ="none"
 
 if(value=="order"){
+
+  
     perent.appendChild(chaild1)
     const order = document.querySelector(".order")
     
@@ -137,9 +147,15 @@ var packageID = 0;
 var orderID = 0;
 
 if(value=="order"){
-  orders.addEventListener("change", () => {
-    orderID = orders.value
-  })
+  if(order_id!=0){
+    document.querySelector(".dropdown").style.display="none"
+    orderID=order_id
+  }else{
+    orders.addEventListener("change", () => {
+      orderID = orders.value
+    })
+  }
+  
 }else if(value == "packege"){
   packages.addEventListener("change", () => {
     packageID = packages.value
@@ -240,7 +256,7 @@ function ticketsubmission(fileURL,packageID,orderID,role){
   });
   
   setTimeout(() => {
-    if(role=="\"Designer\""){
+    if(role=="\"Designer\"" || role == "Designer"){
       window.location="../HTML/tikectListDisigner.html";
     }else if(role=="Client"){
       window.location="../HTML/tikectListClient.html"
