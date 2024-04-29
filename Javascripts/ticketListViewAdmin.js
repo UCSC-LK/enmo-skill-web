@@ -24,11 +24,13 @@ const PopupChild2 = document.querySelector(".body2")
 const loding = document.querySelector(".loading");
 const coverImage = document.querySelector('.gig-image1');
 const title = document.querySelector('.gig-title');
+const comment = document.querySelector('.comment');
 
 let cancel;
 
 
 viewMore(ticketID,admin)
+getComment(ticketID)
   
 function getdata(ticketID,flag,admin){
     loding.style.display ="none"
@@ -429,6 +431,43 @@ function getpackage(packageID){
     })
 }
 
+function getComment(ticketID){
+  var myHeaders = new Headers();                          
+  myHeaders.append("Content-Type", "application/json");  
+  myHeaders.append("Authorization", getCookie("JWT"));  
+  
+  var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+  };
+  
+  loding.style.display ="flex"
+  fetch(BASE_URL+"/support?comment="+encodeURIComponent(ticketID), requestOptions)
+    .then(response => {
+      loding.style.display ="none"
+      if(response.status == 401){
+        window.location.href = "../Failed/401.html";
+      }else if(response.status == 406){
+        const currentUrl = encodeURIComponent(window.location.href);
+        window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+      }else if(response.status == 404){
+        window.location.href = "../Failed/404.html";
+      }else {
+        return response.json()
+      }
+    })
+    
+    .then(result => {
+      if(result!=null){
+        document.querySelector(".comment-box").style.display="inline"
+      }
+      console.log(result)
+      result.forEach(item=>{
+        comment.textContent=item.description
+      })
+    })
+}
   
   //get role----------------------------------------------
   function getRole(roleId){
