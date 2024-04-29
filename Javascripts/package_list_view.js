@@ -119,7 +119,7 @@ function setCategories() {
     for (let i = 1; i <= data.length; i++) {
       var btn = document.createElement('button');
       btn.className = "title";
-      btn.value = i;
+      btn.value = data[i-1].categoryId;
       btn.innerHTML = data[i - 1].category;
 
       // Immediately Invoked Function Expression (IIFE) to create a closure for each button
