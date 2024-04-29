@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="../CSS/my_request.css">
     <link rel="stylesheet" href="../CSS/buyer_request.css">
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../Javascripts/baseurl.js"></script>
     
     <title>Notifications</title>
     <style>
@@ -18,6 +20,10 @@
             padding: 10px 0;
             border-bottom: 1px solid #e0e0e0;
         }
+        .one-item:hover{
+            background-color: #f3f3f3;
+        }
+
         .unread{
             display: flex;
             flex-direction: row;
@@ -27,6 +33,9 @@
             border-bottom: 1px solid #e0e0e0;
             background-color: #bcf3ff2c;
             border-bottom: #68e3ff9a solid 3px;
+        }
+        .unread:hover{
+            background-color: #f3f3f3;
         }
         .time{
             margin-left: auto;
@@ -67,22 +76,29 @@
                 <div class="upper">
                     
                 </div>
-                <div class="unread">
-                    <box-icon type='solid' name='info-circle' size ="50px" style="padding: 0 20px;"></box-icon>
+                <div class="row-hidden">
+                    <box-icon  class="icon-noti" name='info-circle' color="#838383" size ="50px" style="padding: 0 20px;"></box-icon>
                     <p class="contentofn">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque id laboriosam consequatur rem vero? Laudantium facilis omnis ad alias recusandae temporibus, minus vero ipsa, consectetur, dolore id qui commodi ab.</p>
                     <p class="time">12:00 PM</p>
                 </div>
-                <div class="one-item">
-                    <box-icon type='solid' name='info-circle' size ="50px" style="padding: 0 20px;"></box-icon>
-                    <p class="contentofn">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque id laboriosam consequatur rem vero? Laudantium facilis omnis ad alias recusandae temporibus, minus vero ipsa, consectetur, dolore id qui commodi ab.</p>
-                    <p class="time">12:00 PM</p>
-                </div>
+                
                 
             </div>
 
         </div>
     </div>
 <script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1000,
+        timerProgressBar: false,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+    }
+    });
     function getCookie(cookieName) {
         var name = cookieName + "=";
         var decodedCookie = decodeURIComponent(document.cookie);
@@ -97,10 +113,11 @@
         return null;
     }
     const count = document.getElementById("count");
-    listItemTemplate = document.querySelector(".one-item");
+    listItemTemplate = document.querySelector(".row-hidden");
     listContainer=document.getElementById("table");
     const myHeaders = new Headers();
     myHeaders.append("Authorization", getCookie("JWT"));
+    myHeaders.append("Content-Type", "application/json");
 
     const requestOptions = {
     method: "GET",
@@ -108,7 +125,7 @@
     redirect: "follow"
     };
 
-    fetch("http://localhost:15000/enmo_skill_backend_war/notification", requestOptions)
+    fetch(BASE_URL+"/notification", requestOptions)
     .then(response => 
     {if(response.status == 401){
       window.location.href = "../Failed/401.html";
@@ -137,14 +154,38 @@
 
         newItem.querySelector(".contentofn").textContent = item.content;
         newItem.querySelector(".time").textContent = item.date;
-        
-        
-        
+        newItem.querySelector(".icon-noti").setAttribute("name", selectIcon(item.type));
+
+        if(item.status==1){
+            newItem.addEventListener("click",()=>{
+
+                newItem.classList.remove("unread");
+                newItem.classList.add("one-item");
+                
+                const requestOptions = {
+                method: "PUT",
+                headers: myHeaders,
+                redirect: "follow"
+                };
+
+                fetch(BASE_URL+"/notification?notificationId="+item.notificationID, requestOptions)
+                .then((response) => response.text())
+                .then((result) => {
+                    Toast.fire({
+                        title: 'Notification marked as read',
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+                })
+                .catch((error) => console.error(error));
+            })
+        }
         
         newItem.classList.remove("row-hidden");
         if(item.status==1){
-            newItem.classList.add("row"); 
+            newItem.classList.add("unread");
         }else{
+            newItem.classList.add("one-item");
             
         }
         
@@ -154,6 +195,31 @@
 
   })
   .catch(error => console.log('error', error));
+
+
+function selectIcon(type){
+    if(type=="orderOK"){
+        return "cool";
+    }else if(type=="orderReceived"){
+        return "dollar-circle";
+    }else if(type=="warning"){
+        return "error-alt";
+    }else if(type=="cancelOrder"){
+        return "confused";
+    }else if(type=="Support"){
+        return "support";
+    }else if(type=="Proposal"){
+        return "food-menu";
+    }else{
+        return "info-circle";
+    }
+}
+
+//order
+//warning
+//cancel
+//proposal
+
 </script>
 </body>
 
