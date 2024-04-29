@@ -219,9 +219,7 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
       popup(element);
     });
 
-
-
-    if (element.status == 1) {
+    if (element.user.user_role != "5") {
 
       
       const makecsa = document.createElement('button');
@@ -302,7 +300,7 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
     });
 
 
-    if (element.status == 1) {
+    if (element.user.user_role != "5") {
 
       
       const makecsa = document.createElement('button');
@@ -353,7 +351,7 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
     document.getElementById("data-nic").textContent = data.user.NIC;
     document.getElementById("data-country").textContent = data.user.country;
 
-    if (data.status == 1) {
+    if (data.user.user_role != "5") {
       document.getElementById("options-btn").classList.add("see-more-btn-row")
       document.getElementById("options-btn").classList.remove("see-more-btn-row-hidden")
     } else{
@@ -416,7 +414,8 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
-                text: "Something went wrong!"
+                text: "Something went wrong!",
+                confirmButtonColor: "#000000"
             });
         });
     } else {
@@ -424,7 +423,8 @@ document.addEventListener("DOMContentLoaded", getActiveUsers)
         Swal.fire({
             icon: "warning",
             title: "Warning",
-            text: "Please enter a User ID!"
+            text: "Please enter a User ID!",
+            confirmButtonColor: "#000000"
         });
     }
 });
@@ -444,7 +444,7 @@ function warningConfirmation(){
     text: "Do you want to send a warning",
     icon: 'warning',
     showCancelButton: true,
-    confirmButtonColor: '#3085d6',
+    confirmButtonColor: '#000000',
     cancelButtonColor: '#d33',
     confirmButtonText: 'Yes! Send a warning'
   }).then((result) => {
@@ -483,7 +483,8 @@ function getWarnings(id) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Something went Wrong!"
+        text: "Something went Wrong!",
+        confirmButtonColor: "#000000"
       });
       console.log("Error"+response.status)
     }
@@ -532,7 +533,8 @@ function getWarnings(id) {
       Swal.fire({
        icon: "error",
        title: "Oops...",
-       text: "Something went wrong!"
+       text: "Something went wrong!",
+       confirmButtonColor: "#000000"
      });
     })
 }
@@ -545,7 +547,7 @@ function csaConfirmation(user){
       text: "Do you want to make this user a CSA",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
+      confirmButtonColor: '#000000',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Yes! Make CSA'
     }).then((result) => {
@@ -563,7 +565,7 @@ document.getElementById("bann").addEventListener("click", function(e) {
     text: "Do you want suspend the user",
     icon: 'warning',
     showCancelButton: true,
-    confirmButtonColor: '#3085d6',
+    confirmButtonColor: '#000000',
     cancelButtonColor: '#d33',
     confirmButtonText: 'Yes! Suspend user'
   }).then((result) => {
