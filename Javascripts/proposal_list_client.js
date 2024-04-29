@@ -70,7 +70,7 @@ fetch(
     result.forEach((item) => {
       const newItem = listItemTemplate.cloneNode(true);
 
-      newItem.querySelector(".requestID").textContent = item.designerId;
+      newItem.querySelector(".requestID").textContent = item.designer_name;
       newItem.querySelector(".title2").textContent = item.title;
       newItem.querySelector(".duration").textContent =
         item.deliveryDuration + " Days";
@@ -109,11 +109,12 @@ btn.addEventListener("click", () => {
 });
 
 function viewrequest(item) {
+
   popupview.style.display = "flex";
-  closetn.addEventListener("click", () => {
+  closetnv.addEventListener("click", () => {
     console.log("Script is running");
     // Remove the event listener when the popup is closed
-    btn.removeEventListener("click", createOrder);
+    // btn.removeEventListener("click", createOrder);
 
     popupview.style.display = "none";
   });

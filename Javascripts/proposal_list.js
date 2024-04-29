@@ -114,7 +114,7 @@ fetch(
       //     event.stopPropagation();
       //     deleteRequest(item.proposalID);
       //   });
-      newItem.querySelector(".requestID").textContent = item.requestID;
+      newItem.querySelector(".requestID").textContent = item.client_name;
       newItem.querySelector(".title2").textContent = item.title;
       newItem.querySelector(".duration").textContent =
         item.deliveryDuration + " Days";
