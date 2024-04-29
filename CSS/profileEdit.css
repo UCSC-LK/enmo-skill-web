@@ -61,7 +61,7 @@ h3{
 
 .name{
     display: grid;
-    grid-template-columns: 48% 48%;
+    grid-template-columns: 31% 31% 31%;
     gap: 37px;
 }
 
@@ -175,7 +175,7 @@ h3{
 }
 
 .img-btn{
-    display: none;
+    display: inline;
 }
 .skill{
     padding: 5px;

@@ -31,56 +31,105 @@ console.log(paramValue);
 
 
 //uplod img----------------------------------------------------------------------
-const selectImage = document.querySelector('.select-image');
-const inputFile = document.querySelector('#file');
+const fileInput = document.querySelector('.select-image');
+// const fileInput = document.querySelector('file');
 const imgArea = document.querySelector('.img-area');
 
-selectImage.addEventListener('click', function () {
-	inputFile.click();
-})
-
-inputFile.addEventListener('change', function () {
-    const image = this.files[0];
-    if (image.size < 2000000) {
+// selectImage.addEventListener('click', function () {
+// 	fileInput.click();
+// })
+var file=null
+fileInput.addEventListener('change', () => {
+    if (fileInput.files.length > 0) {
+        file = fileInput.files[0];
+        
         const reader = new FileReader();
-        reader.onload = () => {
-            const imgUrl = reader.result;
-            imgArea.innerHTML = '';
 
-            // Set the background image of .img-area and configure background size
-            imgArea.style.backgroundImage = `url(${imgUrl})`;
-            imgArea.style.backgroundSize = 'cover';
-            imgArea.style.backgroundRepeat = 'no-repeat';
-
-            imgArea.classList.add('active');
-            imgArea.dataset.img = image.name;
-        };
-        reader.readAsDataURL(image);
-    } else {
-        // alert("Image size more than 2MB");
-        const Toast = Swal.mixin({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-        didOpen: (toast) => {
-            toast.onmouseenter = Swal.stopTimer;
-            toast.onmouseleave = Swal.resumeTimer;
+        reader.onload = function (e) {
+            imgArea.src = e.target.result;
+          
         }
-        });
-            Toast.fire({
-            icon: "error",
-            title: "Image size more than 2MB"
-        });
+
+        reader.readAsDataURL(file);
     }
 });
 
+document.querySelector(".saveBTN").addEventListener("click",()=>{
+   
+    loding.style.display ="flex"
+    const myHeaders = new Headers();
+    myHeaders.append("endpoint", "profile_pics");
+    let RequestData = ""
+    if (file) {
+        const formData = new FormData();
+        formData.append('file', file);
+
+        fetch(BASE_URL+'/file', {
+            method: 'POST',
+            headers: myHeaders,
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log('Success:', data);
+            RequestData=data
+            Sendreq(RequestData)
+
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    } 
+   
+
+
+
+
+
+  })
+
+// inputFile.addEventListener('change', function () {
+//     const image = this.files[0];
+//     if (image.size < 2000000) {
+//         const reader = new FileReader();
+//         reader.onload = () => {
+//             const imgUrl = reader.result;
+//             imgArea.innerHTML = '';
+
+//             // Set the background image of .img-area and configure background size
+//             imgArea.style.backgroundImage = `url(${imgUrl})`;
+//             imgArea.style.backgroundSize = 'cover';
+//             imgArea.style.backgroundRepeat = 'no-repeat';
+
+//             imgArea.classList.add('active');
+//             imgArea.dataset.img = image.name;
+//         };
+//         reader.readAsDataURL(image);
+//     } else {
+//         // alert("Image size more than 2MB");
+//         const Toast = Swal.mixin({
+//             toast: true,
+//             position: "top-end",
+//             showConfirmButton: false,
+//             timer: 3000,
+//             timerProgressBar: true,
+//         didOpen: (toast) => {
+//             toast.onmouseenter = Swal.stopTimer;
+//             toast.onmouseleave = Swal.resumeTimer;
+//         }
+//         });
+//             Toast.fire({
+//             icon: "error",
+//             title: "Image size more than 2MB"
+//         });
+//     }
+// });
+
 //add image uplord button to edite page-------------------------------------------
 
-if(paramValue == "edite"){
-    document.querySelector(".img-btn").style.display = 'block';
-}
+// if(paramValue == "edite"){
+//     document.querySelector(".img-btn").style.display = 'block';
+// }
 
 
 
@@ -318,11 +367,12 @@ fetch(BASE_URL+"/profile", requestOptions)
     .catch(error => console.log('error', error));
     
     })
-}else{
+}else{}
     
 //send post request-------------------------------------------------------------
 
-    document.querySelector(".saveBTN").addEventListener("click",()=>{
+function Sendreq(url){
+    // console.log(url)
 
         var selectedSkill = []
         var selectedLanguages = []
@@ -352,6 +402,7 @@ fetch(BASE_URL+"/profile", requestOptions)
         const lname = document.getElementById("lastName").value
         const display_name = document.getElementById("displayName").value
         const description = document.getElementById("description").value
+        const NIC = document.getElementById("NIC").value
 
         var raw = JSON.stringify({
             "role": "Designer",
@@ -360,7 +411,10 @@ fetch(BASE_URL+"/profile", requestOptions)
             "display_name": display_name,
             "description":description,
             "skills": selectedSkill,
-            "language": selectedLanguages
+            "language": selectedLanguages,
+            "NIC":NIC,
+            "url":url
+         
         });
 
         var requestOptions = {
@@ -409,11 +463,11 @@ fetch(BASE_URL+"/profile", requestOptions)
         title: result
     });
     setTimeout(() => {
-        window.location = "../HTML/profile.html";
+        window.location = "../HTML/becomeaseller.html";
     }, 2500);
         
     })
-    })
+
     //  .catch(error => console.log('error', error));
     
 
@@ -421,46 +475,46 @@ fetch(BASE_URL+"/profile", requestOptions)
 
 
 
-var myHeaders = new Headers();
-myHeaders.append("Content-Type", "application/json");
-myHeaders.append("Authorization", getCookie("JWT"));  
+// var myHeaders = new Headers();
+// myHeaders.append("Content-Type", "application/json");
+// myHeaders.append("Authorization", getCookie("JWT"));  
 
-var requestOptions = {
-  method: 'OPTIONS',
-  headers: myHeaders,
-  redirect: 'follow'
-};
+// var requestOptions = {
+//   method: 'OPTIONS',
+//   headers: myHeaders,
+//   redirect: 'follow'
+// };
 
-loding.style.display ="flex"
+// loding.style.display ="flex"
 
-fetch(BASE_URL + "/profile", requestOptions)
-  .then(response => {
-    loding.style.display = "none";
-    if (response.status === 401) {
-      window.location.href = "../Failed/401.html";
-    } else if (response.status === 406) {
-      const currentUrl = encodeURIComponent(window.location.href);
-      window.location.href = "../Failed/Session%20timeout.html?returnUrl=" + currentUrl;
-    } else if (response.status === 404) {
-      window.location.href = "../Failed/404.html";
-    } else {
-      return response.json(); 
-    }
-  })
-  .then(result => {
-    // if (result && result.url) {
-      const imgArea = document.querySelector('.img-area');
-      imgArea.innerHTML = '';
-      imgArea.style.backgroundImage = `url(${result.url})`;
-      imgArea.style.backgroundSize = 'cover';
-      imgArea.style.backgroundRepeat = 'no-repeat';
-      imgArea.classList.add('active');
-      imgArea.dataset.img = result.url;
-    // } else {
-    //   console.error('Invalid response or URL not found.');
-    // }
-  })
-  .catch(error => console.error('Error fetching profile:', error));
+// fetch(BASE_URL + "/profile", requestOptions)
+//   .then(response => {
+//     loding.style.display = "none";
+//     if (response.status === 401) {
+//       window.location.href = "../Failed/401.html";
+//     } else if (response.status === 406) {
+//       const currentUrl = encodeURIComponent(window.location.href);
+//       window.location.href = "../Failed/Session%20timeout.html?returnUrl=" + currentUrl;
+//     } else if (response.status === 404) {
+//       window.location.href = "../Failed/404.html";
+//     } else {
+//       return response.json(); 
+//     }
+//   })
+//   .then(result => {
+//     // if (result && result.url) {
+//       const imgArea = document.querySelector('.img-area');
+//       imgArea.innerHTML = '';
+//       imgArea.style.backgroundImage = `url(${result.url})`;
+//       imgArea.style.backgroundSize = 'cover';
+//       imgArea.style.backgroundRepeat = 'no-repeat';
+//       imgArea.classList.add('active');
+//       imgArea.dataset.img = result.url;
+//     // } else {
+//     //   console.error('Invalid response or URL not found.');
+//     // }
+//   })
+//   .catch(error => console.error('Error fetching profile:', error));
 
 
 
