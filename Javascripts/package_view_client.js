@@ -509,38 +509,7 @@ document.getElementById("contact-btn").addEventListener("click", function(e) {
 
 })
 
-// function createOrder(price){
-//     var reqBody = {
-//         "packageId": packageId,
-//         "designerId" : deseignerId,
-//         "price" : price
-//     }
 
-//     console.log(deseignerId);
-
-//     fetch(BASE_URL+`/order`,{
-//         method: 'POST',
-//         headers: myHeaders,
-//         body: JSON.stringify(reqBody)
-//     }).then((response) => {
-//         if (response.ok) {
-//           console.log("Order created successfully");
-//             var rsp = response.json();
-//             rsp.then(data =>{
-//                 console.log("Order ID: " + data.orderId);
-//                 window.location.href=`../HTML/payment.html?orderId=${data.orderId}`
-//             })
-          
-//         } else {
-//           console.error("An error occurred while creating");
-//         }
-//       })
-//       .catch((error) => {
-//         console.error('An error occurred while creating');
-//       });
-
-    
-// }
 
 function on() {
     console.log("inside on");
@@ -595,27 +564,6 @@ document.getElementById("close-top").addEventListener("click", function(event) {
 
 });
 
-// function closePopup() {
-//   overlay_view.style.display = "none";
-// }
-
-// function showOrderOverlay(price, pricePackageId){
-
-//     console.log(price);
-//     console.log(typeof(pricePackageId));
-
-//     // let obj = JSON.parse(pricingItem);
-
-//     var overlayDiv = document.getElementById("overlay-div");
-
-//     // Selected_pricing_item = pricingItem;
-    
-//     overlayDiv.style.display = "block"
-//     overlay_view.classList.add('overlay');
-//     overlay_view.classList.remove('overlay-hidden');
-    
-//     // console.log(obj.price);
-// }
 
 function showOrderOverlay(price, pricePackageId) {
     try {
