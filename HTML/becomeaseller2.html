@@ -96,8 +96,9 @@
 
         fetch(BASE_URL+"/verifydesigner?first_time=true", requestOptions)
         .then((response) => {
-            if (response.status = 409) {
-                loading.style.display = "none";
+            loading.style.display = "none";
+            if (response.status == 409) {
+                
                 Swal.fire({
                     title: "Error!",
                     text: "Your request is processing. Please try again later.",

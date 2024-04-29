@@ -9,6 +9,7 @@
       <link rel="stylesheet" href="../CSS/becomeaseller.css">
       <link rel="stylesheet" href="../CSS/main.css">
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script src="../Javascripts/baseurl.js"></script>
 
     <style>
         
@@ -81,6 +82,9 @@
 
 
 <script>
+
+    var url1=null;
+    var url2=null;
     // Function to preview image before upload
     function previewImage(input, imgID) {
         var reader = new FileReader();
@@ -99,14 +103,99 @@
     document.getElementById('nic_back').addEventListener('change', function(){
         previewImage(this, 'nic_back_preview');
     });
+
+    document.querySelector(".submitBTN").addEventListener("click", () => {
+
+    const nicFrontFile = document.getElementById('nic_front').files[0];
+    const nicBackFile = document.getElementById('nic_back').files[0];
+
+    if (!nicFrontFile || !nicBackFile) {
+        alert("Please select both NIC front and back images.");
+        return; 
+    }
+
+    const formData1 = new FormData();
+    formData1.append('file', nicFrontFile);
+    const formData2 = new FormData();
+    formData2.append('file', nicBackFile);
+    
+    const myHeaders2 = new Headers();
+    myHeaders2.append("endpoint", "nics");
+
+        fetch(BASE_URL+'/file', {
+            method: 'POST',
+            headers: myHeaders2,
+            body: formData1
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log('Success:nic f', data);
+            url1=data;
+            sendr();
+
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+        fetch(BASE_URL+'/file', {
+            method: 'POST',
+            headers: myHeaders2,
+            body: formData2
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log('Success: nic back', data);
+            url2=data;
+            sendr();
+
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+        function sendr(){
+            console.log(url1,url2);
+            if(url1!=null && url2!=null){
+                const myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+                myHeaders.append("Authorization", getCookie("JWT"));
+
+                const raw = JSON.stringify({
+                "nicfront": url1,
+                "nicback": url2,
+                "Address": document.getElementById("address").value,
+                "desinerPhone": document.getElementById("telephone").value
+                });
+
+                const requestOptions = {
+                method: "POST",
+                headers: myHeaders,
+                body: raw,
+                redirect: "follow"
+                };
+
+                fetch(BASE_URL+"/verifydesigner", requestOptions)
+                .then((response) => response.text())
+                .then((result) => console.log(result))
+                .catch((error) => console.error(error));
+            }
+        }
+    
+
+
+
+});
+
+
+
+
+
+
 </script>
 
         </div>
-        <script>
-            function become(){
-                window.parent.location='../HTML/becomeaseller2.html';
-            }
-            </script>
+        
     </div>
 
 </body>
