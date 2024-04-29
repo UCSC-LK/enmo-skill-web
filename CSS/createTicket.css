@@ -83,7 +83,7 @@ body{
     color: #444;
     font-size: 15px;
     z-index: 1;
-    position: relative; /* Ensure relative positioning for proper z-index */
+    position: relative; 
 }
 
 .inputs-1 {
@@ -100,13 +100,13 @@ body{
     color: #444;
     font-size: 15px;
     z-index: 1;
-    position: relative; /* Ensure relative positioning for proper z-index */
+    position: relative; 
 }
 
 
 .input-lable {
     
-    font-size: 12px; /* Adjust this size as needed */
+    font-size: 12px; 
     font-weight: 400;
     font-family:Arial, Helvetica, sans-serif;
     color: #444;
@@ -200,5 +200,12 @@ input[type="file"] {
 
 .cbox{
     margin-top: 20px;
+    color: #444;
+}
+
+.title-order{
+    font-size: 20px; 
+    font-weight: bold;
+    font-family:Arial, Helvetica, sans-serif;
     color: #444;
 }

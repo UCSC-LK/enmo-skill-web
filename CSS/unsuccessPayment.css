@@ -34,3 +34,12 @@ body{
     width: 200px;
     height: 200px;
 }
+
+.back{
+    color: blue;
+
+}
+.back:hover{
+    color: rgb(39, 39, 153);
+    cursor: pointer;
+}

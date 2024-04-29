@@ -74,6 +74,25 @@ function getdata(ticketID,flag){
         document.querySelector(".ticketId").textContent = "Ticket Id: #"+ element.ref_no;
         // document.querySelector(".header").textContent = element.date;
 
+
+
+        document.querySelector(".assignBTN").addEventListener("click",async()=>{ 
+          const { value: text } = await Swal.fire({
+            input: "textarea",
+            inputLabel: "Reason",
+            inputPlaceholder: "Type reason here...",
+            inputAttributes: {
+              "aria-label": "Type reason message here"
+            },
+            showCancelButton: true
+          });
+          if (text) {
+            // Swal.fire(text);
+            toAdmin(ticketID,text,element.requesterID)
+          }   
+          
+        })
+
         //set order--------------------------------------------------------------------------
         if(element.order>0){
           orderId.style.display="inline"
@@ -130,7 +149,7 @@ function  viewMore(ticketID){
   var flag= 0
   var roleId=null;
   var role = null
-
+  var userID=null
   console.log(ticketID)
  
   var myHeaders = new Headers();                          
@@ -170,6 +189,7 @@ function  viewMore(ticketID){
       newItem.querySelector(".role2").textContent=role;
       newItem.querySelector(".description2").textContent=element.description;
       newItem.querySelector(".date2").textContent=element.date;
+      userID=element.requesterID
   
 
       flag=flag+1
@@ -209,9 +229,7 @@ function  viewMore(ticketID){
   //   comment.style.display = "none";
   // }
 
-  assignBTN.addEventListener("click",()=>{    
-    toAdmin(ticketID)
-  })
+  
 
   cloase.addEventListener("click",()=>{
     desition="solved"
@@ -489,7 +507,7 @@ swalIcon.setAttribute('color', '#3085d6');// Update the color
 
 
 //assign to admin-----------------------------------------------------------------------------------------------------
-function toAdmin(ticketId){
+function toAdmin(ticketId,comment,userId){
 
   let popup_details=document.querySelector(".pop-up");
   const template = popup_details.querySelector('.my-template');
@@ -516,11 +534,16 @@ swalIcon.setAttribute('color', '#3085d6');// Update the color
       myHeaders.append("Content-Type", "application/json");  
       myHeaders.append("Authorization", getCookie("JWT"));   
     
+      var raw = JSON.stringify({
+        "userId":userId,
+        "comment":comment 
+      });
       
       var requestOptions = {
       method: 'OPTIONS',
       headers: myHeaders,
-      redirect: 'follow'
+      redirect: 'follow',
+      body: raw
       };
       
       loding.style.display ="flex"

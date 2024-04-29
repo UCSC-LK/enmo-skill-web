@@ -6,6 +6,9 @@
     <link rel="stylesheet" href="../CSS/main.css">
     <link rel="stylesheet" href="../CSS/profileEdit.css">
     <title>Profile Details</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.js"></script>
 </head>
 
 <body>
@@ -19,17 +22,25 @@
             <div class="container">
                 <div class="main-container">
                     <div class="header">
-                        <h2>Personal Info</h2>
+                        <h2>Cretate Your Profile</h2>
                     </div>
                     <div class="table-main">
                         <div class="container2"> 
                             <div class="form-layout">
-                                <div>
-                                    <h3>Full Name</h3>
-                                    <p class="paragraph">Ex.Chamara Weerasinhe</p>
-                                    <input  class="inputs-1" name="firstName" id="firstName" required>
-                                    <br>
-                                    <input  class="inputs-1" name="lastName" id="lastName" required>
+                                <div class="name">
+                                    <div class="fname">
+                                        <h3>First Name</h3>
+                                        <input  class="inputs-1" name="firstName" id="firstName" required>
+                                    </div>
+                                    <div class="lname">
+                                        <h3>Last Name</h3>
+                                        <input  class="inputs-1" name="lastName" id="lastName" required>
+                                    </div>
+                                    <div class="NIC">
+                                        <h3>NIC Number</h3>
+                                        <input  class="inputs-1" name="NIC" id="NIC" required>
+                                    </div>
+                                           
                                                 
                                 </div>
                                 <br><br><br>
@@ -55,16 +66,16 @@
                 
                                     <div class="img-container">
                                         <input type="file" id="file" accept="image/*" hidden>
-                                        <div class="img-area" data-img="">
+                                        <div  data-img="">
                                         
-                                            <img src="../Assests/icons/cloud-computing.png">
+                                            <img class="img-area" src="../Assests/icons/cloud-computing.png">
                                         
                                             <h3>Upload Image</h3>
                                             <p>Image size must be less than <span>2MB</span></p>
                                                                     
                                         </div>
                                         <div class="img-btn">
-                                            <button class="btn select-image" style="margin-left: 80px;">Select Image</button>
+                                            <input class="btn select-image" style="margin-left: 80px;" type="file">
                                         </div>
                                   
                                     </div>
@@ -74,73 +85,105 @@
                                 <br><br><br>
                 
                                 <div>
-                                    <h3>Description</h3>
+                                    <h3>Profile Bio</h3>
                                     <textarea  class="inputs" name="description" id="description" required></textarea>
                                 </div>
                 
                                 <br><br><br>
+                                
+                                <!-- <div>
+                                    <h3>Languages</h3>
+                                    <p>Choose your languages </p> -->
+
+                                    <!-- <div id="droppable-area" ondrop="drop(event)" ondragover="allowDrop(event)"></div> -->
+
+                                    <!-- <div class="languageParent">
+                                        <div style="display:none">
+                                            <div class="language"></div>
+                                        </div>
+                                    </div> -->
+                                    <!-- <span class="draggable-text " draggable="true" ondragstart="drag(event)">Text 1</span>
+                                    <span class="draggable-text" draggable="true" ondragstart="drag(event)">Text 2</span>
+                                    <span class="draggable-text" draggable="true" ondragstart="drag(event)">Text 3</span> -->
+
+                                   
+                                <!-- </div> -->
                 
                 
                                 <div>
                 
-                                    <h3>Skills</h3>
-                                    <p class="paragraph">Choose your skills less than six.</p>
-                                    
-                                    <div  class="skill-selecter-main">
-                                        <div style="display: none;" >
-                                            <div class="skill-selecter">
-                                                <br>
-                                                <select id="skill" name="skill" class="skill" required></select>
-                                                    
-                                            </div>
-                                        </div>
+                                    <div class="skill-header">
+                                        <h3>Skills</h3>
+                                        <div class="selection-header"><select class="selection" id="skill-dropdown"></select></div>
                                         
                                     </div>
+                                    
+                                    <!-- <p class="paragraph">Choose your skills less than six.</p> -->
+                                    
+                                    <div id="skill-tags"></div>
+                                    
+                                    
+                                    <!-- <option value="0" disabled>Select skills</option> -->
+                                    
+                                    <br><br>
+                                    
+                                    <!-- <button id="submit-btn">Submit</button> -->
+                                    
                                     <br>
                 
-                                    <div class="btn-bottom">
+                                    <!-- <div class="btn-bottom">
                                         <div class="add-skill-btn">
                                             <button class="btn setSkills">Add skills</button>
                                         </div>
                 
-                                        <!-- <div>select
-                                            <button class="btn reset">Reset Languages</button>
-                                        </div> -->
-                                    </div>
+                                    </div> -->
                                     
                                 </div>
                                 <br><br><br>
                 
                                 <div>
+
+                                    <div class="language-header">
+                                        <h3>Langeages</h3>
+                                        <div class="selection-header"><select class="selection" id="language-dropdown"></select></div>
+                                        
+                                    </div>
+                                    <div id="language-tags"></div>
+                                    <br><br>
+                    
+                                    <!-- <button id="submit-btn-language">Submit</button> -->
+                                    
+                                    <br>
+                                    
                 
-                                    <h3>Langeages</h3>
+                                    <!-- <h3>Langeages</h3>
                                     <p class="paragraph">Select which languages you can communicate.</p>
                                     
                                     <div  class="languag-selecter-main">
                                         <div style="display: none;">
                                             <div class="language-selecter">
                                                 <br>
-                                                <select id="language" name="language" class="language" required>
+                                                <select id="language" name="language" class="language" required> -->
                                                     <!-- <option value="">Select a lanuage</option>
                                                     <option value="Sinhala">Sinhala</option>
                                                     <option value="English">English</option>
                                                     <option value="Tamil">Tamil</option> -->
-                                                </select>
+                                                <!-- </select>
                                             </div>
                                         </div>
                                         
                                     </div>
-                                    <br>
+                                    <br> -->
                 
-                                    <div class="btn-bottom">
+                                    <!-- <div class="btn-bottom">
                                         <div class="add-btn">
                                             <button class="btn setLanguage">Add Language</button>
-                                        </div>
+                                        </div> -->
                 
                                         <!-- <div>
                                             <button class="btn reset">Reset Languages</button>
                                         </div> -->
-                                    </div>
+                                    <!-- </div> -->
                                     
                                 </div>
                 

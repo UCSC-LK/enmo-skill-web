@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
     
-      <link rel="stylesheet" href="../CSS/main.css">
+     
       <link rel="stylesheet" href="../CSS/my_request.css">
+      <link rel="stylesheet" href="../CSS/becomeaseller.css">
+      <link rel="stylesheet" href="../CSS/main.css">
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 
     <style>
@@ -27,24 +29,42 @@
                         <div class="table">
 
                         <form action="#" method="post" enctype="multipart/form-data">
-                            <label for="address">Address:</label>
-                            <input type="text" id="address" name="address" required>
-                            <small>(Address should match the one shown in your NIC)</small><br>
+                            <div class="bottom1">
+                                <div class="addres-main">
+                                    <label for="address">Address:</label>
+                                    <input type="text" class="input" id="address" name="address" required>
+                                    <small>(Address should match the one shown in your NIC)</small><br>
+                                    
+                                </div>
+                                <div class="teleohone-main">
+                                    <label for="telephone">Telephone Number:</label>
+                                    <input type="tel" class="input" id="telephone" name="telephone" required>
+                                    <small>(A one-time password will be sent to this number)</small><br>
+                                    
+                                </div>
+                            </div>
+
+                            <div class="bottom2">
+                                <div class="front-main">
+                                    <label for="nic_front" class="imag-title">NIC Front Image:</label>
+                                    <input type="file" id="nic_front" name="nic_front" accept="image/*" required><br>
+                                    <img id="nic_front_preview" src="../Assests/placeholder-article.png" alt="NIC Front Preview" class="img"><br>
+                                    
+                                </div>
+                                <div class="back-main">
+                                    <label for="nic_back" class="imag-title">NIC Back Image:</label>
+                                    <input type="file" id="nic_back" name="nic_back" accept="image/*" required><br>
+                                    <img id="nic_back_preview" src="../Assests/placeholder-article.png" alt="NIC Back Preview" class="img"><br>
+                                    
+                                </div>
+                            </div>                          
                             
-                            <label for="telephone">Telephone Number:</label>
-                            <input type="tel" id="telephone" name="telephone" required>
-                            <small>(A one-time password will be sent to this number)</small><br>
                             
-                            <label for="nic_front">NIC Front Image:</label>
-                            <input type="file" id="nic_front" name="nic_front" accept="image/*" required><br>
-                            <img id="nic_front_preview" src="#" alt="NIC Front Preview" style="display: none; max-width: 200px; max-height: 200px;"><br>
                             
-                            <label for="nic_back">NIC Back Image:</label>
-                            <input type="file" id="nic_back" name="nic_back" accept="image/*" required><br>
-                            <img id="nic_back_preview" src="#" alt="NIC Back Preview" style="display: none; max-width: 200px; max-height: 200px;"><br>
                             
-                            <input type="submit" value="Next">
                         </form>
+
+                        <div class="submitBTN"><input type="submit" class="button" value="Next"></div>
 
                         <div class="content">
                             <div class="content-title">Verification Process</div>

@@ -18,13 +18,14 @@ body{
 
 .container-main{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     width: 80%;
     /* height: auto; */
 }
 .body-container{
     width: 100%;
-    padding: 20px 40px;
+    padding: 40px 40px;
     border-radius: 5px;
     /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
     background-color: white;
@@ -48,6 +49,11 @@ body{
     max-height: 20;
 } */
 
+.headerMain{
+    display: flex;
+    justify-content: right;
+}
+
 .header{
     display: flex;
     color:#3C3C3C;
@@ -63,7 +69,10 @@ body{
 }
 
 h2{
-    color:#444;
+    color: rgb(60, 60, 60);
+    font-size: 35px;
+    font-weight: lighter;
+    margin-bottom: 10px;
 }
 
 .body{
@@ -75,11 +84,13 @@ h2{
 }
 
 .ticketIdTitle{
-    display: flex;
-    justify-content: left;
+    display: grid;
+    grid-template-columns: 8% 42% 50%;
+    /* justify-content: left; */
     font-weight: 800;
     color:#3C3C3C;
     text-align: left;
+    padding-bottom: 20px;
 }
 .ticketId{
     padding-left: 8px;
@@ -196,7 +207,7 @@ h2{
 .reply {
     display: flex;
     justify-content: right;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
 }
 .BTN{
     font-size: 15px;

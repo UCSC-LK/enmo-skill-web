@@ -11,7 +11,7 @@ function getCookie(cookieName) {
     }
     return null;
   }
-
+  const skillsArray1 = [];
   const loding = document.querySelector(".loading");
 
   loding.style.display ="none"
@@ -31,68 +31,118 @@ console.log(paramValue);
 
 
 //uplod img----------------------------------------------------------------------
-const selectImage = document.querySelector('.select-image');
-const inputFile = document.querySelector('#file');
+const fileInput = document.querySelector('.select-image');
+// const fileInput = document.querySelector('file');
 const imgArea = document.querySelector('.img-area');
 
-selectImage.addEventListener('click', function () {
-	inputFile.click();
-})
-
-inputFile.addEventListener('change', function () {
-    const image = this.files[0];
-    if (image.size < 2000000) {
+// selectImage.addEventListener('click', function () {
+// 	fileInput.click();
+// })
+var file=null
+fileInput.addEventListener('change', () => {
+    if (fileInput.files.length > 0) {
+        file = fileInput.files[0];
+        
         const reader = new FileReader();
-        reader.onload = () => {
-            const imgUrl = reader.result;
-            imgArea.innerHTML = '';
 
-            // Set the background image of .img-area and configure background size
-            imgArea.style.backgroundImage = `url(${imgUrl})`;
-            imgArea.style.backgroundSize = 'cover';
-            imgArea.style.backgroundRepeat = 'no-repeat';
-
-            imgArea.classList.add('active');
-            imgArea.dataset.img = image.name;
-        };
-        reader.readAsDataURL(image);
-    } else {
-        // alert("Image size more than 2MB");
-        const Toast = Swal.mixin({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-        didOpen: (toast) => {
-            toast.onmouseenter = Swal.stopTimer;
-            toast.onmouseleave = Swal.resumeTimer;
+        reader.onload = function (e) {
+            imgArea.src = e.target.result;
+          
         }
-        });
-            Toast.fire({
-            icon: "error",
-            title: "Image size more than 2MB"
-        });
+
+        reader.readAsDataURL(file);
     }
 });
 
+document.querySelector(".saveBTN").addEventListener("click",()=>{
+   
+    loding.style.display ="flex"
+    const myHeaders = new Headers();
+    myHeaders.append("endpoint", "profile_pics");
+    let RequestData = ""
+    if (file) {
+        const formData = new FormData();
+        formData.append('file', file);
+
+        fetch(BASE_URL+'/file', {
+            method: 'POST',
+            headers: myHeaders,
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log('Success:', data);
+            RequestData=data
+            Sendreq(RequestData)
+
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    } 
+   
+
+
+
+
+
+  })
+
+// inputFile.addEventListener('change', function () {
+//     const image = this.files[0];
+//     if (image.size < 2000000) {
+//         const reader = new FileReader();
+//         reader.onload = () => {
+//             const imgUrl = reader.result;
+//             imgArea.innerHTML = '';
+
+//             // Set the background image of .img-area and configure background size
+//             imgArea.style.backgroundImage = `url(${imgUrl})`;
+//             imgArea.style.backgroundSize = 'cover';
+//             imgArea.style.backgroundRepeat = 'no-repeat';
+
+//             imgArea.classList.add('active');
+//             imgArea.dataset.img = image.name;
+//         };
+//         reader.readAsDataURL(image);
+//     } else {
+//         // alert("Image size more than 2MB");
+//         const Toast = Swal.mixin({
+//             toast: true,
+//             position: "top-end",
+//             showConfirmButton: false,
+//             timer: 3000,
+//             timerProgressBar: true,
+//         didOpen: (toast) => {
+//             toast.onmouseenter = Swal.stopTimer;
+//             toast.onmouseleave = Swal.resumeTimer;
+//         }
+//         });
+//             Toast.fire({
+//             icon: "error",
+//             title: "Image size more than 2MB"
+//         });
+//     }
+// });
+
 //add image uplord button to edite page-------------------------------------------
 
-if(paramValue == "edite"){
-    document.querySelector(".img-btn").style.display = 'block';
-}
+// if(paramValue == "edite"){
+//     document.querySelector(".img-btn").style.display = 'block';
+// }
 
 
 
 //drop down skills------------------------------------------------------------------
-const parentSkill = document.querySelector(".skill-selecter-main");
-const childSkill = document.querySelector(".skill-selecter");
+// const parentSkill = document.querySelector(".skill-selecter-main");
+// const childSkill = document.querySelector(".skill-selecter");
 
-let selectedSkill = []
+// let selectedSkill = []
+var skillsArray2 = []
 let cloneCount1=0
 const maxSkillClones = 2
 
-const skillDropdown = document.getElementById('skill');
+// const skillDropdowns = document.getElementById('skill');
 
 var myHeaders = new Headers();                          
 myHeaders.append("Content-Type", "application/json");   
@@ -122,84 +172,28 @@ fetch(BASE_URL+"/skill", requestOptions)
   })
 .then(result => {
 
-    result.push({"skills": "Select a skill","skill_id": "0"})
 
-    result.sort(function(a, b) {
-        return (a.skill_id - b.skill_id);
-    }).sort(function(a, b) {
-        return (a.skill_id - b.skill_id);
-    });
-
-    console.log(result)
-
-    // Populate the skill dropdown with options 
-    result.forEach(skill => {  
-        const option = document.createElement('option');
-        option.value = skill.skill_id;
-        option.textContent = skill.skills;
-        skillDropdown.appendChild(option);
-        console.log(option)
-
-    });
+    result.forEach(item=>{
+        skillsArray1.push(item)
+        
+    })
+    console.log(skillsArray1)
+    populateDropdown()
 })
 .catch(error => console.log('error', error));
 
-document.querySelector(".setSkills").addEventListener("click",()=>{
-
-    if(cloneCount1<maxSkillClones){
-        const newItemSkill = childSkill.cloneNode(true);
-        parentSkill.appendChild(newItemSkill);
-        cloneCount1++
-    }
-    
-
-document.querySelectorAll(".skill").forEach((select) => {
-    select.addEventListener("change", () => {
-
-        const selectedValue = select.value;
-        
-        selectedSkill.push(selectedValue)
-
-        // Reset display for all options in all dropdowns
-        document.querySelectorAll(".skill").forEach((option) => {
-            option.style.display = "";
-        });
-
-        // Hide the selected option 
-        document.querySelectorAll(".skill").forEach((otherSelect) => {
-            const optionToHide = otherSelect.querySelector(`[value="${selectedValue}"]`);
-            if (optionToHide) {
-                optionToHide.style.display = "none";
-            }
-        });
-
-        const optionToHide = select.querySelector(`[value="0"]`);
-        if (optionToHide) {
-            optionToHide.style.display = "none";
-        }
-
-    });
-});
-
-if(cloneCount1 == maxSkillClones){
-    document.querySelector(".add-skill-btn").style.display="none"
-}
-
-})
 
 
+ //drop down language----------------------------------------------------------------------------------
+// const languageParent = document.querySelector(".languag-selecter-main");
+// const languageChild = document.querySelector(".language-selecter");
+// const addButton = document.querySelector(".setLanguage");
 
+// let cloneCount = 0;
+// const maxClones = 3;
+let LanguageArray = []
 
-//drop down language----------------------------------------------------------------------------------
-const languageParent = document.querySelector(".languag-selecter-main");
-const languageChild = document.querySelector(".language-selecter");
-const addButton = document.querySelector(".setLanguage");
-
-let cloneCount = 0;
-const maxClones = 3;
-let selectedLanguages = []
-
-const languageDropdown = document.getElementById('language');
+// const languageDropdown = document.getElementById('language');
 
 var myHeaders = new Headers();                          
 myHeaders.append("Content-Type", "application/json");   
@@ -227,79 +221,15 @@ fetch(BASE_URL+"/languages", requestOptions)
     }
   })
 .then(result => {
-
-    result.push({"language": "Select a language","language_id": "0"})
-    result.sort(function(a, b) {
-        return (a.language_id - b.language_id);
-    }).sort(function(a, b) {
-        return (a.language_id - b.language_id);
-    });
-
-    console.log(result)
-
-    // Populate the skill dropdown with options 
     result.forEach(language => {  
-        const option = document.createElement('option');
-        option.value = language.language_id;
-        option.textContent = language.language;
-        languageDropdown.appendChild(option);
-        console.log(option)
-
+        LanguageArray.push(language)
     });
+    console.log(LanguageArray)
+    populateDropdownLanguage()
 })
 .catch(error => console.log('error', error));
 
-document.querySelector(".add-btn").addEventListener("click",()=>{
 
-    if(cloneCount1<maxClones){
-        const newItemSkill = languageChild.cloneNode(true);
-        languageParent.appendChild(newItemSkill);
-        cloneCount1++
-    }
-
-
-    document.querySelectorAll(".language").forEach((select) => {
-        select.addEventListener("change", () => {
-
-        const selectedValue = select.value;
-
-        if(select.value==1){
-            selectedLanguages.push("Sinhala")
-        }else if(select.value==2){
-            selectedLanguages.push("English")
-        }else if(select.value==3){
-            selectedLanguages.push("Tamil")
-        }
-        
-
-        // Reset display for all options in all dropdowns
-        document.querySelectorAll(".language").forEach((option) => {
-            option.style.display = "";
-        });
-
-        // Hide the selected option 
-        document.querySelectorAll(".language").forEach((otherSelect) => {
-            const optionToHide = otherSelect.querySelector(`[value="${selectedValue}"]`);
-            if (optionToHide) {
-                optionToHide.style.display = "none";
-            }
-        });
-
-        const optionToHide = select.querySelector(`[value="0"]`);
-        if (optionToHide) {
-            optionToHide.style.display = "none";
-        }
-
-    });
-});
-
-if(cloneCount1 == maxClones){
-    document.querySelector(".add-btn").style.display="none"
-}
-
-})
-
-console.log(selectedLanguages)
 
 if(paramValue == "edite"){
 
@@ -343,7 +273,27 @@ loding.style.display ="flex"
 //send put request-------------------------------------------------------------
 
 document.querySelector(".saveBTN").addEventListener("click", () => {
-    console.log("ssaa")
+
+    var selectedSkill = []
+    var selectedLanguages = []
+    const selectedSkills = Array.from(document.querySelectorAll('.skill-tag')).map(tag => ({
+        skills: tag.textContent,
+        skill_id: tag.dataset.skillId
+    }));
+
+    const selectedLanguage = Array.from(document.querySelectorAll('.language-tag')).map(tag => ({
+        language: tag.textContent,
+        language_id: tag.dataset.languageId
+    }));
+    
+
+    selectedSkills.forEach(item =>{
+        selectedSkill.push(item.skill_id)
+    })
+    selectedLanguage.forEach(item =>{
+        selectedLanguages.push(item.language_id)
+    })
+    console.log(selectedLanguages)
 
 var myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
@@ -417,11 +367,32 @@ fetch(BASE_URL+"/profile", requestOptions)
     .catch(error => console.log('error', error));
     
     })
-}else{
+}else{}
     
 //send post request-------------------------------------------------------------
 
-    document.querySelector(".saveBTN").addEventListener("click",()=>{
+function Sendreq(url){
+    // console.log(url)
+
+        var selectedSkill = []
+        var selectedLanguages = []
+        const selectedSkills = Array.from(document.querySelectorAll('.skill-tag')).map(tag => ({
+            skills: tag.textContent,
+            skill_id: tag.dataset.skillId
+        }));
+    
+        const selectedLanguage = Array.from(document.querySelectorAll('.language-tag')).map(tag => ({
+            language: tag.textContent,
+            language: tag.dataset.languageId
+        }));
+        
+    
+        selectedSkills.forEach(item =>{
+            selectedSkill.push(item.skill_id)
+        })
+        selectedLanguage.forEach(item =>{
+            selectedLanguages.push(item.language)
+        })
         
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
@@ -431,6 +402,7 @@ fetch(BASE_URL+"/profile", requestOptions)
         const lname = document.getElementById("lastName").value
         const display_name = document.getElementById("displayName").value
         const description = document.getElementById("description").value
+        const NIC = document.getElementById("NIC").value
 
         var raw = JSON.stringify({
             "role": "Designer",
@@ -439,7 +411,10 @@ fetch(BASE_URL+"/profile", requestOptions)
             "display_name": display_name,
             "description":description,
             "skills": selectedSkill,
-            "language": selectedLanguages
+            "language": selectedLanguages,
+            "NIC":NIC,
+            "url":url
+         
         });
 
         var requestOptions = {
@@ -488,59 +463,177 @@ fetch(BASE_URL+"/profile", requestOptions)
         title: result
     });
     setTimeout(() => {
-        window.location = "../HTML/profile.html";
+        window.location = "../HTML/becomeaseller.html";
     }, 2500);
         
     })
-    })
-     .catch(error => console.log('error', error));
+
+    //  .catch(error => console.log('error', error));
     
 
 }
 
 
 
-var myHeaders = new Headers();
-myHeaders.append("Content-Type", "application/json");
-myHeaders.append("Authorization", getCookie("JWT"));  
+// var myHeaders = new Headers();
+// myHeaders.append("Content-Type", "application/json");
+// myHeaders.append("Authorization", getCookie("JWT"));  
 
-var requestOptions = {
-  method: 'OPTIONS',
-  headers: myHeaders,
-  redirect: 'follow'
-};
+// var requestOptions = {
+//   method: 'OPTIONS',
+//   headers: myHeaders,
+//   redirect: 'follow'
+// };
 
-loding.style.display ="flex"
+// loding.style.display ="flex"
 
-fetch(BASE_URL + "/profile", requestOptions)
-  .then(response => {
-    loding.style.display = "none";
-    if (response.status === 401) {
-      window.location.href = "../Failed/401.html";
-    } else if (response.status === 406) {
-      const currentUrl = encodeURIComponent(window.location.href);
-      window.location.href = "../Failed/Session%20timeout.html?returnUrl=" + currentUrl;
-    } else if (response.status === 404) {
-      window.location.href = "../Failed/404.html";
-    } else {
-      return response.json(); 
-    }
-  })
-  .then(result => {
-    // if (result && result.url) {
-      const imgArea = document.querySelector('.img-area');
-      imgArea.innerHTML = '';
-      imgArea.style.backgroundImage = `url(${result.url})`;
-      imgArea.style.backgroundSize = 'cover';
-      imgArea.style.backgroundRepeat = 'no-repeat';
-      imgArea.classList.add('active');
-      imgArea.dataset.img = result.url;
-    // } else {
-    //   console.error('Invalid response or URL not found.');
-    // }
-  })
-  .catch(error => console.error('Error fetching profile:', error));
-
-
+// fetch(BASE_URL + "/profile", requestOptions)
+//   .then(response => {
+//     loding.style.display = "none";
+//     if (response.status === 401) {
+//       window.location.href = "../Failed/401.html";
+//     } else if (response.status === 406) {
+//       const currentUrl = encodeURIComponent(window.location.href);
+//       window.location.href = "../Failed/Session%20timeout.html?returnUrl=" + currentUrl;
+//     } else if (response.status === 404) {
+//       window.location.href = "../Failed/404.html";
+//     } else {
+//       return response.json(); 
+//     }
+//   })
+//   .then(result => {
+//     // if (result && result.url) {
+//       const imgArea = document.querySelector('.img-area');
+//       imgArea.innerHTML = '';
+//       imgArea.style.backgroundImage = `url(${result.url})`;
+//       imgArea.style.backgroundSize = 'cover';
+//       imgArea.style.backgroundRepeat = 'no-repeat';
+//       imgArea.classList.add('active');
+//       imgArea.dataset.img = result.url;
+//     // } else {
+//     //   console.error('Invalid response or URL not found.');
+//     // }
+//   })
+//   .catch(error => console.error('Error fetching profile:', error));
 
 
+
+
+  const skillDropdown = document.getElementById('skill-dropdown');
+  const skillTagsContainer = document.getElementById('skill-tags');
+  const submitButton = document.getElementById('submit-btn');
+
+  // Function to populate the dropdown with skills--------------------------------------------------------------------------------
+  function populateDropdown() {
+    const option = document.createElement('option');
+          option.value = 0;
+          option.textContent = "Select Skills";
+          skillDropdown.appendChild(option);
+      skillsArray1.forEach(skill => {
+        console.log(skill)
+          const option = document.createElement('option');
+          option.value = skill.skill_id;
+          option.textContent = skill.skills;
+          skillDropdown.appendChild(option);
+      });
+  }
+
+  function addSkillTag(skill) {
+      const tag = document.createElement('span');
+      tag.classList.add('skill-tag');
+      tag.textContent = skill.skills;
+      tag.dataset.skillId = skill.skill_id;
+      skillTagsContainer.appendChild(tag);
+
+      tag.addEventListener('click', () => {
+          tag.remove();
+    
+          const option = document.createElement('option');
+          option.value = skill.skill_id;
+          option.textContent = skill.skills;
+          skillDropdown.appendChild(option);
+      });
+  }
+
+  
+  skillDropdown.addEventListener('change', () => {
+      const selectedOption = skillDropdown.options[skillDropdown.selectedIndex];
+      const selectedSkill = skillsArray1.find(skill => skill.skill_id == selectedOption.value);
+      if (selectedSkill) {
+          addSkillTag(selectedSkill);
+          selectedOption.remove();
+      }
+  });
+
+
+//   submitButton.addEventListener('click', () => {
+//       const selectedSkills = Array.from(document.querySelectorAll('..skill-tag')).map(tag => ({
+//           skills: tag.textContent,
+//           skill_id: tag.dataset.skillId
+//       }));
+//       console.log(selectedSkills);
+//   });
+
+  // Populate the dropdown initially
+//   populateDropdown();
+
+
+
+const languageDropdown = document.getElementById('language-dropdown');
+  const languageContainer = document.getElementById('language-tags');
+  const submitButtonlanguage = document.getElementById('submit-btn-language');
+
+  // Function to populate the dropdown with skills--------------------------------------------------------------------------------
+  function populateDropdownLanguage() {
+    const option = document.createElement('option');
+          option.value = 0;
+          option.textContent = "Select Languages";
+          languageDropdown.appendChild(option);
+          LanguageArray.forEach(language => {
+        console.log(language)
+          const option = document.createElement('option');
+          option.value = language.language_id;
+          option.textContent = language.language;
+          languageDropdown.appendChild(option);
+      });
+  }
+
+
+  function addLanguageTag(language) {
+      const tag = document.createElement('span');
+      tag.classList.add('language-tag');
+      tag.textContent = language.language;
+      tag.dataset.languageId = language.language_id;
+      languageContainer.appendChild(tag);
+    
+      tag.addEventListener('click', () => {
+          tag.remove();
+          
+          const option = document.createElement('option');
+          option.value = language.language_id;
+          option.textContent = language.language;
+          languageDropdown.appendChild(option);
+      });
+  }
+
+
+  languageDropdown.addEventListener('change', () => {
+      const selectedOptionlanguage = languageDropdown.options[languageDropdown.selectedIndex];
+    //   console.log(selectedOptionlanguage)
+      const selectedLanguage = LanguageArray.find(language => language.language_id == selectedOptionlanguage.value);
+    //   console.log(selectedLanguage)
+      if (selectedLanguage) {
+        console.log(selectedLanguage)
+        addLanguageTag(selectedLanguage);
+        selectedOptionlanguage.remove();
+      }
+  });
+
+ 
+//   submitButtonlanguage.addEventListener('click', () => {
+//       const selectedLanguage = Array.from(document.querySelectorAll('.language-tag')).map(tag => ({
+//           language: tag.textContent,
+//           language: tag.dataset.languageId
+//       }));
+//       console.log(selectedLanguage);
+//   });
