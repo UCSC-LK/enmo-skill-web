@@ -37,7 +37,11 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
   const messageDiv = document.getElementById("messageDiv");
 
   if(password.length < 8){
-    alert("Password length must be greater than 8")
+    Toast.fire({
+      icon: "error",
+      title: "Password must be at least 8 characters long"
+    })
+    
   }else{
 
   // Create a JavaScript object representing the user data

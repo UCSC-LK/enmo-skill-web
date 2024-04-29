@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/main.css">
+    <link rel="stylesheet" href="../CSS/messages.css">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Messages</title>
+</head>
+<style>
+    .page{
+        display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100%;
+    }
+    .main{
+        width: -webkit-fill-available;
+    height: 88%;
+    display: flex;
+    }
+    .left-panel{
+        margin-top: 0;
+        box-shadow: 0 10px 10px rgba(142, 142, 142, 0.468);
+        background-color: rgb(239, 239, 239)    ;
+        width: 331px;
+        min-width: 310px;
+    }
+    .msg-box-main{
+        margin-top: 80px;
+    }
+    .time {
+    color: #777;
+    display: block;
+    font-size: 12px;
+    margin: 5px 0px 0px 20px;}
+</style>
+<body>
+    <div class="loading">
+        <div class="spin"></div>
+    </div>
+
+    <!-- <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>  -->
+    <div class="page">
+        <div id="sidebar-placeholder"></div><script src="../Javascripts/sidebar.js"></script>
+        <div class="pg-content" style="width: 100%; overflow: auto;">
+            <div id="header-placeholder" style="width: 100%; position: sticky; top: 0;"></div><script src="../Javascripts/header.js"></script>
+            
+    <div class="main">
+        
+
+    <div class="left-panel">
+        <div class="title-bar">
+            <p class="title-text">My Chats</p>
+        </div>
+       
+        <div class="card-hide">
+            <img src="../Assests/login_img2.jpg" alt="" class="u-img"/>
+            <div class="info">
+                <p class="u-name">isuru liyanage</p>
+                <p class="l-msg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam consectetur corrupti iste ipsum, numquam quod! Aut mollitia laborum blanditiis, nihil distinctio sequi suscipit sed tempora ab dolore soluta corporis quia.</p>
+            </div>
+        </div>
+        
+
+    </div>
+
+
+    <div class="msg-box-main">
+    <div class="msg-header">
+        <div class="back"></div>
+        <img src="../Assests/login_img2.jpg" alt="" class="profile-img">
+        <p class="username">Isuru Liyanage</p>
+
+    </div>
+    
+    <div class="msg-contain">
+
+
+        <div class="received-chats-hide">
+            <div >
+                <!-- <img class="received-chats-img" src="../Assests/login_img1.jpg"> -->
+            </div>
+
+            <div class="received-msg">
+                <div class="received-msg-inbox">
+                    <p class="multi-msg">Hi !! This is message from Riya . Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non quas nemo eum, earum sunt, nobis similique quisquam eveniet pariatur commodi modi voluptatibus iusto omnis harum illum
+                        iste distinctio expedita illo!</p>
+                    <span class="time">18:06 PM | July 24 </span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="outgoing-chats-hide">
+            <div >
+                <!-- <img class="outgoing-chats-img" src="../Assests/login_img3.jpg"> -->
+
+            </div>
+            <div class="outgoing-msg">
+                <div class="outgoing-chats-msg">
+                    <p class="multi-msg">Hi riya , Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo nobis deleniti earum magni recusandae assumenda.
+                    </p>
+                    
+
+
+                    <span class="time">18:30 PM | July 24 </span>
+                </div>
+            </div>
+        </div>
+
+       
+            
+    </div>
+
+    <div class="msg-footer">
+        <input type="text" class="input-msg" placeholder="Write Something..">
+        <button class="send"><box-icon name='send' color="#fff"  ></box-icon></button>
+    </div>
+    </div>
+    <script src="../Javascripts/baseurl.js"></script>
+    <script src="../Javascripts/messages.js"></script>
+    </div>  
+        </div></div>
+</body>
+</html>
