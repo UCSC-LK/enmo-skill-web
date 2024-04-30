@@ -79,23 +79,27 @@ fetch(BASE_URL+"/request", requestOptions)
   const Budgetview = document.querySelector('.budget-text');
   const durationview = document.querySelector('.description-text');
   const btn = document.querySelector('.proposal');
-  btn.addEventListener("click",()=>{
-    window.location.href = "../HTML/proposal_add.html"
-  })
+  // btn.addEventListener("click",()=>{
+  //   window.location.href = "../HTML/proposal_add.html"
+  // })
   
 function viewrequest(item){
-  popupview.style.display="flex";
-  closetn.addEventListener("click", ()=> {
-  popupview.style.display="none"
-  })
-  titleview.innerHTML=item.title
-  username.innerHTML=item.username;
+  popupview.style.display = "flex";
+  closetn.addEventListener("click", () => {
+    popupview.style.display = "none";
+  });
+  titleview.innerHTML = item.title;
+  username.innerHTML = item.username;
   // userurl
-  Discriptionview.innerHTML=item.discription
-  Budgetview.innerHTML=item.budget;
-  durationview.innerHTML=item.duration;
+  Discriptionview.innerHTML = item.discription;
+  Budgetview.innerHTML = item.budget;
+  durationview.innerHTML = item.duration;
 
-
+  // Assuming btn is accessible in this scope
+  btn.addEventListener("click", () => {
+    window.location.href =
+      "../HTML/proposal_add.html?requestID=" + item.requestID;
+  });
 }
 
 

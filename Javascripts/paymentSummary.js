@@ -134,7 +134,7 @@ fetch(BASE_URL+"/payment?orderId="+orderID, requestOptions)
     const currentUrl = encodeURIComponent(window.location.href);
     window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
   }else if(response.status == 404){
-    // window.location.href = "../Failed/404.html";
+    window.location.href = "../Failed/404.html";
   }else {
     return response.json()
   }
@@ -147,13 +147,17 @@ fetch(BASE_URL+"/payment?orderId="+orderID, requestOptions)
   gigType.textContent=result.type+" package"
   coverImage.src=result.cover_url
   price.textContent="Rs. "+result.package_price
-  gigprice.textContent="Rs. "+result.package_price
   total.textContent="Rs. "+result.total_price
 
   var gigPrice=parseFloat(result.package_price)
   var presentage=parseFloat(result.usercharge)
   var totalPrice=parseFloat(result.total_price)
-  webcharge.textContent="Rs. "+((totalPrice/(presentage+1))*presentage).toFixed(2)
+
+  var charge=((totalPrice/(presentage+1))*presentage).toFixed(2)
+  var package_price=totalPrice-((totalPrice/(presentage+1))*presentage).toFixed(2)
+
+  webcharge.textContent="Rs. "+charge
+  gigprice.textContent="Rs. "+package_price
 
   document.getElementById("order_id").value=orderID
   document.getElementById("amount").value=result.total_price

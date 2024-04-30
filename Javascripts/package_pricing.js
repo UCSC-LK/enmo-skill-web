@@ -68,7 +68,7 @@ function loadData(){
                 icon: "error",
                 title: "Oops...",
                 text: "Something went wrong!",
-                confirmButtonColor: "#293692"
+                confirmButtonColor: "#000000"
               });
           console.log("Error"+response.status)
         }
@@ -203,7 +203,7 @@ function loadData(){
             icon: "error",
             title: "Oops...",
             text: "Something went wrong!",
-            confirmButtonColor: "#293692"
+            confirmButtonColor: "#000000"
           });
           console.error("Error: ", error)
     })
@@ -230,7 +230,7 @@ function setDeliverables() {
                 icon: "error",
                 title: "Oops...",
                 text: "Something went wrong!",
-                confirmButtonColor: "#293692"
+                confirmButtonColor: "#000000"
               });
           console.log("Error"+response.status)
         }
@@ -239,6 +239,7 @@ function setDeliverables() {
 
     .then((data)=>{
 
+        console.log(data);
 
         var deli_div = document.getElementsByClassName("chkbx");
         var lb = document.getElementsByClassName("chg");
@@ -252,7 +253,7 @@ function setDeliverables() {
 
             for (let i = 0; i < 3; i++) {
                 
-                for (let j = 1; j <= 5; j++) {
+                for (let j = 1; j <= Object.keys(data).length-2; j++) {
 
                     var str = "del_"+(j);
                     
@@ -296,7 +297,7 @@ function setDeliverables() {
             icon: "error",
             title: "Oops...",
             text: "Something went wrong!",
-            confirmButtonColor: "#293692"
+            confirmButtonColor: "#000000"
           });
         console.error("Error: " + error)
     })
@@ -324,21 +325,23 @@ document.getElementById("submit-bronze").addEventListener("click", async functio
     
     
     // Check if price_b is numeric and not empty
-    if (!price_b || !isNumeric(price_b)) {
+    if (!price_b || !isNumeric(price_b) || price_b<0) {
         Swal.fire({
             icon: "warning",
             title: "Warning",
-            text: "Price must be a numeric value and cannot be empty"
+            text: "Price must be a numeric value and cannot be empty",
+            confirmButtonColor: "#000000"
           });
         return; // Stop further execution
     }
     
     // Check if concepts_b is numeric and not empty
-    if (!concepts_b || !isNumeric(concepts_b)) {
+    if (!concepts_b || !isNumeric(concepts_b) || concepts_b <=0) {
         Swal.fire({
             icon: "warning",
             title: "Warning",
-            text: "No of conepts must be a numeric value and cannot be empty"
+            text: "No of conepts must be a numeric value and cannot be empty",
+            confirmButtonColor: "#000000"
           });
         return; // Stop further execution
     }
@@ -348,7 +351,8 @@ document.getElementById("submit-bronze").addEventListener("click", async functio
         Swal.fire({
             icon: "warning",
             title: "Warning",
-            text: "Please select no of revisons"
+            text: "Please select no of revisons",
+            confirmButtonColor: "#000000"
           });
         return; // Stop further execution
     }
@@ -358,7 +362,8 @@ document.getElementById("submit-bronze").addEventListener("click", async functio
         Swal.fire({
             icon: "warning",
             title: "Warning",
-            text: "Please select a duration"
+            text: "Please select a duration",
+            confirmButtonColor: "#000000"
           });
         return; // Stop further execution
     }
@@ -376,7 +381,8 @@ document.getElementById("submit-bronze").addEventListener("click", async functio
         Swal.fire({
             icon: "warning",
             title: "Warning",
-            text: "Please select either one of deliverables"
+            text: "Please select either one of deliverables",
+            confirmButtonColor: "#000000"
           });
         return; // Stop further execution
     }
@@ -476,7 +482,8 @@ document.getElementById("submit-bronze").addEventListener("click", async functio
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
-                    text: "Something went wrong!"
+                    text: "Something went wrong!",
+                    confirmButtonColor: "#000000"
                   });
                 errFlag = 1
                 console.error(`Failed to ${operationType} package data.`);
@@ -501,21 +508,23 @@ document.getElementById("submit-silver").addEventListener("click", async functio
     var deliverables = document.getElementsByClassName("chk_silver");
 
     // Check if price_b is numeric and not empty
-    if (!price_s || !isNumeric(price_s)) {
+    if (!price_s || !isNumeric(price_s) || price_s < 0) {
         Swal.fire({
             icon: "warning",
             title: "Warning",
-            text: "Price must be a numeric value and cannot be empty"
+            text: "Price must be a numeric value and cannot be empty",
+            confirmButtonColor: "#000000"
           });
         return; // Stop further execution
     }
     
     // Check if concepts_b is numeric and not empty
-    if (!concepts_s || !isNumeric(concepts_s)) {
+    if (!concepts_s || !isNumeric(concepts_s) || concepts_s <=0) {
         Swal.fire({
             icon: "warning",
             title: "Warning",
-            text: "No of conepts must be a numeric value and cannot be empty"
+            text: "No of conepts must be a numeric value and cannot be empty",
+            confirmButtonColor: "#000000"
           });
         return; // Stop further execution
     }
@@ -525,7 +534,8 @@ document.getElementById("submit-silver").addEventListener("click", async functio
         Swal.fire({
             icon: "warning",
             title: "Warning",
-            text: "Please select no of revisons"
+            text: "Please select no of revisons",
+            confirmButtonColor: "#000000"
           });
         return; // Stop further execution
     }
@@ -535,7 +545,8 @@ document.getElementById("submit-silver").addEventListener("click", async functio
         Swal.fire({
             icon: "warning",
             title: "Warning",
-            text: "Please select a duration"
+            text: "Please select a duration",
+            confirmButtonColor: "#000000"
           });
         return; // Stop further execution
     }
@@ -553,7 +564,8 @@ document.getElementById("submit-silver").addEventListener("click", async functio
         Swal.fire({
             icon: "warning",
             title: "Warning",
-            text: "Please select either one of deliverables"
+            text: "Please select either one of deliverables",
+            confirmButtonColor: "#000000"
           });
         return; // Stop further execution
     }
@@ -643,7 +655,8 @@ document.getElementById("submit-silver").addEventListener("click", async functio
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
-                    text: "Something went wrong!"
+                    text: "Something went wrong!",
+                    confirmButtonColor: "#000000"
                   });
                 errFlag = 1
                 console.error(`Failed to ${operationType} package data.`);
@@ -664,46 +677,26 @@ document.getElementById("submit-platinum").addEventListener("click", async funct
     var rev_p = document.getElementById("rev_p").value;
     var duration_p = document.getElementById("duration_p").value;
     var deliverables = document.getElementsByClassName("chk_platinum");
-    // var deliverables_chk = document.querySelectorAll('input[type="checkbox"]:checked');
-    // var deliverables = document.querySelectorAll('input[type="checkbox"]');
 
-    // var deliverablesObject = {};
-
-    // deliverables.forEach(function(checkbox) {
-    //     var checkboxValue = checkbox.value;
-
-    //     // Check if the value doesn't exist in the deliverablesObject
-    //     if (!(checkboxValue in deliverablesObject)) {
-    //         deliverablesObject[checkboxValue] = 0;
-    //     }
-    // });
-
-    // // Update values to 1 for checked checkboxes
-    // deliverables_chk.forEach(function(checkbox) {
-    //     var checkboxValue = checkbox.value;
-
-    //     // Check if the value exists in the deliverablesObject
-    //     if (checkboxValue in deliverablesObject) {
-    //         deliverablesObject[checkboxValue] = 1;
-    //     }
-    // });
 
     // Check if price_b is numeric and not empty
-    if (!price_p || !isNumeric(price_p)) {
+    if (!price_p || !isNumeric(price_p) || price_p <0) {
         Swal.fire({
             icon: "warning",
             title: "Warning",
-            text: "Price must be a numeric value and cannot be empty"
+            text: "Price must be a numeric value and cannot be empty",
+            confirmButtonColor: "#000000"
           });
         return; // Stop further execution
     }
     
     // Check if concepts_b is numeric and not empty
-    if (!concepts_p || !isNumeric(concepts_p)) {
+    if (!concepts_p || !isNumeric(concepts_p) || concepts_p <= 0) {
         Swal.fire({
             icon: "warning",
             title: "Warning",
-            text: "No of conepts must be a numeric value and cannot be empty"
+            text: "No of conepts must be a numeric value and cannot be empty",
+            confirmButtonColor: "#000000"
           });
         return; // Stop further execution
     }
@@ -713,7 +706,8 @@ document.getElementById("submit-platinum").addEventListener("click", async funct
         Swal.fire({
             icon: "warning",
             title: "Warning",
-            text: "Please select no of revisons"
+            text: "Please select no of revisons",
+            confirmButtonColor: "#000000"
           });
         return; // Stop further execution
     }
@@ -723,7 +717,8 @@ document.getElementById("submit-platinum").addEventListener("click", async funct
         Swal.fire({
             icon: "warning",
             title: "Warning",
-            text: "Please select a duration"
+            text: "Please select a duration",
+            confirmButtonColor: "#000000"
           });
         return; // Stop further execution
     }
@@ -741,7 +736,8 @@ document.getElementById("submit-platinum").addEventListener("click", async funct
         Swal.fire({
             icon: "warning",
             title: "Warning",
-            text: "Please select either one of deliverables"
+            text: "Please select either one of deliverables",
+            confirmButtonColor: "#000000"
           });
         return; // Stop further execution
     }
@@ -834,7 +830,7 @@ document.getElementById("submit-platinum").addEventListener("click", async funct
                         icon: "error",
                         title: "Oops...",
                         text: "Something went wrong!",
-                        confirmButtonColor: "#293692"
+                        confirmButtonColor: "#000000"
                     });
                     errFlag = 1;
                     console.error(`Failed to ${operationType} package data.`);
@@ -845,103 +841,20 @@ document.getElementById("submit-platinum").addEventListener("click", async funct
                 Swal.fire({
                   icon: "error",
                   title: "Oops...",
-                  text: "Something went wrong!"
+                  text: "Something went wrong!",
+                  confirmButtonColor: "#000000"
                 });
                 console.error('Error fetching data:', error);
               });
 
-        // if (response.ok) {
-        //     console.log(`Prcing data ${operationType}d successfully.`);
-        //     // showPopupSuccess();
-        //     if (operationType === "insert") {
-        //         var rsp = response.json();
-        //         rsp.then((data) => {
-        //             pricePackageId_platinum = data.pricePackageId
-        //         })
-        //     }
-        //     // checkFlagsSuccess();
-        //     var sbtn = document.getElementById("submit-platinum");
-        //     sbtn.innerHTML = "Saved";
-        //     sbtn.style.backgroundColor = "#444";
-        // } else {
-        //     Swal.fire({
-        //         icon: "error",
-        //         title: "Oops...",
-        //         text: "Something went wrong!",
-        //         confirmButtonColor: "#293692"
-        //       });
-        //     //// unscussess popup
-        //     // showPopupUnsuccess();
-        //     // checkFlagsUnsuccess();
-        //     errFlag = 1;
-        //     console.error(`Failed to ${operationType} package data.`);
 
-        // }
 
     
 
 });
 
 
-// document.getElementById("btn-success").addEventListener("click", function(){
 
-//     var popupContainer = document.getElementById('popup-container-success');
-//     var overlay = document.getElementById('overlay1');
-
-//     popupContainer.style.display = 'none';
-//     overlay.style.display = 'none';
-
-//     window.location = `../HTML/packages.html`
-// })
-
-// document.getElementById("btn-unsuccess").addEventListener("click", function(){
-
-//     var popupContainer = document.getElementById('popup-container-unsuccess');
-//     var overlay = document.getElementById('overlay2');
-
-//     popupContainer.style.display = 'none';
-//     overlay.style.display = 'none';
-// })
-
-// document.getElementById("btn-warning").addEventListener("click", function(){
-
-//     var popupContainer = document.getElementById('popup-container-unsuccess');
-//     var overlay = document.getElementById('overlay3');
-
-//     popupContainer.style.display = 'none';
-//     overlay.style.display = 'none';
-// })
-
-// function showPopupWarning() {
-//     var popupContainer = document.getElementById('popup-container-success');
-//     var overlay = document.getElementById('overlay3');
-    
-//     overlay.style.display = 'block';
-
-// }
-
-// function showPopupSuccess() {
-//     var popupContainer = document.getElementById('popup-container-success');
-//     var overlay = document.getElementById('overlay1');
-    
-//     overlay.style.display = 'block';
-
-// }
-
-// function showPopupUnsuccess() {
-//     var popupContainer = document.getElementById('popup-container-success');
-//     var overlay = document.getElementById('overlay2');
-    
-//     overlay.style.display = 'block';
-//   }
-
-//   function closePopup() {
-//     var popupContainer = document.getElementById('popup-container');
-//     var overlay = document.getElementById('overlay1');
-
-//     // popupContainer.style.display = 'none';
-//     overlay.style.display = 'none';
-//   }
 
 function checkFlagsSuccess(){
     console.log("IN FLAG SUCCESS");
@@ -951,7 +864,7 @@ function checkFlagsSuccess(){
             title: "Success",
             text: "Package data inserted successfully!",
             icon: "success",
-            confirmButtonColor: "#293692"
+            confirmButtonColor: "#000000"
           })
         .then((result)=>{
             if (result.isConfirmed) {
@@ -961,13 +874,13 @@ function checkFlagsSuccess(){
 
     }
     else{
-        if (!updateFlag) {
+        if (updateFlag) {
             // showPopupSuccess();
             Swal.fire({
                 title: "Success",
                 text: "Package data inserted successfully",
                 icon: "success",
-                confirmButtonColor: "#293692"
+                confirmButtonColor: "#000000"
               }).then((result)=>{
                 if (result.isConfirmed) {
                     window.location = `../HTML/packages.html`    
@@ -979,7 +892,7 @@ function checkFlagsSuccess(){
                 icon: "warning",
                 title: "Warning",
                 text: "Save all changes before going back!",
-                confirmButtonColor: "#293692"
+                confirmButtonColor: "#000000"
               });
 
         }
@@ -994,7 +907,7 @@ function checkFlagsUnsuccess(){
             icon: "error",
             title: "Oops...",
             text: "Something went wrong!",
-            confirmButtonColor: "#293692"
+            confirmButtonColor: "#000000"
           });
     }
     else{
@@ -1004,7 +917,7 @@ function checkFlagsUnsuccess(){
                 icon: "error",
                 title: "Oops...",
                 text: "Something went wrong!",
-                confirmButtonColor: "#293692"
+                confirmButtonColor: "#000000"
               });
             
         } else{
@@ -1013,7 +926,7 @@ function checkFlagsUnsuccess(){
             icon: "warning",
             title: "Warning",
             text: "Save all changes before going back!",
-            confirmButtonColor: "#293692"
+            confirmButtonColor: "#000000"
           });
 
         }
@@ -1035,7 +948,7 @@ window.addEventListener('beforeunload', function (e) {
             icon: "warning",
             title: "Warning",
             text: "Save all changes before going back!",
-            confirmButtonColor: "#293692"
+            confirmButtonColor: "#000000"
           });
     }
 });

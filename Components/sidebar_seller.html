@@ -79,6 +79,13 @@
           </li>
 
           <li class="nav-link">
+            <a onclick="proposals()">
+              <i class='bx bx-package icon'></i>
+              <span class="text nav-text">My Proposals</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
             <a onclick="support()">
               <i class='bx bx-support icon'></i>
               <span class="text nav-text">Get Support</span>
@@ -131,7 +138,7 @@
         }
         function order() {
            
-            window.parent.location='../HTML/orderlist_client.html';
+            window.parent.location='../HTML/orderlist_designer.html';
         }
         function support() {
            
@@ -145,6 +152,11 @@
            
             // window.parent.location = '../HTML/signup.html';
             window.parent.location='../HTML/ernings.html'
+        }
+        function proposals() {
+           
+            // window.parent.location = '../HTML/signup.html';
+            window.parent.location='../HTML/proposal_list.html'
         }
         function profile() {
            

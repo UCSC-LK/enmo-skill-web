@@ -1,3 +1,89 @@
+.table{
+    padding: 30px;
+    border-radius: 10px;
+    background-color: white;
+}
+.bottom1{
+    display: grid;
+    grid-template-columns: 49% 49%;
+    gap: 25px;
+    /* padding: 10px; */
+}
+.addres-main{
+    display: flex;
+    flex-direction: column;
+}
+.teleohone-main{
+    display: flex;
+    flex-direction: column;
+}
+
+.input{
+    margin-bottom: 5px;
+    margin-top: 10px;
+    height: 20px;
+    border-radius: 5px;
+    padding: 5px;
+    border-color: #d2d2d285;;
+}
+
+.bottom2{
+    display: grid;
+    grid-template-columns: 49% 49%;
+    gap: 25px;
+    /* padding: 10px; */
+}
+.front-main{
+    display: flex;
+    flex-direction: column;
+}
+.back-main{
+    display: flex;
+    flex-direction: column;
+}
+
+.imag-title{
+    margin-bottom: 10px;
+}
+
+.img{
+    /* display: flex;
+    flex-direction: column; */
+    max-width: 200px;
+    max-height: 200px;
+    border: 2px solid #d2d2d285;
+    text-align: center;
+   
+}
+
+.submitBTN{
+    display: flex;
+    justify-content: right;
+    width: 100%;
+}
+.button{
+    width: 150px;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    background-color: black;
+    transition: 0.5s;
+    font-size: 16px;
+}
+.button:hover{
+    color: black;
+    background-color: white;
+    cursor: pointer;
+}
+
+.content{
+    color: rgb(97, 97, 97);
+    font-size: 12px;
+}
+.content-title{
+    font-size: 16px;
+}
+
 body, html {
     margin: 0;
     padding: 0;

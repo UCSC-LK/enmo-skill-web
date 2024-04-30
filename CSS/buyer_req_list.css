@@ -89,11 +89,18 @@ border-width: 1 px;
     border-width: 1 px;
     }
 .row .dis{
- width: 060%;
- max-width: 60%;
- min-width: 60%;
+ width: 050%;
+ max-width: 50%;
+ min-width: 50%;
 }
-.date, .user,.duration,.budget{
+.user{
+    width: 15%;
+    max-width: 15%;
+    min-width: 15%;
+
+}
+
+.date, .duration,.budget{
     width: 10%;
     max-width: 10%;
     min-width: 10%;
@@ -111,14 +118,14 @@ border-width: 1 px;
     }
     
     .row-main .dis{
-     width: 060%;
-     max-width: 60%;
-     min-width: 60%;   
+     width: 050%;
+     max-width: 50%;
+     min-width: 50%;   
      font-weight: bold;
      color:#a3a3a3  ;
      font-size: small;
     }
-    .date-main,.user-main,.duration-main,.budget-main{
+    .date-main,.duration-main,.budget-main{
         width: 10%;
         max-width: 10%;
         min-width: 10%;
@@ -127,4 +134,12 @@ border-width: 1 px;
         font-size: small;
 
 
+    }
+    .user-main{
+        width: 15%;
+        max-width: 15%;
+        min-width: 15%;
+        font-weight: bold;
+        color:#a3a3a3;
+        font-size: small;
     }

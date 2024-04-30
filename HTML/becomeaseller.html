@@ -4,17 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
     
+     
+      <link rel="stylesheet" href="../CSS/my_request.css">
+      <link rel="stylesheet" href="../CSS/becomeaseller.css">
       <link rel="stylesheet" href="../CSS/main.css">
       <link rel="stylesheet" href="../CSS/my_request.css">
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../Javascripts/baseurl.js"></script>
 
     <style>
         
     </style>
     
     <title>Profile Verification</title>
+    <title>Profile Verification</title>
 </head>
 <body>
+   
    
         <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>     <div class="container">
             <div class="major">
@@ -27,24 +34,42 @@
                         <div class="table">
 
                         <form action="#" method="post" enctype="multipart/form-data">
-                            <label for="address">Address:</label>
-                            <input type="text" id="address" name="address" required>
-                            <small>(Address should match the one shown in your NIC)</small><br>
+                            <div class="bottom1">
+                                <div class="addres-main">
+                                    <label for="address">Address:</label>
+                                    <input type="text" class="input" id="address" name="address" required>
+                                    <small>(Address should match the one shown in your NIC)</small><br>
+                                    
+                                </div>
+                                <div class="teleohone-main">
+                                    <label for="telephone">Telephone Number:</label>
+                                    <input type="tel" class="input" id="telephone" name="telephone" required>
+                                    <small>(A one-time password will be sent to this number)</small><br>
+                                    
+                                </div>
+                            </div>
+
+                            <div class="bottom2">
+                                <div class="front-main">
+                                    <label for="nic_front" class="imag-title">NIC Front Image:</label>
+                                    <input type="file" id="nic_front" name="nic_front" accept="image/*" required><br>
+                                    <img id="nic_front_preview" src="../Assests/placeholder-article.png" alt="NIC Front Preview" class="img"><br>
+                                    
+                                </div>
+                                <div class="back-main">
+                                    <label for="nic_back" class="imag-title">NIC Back Image:</label>
+                                    <input type="file" id="nic_back" name="nic_back" accept="image/*" required><br>
+                                    <img id="nic_back_preview" src="../Assests/placeholder-article.png" alt="NIC Back Preview" class="img"><br>
+                                    
+                                </div>
+                            </div>                          
                             
-                            <label for="telephone">Telephone Number:</label>
-                            <input type="tel" id="telephone" name="telephone" required>
-                            <small>(A one-time password will be sent to this number)</small><br>
                             
-                            <label for="nic_front">NIC Front Image:</label>
-                            <input type="file" id="nic_front" name="nic_front" accept="image/*" required><br>
-                            <img id="nic_front_preview" src="#" alt="NIC Front Preview" style="display: none; max-width: 200px; max-height: 200px;"><br>
                             
-                            <label for="nic_back">NIC Back Image:</label>
-                            <input type="file" id="nic_back" name="nic_back" accept="image/*" required><br>
-                            <img id="nic_back_preview" src="#" alt="NIC Back Preview" style="display: none; max-width: 200px; max-height: 200px;"><br>
                             
-                            <input type="submit" value="Next">
                         </form>
+
+                        <div class="submitBTN"><input type="submit" class="button" value="Next"></div>
 
                         <div class="content">
                             <div class="content-title">Verification Process</div>
@@ -61,6 +86,9 @@
 
 
 <script>
+
+    var url1=null;
+    var url2=null;
     // Function to preview image before upload
     function previewImage(input, imgID) {
         var reader = new FileReader();
@@ -79,14 +107,143 @@
     document.getElementById('nic_back').addEventListener('change', function(){
         previewImage(this, 'nic_back_preview');
     });
+
+    document.querySelector(".submitBTN").addEventListener("click", () => {
+
+
+        if(document.getElementById("address").value=="" || document.getElementById("telephone").value==""){
+                    Swal.fire({
+                        title: "Error!",
+                        text: "Please fill all the fields",
+                        icon: "error",
+                        confirmButtonText: "OK"
+                    });
+                    return;
+                }
+                if(document.getElementById("telephone").value.length!=10){
+                    Swal.fire({
+                        title: "Error!",
+                        text: "Please enter a valid telephone number",
+                        icon: "error",
+                        confirmButtonText: "OK"
+                    });
+                    return;
+                }
+                // write 07XXXXXXXX format in telephone number need start with 07
+                if(document.getElementById("telephone").value.substring(0,2)!="07"){
+                    Swal.fire({
+                        title: "Error!",
+                        text: "Please enter a valid telephone number 07xxxxxxxx",
+                        icon: "error",
+                        confirmButtonText: "OK"
+                    });
+                    return;
+                }
+
+    const nicFrontFile = document.getElementById('nic_front').files[0];
+    const nicBackFile = document.getElementById('nic_back').files[0];
+
+    if (!nicFrontFile || !nicBackFile) {
+        alert("Please select both NIC front and back images.");
+        return; 
+    }
+
+    const formData1 = new FormData();
+    formData1.append('file', nicFrontFile);
+    const formData2 = new FormData();
+    formData2.append('file', nicBackFile);
+    
+    const myHeaders2 = new Headers();
+    myHeaders2.append("endpoint", "nics");
+
+        fetch(BASE_URL+'/file', {
+            method: 'POST',
+            headers: myHeaders2,
+            body: formData1
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log('Success:nic f', data);
+            url1=data;
+            sendr();
+
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+        fetch(BASE_URL+'/file', {
+            method: 'POST',
+            headers: myHeaders2,
+            body: formData2
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log('Success: nic back', data);
+            url2=data;
+            sendr();
+
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+        function sendr(){
+            console.log(url1,url2);
+            if(url1!=null && url2!=null){
+                const myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+                myHeaders.append("Authorization", getCookie("JWT"));
+                
+                const raw = JSON.stringify({
+                "nicfront": url1,
+                "nicback": url2,
+                "Address": document.getElementById("address").value,
+                "desinerPhone": document.getElementById("telephone").value
+                });
+                console.log(raw);
+
+                const requestOptions = {
+                method: "POST",
+                headers: myHeaders,
+                body: raw,
+                redirect: "follow"
+                };
+
+                fetch(BASE_URL+"/verifydesigner", requestOptions)
+                .then((response) => {if(response.status==200){
+                    Swal.fire({
+                        title: "Success!",
+                        text: "Your request is processing. Please wait for the verification.",
+                        icon: "success",
+                        confirmButtonText: "OK"
+                    }).then(() => {
+                        window.location.href = "../HTML/home.html";
+
+                    });
+                    if(response.status==500){
+                        window.location.href = "../HTML/home.html";
+                    }
+                }})
+                
+                .catch((error) => console.error(error));
+            }
+        }
+    
+
+
+
+});
+
+
+
+
+
+
 </script>
 
         </div>
-        <script>
-            function become(){
-                window.parent.location='../HTML/becomeaseller2.html';
-            }
-            </script>
+        
     </div>
 
 </body>
