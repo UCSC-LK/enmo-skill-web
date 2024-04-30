@@ -1,7 +1,13 @@
-body2{
+body{
     background-color: #f5f6f8;
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
+}
+.body2{
+    background-color: #f5f6f8;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+  
 }
 
 .page{
