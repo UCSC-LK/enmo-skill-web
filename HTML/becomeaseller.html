@@ -10,6 +10,7 @@
       <link rel="stylesheet" href="../CSS/main.css">
       <link rel="stylesheet" href="../CSS/my_request.css">
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../Javascripts/baseurl.js"></script>
 
     <style>
@@ -170,6 +171,7 @@
                 "Address": document.getElementById("address").value,
                 "desinerPhone": document.getElementById("telephone").value
                 });
+                console.log(raw);
 
                 const requestOptions = {
                 method: "POST",
@@ -189,6 +191,9 @@
                         window.location.href = "../HTML/home.html";
 
                     });
+                    if(response.status==500){
+                        window.location.href = "../HTML/home.html";
+                    }
                 }})
                 
                 .catch((error) => console.error(error));

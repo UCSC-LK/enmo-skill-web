@@ -874,7 +874,7 @@ function checkFlagsSuccess(){
 
     }
     else{
-        if (!updateFlag) {
+        if (updateFlag) {
             // showPopupSuccess();
             Swal.fire({
                 title: "Success",
