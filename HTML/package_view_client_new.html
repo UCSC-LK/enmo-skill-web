@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../CSS/package_view_client.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../CSS/main.css">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 
     <title id="htmlTitle">Loading...</title>
 </head>
@@ -50,47 +51,10 @@
                                         <h2 class="subheading border">Package details</h2>
                                     </div>
                                     <div id="description">
-                                        <!-- <p>
-                                            Are you in need of a captivating and distinctive logo that perfectly represents your brand's identity? Look no further! 
-                                            I am here to bring your vision to life with my exceptional logo design services.
-                                        </p>
-                                        <p>
-                                            Why Choose Me?
-                                            <ul>
-                                                <li>Custom Designs:</li>
-                                                <ul>
-                                                    <li>I take the time to understand your business, values, and target audience to create a unique and memorable 
-                                                        logo that sets you apart.</li>
-                                                </ul>
-                                                <li>Professional Expertise:</li>
-                                                <ul>
-                                                    <li>With years of experience, I have the design skills and creative flair to deliver outstanding logos 
-                                                        that leave a lasting impression.</li>
-                                                </ul>
-                                                <li>Unlimited Revisions:</li>
-                                                <ul>
-                                                    <li>I understand the importance of timely delivery. You can expect your logo within [Specify Your Delivery 
-                                                        Timeframe].</li>
-                                                </ul>
-                                                <li>Quick Turnaround:</li>
-                                                <ul>
-                                                    <li>I take the time to understand your business, values, and target audience to create a unique and memorable 
-                                                        logo that sets you apart.</li>
-                                                </ul>
-                                                <li>High-Quality Files:</li>
-                                                <ul>
-                                                    <li>You will receive high-resolution files suitable for web and print, ensuring your logo looks fantastic 
-                                                        in all applications.</li>
-                                                </ul>
-                                            </ul>
-                                        </p>
-                                        <p>
-                                            Let's collaborate to make your brand shine with a logo that speaks volumes. Contact me today and let's get started 
-                                            on your journey to a compelling brand image!
-                                        </p> -->
+                                        
                                     </div>
                                     
-                                    <h3>Catogery</h3>
+                                    <h3>Category</h3>
                                     <p id="catogery"></p>
                                 </div>
         
@@ -122,15 +86,15 @@
                                         </div>
                                         <div class="sds">
                                             <h3 class="ttl">Member Since</h3>
-                                            <p class="cnt" id="member-since">April 2021</p>
+                                            <p class="cnt" id="member-since"></p>
                                         </div>
-                                        <div class="sds">
+                                        <!-- <div class="sds">
                                             <h3 class="ttl">Last delivery</h3>
                                             <p class="cnt" id="last-deli">about 3 hours</p>
-                                        </div>
+                                        </div> -->
                                         <div class="sds">
                                             <h3 class="ttl">Languages</h3>
-                                            <p class="cnt" id="lang">English</p>
+                                            <p class="cnt" id="lang"></p>
                                         </div>
                                         
                                     </div>
@@ -223,9 +187,16 @@
                         <p class="overlay-hed">Tell us about your work</p>
                         <p class="overlay-sub">What are your requirements?</p>
 
-                        <textarea name="order-req" id="order-req" cols="30" rows="15"></textarea>
+                        <textarea name="order-req" id="order-req" cols="30" rows="15" placeholder="Please provide us with detailed information about your logo design needs. Include any specific colors, fonts, symbols, or styles you prefer. Describe your business or organization, target audience, and the message you want your logo to convey. Feel free to mention any examples or inspiration you have in mind..."></textarea>
 
-                        <button class="btn-apply" id="orderCreateBtn">Create order</button>
+                        <div class="overl-btn1">
+                            <button class="btn-upload" id="fileUpload">Attach samples</button>
+                            <p id="success-tick"></p>
+                            <input type="file" id="uploadInput" style="display: none;" accept=".jpg, .jpeg, .png, .pdf">
+                        </div>
+                        <div class="overl-btn2">
+                            <button class="btn-apply" id="orderCreateBtn">Create order</button>
+                        </div>
                     </div>
 
                     
@@ -240,20 +211,7 @@
         </div>
     </div>
 </body>
-
-<script>
-    function profile(){
-        window.location.href = "../HTML/profile.html"
-    }
-
-    // function payment(){
-    //     window.location.href = "../HTML/payment.html"
-    // }
-
-    function reviews(){
-        alert("UI is under construction")
-    }
-</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="../Javascripts/baseurl.js"></script>
 <script src="../Javascripts/package_view_client.js"></script>
 </html>

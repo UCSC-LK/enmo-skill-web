@@ -73,6 +73,9 @@ function getCookie(cookieName) {
         content.innerHTML = "";
 
         resultset.forEach(element => {
+
+            console.log(element);
+            console.log(Object.keys(element).length-2);
             const rowMaxDiv = document.createElement('div');
             rowMaxDiv.className = 'row-max';
 
@@ -92,7 +95,7 @@ function getCookie(cookieName) {
             const delCatUl = document.createElement('ul');
             delCatUl.className = 'del-cat';
 
-            for (let i = 1; i <= 5; i++) {
+            for (let i = 1; i <= Object.keys(element).length-2; i++) {
                 var li = document.createElement('li');
                 li.textContent = element["del_"+i];
                 delCatUl.appendChild(li);
@@ -114,17 +117,17 @@ function getCookie(cookieName) {
             });
             iconHandleDiv.appendChild(pencilIcon);
 
-            // Create trash icon
-            const trashIcon = document.createElement('i');
-            trashIcon.className = 'fa fa-trash-o icons';
-            trashIcon.setAttribute('aria-hidden', 'true');
+            // // Create trash icon
+            // const trashIcon = document.createElement('i');
+            // trashIcon.className = 'fa fa-trash-o icons';
+            // trashIcon.setAttribute('aria-hidden', 'true');
             
-            // add evenet lister to delete
-            trashIcon.addEventListener('click', function() {
-                deleteData(element.categoryId);
-            });
+            // // add evenet lister to delete
+            // trashIcon.addEventListener('click', function() {
+            //     deleteData(element.categoryId);
+            // });
 
-            iconHandleDiv.appendChild(trashIcon);
+            // iconHandleDiv.appendChild(trashIcon);
 
             rowMaxDiv.appendChild(iconHandleDiv);
 
@@ -178,7 +181,7 @@ document.getElementById("Form").addEventListener('submit', function(e) {
     var del_5 = document.getElementById("del-5").value;
 
     // Input validation
-    if (!category_name || !del_1 || !del_2 || !del_3 || !del_4 || !del_5) {
+    if (!category_name || !del_1) {
         Swal.fire({
             icon: "warning",
             title: "Validation Error",
@@ -187,13 +190,22 @@ document.getElementById("Form").addEventListener('submit', function(e) {
         return;
     }
 
+    // var requestBody = {
+    //     category: category_name,
+    //     del_1: del_1,
+    //     del_2: del_2,
+    //     del_3: del_3,
+    //     del_4: del_4,
+    //     del_5: del_5
+    // };
+
     var requestBody = {
         category: category_name,
-        del_1: del_1,
-        del_2: del_2,
-        del_3: del_3,
-        del_4: del_4,
-        del_5: del_5
+        ...(del_1 !== "" && { del_1: del_1 }), // Include del_1 only if it's not an empty string
+        ...(del_2 !== "" && { del_2: del_2 }), // Include del_2 only if it's not an empty string
+        ...(del_3 !== "" && { del_3: del_3 }), // Include del_3 only if it's not an empty string
+        ...(del_4 !== "" && { del_4: del_4 }), // Include del_4 only if it's not an empty string
+        ...(del_5 !== "" && { del_5: del_5 })  // Include del_5 only if it's not an empty string
     };
 
     console.log(requestBody);
@@ -245,12 +257,19 @@ function updataData(element){
     console.log(category_id);
     showOverlay();
 
+    // category_name.value = element.category;
+    // del_1.value = element.del_1;
+    // del_2.value = element.del_2;
+    // del_3.value = element.del_3;
+    // del_4.value = element.del_4;
+    // del_5.value = element.del_5;
+
     category_name.value = element.category;
-    del_1.value = element.del_1;
-    del_2.value = element.del_2;
-    del_3.value = element.del_3;
-    del_4.value = element.del_4;
-    del_5.value = element.del_5;
+    del_1.value = element.del_1 !== undefined ? element.del_1 : '';
+    del_2.value = element.del_2 !== undefined ? element.del_2 : '';
+    del_3.value = element.del_3 !== undefined ? element.del_3 : '';
+    del_4.value = element.del_4 !== undefined ? element.del_4 : '';
+    del_5.value = element.del_5 !== undefined ? element.del_5 : '';
 
 }
 

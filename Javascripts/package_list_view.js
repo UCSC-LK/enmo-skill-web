@@ -119,7 +119,7 @@ function setCategories() {
     for (let i = 1; i <= data.length; i++) {
       var btn = document.createElement('button');
       btn.className = "title";
-      btn.value = i;
+      btn.value = data[i-1].categoryId;
       btn.innerHTML = data[i - 1].category;
 
       // Immediately Invoked Function Expression (IIFE) to create a closure for each button
@@ -345,6 +345,7 @@ function loadAllPackages(category, page = 1){
       var imgElement = document.createElement("img");
       imgElement.src =package.coverUrl;
       imgElement.style.width = "100%";
+      imgElement.style.height = "185px";
 
       // Create the profile tile div
       var profileTileDiv = document.createElement("div");
@@ -377,12 +378,13 @@ function loadAllPackages(category, page = 1){
       // Create the number of reviews paragraph
       var noReviewsParagraph = document.createElement("p");
       noReviewsParagraph.classList.add("no-reviews");
-      noReviewsParagraph.textContent = package.reviews;
+      noReviewsParagraph.innerHTML = package.reviews;
+      console.log(package.reviews);
 
-      // Create the number of orders paragraph
-      var noOrdersParagraph = document.createElement("p");
-      noOrdersParagraph.classList.add("no-orders");
-      noOrdersParagraph.textContent = "(" + package.orders+")"; // has to fetch from the order table
+      // // Create the number of orders paragraph
+      // var noOrdersParagraph = document.createElement("p");
+      // noOrdersParagraph.classList.add("no-orders");
+      // noOrdersParagraph.textContent = "(" + package.orders+")"; 
 
       // Create the price paragraph
       var priceParagraph = document.createElement("p");
@@ -395,7 +397,7 @@ function loadAllPackages(category, page = 1){
 
       reviewTileDiv.appendChild(starSpan);
       reviewTileDiv.appendChild(noReviewsParagraph);
-      reviewTileDiv.appendChild(noOrdersParagraph);
+      // reviewTileDiv.appendChild(noOrdersParagraph);
 
       contentDiv.appendChild(imgElement);
       contentDiv.appendChild(profileTileDiv);

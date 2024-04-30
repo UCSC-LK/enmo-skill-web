@@ -1,10 +1,8 @@
-/* Use consistent capitalization for class names */
 body {
     font-family: "Poppins", sans-serif;
     background-color: #fdfdfd;
 }
 
-/* added this  */
 main{
     width: 100%;
 }
@@ -128,6 +126,7 @@ main{
     border-radius: 7px;
     cursor: pointer;
     margin-top: 10px;
+    font-weight: bold;
 }
 
 
@@ -383,7 +382,7 @@ h3{
 }
 
 .fa{
-   padding-top: 18px;
+   padding-top: 20px;
    margin-left: 5px;
 
 }
@@ -516,7 +515,7 @@ h3{
     bottom: 0;
     /* background-color: rgba(0,0,0,0.5); */
     background-color:#000000c3;
-    z-index: 1;
+    z-index: 105;
     /* cursor: pointer; */
   }
   
@@ -570,7 +569,7 @@ h3{
     color: #444;
     vertical-align: text-top;
     /* margin-left: 11px; */
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 .btn-apply {
@@ -585,12 +584,26 @@ h3{
     font-weight: bold;
 }
 
+.btn-upload {
+    background-color: #18181a;; /* Button background color (blue) */
+    color: #fff; /* Text color for the button */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 7px;
+    cursor: pointer;
+    float: left;
+    width: 40%;
+    font-weight: bold;
+}
+
 .hidden{
     display: none;
 }
 
-textarea{
-    font-size: 16px;
+textarea  
+{  
+   font-family:"Poppins", sans-serif;;  
+   font-size: 14px;   
 }
 
 .close-top{
@@ -607,4 +620,15 @@ textarea{
   .close-top-div{
     display: flex;
     justify-content: flex-end;
+    }
+
+    .overl-btn1{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+    .overl-btn2{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
     }
