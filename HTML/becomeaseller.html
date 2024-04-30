@@ -110,6 +110,36 @@
 
     document.querySelector(".submitBTN").addEventListener("click", () => {
 
+
+        if(document.getElementById("address").value=="" || document.getElementById("telephone").value==""){
+                    Swal.fire({
+                        title: "Error!",
+                        text: "Please fill all the fields",
+                        icon: "error",
+                        confirmButtonText: "OK"
+                    });
+                    return;
+                }
+                if(document.getElementById("telephone").value.length!=10){
+                    Swal.fire({
+                        title: "Error!",
+                        text: "Please enter a valid telephone number",
+                        icon: "error",
+                        confirmButtonText: "OK"
+                    });
+                    return;
+                }
+                // write 07XXXXXXXX format in telephone number need start with 07
+                if(document.getElementById("telephone").value.substring(0,2)!="07"){
+                    Swal.fire({
+                        title: "Error!",
+                        text: "Please enter a valid telephone number 07xxxxxxxx",
+                        icon: "error",
+                        confirmButtonText: "OK"
+                    });
+                    return;
+                }
+
     const nicFrontFile = document.getElementById('nic_front').files[0];
     const nicBackFile = document.getElementById('nic_back').files[0];
 
@@ -164,7 +194,7 @@
                 const myHeaders = new Headers();
                 myHeaders.append("Content-Type", "application/json");
                 myHeaders.append("Authorization", getCookie("JWT"));
-
+                
                 const raw = JSON.stringify({
                 "nicfront": url1,
                 "nicback": url2,
