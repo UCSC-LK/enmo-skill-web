@@ -184,7 +184,7 @@
 
 
                 function viewrequest(item){
-                    document.querySelector(".profile-pic").src = item.url;
+                    // document.querySelector(".profile-pic").src = item.url;
 
                     document.getElementById("overlay").style.display = "flex";
                     document.getElementById("data-name").textContent = item.designerName;
@@ -216,7 +216,26 @@
                         });
                     });
                     document.getElementById("bann1").addEventListener("click",()=>{
+                        const myHeaders = new Headers();
+                        
+                        myHeaders.append("Content-Type", "application/json");
+                        myHeaders.append("Authorization", getCookie("JWT"));
 
+                        
+
+                        const requestOptions = {
+                        method: "PUT",
+                        headers: myHeaders,
+                        
+                        redirect: "follow"
+                        };
+
+                        fetch(BASE_URL+"/verifydesigner?designerID="+item.designerID+"&status=1", requestOptions)
+                        .then((response) => {
+                            location.reload()
+                    })
+                        .then((result) => console.log(result))
+                        .catch((error) => console.error(error));
                     })
 
 
