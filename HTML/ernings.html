@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/ernings.css">
+    <link rel="stylesheet" href="../CSS/main.css">
+    
+    <title>Ticket List</title>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+</head>
+<body>
+    
+    <div class="loading">
+        <div class="spin"></div>
+    </div>
+
+    <div class="page">
+        <div id="sidebar-placeholder"></div><script src="../Javascripts/sidebar.js"></script>
+        <div class="pg-content" style="width: 100%; overflow: auto;">
+        <div id="header-placeholder" style="width: 100%; position: sticky; top: 0;z-index: 1;"></div><script src="../Javascripts/header.js"></script>
+           
+        <div class="container">
+            <div class="main-container">
+            
+            <div class="header">
+                <h2>Earnings</h2>
+            </div>
+            
+
+            <div class="ticet-heder-box">
+                <div class="class2">
+                    <div class="div-cursor-1"><p class="overview aline">Overview</a></p></div>
+                    <!-- <div class="div-cursor-1"><p class="document aline">Financial documents</p></div> -->
+                 </div>
+            </div>
+
+            <div  class="upper-tables">
+                <div> 
+                    <div class="table-label">Available funds</div>
+                    <div>
+                        <div class="upper-table" >
+                            <div class="table-text">Balance available for use</div><br>
+                            <div class="table-maintext available">Rs. 0.0</div><br>
+                            <div class="table-text">Last withdrawal amount</div>
+                            <div class="table-text lastAmount">Rs. 0.0</div><br>
+                            <div class="btn"><input class="withdrw-btn"  type="submit" value="Withdraw balance" id="withdraw"></div>
+                        </div>                       
+                    </div>
+                </div>    
+                    
+                <div> 
+                    <div class="table-label">Future payments</div>
+                    <div class="upper-table" >
+                        <div>
+                            <div class="table-text">Payments being cleared</div><br>
+                            <div class="table-maintext f-size being">Rs. 0.0</div>
+                        </div>
+                        <br><hr><br>
+                        <div>
+                            <div class="table-text">Payments for active orders</div><br>
+                            <div class="table-maintext f-size active">Rs. 0.0</div>
+                            <div class="table-text">Coming soon</div>
+                        </div>
+                    </div>
+                </div>
+                <div> 
+                    <div class="table-label">Earnings & expenses</div>
+                    <div class="upper-table" >
+                        <div class="table-text">Earnings to date</div><br>
+                        <div class="table-maintext all">Rs. 0.0</div><br>
+                        <div class="table-text">Your earnings since Joining.</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="table" >
+
+                <div class="ticket-box" id="ticket-box" style="border:none">
+                    <div class="ticket-box-1">
+                        
+                        <div class="ticket-heder"><p>Date</p></div>
+                        <div class="ticket-heder"><p>order</p></div>
+                        <div class="ticket-heder"><p>Availability</p></div>
+                        <div class="ticket-heder"><p>Activity</p></div>                        
+                        <div class="ticket-heder"><p>Amount</p></div>
+                        
+                    </div>
+    
+                    <div style="display: none;">
+                        <div class="order-box" id="" >
+                            <div class="erning-date aa"><div class="date"></div></div>
+                            <div class="erning-order aa"><p class="order"></p></div>
+                            <div class="erning-description aa"><p class="description"></p></div>   
+                            <div class="erning-activity div-cursor aa">
+                                <p class="activityPenging">Pending...</p>
+                                <p class="activityToClimed">To climed</p>
+                                <p class="activityClimed">Claimed</p>                              
+                                <p class="activityCancel">Canceld</p>
+                            </div>                        
+                            <div class="erning-amount aa"><p class="amount"></p></div>
+                        </div>
+
+                    </div>
+
+                    <div class="parentToClaimd" style="width: 100%; padding-right: 20px;"></div>
+                    <div class="parentDelived" style="width: 100%; padding-right: 20px;"></div>
+                    <div class="parentPending" style="width: 100%; padding-right: 20px;"></div>
+                    <div class="parentClaimd" style="width: 100%; padding-right: 20px;"></div>
+                    <!-- <div class="parent4" style="width: 100%; padding-right: 20px;"></div> -->
+                                                            
+                </div>
+                <!-- <span id="id" style="display: none;"></span> -->
+                
+            </div>
+            
+        </div>
+       
+    </div>
+
+
+</body>
+<script src="../Javascripts/baseurl.js"></script>
+<script src="../Javascripts/ernings.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

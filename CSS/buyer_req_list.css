@@ -3,14 +3,14 @@ body{
     font-family: Arial, Helvetica, sans-serif
 }
 .major{
-    MARGIN-TOP: 80px;
-    padding: 40px 0;
+    MARGIN-TOP: 40px;
+    padding: 0px 0;
     width: 100%;
     display: flex;
     justify-content: center;
 }
 .main-container{
-    width: 80%;
+    width: 90%;
 }
 
 .header{
@@ -46,9 +46,11 @@ body{
 }
 
 .table{
-    padding: 10PX;
+    padding: 15PX 10px;
+    
+    border-radius: 15px;
     background-color: white;
-    margin-top: 10px;
+    margin-top: 30px;
     border: solid;
     border-width: 1px;
     border-color: #ebebeb;
@@ -65,11 +67,17 @@ body{
 .row{
 display: flex;
 /* gap: 20px; */
-padding: 0 20px;
+padding: 10px    20px;
+min-height: 80PX;
+align-items: center;
 justify-content: space-around;
 border-bottom: solid;
 border-color: #ebebeb;
 border-width: 1 px;
+}
+.row:hover{
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
 }
 .row-hidden{
     display: none;
@@ -81,11 +89,18 @@ border-width: 1 px;
     border-width: 1 px;
     }
 .row .dis{
- width: 060%;
- max-width: 60%;
- min-width: 60%;
+ width: 050%;
+ max-width: 50%;
+ min-width: 50%;
 }
-.date, .user,.duration,.budget{
+.user{
+    width: 15%;
+    max-width: 15%;
+    min-width: 15%;
+
+}
+
+.date, .duration,.budget{
     width: 10%;
     max-width: 10%;
     min-width: 10%;
@@ -93,23 +108,24 @@ border-width: 1 px;
 
 .row-main{
     display: flex;
-    /* gap: 20px; */
-    padding: 0 20px;
+    height: 40px;
+    align-items: center;
     justify-content: space-around;
-    border-bottom: solid;
-    border-color: #ebebeb;
+    padding: 0px 20px;
+    border-bottom: 2px solid rgb(235, 235, 235);
+    border-color: rgb(235, 235, 235);
     border-width: 2px;
     }
     
     .row-main .dis{
-     width: 060%;
-     max-width: 60%;
-     min-width: 60%;   
+     width: 050%;
+     max-width: 50%;
+     min-width: 50%;   
      font-weight: bold;
      color:#a3a3a3  ;
      font-size: small;
     }
-    .date-main,.user-main,.duration-main,.budget-main{
+    .date-main,.duration-main,.budget-main{
         width: 10%;
         max-width: 10%;
         min-width: 10%;
@@ -118,4 +134,12 @@ border-width: 1 px;
         font-size: small;
 
 
+    }
+    .user-main{
+        width: 15%;
+        max-width: 15%;
+        min-width: 15%;
+        font-weight: bold;
+        color:#a3a3a3;
+        font-size: small;
     }

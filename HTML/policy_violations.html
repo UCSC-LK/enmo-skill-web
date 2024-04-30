@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/policy_violations.css">
+    <link rel="stylesheet" href="../CSS/main.css">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+
+
+
+    <title>Admin - Policy Violations</title>
+</head>
+<body>
+    <div class="page">
+        <div id="sidebar-placeholder"></div><script src="../Javascripts/sidebar.js"></script>
+        <div class="pg-content" style="width: 100%; overflow: auto;">
+            <div id="header-placeholder" style="width: 100%; position: sticky; top: 0;"></div><script src="../Javascripts/header.js"></script>
+                <div class="main">
+                    <div class="container">
+                        <div class="block">
+
+                            <div class="column-div">
+                                <p class="active txt">Enter the referencing ticket ID</p>
+                                <input type="text" name="ticketid" id="ticketid" class="ticket-txt" required>
+                                <button id="validate-ticket" class="see-more-half">GO</button>
+                            </div>
+
+                            <div class="column-div"></div>
+
+                            <div id="form-form" class="column-div2-hidden">
+
+                                
+                                    <div class="subheader2">
+                                        <h2 class="subheading2">Warning Form</h2>
+                                    </div>
+    
+                                    <div class="form-inner-div" >
+                                        <p class="active">User ID</p>
+                                        <input type="text" name="userid" id="userid-txt" class="ticket-txt-form">
+                                    </div>
+                                    <!-- <div class="form-inner-div">
+                                        <p class="active">Username</p>
+                                        <input type="text" name="username" id="username-txt" class="ticket-txt-form">
+                                    </div> -->
+                                    <div class="form-inner-div">
+                                        <p class="active">Reason</p>
+                                        <textarea name="form-reasom" id="form-reason" cols="30" rows="10" class="textarea-ticket"></textarea>
+                                        <!-- <input type="text" name="username" id="username" class="ticket-txt-form"> -->
+                                    </div>
+    
+                                    <div class="btn-row">
+                                        <button id="button-cancel" class="button-cancel-plc" type="reset">CANCEL</button>
+                                        <button id="button-save" class="button-save-plc">SUBMIT</button>
+
+                                    </div>
+
+                                
+
+                                
+                                
+                            </div>
+
+                            
+                        
+                        </div>
+                    </div>
+                        
+
+                    </div> 
+        </div>
+    </div>
+
+        
+        </div>
+    </div> 
+    
+</body>
+
+<script src="../Javascripts/policy_violations.js"></script>
+<script src="../Javascripts/baseurl.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+</html>

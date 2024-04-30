@@ -1,16 +1,34 @@
-// Assume this is the response from your backend API
 
-// Function to set a cookie
-// function setCookie(name, value, daysToExpire) {
-//     const date = new Date();
-//     date.setTime(date.getTime() + (daysToExpire * 24 * 60 * 60 * 1000));
-//     const expires = `expires=${date.toUTCString()}`;
-//     document.cookie = `${name}=${value}; ${expires}; path=/`;
-//   }
-  
-//   // Usage
-//   setCookie('username', 'john_doe', 30); // Save a username cookie with a 30-day expiration
-  
+
+function getCookie(cookieName) {
+  var name = cookieName + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var cookieArray = decodedCookie.split(';');
+
+  for(var i = 0; i < cookieArray.length; i++) {
+      var cookie = cookieArray[i].trim();
+      if (cookie.indexOf(name) == 0) {
+          return cookie.substring(name.length, cookie.length);
+      }
+  }
+  return null;
+}
+console.log("iD: " + getCookie("JWT"));
+const Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+  }
+});
+
+
+
+
 
 let flagCreate=false;
 let flagUpdate=false;
@@ -72,12 +90,12 @@ createbtn.addEventListener("click",(event)=>{
   function dataWrite(valtitle,valDis,valduration,valBudget){
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", getCookie("JWT"));
     
     var raw2 = JSON.stringify({
       "title":valtitle,
       "duration": valduration,
       "budget": valBudget,
-      "userID": 28,//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< hardcoded here
       "discription": valDis,
       "sample_work_url": "https://abc.xyz"
     });
@@ -88,10 +106,38 @@ createbtn.addEventListener("click",(event)=>{
       body: raw2
     };
     
-    fetch("http://localhost:15000/enmo_skill_backend_war/request", requestOptions)
-      .then(response => response.text())
-      .then(result => {alert(result);
-        location.reload();})
+    fetch(BASE_URL+"/request", requestOptions)
+      .then(response => {
+        if(response.status==201){
+          Toast.fire({
+            icon: "success",
+            title: "Request Created Successfully"
+          }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.timer) {
+              location.reload();
+            }
+          })
+        }else if(response.status == 401){
+          window.location.href = "../Failed/401.html";
+        }else if(response.status == 406){
+          const currentUrl = encodeURIComponent(window.location.href);
+          window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+        }else if(response.status == 404){
+          window.location.href = "../Failed/404.html";
+        }else {
+          response.text().then(result => {
+            Toast.fire({
+              icon: "error",
+              title: result
+            }).then((result) => {
+              if (result.dismiss === Swal.DismissReason.timer) {
+                location.reload();
+              }
+            });
+          });
+        }
+      })
+      
       .catch(error => {console.log('error', error);
                       });
     
@@ -107,14 +153,29 @@ createbtn.addEventListener("click",(event)=>{
 
 
 //creating list start here
+var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", getCookie("JWT"));
 
 var requestOptions = {
-  method: 'GET',
-  Credential:'include'
+  method: "GET",
+  credentials:"include",
+  headers: myHeaders
 };
 
-fetch("http://localhost:15000/enmo_skill_backend_war/request?Role=Client&UserId=28", requestOptions)
-  .then(response => response.json())
+fetch(BASE_URL + "/request", requestOptions)
+  .then(response => 
+    {if(response.status == 401){
+      window.location.href = "../Failed/401.html";
+    }else if(response.status == 406){
+      const currentUrl = encodeURIComponent(window.location.href);
+      window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+    }else if(response.status == 404){
+      window.location.href = "../Failed/404.html";
+    }else {
+      return response.json();
+    }
+  })
   .then(result => {
     console.log(result)
     count.innerText=result.count;
@@ -189,19 +250,44 @@ function viewrequest(item){
 //delete request start here
 
 function deleteRequest(requestID){
-  if(confirm('Are you sure you want Delete this request?')){
+
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!"
+  }).then((result) => {
+    if (result.isConfirmed) {
+    
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", getCookie("JWT"));
 
     var requestOptions = {
       method: 'DELETE',
-      redirect: 'follow'
+      redirect: 'follow',
+      headers: myHeaders
     };
     
-    fetch("http://localhost:15000/enmo_skill_backend_war/request?requestID="+requestID, requestOptions)
+    fetch(BASE_URL+"/request?requestID="+requestID, requestOptions)
       .then(response => response.text())
-      .then(result => {alert(result)
-        location.reload();})
+      .then(result => {
+        Toast.fire({
+          icon: "success",
+          title: result,
+        }).then((result) => {
+          if (result.dismiss === Swal.DismissReason.timer) {
+            location.reload();
+          }
+        });
+        console.log(result);
+        location.reload();
+      })
       .catch(error => console.log('error', error));
-  }
+  }});
 }
 
 window.onclick = function(event) {
@@ -249,12 +335,14 @@ duration.value=item.duration;
   function dataupdate(valtitle,valDis,valduration,valBudget){
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", getCookie("JWT"));
+
     
     var raw = JSON.stringify({
       "title":valtitle,
       "duration": valduration,
       "budget": valBudget,
-      "requestID": item.requestID,//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< hardcoded here
+      "requestID": item.requestID,
       "discription": valDis,
       "sample_work_url": "https://abc.xyz"
     });
@@ -265,10 +353,46 @@ duration.value=item.duration;
       body: raw
     };
     
-    fetch("http://localhost:15000/enmo_skill_backend_war/request", requestOptions)
-      .then(response => response.text())
-      .then(result => {alert(result)
-        location.reload();})
+    fetch(BASE_URL+"/request", requestOptions)
+      .then(response => {if(response.status==201){
+        return response.text()}
+      else if(response.status == 401){
+        window.location.href = "../Failed/401.html";
+      }else if(response.status == 406){
+        const currentUrl = encodeURIComponent(window.location.href);
+        window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+      }else if(response.status == 404){
+        window.location.href = "../Failed/404.html";
+      }else {
+        response.text().then(result => {
+          Toast.fire({
+            icon: "error",
+            title: result
+          }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.timer) {
+              location.reload();
+            }
+          });
+        });
+      }
+      })
+      .then(result => {
+    
+        console.log(result);
+        Toast.fire({
+          icon: "success",
+          title: "Request Updated Successfully"
+        }).then((result) => {
+          if (result.dismiss === Swal.DismissReason.timer) {
+            location.reload();
+          }
+        });
+      
+
+
+
+        // location.reload();..
+      })
       .catch(error => console.log('error', error));
   
   }
@@ -276,3 +400,6 @@ duration.value=item.duration;
 
 
 }
+
+
+

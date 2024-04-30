@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/order_details.css">
+    <!-- <link rel="stylesheet" href="../CSS/order_designer.css"> -->
+    <link rel="stylesheet" href="../CSS/main.css">
+    <link rel="stylesheet" href="../CSS/order_details_popup.css">
+    
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Orders Details</title>
+</head>
+<body>
+
+    <!-- <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script> -->
+    <div class="page">
+        <div id="sidebar-placeholder"></div><script src="../Javascripts/sidebar.js"></script>
+        <div class="pg-content" style="width: 100%; overflow: auto;">
+            <div id="header-placeholder" style="width: 100%; position: sticky; top: 0; z-index: 100;"></div>
+            <script src="../Javascripts/header.js"></script>
+            
+        <div class="major">
+            <div class="main-container">
+                <!-- <div class="header">
+                    <h2 >Manage Orders</h2>
+                    <div class="count">
+                        <div class="ct-bottom">
+                            <box-icon name='offer' type='solid' rotate='90' color='#a3a3a3' size = '20px' ></box-icon> -->
+                            <!-- <p ><span id="count">10</span>  Offers left Today</p>
+                        </div>
+                        
+                    </div>
+                </div> -->
+                <div class="ticet-heder-box">
+                <div class="class2">
+                    <p class="class4">ORDER- <p class="class4"> ID</p></p>
+                    <div class="div-cursor-1"><p class="orderID"> </p></div>
+                </div>
+            </div>
+                <div class="table" id="table">
+                        <div class="row-main"  id="orderDetails">
+                            <div class="ct-bottom">
+                                    <div class="icon-wrapper">
+                                    <box-icon name='offer' type='solid' rotate='90' color='#a3a3a3' size='20px'></box-icon> 
+                                </div>
+                                    <p class="user-main">Your Order Details</p>
+                                </div>
+                            <div class="dropdownup">  
+                                <div class="AAA">    
+                                    <button class="dropbtn" id="dropdownBtn">&#9660;</button>
+                                </div>                                   
+                                <div class="dropdown-contentup" id="dropdownContent">
+                                    <div class="drp1">
+                                        <div class="drp2">
+                                            <div class="BBB"> Package</div>
+                                            <div class="BBB"> Duration</div>
+                                            <div class="BBB"> Price</div>
+                                        </div>
+                                        <div class="drp3">
+                                            <div class="package">vff </div>
+                                            <div class="Duration"> </div>
+                                            <div class="Price"> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                 <div class="timer-container">
+                    <div class="timer">
+                        <div id="timer-container" style="font-size: 35px;">
+                            <span id="days">00</span> days <span id="hours">00</span>:
+                            <span id="minutes">00</span>:
+                            <span id="seconds">00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="table" id="table">
+                        <div class="row-np" >
+                            <p class="user-n"> Date</p>  
+                        </div>
+                        <br>
+                        <div class="row-np" >
+                            <div class="ct-bottom">
+                                <div class="icon-wrapper">
+                                    <box-icon name='offer' type='solid' rotate='90' color='#a3a3a3' size='20px'></box-icon> 
+                                </div>
+                                <div class="title">
+                                    <p id="count"> <p class="ClientName1"></p><p>place the order</p> </p> <p class="date1"> </p>
+                                </div>
+                            </div>
+                            <div class="header"></div>                        
+                            <div class="ct-bottom">
+                                <div class="icon-wrapper">
+                                    <box-icon name='offer' type='solid' rotate='90' color='#a3a3a3' size='20px'></box-icon> 
+                                </div>
+                                <div class="title">
+                                    <p id="count"> <p class="ClientName2"></p> <p>sent the Requements</p> </p> <p class="date2"> </p>
+                                </div>
+                                <div class="table32" id="table">
+                                        <p class="req">REQUEMENTS</p>
+                                    
+                                        <div class="table3_content">
+                                                
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="header"></div> 
+                            <div class="ct-bottom">
+                                <div class="icon-wrapper">
+                                    <box-icon name='offer' type='solid' rotate='90' color='#a3a3a3' size='20px'></box-icon> 
+                                </div>
+                                <div class="title">
+                                    <p id="count"> You Start the Order </p> 
+                                    <p class="date3"> Date </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table" id="table">
+                        <div class="table2" id="table2">
+                                <div class="row-hidden">
+                                    <div class="ct-bottom">
+                                    <div class="row-n"  id="orderDetails">
+                                        <p class="date"></p> 
+                                    </div>
+                                <div class="content-container">
+                                <p class="user-np"> Date</p>
+                                    <div class="icon2">   
+                                        <div class="icon-wrapper">
+                                            <box-icon name='offer' type='solid' rotate='90' color='#a3a3a3' size='20px'></box-icon> 
+                                        </div>
+                                        <div class="title">
+                                            <p class="up"> </p> <p class="tabledata"> asass</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                    <div class="table3" id="table">
+                                        <div class="table_inside1">
+                                            <div class="table_inside3">
+                                                <p class="table_inside2"> </p>
+                                            </div>
+                                            <div class="table_inside4">
+                                                <div class="mescont"> </div>
+                                                <div class="message">
+                                                    <p class="message-text"> </p>
+                                                </div>
+                                                <br>
+                                                <div class="remove">
+                                                    <div class="attach"> ATTACHMENT </div>
+                                                    <div class="delivery-work">
+                                                        <div class="image_frame">
+                                                            <div class="work"></div>
+                                                        </div>
+                                                        <div class="download-icon">
+                                                            <box-icon name='download' type='solid' color='#a3a3a3' size='20px'></box-icon>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                
+                                        </div>                                      
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="deliverybu">
+                        <button class="submit" onclick="loadAnotherHTML()">DELIVERY</button>
+                    </div>
+                    <br>
+                    <br>
+
+                <div class="overlay">
+                <div class="body2">
+                    <div class="main" style="position: fixed; left: 35%; top: 22%; animation:none;">
+                        
+                        <div class="container">
+                            <form  id="Form">
+                            <p class="close">X</p>
+                            <p class="title2" style="font-size: 25px; text-align: center;">Deliver Your Work</p><br />
+                            
+                            <p class="title2">Describe your delivery in detail</p>
+                            <p class="subtline">Provide customer to in detail instructions for Understand effectively and utilize your work </p>
+                            <textarea class="description-input" placeholder="Describe your project here..."required></textarea>
+                            <input type="file" style="margin-top: 20px;" class="title-input">
+                            
+                              
+                        </form>
+                        <button class="submit-button" style="background-color: #838383;" >Upload Your Work</button>
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+            </div>
+
+        </div>
+        <script src="../Javascripts/baseurl.js"></script>
+    <script src="../Javascripts/order_details_designer.js"></script>
+</div>
+
+</div>
+    
+</body>
+
+</html>

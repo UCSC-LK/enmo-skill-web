@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/ticketListViewSupport.css">
+    <link rel="stylesheet" href="../CSS/main.css">
+    <title>Ticket List</title>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+</head>
+<body>
+
+    <div class="loading">
+        <div class="spin"></div>
+    </div>
+    <div class="page">
+        <div id="sidebar-placeholder"></div><script src="../Javascripts/sidebar.js"></script>
+        <div class="pg-content" style="width: 100%; overflow: auto;">
+        <div id="header-placeholder" style="width: 100%; position: sticky; top: 0;z-index: 1"></div><script src="../Javascripts/header.js"></script>
+
+        <div class="container">
+
+            <div class="container2">
+                <div class="title"><b><h2 class="subject"></h2></b></div>
+                <!-- <h2>TITLE:</h2><b><h2 class="subject"></h2></b> -->
+                <div class="body-container">
+        
+        
+        
+                    <div class="type">
+                        
+                        <div class="urgentMark">Mark as ugent</div>               
+                    </div>
+        
+                    <div class="subject-main">
+                        
+                        <div class="type">
+                            <div class="toaddmin">Assigned to admin</div>
+                            <div class="urgent">Urgent</div>
+                            <div class="refund">Refund $</div>                
+                        </div>
+                    </div>  
+                    <!-- <div class="bottom-header" id="Updates"><h2 class="">Updates</h2></div> -->
+                    <div class="reply"><input class="commentBTN BTN"  type="submit" value="Reply"></div>
+                    <div class="apendUpdates"></div>
+                    <div class="body2" id="body2">
+                        <div><p class="role2"></p></div>
+                        <div><p class="description2" id="description2"></p></div> 
+                        <div><p class="date2" id="date2"></p></div>               
+                    </div>
+        
+                    <div class="body-main">                
+                        <div class="body">                   
+                            <div class="body-colum">                      
+                                <div>
+                                    <div><p class="role1"></p></div>                   
+                                    <div><h3 class="description-main"></h3><p class="description"></p></div>
+                                    <div class="order1"><p class="order"></p></div>
+                                    <div><p class="date"></p></div>           
+                                </div>
+        
+                                <div class="column" style="display: none;">
+                                    <div class="content">
+                                        <div class="gig-image1"></div>
+                                        <!-- <img src="../Assests/package_cover4.jpg" alt="Mountains" style="width:100%"> -->
+                                        <!-- <div class="profile-tile">
+                                            <img src="../Assests/login_img1.jpg" alt="" class="profile-img">
+                                            <p class="designer-name">Joe A.</p>
+                                        </div> -->
+                                        <p class="gig-title"></p>
+                                        <!-- <div class="review-tile">
+                                            <span class="fa fa-star"></span>
+                                            <p class="no-reviews">5</p>
+                                            <p class="no-orders">(20)</p>
+                                        </div>
+                                        <p class="price">From Rs.1000</p> -->
+                                    </div>
+                                </div>
+                            </div>
+            
+                            <!-- <div class="botom-btn">
+                                <input class="HistoryBTN BTN"  type="submit" value="View more >>">
+                            </div> -->
+                        </div>
+        
+                    </div>
+        
+                    
+        
+                    <div class="header-status">
+                        <div class="profile-pic-main"><img src="https://i.pinimg.com/564x/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg" class="profile-pic"></div>                               
+                        <div class="status-left">
+                            <h1 class="header"></h1>
+                            <div><p class="email"></p></div>
+                            <div ><p class="ticketId"></p></div>
+                        </div>
+                        
+                        <!-- <b><p class="status">Ongoing</p></b> -->
+                        <!-- <p class="close"><b>X</b></p> -->
+                    </div>
+        
+                    
+        
+                    
+                    
+                    
+        
+                    <!-- <div class="bottom-header2" id="comments"><h2>Comments</h2></div>
+                    <div class="c-append"></div> -->
+                    <!-- <div class="body2" id="body3">
+                        <div><p class="date3" id="date3"></p></div>
+                        <div><p class="description3" id="description3"></p></div>                
+                    </div> -->
+        <!-- 
+                    <div class="bottom-header3" id="comments"><h2>Admin Comments</h2></div>
+                        <div class="body2" id="body2">
+                        <div><p class="date4" id="date4"></p></div>
+                        <div><p class="description4" id="description4"></p></div>                
+                    </div> -->
+        
+                    
+                    <!-- <div class="c2-append"></div> -->
+                    <div>
+                        <div class="btns">
+                            <input class="assignBTN BTN"  type="submit" value="Assign to Addmin">
+                            <input class="closeBTN"  type="submit" value="Solved">
+                            <input class="rejectBTN"  type="submit" value="Reject">
+                        </div>
+                    </div>
+        
+                <div class="pop-up-container"></div>
+                    <div class="pop-up">
+        
+                        <!-- <div class="massege"></div>
+                        
+                        <div class="pop-btns">
+                            <input class="yes popeBTN"  type="submit" value="Yes">
+                            <input class="no popeBTN"  type="submit" value="No">
+                        </div>           -->
+                        <template id="my-template" class="my-template">
+                         
+                            <swal-title >
+                                Save changes to "Untitled 1" before closing?
+                            </swal-title>
+                            <swal-icon type="warning" color="red"></swal-icon>
+                            <swal-button type="confirm">
+                              Yes
+                            </swal-button>
+                            <swal-button type="cancel">
+                              No
+                            </swal-button>
+                            <!-- <swal-button type="deny">
+                              Close without Saving
+                            </swal-button> -->
+                            <!-- <swal-param name="allowEscapeKey" value="false" />
+                            <swal-param
+                              name="customClass"
+                              value='{ "popup": "my-popup" }' />
+                            <swal-function-param
+                              name="didOpen"
+                              value="popup => console.log(popup)" /> -->
+                        </template>
+                        
+                        
+                    </div>
+                </div>
+                
+                <!-- <div class="pop-up-container2"></div>
+                <div class="pop-up2">     -->
+                    <!-- <div class="massege"></div>               
+                    <div class="input-main"><textarea  class="inputs" name="description" id="description" required></textarea></div>                
+                    <div class="pop-btns">
+                        <input class="submitBTN popeBTN"  type="submit" value="Submit">
+                        <input class="cancelBTN popeBTN"  type="submit" value="Cancel">
+                    </div>           -->               
+                    
+                <!-- </div> -->
+            </div>
+
+            
+        </div>
+    </div>    
+
+    <!-- <div style="margin-top: 80px;">
+        <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>    </div>    -->
+
+    
+    </div>
+            
+               
+            
+        </div>
+    </div>
+    
+    </div>
+    
+</body>  
+<script src="../Javascripts/baseurl.js"></script> 
+<script src="../Javascripts/ticketListViewSupport.js"></script> 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- <script src="sweetalert2.all.min.js"></script> -->

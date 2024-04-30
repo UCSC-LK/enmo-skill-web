@@ -2,23 +2,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/navbar2.css">
+    <style>
+        .dropdown {
+          position: relative;
+          display: inline-block;
+        }
+      
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: -30px;
+            background-color: #f9f9f9;
+            min-width: 117px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            z-index: 100;
+        }
+      
+        .dropdown-content a {
+          color: black;
+          padding: 12px 16px;
+          text-decoration: none;
+          display: block;
+        }
+      
+        .dropdown-content a:hover {
+          background-color: #f1f1f1;
+        }
+      
+        .dropdown:hover .dropdown-content {
+          display: block;
+        }
+      
+      </style>
 </head>
 <body>
 <div class="navbar-content  ">
     <div class="navbar">
         
-        <div class="logo" onclick="home()" >
-            <img src="../Assests/logo enmo.png" alt="Logo">
-        </div>
+       
         
         
         
         
         <div class="user-actions">
-            <span class="orders" onclick="order()" >Orders</span>
-            <span class="getsupport" onclick="support()" >Get Support</span>
-            <span class="packages" onclick="pakages()" >My Packages</span>
-            <span class="earnings" onclick="earninigs()" >Earnings</span>
+          
             
             
             
@@ -27,44 +54,44 @@
         <div class="menu">
             <button class="massages" onclick="massages()" ></button>
             <button class="notification" onclick="notification()" ></button>
-            <image class= "profileimg" onclick="profile()"  src = "../Assests/login_img1.jpg"/>
+            <div class="dropdown">
+                <image class= "profileimg" src = "../Assests/login_img1.jpg" onclick="profile()"/>
+                <div class="dropdown-content">
+                  <a href="#">Option 1</a>
+                  <a href="#">Option 2</a>
+                  <a onclick="Logout()">Logout</a>
+                </div>
+            </div>
         </div>
 
     </div>
     <script>
-        function home() {
-            // Replace the URL in the following line with the URL of the page you want to navigate to.
-            window.parent.location = '../';
-        }
+        function Logout() {
+                function deleteCookie(name) {
+                    document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                }
+
+                deleteCookie("JWT");
+                deleteCookie("Refresh Token");
+                deleteCookie("UserLevel");
+                window.parent.location = '../HTML/login.html';
+
+            }
+        
         function massages() {
             // Replace the URL in the following line with the URL of the page you want to navigate to.
-            window.parent.location='../HTML/messages.html';
+            window.parent.location='../HTML/messages_designer.html';
         }
         function notification() {
             // Replace the URL in the following line with the URL of the page you want to navigate to.
-            window.parent.location = '../HTML/notification.html';
+            window.parent.location = '../HTML/notification_designer.html';
         }
-        function order() {
-            // Replace the URL in the following line with the URL of the page you want to navigate to.
-            window.parent.location='../HTML/orderlist_designer.html';
-        }
-        function support() {
-            // Replace the URL in the following line with the URL of the page you want to navigate to.
-            window.parent.location = '../HTML/tikectListDisigner.html';
-        }
-        function pakages() {
-            // Replace the URL in the following line with the URL of the page you want to navigate to.
-            window.parent.location='../HTML/view_active_packages.html';
-        }
-        function earninigs() {
-            // Replace the URL in the following line with the URL of the page you want to navigate to.
-            // window.parent.location = '../HTML/signup.html';
-            alert("UI is Under Construction")
-        }
+        
         function profile() {
             // Replace the URL in the following line with the URL of the page you want to navigate to.
             window.parent.location='../HTML/profile.html';
         }
+        
         
     </script>
 </div>

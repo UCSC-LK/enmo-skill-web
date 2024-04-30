@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Timeout</title>
+    <style>
+         .divv {
+            font-family: 'Arial', sans-serif;
+            background-color: #f2f2f291;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100%;
+            position: fixed;
+            z-index: 10;
+        }
+       
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 500px;
+        }
+
+        h1 {
+            color: #ff5555;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .countdown {
+            color: #555;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .back-to-login {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #293692;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .back-to-login:hover {
+            background-color: #545b90;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .container {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>
+   
+    <div class="divv">
+        <div class="container">
+            <h1>Session Timeout</h1>
+            <p>Your session has timed out due to inactivity.</p>
+            <p class="countdown">Redirecting in <span id="countdown">30</span> seconds...</p>
+            <a href="/HTML/login.html" class="back-to-login">Login to Continue</a>
+        </div>
+    </div>
+    <script src="../Javascripts/baseurl.js"></script>
+    <script>
+        function setCookie(name, value, daysToExpire) {
+            const date = new Date();
+            date.setTime(date.getTime() + (daysToExpire * 24 * 60 * 60 * 1000));
+            const expires = `expires=${date.toUTCString()}`;
+            document.cookie = `${name}=${value}; ${expires}; path=/`;
+        }
+
+        function getCookie(cookieName) {
+            var name = cookieName + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var cookieArray = decodedCookie.split(';');
+
+            for(var i = 0; i < cookieArray.length; i++) {
+                var cookie = cookieArray[i].trim();
+                if (cookie.indexOf(name) == 0) {
+                    return cookie.substring(name.length, cookie.length);
+                }
+            }
+            return null;
+        }
+
+        let seconds = 30;
+
+        function updateCountdown() {
+            document.getElementById('countdown').textContent = seconds;
+            if (seconds === 0) {
+                window.location.href = '/HTML/login.html'; 
+            } else {
+                seconds--;
+                setTimeout(updateCountdown, 1000);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            setTimeout(updateCountdown, 1000);
+        });
+        const urlParams = new URLSearchParams(window.location.search);
+        const returnUrl = urlParams.get('returnUrl');
+        work();
+        function work(){
+            
+                    token=""
+                    fetch(BASE_URL+"/validate?check=false", {
+                        method: 'PUT',
+                        headers: {
+                            'Content-type': 'application/json',
+                            "Authorization": getCookie("Refresh Token")
+                        },
+                    }).then(response => {
+                        if (response.status == 202) {
+
+                            response.json().then(data => {
+                                token = data.JWT;                                   
+                            }).catch(error => {
+                                console.error(error);
+                            })
+
+                            console.log("Session can be extended");
+                            button = document.querySelector('.back-to-login');
+                            button.textContent = "Extend Session"
+                            
+
+            
+                            button.addEventListener('click', function (event) {
+                                event.preventDefault();
+                                setCookie('JWT',"Bearer "+ token, 1); 
+                                if (returnUrl) {
+                                    window.location.href = returnUrl;
+                                }else{
+                                    window.location.href = '/';
+                                }
+                                                                    
+                            });
+                        }
+                        
+                    }).catch(error => {
+                        console.error('There has been a problem with your fetch operation:', error);
+                    })
+
+        }
+
+    </script>
+</body>
+
+</html>

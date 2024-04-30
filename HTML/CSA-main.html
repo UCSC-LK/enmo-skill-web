@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/CSA-main.css">
+    <title>Get contact support</title>
+</head>
+
+<body>
+   <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>
+    <div class="container">
+        <div class="contain-box">
+            <div>
+                <h1>Hello, how can we help you?</h1>
+            </div>
+            <div class="table">
+                <div class="row" onclick="AandS()"><p class="text">Account & security</p></div>
+                <div class="row" onclick="client()"><p class="text">Client on Enmo Skill</p></div>
+                <div class="row" onclick="designer()"><p class="text">Designer on Enmo Skill</p></div>
+            </div>
+
+
+        </div>
+        <div class="imag">
+            <img src="../Assests/icons/CSA2.png">
+        </div>
+
+    </div>
+
+</body>
+<script>
+    function AandS(){
+        window.location.href='./CSA-account&securuty.html';
+    }
+    function client(){
+        window.location.href='./CSA-client.html';
+    }
+    function designer(){
+        window.location.href='./CSA-designer.html';
+    }
+</script>

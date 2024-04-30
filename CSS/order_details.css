@@ -1,0 +1,637 @@
+body {
+    background-color: #fdfdfd;
+    font-family: "poppins", sans-serif
+}
+
+.major {
+    MARGIN-TOP: 10px;
+    padding: 0px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.main-container {
+    width: 90%;
+}
+
+.header {
+
+    /* border-bottom: solid; */
+    border-color: #ebebeb;
+    border-width: 2px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.count {
+    display: flex;
+    align-items: end;
+
+}
+
+.header h2 {
+    color: rgb(60, 60, 60);
+    font-size: 35px;
+    font-weight: lighter;
+
+}
+
+.ct-bottom {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.count p {
+    margin: 3px;
+    color: #a3a3a3;
+    font-size: small;
+    font-weight: bold;
+
+}
+
+.table {
+    padding: 10PX 10px;
+    border-radius: 15px;
+    background-color: white;
+    margin-top: 10px;
+    border: solid;
+    border-width: 1px;
+    border-color: #ebebeb;
+}
+
+.upper {
+    border-bottom: solid;
+    border-color: #ebebeb;
+    border-width: 2px;
+}
+
+.upper p {
+    font-weight: bold;
+    color: rgb(60, 60, 60);
+}
+
+.row {
+    display: flex;
+    /* gap: 20px; */
+    padding: 10px 20px;
+    min-height: 80PX;
+    align-items: center;
+    justify-content: space-around;
+    border-bottom: solid;
+    border-color: #ebebeb;
+    border-width: 1 px;
+}
+
+.row:hover {
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+}
+
+.row-hidden {
+    display: none;
+    gap: 20px;
+    padding: 0 20px;
+    justify-content: space-around;
+    border-bottom: solid;
+    border-color: #ebebeb;
+    border-width: 1 px;
+}
+
+.row .dis {
+    width: 060%;
+    max-width: 60%;
+    min-width: 60%;
+}
+
+.date,
+.user,
+.duration,
+.budget,
+.gig,
+.status {
+    width: 10%;
+    max-width: 10%;
+    min-width: 10%;
+}
+
+.row-main {
+    height: 170px;
+    padding: 0px 20px;
+    /* border-bottom: 2px solid rgb(235, 235, 235); */
+    border-color: rgb(235, 235, 235);
+    border-width: 2px;
+    transition: height 0.3s ease;
+}
+
+
+.row-main.expanded {
+    height: 170px;
+    /* Expand height when the dropdown is opened */
+}
+
+.row-main .dis {
+    width: 060%;
+    /* max-width: 60%; */
+    /* min-width: 60%; */
+    font-weight: bold;
+    color: #a3a3a3;
+    font-size: small;
+}
+
+.date-main,
+.user-main,
+.duration-main,
+.budget-main,
+.gig-main,
+.user-main2,
+.status-main {
+    width: 50%;
+    max-width: 50%;
+    min-width: 10%;
+    font-weight: bold;
+    color: #a3a3a3;
+    font-size: medium;
+        margin-left: 32px;
+    justify-content: left;
+
+}
+
+.req {
+    max-width: 50%;
+    min-width: 10%;
+    font-weight: bold;
+    color: #a3a3a3;
+    font-size: medium;
+    margin-left: 2px;
+    margin-top: 2px;
+
+    justify-content: left;
+}
+
+.ticet-heder-box {
+    border-bottom: solid;
+        border-color: #ebebeb;
+        /* margin-top: -30px; */
+            height: 80px;
+}
+
+.ticket-box {
+    width: 100%;
+    text-align: left;
+    align-items: center;
+    position: relative;
+    border-style: solid;
+    border-color: #ebebeb;
+    background-position: center;
+    display: flex;
+    flex-wrap: wrap;
+    /*background-color:black;*/
+}
+
+.class2 {
+    color: #9D9D9D;
+    padding: 10px;
+    display: flex;
+    grid-template-columns: 6% 10% 9% 10% 65%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+p.class4 {
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.div-cursor-1 {
+    height: 100%;
+    transition: 0.2s;
+    border-radius: 10px;
+    margin-right: 2000px;
+}
+
+/* Align dropdown to the right */
+
+.AAA {
+    margin-left: 700px;
+    margin-top: -20px;
+}
+
+.BBB {
+    justify-content: left;
+    margin-top: 10px;
+    margin-left: 10px;
+    /* border-bottom: solid; */
+}
+
+.CCC{
+    margin-left: 770px;
+}
+/* Dropdown button - ensuring it does not have unintended margins or paddings affecting position */
+.dropbtn {
+    background-color: transparent;
+    color: #000;
+    padding: 0;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    margin-left: 280px;
+    transition: height 0.3s ease;
+}
+
+.dropdown-content2{
+    display: none;
+    position: relative;
+    left: 0;
+    background-color: #f9f9f9;
+    width: 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    margin-left: 40px;
+    border-radius: 5px;
+        min-width: 300px;
+}
+
+/* Keep the dropdown content positioned relative to the dropbtn */
+.dropdown-contentup {
+    display: none;
+    position: relative;
+    left: 0;
+    background-color: #f9f9f9;
+    width: 950px;
+    z-index: 1;
+    margin-left: 40px;
+    border-radius: 5px;
+}
+
+
+/* To show the dropdown content when it is active (toggled to show) */
+.dropdownup.active .dropdown-contentup {
+    display: block;
+    width: 100%;
+}
+
+.dropdownup {
+    /* position: relative; */
+    width: 100%;    
+}
+
+.title{
+    margin-left: 30px;
+}
+
+.title p {
+    display: inline-block;
+    margin-right: 10px;
+    font-weight: bold;
+        color: #a3a3a3;
+}
+
+.title div {
+    display: inline-block;
+    margin-left: 10px;
+    /* Adjust the margin to increase space */
+}
+
+.table3 {
+    display: flex;
+    padding: 15PX 10px;
+    border-radius: 15px;
+    background-color: white;
+    margin-top: 30px;
+    border: solid;
+    border-width: 1px;
+    border-color: #ebebeb;
+    flex-basis: 100%;
+    margin-top: 30px;
+    min-height: max-content;
+}
+
+.table32 {
+    display: flex;
+    flex-direction: column;
+    /* This makes child elements stack vertically */
+    padding: 15px 10px;
+    border-radius: 15px;
+    background-color: white;
+    margin-top: 30px;
+    border: 1px solid #ebebeb;
+    width: 100%;
+    /* Use 100% or other suitable width */
+    min-height: max-content;
+    /* Allows container to grow as needed */
+}
+
+.table3_content {
+    display: block;
+    width: 100%;
+    min-height: auto;
+    word-wrap: break-word;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.table_inside1{
+    width: 100%;
+}
+.table_inside2{
+    margin-left: 30px;
+    margin-right: 10px;
+}
+.table_inside3{
+    width: 100%;
+        border-radius: 10px 10px 10px 10px;
+        background-color: #ccc;
+        justify-content: 40px;
+}
+
+.table_inside4 {
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+    margin-left: 25px;
+}
+
+.message {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 25px;
+    margin-right: 425px;
+    width: 500px;
+    height: auto;
+    display: flex;
+        flex-direction: column;
+        /* Stacks children vertically */
+        padding: 15px 10px;
+        border-radius: 15px;
+        background-color: white;
+        border: 1px solid #ebebeb;
+        /* Example fixed width, adjust as needed */
+        min-height: max-content;
+
+}
+
+.message-text {
+    white-space: normal;
+    margin-right: 125px;
+    display: block;
+        /* Default block for text content */
+        width: 100%;
+        /* Takes full width of the parent */
+        word-wrap: break-word;
+}
+
+.delivery-work {
+    display: flex;
+    align-items: center;
+}
+
+.download-icon {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.table3_con{
+    margin-left: 30px;
+}
+
+.dropbtn_below{
+    background-color: transparent;
+    color: #000;
+    padding: 0;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    margin-right: 0px;
+    margin-left: 190px;
+}
+.row-n.expanded {
+    height: 150px;
+    /* Expand height when the dropdown is opened */
+}
+
+.row-n {
+    height: auto;
+    padding: 0px 10px;
+    /* border-bottom: 2px solid rgb(235, 235, 235); */
+    border-color: rgb(235, 235, 235);
+    border-width: 2px;
+    transition: height 0.1s ease;
+    /* Add transition for smooth height change */
+}
+
+.row-np {
+    height: auto;
+    padding: 0px 20px;
+    /* border-bottom: 2px solid rgb(235, 235, 235); */
+    border-color: rgb(235, 235, 235);
+    border-width: 2px;
+    /* transition: height 0.8s ease; */
+    /* Add transition for smooth height change */
+}
+/* Keep the dropdown content positioned relative to the dropbtn */
+.dropdown-content2 {
+    display: none;
+    position: relative;
+    left: 0;
+    /* align the dropdown content to the right of dropbtn */
+    background-color: #f9f9f9;
+    width: 450px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+/* To show the dropdown content when it is active (toggled to show) */
+.dropdown2.active .dropdown-content2 {
+    display: block;
+    width: 100%;
+}
+
+.dropdown2 {
+    /* position: relative; */
+    width: 100%;
+    height: max-content;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icon-wrapper2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    border: 2px dashed #ccc;
+    cursor: pointer;
+    margin-left: 30px;
+    margin-top: 10px;
+}
+
+.uploaded-files-container {
+    margin-top: 20px;
+}
+
+.uploaded-file-box {
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.submit {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 8px 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 500px;
+    margin-top: 10px;
+    justify-content: flex-end;
+}
+
+
+.table2{
+    padding: 10PX 10px;
+    border-radius: 15px;
+    background-color: white;
+    border: solid;
+    border-width: 1px;
+    border-color: white;
+
+
+}
+
+.row-hidden{
+    height: auto;
+        padding: 0px 20px;
+        border-bottom: 2px solid rgb(235, 235, 235);
+        border-color: rgb(235, 235, 235);
+        border-width: 2px;
+        transition: height 0.3s ease;
+        /* Add transition for smooth height change */
+}
+
+.row-hidden.expanded {
+    height: auto;
+    /* Expand height when the dropdown is opened */
+}
+
+p.orderID {
+    font-size: 35px;
+    font-weight: bold;
+    margin-left: 30px;
+}
+
+.drp1{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+        margin-left: 20px;
+        margin-bottom: 20px;
+        margin-right: 20px;
+}
+
+.drp2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: inset;
+}
+
+.drp3{
+    display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 20px;
+        margin-left: 10px;
+}
+
+.user-n{
+    width: 100px;
+    padding-left: 29px;
+    margin-left: -30px;
+    border-radius: 0px 15px 15px 0px;
+    background-color: #ccc;
+}
+
+.user-np{
+    width: 100px;
+    padding-left: 29px;
+    margin-left: -61px;
+    border-radius: 0px 15px 15px 0px;
+    background-color: #ccc;
+}
+
+
+.icon2 {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+    margin-left: -30px;
+}
+
+.image_frame {
+    width: 150px;
+    height: 150px;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.work img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.attach{
+    margin-bottom: 20px;
+}
+
+.timer-container {
+    text-align: center;
+    font-size: large;
+    margin-top: 10px;
+}
+
+
+.timer {
+    display: inline-block;
+    background-color: #f4f4f4;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-in-out;
+    width: 1130px;
+    height: 60px;
+}
+
+.timer span {
+    font-size: 34px;
+    display: inline-block;
+    width: 60px;
+    text-align: center;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

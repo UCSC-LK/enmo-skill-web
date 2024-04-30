@@ -1,120 +1,328 @@
+function getCookie(cookieName) {
+  var name = cookieName + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var cookieArray = decodedCookie.split(';');
+
+  for(var i = 0; i < cookieArray.length; i++) {
+      var cookie = cookieArray[i].trim();
+      if (cookie.indexOf(name) == 0) {
+          return cookie.substring(name.length, cookie.length);
+      }
+  }
+  return null;
+}
+
+const createTicket = document.querySelector(".createTicket")
+const all = document.querySelector(".all")
+const ongoing = document.querySelector(".ongoing")
+const solved = document.querySelector(".solved")
+const rejected = document.querySelector(".rejected")
+const loding = document.querySelector(".loading");
 
 
-// var requestOptions = {
-//   method: 'GET',
-//   Credential:'include',
-// };
+const perent = document.querySelector(".parent")
+const child = document.querySelector(".ticket-box-2")
+
+loding.style.display ="none"
+
+createTicket.addEventListener("click",()=>{
+  createticketDesigner()
+})
+
+tableLoad("all")
+all.style.color="#000000"
+
+all.addEventListener("click",()=>{
   
+  tableLoad("all")
+  all.style.color="#000000"
+})
 
-//fetch(res, requestOptions)
-   //.then(res  => response.json())
-   //.then(result => {
-    function ss(res) {
+ongoing.addEventListener("click",()=>{
+  tableLoad("ongoing")
+  ongoing.style.color="#000000"
+})
 
-        const listTictect = document.getElementById("ticket-box");
-        const listItemTemplate = document.querySelector(".ticket-box-2");
-        const count = document.getElementById("id");
-        
-        count.innerText=res.length;
+solved.addEventListener("click",()=>{
+  tableLoad("solved")
+  solved.style.color="#000000"
+})
 
-        res.forEach(item => {
-        const newItem = listItemTemplate.cloneNode(true);
-        //newItem.style.display = "block";
-        
-      //   newItem.querySelector(".user").addEventListener("click", function() {
-      //     console.log("Clicked username: " + item.username);
-      // });
+rejected.addEventListener("click",()=>{
+  tableLoad("rejected")
+  rejected.style.color="#000000"
+})
 
-        //newItem.querySelector(".image").textContent = item.image;
-        //newItem.querySelector(".id").textContent = item.id;
-        //newItem.querySelector(".id").textContent = item.id;
-        newItem.id = item.id;
-        newItem.querySelector(".subject").textContent = item.subject;
-        newItem.querySelector(".description").textContent = item.description;
-        newItem.querySelector(".date").textContent = item.date;
-        newItem.querySelector(".time").textContent = item.time;
-        newItem.querySelector(".status").textContent = item.status;
+//get list of tickets----------------------------------------------------------
+
+  function tableLoad(view){
+    perent.innerHTML=""
+    all.style.color="#9D9D9D"
+    ongoing.style.color="#9D9D9D"
+    solved.style.color="#9D9D9D"
+    rejected.style.color="#9D9D9D"
+
+    var myHeaders = new Headers();                          
+    myHeaders.append("Content-Type", "application/json");  
+    myHeaders.append("Authorization", getCookie("JWT"));   
+
+    var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        Credential:'include'
+      };
+
+      loding.style.display ="flex"
+
+    fetch(BASE_URL+"/support", requestOptions)
+    .then(response =>{
+
+      loding.style.display ="none"
+      if(response.status == 401){
+        window.location.href = "../Failed/401.html";
+      }else if(response.status == 406){
+        const currentUrl = encodeURIComponent(window.location.href);
+        window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+      }else if(response.status == 404){
+        window.location.href = "../Failed/404.html";
+      }else {
+        return response.json()
+      }
+    })
+    .then(result => {
+      console.log(result)
+      result.forEach(item => {
+        const newItem = child.cloneNode(true)
+        newItem.querySelector(".subject").textContent=item.subject
+        let status;
+        switch(item.status){
+         
+          case 1:
+            status="Ongoing"
+            break
+
+          case 2:
+            status="Ongoing"
+            break
+
+          case 3:
+            status="Closed"
+            // newItem.querySelector(".panel").style.display="none"
+            break
+            
+          case 4:
+            status="Rejected"
+            // newItem.querySelector(".panel").style.display="none"
+            break
+            
+        }
+        newItem.querySelector(".status").textContent=status
+        newItem.querySelector(".date").textContent=item.date
+
+        if(item.order<=0){
+          newItem.querySelector(".order1").style.display="none"
+        }
+
+        //delete a ticket------------------------------------------------------
+        // newItem.querySelector(".delete").addEventListener("click",()=>{ 
+        //   deleteRequest(item.ref_no)
+        //  })
         
-        
-        //newItem.querySelector(".description").textContent = item.description;
-        //newItem.querySelector(".icon").textContent = item.icon;
-        
-    
-        //console.log("sssssss")
-        // newItem.classList.remove("ticket-box-2");
-        // newItem.classList.add("row"); 
+         //update a ticket----------------------------------------------------
+        // newItem.querySelector(".edit").addEventListener("click",()=>{
+        //   editTicket(item.ref_no)
+        //  }) 
+      
+
+        var itemDivs=[newItem.querySelector(".ticket-subject"),newItem.querySelector(".ticket-status"),newItem.querySelector(".ticket-date"),newItem.querySelector(".order")];
        
-        listTictect.appendChild(newItem);
+        itemDivs.forEach(function(itemDiv) {
+          itemDiv.addEventListener("click",()=>{ viewticket(item.ref_no)})//view tickets--------------------------------------------
+          // itemDiv.addEventListener("mouseover",()=>{ hoverChnageAddClass(); })
+          // itemDiv.addEventListener("mouseout",()=>{hoverChnageRemoveClass();})
+        });
 
-        viewrequest(item);
+        //  function hoverChnageAddClass(){
+        //   itemDivs.forEach(function(itemDiv) {
+        //     itemDiv.classList.add("hoverChange");
+        //   });
+        //  }
+        //  function hoverChnageRemoveClass(){
+        //   itemDivs.forEach(function(itemDiv) {
+        //     itemDiv.classList.remove("hoverChange");
+        //   });
+          
+        //  }
+        
 
-    });
+         switch(view){
+          case "ongoing":
+            if(item.status==1 || item.status==2){
+              perent.appendChild(newItem)
+            }
+            break
+
+          case "solved":
+            if(item.status==3){
+              perent.appendChild(newItem)
+            }
+            break
+
+          case "rejected":
+            if(item.status==4){
+              perent.appendChild(newItem)
+            }
+            break
+          
+          default:
+            perent.appendChild(newItem)
+          
+         }
+      
+  
+      });
+      
+    })
+    .catch(error => console.log('error', error))
 
   }
-
-const res=[
-    {
-        id:1,
-        //image:"../Assests/login_img1.jpg",
-       
-        subject:"Late payment",            
-        date:"22/10/2020",
-        time:"10.22",
-        status:"Asigned",
-        description:"  I hope this message finds you well. We would like to bring to your attention the outstandng payment for the project with referenc number [Project Number or Description], which is currently overdue. As per our agreement, the number [Project Number or Description], which is currently overdue. As per our agreement, the  payment was due on [Due Date]."
-      
-    },
-    {
-        id:1,
-        //image:"../Assests/login_img1.jpg",
-       
-        subject:"Late payment",            
-        date:"22/10/2020",
-        time:"10.22",
-        status:"Asigned",
-        description:"  I hope this message finds you well. We would like to bring to your attention the outstandng payment for the project with referenc number [Project Number or Description], which is currently overdue. As per our agreement, the number [Project Number or Description], which is currently overdue. As per our agreement, the  payment was due on [Due Date]."
-      
-    },
-    {
-        id:1,
-        //image:"../Assests/login_img1.jpg",
-       
-        subject:"Late payment",            
-        date:"22/10/2020",
-        time:"10.22",
-        status:"Asigned",
-        description:"  I hope this message finds you well. We would like to bring to your attention the outstandng payment for the project with referenc number [Project Number or Description], which is currently overdue. As per our agreement, the number [Project Number or Description], which is currently overdue. As per our agreement, the  payment was due on [Due Date]."
-      
-    },
-    {
-        id:1,
-        //image:"../Assests/login_img1.jpg",
-       
-        subject:"Late payment",            
-        date:"22/10/2020",
-        time:"10.22",
-        status:"Asigned",
-        description:"  I hope this message finds you well. We would like to bring to your attention the outstandng payment for the project with referenc number [Project Number or Description], which is currently overdue. As per our agreement, the number [Project Number or Description], which is currently overdue. As per our agreement, the  payment was due on [Due Date]."
-      
-    }
-];
   
-ss(res);
-function viewrequest(item){
-    let popup_con=document.querySelector(".pop-up-container");
-    let popup_details=document.querySelector(".pop-up");
-    document.getElementById(item.id).addEventListener("click",(event)=>{
-        popup_con.style.display="flex";
-        popup_details.style.display="inline";
-        popup_details.querySelector(".subject").textContent = item.subject;
-        popup_details.querySelector(".description").textContent = item.description;
-        popup_details.querySelector(".date").textContent = item.date;
-        popup_details.querySelector(".time").textContent = item.time;
-        popup_details.querySelector(".status").textContent = item.status;
-    })
-    popup_con.onclick=(event)=>{
-        popup_con.style.display="none";
-        popup_details.style.display="none";
-    }
+
+  
+// function deleteRequest(TicketID){
+
+//   let popup_con=document.querySelector(".pop-up-container");
+//   let popup_details=document.querySelector(".pop-up");
+
+//   var massege= "Are you sure you want Delete this request?"  
+
+//   popup_con.style.display="flex";
+//   popup_details.style.display="inline";
+  
+//   popup_details.querySelector(".massege").textContent = massege;
+
+//   var textarea = document.getElementById("description");
+//   textarea.remove();                                    // remove input feeld-------------------
+
+//   var Delete = document.querySelector(".updateBTN")
+//   var cancel = document.querySelector(".cancelBTN")
+
+//   Delete.value="Delete"
+//   cancel.value="Cancel"
+ 
+//   Delete.addEventListener("click",()=>{
+    
+//     var myHeaders = new Headers();
+//     myHeaders.append("Content-Type", "application/json");  
+//     myHeaders.append("Authorization", getCookie("JWT"));   
+
+//     var requestOptions = {
+//       method: 'DELETE',
+//       headers: myHeaders,
+//       redirect: 'follow'
+//     };
+
+//     loding.style.display ="flex"
+//     fetch(BASE_URL+"/support?TicketID="+TicketID, requestOptions)
+//     .then(response => {
+//       loding.style.display ="none"
+//       if(response.status == 401){
+//         window.location.href = "../Failed/401.html";
+//       }else if(response.status == 406){
+//         const currentUrl = encodeURIComponent(window.location.href);
+//         window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+//       }else if(response.status == 404){
+//         window.location.href = "../Failed/404.html";
+//       }else {
+//         return response.text()
+//       }
+//     })
+//       .then(result => {alert(result)
+//         location.reload();})
+//       .catch(error => console.log('error', error));
+//   })
+
+//   cancel.addEventListener("click",()=>{
+//     location.reload()
+//   })
+// }
+
+
+// function editTicket(ticketID){
+//   let popup_con=document.querySelector(".pop-up-container");
+//   let popup_details=document.querySelector(".pop-up");
+
+//   var massege= "Add some Updates"  
+
+//   popup_con.style.display="flex";
+//   popup_details.style.display="inline";
+  
+//   popup_details.querySelector(".massege").textContent = massege;
+
+//   var submit = document.querySelector(".updateBTN")
+//   var cancel = document.querySelector(".cancelBTN")
+
+//   // submit.value="Send"
+//   // cancel.value="Cancel"
+
+//   submit.addEventListener("click",()=>{
+
+//     var myHeaders = new Headers();
+//     myHeaders.append("Content-Type", "application/json");
+//     myHeaders.append("Authorization", getCookie("JWT")); 
+        
+//     var raw = JSON.stringify({
+//         "ref_no":ticketID,
+//         "description":document.getElementById("description").value,
+//     });
+
+//     console.log(raw)
+    
+//     var requestOptions = {
+//       method: 'PUT',
+//       headers: myHeaders,
+//       body: raw
+//     };
+
+//     loding.style.display ="flex"
+//     fetch(BASE_URL+"/support", requestOptions)
+//     .then(response => {
+//       loding.style.display ="none"
+//       if(response.status == 401){
+//         window.location.href = "../Failed/401.html";
+//       }else if(response.status == 406){
+//         const currentUrl = encodeURIComponent(window.location.href);
+//         window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+//       }else if(response.status == 404){
+//         window.location.href = "../Failed/404.html";
+//       }else {
+//         return response.text()
+//       }
+//     })
+//       .then(result => {alert(result)
+//         window.location="../HTML/tikectListDisigner.html"})
+//       .catch(error => console.log('error', error));
+//       })
+
+//   cancel.addEventListener("click",()=>{
+//     location.reload()
+//   })
+
+
+// }
+
+//load create ticket page-------------------------------------------------------------------
+function createticketDesigner(){
+  window.location.href = "../HTML/CSA-designer.html"
+}
+
+function createticketClent(){
+  window.location.href = "../HTML/CSA-client.html"
+}
+
+
+function viewticket(ticketID){
+  var url ="../HTML/ticketListView.html?ticketID="+ encodeURIComponent(ticketID)
+  window.location.href = url
 }
 

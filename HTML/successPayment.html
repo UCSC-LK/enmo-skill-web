@@ -3,28 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/main.css">
     <link rel="stylesheet" href="../CSS/successPayment.css">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <title>Payment Success</title>
    
 </head>
 <body>
-    <div class="container">
+    <div class="loading">
+        <div class="spin"></div>
+    </div>
+
+    <div class="page">
+        <div class="pg-content" style="width: 100%; overflow: auto;">
+            <div id="header-placeholder" style="width: 100%; position: sticky; top: 0;z-index: 1;"></div><script src="../Javascripts/header.js"></script>
+            <div class="container">
         
-        <div class="heder">
-            <div><p class="text">Payment Successful</p></div>
-        </div>
+                <div class="heder">
+                    <div><p class="text">Payment Successful</p></div>
+                </div>
+        
+                <br><br>
+        
+                <div class="image-box">
+                    <div class="image">
+                        <img src="../Assests/icons/success.svg" />
+                    </div>
+                </div>
+                
+             
+                <div class="bottom-box">
+                    <h2>Thank you! Payment Completed Successfully.</h2>
+                    <br><br><br><br>
+                    <!-- <p>If you have any questions, please, reach out to ABS Customer Services through our Contact Page </p> -->
+                    <center><table class="table">
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Title</th>
+                            <th>Status</th>
+                            <th>Price</th>
 
-        <br><br><br><br>
+                        </tr>
+                        <tr>
+                            <td id="orderID"></td>
+                            <td id="title"></td>
+                            <td id="status">Success</td>
+                            <td id="price">Rs.0.0</td>
+                        </tr>
+                        
+         
+                    </table></center>
 
-        <div class="image-box">
-            <div class="image">
-                <img src="../Assests/icons/success.svg" />
+                    <!-- <div class="ticket-box" id="ticket-box" style="border:none">
+                    <div class="order-box" id="" > -->
+                            <!-- <div class="erning-date aa"><div class="date">2024-04-26</div></div> -->
+                               
+                            <!-- <div class="erning-activity div-cursor aa">
+                                <p class="activityPenging">Pending...</p>
+                                <p class="activityToClimed">To climed</p>
+                                <p class="activityClimed">Claimed</p>                              
+                                <p class="activityCancel">Canceld</p>
+                            </div>                         -->
+                            <!-- <div class="erning-amount aa"><p class="amount"></p></div>
+                        </div>
+                    </div> -->
+                    <br><br>
+                    <div class="button">
+                        <p><box-icon name='left-arrow-alt' color='#0000ff' ></box-icon></p>
+                        
+                        <p class="back">Back to the orders</p> 
+                    </div>
+                    
+                </div>
             </div>
         </div>
-     
-        <div>
-            <h2>Thank you! Payment Completed Successfully.</h2>
-            <p>If you have any questions, please, reach out to ABS Customer Services through our Contact Page </p>
-        </div>
     </div>
+    <script src="../Javascripts/baseurl.js"></script>
+    <script src="../Javascripts/successPayment.js"></script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
 </body>

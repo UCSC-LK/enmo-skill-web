@@ -4,68 +4,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/billingInformation.css">
+    <link rel="stylesheet" href="../CSS/main.css">
     <title>Payment Process</title>
    
 </head>
 <body>
-    <div class="container">
-        <div>
-            <h2>Billing information</h2>
-        </div>
-
-        <br>
-
-        <div>
-            <label class="input-lable" for="full-name"><h3>Full name</h3></label>
-            <input  class="inputs" name="full-name" id="full-name" required>
-        </div>
-
-        <br>
-
-        <div>
-            <label class="input-lable" for="country"><h3>Country</h3></label>
-            <input  class="inputs" name="country" id="country" required>
-        </div>
-
-        <br>
-
-        <div>
-            <label class="input-lable" for="city"><h3>City</h3></label>
-            <input  class="inputs" name="city" id="cityr" required>
-        </div>
-
-        <br>
-
-        <div>
-            <label class="input-lable" for="state"><h3>State/Region</h3></label>
-            <input  class="inputs" name="state" id="state" required>
-        </div>
-
-        <br>
-
-        <div>
-            <label class="input-lable" for="postal-code"><h3>Postal code</h3></label>
-            <input  class="inputs" name="postal-code" id="postal-code" required>
-        </div>
-
-        <br>
-
-        <div>
-            <label class="input-lable" for="VAT-number"><h3>VAT number</h3></label>
-            <input  class="inputs" name="VAT number" id="VAT number" required>
-        </div>
-
-        <br>
-
-        <div style="display: flex;">
-            <input type="checkbox"><p> I want to get invoices via email as well.</p> 
-        </div>
-
-        <div class="btn">
-            <input class="button div-cursor"  type="submit" value="Save">
-            <input class="button-2 div-cursor"  type="submit" value="Cancel">
-        </div>
-
-
+    <div class="loading">
+        <div class="spin"></div>
     </div>
+    
+    <div class="content-main">
+        <div class="container">
+            <div>
+                <h2>Billing information</h2>
+            </div>
+    
+            <br>
+    
+            <div class="coloum">
+                <div>
+                    <label class="input-lable" for="f-name"><h3>First name</h3></label>
+                    <input  class="inputs f-name" name="f-name" id="full-name" required>
+                </div>
+                <div>
+                    <label class="input-lable" for="l-name"><h3>Last name</h3></label>
+                    <input  class="inputs l-name" name="l-name" id="full-name" required>
+                </div>           
+    
+                
+            </div>
+            <br>
+    
+            <div class="coloum">
+                <div>
+                    <label class="input-lable" for="p-number"><h3>Phone number</h3></label>
+                    <input type="text" name="p-number" id="p-number" class="inputs p-number" pattern="/^\+(?:[0-9] ?){6,14}[0-9]$/" title="Please enter a phone number in international format" required>
+                </div>
+                <div>
+                    <label class="input-lable" for="Email"><h3>Email</h3></label>
+                    <input  class="inputs email" type="email" name="email" id="email" required>
+                </div>                   
+            </div>
+    
+            <br>
+    
+            <div>
+                <label class="input-lable" for="address"><h3>Address</h3></label>
+                <input  class="inputs address" name="address" id="state" required>
+            </div>
+            <br>
+    
+            
+            <div class="coloum">
+                <div>
+                    <label class="input-lable" for="city"><h3>City</h3></label>
+                    <input  class="inputs city" name="city" id="cityr" required>
+                </div>
+    
+                <div>
+                    <label class="input-lable" for="country"><h3>Country</h3></label>
+                    <input  class="inputs country" name="country" id="country" required>
+                </div>          
+    
+            </div>
+            <br>
+    
+            <div class="btn">
+                <input class="button div-cursor"  type="submit" value="Save">
+                <input class="button-2 div-cursor"  type="submit" value="Cancel">
+            </div>
+
+            <template id="my-template" class="my-template">
+                     
+                <swal-title >
+                    Save changes to "Untitled 1" before closing?
+                </swal-title>
+                <swal-icon type="question"></swal-icon>
+                <swal-button type="confirm">
+                  Yes
+                </swal-button>
+                <swal-button type="cancel">
+                  No
+                </swal-button>
+                <!-- <swal-button type="deny">
+                  Close without Saving
+                </swal-button> -->
+                <!-- <swal-param name="allowEscapeKey" value="false" />
+                <swal-param
+                  name="customClass"
+                  value='{ "popup": "my-popup" }' />
+                <swal-function-param
+                  name="didOpen"
+                  value="popup => console.log(popup)" /> -->
+            </template>
+           
+    
+    
+        </div>
+    </div>
+    
 </body>
+
+<script src="../Javascripts/baseurl.js"></script>
+<script src="../Javascripts/billingInformation.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

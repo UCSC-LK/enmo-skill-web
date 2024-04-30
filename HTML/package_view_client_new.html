@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/package_view_client.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../CSS/main.css">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+
+    <title id="htmlTitle">Loading...</title>
+</head>
+<body>
+    <div class="main"  style="margin-top: 80px;">
+        <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>
+        <div class="container">
+
+        
+            <div class="container-inside" id="container-inside" >
+
+                <div class="loader-div" id="loader-div"> 
+                    <div class="loader"></div>
+                </div>
+
+
+                
+                <div class="block" id="block"  style="display: none;">
+                    <div class="inside-block">
+                        <div class="align-div">
+    
+                            <h1 class="headding-title" id="headding-title"></h1>
+        
+                            <div class="package-cover">
+                                <img id="designer-picture" alt="designer-profile-picture" class="designer-profile-picture">
+                                <p class="designer-username" id="designer-username1"></p>  
+                                <i class="sep">|</i>
+                                <p class="no-reviews" id="no-reviews"></p>
+                                <i class=" fa fa-star"></i>
+                                <p class="review-count" id="review-count"></p>
+                                <i class="sep">|</i>
+                                <p class="no-orders" id="no-orders"></p>
+                                
+                            </div>
+        
+                            <div class="image-holder" id="image-holder">
+                                    <img id="cover-image" alt="cover-image" class="cover-image">
+                                </div>
+        
+                                <div class="package-details">
+                                    <div class="subheader">
+                                        <h2 class="subheading border">Package details</h2>
+                                    </div>
+                                    <div id="description">
+                                        
+                                    </div>
+                                    
+                                    <h3>Category</h3>
+                                    <p id="catogery"></p>
+                                </div>
+        
+                            <div class="designer-details">
+                                <div class="subheader">
+                                    <h2 class="subheading">About the Designer</h2>
+                                </div>
+                                <div class="designer-details-content">
+                                    <div class="row">
+                                        <img alt="designer-profile" id="designer-img" class="designer-img">
+                                    
+                                        <div class="data-row">
+                                            <p id="designer-username2" class="designer-username"></p>
+                                            <div class="review-row">
+                                                <p class="no-reviews" id="reviews-designer"></p>
+                                                <i class=" fa fa-star"></i>
+                                                <p class="review-count" id="review-count-designer"></p>
+                                            </div>
+    
+                                        </div> 
+                                        <button id="contact-btn" class="button-save-square">Contact Me</button>
+                                        
+                                    </div>
+    
+                                    <div class="short-data border">
+                                        <div class="sds">
+                                            <h3 class="ttl">From</h3>
+                                            <p class="cnt">Sri Lanka</p>
+                                        </div>
+                                        <div class="sds">
+                                            <h3 class="ttl">Member Since</h3>
+                                            <p class="cnt" id="member-since"></p>
+                                        </div>
+                                        <!-- <div class="sds">
+                                            <h3 class="ttl">Last delivery</h3>
+                                            <p class="cnt" id="last-deli">about 3 hours</p>
+                                        </div> -->
+                                        <div class="sds">
+                                            <h3 class="ttl">Languages</h3>
+                                            <p class="cnt" id="lang"></p>
+                                        </div>
+                                        
+                                    </div>
+                                    <p class="des" id="des-designer">
+                                    </p>
+                                </div>
+                                
+                                  
+                            </div>
+        
+                            <div class="reviews">
+                                <div class="subheader">
+                                    <h2 class="subheading">Reviews</h2>
+                                </div>
+                                
+    
+                                <div class="review-frame">
+                                    <div class="reviewer-row">
+                                        <img alt="client-profile" id="client-img" class="client-img">
+    
+                                        <div class="st">
+                                            <h3 id="client-name"></h3>
+                                            <i class="sep-r">|</i>
+                                            <p class="country" id="client-country"></p>
+                                            <!-- <i class="sep-r">|</i>
+                                            <p class="no-reviews">5</p>
+                                            <i class=" fa fa-star"></i> -->
+                                            
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="review-body">
+                                    
+                                        <p id="the-review">
+                                        </p>
+                                    </div>
+                                    <p class="date" id="reviewd-date"></p>
+                                </div>
+                                <button class="button-save" onclick="reviews()">See more reviews</button>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    
+                    
+                </div>
+
+                <div class="sticky" id="sticky"  style="display: none;">
+                    <div id="logo-designing-pricing">
+                        <div class="pricing-details">
+                            <DIV class="subheader">
+                                <h2 class="subheading">Pricing details</h2>
+    
+                            </DIV>
+    
+                            <table class="table" id="price-table">
+                                <tr class="header">
+                                    <th class="table-header">Price package</th>
+                                    <th class="table-header">Platinum</th>
+                                    <th class="table-header">Silver</th>
+                                    <th class="table-header">Gold</th>
+                                </tr>
+                                <tbody id="table-body">
+
+                                </tbody>
+                                
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+            
+            <div class="overlay-hidden" id="overlay" >
+                
+
+                <div id="overlay-div" class="overlay-div2">
+
+                    <div class="close-top-div">
+                        <p id="close-top" class="close-top">X</p>
+    
+                    </div>
+                    
+
+                    <div class="overlay-content">
+
+                        
+                        <p class="overlay-hed">Tell us about your work</p>
+                        <p class="overlay-sub">What are your requirements?</p>
+
+                        <textarea name="order-req" id="order-req" cols="30" rows="15" placeholder="Please provide us with detailed information about your logo design needs. Include any specific colors, fonts, symbols, or styles you prefer. Describe your business or organization, target audience, and the message you want your logo to convey. Feel free to mention any examples or inspiration you have in mind..."></textarea>
+
+                        <div class="overl-btn1">
+                            <button class="btn-upload" id="fileUpload">Attach samples</button>
+                            <p id="success-tick"></p>
+                            <input type="file" id="uploadInput" style="display: none;" accept=".jpg, .jpeg, .png, .pdf">
+                        </div>
+                        <div class="overl-btn2">
+                            <button class="btn-apply" id="orderCreateBtn">Create order</button>
+                        </div>
+                    </div>
+
+                    
+
+                
+                </div>
+    
+             
+                
+            </div>
+            
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../Javascripts/baseurl.js"></script>
+<script src="../Javascripts/package_view_client.js"></script>
+</html>

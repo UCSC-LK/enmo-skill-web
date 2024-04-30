@@ -4,137 +4,172 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/view_client_list_admin.css">
+    <link rel="stylesheet" href="../CSS/main.css">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 
-    <title>Package Overview</title>
+
+
+    <title>Admin - Client List</title>
 </head>
 <body>
-    <div class="main">
-        <iframe src="../Components/navbar_admin.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;"></iframe>
-        <div class="container">
-            <div class="block">
-                <h1 class="headding">Client list</h1>
+    <div class="page">
+        <div id="sidebar-placeholder"></div><script src="../Javascripts/sidebar.js"></script>
+        <div class="pg-content" style="width: 100%; overflow: auto;">
+            <div id="header-placeholder" style="width: 100%; position: sticky; top: 0;"></div><script src="../Javascripts/header.js"></script>
+                <div class="main">
+                    <div class="container">
+                        <div class="block">
+                            <h1 class="headding">Client list</h1>
 
-                <div class="table">
-                    <table class="border">
-                        <tr>
-                            <th>userID</th>
-                            <th>username</th>
-                            <th>name</th>
-                            <th>NIC/<br>passport/<br>driving license</th>
-                            <th>email</th>
-                            <th>contact no</th>
-                            <th>joined Date</th>
-                            <th>description</th>
-                            <th>country</th>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>user1</td>
-                            <td>John Doe</td>
-                            <td>ABC123456</td>
-                            <td>john.doe@example.com</td>
-                            <td>123-456-7890</td>
-                            <td>2023-10-29</td>
-                            <td>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                                sed do eiusmod tempor incididunt ut labore et dolore magna 
-                                aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-                                ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                                Duis aute irure dolor in reprehenderit in voluptate velit 
-                                esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
-                                occaecat cupidatat non proident, sunt in culpa qui officia 
-                                deserunt mollit anim id est laborum
-                            </td>
-                            <td>USA</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>user2</td>
-                            <td>Jane Smith</td>
-                            <td>XYZ789012</td>
-                            <td>jane.smith@example.com</td>
-                            <td>987-654-3210</td>
-                            <td>2023-10-29</td>
-                            <td>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                                sed do eiusmod tempor incididunt ut labore et dolore magna 
-                                aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-                                ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                                Duis aute irure dolor in reprehenderit in voluptate velit 
-                                esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
-                                occaecat cupidatat non proident, sunt in culpa qui officia 
-                                deserunt mollit anim id est laborum
-                            </td>
-                            <td>USA</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>user3</td>
-                            <td>Alice Johnson</td>
-                            <td>DEF345678</td>
-                            <td>alice.johnson@example.com</td>
-                            <td>555-123-4567</td>
-                            <td>2023-10-28</td>
-                            <td>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                                sed do eiusmod tempor incididunt ut labore et dolore magna 
-                                aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-                                ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                                Duis aute irure dolor in reprehenderit in voluptate velit 
-                                esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
-                                occaecat cupidatat non proident, sunt in culpa qui officia 
-                                deserunt mollit anim id est laborum
-                            </td>
-                            <td>UK</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>user4</td>
-                            <td>Bob Wilson</td>
-                            <td>GHI901234</td>
-                            <td>bob.wilson@example.com</td>
-                            <td>777-888-9999</td>
-                            <td>2023-10-28</td>
-                            <td>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                                sed do eiusmod tempor incididunt ut labore et dolore magna 
-                                aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-                                ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                                Duis aute irure dolor in reprehenderit in voluptate velit 
-                                esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
-                                occaecat cupidatat non proident, sunt in culpa qui officia 
-                                deserunt mollit anim id est laborum
-                            </td>
-                            <td>India</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>user5</td>
-                            <td>Eve Brown</td>
-                            <td>JKL567890</td>
-                            <td>eve.brown@example.com</td>
-                            <td>111-222-3333</td>
-                            <td>2023-10-27</td>
-                            <td>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                                sed do eiusmod tempor incididunt ut labore et dolore magna 
-                                aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-                                ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                                Duis aute irure dolor in reprehenderit in voluptate velit 
-                                esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
-                                occaecat cupidatat non proident, sunt in culpa qui officia 
-                                deserunt mollit anim id est laborum
-                            </td>
-                            <td>China</td>
-                        </tr>
-                    </table>
+                            <div class="navbar-body">
+                                <div class="nav-body">
+                                    <ul>
+                                        <li class="active" id="active_u">ACTIVE USERS</li>
+                                        <li id="banned_u">BANNED USERS</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="search">
+                                    <input type="text" name="byid" id="byid" placeholder="Enter User Id" class="search-box" required>
+                                    
+                                    <div class="search-icon"><box-icon name='search' id="search-user"></box-icon></div>
+                                </div>
+
+                            </div>
+
+                            <div class="table2">
+                                <div class="headers">
+                                    <p class="header-id">USER ID</p>
+                                    <p class="header-username">USER NAME</p>
+                                    <p class="header-name">NAME</p>
+                                    <p class="header-mail">EMAIL</p>
+                                    <p class="header-btn"></p>
+                                </div>
+
+                                <div class="content" id="content">
+                                    <!-- <div class="row" id="row1">
+                                        <p class="id">12345</p>
+                                        <p class="username">user1</p>
+                                        <p class="name">John Doe</p>
+                                        <p class="email">abc@mail.com</p>
+                                    </div> -->
+                                </div>
+                            </div>
+
+                        
+                        </div>
+                    </div>
+                        
+                    </div> 
+            </div>
+    </div>
+
+        <div class="overlay" id="overlay">
+
+            <div class="overlay-div4" id="overlay-div">
+                <div class="close-top-div">
+                    <p class="close-top">X</p>
+
                 </div>
 
-            
+                <div class="contain-bottom">
+                    <div class="profile-display">
+                        <img alt="designer-profile" id="designer-img" class="profile-pic" src="https://i.ibb.co/Ry2J1Lg/pexels-photo-220453.webp">
+                        <p class="usename-top" id="data-displayname"></p> 
+                    </div>
+                    
+                    <table class="content-table">
+                        <tbody>
+                            <tr class="data-tr">
+                                <td class>
+                                    <p class="tl">NAME</p>
+                                    <P id="data-name"></P>
+                                </td>
+                                <td>
+                                    <p class="tl">USERNAME</p>
+                                    <P id="data-displayname1"></P>
+                                </td>
+                            </tr >
+                            <tr class="data-tr">
+                                <td>
+                                    
+                                    <p class="tl">EMAIL</p>
+                                    <P id="data-email"></P>
+                                </td>
+                                <td>
+                                    
+                                    <p class="tl">CONTACT NO</p>
+                                    <P id="data-contact"></P>
+                                </td>
+                            </tr>
+                            <tr class="data-tr">
+                                <td>
+                                    <p class="tl">NIC</p>
+                                    <P id="data-nic"></P>
+                                </td>
+                                <td>
+                                    <p class="tl">JOINED DATE</p>
+                                    <P id="data-joined"></P>
+                                </td>
+                            </tr>
+                            <tr class="data-tr">
+                                <td colspan="2">
+                                    <p class="tl">COUNTRY</p>
+                                    <P id="data-country"></P>
+                                </td>
+                            </tr>
+                            <tr class="data-tr">
+                                <td colspan="2">
+                                    <p class="tl">DESCRIPTION</p>
+                                    <P id="data-des"></P>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div id="options-btn" class="see-more-btn-row-hidden">
+                        <button id="showWarnings" class="see-more">Show previous warnings</button>
+                        <button id="sendWarning" class="warn">Send a warning</button>
+                        <button id="bann" class="bann">Bann account</button>
+                    </div>
+                </div>
             </div>
-        </div> 
+                
+           
+            
+        </div>
+
+        <div class="overlay" id="overlay2">
+            <div id="overlay-div2" class="overlay-div5">
+                <div class="close-top-div">
+                    <p class="close-top">X</p>
+                    
+                </div>
+
+                <div class="subheader2">
+                    <h2 class="subheading2">Warnings list</h2>
+                </div>
+
+                <div id="warn-content" class="contain-bottom">
+                   <!-- <div class="package-details-content">
+                        <div class="pkg-inner-div">
+                            <box-icon name='error-circle'></box-icon>
+                            <p id="warn-reason"></p>
+                            <p id="warn-date"></p>
+                        </div>
+                   </div> -->
+
+                    
+                </div>
+            </div>
+        </div>
     </div> 
     
 </body>
+
+<script src="../Javascripts/baseurl.js"></script>
+<script src="../Javascripts/view_client_list_admin.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 </html>

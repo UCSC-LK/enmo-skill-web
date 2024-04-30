@@ -2,6 +2,7 @@
 body, ul {
     margin: 0;
     padding: 0;
+    width: 100%;
 }
 
 /* Style the navigation bar */

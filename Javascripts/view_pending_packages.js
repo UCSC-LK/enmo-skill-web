@@ -74,7 +74,7 @@ function functionCall() {
             span.appendChild(btn3);
     
             th_buttons.appendChild(span);
-            tr.appendChild(th_buttons);
+            // tr.appendChild(th_buttons);
     
             table.appendChild(tr);
         }

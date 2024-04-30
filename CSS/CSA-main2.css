@@ -1,0 +1,112 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    /* background-color: #fdfdfd; */
+}
+.container{
+    display:flex;
+    width: 100%;
+    height:auto;
+    text-align: center;
+    justify-content: center;
+    /* position: relative; */
+    /* background-color: #ffffff; */
+    position: relative;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    z-index: 0;
+    
+}
+.header{
+    border-width: 2px;
+    display: flex;
+    text-align: left;
+    -webkit-text-fill-color: #3C3C3C;
+    justify-content: space-between;
+    font-weight: lighter;
+}
+.header h2 {
+    color: rgb(60, 60, 60);
+    font-size: 35px;
+    font-weight: lighter;
+}
+
+.main-container{
+    width: 80%;
+    text-align: left;
+}
+.table-main{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    background-color: white;
+    /* margin-top: 80px; */
+    border-radius: 10px;
+}
+
+.contain-box{
+    width:50%;
+    align-items:left;
+    padding-top: none;
+    padding-left: 10px;
+    position: relative;
+    padding-top: 60px;
+    margin-left: 100px;
+    padding-bottom: 20px;
+    
+}
+h1{
+    margin-top: 50px;
+}
+/* .table{
+    margin-top:70px;
+} */
+.row{
+   align-items: center;
+   padding: 5px 20px;
+   /* border:1px solid #ebebeb; */
+   /* border-top: none; */
+   transition: background-color 0.3s ease;
+   
+}
+
+.text{
+    padding-left:20px 10px;
+}
+.bottom-row{
+    text-align: right;
+}
+
+.back{
+    display: grid;
+    grid-template-columns: 20% 80%;
+    gap: 5px;
+    padding-top: 30px;
+    width: 70px;
+    -webkit-text-fill-color: #7A7D85;
+    cursor: pointer;
+}
+.help{
+    text-align: right;
+    -webkit-text-fill-color: rgb(2, 11, 77);
+    padding-top: 30px;
+    cursor: pointer;
+}
+
+
+.imag{
+    /* padding-left:150px;
+    padding-top: 300px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.table1{
+    padding: 10PX;
+    background-color: white;
+    margin-top: 10px;
+    border: solid;
+    border-width: 1px;
+    border-color: #ebebeb;
+    border-radius: 10px;
+}

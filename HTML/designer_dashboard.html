@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/main.css">
+    <link rel="stylesheet" href="../CSS/designer_dashboard.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <title>Designer Dashboard</title>
+</head>
+
+<body>
+    
+    <!-- <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script> -->
+    <div class="page">
+        <div id="sidebar-placeholder"></div><script src="../Javascripts/sidebar.js"></script>
+        <div class="pg-content" style="width: 100%; overflow: auto;">
+            <div id="header-placeholder" style="width: 100%; position: sticky; top: 0;"></div><script src="../Javascripts/header.js"></script>
+            
+            <div class="main">
+                <div class="container">
+                    <div class="block">
+                    <h1 class="headding">Dashboard</h1>
+
+                    <div class="row1">
+                        <div class="column1">
+                            <div id="note1" class="note">
+                                <h1 id="order-count"></h1>
+                                <p></p>
+                            </div>
+                        </div>
+                        <div class="column1">
+                            <div id="note2" class="note">
+                                <h1 id="earning-count"></h1>
+                                <p></p>
+
+                            </div>
+                        </div>
+                        <div class="column1">
+                            <div id="note3" class="note">
+                            <h1>
+                                <label id="reviews1" class="cat" for="5star"> 
+                                <!-- <span class="fa fa-star checked"></span> -->
+                            </label>
+                        </h1>
+                            <p></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row1">
+                        <div class="profile-details">
+                            <div class="subheader">
+                                <h3 class="subheading">My Profile</h3>
+                            </div>
+                            <div class="profile-details-content">
+
+                                <div class="box1">
+                                    <img alt="designer-profile" id="designer-img" class="designer-img2">
+
+                                    <p id="designer-username" class="designer-username"></p>
+                                    <p id="fullname" class="fullname">Your name</p>
+                                    <label id="reviews2" class="cat-new" for="5star">
+                                        <span class="fa fa-star checked"></span>
+                                    </label>
+                                
+                                </div>
+
+                                <div class="box1">
+                                    <p id="des-description" class="designer-des"></p>
+                                
+                                </div>
+                                <div class="box3">
+                                    <p>Order completion</p>
+                                    <div class="progress">
+                                        <div class="progress-div">
+                                            <div class="progress-value" id="progressValue"></div>
+                                        </div>
+                                        <div class="progress-text" id="progressText"></div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="box2">
+                                    <p>Work completed</p>
+                                    <p id="work-completed"></p>
+                                </div>
+                                
+                            
+                            </div>
+                        </div>
+
+                        <div style="width: 2%;"></div>
+
+                        <div class="row2">
+                            <div class="notifications-div">
+
+                            <div class="subheader">
+                                <h3 class="subheading">Notifications</h3>
+                            </div>
+                            <div id="notifications-content" class="notification-content">
+                                <div id="notification-container" class="notification-container-show"></div>
+                                <div id="notifications-div" class="not-div-inner">
+                                    <!-- <div class="not-row">
+                                        <div class="notification-left">
+                                            <box-icon name='info-circle' size="32px"></box-icon>
+                                            <p class="notification-body">this is a sample notification hello qorknss125564ffff</p>
+                                        </div>
+                                        <div class="notification-actions">
+                                            <p class="notification-date">2024-04-24 06:32:19</p>
+                                            <button class="see-more-short">Mark as Read</button>
+                                        </div>
+                                    </div>
+                                    <div class="not-row">
+                                        <div class="notification-left">
+                                            <box-icon name='info-circle' size="32px"></box-icon>
+                                            <p class="notification-body">this is a sample notification hello qorknss125564ffff</p>
+                                        </div>
+                                        <div class="notification-actions">
+                                            <p class="notification-date">2024-04-24 06:32:19</p>
+                                            <button class="see-more-short">Mark as Read</button>
+                                        </div>
+                                    </div>
+                                    <div class="not-row">
+                                        <div class="notification-left">
+                                            <box-icon name='info-circle' size="32px"></box-icon>
+                                            <p class="notification-body">this is a sample notification hello qorknss125564ffff</p>
+                                        </div>
+                                        <div class="notification-actions">
+                                            <p class="notification-date">2024-04-24 06:32:19</p>
+                                            <button class="see-more-short">Mark as Read</button>
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+                            
+                                <!-- <button class="resolved" id="notification-mark">Mark as read</button> -->
+
+                                <!-- <div id="not-div-hidden" class="not-div-hidden">
+                                    <box-icon name='bell-off'></box-icon>
+                                    <p>No New Notifications</p>
+                                </div> -->
+                                
+                            <!-- </div> -->
+
+                            
+                            
+    
+                        <!-- </div> -->
+                        </div>
+
+                        <div style="height: 30px;"></div>
+
+
+                        <div class="notifications-div">
+                            <div class="subheader">
+                                <h3 class="subheading">Messeges</h3>
+                            </div>
+                            <div class="notification-content">
+                                <div class="msg-div-inner">
+                                    <div class="not-row-hidden" >
+
+                                        <div class="card">
+                                            <img src="../Assests/login_img2.jpg" alt="" class="u-img"/>
+                                            <div class="info">
+                                                <p class="u-name">isuru liyanage</p>
+                                                <p class="l-msg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam consectetur corrupti iste ipsum, numquam quod! Aut mollitia laborum blanditiis, nihil distinctio sequi suscipit sed tempora ab dolore soluta corporis quia.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    
+                                    
+                                    
+                                </div>
+                            </div>
+
+                            
+                            
+    
+                        </div>
+
+                        
+                        
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <script src="../Javascripts/baseurl.js"></script>
+    <script src="../Javascripts/designer_dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</div>
+
+</div>
+    
+</body>
+
+</html>

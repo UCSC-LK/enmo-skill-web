@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/main.css">
+    <link rel="stylesheet" href="../CSS/tikectListAdmin.css">
+    <title>Ticket List</title>
+</head>
+<body>
+
+    <div class="loading">
+        <div class="spin"></div>
+    </div>
+<!-- 
+    <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>
+    <div class="container" style="margin-top: 80px;"> -->
+        <div class="page">
+            <div id="sidebar-placeholder"></div><script src="../Javascripts/sidebar.js"></script>
+            <div class="pg-content" style="width: 100%; overflow: auto;">
+            <div id="header-placeholder" style="width: 100%; position: sticky; top: 0;z-index: 1"></div><script src="../Javascripts/header.js"></script>
+            <div class="container">
+                <div class="main-container">
+                    <div class="header">
+                        <h2>Support Tickets</h2>
+                    </div>
+                    
+                    <!-- <div class="ticet-heder-box">
+                        <div class="class2">
+                            <div><p class="all"></a></p></div> -->
+                            <!-- <div><p class="div-cursor me">ME</p></div> -->
+                            <!-- <div style="text-align: right"><button class="button" onclick="createticket()">ADD NEW</button></div>
+                        </div>
+                    </div> -->
+                    <div class="ticet-heder-box">
+                        <div class="class2">
+                            <div class="div-cursor-1"><p class="me">ME</p></div>
+                            <div class="div-cursor-1"><p class="all">ALL</a></p></div>                            
+                            <div class="div-cursor-1"><p class="package">PACKAGE</p></div>
+                            <div class="div-cursor-1"><p class="refund">REFUND</p></div>
+                            <div class="div-cursor-1"><p class="old">OLD</p></div>
+                            <!-- <div style="text-align: right;"><button class="button createTicket" onclick="()=>{window.location.href='../HTML/CSA'}">ADD NEW</button></div> -->
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="table">
+
+                        <div class="ticket-box" id="ticket-box" style="border:none">
+                            <div class="ticket-box-1" >
+                                <!-- <div style="justify-content: left"><p style="padding: 1px 10px">Name</p></div> -->
+                                <!-- <div></div> -->
+                                <div><p><b>Ticket ID</b></p></div>
+                                <!-- <div></div> -->
+                                <div><p><b>Role</b></p></div>
+                                <div><p><b>Subject</b></p></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                
+                            <div class="ticket-box-2"  style="display: none;" >
+                                <div class="ticket-box-3" id="">
+                                    <!-- <div class="profile-pic-main aline"><img src="https://i.pinimg.com/564x/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg" class="profile-pic"></div> -->
+                                    <!-- <div class="ticket-name aline"><p class="name"></p></div> -->
+                                    <div class="ticket-name aline"><p class="ticketId"></p></div>
+                                    <div class="ticket-role aline"><p class="role1"></p></div>
+                                    <div class="ticket-subject aline"><p class="subject"></p></div>
+                                    <div class="order" id="order">
+                                        <div class="order2">U</div>
+                                        <div class="order1">$</div>
+                                        
+                                    </div>
+                                    <div class="ticket-agent aline"><p class="agent"><select id="agentSelect" class="agentSelect"></select></p></div>                            
+                                    <div class="btn aline setgap"><button class="button assignBTN">ASSIGN</button></div>
+                                    <div class="ticket-role aline" style="display: none;"><p class="description"></p></div>
+                                    
+                                    
+                                </div>
+                            </div>
+    
+                            <div class="ticket-box-2"  style="display: none;" >
+                                <div class="ticket-box-4" >
+                                
+                                        <div class="profile-pic-main"><img src="https://i.pinimg.com/564x/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg" class="profile-pic"></div>
+                                        <div class="ticket-name" ><p class="name"></p></div>
+                                        <div class="ticket-role"><p class="role"></p></div>
+                                        <div class="ticket-subject"><p class="subject"></p></div>
+                                        <div class="order">
+                                            <div class="order1">Refund</div>
+                                        </div>
+                                        <div class="hover"></div>
+                                        <div class="hover"></div>                                               
+                                    
+                
+                                </div>
+                            </div>
+    
+                            <div class="parent" style="width: 100%; padding-right: 20px;"></div>      
+                            
+                        
+                        </div>
+                        <span id="id" style="display: none;"></span>
+                    </div>
+    
+                </div>
+            </div>    
+            
+        </div>
+        
+       
+    </div>
+
+    <div class="pop-up-container2"></div>
+    <div class="pop-up2">
+
+        <template id="my-template" class="my-template">
+                     
+            <swal-title >
+                Save changes to "Untitled 1" before closing?
+            </swal-title>
+            <swal-icon type="warning" color="green"></swal-icon>
+            <swal-button type="confirm">
+              Yes
+            </swal-button>
+            <swal-button type="cancel">
+              No
+            </swal-button>
+            <!-- <swal-button type="deny">
+              Close without Saving
+            </swal-button> -->
+            <!-- <swal-param name="allowEscapeKey" value="false" />
+            <swal-param
+              name="customClass"
+              value='{ "popup": "my-popup" }' />
+            <swal-function-param
+              name="didOpen"
+              value="popup => console.log(popup)" /> -->
+        </template>          
+        
+        
+    </div>
+    
+    <!-- <div class="pop-up-container"></div>
+    
+        <div class="pop-up">
+            
+            <div class="pheder">
+                <div><h3>Name :</h></div>
+                <div ><p class="name"></p></div>
+            </div>
+
+            <div class="pheder">
+                <div><h3>Role :</h></div>
+                <div><p class="role"></p></div>
+            </div>
+            
+            <div><h3>Subject </h></div>
+            <div><p class="subject"></p></div>
+            <br> 
+
+            <div><h3>Description</h></div>   
+            <div>
+                <p class="description"></p>
+            </div>
+            <br>
+    
+            <div><p class="date"></p></div>
+            
+
+            <div class="pheder">
+                <div><h3>Status :</h3></div>
+                <div><p class="status"></p></div>
+            </div>
+
+            <div>
+                
+            <div class="pheder">
+                <div><h3>Asigned Agent :</h></div>
+                <div><p class="agent"></p></div>
+            </div>
+
+        </div>
+
+    </div> -->
+
+</div>
+    
+
+</body>
+<script src="../Javascripts/baseurl.js"></script>
+<script src="../Javascripts/tikectListAdmin.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

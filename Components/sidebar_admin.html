@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="../CSS/sellerDash.css">
+
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+
+<body>
+  <nav class="sidebar open">
+    <header>
+      <div class="image-text">
+       
+
+        <div class="text logo-text">
+            <span class="image">
+                <img src="../Assests/logo enmo.png" alt="">
+              </span>
+          
+        </div>
+      </div>
+
+     
+    </header>
+
+    <div class="menu-bar">
+      <div class="menu">
+
+       
+
+        <ul class="menu-links">
+          <li class="nav-link">
+            <a onclick="dashboard()">
+              <i class='bx bx-category icon'></i>
+              <span class="text nav-text">Dashboard</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a a onclick="clients()">
+                <i class='bx bx-user icon'></i>
+              <span class="text nav-text">View clients</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a a onclick="designers()">
+                <i class='bx bx-user icon'></i>
+              <span class="text nav-text">View designers</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a onclick="warningsnbanns()">
+              <i class='bx bx-package icon'></i>
+              <span class="text nav-text">Designer Requests</span>
+            </a>
+          </li>
+
+          <!-- <li class="nav-link">
+            <a onclick="refunds()">
+              <i class='bx bx-money icon' ></i>
+              <span class="text nav-text">Refunds</span>
+            </a>
+          </li> -->
+
+          <li class="nav-link">
+            <a onclick="addCategory()">
+                <i class='bx bx-list-plus icon'></i>
+              <span class="text nav-text">Add category</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a onclick="addCSA()">
+                <i class='bx bxs-user-plus icon'></i>
+              <span class="text nav-text">Add CSA</span>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
+      <div class="bottom-content">
+        <li class="">
+          <a onclick="Logout()" class="logout">
+            <i class='bx bx-log-out icon' id="redicon"></i>
+            <span class="text nav-text1">Logout</span>
+          </a>
+        </li>
+
+        
+
+      </div>
+    </div>
+
+    <script>
+      function Logout() {
+                function deleteCookie(name) {
+                    document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                }
+
+                deleteCookie("JWT");
+                deleteCookie("Refresh Token");
+                deleteCookie("UserLevel");
+                window.parent.location = '../HTML/login.html';
+
+            }
+      function home() {
+           
+            window.parent.location = '../';
+          }
+          function designers() {
+             
+              window.parent.location='../HTML/view_designer_list_admin.html';
+          }
+          function dashboard() {
+           
+            window.parent.location = '../HTML/admin_dashboard.html';
+          }
+        function notification() {
+         
+            window.parent.location = '../HTML/notification.html';
+        }
+        function clients() {
+           
+            window.parent.location='../HTML/view_client_list_admin.html';
+        }
+        function warningsnbanns() {
+           
+            window.parent.location = '../HTML/view_pending_designers.html';
+        }
+        function refunds() {
+           
+            window.parent.location='../HTML/refund_request.html';
+        }
+        function addCategory() {
+           
+            window.parent.location = '../HTML/design_category_admin.html';
+            // alert("UI is Under Construction")
+        }
+        function addCSA() {
+           
+            // window.parent.location='../HTML/profile.html';
+            alert("UI is Under Construction")
+
+        }
+        function buyerrequests() {
+           
+            window.parent.location='../HTML/buyer_request_list.html';
+        }
+        
+    </script>
+
+  </nav>
+
+ 
+
+  
+
+</body>
+
+</html>

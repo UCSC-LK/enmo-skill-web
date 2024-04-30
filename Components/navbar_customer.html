@@ -2,34 +2,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/navbar1.css">
+    <link rel="stylesheet" href="../CSS/main.css">
+
+    <style>
+        .dropdown-prf {
+          position: relative;
+          display: inline-block;
+        }
+
+      
+        .dropdown-content-prf {
+            display: none;
+            position: absolute;
+            right: -30px;
+            background-color: #f9f9f9;
+            min-width: 117px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            z-index: 100;
+        }
+      
+        .dropdown-content-prf a {
+          color: black;
+          padding: 12px 16px;
+          text-decoration: none;
+          display: block;
+        }
+      
+        .dropdown-content-prf a:hover {
+          background-color: #f1f1f1;
+        }
+      
+        .dropdown-prf:hover .dropdown-content-prf {
+          display: block;
+        }
+      
+      </style>
+
+
 </head>
 <body>
 <div class="navbar-content  ">
+    
     <div class="navbar">
         <!-- Logo -->
         <div class="logo" onclick="home()">
-            <img src="../Assests/logo enmo.png" alt="Logo">
+            <img  src="../Assests/logo enmo.png" alt="Logo">
         </div>
         <!-- Search bar -->
-        <div class="search-bar">
-            <input type="text" placeholder="What service are you looking for today?">
-            <button></button>
-
-        </div>
-        <div class="menu">
-            <button class="massages"onclick="massages()"></button>
-            
-            <button class="notification" onclick="notification()"></button>
-        </div>
+        
+        
         <!-- Login and Sign buttons -->
         <div class="user-actions">
+            <div class="menu" style="margin-right: 40px;">
+                <button class="massages"onclick="massages()"></button>
+                
+                <button class="notification" onclick="notification()"></button>
+            </div>
+            <span class="orders" onclick="myrequests()">My Requests</span>
+            <span class="orders" onclick="myproposals()">My Proposals</span>
             <span class="orders" onclick="order()">Orders</span>
             <span class="getsupport" onclick="support()">Get Support</span>
             <span class="switch" onclick="switchuser()">Switch to Selling</span>
-            <image class= "profileimg" src = "../Assests/login_img1.jpg" onclick="profile()"/>
+            
+            <div class="dropdown-prf">
+                <image class= "profileimg" src = "../Assests/prof_pic_default.jpg" "/>
+                <div class="dropdown-content-prf">
+                  <a onclick="profile()">View Profile</a>
+                  <a href="#">Settings</a>
+                  <a onclick="Logout()">Logout</a>
+                </div>
+            </div>
 
         </div>
+        
         <script>
+            function Logout() {
+                function deleteCookie(name) {
+                    document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                }
+
+                deleteCookie("JWT");
+                deleteCookie("Refresh Token");
+                deleteCookie("UserLevel");
+                window.parent.location = '../HTML/login.html';
+
+            }
             function home() {
                 // Replace the URL in the following line with the URL of the page you want to navigate to.
                 window.parent.location = '../';
@@ -46,24 +103,92 @@
                 // Replace the URL in the following line with the URL of the page you want to navigate to.
                 window.parent.location='../HTML/orderlist_client.html';
             }
+            function myrequests() {
+                // Replace the URL in the following line with the URL of the page you want to navigate to.
+                window.parent.location='../HTML/my_requests.html';
+            }
+            function myproposals() {
+                // Replace the URL in the following line with the URL of the page you want to navigate to.
+                window.parent.location='../HTML/proposal_list_client.html';
+            }
             function support() {
                 // Replace the URL in the following line with the URL of the page you want to navigate to.
                 // window.parent.location = '../HTML/tikectListDisigner.html';
-                alert("UI is Under Construction")
+                window.parent.location='../HTML/tikectListClient.html'
             }
 
             function switchuser() {
                 // Replace the URL in the following line with the URL of the page you want to navigate to.
                 // window.parent.location = '../HTML/tikectListDisigner.html';
-                alert("UI is Under Construction")
+                window.parent.location='../HTML/becomeaseller2.html';
             }
             
             function profile() {
                 // Replace the URL in the following line with the URL of the page you want to navigate to.
-                alert("UI is Under Construction")
+                window.parent.location='../HTML/client_profile.html';
             }
+
+            function getCookie(cookieName) {
+            var name = cookieName + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var cookieArray = decodedCookie.split(';');
+        
+            for(var i = 0; i < cookieArray.length; i++) {
+                var cookie = cookieArray[i].trim();
+                if (cookie.indexOf(name) == 0) {
+                    return cookie.substring(name.length, cookie.length);
+                }
+            }
+            return null;
+            }
+
             
-        </script>
-    </div>
+
+            fetch("../Javascripts/baseurl.js")
+            .then(response => {
+                if (!response.ok) {
+                throw new Error('Failed to load header bar');
+                }
+                return response.text();
+            }).then(html => { 
+                
+                const regex = /const BASE_URL = "(.*?)";/;
+                const matches = html.match(regex);
+                if (matches && matches.length >= 2) {
+                let baseURl = matches[1];
+                getpic(baseURl);
+                
+                
+                } else {
+                throw new Error('URL not found in the fetched HTML');
+                }
+            }).catch(error => {
+                console.error(error);
+            });
+
+            // console.log(getCookie("JWT"));
+            // console.log(baseURl);
+
+
+            const H1 = new Headers();
+            H1.append("Authorization", getCookie("JWT"));
+
+            function getpic(baseURl){
+            fetch(baseURl+"/profile_pic", {
+            method: "GET",
+            headers: H1,
+            })
+            .then((response) => response.json())
+            .then((result) => {console.log(result)
+                document.querySelector(".profileimg").src = result.url;})
+            .catch((error) => console.error(error));
+            }
+
+            
+                        
+
+            
+                    </script>
+                </div>
 </div>
 </body>

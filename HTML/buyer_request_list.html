@@ -6,30 +6,36 @@
     <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/buyer_req_list.css">
     <link rel="stylesheet" href="../CSS/buyer_request.css">
+    <link rel="stylesheet" href="../CSS/main.css">
+    
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <title>Buyer Requests</title>
 </head>
 
 <body>
     
-    <iframe src="../Components/navbar_seller.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;position: fixed;top: 0;z-index: 2;left: 0;"></iframe> 
+    <!-- <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script> -->
+    <div class="page">
+        <div id="sidebar-placeholder"></div><script src="../Javascripts/sidebar.js"></script>
+        <div class="pg-content" style="width: 100%; overflow: auto;">
+            <div id="header-placeholder" style="width: 100%; position: sticky; top: 0;"></div><script src="../Javascripts/header.js"></script>
+            
+        
     
     <div class="major">
         <div class="main-container">
             <div class="header">
-                <h2>Buyer Requests</h2>
+                <h2 >Buyer Requests</h2>
                 <div class="count">
                     <div class="ct-bottom"><box-icon name='offer' type='solid' rotate='90' color='#a3a3a3' size = '20px' ></box-icon>
-                        <p><span id="count">10</span>  Offers left Today</p>
+                        <p ><span id="count">10</span>  Offers left Today</p>
                     </div>
                     
                 </div>
             </div>
             <div class="table" id="table">
-                <div class="upper">
-                    <p>Buyer Requests</p>
-                </div>
-                <div class="row-main">
+                
+                <div class="row-main" >
                     <p class="date-main">DATE</p>
                     <p class="user-main">BUYER</p>
                     <p class="dis">REQUEST</p>
@@ -49,7 +55,7 @@
 
     </div>
     
-    <div class="overlay-view" >
+    <div class="overlay-view"  >
                 
         <div class="main-view">
             
@@ -66,14 +72,18 @@
                 <p class="duration-textview">Deliver within <span class="description-text">13</span> Days</p>
                 <p class="budget-textview">Rs. <span class="budget-text">1000</span>.00</p>    
             </div>
-            <button class="proposal" role="button"><span class="text">Submit a proposal</span></button>
+            <button class="proposal" role="button" ><span class="text">Submit a proposal</span></button>
             </div> 
         
         </div>
         
     </div>
-
+    <script src="../Javascripts/baseurl.js"></script>
     <script src="../Javascripts/buyer_req_list.js"></script>
+</div>
+
+</div>
+    
 </body>
 
 </html>

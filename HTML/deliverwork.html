@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PayHere Checkout</title>
+<link rel="stylesheet" href="../CSS/buyer_request.css">
+<link rel="stylesheet" href="../CSS/main.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../Javascripts/baseurl.js"></script>
+</head>
+<body>
+    
+
+    <div class="overlay" style="display: flex;">
+        <div class="body">
+            <div class="main" style="position: fixed; left: 35%; top: 22%; animation:none;">
+                
+                <div class="container">
+                    <form  id="Form">
+                    <p class="close">X</p>
+                    <p class="title" style="font-size: 25px; text-align: center;">Deliver Your Work</p><br />
+                    
+                    <p class="title">Describe your delivery in detail</p>
+                    <p class="subtline">Provide customer to in detail instructions for Understand effectively and utilize your work </p>
+                    <textarea class="description-input" placeholder="Describe your project here..."required></textarea>
+                    
+                    <input type="file" style="margin-top: 20px;" class="file-input" size="5000000">
+                    <p class="subtline" style="margin-top: 5px;">Maximum file size 100 MB </p>
+                     
+                </form>
+                <button class="submit-button" style="background-color: #838383;" >Upload Your Work</button> 
+                </div>
+            
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+
+        const description = document.querySelector('.description-input');
+        const fileInput = document.querySelector('.file-input');
+        const submit = document.querySelector('.submit-button');
+        const close = document.querySelector('.close');
+
+        close.addEventListener('click', () => {
+            document.querySelector('.overlay').style.display = 'none';
+        });
+
+        submit.addEventListener('click', () => {
+            if(description.value === '' || fileInput.value === '') {
+                Toast.fire({
+                    icon: 'error',
+                    title: 'Please fill all the fields'
+                });
+            }else{
+
+
+                uploadFile();
+
+
+                
+
+
+
+            }
+        });
+
+        function uploadFile() {
+            file = fileInput.files[0];
+
+            if (file.size > 100000000) {
+                Toast.fire({
+                    icon: 'error',
+                    title: 'File size is too large. Please upload a file less than 100MB.'
+                });
+                fileInput.value = ''; 
+                return;
+            }
+
+            const myHeaders = new Headers();
+            myHeaders.append("endpoint", "deliveries");
+            let RequestData =""
+            if (file) {
+                const formData = new FormData();
+                formData.append('file', file);
+
+                fetch(BASE_URL+'/file', {
+                    method: 'POSsT',
+                    headers: myHeaders,
+                    body: formData
+                })
+                .then(response => {
+                    if(response.status == 401){
+                        window.location.href = "../Failed/401.html";
+                    }else if(response.status == 406){
+                        const currentUrl = encodeURIComponent(window.location.href);
+                        window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+                    }else if(response.status == 404){
+                        window.location.href = "../Failed/404.html";
+                    }else if(response.status == 200){
+                        data = response.text()
+                        data.then(data => {
+                            console.log('Success:', data);
+                            RequestData=data;
+                            Sendreq(RequestData)
+                        })
+                        
+                    }
+                    else {
+                        Toast.fire({
+                            icon: 'error',
+                            title: 'An error occurred. Please try again later.'
+                        });
+                    }
+                }).catch(error => {
+                    console.error('Error:', error);
+                });
+            } 
+        }
+
+        function Sendreq(url){
+            //fetch request write here ------------  udeesha
+        }
+
+
+    </script>
+</body>
+</html>

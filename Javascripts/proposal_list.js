@@ -36,43 +36,91 @@ const form = document.getElementById("Form");
 const form2 = document.getElementById("Form");
 const submitbtn = document.querySelector(".submit-button");
 
+// function getCookie(name, cookieString) {
+//   const cookies = (cookieString || document.cookie).split(";");
+//   for (const cookie of cookies) {
+//     const [cookieName, cookieValue] = cookie.trim().split("=");
+//     if (cookieName === name) {
+//       return cookieValue;
+//     }
+//   }
+//   return null;
+// }
+
+function getCookie(cookieName) {
+  var name = cookieName + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var cookieArray = decodedCookie.split(";");
+
+  for (var i = 0; i < cookieArray.length; i++) {
+    var cookie = cookieArray[i].trim();
+    if (cookie.indexOf(name) == 0) {
+      return cookie.substring(name.length, cookie.length);
+    }
+  }
+  return null;
+}
+
+const jwtToken = getCookie("JWT");
+function divideToken(token) {
+  return token.split("Bearer")[1];
+}
+
+const devideToken = divideToken(jwtToken);
+console.log(devideToken);
+console.log("aaaaa", jwtToken);
+
+if (!devideToken) {
+  console.log("JWT token not found in the cookie. Redirecting to login page.");
+  window.location.href = "../HTML/login.html";
+}
+
 var requestOptions = {
   method: "GET",
-  Credential: "include",
+  credentials: "include",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${devideToken}`, // Add JWT token to the headers
+  },
 };
 
 fetch(
-  "http://localhost:15000/enmo_skill_backend_war/proposal?Role=Client&UserId=8",          //hardcode
+  BASE_URL + "/proposal?", //hardcode
   requestOptions
 )
-  .then((response) => response.json())
+  .then((response) => {
+    // console.log("RES " + response);
+    return response.json();
+  })
   .then((result) => {
+    console.log("result " + result);
     count.innerText = result.length;
     result.forEach((item) => {
       const newItem = listItemTemplate.cloneNode(true);
 
       //   newItem.querySelector(".user").addEventListener("click", function() {
       //     console.log("Clicked username: " + item.username);
-        // });
-        
-        newItem
-          .querySelector(".edit")
-          .addEventListener("click", function (event) {
-            event.stopPropagation();
-            editRequest(item);
-          });
-        newItem
-          .querySelector(".delete")
-          .addEventListener("click", function (event) {
-            event.stopPropagation();
-            deleteRequest(item.proposalID);
-          });
+      // });
 
-      newItem.querySelector(".date").textContent = item.description;
-      newItem.querySelector(".user").textContent = item.duration + " Days";
-      newItem.querySelector(".dis").textContent = "Rs. " + item.budget + ".00";
-      newItem.querySelector(".duration").textContent = item.requestID ;
-    //   newItem.querySelector(".budget").textContent = "Rs. " + item.budget;
+      // newItem
+      //   .querySelector(".edit")
+      //   .addEventListener("click", function (event) {
+      //     event.stopPropagation();
+      //     editRequest(item);
+      //   });
+      // newItem
+      //   .querySelector(".delete")
+      //   .addEventListener("click", function (event) {
+      //     event.stopPropagation();
+      //     deleteRequest(item.proposalID);
+      //   });
+      newItem.querySelector(".requestID").textContent = item.client_name;
+      newItem.querySelector(".title2").textContent = item.title;
+      newItem.querySelector(".duration").textContent =
+        item.deliveryDuration + " Days";
+      newItem.querySelector(".price").textContent = "Rs. " + item.price + ".00";
+      newItem.querySelector(".package").textContent = item.pricingPackage;
+      //   newItem.querySelector(".budget").textContent = "Rs. " + item.budget;
       newItem.addEventListener("click", () => {
         viewrequest(item);
       });
@@ -83,7 +131,10 @@ fetch(
       listContainer.appendChild(newItem);
     });
   })
-  .catch((error) => console.log("error", error));
+  .catch((error) => {
+    console.log("error", error);
+    // window.location.href = "../HTML/login.html";
+  });
 
 const popupview = document.querySelector(".overlay-view");
 const titleview = document.querySelector(".tl");
@@ -94,34 +145,34 @@ const Discriptionview = document.querySelector(".description");
 const Budgetview = document.querySelector(".budget-text");
 const durationview = document.querySelector(".description-text");
 
-
-
 function viewrequest(item) {
   popupview.style.display = "flex";
   closetn.addEventListener("click", () => {
+    console.log("Script is running");
+
     popupview.style.display = "none";
   });
   titleview.innerHTML = item.title;
-  username.innerHTML = item.username;
+  username.innerHTML = item.requestID;
   // userurl
-  Discriptionview.innerHTML = item.discription;
-  Budgetview.innerHTML = item.budget;
-  durationview.innerHTML = item.duration;
+  Discriptionview.innerHTML = item.pricingPackage;
+  Budgetview.innerHTML = item.price;
+  durationview.innerHTML = item.deliveryDuration;
 }
-
 
 function deleteRequest(proposalID) {
   if (confirm("Are you sure you want Delete this request?")) {
     var requestOptions = {
       method: "DELETE",
       redirect: "follow",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${devideToken}`, // Add JWT token to the headers
+      },
     };
 
-    fetch(
-      "http://localhost:15000/enmo_skill_backend_war/proposal?ProposalId=" +
-        proposalID,
-      requestOptions
-    )
+    fetch(BASE_URL + "/proposal?ProposalId=" + proposalID, requestOptions)
       .then((response) => response.text())
       .then((result) => {
         alert(result);
@@ -178,7 +229,7 @@ function editRequest(item) {
       description: valtitle,
       duration: valduration,
       budget: valBudget,
-    //   requestID: item.requestID, //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< hardcoded here
+      //   requestID: item.requestID, //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< hardcoded here
       // date: valDis,
     });
 
@@ -186,13 +237,14 @@ function editRequest(item) {
       method: "PUT",
       headers: myHeaders,
       body: raw,
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${devideToken}`, // Add JWT token to the headers
+      },
     };
 
-    fetch(
-      "http://localhost:15000/enmo_skill_backend_war/proposal?ProposalId=" +
-        item.proposalID,
-      requestOptions
-    )
+    fetch(BASE_URL + "/proposal?ProposalId=" + item.proposalID, requestOptions)
       .then((response) => response.text())
       .then((result) => {
         alert(result);
@@ -202,3 +254,34 @@ function editRequest(item) {
   }
 }
 
+function GetClientDetails(packageID) {
+  const requestOptions = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: getCookie("JWT"), // Assuming you have a function to retrieve JWT token from cookies
+    },
+    Credential: "include",
+  };
+
+  return fetch(
+    BASE_URL + `/packagepricing?packageId=${packageID}`,
+    requestOptions
+  )
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      // Assuming the response data contains delivery_duration
+      const deliveryDuration = data[0].deliveryDuration;
+      console.log("PackageID", deliveryDuration);
+      return deliveryDuration;
+    })
+    .catch((error) => {
+      console.error("Error fetching delivery duration:", error);
+      return null; // Return null or handle error appropriately
+    });
+}

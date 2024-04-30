@@ -1,0 +1,246 @@
+.table{
+    padding: 30px;
+    border-radius: 10px;
+    background-color: white;
+}
+.bottom1{
+    display: grid;
+    grid-template-columns: 49% 49%;
+    gap: 25px;
+    /* padding: 10px; */
+}
+.addres-main{
+    display: flex;
+    flex-direction: column;
+}
+.teleohone-main{
+    display: flex;
+    flex-direction: column;
+}
+
+.input{
+    margin-bottom: 5px;
+    margin-top: 10px;
+    height: 20px;
+    border-radius: 5px;
+    padding: 5px;
+    border-color: #d2d2d285;;
+}
+
+.bottom2{
+    display: grid;
+    grid-template-columns: 49% 49%;
+    gap: 25px;
+    /* padding: 10px; */
+}
+.front-main{
+    display: flex;
+    flex-direction: column;
+}
+.back-main{
+    display: flex;
+    flex-direction: column;
+}
+
+.imag-title{
+    margin-bottom: 10px;
+}
+
+.img{
+    /* display: flex;
+    flex-direction: column; */
+    max-width: 200px;
+    max-height: 200px;
+    border: 2px solid #d2d2d285;
+    text-align: center;
+   
+}
+
+.submitBTN{
+    display: flex;
+    justify-content: right;
+    width: 100%;
+}
+.button{
+    width: 150px;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    background-color: black;
+    transition: 0.5s;
+    font-size: 16px;
+}
+.button:hover{
+    color: black;
+    background-color: white;
+    cursor: pointer;
+}
+
+.content{
+    color: rgb(97, 97, 97);
+    font-size: 12px;
+}
+.content-title{
+    font-size: 16px;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.mainclass {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.vidback {
+    position: relative;
+    width: 100%;
+    height: 105%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+#background-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+
+}
+.text{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    backdrop-filter: blur(10px);
+    width: 100%;
+    padding: 15px 0 20px 0px;
+    /* background-color: rgba(0, 0, 0, 0.124); */
+    
+}
+
+
+.text-h1 {
+    font-size: 60px;
+    color: rgb(255, 255, 255);
+    padding: 0;
+    margin: 0;
+    text-shadow: 0px 0px 2px #000000;
+}
+.text-h2{
+    font-size: 21px;
+    color: white;
+    padding-top: 10px;
+    margin: 0;
+    text-shadow: 0px 0px 0px #000000;
+}
+
+.button-become{
+    background-color: #293692;
+    margin-top: 70px;
+    border: none;
+    width: 214px;
+    height: 49px;
+    box-shadow: 0px 0px 1px #ffffff;
+    border-radius: 10px;
+    color: white;
+    font-size: large;
+    font-weight: bold;
+    transition: 0.5s;
+}
+.button-become:hover{
+    
+    box-shadow: 0px 0px 20px rgb(255, 255, 255);
+    background-color: #1b4edb72;
+}
+
+
+.box{
+    width: 90%;
+    height: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: self-end;
+    justify-content: start;
+    padding-top: 84px;
+}
+.box img{
+    height: 85%;
+}
+.content{
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+    height: 100%;
+}
+ 
+.box h1{
+padding: 0;
+margin: 0;
+margin-top: 20px;
+}
+.box p{
+    padding: 0;
+    margin: 0;
+    padding-top: 5px;
+    color: #838383;
+}
+.contain{
+    width: 200px;
+    padding: 10px;
+
+}
+.c-box{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 30px;
+    margin-top: 40px;
+}
+.bottom{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-top: 10px;
+    gap: 30px;
+    padding-left: 30px;
+}
+.bottom p{
+    color: #1b4edb;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: large;
+}
+.bottom  p:hover{
+    text-decoration-line: underline;
+    /* font-weight: 700; */
+    color: #102f84;
+}

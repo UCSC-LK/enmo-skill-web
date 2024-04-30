@@ -4,39 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/signup.css">
+    <link rel="stylesheet" href="../CSS/main.css">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Signup Page</title>
 </head>
 <body>
-
-    <div class="signup-main">
+    <div class="loading">
+        <div class="spin"></div>
+    </div>
+    <div class="box-error">
+        <div class="closebtn">x</div>
+        <box-icon type='solid'class="erroricon" color="#fdfdfd" name='error-alt' animation='tada' size="50px"style="display:none;"></box-icon>
+        <box-icon name='check-circle'class="successicon" color="#fdfdfd"  animation='tada' size="50px" style="display:none;"></box-icon>
+        <div class="massage">
+            <p class="title-error">Error</p>
+            <p class="title-sucess">Success</p>
+            <p class="masssage">qa</p>
+        </div>
+    </div>
+    <div id="header-placeholder" style="width: 100%; z-index: 0; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>
+    <div class="signup-main" >
         <div class="signup-layout">
             <div class="left">
-                <h2>Success starts here</h2>
-                <ul>
-                    <li>Pay per project, not per hour</li>
-                    <li>Meet the Sri Lankan talent</li>
-                    <li>Quality Work, Every Time</li>
-                    <li>Budget-Friendly Brilliance</li>
-                </ul>
+               
             </div>
             <div class="right">
                 <p class="title">Create a new account</p>
-                <p class="nav-signup">    Already have an account? <span class="joinhere">Sign in</span></h5>
+                <p class="nav-signup">    Already have an account? <span class="joinhere" onclick="Logi()">Sign in</span></h5>
                 <form id ="form-layout" method="post">
-                    
+                    <div id="additional-fields">
+                       
                     <label class="input-lable" for="loginemail">Email Adderss:</label>
                     <input type="email" class="inputs" name="email" id="email" required>
+                    <p class = "email-text"style="display:none; font-size: 12px; color: red; margin: 0; padding: 2px 0 0 0px;">Invalid email</p>
 
                     <br>
                     <label class="input-lable" for="loginemail">Username:</label>
                     <input type="text" class="inputs" name="username" id="username" required>
-
+                    <p class = "username-text"style="display:none;  font-size:12px; color: red; margin: 0; padding: 2px 0 0 0px;">username not avaliable</p>
                     <br>
+                    
                     <label class="input-lable" for="password">Password:</label>
                     <input type="password"  class="inputs" id="password" name="password" required>
+                    <span class="toggle-password" onclick="togglePasswordVisibility()">
+                        <box-icon  name='hide' id="toggle-icon">
+                    </span>
+                     
+                    </div>
                     
-                    <br><br>
-                    <input type="submit" value="Signup">
+                    <input type="submit" class="submit" value="Signup" >
                     
                 </form>
                 <div id="messageDiv" style="color: red;">  </div>
@@ -46,7 +63,20 @@
 
     </div>
 <!-- Include the external JavaScript file -->
+<script src="../Javascripts/Toastmassage.js"></script>
+<script src="../Javascripts/baseurl.js"></script>
 <script src="../Javascripts/signup.js"></script>
+<!-- <script type="text/javascript">
+    function validateEmail() {
+      var email = document.getElementById("email").value;
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (emailRegex.test(email)) {
+        
+      } else {
+        alert("Invalid email address. Please enter a valid email address.");
+      }
+    }
+  </script> -->
 
 </body>
 </html>

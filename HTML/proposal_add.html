@@ -1,56 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/proposal_add.css">
-    <title>Buyer Requests</title>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <title>Manage Orders</title>
 </head>
+
 <body>
-    <iframe src="../Components/navbar_customer.html" width="100%" height="auto" frameborder="0" scrolling="no"></iframe>
-    <h1>Add Proposal</h1>
-    <div class="first">
-        <span class="second"> Create Customer Offer </span>
-        <div>
-            <br/><br/>
-            <br/><br/>
+
+<!-- <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script> -->
+<div class="page">
+    <div id="sidebar-placeholder"></div><script src="../Javascripts/sidebar.js"></script>
+    <div class="pg-content" style="width: 100%; overflow: auto;">
+        <div id="header-placeholder" style="width: 100%; position: sticky; top: 0;"></div><script src="../Javascripts/header.js"></script>
+
+        <div class="major">
+            <div class="main-container">
+                <div class="header">
+                    <h2 >Add Proposal</h2>
+                </div>
+                <div class="table" id="table">
+                    <form class="form-layout" id="form-layout" method="post">
+                        <div class="row-main">
+                            <div class="main_a">
+                                <label class="second">I willll design an attractive logo and stationery</label>
+                                <input class="input" id="discription" placeholder="Describe your offer" required>
+                                <br>
+                                <label class="second">Package ID </label>
+                                <select class="input" id="packageId" required>
+                                </select>
+                                <br>
+                                <label class="second"> Title </label>
+                                <input class="input" id="title" readonly>
+                                <br>
+                                <label class="second">Pricing packages</label>
+                                <select class="input" id="pricingPackages" required>
+                                </select>
+                                <br>
+                                <label class="second">Delivery Duration (days)</label>
+                                <input class="input" id="deliveryDuration" readonly>
+                                <br>
+                                <label class="second">Price (Rs)</label>
+                                <input class="input" id="price" required>
+                                <br><br>
+                                <input class="submit" type="submit" value="submit">
+                                <div id="messageDiv" style="color: red;">  </div>
+                            </div>
+                        </div>
+                </div>
+                </form>
+            </div>
         </div>
-        <form id ="form-layout" method="post">
-                    
-            <label class="third">I will design an attractive logo and stationery</label>
-            <input class="input" id="discription" placeholder="Describe your offer" required>
 
-            <br>
-            <label class="second" >Total Amount </label>
-            <input type="text" class="input2"id="amount" placeholder="Amount " required>
+    </div>
+    <script src="../Javascripts/auth.js"></script>
+    <script src="../Javascripts/baseurl.js"></script>
+    <script src="../Javascripts/proposal.js"></script>
+</div>
 
-            <br> 
-            <label class="second" >Delivery Time</label>
-            <input type="text" class="input2" id="time" placeholder="Delivery Time " required>
+</div>
 
-            <!-- <br>
-            <label class="second" >Date</label>
-            <input type="text"  class="input3" id="date" placeholder="Date " required> -->
-            
-            <br><br>
-            
-            <input type="submit" value="submit">
-            <div id="messageDiv" style="color: red;">  </div>
-        </form>
-<!-- Include the external JavaScript file -->
-<script src="../Javascripts/proposal.js"></script>
-
-<!-- <script>
-        // Add an event listener to the form's submit event
-        document.getElementById('form-layout').addEventListener('submit', function (e) {
-            // Prevent the default form submission behavior
-            e.preventDefault();
-            
-            // Your form submission logic can go here
-
-            // Reload the page after form submission
-            location.reload();
-        });
-    </script> -->
 </body>
+
 </html>
+

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="../CSS/sellerDash.css">
+
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+
+<body>
+  <nav class="sidebar open">
+    <header>
+      <div class="image-text">
+       
+
+        <div class="text logo-text">
+            <span class="image">
+                <img src="../Assests/logo enmo.png" alt="">
+              </span>
+          
+        </div>
+      </div>
+
+     
+    </header>
+
+    <div class="menu-bar">
+      <div class="menu">
+
+       
+
+        <ul class="menu-links">
+          <li class="nav-link">
+            <a onclick="dashboard()">
+              <i class='bx bx-category icon'></i>
+              <span class="text nav-text">Dashboard</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a a onclick="order()">
+              <i class='bx bx-archive icon'></i>
+              <span class="text nav-text">Orders</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a a onclick="massages()">
+              <i class='bx bx-envelope icon'></i>
+              <span class="text nav-text">Messages</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a onclick="pakages()">
+              <i class='bx bx-package icon'></i>
+              <span class="text nav-text">My packages</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a onclick="earninigs()">
+              <i class='bx bx-money icon' ></i>
+              <span class="text nav-text">Earnings</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a onclick="buyerrequests()">
+              <i class='bx bx-briefcase icon'></i>
+              <span class="text nav-text">Buyer Requests</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a onclick="proposals()">
+              <i class='bx bx-package icon'></i>
+              <span class="text nav-text">My Proposals</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a onclick="support()">
+              <i class='bx bx-support icon'></i>
+              <span class="text nav-text">Get Support</span>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
+      <div class="bottom-content">
+        <li class="">
+          <a onclick="Logout()" class="logout">
+            <i class='bx bx-log-out icon' id="redicon"></i>
+            <span class="text nav-text1">Logout</span>
+          </a>
+        </li>
+
+        
+
+      </div>
+    </div>
+
+    <script>
+      function Logout() {
+                function deleteCookie(name) {
+                    document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                }
+
+                deleteCookie("JWT");
+                deleteCookie("Refresh Token");
+                deleteCookie("UserLevel");
+                window.parent.location = '../HTML/login.html';
+
+            }
+      function home() {
+           
+            window.parent.location = '../';
+          }
+          function massages() {
+             
+              window.parent.location='../HTML/messages.html';
+          }
+          function dashboard() {
+           
+            window.parent.location = '../HTML/designer_dashboard.html';
+          }
+        function notification() {
+         
+            window.parent.location = '../HTML/notification.html';
+        }
+        function order() {
+           
+            window.parent.location='../HTML/orderlist_designer.html';
+        }
+        function support() {
+           
+            window.parent.location = '../HTML/tikectListDisigner.html';
+        }
+        function pakages() {
+           
+            window.parent.location='../HTML/packages.html';
+        }
+        function earninigs() {
+           
+            // window.parent.location = '../HTML/signup.html';
+            window.parent.location='../HTML/ernings.html'
+        }
+        function proposals() {
+           
+            // window.parent.location = '../HTML/signup.html';
+            window.parent.location='../HTML/proposal_list.html'
+        }
+        function profile() {
+           
+            window.parent.location='../HTML/profile.html';
+        }
+        function buyerrequests() {
+           
+            window.parent.location='../HTML/buyer_request_list.html';
+        }
+        
+    </script>
+
+  </nav>
+
+ 
+
+  
+
+</body>
+
+</html>

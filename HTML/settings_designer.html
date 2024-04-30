@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/settings_client.css">
+    <link rel="stylesheet" href="../CSS/main.css">
+
+
+    <title>Settings</title>
+</head>
+<body>
+    <div class="page">
+        <div id="sidebar-placeholder"></div><script src="../Javascripts/sidebar.js"></script>
+        <div class="pg-content" style="width: 100%; overflow: auto;">
+            <div id="header-placeholder" style="width: 100%; position: sticky; top: 0;"></div><script src="../Javascripts/header.js"></script>
+                <div class="main">
+
+
+                    <div class="container">+
+                        <div class="block">
+                            <h1 class="headding">Update your data</h1>
+
+                            <!-- ---------- Profile details ---------------------------------------------------- -->
+
+                            <!-- <p id="title">Profile Details</p>
+
+                            <div class="form1" >
+                                <form id="acc-details" class="acc-details">
+
+                                    <label for="title" class="label-title">Full name</label>
+                                    <input type="text" name="fullname" id="fullname" required>
+
+                                    <br>
+
+                                    <label for="title" class="label-title">Display name</label>
+                                    <input type="text" name="displayname" id="displayname" disabled>
+                                    
+                                    <br>
+
+                                    <div class="nic-row">
+                                        <label for="title" class="label-title">NIC/ Passport/ <br> Driving license</label>
+                                        <div class="rs">
+                                            <input type="text" name="nic" id="nic">
+                                            <div id="uploadContainer" class="uploadContainer" onclick="openFileUploader()">
+                                            <span id="uploadedText">Click here to upload the proof</span>
+                                            <div id="uploadMessage"><span id="fileName"></span></div>
+                                            <div id="uploadErrorMessage">Error uploading image. Please try again.</div>
+                                        </div>
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                    <br>
+
+                                    <div class="nic-row">
+                                        <label for="title" class="label-title">Profile picture</label>
+                                        <div id="myDiv" class="profilepic"></div>
+                                    </div>
+
+                                    
+
+                                    <br>
+
+                                    <label for="description" class="more">Description</label>
+                                    <textarea name="description" id="description" cols="62" rows="5" placeholder="Share a bit about your work experience, cool projects you’ve completed, and your area of expertise."></textarea>
+                                    <br>
+
+                                    <div class="nic-row">
+                                        <label for="title" class="label-title">Languages</label>
+                                        <select name="languages" id="languages" multiple>
+                                            <option value="english">Select language</option>
+                                            <option value="english">English</option>
+                                            <option value="spanish">Spanish</option>
+                                            <option value="french">French</option>
+                                            <option value="german">German</option>
+                                            <option value="italian">Italian</option>
+                                            <option value="chinese">Chinese</option>
+                                            <option value="japanese">Japanese</option>
+                                            <option value="korean">Korean</option>
+                                            <option value="arabic">Arabic</option>
+                                            <option value="russian">Russian</option>
+                                            <option value="portuguese">Portuguese</option>
+                                            <option value="hindi">Hindi</option>
+                                            <option value="dutch">Dutch</option>
+                                            <option value="swedish">Swedish</option>
+                                            <option value="greek">Greek</option>
+                                            <option value="turkish">Turkish</option>
+                                            <option value="hebrew">Hebrew</option>
+                                            <option value="polish">Polish</option>
+                                        </select>
+                                    </div>
+                                    
+
+                                    <br>
+                                    
+                                    <button type="submit" class="button-save-small" id="button-next">Save changes</button>
+                                </form>
+
+                            </div> -->
+
+                            <!-- ----------SECURITY SETTINGS----------------------------- -->
+
+                            <p class="hd" id="title">Security Details</p>
+
+                            <div class="form1" >
+                                <form id="acc-details" class="acc-details">
+
+                                    <label class="label-psswrd">SET PASSWORD </label>
+
+                                    <br>
+
+                                    <table class="struct">
+                                        <tr>
+                                            <td style="width:34%">
+                                                <label for="title" class="label-title">New password</label>
+                                            </td>
+                                            <td>
+                                                <input type="password" name="newpassword" id="newpassword" required>
+                                                <label class="label-chk"><input type="checkbox" onclick="myFunction()">Show Password</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label for="title" class="label-confirm">Confirm password</label>
+                                                
+                                            </td>
+                                            <td><input type="password" name="newpassword" id="newpassword" required><br>
+                                                <label class="label-chk"><input type="checkbox" onclick="myFunction()">Show Password</label>
+
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <button type="submit" class="button-save-small" id="button-next">Save changes</button>
+                                </form>
+
+                            </div>
+
+                            
+                            <!-- ACCOUNT SETTINGS---------------------------------------------------------------------------- -->
+                            
+                            <p class="hd" id="title">Account Settings</p>
+
+                            <div class="form1" >
+                                <form id="acc-details" class="acc-details">
+
+                                    <table class="struct">
+                                        <tr>
+                                            <td style="width:34%">
+                                                <label for="title" class="label-title">First Name</label>
+                                            </td>
+                                            <td>
+                                                <input type="text" name="fname" id="fname" required>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label for="title" class="label-title">Last Name</label>
+                                            </td>
+                                            <td>
+                                                <input type="text" name="lname" id="lname" required>
+                                            </td> 
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label for="title" class="label-title">Email</label>
+                                            </td>
+                                            <td>
+                                                <input type="text" name="email" id="email" disabled>
+                                            </td> 
+                                        </tr>
+                                    </table>
+
+                                    <!-- <label for="title" class="label-title">Full name</label>
+                                    <input type="text" name="name" id="name" required>
+
+                                    <label for="title" class="label-title">Email</label>
+                                    <input type="text" name="email" id="email" disabled> -->
+                                    
+                
+                
+                                    <button type="submit" class="button-save-small" id="button-next">Save changes</button>
+                                </form>
+
+                            </div>
+
+                            <!-- <div class="form2">
+                                
+                                <form id="acc-deactivation">
+
+                                    <div class="row1">
+                                        <div class="l1">
+                                            <label class="label-title">ACCOUNT DECATIVATION</label>
+                                        </div>
+                                        <div class="r1">
+                                            <label class="sub">
+                                                What happens when you deactivate your account?
+                                                <ul>
+                                                    <li>Your profile and Gigs won't be shown on ENMO Skill anymore.</li>
+                                                    <li>Active orders will be canceled.</li>
+                                                    <li>You won't be able to re-activate your Packages.</li>
+                                                </ul>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row2">
+                                        <label class="leaving">I am leaving beacase..</label>
+
+                                        <select name="reason">
+                                            <option value="none">Choose a reason</option>
+                                            <optgroup label="Account">
+                                                <option value="">Unsubscribe form ENMO Skill emails</option>
+                                                <option value="">I want to change my username</option>
+                                                <option value="">I have another account</option>
+                                                <option value="">Other</option>
+                                            </optgroup>
+                                            <optgroup label="Buying">
+                                                <option value="">I can find what I need in ENMO Skill</option>
+                                                <option value="">ENMO Skill is complicated or hard to use</option>
+                                                <option value="">Negetive experience with sellers</option>
+                                                <option value="">Unhappy with ENMO Skill's policies</option>
+                                                <option value="">Other</option>
+                                            </optgroup>
+                                            <option value="">Something else</option>
+                                        </select>
+                                    </div>
+
+                                
+
+                                    <label for="description" class="more">Tell us more (optional)</label>
+                                    <textarea name="reason" id="reason" cols="62" rows="5" placeholder="Help us to become better"></textarea>
+                                    <br>
+                                    
+                                    <button type="submit" class="button-deactivate" id="button-next">Decativate account</button>
+
+                                </form>
+                            </div> -->
+
+                            
+                            
+
+                                
+                            
+                            
+                        </div>
+
+                        
+
+                    </div>
+                </div> 
+            </div>
+    </div>
+    <script src="../Javascripts/baseurl.js"></script>
+    <script src="../Javascripts/settings_designer.js"></script>
+</body>
+
+</html>

@@ -4,24 +4,222 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
-    <link rel="stylesheet" href="../CSS/main.css">
-    <link rel="stylesheet" href="../CSS/notification.css">
+    <link rel="stylesheet" href="../CSS/my_request.css">
+    <link rel="stylesheet" href="../CSS/buyer_request.css">
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../Javascripts/baseurl.js"></script>
     
-    <title>My Requests</title>
+    <title>Notifications</title>
+    <style>
+        .one-item{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .one-item:hover{
+            background-color: #f3f3f3;
+        }
+
+        .unread{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+            background-color: #bcf3ff2c;
+            border-bottom: #68e3ff9a solid 3px;
+        }
+        .unread:hover{
+            background-color: #f3f3f3;
+        }
+        .time{
+            margin-left: auto;
+            color: #a3a3a3;
+            font-size: x-small;
+            font-weight: bold;
+            width: 80px;
+            align-self: self-end;
+            margin-bottom: -5px;
+            text-align: end;
+            padding-right: 10px;
+
+        }
+    </style>
 </head>
+
 <body>
-    <iframe src="../Components/navbar_customer.html" frameborder="0" scrolling="no" style="width: 100%;margin-bottom: 0;position: fixed;top: 0;z-index: 2;left: 0;"></iframe>
-<div class="main">
-    <div class="header">
-        <H1>Notification</H1>
-    </div>
-    <div class="container">
+    <!-- <iframe class= "popup"src="../Components/add_buyer_request.html" frameborder="0" scrolling="no" style="width: 100%; height: 100%; position: fixed;z-index: 101; top: 0; left: 0; display: none;"></iframe> -->
+    <div id="header-placeholder" style="width: 100%; z-index: 101; position: fixed; top: 0; left: 0;"></div><script src="../Javascripts/header.js"></script>
+    <div class="major">
+        <div class="main-container">
+            <div class="header">
+                <div class="firstele">
+                <h2>Notifications</h2>
+                </div>
+                <div class="count">
+                    
+                    
+                    <div class="ct-bottom"><box-icon name='offer' type='solid' rotate='90' color='#a3a3a3' size = '20px' ></box-icon>
+                        <p><span id="count">0</span>  Unread Notifications</p>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="table" id="table">
+                
+                <div class="upper">
+                    
+                </div>
+                <div class="row-hidden">
+                    <box-icon  class="icon-noti" name='info-circle' color="#838383" size ="50px" style="padding: 0 20px;"></box-icon>
+                    <p class="contentofn">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque id laboriosam consequatur rem vero? Laudantium facilis omnis ad alias recusandae temporibus, minus vero ipsa, consectetur, dolore id qui commodi ab.</p>
+                    <p class="time">12:00 PM</p>
+                </div>
+                
+                
+            </div>
 
+        </div>
     </div>
-    <div class="side">
+<script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1000,
+        timerProgressBar: false,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+    }
+    });
+    function getCookie(cookieName) {
+        var name = cookieName + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var cookieArray = decodedCookie.split(";");
 
-    </div>
-</div>
+        for (var i = 0; i < cookieArray.length; i++) {
+            var cookie = cookieArray[i].trim();
+            if (cookie.indexOf(name) == 0) {
+            return cookie.substring(name.length, cookie.length);
+            }
+        }
+        return null;
+    }
+    const count = document.getElementById("count");
+    listItemTemplate = document.querySelector(".row-hidden");
+    listContainer=document.getElementById("table");
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", getCookie("JWT"));
+    myHeaders.append("Content-Type", "application/json");
+
+    const requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow"
+    };
+
+    fetch(BASE_URL+"/notification", requestOptions)
+    .then(response => 
+    {if(response.status == 401){
+      window.location.href = "../Failed/401.html";
+    }else if(response.status == 406){
+      const currentUrl = encodeURIComponent(window.location.href);
+      window.location.href = "../Failed/Session%20timeout.html?returnUrl="+currentUrl;
+    }else if(response.status == 404){
+      window.location.href = "../Failed/404.html";
+    }else {
+      return response.json()
+    }
+    })
+  .then(result => {
+    console.log(result)
+    count.innerText=result.count;
+    result.notifications.forEach(item => {
+    
+        const newItem = listItemTemplate.cloneNode(true);
+        // newItem.addEventListener("click",(event )=>{
+        //   event.stopPropagation();
+        // })
+        
+        
+
+
+
+        newItem.querySelector(".contentofn").textContent = item.content;
+        newItem.querySelector(".time").textContent = item.date;
+        newItem.querySelector(".icon-noti").setAttribute("name", selectIcon(item.type));
+
+        if(item.status==1){
+            newItem.addEventListener("click",()=>{
+
+                newItem.classList.remove("unread");
+                newItem.classList.add("one-item");
+                
+                const requestOptions = {
+                method: "PUT",
+                headers: myHeaders,
+                redirect: "follow"
+                };
+
+                fetch(BASE_URL+"/notification?notificationId="+item.notificationID, requestOptions)
+                .then((response) => response.text())
+                .then((result) => {
+                    Toast.fire({
+                        title: 'Notification marked as read',
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+                })
+                .catch((error) => console.error(error));
+            })
+        }
+        
+        newItem.classList.remove("row-hidden");
+        if(item.status==1){
+            newItem.classList.add("unread");
+        }else{
+            newItem.classList.add("one-item");
+            
+        }
+        
+       
+        listContainer.appendChild(newItem);
+    })
+
+  })
+  .catch(error => console.log('error', error));
+
+
+function selectIcon(type){
+    if(type=="orderOK"){
+        return "cool";
+    }else if(type=="orderReceived"){
+        return "dollar-circle";
+    }else if(type=="warning"){
+        return "error-alt";
+    }else if(type=="cancelOrder"){
+        return "confused";
+    }else if(type=="Support"){
+        return "support";
+    }else if(type=="Proposal"){
+        return "food-menu";
+    }else{
+        return "info-circle";
+    }
+}
+
+//order
+//warning
+//cancel
+//proposal
+
+</script>
 </body>
 
