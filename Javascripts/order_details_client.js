@@ -564,5 +564,37 @@ async function Sendreq() {
 
 function loadAnotherHTML2() {
 
-  
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  myHeaders.append("Authorization", getCookie("JWT"));
+
+  const raw = JSON.stringify({
+    status: 3,
+  });
+
+  const requestOptions = {
+    method: "PUT",
+    headers: myHeaders,
+    redirect: "follow",
+    body: raw,
+  };
+
+  const orderId2 = getOrderIDFromURL();
+
+  fetch(BASE_URL + `/orderDetails?orderId=${orderId2}`, requestOptions)
+    .then((response) => {
+      if (response.ok) {
+        return response.text(); // Process text if response was ok
+      } else {
+        throw new Error("Failed to send request"); // Throw error otherwise
+      }
+    })
+    .then((result) => {
+      console.log(result);
+      console.log("Complete")
+      // window.location.reload(); // Reload the page on successful upload
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }
