@@ -120,7 +120,7 @@ function updatePricingDetails() {
 
     if (selectedPackage) {
         document.getElementById("deliveryDuration").value = selectedPackage.deliveryDuration;
-        document.getElementById("price").value = selectedPackage.price;
+        // document.getElementById("price").value = selectedPackage.price;
     }
 }
 
@@ -171,11 +171,13 @@ document
 
     const jsonData = JSON.stringify(formData);
 
-    console.log("jsonData"+ jsonData)
-
+    console.log("jsonData" + jsonData)
+    
+    const RequestId = getRequestIdFromURL();
+    console.log("requestID", RequestId);
     // Make a fetch request
     fetch(
-      BASE_URL + "/proposal?RequestId=114", //hardcode
+      BASE_URL + `/proposal?RequestId=${RequestId}`, //hardcode
       {
         method: "POST",
         credentials: "include",
@@ -209,7 +211,12 @@ document
       });
   });
 
-  
+  function getRequestIdFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const requestID = urlParams.get("requestID");
+    return requestID;
+  }
+
 
 
 
